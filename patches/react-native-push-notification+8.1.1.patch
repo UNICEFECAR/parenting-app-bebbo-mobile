@@ -1,0 +1,579 @@
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/3adde777db4918418ec51687ff9653ee/results.bin b/node_modules/react-native-push-notification/android/build/.transforms/3adde777db4918418ec51687ff9653ee/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/.transforms/3adde777db4918418ec51687ff9653ee/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/3adde777db4918418ec51687ff9653ee/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-push-notification/android/build/.transforms/3adde777db4918418ec51687ff9653ee/transformed/classes/classes_dex/classes.dex
+new file mode 100644
+index 0000000..c40b2f8
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/3adde777db4918418ec51687ff9653ee/transformed/classes/classes_dex/classes.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/results.bin b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/results.bin
+new file mode 100644
+index 0000000..e1640c9
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/results.bin
+@@ -0,0 +1 @@
++o/bundleLibRuntimeToDirRelease
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/BuildConfig.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/BuildConfig.dex
+new file mode 100644
+index 0000000..3274099
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/BuildConfig.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.dex
+new file mode 100644
+index 0000000..15f7ced
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.dex
+new file mode 100644
+index 0000000..3c780c5
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.dex
+new file mode 100644
+index 0000000..e8a6996
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.dex
+new file mode 100644
+index 0000000..5236c00
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification.dex
+new file mode 100644
+index 0000000..988b460
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotification.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.dex
+new file mode 100644
+index 0000000..42963df
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.dex
+new file mode 100644
+index 0000000..1c93c28
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.dex
+new file mode 100644
+index 0000000..ccf574b
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.dex
+new file mode 100644
+index 0000000..4bcc22b
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.dex
+new file mode 100644
+index 0000000..8edfbb5
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.dex
+new file mode 100644
+index 0000000..684ce43
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.dex
+new file mode 100644
+index 0000000..0278950
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.dex
+new file mode 100644
+index 0000000..da45db2
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.dex
+new file mode 100644
+index 0000000..62390cb
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.dex
+new file mode 100644
+index 0000000..42e739e
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.dex
+new file mode 100644
+index 0000000..26cc48f
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.dex
+new file mode 100644
+index 0000000..9b68ba5
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.dex
+new file mode 100644
+index 0000000..336deed
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.dex
+new file mode 100644
+index 0000000..b275eb4
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.dex
+new file mode 100644
+index 0000000..201ef8a
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.dex
+new file mode 100644
+index 0000000..0d2ecad
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.dex
+new file mode 100644
+index 0000000..740dd92
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.dex
+new file mode 100644
+index 0000000..0cbefc2
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.dex
+new file mode 100644
+index 0000000..e9fef7a
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.dex
+new file mode 100644
+index 0000000..3da1427
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.dex b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.dex
+new file mode 100644
+index 0000000..2b5de77
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.dex differ
+diff --git a/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/desugar_graph.bin b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/desugar_graph.bin
+new file mode 100644
+index 0000000..4cd21f2
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/.transforms/ebebc8414d8efa5be28ccb0cec27313a/transformed/bundleLibRuntimeToDirRelease/desugar_graph.bin differ
+diff --git a/node_modules/react-native-push-notification/android/build/generated/source/buildConfig/release/com/dieam/reactnativepushnotification/BuildConfig.java b/node_modules/react-native-push-notification/android/build/generated/source/buildConfig/release/com/dieam/reactnativepushnotification/BuildConfig.java
+new file mode 100644
+index 0000000..a1e75ba
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/generated/source/buildConfig/release/com/dieam/reactnativepushnotification/BuildConfig.java
+@@ -0,0 +1,10 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package com.dieam.reactnativepushnotification;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = false;
++  public static final String LIBRARY_PACKAGE_NAME = "com.dieam.reactnativepushnotification";
++  public static final String BUILD_TYPE = "release";
++}
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml b/node_modules/react-native-push-notification/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..5c36ebe
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.dieam.reactnativepushnotification" >
++
++    <uses-sdk android:minSdkVersion="24" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json b/node_modules/react-native-push-notification/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json
+new file mode 100644
+index 0000000..e35cb3a
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "com.dieam.reactnativepushnotification",
++  "variantName": "release",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties b/node_modules/react-native-push-notification/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties
+new file mode 100644
+index 0000000..1211b1e
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties
+@@ -0,0 +1,6 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
++coreLibraryDesugaringEnabled=false
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json b/node_modules/react-native-push-notification/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/compile_library_classes_jar/release/bundleLibCompileToJarRelease/classes.jar b/node_modules/react-native-push-notification/android/build/intermediates/compile_library_classes_jar/release/bundleLibCompileToJarRelease/classes.jar
+new file mode 100644
+index 0000000..9be6f71
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/compile_library_classes_jar/release/bundleLibCompileToJarRelease/classes.jar differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/compile_r_class_jar/release/generateReleaseRFile/R.jar b/node_modules/react-native-push-notification/android/build/intermediates/compile_r_class_jar/release/generateReleaseRFile/R.jar
+new file mode 100644
+index 0000000..62c67a1
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/compile_r_class_jar/release/generateReleaseRFile/R.jar differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/compile_symbol_list/release/generateReleaseRFile/R.txt b/node_modules/react-native-push-notification/android/build/intermediates/compile_symbol_list/release/generateReleaseRFile/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml b/node_modules/react-native-push-notification/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..423bbf4
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/jniLibs"/></dataSet><dataSet config="release" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/release/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/incremental/mergeReleaseShaders/merger.xml b/node_modules/react-native-push-notification/android/build/intermediates/incremental/mergeReleaseShaders/merger.xml
+new file mode 100644
+index 0000000..fa0fbb0
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/incremental/mergeReleaseShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/shaders"/></dataSet><dataSet config="release" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/release/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/incremental/packageReleaseAssets/merger.xml b/node_modules/react-native-push-notification/android/build/intermediates/incremental/packageReleaseAssets/merger.xml
+new file mode 100644
+index 0000000..f20f274
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/incremental/packageReleaseAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/assets"/></dataSet><dataSet config="release" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/release/assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/build/intermediates/shader_assets/release/compileReleaseShaders/out"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties b/node_modules/react-native-push-notification/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties
+new file mode 100644
+index 0000000..57355ab
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Wed Jul 15 14:40:59 IST 2026
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml b/node_modules/react-native-push-notification/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml
+new file mode 100644
+index 0000000..6ab83c0
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="release$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/release/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="release" generated-set="release$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/release/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/build/generated/res/resValues/release"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/build/generated/res/resValues/release"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/BuildConfig.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/BuildConfig.class
+new file mode 100644
+index 0000000..96d8a58
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/BuildConfig.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.class
+new file mode 100644
+index 0000000..9500fcc
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.class
+new file mode 100644
+index 0000000..1b57f35
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.class
+new file mode 100644
+index 0000000..a21eb71
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.class
+new file mode 100644
+index 0000000..643c214
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification.class
+new file mode 100644
+index 0000000..91b6273
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotification.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.class
+new file mode 100644
+index 0000000..df98499
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.class
+new file mode 100644
+index 0000000..2cb4466
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.class
+new file mode 100644
+index 0000000..7107f59
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.class
+new file mode 100644
+index 0000000..6c87e49
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.class
+new file mode 100644
+index 0000000..379d938
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.class
+new file mode 100644
+index 0000000..f7fe56e
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.class
+new file mode 100644
+index 0000000..af69b84
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.class
+new file mode 100644
+index 0000000..c136ee7
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.class
+new file mode 100644
+index 0000000..58240f7
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.class
+new file mode 100644
+index 0000000..d636ab2
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.class
+new file mode 100644
+index 0000000..b9f92e9
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.class
+new file mode 100644
+index 0000000..061f981
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.class
+new file mode 100644
+index 0000000..cd09e8a
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.class
+new file mode 100644
+index 0000000..8c093be
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.class
+new file mode 100644
+index 0000000..1db4656
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.class
+new file mode 100644
+index 0000000..e056581
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.class
+new file mode 100644
+index 0000000..2eeedfd
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.class
+new file mode 100644
+index 0000000..cd555b5
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.class
+new file mode 100644
+index 0000000..bfa3d28
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.class
+new file mode 100644
+index 0000000..a21e2c1
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.class b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.class
+new file mode 100644
+index 0000000..697605d
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt b/node_modules/react-native-push-notification/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt b/node_modules/react-native-push-notification/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt
+new file mode 100644
+index 0000000..b586bbc
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt
+@@ -0,0 +1,7 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="com.dieam.reactnativepushnotification" >
++4
++5    <uses-sdk android:minSdkVersion="24" />
++6
++7</manifest>
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml b/node_modules/react-native-push-notification/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml
+new file mode 100644
+index 0000000..5c36ebe
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.dieam.reactnativepushnotification" >
++
++    <uses-sdk android:minSdkVersion="24" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json b/node_modules/react-native-push-notification/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt b/node_modules/react-native-push-notification/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt
+new file mode 100644
+index 0000000..08f4ebe
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt
+@@ -0,0 +1 @@
++0 Warning/Error
+\ No newline at end of file
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/BuildConfig.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/BuildConfig.class
+new file mode 100644
+index 0000000..96d8a58
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/BuildConfig.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.class
+new file mode 100644
+index 0000000..9500fcc
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/ReactNativePushNotificationPackage.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.class
+new file mode 100644
+index 0000000..1b57f35
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/helpers/ApplicationBadgeHelper.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.class
+new file mode 100644
+index 0000000..a21eb71
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.class
+new file mode 100644
+index 0000000..643c214
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification$RNIntentHandler.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification.class
+new file mode 100644
+index 0000000..91b6273
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotification.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.class
+new file mode 100644
+index 0000000..df98499
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.class
+new file mode 100644
+index 0000000..2cb4466
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.class
+new file mode 100644
+index 0000000..7107f59
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationActions.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.class
+new file mode 100644
+index 0000000..6c87e49
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationAttributes.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.class
+new file mode 100644
+index 0000000..379d938
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationBootEventReceiver.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.class
+new file mode 100644
+index 0000000..f7fe56e
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationConfig.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.class
+new file mode 100644
+index 0000000..af69b84
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.class
+new file mode 100644
+index 0000000..c136ee7
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationHelper.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.class
+new file mode 100644
+index 0000000..58240f7
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationJsDelivery.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.class
+new file mode 100644
+index 0000000..d636ab2
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.class
+new file mode 100644
+index 0000000..b9f92e9
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.class
+new file mode 100644
+index 0000000..061f981
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationListenerService.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.class
+new file mode 100644
+index 0000000..cd09e8a
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.class
+new file mode 100644
+index 0000000..8c093be
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$2.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.class
+new file mode 100644
+index 0000000..1db4656
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$3.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.class
+new file mode 100644
+index 0000000..e056581
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator$Callback.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.class
+new file mode 100644
+index 0000000..2eeedfd
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPicturesAggregator.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.class
+new file mode 100644
+index 0000000..cd555b5
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNPushNotificationPublisher.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.class
+new file mode 100644
+index 0000000..bfa3d28
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.class
+new file mode 100644
+index 0000000..a21e2c1
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler$1.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.class b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.class
+new file mode 100644
+index 0000000..697605d
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/dieam/reactnativepushnotification/modules/RNReceivedMessageHandler.class differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_jar/release/bundleLibRuntimeToJarRelease/classes.jar b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_jar/release/bundleLibRuntimeToJarRelease/classes.jar
+new file mode 100644
+index 0000000..e23ab48
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/intermediates/runtime_library_classes_jar/release/bundleLibRuntimeToJarRelease/classes.jar differ
+diff --git a/node_modules/react-native-push-notification/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt b/node_modules/react-native-push-notification/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt
+new file mode 100644
+index 0000000..1fdad45
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt
+@@ -0,0 +1 @@
++com.dieam.reactnativepushnotification
+diff --git a/node_modules/react-native-push-notification/android/build/outputs/logs/manifest-merger-release-report.txt b/node_modules/react-native-push-notification/android/build/outputs/logs/manifest-merger-release-report.txt
+new file mode 100644
+index 0000000..ebe55de
+--- /dev/null
++++ b/node_modules/react-native-push-notification/android/build/outputs/logs/manifest-merger-release-report.txt
+@@ -0,0 +1,17 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml:1:1-4:12
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml:1:1-4:12
++	package
++		ADDED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml:2:5-52
++		INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml
++	xmlns:android
++		ADDED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml:1:11-69
++uses-sdk
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-push-notification/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/react-native-push-notification/android/build/tmp/compileReleaseJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-push-notification/android/build/tmp/compileReleaseJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..e792a9b
+Binary files /dev/null and b/node_modules/react-native-push-notification/android/build/tmp/compileReleaseJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/react-native-push-notification/android/src/main/java/com/dieam/reactnativepushnotification/modules/RNPushNotification.java b/node_modules/react-native-push-notification/android/src/main/java/com/dieam/reactnativepushnotification/modules/RNPushNotification.java
+index d162680..5fae131 100644
+--- a/node_modules/react-native-push-notification/android/src/main/java/com/dieam/reactnativepushnotification/modules/RNPushNotification.java
++++ b/node_modules/react-native-push-notification/android/src/main/java/com/dieam/reactnativepushnotification/modules/RNPushNotification.java
+@@ -111,7 +111,9 @@ public class RNPushNotification extends ReactContextBaseJavaModule implements Ac
+         
+         Bundle bundle = this.getBundleFromIntent(intent);
+         if (bundle != null) {
+-            mJsDelivery.notifyNotification(bundle);
++            if (mJsDelivery != null) {  
++                mJsDelivery.notifyNotification(bundle);
++            }
+         }
+     }
+ 

@@ -54,6 +54,7 @@ import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
+import crashlytics from '@react-native-firebase/crashlytics';
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
@@ -100,7 +101,9 @@ export default (): any => {
   const hasLoggedEvent = useRef(false);
   let currentCount = 0;
   const messaging = React.useMemo(() => getMessaging(getApp()), []);
-  // console.log("token is--",messaging.getToken())
+  // messaging.getToken().then(token => {
+  //   console.log('FCM Token:', token);
+  // });
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -297,139 +300,152 @@ export default (): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
     console.log(notification.data.uuid, "..notification.data.uuid..");
-
-    if (notification && notification.data && notification.data.notitype) {
-      if (
-        notification.data.notitype == "vc" ||
-        notification.data.notitype == "vcr"
-      ) {
-        if (screenName == "NotificationsScreen") {
-          console.log("..NotificationsScreen..", screenName);
-          navigationRef.current?.navigate("Home", {
-            screen: "Tools",
-            params: {
+    InteractionManager.runAfterInteractions(async () => {
+      try {
+      if (notification && notification.data && notification.data.notitype) {
+        if (
+          notification.data.notitype == "vc" ||
+          notification.data.notitype == "vcr"
+        ) {
+          if (screenName == "NotificationsScreen") {
+            console.log("..NotificationsScreen..", screenName);
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
+              params: {
+                screen: "VaccinationTab",
+                params: {
+                  fromNotificationScreen: true,
+                },
+              },
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "VaccinationTab" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("Tools", {
               screen: "VaccinationTab",
+            });
+          } else {
+            console.log("..nohomenew..", screenName);
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
+              params: {
+                screen: "VaccinationTab",
+              },
+            });
+          }
+        } else if (
+          notification.data.notitype == "hc" ||
+          notification.data.notitype == "hcr"
+        ) {
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
+              params: {
+                screen: "HealthCheckupsTab",
+                params: {
+                  fromNotificationScreen: true,
+                },
+              },
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "VaccinationTab" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("Tools", {
+              screen: "HealthCheckupsTab",
+            });
+          } else {
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
+              params: {
+                screen: "HealthCheckupsTab",
+              },
+            });
+          }
+        } else if (notification.data.notitype == "cd") {
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate("Home", {
+              screen: "ChildDevelopment",
               params: {
                 fromNotificationScreen: true,
               },
-            },
-          });
-        } else if (
-          screenName == "Home" ||
-          screenName == "VaccinationTab" ||
-          screenName == "ChildDevelopment" ||
-          screenName == "Activities" ||
-          screenName == "Articles" ||
-          screenName == "HealthCheckupsTab" ||
-          screenName == "ChildgrowthTab"
-        ) {
-          navigationRef.current?.navigate("Tools", {
-            screen: "VaccinationTab",
-          });
-        } else {
-          console.log("..nohomenew..", screenName);
-          navigationRef.current?.navigate("Home", {
-            screen: "Tools",
-            params: {
-              screen: "VaccinationTab",
-            },
-          });
-        }
-      } else if (
-        notification.data.notitype == "hc" ||
-        notification.data.notitype == "hcr"
-      ) {
-        if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate("Home", {
-            screen: "Tools",
-            params: {
-              screen: "HealthCheckupsTab",
-              params: {
-                fromNotificationScreen: true,
-              },
-            },
-          });
-        } else if (
-          screenName == "Home" ||
-          screenName == "VaccinationTab" ||
-          screenName == "ChildDevelopment" ||
-          screenName == "Activities" ||
-          screenName == "Articles" ||
-          screenName == "HealthCheckupsTab" ||
-          screenName == "ChildgrowthTab"
-        ) {
-          navigationRef.current?.navigate("Tools", {
-            screen: "HealthCheckupsTab",
-          });
-        } else {
-          navigationRef.current?.navigate("Home", {
-            screen: "Tools",
-            params: {
-              screen: "HealthCheckupsTab",
-            },
-          });
-        }
-      } else if (notification.data.notitype == "cd") {
-        if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate("Home", {
-            screen: "ChildDevelopment",
-            params: {
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "VaccinationTab" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("ChildDevelopment");
+          } else {
+            navigationRef.current?.navigate("Home", {
+              screen: "ChildDevelopment",
+            });
+          }
+        } else if (notification.data.notitype == "gw") {
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate("AddNewChildgrowth", {
+              headerTitle: t("growthScreenaddNewBtntxt"),
               fromNotificationScreen: true,
-            },
-          });
-        } else if (
-          screenName == "Home" ||
-          screenName == "ChildDevelopment" ||
-          screenName == "Activities" ||
-          screenName == "Articles" ||
-          screenName == "VaccinationTab" ||
-          screenName == "HealthCheckupsTab" ||
-          screenName == "ChildgrowthTab"
-        ) {
-          navigationRef.current?.navigate("ChildDevelopment");
-        } else {
-          navigationRef.current?.navigate("Home", {
-            screen: "ChildDevelopment",
-          });
-        }
-      } else if (notification.data.notitype == "gw") {
-        if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate("AddNewChildgrowth", {
-            headerTitle: t("growthScreenaddNewBtntxt"),
-            fromNotificationScreen: true,
-          });
-        } else if (
-          screenName == "Home" ||
-          screenName == "ChildDevelopment" ||
-          screenName == "Activities" ||
-          screenName == "Articles" ||
-          screenName == "VaccinationTab" ||
-          screenName == "HealthCheckupsTab" ||
-          screenName == "ChildgrowthTab"
-        ) {
-          navigationRef.current?.navigate("AddNewChildgrowth", {
-            headerTitle: t("growthScreenaddNewBtntxt"),
-          });
-        } else {
-          navigationRef.current?.navigate("AddNewChildgrowth", {
-            headerTitle: t("growthScreenaddNewBtntxt"),
-          });
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "VaccinationTab" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("AddNewChildgrowth", {
+              headerTitle: t("growthScreenaddNewBtntxt"),
+            });
+          } else {
+            navigationRef.current?.navigate("AddNewChildgrowth", {
+              headerTitle: t("growthScreenaddNewBtntxt"),
+            });
+          }
         }
       }
+      setProfileLoading(true);
+        const start = Date.now();      
+        crashlytics().log(
+          'NOTI: setActiveChild start'
+        );
+        const setData = await setActiveChild(
+          languageCode,
+          notification.data.uuid,
+          dispatch,
+          child_age,
+          true
+        );
+        crashlytics().log(
+          `NOTI: setActiveChild end ${
+            Date.now() - start
+          }ms`
+        );
+        if (setData == "activeset") {
+          setProfileLoading(false);
+        }
+    } catch (error) {
+      crashlytics().recordError(error as any);
+      setProfileLoading(false);
     }
-    setProfileLoading(true);
-    setTimeout(async () => {
-      const setData = await setActiveChild(
-        languageCode,
-        notification.data.uuid,
-        dispatch,
-        child_age,
-        true
-      );
-      if (setData == "activeset") {
-        setProfileLoading(false);
-      }
-    }, 0);
+  });
   };
   const handleNotification = (notification: any): any => {
     let executed = false;
@@ -505,6 +521,9 @@ export default (): any => {
   }, [userIsOnboarded]);
 
   const redirectPayload = (remoteMessage: any): any => {
+    crashlytics().log(
+      `NOTI: redirectPayload type=${remoteMessage?.data?.type}`
+    );
     if (
       remoteMessage &&
       remoteMessage.data &&
@@ -874,17 +893,30 @@ export default (): any => {
         if (remoteMessage) {
           // background click noti
           if (userIsOnboarded == true) {
-            redirectPayload(remoteMessage);
+            InteractionManager.runAfterInteractions(() => {
+              crashlytics().log('NOTI: executing redirectPayload');
+              redirectPayload(remoteMessage);
+            });
           }
         }
       });
       // Check whether an initial notification is available
       getInitialNotification(messaging)
         .then((remoteMessage) => {
+          crashlytics().log('NOTI: getInitialNotification start');
+
+          if (remoteMessage) {
+            crashlytics().log(
+              `NOTI: opened app type=${remoteMessage?.data?.type}`
+            );
+          }
           if (remoteMessage) {
             // after kill and restart application
             if (userIsOnboarded == true) {
-              redirectPayload(remoteMessage);
+              InteractionManager.runAfterInteractions(() => {
+                crashlytics().log('NOTI: executing redirectPayload2');
+                redirectPayload(remoteMessage);
+              });
             }
           }
         });
@@ -1012,7 +1044,13 @@ export default (): any => {
           childuuid: "all",
         };
         dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+        const start = Date.now();
         getAllChildren(dispatch, child_age, 0);
+        crashlytics().log(
+          `STARTUP: getAllChildren ${
+            Date.now() - start
+          }ms`
+        );
       }
     },1000);
 
