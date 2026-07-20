@@ -21,11 +21,11 @@ export const SurveyData: any = {
         {
             "id": 26,
             "title": "Encuesta Wawamor para madres, padres y cuidadores",
-            "body": "\u003Cp\u003ETus comentarios nos ayudarán a evaluar la eficacia de la aplicación y a mejorarla. La encuesta te llevará entre 5 y 10 minutos y sus respuestas serán anónimas.\u003C/p\u003E",
+            "body": "\u003Cp\u003ETus comentarios nos ayudan a evaluar la eficacia de la aplicación y a mejorarla. Esta encuesta te tomará entre 5 y 10 minutos y las respuestas son anónimas.\u003C/p\u003E",
             "type": "feedback",
             "survey_feedback_link": "https://docs.google.com/forms/d/e/1FAIpQLSeE5_dlyLGJCLMTCysnLzVpSD-BXnl_pm-NWaU7g7PSbHXCUA/viewform?usp=preview",
             "created_at": "\u003Ctime datetime=\"2024-09-17T19:13:43+02:00\" class=\"datetime\"\u003ETue, 09/17/2024 - 19:13\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-05-26T11:57:10+02:00\" class=\"datetime\"\u003EMon, 05/26/2025 - 11:57\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-07T23:00:30+02:00\" class=\"datetime\"\u003ETue, 07/07/2026 - 23:00\u003C/time\u003E\n"
         }
     ]
 };

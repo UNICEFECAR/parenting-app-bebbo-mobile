@@ -172,6 +172,17 @@ Run and generate build iOS Bebbo Dev app
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
 ```
 
+## Maintainers
+
+The Bebbo Mobile App is actively maintained by UNICEF (United Nations Children's Fund) in collaboration with various partners. It is part of the larger Bebbo project, a digital parenting platform aimed at providing parents and caregivers with essential early childhood development resources. Bebbo is a DPGA-recognized Digital Public Good.
+ 
+For ongoing maintenance, please reach out to the following maintainers:
+- [Saurabh Agarwal](https://github.com/saurabhEDU)
+- [Neha Ruparel](https://github.com/neharuparel)
+
+## Community
+Unicef Bebbo has a friendly and lively open-source community. Our communication happens primarily in our [Github Discussion](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/discussions) and we welcome all interested contributors to join the conversation.
+
 ## Contributors
 
 We acknowledge the contributors who helped improve the project:
