@@ -95,9 +95,8 @@ import {
   isVaccineMeasureExistForDate,
 } from "../../services/measureUtils";
 import {
-  convertDigits,
   formatStringDate,
-  getLanguageCode,
+  getDatePickerLocale,
 } from "../../services/Utils";
 import TextInputML from "@components/shared/TextInputML";
 import { setAllLocalNotificationGenerateType } from "../../redux/reducers/notificationSlice";
@@ -146,7 +145,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
 
   const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
+    getDatePickerLocale(state.selectedCountry?.languageCode)
   );
   const getCheckedGrowthPlace = (checkedItem: any): any => {
     setMeasurePlace(checkedItem.id);

@@ -36,7 +36,7 @@ import {
   setSponsorStore,
 } from "../redux/reducers/localizationSlice";
 import moment from "moment";
-import { getLanguageCode, isPregnancy } from "../services/Utils";
+import { getLanguageCode } from "../services/Utils";
 import {
   selectActiveChild,
   selectAllCountries,
