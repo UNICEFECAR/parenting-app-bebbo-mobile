@@ -654,7 +654,7 @@ export const getLanguageCode = (languageCode: string): string => {
   const validLanguageCodes = moment.locales(); // Moment.js locales
   const localeList = [
     { name: "Kosovo", lcode: "xk-sq", locale: "sq" },
-    { name: "Kosovo", lcode: "xk-rs", locale: "sr" },
+    { name: "Kosovo", lcode: "xk-rs", locale: "sr-Latn-XK" },
     { name: "Bangladesh", lcode: "bn", locale: "bn" },
     { name: "Albania (Shqipëria)", lcode: "al-sq", locale: "sq" },
     { name: "Belarus (Беларусь)", lcode: "by-be", locale: "be" },
@@ -676,7 +676,7 @@ export const getLanguageCode = (languageCode: string): string => {
       locale: "mk",
     },
     { name: "Romania (România)", lcode: "ro-ro", locale: "ro" },
-    { name: "Serbia (Srbija)", lcode: "rs-sr", locale: "sr" },
+    { name: "Serbia (Srbija)", lcode: "rs-sr", locale: "sr-Latn-RS" },
     { name: "Serbia (Srbija)", lcode: "rs-en", locale: "en" },
     { name: "Slovakia (Slovensko)", lcode: "sk", locale: "sk" },
     { name: "Tajikistan (Тоҷикистон)", lcode: "tj-tg", locale: "tg" },
