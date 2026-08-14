@@ -14624,206 +14624,443 @@ export const MileStonesData: any = {
     ],
     "uz-uz": [
         {
+            "id": 2526,
+            "type": "Milestone",
+            "title": "Farzandingizni qoʻlingizga olganingizda tinchlanadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:58:43+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFarzandingizni qoʻlingizga olganingizda, u bagʻringizga koʻnikib, pinjingizga kirib ketayotganini sezasiz\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7581],
+            "related_articles": [],
+            "related_video_articles": [6286],
+            "mandatory": 0
+        },
+        {
             "id": 2531,
             "type": "Milestone",
-            "title": "Bola bilan gaplashganingizda u hayajonlanib ketadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:42",
-            "body": "<p>Farzandingiz ovozingizni eshitganida o'z hayajonini namoyon qiladi, siz uning sizni tinglayotgandek harakatlarini sekinlashtirganini sezishingiz mumkin</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
+            "title": "Bola bilan gaplashganingizda hayajonlanib ketadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:58:16+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFarzandingiz ovozingizni eshitganida hayajonini namoyon qiladi, sizni tinglash uchun harakatlarini sekinlashtirganini ham sezasiz\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7586],
             "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
+            "related_video_articles": [6311],
+            "mandatory": 0
+        },
+        {
+            "id": 2536,
+            "type": "Milestone",
+            "title": "Farzandingizga jilmayganingizda va gapirganingizda sizga qarab turadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:57:22+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:57\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFarzandingizga gapirganingizda yuz ifodangizni kuzatadi\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7591],
+            "related_articles": [],
+            "related_video_articles": [6291],
             "mandatory": 0
         },
         {
             "id": 2541,
             "type": "Milestone",
             "title": "Ovoz chiqaradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:43",
-            "body": "<p>Bola yig'laydi, shu bilan birga tovushlarni ham chiqaradi</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:56:36+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:56\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola yigʻlaydi, tovushlar ham chiqaradi\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7596],
             "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
+            "related_video_articles": [6296],
+            "mandatory": 0
+        },
+        {
+            "id": 2546,
+            "type": "Milestone",
+            "title": "Unga muloyimlik bilan teginganingizda mushtini ochadi va yopadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:10:27+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBolaning kaftiga tekkaningizda yoki unga biron-bir narsani qoʻyganingizda mushtini mahkam yopadi. Agar unga barmogʻingizni bersangiz, uni mahkam ushlab oladi\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7601],
+            "related_articles": [],
+            "related_video_articles": [6301],
+            "mandatory": 0
+        },
+        {
+            "id": 2551,
+            "type": "Milestone",
+            "title": "Qoʻl va oyoqlarini ikkala tomondan erkin harakatlantiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:12:01+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola erkin yotgan holatida qoʻl va oyoqlarini tartibsiz harakatlantirayotganini koʻrishingiz mumkin\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7756],
+            "related_articles": [],
+            "related_video_articles": [6306],
             "mandatory": 0
         },
         {
             "id": 2556,
             "type": "Milestone",
-            "title": "Qornida yotganida boshini ko'taradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:41",
-            "body": "<p>Uni qorniga yotqizganingizda, bola nafas yo'lini ochish uchun boshini ko'tarishga harakat qiladi.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
+            "title": "Qornida yotganida boshini koʻtaradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:12:33+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQorni bilan yotqizganingizda bola nafas yoʻlini ochish uchun boshini koʻtarishga harakat qiladi\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7606],
             "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
+            "related_video_articles": [6281],
             "mandatory": 0
         },
         {
             "id": 2561,
             "type": "Milestone",
-            "title": "U xursand, xafa bo'lganida yoki och qolganida turli xil tovushlarni chiqaradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:44",
-            "body": "<p>Kichkintoyning yig'lashi uning ehtiyojlarga qarab farqlanadi, shuning uchun bolaning tovushlariga ko'ra uning quvongani, xafa bo'lgani, yoki boshqa biron bir ehtiyoj borligini bilish mumkin.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
+            "title": "U quvinganida, xafa boʻlganida yoki och qolganida turli xil tovushlarni chiqaradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:13:15+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKichkintoyning yigʻlashi uning ehtiyojlarga qarab farqlanadi, shuning uchun bolaning tovushlariga koʻra uning quvonganini, xafa boʻlganini yoki boshqa biron-bir ehtiyoji borligini bilish mumkin\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7611],
             "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
+            "related_video_articles": [6316],
             "mandatory": 0
         },
         {
             "id": 2566,
             "type": "Milestone",
-            "title": "O'zini-o'zi bir muddat ovuntira oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:44",
-            "body": "<p>Bola barmog'ini yoki mitti qo'lchasini so'rib tinchlanadi</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
+            "title": "Oʻzini oʻzi bir muddat ovuntira oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:13:53+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola barmogʻini yoki mitti qoʻlchasini soʻrib tinchlanadi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7176],
             "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
+            "related_video_articles": [6361],
             "mandatory": 0
         },
         {
             "id": 2571,
             "type": "Milestone",
-            "title": "Boshini tovush manbai tomon burib, tinglayotganini ko'rsatadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:46",
-            "body": "<p>Odamning ovozi yoki boshqa biron bir tovushni eshitganda, Bola boshini ovoz chiqqan tomonga qaratadi. Ovozni tinglaganda, ota-onasiga yoki gapirayotgan kishiga tikilib, harakatlarini sekinlashtiradi.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
+            "title": "Boshini tovush manbai tomon burib, tinglayotganini koʻrsatadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:14:33+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOdamning ovozi yoki boshqa biron-bir tovushni eshitganda bola boshini ovoz chiqqan tomonga qaratadi. Ovozni tinglaganda ota-onasiga yoki gapirayotgan kishiga tikilib, harakatlarini sekinlashtiradi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7721],
             "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
+            "related_video_articles": [6326],
+            "mandatory": 0
+        },
+        {
+            "id": 2576,
+            "type": "Milestone",
+            "title": "Chugʻurlaydi, tovushlar chiqaradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:15:21+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETurli xil tovushlarni talaffuz qiladi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7616],
+            "related_articles": [],
+            "related_video_articles": [6321],
+            "mandatory": 0
+        },
+        {
+            "id": 2581,
+            "type": "Milestone",
+            "title": "Koʻzlari bilan jismlar va odamlarning harakatini kuzatadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:16:23+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOʻyinchoqlar, jismlar yoki odamlar uning koʻrish sohasida harakat qilganda bola harakatlar yoʻnalishini kuzatishga intiladi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7761],
+            "related_articles": [],
+            "related_video_articles": [6336],
             "mandatory": 0
         },
         {
             "id": 2586,
             "type": "Milestone",
-            "title": "Faoliyat turi o'zgarganida, zerikayotganligini ko'rsatadi yoki yig'laydi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:45",
-            "body": "<p>Bola uzoq vaqt davomida bir holatda qolsa yig'lab shikoyat qiladi, qo'lingizdan tushirganingizda norozilik bildiradi.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
+            "title": "Faoliyat turi oʻzgarganida zerikayotganini koʻrsatadi yoki yigʻlaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T07:15:45+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 07:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola uzoq vaqt davomida bir holatda qolsa, yigʻlab shikoyat qiladi, qoʻlingizdan tushirganingizda norozilik bildiradi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7181],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [6916],
+            "mandatory": 0
+        },
+        {
+            "id": 2591,
+            "type": "Milestone",
+            "title": "Baʼzida mushtlarini ochiq holda tutadi, ularni harakatlantiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:17:28+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola hali ham qoʻllarini koʻpincha mushti tugilgan holda ushlab turadi, lekin vaqti-vaqti bilan qoʻllarini boʻshashtirib, mushtini ochiq holda ushlaydi. U qoʻllarining harakatini kuzatadi, ularni ogʻziga olib keladi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7621],
+            "related_articles": [],
+            "related_video_articles": [6356],
+            "mandatory": 0
+        },
+        {
+            "id": 2596,
+            "type": "Milestone",
+            "title": "Boshini bir tomonga, keyin esa boshqa tomonga buradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:18:01+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola boʻyin va boshi bilan turli xil harakatlarini amalga oshiradi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7626],
+            "related_articles": [],
+            "related_video_articles": [6351],
+            "mandatory": 0
+        },
+        {
+            "id": 2601,
+            "type": "Milestone",
+            "title": "Qoʻllari va oyoqlari bilan mayda harakatlarni bajaradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:18:34+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola erkin holatda yotganida qoʻl va oyoqlarining koʻplab tasodifiy harakatlarini kuzatishingiz mumkin\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7631],
+            "related_articles": [],
+            "related_video_articles": [6341],
+            "mandatory": 0
+        },
+        {
+            "id": 2606,
+            "type": "Milestone",
+            "title": "Bola qornida yotganida bilaklari bilan gilamga tayanadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:19:06+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola qornida yotganida bilaklari yordamida polga tayanib boshini koʻtarishi mumkin\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7636],
+            "related_articles": [],
+            "related_video_articles": [6346],
+            "mandatory": 0
+        },
+        {
+            "id": 2611,
+            "type": "Milestone",
+            "title": "Odamlarni koʻrganda kuladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:19:41+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAtrofidagi odamlarga tez-tez, yengilgina kulib qoʻyadi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7641],
+            "related_articles": [],
+            "related_video_articles": [6401],
+            "mandatory": 0
+        },
+        {
+            "id": 2616,
+            "type": "Milestone",
+            "title": "Odamlarning yuzlarini diqqat bilan kuzatadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:42:54+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOdamlarning yuzlarini diqqat va sinchkovlik bilan kuzatadi, koʻz bilan uzoq aloqa qiladi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7186],
+            "related_articles": [],
+            "related_video_articles": [6386],
+            "mandatory": 0
+        },
+        {
+            "id": 2621,
+            "type": "Milestone",
+            "title": "Oʻz hissiyotlarini, gʻazablangani yoki xursand boʻlganini koʻrsatadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:43:26+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQoniqqani yoki qoniqmaganini reaksiyalaridan bilib olsa boʻladi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7646],
+            "related_articles": [],
+            "related_video_articles": [6381],
+            "mandatory": 0
+        },
+        {
+            "id": 2626,
+            "type": "Milestone",
+            "title": "Bir tomondan boshqa tomonga harakatlanadigan oʻyinchoqni kuzatib boradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:43:59+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOdamlar uning koʻrish sohasida harakat qilganda bola harakatlar yoʻnalishini kuzatishga intiladi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7191],
+            "related_articles": [],
+            "related_video_articles": [6396],
             "mandatory": 0
         },
         {
             "id": 2631,
             "type": "Milestone",
-            "title": "Chug'urlashni boshlaydi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:45",
-            "body": "<p>Ovozini sayqallab a, e, i, o, u unli tovushlarga o'xshash tovushlarni talaffuz qiladi</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
+            "title": "Chugʻurlashni boshlaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:44:34+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOvozini sayqallab a, e, i, o, u unli tovushlariga oʻxshash tovushlarni talaffuz qiladi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7651],
             "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
+            "related_video_articles": [6371],
             "mandatory": 0
         },
         {
             "id": 2636,
             "type": "Milestone",
-            "title": "Zinadan yuqoriga chiqadi va pastga tushadiadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:53",
-            "body": "<p>Oyoqlariga galma-gal tayanib zinapoyadan ko'tariladi.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
+            "title": "Zinadan yuqoriga chiqadi va pastga tushadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:45:28+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOyoqlariga galma-gal tayanib zinapoyadan koʻtariladi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7416],
             "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
+            "related_video_articles": [6811],
+            "mandatory": 0
+        },
+        {
+            "id": 2641,
+            "type": "Milestone",
+            "title": "Oʻyin paytida harakat va yuz ifodalariga, shuningdek, tovushlaga taqlid qilishni boshlaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:47:04+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBolangizga murojaat qilganingizda harakatingiz yoki yuz ifodangizni takrorlashga intiladi. Nutq va soʻzlashuvga tovushlarni talaffuz qilish bilan javob beradi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7656],
+            "related_articles": [3626],
+            "related_video_articles": [6376],
             "mandatory": 0
         },
         {
             "id": 2646,
             "type": "Milestone",
-            "title": "Qo'l-ko'zni muvofiqlashtirishni muvofiqlashtiradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:46",
-            "body": "<p>Qo'l-ko'zni muvofiqlashtirish qobiliyati oshadi, masalan, bolangiz ko'rib turgan ob'ektga erishishga harakat qiladi.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
+            "title": "Qoʻl va koʻz harakatini muvofiqlashtiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:47:52+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQoʻl va koʻz harakatini muvofiqlashtirish qobiliyati oshadi, masalan, bolangiz koʻrib turgan obyektiga erishishga harakat qiladi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7661],
             "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
+            "related_video_articles": [6406],
+            "mandatory": 0
+        },
+        {
+            "id": 2651,
+            "type": "Milestone",
+            "title": "Yogʻochli yoki mumli qalamlar yordamida aylanalar chizadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T14:48:40+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 14:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EYogʻochli yoki mumli qalamlar yordamida aylanalar chizadi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7411],
+            "related_articles": [],
+            "related_video_articles": [6826],
+            "mandatory": 0
+        },
+        {
+            "id": 2656,
+            "type": "Milestone",
+            "title": "Bir qoʻli bilan oʻyinchoqqa choʻziladi, uni oʻrganadi, silkitadi va irgʻitadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T15:55:34+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 15:55\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBiron jismga choʻziladi va bosh barmogʻini ishlatmay, kaftlarining tashqi tomoni bilan ushlaydi. Jismni silkitib, urib yoki ogʻziga solib boshqaradi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7196],
+            "related_articles": [],
+            "related_video_articles": [6391],
+            "mandatory": 0
+        },
+        {
+            "id": 2666,
+            "type": "Milestone",
+            "title": "Qoʻllarini ogʻziga soladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T15:59:08+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 15:59\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQoʻllarini tez-tez ogʻziga soladi. Shuningdek, boshqa narsalarni ham ogʻziga solib oʻrganadi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7201],
+            "related_articles": [],
+            "related_video_articles": [6366],
+            "mandatory": 0
+        },
+        {
+            "id": 2671,
+            "type": "Milestone",
+            "title": "Boshini tik holda ushlab turadi, boshini qo'llab-quvvatlamaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T22:03:50+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 22:03\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EYarim o'tirgan holatda u boshini tekis va tik tuta oladi.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7666],
+            "related_articles": [],
+            "related_video_articles": [6841],
+            "mandatory": 0
+        },
+        {
+            "id": 2676,
+            "type": "Milestone",
+            "title": "Yotgan holatida bilakchalariga mahkam suyanib, tirsaklari bilan yuqoriga qarab itariladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:13:57+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQornida yotganida tirsaklariga suyanib elkalari va boshini ko'taradi.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7716],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2681,
+            "type": "Milestone",
+            "title": "Noodatiy o'yinni boshlaydi va boshqalarni bu o'yinga jalb qiladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:46:29+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKo'pgina o'ylab topilgan elementlardan tarkib topgan rolli, ijodiy o'yinlarni yaxshi ko'radi. Ba'zida haqiqiy va o'ylab topilgan narsalarr chalkashib ketadi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7401],
+            "related_articles": [],
+            "related_video_articles": [6831],
+            "mandatory": 0
+        },
+        {
+            "id": 2686,
+            "type": "Milestone",
+            "title": "Qo'shiqlardan parchalar kuylaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:18:32+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQo'shiqlardan parchalar kuylaydi.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7396],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2691,
+            "type": "Milestone",
+            "title": "Chap va o'ng tomonlardan qornidan orqaga va orqadan qorniga ag'dariladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T09:55:58+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:55\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU istagan tomoniga aylanishi va ag'darilishi mumkin (chap va o'ng tomonlardan), qornidan orqaga va orqadan qorniga.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7206],
+            "related_articles": [],
+            "related_video_articles": [6426],
             "mandatory": 0
         },
         {
             "id": 2696,
             "type": "Milestone",
             "title": "Ozgina yordam bilan o'tira oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:47",
-            "body": "<p>Biror narsaga suyanib yoki uni ushlab o'tiradi va oz muddat o'tirgan holatini saqlay oladi.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:47:36+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBiror narsaga suyanib yoki uni ushlab o'tiradi va oz muddat o'tirgan holatini saqlay oladi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7671],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -14832,169 +15069,518 @@ export const MileStonesData: any = {
             "id": 2701,
             "type": "Milestone",
             "title": "2 dan 3 tagacha so'zlardan iborat bo'lgan jumlalarni ayta oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:52",
-            "body": "<p>2-3 so'zdan iborat jumlalar tuzishi va oila a'zolari uni tushunishi uchun yetarlicha aniq aytishi mumkin.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:52:39+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E2-3 so'zdan iborat jumlalar tuzishi va oila a'zolari uni tushunishi uchun yetarlicha aniq aytishi mumkin.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7391],
             "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
+            "related_video_articles": [6816],
+            "mandatory": 0
+        },
+        {
+            "id": 2706,
+            "type": "Milestone",
+            "title": "Vertikal holatda ushlab turilsa, u qisqa vaqt ichida oyoqlariga suyanib o'z vaznini ko'tarishi mumkin",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:21:05+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBolangizni polga vertikal ravishda tik tutganingizda, u polga suyanadi yoki huddi sakrayotganday harakatlar qiladi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7836],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2711,
+            "type": "Milestone",
+            "title": "O'z ismi, yoshi va jinsini ayta oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:11:46+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'z ismi, yoshi va jinsini ayta oladi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7386],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2716,
+            "type": "Milestone",
+            "title": "Narsalarni og'ziga solgan holda o'rganadi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T09:52:01+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU qo'li yetgan hamma narsani og'ziga soladi, hatto oyoqlarini ham og'ziga olib keladi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7711],
+            "related_articles": [],
+            "related_video_articles": [6436],
+            "mandatory": 0
+        },
+        {
+            "id": 2721,
+            "type": "Milestone",
+            "title": "Bir qo'li bilan uzoqda turgan narsalarga cho'ziladi, ushlab olganida ularni bir qo'lidan ikkinchisiga uzata oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T09:53:21+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:53\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU hali ham bir qo'li bilan narsalarga intiladi, boshqa barmoqlarini ishlatmagan holda katta va ko'rsatkich barmoqlari, kaftining tashqi tomonidan foydalanib bir qo'lidan ikkinchisiga uzatib boshqaradi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7676],
+            "related_articles": [],
+            "related_video_articles": [6431],
+            "mandatory": 0
+        },
+        {
+            "id": 2726,
+            "type": "Milestone",
+            "title": "Murakkab so'zlarni tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:51:55+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\"O'xshash\" va \"har xil\", \"oson\" va \"qiyin\", \"yaxshi\" va \"yomon\", \"kichik\" va \"katta\" kabi atamalarni tushunadi.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7816],
+            "related_articles": [],
+            "related_video_articles": [6801],
             "mandatory": 0
         },
         {
             "id": 2731,
             "type": "Milestone",
             "title": "Tovushli ovozga a, e, u unli tovushlarini birlashtirib javob beradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:48",
-            "body": "<p>Kimdir unga murojaat qilganda, gapirganda, qo'shiq aytganida, o'qiganda bola o'zicha javob qaytaradi.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:48:03+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKimdir unga murojaat qilganda, gapirganda, qo'shiq aytganida, o'qiganda bola o'zicha javob qaytaradi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7211],
             "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
+            "related_video_articles": [6421],
+            "mandatory": 0
+        },
+        {
+            "id": 2736,
+            "type": "Milestone",
+            "title": "Noroziligi yoki quvonchini baland ovoz bilan ifoda etadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T09:52:44+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU yoqimsiz his-tuyg'ularni ifodalash uchun yig'laydi yoki baland ovoz bilan norozilik bildiradi, va zavqini ifoda etish uchun baland ovozda kuladi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7746],
+            "related_articles": [],
+            "related_video_articles": [6411],
+            "mandatory": 0
+        },
+        {
+            "id": 2741,
+            "type": "Milestone",
+            "title": "\"Meniki, seniki, uniki\" kabi so'zlarning ma'nosini tushunadi, old ko'makchi va olmoshlardan foydalanadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:20:38+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\"Men\", \"siz\", \"biz\" kabi so'zlarni talaffuz qiladi va ayrim so'zlarning ko'plik shakllarini biladi - \"itlar\", \"mushuklar\".\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7811],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
             "id": 2746,
             "type": "Milestone",
             "title": "Bola o'yin vaqti kelganini anglaganida zavqlanadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:47",
-            "body": "<p>U tanish odamlar, va ayniqsa, ota-onasi bilan o'ynaganida yoki muloqotda bo'lganida quvonadi, baxtli ko'rinadi va zavqlanadi.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:47:02+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU tanish odamlar, va ayniqsa, ota-onasi bilan o'ynaganida yoki muloqotda bo'lganida quvonadi, baxtli ko'rinadi va zavqlanadi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7841],
             "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
+            "related_video_articles": [6441],
+            "mandatory": 0
+        },
+        {
+            "id": 2751,
+            "type": "Milestone",
+            "title": "Ikki yoki uchta ko'rsatmali topshiriqlarni bajaradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:47:24+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'zaro bog'langan bir nechta og'zaki ko'rsatmalarni bajara oladi (\"qo'g'irchoqni qoldir va stulga o'tir\", \"kurtkangni yechib, shippagingni kiy\").\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7381],
+            "related_articles": [],
+            "related_video_articles": [6836],
+            "mandatory": 0
+        },
+        {
+            "id": 2756,
+            "type": "Milestone",
+            "title": "Hissiyotlarning keng doirasini namoyish etadi, birovlarning his-tuyg'ularini ajrata oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:48:41+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EG'azab, qo'rquv, aybdorlik, uyat hislarini namoyon qiladi va hamdardlik ko'rsata boshlaydi, chunki u boshqalarning his-tuyg'ularini anglaydi (masalan, u yig'layotgan do'stiga quchoqlab taskin bermoqchi).\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7376],
+            "related_articles": [],
+            "related_video_articles": [6821],
+            "mandatory": 0
+        },
+        {
+            "id": 2761,
+            "type": "Milestone",
+            "title": "Oila a'zolarini taniydi va ularni begonalardan ajrata oladi. Kichkintoy begonalardan qo'rqishi mumkin.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:16:39+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOila a'zolarini taniydi va ularni begonalardan ajratib turadi. Kichkintoy begonalardan qo'rqishi mumkin. U tanish odamlarni ko'rib xursand bo'ladi, ularga kuladi, tanish va notanish odamlarga turlicha javob beradi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7216],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
             "id": 2766,
             "type": "Milestone",
             "title": "Bolalar davrasida o'ynashni yaxshi ko'radi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:52",
-            "body": "<p>O'yin endi shunchaki yonma-yon emas, balki murakkabroq elementlarga, tasavvurga va o'yinqaroqlikka ega.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:52:49+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'yin endi shunchaki yonma-yon emas, balki murakkabroq elementlarga, tasavvurga va o'yinqaroqlikka ega.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7371],
             "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
+            "related_video_articles": [6931],
+            "mandatory": 0
+        },
+        {
+            "id": 2771,
+            "type": "Milestone",
+            "title": "Ota-onasi xonadan chiqqanda xafa bo'ladi va ular qaytib kelganlarida tinchlanadi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T11:17:46+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 11:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOta-onasi xonadan chiqqanda xafa bo'ladi va ular qaytib kelganlarida tinchlanadi. Ota yoki onasi undan uzoqlashganida xavotirlik belgilarini namoyon qiladi. Ota-onasi yoki yaqin kishilari qaytib kelganida xursand bo'ladi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7681],
+            "related_articles": [],
+            "related_video_articles": [6506],
+            "mandatory": 0
+        },
+        {
+            "id": 2776,
+            "type": "Milestone",
+            "title": "O'z ismini eshitganida munosabat bildiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T11:20:52+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 11:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'z ismini eshitganida munosabat bildiradi. Birov uning ismini aytib chaqirganida, aynan unga murojaat qilinayotganligini biladi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7221],
+            "related_articles": [],
+            "related_video_articles": [6446],
+            "mandatory": 0
+        },
+        {
+            "id": 2781,
+            "type": "Milestone",
+            "title": "Ota-onasidan osonroq ajraladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:46:51+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAjralishga munosabati sustroq, ota-onasi undan bir muddatga uzoqlashganlarida yonidagi boshqa odamlarga ishonchi ortib, tez ovunadi.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7366],
+            "related_articles": [],
+            "related_video_articles": [6796],
             "mandatory": 0
         },
         {
             "id": 2786,
             "type": "Milestone",
             "title": "\"Yo'q\" so'zining ma'nosini tushuna boshlaydi.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:48",
-            "body": "<p>\"Yo'q\" so'zining ma'nosini tushuna boshlaydi. Bu so'zni eshitgach, u o'z faoliyatini to'xtatib, noroziligini namoyon qiladi.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:48:51+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\"Yo'q\" so'zining ma'nosini tushuna boshlaydi. Bu so'zni eshitgach, u o'z faoliyatini to'xtatib, noroziligini namoyon qiladi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7226],
             "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
+            "related_video_articles": [6476],
+            "mandatory": 0
+        },
+        {
+            "id": 2791,
+            "type": "Milestone",
+            "title": "Chug'urlaydi, so'zlardagi bo'g'imlarni jamlab, turli xil tovushlarni talaffuz qiladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T10:07:14+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EChug'urlaydi, so'zlardagi bo'g'imlarni jamlab, turli xil tovushlarni talaffuz qiladi. U tovushlarning bir nechta birikmalaridan va turli xil undosh va unli tovush juftlaridan foydalanadi, kattalar talaffuz qiladigan tovushlarni takrorlashga yoki taqlid qilishga harakat qiladi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7231],
+            "related_articles": [],
+            "related_video_articles": [6451],
+            "mandatory": 0
+        },
+        {
+            "id": 2796,
+            "type": "Milestone",
+            "title": "Zinadan yuqoriga ko'tarilishi va pastga tushishi mumkin",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:07:05+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBiror bir tirgak vositasida zinapoyadan yuqoriga chiqishi va pastga tushishi mumkin, ozgina yordam bilan qo'llab-quvvatlash bilan Zinadan ko'tarilishga yoki ozgina yordam bilan pastga tushishga qodir.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7361],
+            "related_articles": [],
+            "related_video_articles": [6626],
+            "mandatory": 0
+        },
+        {
+            "id": 2801,
+            "type": "Milestone",
+            "title": "Harakatlar vositasida aloqa qilishni boshlaydi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T10:08:01+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHarakatlar vositasida aloqa qilishni boshlaydi. Istagan jism, buyumi qo'li bilan ko'rsatib, \"yo'q\" ma'nosida boshini chayqatgan holda noverbal tarzda muloqotga kirishadi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7686],
+            "related_articles": [],
+            "related_video_articles": [6481],
+            "mandatory": 0
+        },
+        {
+            "id": 2806,
+            "type": "Milestone",
+            "title": "Yiqilayotgan ob'ektni kuzatadi va yashirilgan buyumni qidiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T11:16:07+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 11:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EYiqilayotgan ob'ektni kuzatadi va yashirilgan buyumni qidiradi. Agar buyum chashka yoki adyol ostida yashiringan bo'lsa, bola uni topishga harakat qiladi. Agar buyum yiqilayotgan bo'lsa yoki ona tashlasa, chaqaloq tashlangan buyumni ko'zlari bilan qidiradi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7691],
+            "related_articles": [],
+            "related_video_articles": [6496],
+            "mandatory": 0
+        },
+        {
+            "id": 2811,
+            "type": "Milestone",
+            "title": "Oyoq uchida turishi, yugurishi, sakrashi, to'pni tepishi mumkin",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:07:28+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOyoq uchida turishi, yugurishi, sakrashi, to'pni tepishi yoki boshidan oshirib yuborishi mumkin.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7321],
+            "related_articles": [],
+            "related_video_articles": [6646],
             "mandatory": 0
         },
         {
             "id": 2816,
             "type": "Milestone",
             "title": "Bir qo'lini ikkinchisidan ko'ra ko'proq ishlatadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:51",
-            "body": "<p>Bir qo'lini ko'proq ishlata oladi - chapini yoki o'ngini.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:51:55+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir qo'lini ko'proq ishlata oladi - chapini yoki o'ngini.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7356],
             "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
+            "related_video_articles": [6666],
+            "mandatory": 0
+        },
+        {
+            "id": 2821,
+            "type": "Milestone",
+            "title": "Mustaqil tarzda qog'ozga qing'ir-qiyshiq chizgilar chizadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:31:36+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU qalamni ushlab, qing'ir-qiyshiq chizgilar, chiziq va aylanalarni o'xshatib chiza oladi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7806],
+            "related_articles": [],
+            "related_video_articles": [6661],
+            "mandatory": 0
+        },
+        {
+            "id": 2826,
+            "type": "Milestone",
+            "title": "Hali ham og'ziga narsalar soladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T11:22:26+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 11:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHali ham og'ziga narsalar soladi. Bola buyumlarni og'ziga solish orqali o'rganadi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7236],
+            "related_articles": [],
+            "related_video_articles": [6456],
+            "mandatory": 0
+        },
+        {
+            "id": 2831,
+            "type": "Milestone",
+            "title": "U buyumlarni guruhlashtira oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T11:24:59+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 11:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU hayvonlarni bir guruhga, paypoqlarni boshqa guruhga ajrata oladi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7751],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2836,
+            "type": "Milestone",
+            "title": "Buyumlarni qo'ldan qo'lga mayinlik bilan o'tkazadi, ularni silkitadi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T11:21:52+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 11:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBuyumlarni qo'ldan qo'lga mayinlik bilan o'tkazadi, ularni silkitadi.U buyumlarni chap qo'lidan o'ng qo'liga va aksincha harakatlantirish orqali boshqaradi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7696],
+            "related_articles": [],
+            "related_video_articles": [6501],
+            "mandatory": 0
+        },
+        {
+            "id": 2841,
+            "type": "Milestone",
+            "title": "Kichik narsalarni to‘playdi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:15:57+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKichik narsalarni to‘playdi. U bosh va ko'rsatkich barmoqlari yordamida kichik narsalarni teradi. U hali ham buyumni ushlab turish uchun barmoq uchlarini emas, balki butun yuzasini ishlatadi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7846],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2846,
+            "type": "Milestone",
+            "title": "O'yinlarda o'yinchoqlardan maqsadli foydalanadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:32:20+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'yinchoqlar bilan o'ynay oladi, ularning nima uchun kerakligini va o'yinda qanday ishlatishni biladi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7801],
+            "related_articles": [],
+            "related_video_articles": [6656],
+            "mandatory": 0
+        },
+        {
+            "id": 2851,
+            "type": "Milestone",
+            "title": "O'zi mustaqil ravishda, tirgaksiz o'tira oladi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-29T12:32:17+02:00\" class=\"datetime\"\u003EFri, 10/29/2021 - 12:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'zi mustaqil ravishda, tirgaksiz o'tira oladi va o'tirgan holatga kela oladi. Hech narsaga suyanmay va yordamsiz o'zi o'tira oladi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7701],
+            "related_articles": [],
+            "related_video_articles": [6466],
             "mandatory": 0
         },
         {
             "id": 2856,
             "type": "Milestone",
             "title": "Emaklayotgan vaqtida tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:49",
-            "body": "<p>Emaklash holati darajasigacha tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi. Mustaqil ravishda emaklay oladi. Emaklab oldinga yoki orqaga harakatlanadi.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:49:18+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EEmaklash holati darajasigacha tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi. Mustaqil ravishda emaklay oladi. Emaklab oldinga yoki orqaga harakatlanadi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7706],
             "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
+            "related_video_articles": [6486],
+            "mandatory": 0
+        },
+        {
+            "id": 2861,
+            "type": "Milestone",
+            "title": "Oddiy \"rolli\" o'yinlar o'ynang",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:23:44+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOddiy \"rolli\" o'yinlar o'ynaydi, masalan - qo'g'irchoqni ovqatlantiradi, tort yeydi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7796],
+            "related_articles": [3651],
+            "related_video_articles": [6631],
             "mandatory": 0
         },
         {
             "id": 2866,
             "type": "Milestone",
             "title": "Itariladi, turishga harakat qiladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:48",
-            "body": "<p>Itariladi, turishga harakat qiladi. Mebelni ushlagan holda turishga harakat qiladi, lekin unga yordam va tayanch kerak.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7241
-            ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:48:29+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EItariladi, turishga harakat qiladi. Mebelni ushlagan holda turishga harakat qiladi, lekin unga yordam va tayanch kerak.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7241],
+            "related_articles": [],
+            "related_video_articles": [6471],
+            "mandatory": 0
+        },
+        {
+            "id": 2871,
+            "type": "Milestone",
+            "title": "Notanish odamlar bilan muloqotda uyatchanlik va asabiylikni namoyish etadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:16:35+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU notanish odamlar oldida tanish odamlar oldidagiga qaraganda o'zini boshqacha tutadi. xatti-harakatlarni namoyish etadi. U tanimaydigan odamlardan uyaladi (ko'z bilan aloqa qilishdan qochadi, tanish odamlarga yopishib oladi).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7246],
+            "related_articles": [],
+            "related_video_articles": [6526],
             "mandatory": 0
         },
         {
             "id": 2876,
             "type": "Milestone",
             "title": "Bola muloqotining ma'lum bir qismi har kuni uning yonida bo'lmagan odamlarga ham tushunarlidir",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:52",
-            "body": "<p>U tovushlarni aniqroq talaffuz qilishni boshlaydi, ma'noga ega so'zlarni ko'proq ishlatadi va shuning uchun u bilan muloqot osonlashadi.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:52:28+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU tovushlarni aniqroq talaffuz qilishni boshlaydi, ma'noga ega so'zlarni ko'proq ishlatadi va shuning uchun u bilan muloqot osonlashadi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7346],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2881,
+            "type": "Milestone",
+            "title": "Hayvonlar va uning tovushlarini biladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:06:28+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOvozni hayvonlar bilan bog'laydi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7791],
+            "related_articles": [],
+            "related_video_articles": [6616],
+            "mandatory": 0
+        },
+        {
+            "id": 2886,
+            "type": "Milestone",
+            "title": "Ota-onasidan uzoqlashganda yig'laydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:12:35+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOta-onadan uzoqlashgandan so'ng tashvish belgilarini yaqqol ko'rsatadi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7251],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2891,
+            "type": "Milestone",
+            "title": "Odamlar bilan muloqotda so'z va imo-ishoralardan uyg'unlikda foydalanadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:12:25+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E2 dan 4 ta so'zgacha bo'lgan jumlalar gapiradi, \"Mia istaydi\", \"Emma o'tiradi\" qabilida uchinchi shaxs sifatida gapiradi\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7341],
+            "related_articles": [],
+            "related_video_articles": [6621],
+            "mandatory": 0
+        },
+        {
+            "id": 2896,
+            "type": "Milestone",
+            "title": "Sevimli o'yinchog'i bor",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:12:58+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMuayyan o'yinchoqni afzal ko'radi, uni qidiradi, o'zi bilan olib yuradi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7726],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -15003,55 +15589,167 @@ export const MileStonesData: any = {
             "id": 2901,
             "type": "Milestone",
             "title": "Beixtiyor kattalar bilan qiziqishlari va zavqlini baham ko'rishga intiladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:50",
-            "body": "<p>O'zaro o'yinlardan zavqlanadi, \"Men senga buni beraman - sen menga buni berasan\", \"Men qilaman - sen qilasan\" va shu kabilar</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:50:45+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'zaro o'yinlardan zavqlanadi, \"Men senga buni beraman - sen menga buni berasan\", \"Men qilaman - sen qilasan\" va shu kabilar\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7731],
             "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
+            "related_video_articles": [6551],
+            "mandatory": 0
+        },
+        {
+            "id": 2906,
+            "type": "Milestone",
+            "title": "O'zining ismini, tanish odamlarning ismlarini, atrofdagi narsalarning nomlarini, kundalik harakatlarini va \"yo'q\" so'zini tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:22:05+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIsmining chaqirilishiga yoki \"yo'q\" so'ziga muvofiq tarzda munosabat bildiradi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7256],
+            "related_articles": [],
+            "related_video_articles": [6546],
+            "mandatory": 0
+        },
+        {
+            "id": 2911,
+            "type": "Milestone",
+            "title": "Bo'g'inlarni takrorlaydi, ba'zi bolalar allaqachon so'zlarni ma'nosini tushungan holda gapirishadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:16:02+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKo'p turli tovushlarni talaffuz qiladi (maaa, baaa, daaad ...) va ularning ba'zilarini ma'nosini biladigan birinchi tanish so'zlar sifatida ishlatadi (oyi, dada ...).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7736],
+            "related_articles": [],
+            "related_video_articles": [6531],
+            "mandatory": 0
+        },
+        {
+            "id": 2916,
+            "type": "Milestone",
+            "title": "Qisqa ko'rsatma yoki buyruqni tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:18:32+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUnga \"to'pni olib kel\" yoki \"oyingga ber\" deb aytganingiznida tushunadi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7741],
+            "related_articles": [],
+            "related_video_articles": [6541],
+            "mandatory": 0
+        },
+        {
+            "id": 2921,
+            "type": "Milestone",
+            "title": "Imo-ishoralarni taqlid qiladi va ishlatadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:11:20+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU salomlashish uchun \"da-da\" deb ayta oladi, \"yo'q\" deb bosh chayqaydi, o'zi xohlagan narsaga ishora qiladi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7266],
+            "related_articles": [],
+            "related_video_articles": [6521],
+            "mandatory": 0
+        },
+        {
+            "id": 2926,
+            "type": "Milestone",
+            "title": "Bir nechta oddiy ko'rsatmalarni tushunadi va ularga amal qiladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:19:59+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir yoki bir nechta o'zaro bog'liq bo'lgan, oddiy og'zaki so'rovlarni bajarishi mumkin: \"Yostiq olib kel\", \"Kel, o'tir\", \"Axlat qutisiga tashla\".\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7821],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2931,
+            "type": "Milestone",
+            "title": "O'yinchoqlarni qiziqib tomosha qiladi: ularni silkitadi, uradi, uloqtiradi, detallarga e'tibor beradi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:12:19+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBuyumlarni taraqlatish, bir-biriga urish orqali (stakanni stolga yoki o'yinchoqn boshqa o'yinchoqqa urish) o'rganadi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7271],
+            "related_articles": [],
+            "related_video_articles": [6561],
             "mandatory": 0
         },
         {
             "id": 2936,
             "type": "Milestone",
             "title": "Barmoqlari bilan kichik narsalarni teradi, ovqatlanadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:49",
-            "body": "<p>Yaxshigina \"pinsetli zabt\" ga ega - juda kichik narsalarni bosh va ko'rsatkich barmoqlari bilan olib, ularni boshqarishi mumkin.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:49:48+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EYaxshigina \"pinsetli zabt\" ga ega - juda kichik narsalarni bosh va ko'rsatkich barmoqlari bilan olib, ularni boshqarishi mumkin.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7766],
+            "related_articles": [],
+            "related_video_articles": [6536],
+            "mandatory": 0
+        },
+        {
+            "id": 2941,
+            "type": "Milestone",
+            "title": "Narsalarni qutiga solib, undan olib chiqadi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:15:32+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EJismlarni aniqroq boshqarish qobiliyatiga ega. U hatto kichkina narsalarni qutiga yoki shishaga solib, yana olib chiqishi mumkin.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7771],
+            "related_articles": [],
+            "related_video_articles": [6846],
+            "mandatory": 0
+        },
+        {
+            "id": 2946,
+            "type": "Milestone",
+            "title": "Boshqa bolalar bilan yonma-yon o'ynaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:30:59+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMustaqil ravishda boshqa bolalarning yonida o'ynaydi, ularga qo'shilishga ehtiyoji yo'q, lekin ularning o'yinlarini buzmaydi, ularni o'yinga asta-sekin jalb qilishi mumkin, masalan, ularga o'yinchog'ini taklif qiladi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7336],
+            "related_articles": [],
+            "related_video_articles": [6636],
+            "mandatory": 0
+        },
+        {
+            "id": 2951,
+            "type": "Milestone",
+            "title": "Mebelni ushlab turiadi, mebel yonida yurishni boshlaydi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:17:56+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU yordam bilan turishi yoki hatto hech qanday yordamsiz ma'lum vaqt tik turishi mumkin. U mebelni yoki kattalarning qo'lidan yurishga harakat qiladi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7776],
+            "related_articles": [3346],
+            "related_video_articles": [6556],
+            "mandatory": 0
+        },
+        {
+            "id": 2956,
+            "type": "Milestone",
+            "title": "U katta odamlar va o'zidan kattaroq bolalarning xatti-harakatlariga taqlid qiladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:07:56+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKattalarga taqlid qiladi va ularning harakatlarini takrorlaydi, masalan: bolalar aravachasini itaradi, gazeta o'qiydi ...\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7331],
+            "related_articles": [],
+            "related_video_articles": [6641],
             "mandatory": 0
         },
         {
             "id": 2961,
             "type": "Milestone",
             "title": "Kiyinishga yordam beradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:50",
-            "body": "<p>Uni kiyintirganingizda sizga yordam beradi, qo'lini ko'ylak engidan, oyoqlarini shimining poychasidan o'tkazadi.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:50:20+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUni kiyintirganingizda sizga yordam beradi, qo'lini ko'ylak engidan, oyoqlarini shimining poychasidan o'tkazadi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7276],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -15060,146 +15758,388 @@ export const MileStonesData: any = {
             "id": 2966,
             "type": "Milestone",
             "title": "Tobora mustaqil bo'lib bormoqda",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:52",
-            "body": "<p>Ba'zan ko'rsatmalarga qarshilik qiladi, g'azablanadi, boshqalarni boshqarishni xohlaydi, janjallashadi, buyruq beradi, o'z narsalarini himoya qiladi.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [
-                4781
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:52:15+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBa'zan ko'rsatmalarga qarshilik qiladi, g'azablanadi, boshqalarni boshqarishni xohlaydi, janjallashadi, buyruq beradi, o'z narsalarini himoya qiladi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7786],
+            "related_articles": [],
             "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2971,
+            "type": "Milestone",
+            "title": "Tuyg'ularni ifoda eta oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:10:10+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETurli xil hislarni ifoda etishi va ko'rsatishi mumkin (qo'rquv, g'azab, rahm-shafqat, aybdorlik, quvonch) .\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7781],
+            "related_articles": [3656],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2976,
+            "type": "Milestone",
+            "title": "Mustaqil ravishda turadi, harakat qiladi va yuradi.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T12:05:43+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 12:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU mustaqil ravishda turli yo'nalishlarda, turli xil tezlikda harakatlanishi yoki turli harakatlarni birlashtirishi mumkin (to'xta va qo'lni silkitish).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7281],
+            "related_articles": [4841],
+            "related_video_articles": [6591],
             "mandatory": 0
         },
         {
             "id": 2981,
             "type": "Milestone",
             "title": "Oddiy ko'rsatmalarni tushunadi va bajaradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:51",
-            "body": "<p>ko'rsatib berilmagan holda sodda aytilgan ko'rsatmalarga amal qiladi, undan kutilgan narsani bajarishi mumkin.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7326
-            ],
-            "related_articles": [
-                4776
-            ],
-            "related_video_articles": [
-                6571
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:51:42+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eko'rsatib berilmagan holda sodda aytilgan ko'rsatmalarga amal qiladi, undan kutilgan narsani bajarishi mumkin.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7326],
+            "related_articles": [],
+            "related_video_articles": [6571],
             "mandatory": 0
         },
         {
             "id": 2986,
             "type": "Milestone",
             "title": "So'zlarni ma'noli qilib talaffuz qiladi.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:51",
-            "body": "<p>Ota-onasiga murojaat qilishda kamida bitta yoki bir nechta alohida so'zlarni talaffuz qiladi.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7286
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:51:30+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOta-onasiga murojaat qilishda kamida bitta yoki bir nechta alohida so'zlarni talaffuz qiladi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7286],
             "related_articles": [],
-            "related_video_articles": [
-                6851
-            ],
+            "related_video_articles": [6851],
+            "mandatory": 0
+        },
+        {
+            "id": 2991,
+            "type": "Milestone",
+            "title": "Hali ham begona odam va vaziyatlardan qo'rqadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:19:13+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBegona odam bilan muloqotda u qo'rquvni namoyon qiladi, tanish odamni izlaydi yoki ota-onasiga yopishadi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7291],
+            "related_articles": [3646, 346],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2996,
+            "type": "Milestone",
+            "title": "Rolli o'yinlarni yoqtiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:24:24+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\"Rolli\" o'yinlar o'ynaydi. \"Taqlid o'yini\" paydo bo'ladi, bunda bola o'zini choy ichayotganday, qo'g'irchoqni ovqatlantirayotganday ko'rsatadi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7856],
+            "related_articles": [2141],
+            "related_video_articles": [6576],
             "mandatory": 0
         },
         {
             "id": 3001,
             "type": "Milestone",
             "title": "Qog'ozga qalam yoki bo'rchalar bilan mustaqil ravishda chizadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:51",
-            "body": "<p>Qog'ozga qalam, qumda qo'li, loyga tayoq yoki betonga suv bilan qing'ir-qiyshiq chizgilar chizadi.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7296
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6606
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-28T21:51:32+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQog'ozga qalam, qumda qo'li, loyga tayoq yoki betonga suv bilan qing'ir-qiyshiq chizgilar chizadi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7296],
+            "related_articles": [],
+            "related_video_articles": [6606],
+            "mandatory": 0
+        },
+        {
+            "id": 3006,
+            "type": "Milestone",
+            "title": "Kundalik foydalaniladigan buyumlardan qanday foydalanishni biladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:23:04+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQoshiq, tish cho'tkasi, telefon kabi narsalardan foydalanish bo'yicha ko'nikmalarini namoyish etadi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7316],
+            "related_articles": [3991],
+            "related_video_articles": [6601],
+            "mandatory": 0
+        },
+        {
+            "id": 3011,
+            "type": "Milestone",
+            "title": "Bir buyumni ikkinchisiga joylashtiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:25:35+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBiror narsani piyola yoki kosaning ichiga solib, undan olib chiqadi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7301],
+            "related_articles": [1986],
+            "related_video_articles": [6586, 2116],
+            "mandatory": 0
+        },
+        {
+            "id": 3016,
+            "type": "Milestone",
+            "title": "Muloqotda o'zaro tushunish uchun imo-ishoralardan foydalanadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:22:34+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU kattalarning imo-ishoralari va so'zlariga taqlid qilishga harakat qiladi. So'rovlarga javoban imo-ishoralardan oqilona foydalanadi (\"xayr\" yoki \"yo'q\").\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7311],
+            "related_articles": [],
+            "related_video_articles": [6596],
+            "mandatory": 0
+        },
+        {
+            "id": 3021,
+            "type": "Milestone",
+            "title": "Birgalikdagi faoliyatni xohlaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:23:57+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU mimika, imo-ishoralar va yaqin odamlarning ba'zi harakatlariga taqlid qiladi, ko'rsatkich barmog'i bilan nima qiziqtirayotganligiga ishora qiladi yoki ularni qiziqtirish va o'yinga jalb qilish uchun boshqa odamlarga nimadir taklif qiladi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7306],
+            "related_articles": [3646],
+            "related_video_articles": [6581],
+            "mandatory": 0
+        },
+        {
+            "id": 5861,
+            "type": "Milestone",
+            "title": "Kitoblarga ko'proq qiziqish bildiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:51:28+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERasmli kitoblarga qiziqish bildiradi, qattiq muqovali kitoblarni mustaqil tarzda varaqlay oladi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7406],
+            "related_articles": [],
+            "related_video_articles": [6806],
+            "mandatory": 0
+        },
+        {
+            "id": 6971,
+            "type": "Milestone",
+            "title": "Boshqa bolalar va kattalar bilan o'ynashga qiziqish bildiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:03:36+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:03\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'yin o'ynash uchun sheriklar qidiradi, o'yinda ishtirok eta oladi va o'yin davomida boshqa bolalar va kattalardan o'rganadi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7421],
+            "related_articles": [],
+            "related_video_articles": [58511],
             "mandatory": 0
         },
         {
             "id": 6976,
             "type": "Milestone",
             "title": "Boshqalarni xursand qilishni va hamkorlik qilishni yoqtiradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:53",
-            "body": "<p>Boshqalarning his-tuyg'ularini tan oladi; ko'pincha boshqalar bilan baham ko'rishni yaxshi ko'radi; navbat bilan turishga qodir. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:02:03+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBoshqalarning his-tuyg'ularini tan oladi; ko'pincha boshqalar bilan baham ko'rishni yaxshi ko'radi; navbat bilan turishga qodir. \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7426],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58521],
             "mandatory": 0
         },
         {
             "id": 6981,
             "type": "Milestone",
             "title": "4-5 so'zdan iborat jumlalardan foydalanadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:54",
-            "body": "<p>So'zlarni mantiqiy va fikrlarini etkazadigan usullar bilan birlashtiradi.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7431
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:07:44+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESo'zlarni mantiqiy va fikrlarini etkazadigan usullar bilan birlashtiradi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7431],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58501],
+            "mandatory": 0
+        },
+        {
+            "id": 6986,
+            "type": "Milestone",
+            "title": "2 va 3 raqamlarining ma'nosini tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:05:29+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAIltimos qilinsa ikki yoki uchta buyumni tanlashi (o'yinchoqlar, qoshiqlar va boshqalar) yoki narsa-buyumlar guruhiga qarab, ikkita yoki uchta borligini aytishi mumkin\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7436],
+            "related_articles": [],
+            "related_video_articles": [58536],
+            "mandatory": 0
+        },
+        {
+            "id": 6991,
+            "type": "Milestone",
+            "title": "\"O'xshash\" yoki \"o'xshash\" va \"har xil\" atamalarini tushunadi va narsalarni turli xil (masalan, rang yoki o'lchov) bo'yicha guruhlashi mumkin.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:06:13+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMisol uchun, bola mo'ynali va patli hayvonlar haqida gapirishi mumkin, kitobda boshqalardan farq qiluvchi bitta narsani ko'rsatishi mumkin (masalan, to'p ushlab turgan yagona bola)\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7831],
+            "related_articles": [],
+            "related_video_articles": [58546],
             "mandatory": 0
         },
         {
             "id": 6996,
             "type": "Milestone",
             "title": "Haqiqiy, go'yo yoki xayoliy narsalar orasidagi asosiy farqlarni biladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:55",
-            "body": "<p>Mavjud bo'lmagan yoki hayvonlar hayotda gaplasha olmasligini biladigan belgi haqida hikoya qiladi.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:01:07+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMavjud bo'lmagan yoki hayvonlar hayotda gaplasha olmasligini biladigan belgi haqida hikoya qiladi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7441],
+            "related_articles": [],
+            "related_video_articles": [58551],
+            "mandatory": 0
+        },
+        {
+            "id": 7001,
+            "type": "Milestone",
+            "title": "O'z hayotida sodir bo'ladigan narsalar haqida gapiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T08:34:20+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'tgan hafta bo'lgan tug'ilgan kun haqida aytib berishi, yoki oilasi bilan sayohatni tasvirlab berishi mumkin\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7446],
             "related_articles": [],
             "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7006,
+            "type": "Milestone",
+            "title": "Yodlab olingan qo'shiqlarni kuylaydi yoki hikoyalar aytib beradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:04:19+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIlgari eshitilgan hikoya yoki qo'shiq haqida o'ylaydi va so'zlarni eslashga urinadi\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7451],
+            "related_articles": [],
+            "related_video_articles": [58516],
+            "mandatory": 0
+        },
+        {
+            "id": 7011,
+            "type": "Milestone",
+            "title": "Alfavitdagi ayrim harflarni yozishi, yoki oldindan ko'rsatilgan tasvirlarni o'xshatishga harakat qilishi mumkin",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:00:18+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHarflar yoki buyumlarning rasmlarini ko'rib, ularni o'xshatishga urinadi, hatto ular noaniq ko'rinishga ega bo'lsa ham\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7456],
+            "related_articles": [],
+            "related_video_articles": [58526],
+            "mandatory": 0
+        },
+        {
+            "id": 7016,
+            "type": "Milestone",
+            "title": "Barmoqlar va qo'llarni aniqroq ishlatadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:06:52+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQaychi ishlatishda yana ham ko'proq mahoratni namoyish qiladi, minoralar quradi (masalan, 8 va undan kattaroq bloklardan)\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7461],
+            "related_articles": [],
+            "related_video_articles": [58531],
+            "mandatory": 0
+        },
+        {
+            "id": 7021,
+            "type": "Milestone",
+            "title": "Qoidalar asosida oddiy o'yinlarni o'ynaydi ",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:02:51+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'yinning oddiy qoidalariga amal qiladi, o'z navbatini kutadi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7466],
+            "related_articles": [],
+            "related_video_articles": [58541],
+            "mandatory": 0
+        },
+        {
+            "id": 7026,
+            "type": "Milestone",
+            "title": "Yengil va mohirlik bilan yuradi, yuguradi, sakraydi, katta-kichik to'plarni uloqtiradi va tepadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:08:24+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBadanni mohirlik bilan boshqaradi (masalan, agar bo'lsa - samokat yoki velosiped, rolikli konki va boshqalarda ucha oladi)\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7471],
+            "related_articles": [],
+            "related_video_articles": [58496],
+            "mandatory": 0
+        },
+        {
+            "id": 7031,
+            "type": "Milestone",
+            "title": "Harakatning ko'p turlarida tanani yanada mohirlik bilan boshqaradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:17:56+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir oyoqda turadi, sakraydi, tebranadi, tirmashadi. Imkon bo'lsa, velosiped yoki samokatda ucha oladi, faqatgina qo'l va oyoqlarini ishlatib to'pni mohirlik bilan boshqaradi\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7476],
+            "related_articles": [],
+            "related_video_articles": [58561],
+            "mandatory": 0
+        },
+        {
+            "id": 7036,
+            "type": "Milestone",
+            "title": "Odam tanasi va oddiy shakllarini aniq tasvirlaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:13:29+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVizual qismlar bilan inson qiyofasini chizadi; doira, uchburchak va boshqa geometrik shakllarni chizishi mumkin\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7481],
+            "related_articles": [],
+            "related_video_articles": [58571],
             "mandatory": 0
         },
         {
             "id": 7041,
             "type": "Milestone",
             "title": "Besh va undan ortiq so'zlardan iborat jumlalarda gapiradi; kelajak haqida gapirish uchun so'zlardan foydalanadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:56",
-            "body": "<p>O'z g'oyalarini ifodalash uchun so'zlarni birlashtiradi; kelajakda nima bo'lishini \"iroda\" yoki \"mumkin\" deb ayta oladi.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:14:38+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EO'z g'oyalarini ifodalash uchun so'zlarni birlashtiradi; kelajakda nima bo'lishini \"iroda\" yoki \"mumkin\" deb ayta oladi.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7486],
+            "related_articles": [],
+            "related_video_articles": [58581],
+            "mandatory": 0
+        },
+        {
+            "id": 7046,
+            "type": "Milestone",
+            "title": "Hikoyani yoki uning bir qismini aytib berishi mumkin ",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:12:14+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHikoyaning asosiy g'oyalari yoki yoqtirgan qismini mustaqil ayta oladi, katta odamlarday mulohaza qila oladi\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7491],
+            "related_articles": [],
+            "related_video_articles": [58591],
+            "mandatory": 0
+        },
+        {
+            "id": 7051,
+            "type": "Milestone",
+            "title": "Ismi va manzilni ayta oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:11:07+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESo'ralganda o'zi haqida asosiy ma'lumotlarni aytib bera oladi\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7496],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -15208,443 +16148,1157 @@ export const MileStonesData: any = {
             "id": 7056,
             "type": "Milestone",
             "title": "O'ntagacha sanab, o'nta ob'ektni xatosiz nomlay oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:56",
-            "body": "<p>Shuningdek, \"birinchi, ikkinchi\", 10 gacha, haftaning kunlari va oylarini hisoblashi mumkin.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:10:59+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShuningdek, \"birinchi, ikkinchi\", 10 gacha, haftaning kunlari va oylarini hisoblashi mumkin.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7501],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58601],
+            "mandatory": 0
+        },
+        {
+            "id": 7061,
+            "type": "Milestone",
+            "title": "Kamida to'rtta rangni to'g'ri nomlaydi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:14:02+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERangni tanib olish binafsha va to'q sariq ranglar kabilarni o'z ichiga oladi (nafaqat qizil, sariq, ko'k)\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7511],
+            "related_articles": [],
+            "related_video_articles": [58556],
+            "mandatory": 0
+        },
+        {
+            "id": 7066,
+            "type": "Milestone",
+            "title": "Oldin va keyin kabi vaqt tushunchalarini tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:15:25+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHodisadan oldin va keyin nima bo'lganini tushuntiradi; yil fasllarni tartiblashi mumkin (masalan, bahordan keyin yoz)\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7506],
+            "related_articles": [],
+            "related_video_articles": [58566],
+            "mandatory": 0
+        },
+        {
+            "id": 7071,
+            "type": "Milestone",
+            "title": "Kundalik ishlatiladigan narsalardan qanday foydalanishni tushuntirib bera oladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:11:36+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKundalik hayotda telefon yoki pul kabi narsalardan qanday foydalanilishini tushuntiradi.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7516],
+            "related_articles": [],
+            "related_video_articles": [58576],
+            "mandatory": 0
+        },
+        {
+            "id": 7076,
+            "type": "Milestone",
+            "title": "Ijodiy faoliyat bilan bog'liq tadbirlarda Ishtirok etishni afzal ko'radi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:12:50+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQo'shiq, raqs, rasm chizish, loy yoki boshqa materiallardan narsa yasash kabi ijodiy faoliyatlarda ishtirok etadi\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7521],
+            "related_articles": [],
+            "related_video_articles": [58586],
             "mandatory": 0
         },
         {
             "id": 7081,
             "type": "Milestone",
             "title": "Kundalik ishlar va ijtimoiy tadbirlarda mustaqil ravishda ishtirok etish ko'nikmalaridan foydalanadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 10/14/2021 - 09:51",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Mustaqil ravishda yechinib, kiyina oladi, qoshiq va vilkadan foydalanadi, hojatxonadan foydalanadi va qo'llarini yuvadi. Ota-onadan ajralib, mustaqil ijtimoiy faoliyatda ishtirok etishi mumkin.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:18:34+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMustaqil ravishda yechinib, kiyina oladi, qoshiq va vilkadan foydalanadi, hojatxonadan foydalanadi va qo'llarini yuvadi. Ota-onadan ajralib, mustaqil ijtimoiy faoliyatda ishtirok etishi mumkin.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7526],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58596],
             "mandatory": 0
         },
         {
             "id": 7086,
             "type": "Milestone",
             "title": "Qo'shimcha jismoniy ko'nikmalar talab qiladigan turli xil tadbirlarda mahorat bilan qatnashadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 10/14/2021 - 10:04",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Bir oyoqda turishi, to'pni aniq tepishi, to'pni nishonga urishi va shu kabilarni qilishga qodir</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:33:38+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir oyoqda turishi, to'pni aniq tepishi, to'pni nishonga urishi va shu kabilarni qilishga qodir\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7531],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58611],
+            "mandatory": 0
+        },
+        {
+            "id": 7091,
+            "type": "Milestone",
+            "title": "Murakkab shakllar, harflar va batafsil chizmalar yasashga qodir ",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:21:48+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERasmga haqqoniy detallarni qo'sha oladi, murakkabroq rasmlar chiza oladi, imkon bo'lganda rasm chizish va bo'yash materiallaridan mohirlik bilan foydalanadi. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7536],
+            "related_articles": [],
+            "related_video_articles": [58626],
+            "mandatory": 0
+        },
+        {
+            "id": 7096,
+            "type": "Milestone",
+            "title": "Murakkab jumlalar bilan gapiradi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:34:19+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGaplar tobora murakkablashib bormoqda. Masalan, bola hozirgi, o'tmish va kelajak zamonlaridan to'g'ri foydalanadi.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7541],
+            "related_articles": [],
+            "related_video_articles": [58636],
+            "mandatory": 0
+        },
+        {
+            "id": 7101,
+            "type": "Milestone",
+            "title": "Alifbo harflarini taniydi va o'qishning ayrim ko'nikmalariga ega",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:31:51+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAlifbo harflarining ko'pini taniydi va do'kon, kitob, o-yi, da-da kabi kundalik va shu kabi so'zlarni o'qiy oladi.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7546],
+            "related_articles": [],
+            "related_video_articles": [58651],
             "mandatory": 0
         },
         {
             "id": 7106,
             "type": "Milestone",
             "title": "Hikoyani to'liq aytib beradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 10/14/2021 - 10:06",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Bola o'zi ishtirok etgan tadbir yoki teledastur to'g'risida, ma'lum bir voqeani syujetini xronologik tartibga solib to'liq, mustaqil va aniq hikoya qilib berishga muvaffaq bo'ladi</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:35:51+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola o'zi ishtirok etgan tadbir yoki teledastur to'g'risida, ma'lum bir voqeani syujetini xronologik tartibga solib to'liq, mustaqil va aniq hikoya qilib berishga muvaffaq bo'ladi\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7826],
+            "related_articles": [],
+            "related_video_articles": [58656],
+            "mandatory": 0
+        },
+        {
+            "id": 7111,
+            "type": "Milestone",
+            "title": "O'zining ismi, familiyasi, yoshi va uy manzilini biladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:14:58+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU o'zi haqida asosiy ma'lumotlarni biladi va so'ralganda ularni aytishi mumkin. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7551],
             "related_articles": [],
             "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7116,
+            "type": "Milestone",
+            "title": "Turli vaqtlarda nima sodir bo'lishini va vaqt qanday o'tishini tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:39:47+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVaqt o'tishini, ertalab, peshin va kechqurun nima bo'lishini tushunadi, ba'zi tadbirlarni rejalashtirishi mumkin.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7851],
+            "related_articles": [],
+            "related_video_articles": [59251],
+            "mandatory": 0
+        },
+        {
+            "id": 7121,
+            "type": "Milestone",
+            "title": "O'yin qoidalariga rioya qiladi va ba'zida yangi qoidalar uchun o'zining g'oyalari ham mavjud",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:20:33+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU o'rnatilgan qoidalarni tushunadi (masalan, O'yin qoidalari), lekin ba'zan yangilik qo'shishni xohlaydi.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7561],
+            "related_articles": [],
+            "related_video_articles": [58621],
+            "mandatory": 0
+        },
+        {
+            "id": 7126,
+            "type": "Milestone",
+            "title": "Mas'uliyatni o'z zimmasiga olish belgilarini namoyon qiladi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:32:31+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMasalan, u o'z narsalarini ehtiyot qila boshlaydi\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7566],
+            "related_articles": [],
+            "related_video_articles": [58631],
             "mandatory": 0
         },
         {
             "id": 7131,
             "type": "Milestone",
             "title": "Haqqoniy, taqlid va o'ylab topilganlar orasidagi farqni tushunishini namoyish qiladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 10/14/2021 - 10:04",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>U faqat tasavvuridagi voqea, hikoya, qahramonlarni o'ylab topadi, ularni badiiy jihatdan tasavvur qiladi, tasvirlaydi va haqqoniy bo'lmagan xususiyatlarni beradi. Tasavvur dunyosida hamma narsa mumkinligini tushungan holda bu ishni qilishi uni zavqlantiradi</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:33:04+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU faqat tasavvuridagi voqea, hikoya, qahramonlarni o'ylab topadi, ularni badiiy jihatdan tasavvur qiladi, tasvirlaydi va haqqoniy bo'lmagan xususiyatlarni beradi. Tasavvur dunyosida hamma narsa mumkinligini tushungan holda bu ishni qilishi uni zavqlantiradi\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7571],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58641],
+            "mandatory": 0
+        },
+        {
+            "id": 7136,
+            "type": "Milestone",
+            "title": "Boshqalarning g'oya va ehtiyojlarini tushunadi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:05+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:21:09+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShuning uchun u boshqalarning xohlagan yoki taklif qilgan narsalariga ko'proq e'tibor beradi va ular bilan uchrashishni xohlaydi - u do'stlari bilan va jamoaviy ishlarda ko'proq hamkorlik qiladi.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7576],
+            "related_articles": [],
+            "related_video_articles": [58606],
             "mandatory": 0
         }
     ],
     "uz-ru": [
         {
+            "id": 5861,
+            "type": "Milestone",
+            "title": "Больше интересуется книгами",
+            "created_at": "\u003Ctime datetime=\"2021-10-29T12:45:00+02:00\" class=\"datetime\"\u003EFri, 10/29/2021 - 12:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-29T12:45:15+02:00\" class=\"datetime\"\u003EFri, 10/29/2021 - 12:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИнтересуется книжками с картинками, может самостоятельно перелистывать страницы книжки в твердом переплете.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7406],
+            "related_articles": [],
+            "related_video_articles": [6806],
+            "mandatory": 0
+        },
+        {
+            "id": 2926,
+            "type": "Milestone",
+            "title": "Понимает и следует более чем одной простой инструкции",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T12:19:40+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:19\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:19:58+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет следовать одной или даже нескольким связанным простым устным просьбам, таким как: “Принеси подушку”, “Иди сядь”, “Брось в мусорное ведро\".”…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7821],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7111,
+            "type": "Milestone",
+            "title": "Она/он знает свое имя и фамилию, возраст и домашний адрес",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T12:14:40+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:14\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:14:53+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она знает основную информацию о себе и может воспроизвести ее по запросу.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7551],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7051,
+            "type": "Milestone",
+            "title": "Может назвать свое имя и адрес",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T12:10:48+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T12:11:04+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 12:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЕсли спросят, то может рассказать основную информацию о себе. \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7496],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7096,
+            "type": "Milestone",
+            "title": "Говорит сложными предложениями",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T10:05:11+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:34:17+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПредложения становятся все более и более сложными. Например, ребенок правильно использует настоящее, прошедшее и будущее времена.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7541],
+            "related_articles": [],
+            "related_video_articles": [58636],
+            "mandatory": 0
+        },
+        {
+            "id": 7126,
+            "type": "Milestone",
+            "title": "Проявляет признаки принятия ответственности на себя",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T10:02:41+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:32:29+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНапример, он/она начинает беречь свои вещи.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7566],
+            "related_articles": [],
+            "related_video_articles": [58631],
+            "mandatory": 0
+        },
+        {
+            "id": 7101,
+            "type": "Milestone",
+            "title": "Распознает буквы алфавита и обладает некоторыми навыками чтения",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T10:01:48+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:01\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:31:53+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет распознавать большинство букв алфавита и читать основные бытовые слова и слоги, такие как магазин, книга, ма-ма, да-да и т. д.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7546],
+            "related_articles": [],
+            "related_video_articles": [58651],
+            "mandatory": 0
+        },
+        {
+            "id": 7091,
+            "type": "Milestone",
+            "title": "Способен(на) создавать сложные формы, буквы и подробные рисунки",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T10:00:46+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:21:46+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет добавить реалистичные детали в рисунок, создает более сложные картинки, при удобном случае умело использует материалы для рисования и раскрашивания. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7536],
+            "related_articles": [],
+            "related_video_articles": [58626],
+            "mandatory": 0
+        },
+        {
+            "id": 7116,
+            "type": "Milestone",
+            "title": "Понимает, что происходит в разное время и как проходит время",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:59:41+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:39:49+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПонимает течение времени, понимает, что происходит утром, в полдень и вечером, может планировать некоторые действия.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7851],
+            "related_articles": [],
+            "related_video_articles": [59251],
+            "mandatory": 0
+        },
+        {
+            "id": 7136,
+            "type": "Milestone",
+            "title": "Понимает идеи и потребности других людей",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:58:18+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:21:06+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВот почему он/она уделяет больше внимания тому, что хотят или предлагают другие, и хочет встретиться с ними – он/она более сотрудничает с друзьями и в командном функционировании.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7576],
+            "related_articles": [],
+            "related_video_articles": [58606],
+            "mandatory": 0
+        },
+        {
+            "id": 7121,
+            "type": "Milestone",
+            "title": "Следует правилам игр и иногда имеет идеи для новых правил",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:56:49+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:20:37+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн / она понимает установленные правила (например, Правила игры), но иногда он / она хочет добавить что-то новое, другое. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7561],
+            "related_articles": [],
+            "related_video_articles": [58621],
+            "mandatory": 0
+        },
+        {
+            "id": 7031,
+            "type": "Milestone",
+            "title": "Более умело управляет телом во многих видах деятельности",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:49:23+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:17:58+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСтоит на одной ноге, прыгает, качается, лазает. Если есть возможность, ездит на велосипеде или самокате и умело управляет мячом, используя только свои руки и ноги.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7476],
+            "related_articles": [],
+            "related_video_articles": [58561],
+            "mandatory": 0
+        },
+        {
+            "id": 7066,
+            "type": "Milestone",
+            "title": "Имеет представление о времени, как до и после",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:48:33+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:15:28+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОбъясняет, что произошло до и после события; может упорядочить времена года (например, лето после весны).\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7506],
+            "related_articles": [],
+            "related_video_articles": [58566],
+            "mandatory": 0
+        },
+        {
+            "id": 7061,
+            "type": "Milestone",
+            "title": "Правильно называет не менее четырех цветов",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:45:25+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:14:00+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРаспознавание цвета включает в себя некоторые цвета, такие как фиолетовый и оранжевый (а не только красный, желтый, синий)\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7511],
+            "related_articles": [],
+            "related_video_articles": [58556],
+            "mandatory": 0
+        },
+        {
+            "id": 7036,
+            "type": "Milestone",
+            "title": "Точно изображает человеческое тело и простые фигуры",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:43:18+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:13:27+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРисует человеческую фигуру с наглядными частями; может нарисовать круг, треугольник и другие геометрические фигуры\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7481],
+            "related_articles": [],
+            "related_video_articles": [58571],
+            "mandatory": 0
+        },
+        {
+            "id": 7076,
+            "type": "Milestone",
+            "title": "Предпочитает принимать участие в творческих видах деятельности",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:40:55+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:12:52+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПринимает участие творческих видах деятельности таких , как пение и танцы, рисование, лепка из глины или других материалов , и в других видах творческой деятельности\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7521],
+            "related_articles": [],
+            "related_video_articles": [58586],
+            "mandatory": 0
+        },
+        {
+            "id": 7046,
+            "type": "Milestone",
+            "title": "Может рассказать историю или пересказать часть истории",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:40:04+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:12:17+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСамостоятельно пересказывает основные идеи или любимую часть рассказа, может как взрослый предполагать.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7491],
+            "related_articles": [],
+            "related_video_articles": [58591],
+            "mandatory": 0
+        },
+        {
+            "id": 7071,
+            "type": "Milestone",
+            "title": "Может объяснить, как используются предметы повседневного обихода",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:39:06+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:11:38+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОбъясняет, как такие вещи, как телефон или деньги, используются в повседневной жизни.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7516],
+            "related_articles": [],
+            "related_video_articles": [58576],
+            "mandatory": 0
+        },
+        {
+            "id": 2626,
+            "type": "Milestone",
+            "title": "Следит глазами за игрушкой, движущейся из одной  стороны в другую",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T09:23:06+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T09:24:20+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 09:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСледит глазами за траекторией движения объектов или людей движущихся в поле зрения\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7191],
+            "related_articles": [],
+            "related_video_articles": [6396],
+            "mandatory": 0
+        },
+        {
+            "id": 7026,
+            "type": "Milestone",
+            "title": "Легко и умело ходит, бегает, прыгает, бросает и отбивает большие и маленькие мячи.",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:43:03+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:08:21+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EУмело владеет телом (например, при наличии - катается на самокате или велосипеде, на роликовых коньках и т.д.).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7471],
+            "related_articles": [],
+            "related_video_articles": [58496],
+            "mandatory": 0
+        },
+        {
+            "id": 7016,
+            "type": "Milestone",
+            "title": "Более точно  использует пальцы и руки",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:42:12+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:07:03+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПоказывает больше навыков в пользовании ножницами; строит башни (например, из 8 и более больших блоков).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7461],
+            "related_articles": [],
+            "related_video_articles": [58531],
+            "mandatory": 0
+        },
+        {
+            "id": 6991,
+            "type": "Milestone",
+            "title": "Понимает термины \"похожие\" , “одинаковые” и \"разные\" и может группировать вещи по-разному (например, по цвету или размеру)",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:41:14+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:06:15+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНапример, ребенок может рассказывать о животных, у которых есть мех, и о тех, у которых есть перья; ребенок может указать на одну вещь, которая отличается от других в книге (например, единственный мальчик, который держит мяч).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7831],
+            "related_articles": [],
+            "related_video_articles": [58546],
+            "mandatory": 0
+        },
+        {
+            "id": 6986,
+            "type": "Milestone",
+            "title": "Понимает значение чисел 2 и 3",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:39:46+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:05:31+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПо просьбе может выбрать два или три предмета (игрушки, ложки и т.д.) Или посмотреть на группу предметов и сказать, что их два или три.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7436],
+            "related_articles": [],
+            "related_video_articles": [58536],
+            "mandatory": 0
+        },
+        {
+            "id": 7006,
+            "type": "Milestone",
+            "title": "Поет песни или рассказывает истории, которые были заучены наизусть",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:38:52+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:04:21+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EДумает об истории или песне, услышанной ранее, и пытается вспомнить слова.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7451],
+            "related_articles": [],
+            "related_video_articles": [58516],
+            "mandatory": 0
+        },
+        {
+            "id": 6971,
+            "type": "Milestone",
+            "title": "Проявляет интерес к игре с другими детьми и взрослыми.",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:37:35+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:03:39+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:03\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИщет тех, с кем можно поиграть, умеет участвовать в игре, и учится у других детей и взрослых во время игры.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7421],
+            "related_articles": [],
+            "related_video_articles": [58511],
+            "mandatory": 0
+        },
+        {
+            "id": 7021,
+            "type": "Milestone",
+            "title": "Играет по правилам в простые игры  ",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:36:40+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:02:49+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСледует простым правилам игры, ждет своей очереди.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7466],
+            "related_articles": [],
+            "related_video_articles": [58541],
+            "mandatory": 0
+        },
+        {
+            "id": 7011,
+            "type": "Milestone",
+            "title": "Может написать несколько букв алфавита или попытаться скопировать другие изображения, которые будут показаны ему/ей заранее",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:35:31+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:00:01+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EГлядя на буквы или изображения предметов пытается скопировать их, нарисовать, даже если они могут выглядеть неточно.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7456],
+            "related_articles": [],
+            "related_video_articles": [58526],
+            "mandatory": 0
+        },
+        {
+            "id": 7001,
+            "type": "Milestone",
+            "title": "Рассказывает о том, что происходит в ее/его жизни",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:33:57+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:33\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T08:34:42+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет рассказать о вечеринке по случаю дня рождения, которая прошла на прошлой неделе, или описать поездку с семьей.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7446],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2596,
+            "type": "Milestone",
+            "title": "Поворачивает голову в одну сторону, затем в другую",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T08:31:18+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T08:32:42+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 08:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРебенок делает много различных движений шеей и головой\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7626],
+            "related_articles": [],
+            "related_video_articles": [6351],
+            "mandatory": 0
+        },
+        {
+            "id": 2751,
+            "type": "Milestone",
+            "title": "Выполняет инструкции, содержащие два или три указания.",
+            "created_at": "\u003Ctime datetime=\"2021-10-14T06:47:26+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T06:47:34+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 06:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет выполнить несколько связанных между собой устных указаний («оставь куклу и сядь на стул», «сними куртку и надень тапочки»). \u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7381],
+            "related_articles": [],
+            "related_video_articles": [6836],
+            "mandatory": 0
+        },
+        {
+            "id": 3011,
+            "type": "Milestone",
+            "title": "Помещает один предмет в другой",
+            "created_at": "\u003Ctime datetime=\"2021-10-13T11:25:16+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:25:53+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКладет вещи в миску или чашку и вынимает их из нее. \u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7301],
+            "related_articles": [1986],
+            "related_video_articles": [6586, 2116],
+            "mandatory": 0
+        },
+        {
             "id": 7106,
             "type": "Milestone",
             "title": "Пересказывает историю полностью ",
-            "created_at": "Tue, 09/28/2021 - 22:00",
-            "updated_at": "Thu, 10/14/2021 - 10:06",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Ребенку удается совершенно самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, или телешоу в котором он участвовал.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T22:00:01+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 22:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:35:53+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРебенку удается совершенно самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, или телешоу в котором он участвовал.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7826],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58656],
             "mandatory": 0
         },
         {
             "id": 7086,
             "type": "Milestone",
             "title": "Ловко участвует в различных мероприятиях, требующих дополнительных физических навыков",
-            "created_at": "Tue, 09/28/2021 - 21:59",
-            "updated_at": "Thu, 10/14/2021 - 10:04",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Способен(на) стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:59:07+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:33:36+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСпособен(на) стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7531],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58611],
             "mandatory": 0
         },
         {
             "id": 7131,
             "type": "Milestone",
             "title": "Демонстрирует понимание разницы между реальным и подражанием или вымышленным",
-            "created_at": "Tue, 09/28/2021 - 21:58",
-            "updated_at": "Thu, 10/14/2021 - 10:04",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Он/она только придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и присваивает им свойства, которые не являются реалистичными. Он/она получает удовольствие, делая это, осознавая, что в мире воображения возможно все.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:58:23+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:33:02+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она только придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и присваивает им свойства, которые не являются реалистичными. Он/она получает удовольствие, делая это, осознавая, что в мире воображения возможно все.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7571],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58641],
             "mandatory": 0
         },
         {
             "id": 7081,
             "type": "Milestone",
             "title": "Использует навыки самостоятельного участия в повседневных делах и общественной деятельности",
-            "created_at": "Tue, 09/28/2021 - 21:57",
-            "updated_at": "Thu, 10/14/2021 - 09:51",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Может самостоятельно одеваться и раздеваться, пользуется ложкой и вилкой, самостоятельно пользуется туалетом и моет руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:57:38+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:18:36+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет самостоятельно одеваться и раздеваться, пользуется ложкой и вилкой, самостоятельно пользуется туалетом и моет руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7526],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58596],
             "mandatory": 0
         },
         {
             "id": 7041,
             "type": "Milestone",
             "title": "Строит предложения из пяти или более слов; в разговоре использует слова, чтобы сказать о будущем.",
-            "created_at": "Tue, 09/28/2021 - 21:57",
-            "updated_at": "Tue, 09/28/2021 - 21:57",
-            "body": "<p>Использует слова вместе, чтобы выразить свои идеи; может сказать, что «будет» или «может» случиться в будущем.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:57:01+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:14:40+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИспользует слова вместе, чтобы выразить свои идеи; может сказать, что «будет» или «может» случиться в будущем.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7486],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58581],
             "mandatory": 0
         },
         {
             "id": 7056,
             "type": "Milestone",
             "title": "Может считать до десяти и без ошибок посчитать десять предметов",
-            "created_at": "Tue, 09/28/2021 - 21:56",
-            "updated_at": "Tue, 09/28/2021 - 21:56",
-            "body": "<p>Может также называть порядковые числительные «первый, второй» до 10, считать дни недели и месяцы.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:56:23+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:11:02+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет также называть порядковые числительные «первый, второй» до 10, считать дни недели и месяцы.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7501],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58601],
             "mandatory": 0
         },
         {
             "id": 6996,
             "type": "Milestone",
             "title": "Знает основные различия между реальными, придуманными и воображаемыми вещами.",
-            "created_at": "Tue, 09/28/2021 - 21:55",
-            "updated_at": "Tue, 09/28/2021 - 21:55",
-            "body": "<p>Придумывает историю о несуществующем персонаже или знает, что животные не могут разговаривать в реальной жизни.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:55:22+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:55\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:01:09+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПридумывает историю о несуществующем персонаже или знает, что животные не могут разговаривать в реальной жизни.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7441],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58551],
             "mandatory": 0
         },
         {
             "id": 6981,
             "type": "Milestone",
             "title": "Пользуется предложениями от 4 до 5 слов",
-            "created_at": "Tue, 09/28/2021 - 21:54",
-            "updated_at": "Tue, 09/28/2021 - 21:54",
-            "body": "<p>Составляет предложения, собирая слова вместе так, чтобы они имели смысл, и передавали ее / его идеи.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7431
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:54:39+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:07:42+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСоставляет предложения, собирая слова вместе так, чтобы они имели смысл, и передавали ее / его идеи.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7431],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58501],
             "mandatory": 0
         },
         {
             "id": 6976,
             "type": "Milestone",
             "title": "Любит угождать другим и сотрудничать",
-            "created_at": "Tue, 09/28/2021 - 21:53",
-            "updated_at": "Tue, 09/28/2021 - 21:54",
-            "body": "<p>Признает чувства других; часто любит делиться с другими; может соблюдать очередь. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-28T21:53:39+02:00\" class=\"datetime\"\u003ETue, 09/28/2021 - 21:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T10:02:00+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 10:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПризнает чувства других; часто любит делиться с другими; может соблюдать очередь. \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7426],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58521],
+            "mandatory": 0
+        },
+        {
+            "id": 2526,
+            "type": "Milestone",
+            "title": "Расслабляется, когда вы берете ее/его на руки",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:53:06+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:53\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда вы берете ее/его на руки, вы чувствуете, как ребенок приспосабливается к объятиям и прижимается к вашей груди\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7581],
+            "related_articles": [],
+            "related_video_articles": [6286],
             "mandatory": 0
         },
         {
             "id": 2531,
             "type": "Milestone",
-            "title": "Возбуждается, когда вы разговариваете с ней /ним",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Когда он/она слышит ваш голос, радуется, но вы также замечаете , что он/она замедляет свои движения,кажется прслушивается к вам , присутствовать…</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
+            "title": "Возбуждается, когда вы разговариваете с ней/ним",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:58:14+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда он/она слышит ваш голос, радуется, но вы также замечаете, что он/она замедляет свои движения, кажется прослушивается к вам, присутствовать…\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7586],
             "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
+            "related_video_articles": [6311],
+            "mandatory": 0
+        },
+        {
+            "id": 2536,
+            "type": "Milestone",
+            "title": "Смотрит на вас когда вы улыбаетесь и разговариваете с ней/ним",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-18T13:57:19+01:00\" class=\"datetime\"\u003EThu, 11/18/2021 - 13:57\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда вы говорите ему/ей, ребенок глазами следит за вашим лицом\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7591],
+            "related_articles": [],
+            "related_video_articles": [6291],
             "mandatory": 0
         },
         {
             "id": 2541,
             "type": "Milestone",
             "title": "Издает звуки",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Ребенок плачет, и в тоже время издает звуки</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРебенок плачет, и в тоже время издает звуки\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7596],
             "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
+            "related_video_articles": [6296],
+            "mandatory": 0
+        },
+        {
+            "id": 2546,
+            "type": "Milestone",
+            "title": "Сжимает и разжимает кулак, когда вы бережно прикасаетесь к нему",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда вы дотрагиваетесь до ладошки ребенка или кладете в нее что-то, он/она плотно сжимает кулак. Если вы дадите ему/ей ваш палец, он/она крепко ухватится за него.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7601],
+            "related_articles": [],
+            "related_video_articles": [6301],
+            "mandatory": 0
+        },
+        {
+            "id": 2551,
+            "type": "Milestone",
+            "title": "Свободно двигает руками и ногами с обеих сторон",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВ свободном положении ребенка вы можете наблюдать совершенно хаотичные движения рук и ног\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7756],
+            "related_articles": [],
+            "related_video_articles": [6306],
             "mandatory": 0
         },
         {
             "id": 2556,
             "type": "Milestone",
             "title": "Лежа на животике, поднимает голову",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Когда вы положите его/ее на животик, то ребенок попытается поднять голову, чтобы освободить дыхательные пути.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда вы положите его/ее на животик, то ребенок попытается поднять голову, чтобы освободить дыхательные пути.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7606],
             "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
+            "related_video_articles": [6281],
             "mandatory": 0
         },
         {
             "id": 2561,
             "type": "Milestone",
             "title": "Издает разные звуки, когда он счастлив, расстроен или голоден",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Плач ребенка меняется в зависимости от определенных потребностей, поэтому по звукам, которые он издает, можно определить, счастлив ли он/она, расстроен или имеет какие-то другие потребности.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПлач ребенка меняется в зависимости от определенных потребностей, поэтому по звукам, которые он издает, можно определить, счастлив ли он/она, расстроен или имеет какие-то другие потребности.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7611],
             "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
+            "related_video_articles": [6316],
             "mandatory": 0
         },
         {
             "id": 2566,
             "type": "Milestone",
             "title": "Может утешить себя на некоторое время",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Малыш успокаивается, посасывая свой палец или свою маленькую ручку.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМалыш успокаивается, посасывая свой палец или свою маленькую ручку.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7176],
             "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
+            "related_video_articles": [6361],
             "mandatory": 0
         },
         {
             "id": 2571,
             "type": "Milestone",
             "title": "Поворачивает голову к источнику звука и показывает, что слушает",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Если он/она слышит человеческий голос или какой-то другой звук, он/она поварачивает к нему голву . Слушая голос, он/она смотрит на родителя или говорящего, замедляя свои движения.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЕсли он/она слышит человеческий голос или какой-то другой звук, он/она поварачивает к нему голву . Слушая голос, он/она смотрит на родителя или говорящего, замедляя свои движения.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7721],
             "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
+            "related_video_articles": [6326],
+            "mandatory": 0
+        },
+        {
+            "id": 2576,
+            "type": "Milestone",
+            "title": "Гулит, издает звуки",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОна/он издает разные голоса.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7616],
+            "related_articles": [],
+            "related_video_articles": [6321],
+            "mandatory": 0
+        },
+        {
+            "id": 2581,
+            "type": "Milestone",
+            "title": "Следит глазами за движением вещей и людей",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРебенок пытается отслеживать траекторию движения игрушек, предметов или людей\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7761],
+            "related_articles": [],
+            "related_video_articles": [6336],
             "mandatory": 0
         },
         {
             "id": 2586,
             "type": "Milestone",
             "title": "Проявляет скуку или плачет, если вид деятельности меняется",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Ребенок плачем выражает недовольство , если его/её надолго оставляют в одном положении, или протестует, если вы опускаете ее/его после того, как держали на руках</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-16T07:16:29+01:00\" class=\"datetime\"\u003EWed, 02/16/2022 - 07:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРебенок плачем выражает недовольство , если его/её надолго оставляют в одном положении, или протестует, если вы опускаете ее/его после того, как держали на руках\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7181],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [6916],
+            "mandatory": 0
+        },
+        {
+            "id": 2591,
+            "type": "Milestone",
+            "title": "Иногда он/она держит кулаки разжатыми, манипулирует ими",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРебенок большую часть времени держит руки сжатыми в кулаки , но иногда он/она их разжимает и держит в таком положении в течение некоторого времени. Он/она наблюдает за движением своих рук , подносит их ко рту.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7621],
+            "related_articles": [],
+            "related_video_articles": [6356],
+            "mandatory": 0
+        },
+        {
+            "id": 2601,
+            "type": "Milestone",
+            "title": "Делает мелкие движения руками и ногами",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВ свободном положении ребенка вы можете видеть множество мелких случайных движений рук и ножек ребенка.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7631],
+            "related_articles": [],
+            "related_video_articles": [6341],
+            "mandatory": 0
+        },
+        {
+            "id": 2606,
+            "type": "Milestone",
+            "title": "Когда ребенок лежит на животе, он опирается предплечьями на коврик",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВ положении прон позиции(лежа на животе )ребенок может поднимать голову, опирраясь на предплечья, упираясь об пол.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7636],
+            "related_articles": [],
+            "related_video_articles": [6346],
+            "mandatory": 0
+        },
+        {
+            "id": 2611,
+            "type": "Milestone",
+            "title": "Смеется лицу человека",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЧасто, легко и спонтанно улыбается людям рядом с ним/ней\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7641],
+            "related_articles": [],
+            "related_video_articles": [6401],
+            "mandatory": 0
+        },
+        {
+            "id": 2616,
+            "type": "Milestone",
+            "title": "Внимательно наблюдает за лицами людей",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВнимательно и подробно рассматривает лица людей, поддерживает длительный зрительный контакт.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7186],
+            "related_articles": [],
+            "related_video_articles": [6386],
+            "mandatory": 0
+        },
+        {
+            "id": 2621,
+            "type": "Milestone",
+            "title": "Показывает, что она сердита или счастлива",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИмеет распознаваемые реакции удовлетворения и неудовлетворенности.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7646],
+            "related_articles": [],
+            "related_video_articles": [6381],
             "mandatory": 0
         },
         {
             "id": 2631,
             "type": "Milestone",
             "title": "Начинает лепетать",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Вокализирует и издает звуки, напоминающие гласные - a, e, и, o, у</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВокализирует и издает звуки, напоминающие гласные - a, e, и, o, у\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7651],
             "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
+            "related_video_articles": [6371],
             "mandatory": 0
         },
         {
             "id": 2636,
             "type": "Milestone",
             "title": "Поднимается и спускается по лестнице",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Поднимается по лестнице с опорой, попеременно используя одну ногу, затем другую.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПоднимается по лестнице с опорой, попеременно используя одну ногу, затем другую.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7416],
             "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
+            "related_video_articles": [6811],
+            "mandatory": 0
+        },
+        {
+            "id": 2641,
+            "type": "Milestone",
+            "title": "Начинает имитировать движения и выражения лица, а также звуки во время игры",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПри обращении к нему/ней, ребенок пытается повторить движение или выражение лица. Он/она реагирует на разговор и речь посредством звуков\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7656],
+            "related_articles": [3626],
+            "related_video_articles": [6376],
             "mandatory": 0
         },
         {
             "id": 2646,
             "type": "Milestone",
             "title": "Устанавливает зрительно-моторную координацию",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Нарастает зрительно-моторная координация, например, ваш ребенок смотрит на предмет и пытается дотянуться до него.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНарастает зрительно-моторная координация, например, ваш ребенок смотрит на предмет и пытается дотянуться до него.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7661],
             "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
+            "related_video_articles": [6406],
+            "mandatory": 0
+        },
+        {
+            "id": 2651,
+            "type": "Milestone",
+            "title": "Копирует  круги деревянными и восковыми карандашами",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКопирует круги деревянными и восковыми карандашами.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7411],
+            "related_articles": [],
+            "related_video_articles": [6826],
+            "mandatory": 0
+        },
+        {
+            "id": 2656,
+            "type": "Milestone",
+            "title": "Одной рукой тянется к игрушке, исследует ее, трясет и бьет",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она тянется к предмету и хватает его внешней стороной ладони, не используя большой палец. Он/она манипулирует объектом, встряхивая, ударяя или кладя его в рот.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7196],
+            "related_articles": [],
+            "related_video_articles": [6391],
+            "mandatory": 0
+        },
+        {
+            "id": 2666,
+            "type": "Milestone",
+            "title": "Берет руки в рот",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОчень часто он/она засовывает руки в рот. Он/она также исследует другие предметы, кладя их в рот.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7201],
+            "related_articles": [],
+            "related_video_articles": [6366],
+            "mandatory": 0
+        },
+        {
+            "id": 2671,
+            "type": "Milestone",
+            "title": "Держит голову прямо, без поддержки",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВ полусидячем положении, он/она может держать голову в вертикальном положении.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7666],
+            "related_articles": [],
+            "related_video_articles": [6841],
+            "mandatory": 0
+        },
+        {
+            "id": 2676,
+            "type": "Milestone",
+            "title": "В положении лежа устойчиво опирается на предплечья и отталкивается вверх локти",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЛежа на животе, она/он высоко поднимает плечи и голову, опираясь на локти.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7716],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2681,
+            "type": "Milestone",
+            "title": "Развивает сложную игру и вовлекает в нее других",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЛюбит ролевую, творческую игру, со множеством вымышленных элементов. Иногда не ясно, что реально, а что выдумано.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7401],
+            "related_articles": [],
+            "related_video_articles": [6831],
+            "mandatory": 0
+        },
+        {
+            "id": 2686,
+            "type": "Milestone",
+            "title": "Поет отрывки из простых песен",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПоет отрывки из простых песен.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7396],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2691,
+            "type": "Milestone",
+            "title": "Перекатывается с живота на спину и со спины на живот с обеих сторон",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОна/он может переворачиваться и поворачиваться в любом направлении (как на левую, так и на правую стороны) как со спины на животик, так и с живота на спину.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7206],
+            "related_articles": [],
+            "related_video_articles": [6426],
             "mandatory": 0
         },
         {
             "id": 2696,
             "type": "Milestone",
             "title": "Может сидеть с некоторой поддержкой",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Опираясь на что-то или держась за что-то, ребенок может сидеть и в течение короткого времени может самостоятельно сохранять сидячее положение.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОпираясь на что-то или держась за что-то, ребенок может сидеть и в течение короткого времени может самостоятельно сохранять сидячее положение.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7671],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -15653,169 +17307,505 @@ export const MileStonesData: any = {
             "id": 2701,
             "type": "Milestone",
             "title": "Может сказать предложение из 2–3 слов",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Может составлять и произносить предложения из 2-3 слов достаточно хорошо, чтобы члены семьи могли его/ее понять.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет составлять и произносить предложения из 2-3 слов достаточно хорошо, чтобы члены семьи могли его/ее понять.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7391],
             "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
+            "related_video_articles": [6816],
+            "mandatory": 0
+        },
+        {
+            "id": 2706,
+            "type": "Milestone",
+            "title": "В вертикальном положении она/он может некоторое время выдерживать свой вес, опираясь на ноги.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда вы держите ребенка вертикально над полом, он/она опирается на пол или выглядит так, как будто подпрыгивает.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7836],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2711,
+            "type": "Milestone",
+            "title": "Может назвать свое имя, возраст и пол",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет назвать свое имя, возраст и пол\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7386],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2716,
+            "type": "Milestone",
+            "title": "Исследует вещи, кладя их себе в рот.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она кладет в рот все, до чего дотягивается, очень часто также подносит ноги ко рту.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7711],
+            "related_articles": [],
+            "related_video_articles": [6436],
+            "mandatory": 0
+        },
+        {
+            "id": 2721,
+            "type": "Milestone",
+            "title": "Одной рукой тянется к вещам, которые находятся вне досягаемости, и когда хватает их, может перекладывать их из одной руки в другую",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она все еще тянется к предметам одной рукой, но манипулирует, перекладывая их из одной руки в другую, используя тыльную часть ладони, большой и указательный пальцы, в то время как другие пальцы остаются неподвижными.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7676],
+            "related_articles": [],
+            "related_video_articles": [6431],
+            "mandatory": 0
+        },
+        {
+            "id": 2726,
+            "type": "Milestone",
+            "title": "Понимает сложные слова",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПонимает такие термины, как «похожие» и «разные», «простые» и «сложные», «хорошие» и «плохие», «маленькие» и «большие».\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7816],
+            "related_articles": [],
+            "related_video_articles": [6801],
             "mandatory": 0
         },
         {
             "id": 2731,
             "type": "Milestone",
             "title": "Отзывается на звучащий голос, издавая звуки - слиянием гласных: а, э, у ...",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Когда кто-то обращается к нему/ней, говорит, поет, читает ему/ей... ребенок реагирует.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EКогда кто-то обращается к нему/ней, говорит, поет, читает ему/ей... ребенок реагирует.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7211],
             "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
+            "related_video_articles": [6421],
+            "mandatory": 0
+        },
+        {
+            "id": 2736,
+            "type": "Milestone",
+            "title": "Громко  выражает недовольство или радость",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она громко плачет или протестует, чтобы выразить неприятные чувства, и громко смеется, чтобы выразить удовольствие.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7746],
+            "related_articles": [],
+            "related_video_articles": [6411],
+            "mandatory": 0
+        },
+        {
+            "id": 2741,
+            "type": "Milestone",
+            "title": "Понимает значение таких слов, как «мой, твой, ее», использует предлоги и местоимения.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПроизносит такие слова, как «я», «ты», «мы» и знает формы множественного числа некоторых слов - «собаки», «кошки».\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7811],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
             "id": 2746,
             "type": "Milestone",
             "title": "Малыш в восторге, когда понимает, что пора играть",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Он/она радуется, выглядит счастливым и наслаждается игрой и общением, особенно с родителями и знакомыми людьми.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она радуется, выглядит счастливым и наслаждается игрой и общением, особенно с родителями и знакомыми людьми.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7841],
             "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
+            "related_video_articles": [6441],
+            "mandatory": 0
+        },
+        {
+            "id": 2756,
+            "type": "Milestone",
+            "title": "Проявляет широкий спектр эмоций, распознает чужие  эмоции",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПроявляет гнев, страх, вину, стыд и начинает проявлять сочувствие, потому что осознает, что чувствуют другие (например, хочет утешить своего плачущего друга объятиями).\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7376],
+            "related_articles": [],
+            "related_video_articles": [6821],
+            "mandatory": 0
+        },
+        {
+            "id": 2761,
+            "type": "Milestone",
+            "title": "Узнает членов семьи и отличает их от посторонних. Малыш может бояться незнакомых.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРаспознает членов семьи и отличает их от незнакомых людей. Ребенок может бояться незнакомых людей. Он/она радуется знакомым людям ,, смеется им, по-разному реагирует на знакомых и незнакомых людей.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7216],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
             "id": 2766,
             "type": "Milestone",
             "title": "Любит играть в компании детей.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Игра теперь не просто параллельное присутствуе - бок о бок, а она имеет более сложные элементы, воображение и игривость.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИгра теперь не просто параллельное присутствуе - бок о бок, а она имеет более сложные элементы, воображение и игривость.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7371],
             "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
+            "related_video_articles": [6931],
+            "mandatory": 0
+        },
+        {
+            "id": 2771,
+            "type": "Milestone",
+            "title": "Расстраивается, когда родитель выходит из комнаты, и успокаивается, когда родитель возвращается.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРасстраивается, когда родитель выходит из комнаты, и успокаивается, когда родитель возвращается. Он/она проявляет признаки беспокойства или начинает плакать, когда родитель выходит из комнаты Он/она счастлив(а), когда возвращаются родители или близкие люди.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7681],
+            "related_articles": [],
+            "related_video_articles": [6506],
+            "mandatory": 0
+        },
+        {
+            "id": 2776,
+            "type": "Milestone",
+            "title": "Реагирует, когда слышит собственное имя.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРеагирует, когда слышит собственное имя. Она/он начинает узнавать свое имя, когда кто-то зовет ее/его.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7221],
+            "related_articles": [],
+            "related_video_articles": [6446],
+            "mandatory": 0
+        },
+        {
+            "id": 2781,
+            "type": "Milestone",
+            "title": "Легче разлучается с родителями",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EРеакции на разлуку менее болезненны, он/она быстрее успокаивается и учится полагаться на других взрослых, которые находятся рядом, когда родители отлучаются.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7366],
+            "related_articles": [],
+            "related_video_articles": [6796],
             "mandatory": 0
         },
         {
             "id": 2786,
             "type": "Milestone",
             "title": "Начинает понимать значение слова «нет».",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Начинает понимать значение слова «нет». Когда он/она слышит слово, то прекращает деятельность и признает неодобрение.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНачинает понимать значение слова «нет». Когда он/она слышит слово, то прекращает деятельность и признает неодобрение.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7226],
             "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
+            "related_video_articles": [6476],
+            "mandatory": 0
+        },
+        {
+            "id": 2791,
+            "type": "Milestone",
+            "title": "Лепечет, складывает слоги и издает много разных звуков",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-14T10:07:16+02:00\" class=\"datetime\"\u003EThu, 10/14/2021 - 10:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЛепечет, произносит слоги и издает множество различных звуков. Он/она использует несколько комбинаций звуков и пар различных согласных и гласных, пытается повторить или имитировать звуки, которые произносят взрослые.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7231],
+            "related_articles": [],
+            "related_video_articles": [6451],
+            "mandatory": 0
+        },
+        {
+            "id": 2796,
+            "type": "Milestone",
+            "title": "Может подниматься и спускаться по лестнице",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет подниматься и спускаться по лестнице с опорой. Может подниматься по лестнице или спускаться по ней с небольшой помощью.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7361],
+            "related_articles": [],
+            "related_video_articles": [6626],
+            "mandatory": 0
+        },
+        {
+            "id": 2801,
+            "type": "Milestone",
+            "title": "Начинает общаться движениями",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНачинает общаться движениями. Он/она общается невербально, указывая рукой на желаемые объекты или качая головой в знак «нет».\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7686],
+            "related_articles": [],
+            "related_video_articles": [6481],
+            "mandatory": 0
+        },
+        {
+            "id": 2806,
+            "type": "Milestone",
+            "title": "Следит за падающим предметом и ищет спрятанный предмет",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСледит за падающим предметом и ищет спрятанный предмет. Если предмет спрятан под чашкой или одеялом, ребенок пытается обнаружить его. Если предмет падает или мама бросает его, ребенок ищет брошенный предмет глазами.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7691],
+            "related_articles": [],
+            "related_video_articles": [6496],
+            "mandatory": 0
+        },
+        {
+            "id": 2811,
+            "type": "Milestone",
+            "title": "Может стоять на носочках, бегать, прыгать, пинать мяч",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет стоять на носочках, бегать, прыгать, пинать мяч и перебрасывать его через голову.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7321],
+            "related_articles": [],
+            "related_video_articles": [6646],
             "mandatory": 0
         },
         {
             "id": 2816,
             "type": "Milestone",
             "title": "Использует одну руку больше, чем другую",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Начинает больше пользоваться одной рукой - левой или правой.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНачинает больше пользоваться одной рукой - левой или правой.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7356],
             "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
+            "related_video_articles": [6666],
+            "mandatory": 0
+        },
+        {
+            "id": 2821,
+            "type": "Milestone",
+            "title": "Самостоятельно рисует каракули на бумаге",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она способен(а) держать карандаш и делать каракули, рисовать или копировать линии и круги.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7806],
+            "related_articles": [],
+            "related_video_articles": [6661],
+            "mandatory": 0
+        },
+        {
+            "id": 2826,
+            "type": "Milestone",
+            "title": "По-прежнему кладет предметы в рот",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПо-прежнему кладет предметы в рот. Малыш исследует предметы, кладя их в рот.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7236],
+            "related_articles": [],
+            "related_video_articles": [6456],
+            "mandatory": 0
+        },
+        {
+            "id": 2831,
+            "type": "Milestone",
+            "title": "Начинает сортировать и сопоставлять вещи",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она может группировать предметы, например все животные в одну группу, носки в другую.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7751],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2836,
+            "type": "Milestone",
+            "title": "Плавно перекладывает предметы из руки в руку, встряхивает их.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПлавно перекладывает предметы из руки в руку, встряхивает их. Она/он манипулирует объектами, перекладывая их из левой руки в правую и наоборот.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7696],
+            "related_articles": [],
+            "related_video_articles": [6501],
+            "mandatory": 0
+        },
+        {
+            "id": 2841,
+            "type": "Milestone",
+            "title": "Собирает мелкие предметы",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСобирает мелкие предметы. Он/она подбирает маленькие предметы большим и указательным пальцами. Он/она все еще использует всю поверхность своих пальцев, а не только кончики, чтобы удерживать предмет.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7846],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2846,
+            "type": "Milestone",
+            "title": "Целенаправленно использует игрушки в играх",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет играть с игрушками, знает их предназначение и как использовать в игре.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7801],
+            "related_articles": [],
+            "related_video_articles": [6656],
+            "mandatory": 0
+        },
+        {
+            "id": 2851,
+            "type": "Milestone",
+            "title": "Может сидеть самостоятельно и без поддержки",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет сидеть самостоятельно и без поддержки. Самостоятельно принимает сидячее положение. Сидит без дополнительной поддержки и помощи.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7701],
+            "related_articles": [],
+            "related_video_articles": [6466],
             "mandatory": 0
         },
         {
             "id": 2856,
             "type": "Milestone",
             "title": "Приподнимается в положении ползания. Некоторые дети уже ползают.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Приподнимает себя до положения ползания. Некоторые дети уже ползают. Он/она может самостоятельно ползать. Он/она движется ползком вперед или назад.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПриподнимает себя до положения ползания. Некоторые дети уже ползают. Он/она может самостоятельно ползать. Он/она движется ползком вперед или назад.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7706],
             "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
+            "related_video_articles": [6486],
+            "mandatory": 0
+        },
+        {
+            "id": 2861,
+            "type": "Milestone",
+            "title": "Играйте в простые \"ролевые\" игры",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНапример, играет в простые «ролевые игры» - кормит куклу, ест торт.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7796],
+            "related_articles": [3651],
+            "related_video_articles": [6631],
             "mandatory": 0
         },
         {
             "id": 2866,
             "type": "Milestone",
             "title": "Отталкивается, пытается встать.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Отталкивается, пытается встать. Она/он пытается подняться, придерживаясь за мебель, но ей/ему нужна помощь и поддержка.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7241
-            ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОтталкивается, пытается встать. Она/он пытается подняться, придерживаясь за мебель, но ей/ему нужна помощь и поддержка.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7241],
+            "related_articles": [],
+            "related_video_articles": [6471],
+            "mandatory": 0
+        },
+        {
+            "id": 2871,
+            "type": "Milestone",
+            "title": "Проявляет застенчивость и нервозность в общении с незнакомыми людьми",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EВ присутствии незнакомых людей он/она ведет себя иначе, чем с знакомыми людьми. Он/она начинает стесняться незнакомых людей (избегает зрительного контакта, цепляется за знакомых).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7246],
+            "related_articles": [],
+            "related_video_articles": [6526],
             "mandatory": 0
         },
         {
             "id": 2876,
             "type": "Milestone",
             "title": "Часть детского общения также понятна людям, которые не находятся рядом с ним каждый день",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Он\\она начинает выговаривать слова понятнее и использует все больше и больше слов со смыслом, поэтому общение становится проще.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн\\она начинает выговаривать слова понятнее и использует все больше и больше слов со смыслом, поэтому общение становится проще.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7346],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2881,
+            "type": "Milestone",
+            "title": "Знает  животных и их голоса",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСвязывает звук с животными.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7791],
+            "related_articles": [],
+            "related_video_articles": [6616],
+            "mandatory": 0
+        },
+        {
+            "id": 2886,
+            "type": "Milestone",
+            "title": "Плачет, когда разлучается с родителями",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПроявляет признаки выраженной тревоги сразу после разлуки с родителями.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7251],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2891,
+            "type": "Milestone",
+            "title": "В общении с людьми сочетает слова и жесты",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПроизносит предложение, состоящее из 2–4 слов, и говорит о себе от третьего лица: «Миа хочет», «Эмма сидит».\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7341],
+            "related_articles": [],
+            "related_video_articles": [6621],
+            "mandatory": 0
+        },
+        {
+            "id": 2896,
+            "type": "Milestone",
+            "title": "Имеет любимую игрушку",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПредпочитает определенную игрушку, ищет ее, носит с собой.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7726],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -15824,55 +17814,154 @@ export const MileStonesData: any = {
             "id": 2901,
             "type": "Milestone",
             "title": "Непроизвольно стремится разделить интересы и радость со взрослыми",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Наслаждается взаимными играми: \"Я даю это тебе - ты даешь это мне\", \"Я делаю - ты делаешь\" и тому подобное.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EНаслаждается взаимными играми: \"Я даю это тебе - ты даешь это мне\", \"Я делаю - ты делаешь\" и тому подобное.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7731],
             "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
+            "related_video_articles": [6551],
+            "mandatory": 0
+        },
+        {
+            "id": 2906,
+            "type": "Milestone",
+            "title": "Понимает свое имя, имена знакомых людей, названия предметов из своего окружения, повседневные действия и слово «нет».",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСоответственно реагирует на зов своего имени или слово \"нет\".\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7256],
+            "related_articles": [],
+            "related_video_articles": [6546],
+            "mandatory": 0
+        },
+        {
+            "id": 2911,
+            "type": "Milestone",
+            "title": "Повторяет слоги, и некоторые дети уже могут говорить  слова со значением",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПроизводит множество разных звуков (мааа, бааа, дааад ...) и использует некоторые из них как первые узнаваемые слова, зная их значение (мама, папа ...).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7736],
+            "related_articles": [],
+            "related_video_articles": [6531],
+            "mandatory": 0
+        },
+        {
+            "id": 2916,
+            "type": "Milestone",
+            "title": "Понимает краткую инструкцию или указание",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПонимает, когда вы говорите ей/ему «принеси мяч» или «отдай маме».\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7741],
+            "related_articles": [],
+            "related_video_articles": [6541],
+            "mandatory": 0
+        },
+        {
+            "id": 2921,
+            "type": "Milestone",
+            "title": "Имитирует и использует жесты",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она может сказать «па-па» для приветствия, качает головой в знак \"нет\" , указывает на желаемый предмет.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7266],
+            "related_articles": [],
+            "related_video_articles": [6521],
+            "mandatory": 0
+        },
+        {
+            "id": 2931,
+            "type": "Milestone",
+            "title": "С любопытством разглядывает игрушки: трясет их, стучит, бросает, обращает внимание на детали.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИсследует предметы, стуча или ударяя друг о друга (ударяя чашкой о стол или игрушкой о другую игрушку).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7271],
+            "related_articles": [],
+            "related_video_articles": [6561],
             "mandatory": 0
         },
         {
             "id": 2936,
             "type": "Milestone",
             "title": "Собирает мелкие предметы пальцами, кушает пальцами",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Обладает лучшим \"пинцетным захватом \" - может манипулировать очень маленькими объектами, беря их большим и указательным пальцами.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОбладает лучшим \"пинцетным захватом \" - может манипулировать очень маленькими объектами, беря их большим и указательным пальцами.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7766],
+            "related_articles": [],
+            "related_video_articles": [6536],
+            "mandatory": 0
+        },
+        {
+            "id": 2941,
+            "type": "Milestone",
+            "title": "Складывает вещи в коробку и достает из нее.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОбладает способностью более точно манипулировать объектами. Он/она даже может положить небольшие предметы в коробку или бутылку и вынуть их.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7771],
+            "related_articles": [],
+            "related_video_articles": [6846],
+            "mandatory": 0
+        },
+        {
+            "id": 2946,
+            "type": "Milestone",
+            "title": "Играет бок о бок с другими детьми",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИграет автономно рядом с другими детьми, не нуждается в присоединении к ним, но не портит их игру, может начать постепенно вовлекать их в игру, например, предлагая им игрушку.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7336],
+            "related_articles": [],
+            "related_video_articles": [6636],
+            "mandatory": 0
+        },
+        {
+            "id": 2951,
+            "type": "Milestone",
+            "title": "Встает, держась за мебель, и начинает ходить  рядом с мебелью.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОна/он может стоять с поддержкой или даже какое-то время стоять самостоятельно без поддержки. Она/он пытается двигаться, держась за мебель или за руку взрослого.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7776],
+            "related_articles": [3346],
+            "related_video_articles": [6556],
+            "mandatory": 0
+        },
+        {
+            "id": 2956,
+            "type": "Milestone",
+            "title": "Имитирует поведение взрослых и детей постарше",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПодражает взрослым и повторяет их действия, например: толкает детскую коляску, читает газету…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7331],
+            "related_articles": [],
+            "related_video_articles": [6641],
             "mandatory": 0
         },
         {
             "id": 2961,
             "type": "Milestone",
             "title": "Помогает при одевании",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Содействует вам, когда вы его одеваете, просовывает руку через рукава и ноги через штанины.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСодействует вам, когда вы его одеваете, просовывает руку через рукава и ноги через штанины.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7276],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -15881,609 +17970,1430 @@ export const MileStonesData: any = {
             "id": 2966,
             "type": "Milestone",
             "title": "Становится все более независимым",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Иногда сопротивляется указаниям, злится, хочет контролировать других, ссорится, приказывает, оберегает свои вещи.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [
-                4781
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИногда сопротивляется указаниям, злится, хочет контролировать других, ссорится, приказывает, оберегает свои вещи.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7786],
+            "related_articles": [],
             "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2971,
+            "type": "Milestone",
+            "title": "Может выражать чувства",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EМожет выражать и показывать самые разные чувства: страх, гнев, сострадание, вину, радость.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7781],
+            "related_articles": [3656],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2976,
+            "type": "Milestone",
+            "title": "Стоит, передвигается и ходит самостоятельно.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн может самостоятельно двигаться в разных направлениях, с разной скоростью или сочетать разные движения (останавливаться и махать).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7281],
+            "related_articles": [4841],
+            "related_video_articles": [6591],
             "mandatory": 0
         },
         {
             "id": 2981,
             "type": "Milestone",
             "title": "Понимает и выполняет простые указания",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Следует просто изложенным инструкциям без демонстрции, может выполнять то, что от него/неё ожидают.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7326
-            ],
-            "related_articles": [
-                4776
-            ],
-            "related_video_articles": [
-                6571
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EСледует просто изложенным инструкциям без демонстрции, может выполнять то, что от него/неё ожидают.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7326],
+            "related_articles": [],
+            "related_video_articles": [6571],
             "mandatory": 0
         },
         {
             "id": 2986,
             "type": "Milestone",
             "title": "Произносит слова со смыслом.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Обращаясь к родителям, она/он произносит хотя бы одно или несколько отдельных слов.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7286
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОбращаясь к родителям, она/он произносит хотя бы одно или несколько отдельных слов.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7286],
             "related_articles": [],
-            "related_video_articles": [
-                6851
-            ],
+            "related_video_articles": [6851],
+            "mandatory": 0
+        },
+        {
+            "id": 2991,
+            "type": "Milestone",
+            "title": "По-прежнему проявляет страх перед незнакомцами и ситуациями",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EПри контакте с незнакомцем реагирует страхом, ищет знакомого человека или цепляется за родителя.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7291],
+            "related_articles": [3646, 346],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2996,
+            "type": "Milestone",
+            "title": "Любит играть в ролевые игры",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EИграет в \"ролевые игры\". Появляется \"подражательная игра\", где она/он делает вид, что пьет чай, кормит куклу и т.д.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7856],
+            "related_articles": [2141],
+            "related_video_articles": [6576],
             "mandatory": 0
         },
         {
             "id": 3001,
             "type": "Milestone",
             "title": "Самостоятельно пишет карандашом или мелками на бумаге",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 10/13/2021 - 11:27",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Любит чиркать каракули, карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7296
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6606
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-13T11:27:24+02:00\" class=\"datetime\"\u003EWed, 10/13/2021 - 11:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EЛюбит чиркать каракули, карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7296],
+            "related_articles": [],
+            "related_video_articles": [6606],
+            "mandatory": 0
+        },
+        {
+            "id": 3006,
+            "type": "Milestone",
+            "title": "Умеет пользоваться предметами повседневного обихода",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EДемонстрирует навыки пользования такими предметами, как ложка, зубная щетка, телефон.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7316],
+            "related_articles": [3991],
+            "related_video_articles": [6601],
+            "mandatory": 0
+        },
+        {
+            "id": 3016,
+            "type": "Milestone",
+            "title": "В общении использует жесты для лучшего взаимопонимания.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она пытается имитировать жесты взрослых и их слова. Адекватно использует жесты в ответ на запросы («до свидания» или «нет»).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7311],
+            "related_articles": [],
+            "related_video_articles": [6596],
+            "mandatory": 0
+        },
+        {
+            "id": 3021,
+            "type": "Milestone",
+            "title": "Надеется на совместную деятельность",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:40:01+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:05:24+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EОн/она имитирует мимику, жесты и некоторые действия близких людей, указывает указательным пальцем на то, что его/ее интересует, или предлагает что-то другим людям, чтобы заинтересовать их и вовлечь в игру.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7306],
+            "related_articles": [3646],
+            "related_video_articles": [6581],
             "mandatory": 0
         }
     ],
     "uz-kaa": [
         {
-            "id": 7106,
+            "id": 2586,
             "type": "Milestone",
-            "title": "Пересказывает историю полностью ",
-            "created_at": "Tue, 09/28/2021 - 22:00",
-            "updated_at": "Thu, 10/14/2021 - 10:06",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Ребенку удается совершенно самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, или телешоу в котором он участвовал.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
+            "title": "Iskerlik túri ózgerganida zerikayotganini kórsetedi yamasa jıynaw'laydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:24:01+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:11:22+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala uzaq waqıt dawamında bir jaǵdayda qalsa, jilap shaǵım etedi, qolıngizdan túsirgenińizde narazılıq ańlatadı\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7181],
             "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7086,
-            "type": "Milestone",
-            "title": "Ловко участвует в различных мероприятиях, требующих дополнительных физических навыков",
-            "created_at": "Tue, 09/28/2021 - 21:59",
-            "updated_at": "Thu, 10/14/2021 - 10:04",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Способен(на) стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7131,
-            "type": "Milestone",
-            "title": "Демонстрирует понимание разницы между реальным и подражанием или вымышленным",
-            "created_at": "Tue, 09/28/2021 - 21:58",
-            "updated_at": "Thu, 10/14/2021 - 10:04",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Он/она только придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и присваивает им свойства, которые не являются реалистичными. Он/она получает удовольствие, делая это, осознавая, что в мире воображения возможно все.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7081,
-            "type": "Milestone",
-            "title": "Использует навыки самостоятельного участия в повседневных делах и общественной деятельности",
-            "created_at": "Tue, 09/28/2021 - 21:57",
-            "updated_at": "Thu, 10/14/2021 - 09:51",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Может самостоятельно одеваться и раздеваться, пользуется ложкой и вилкой, самостоятельно пользуется туалетом и моет руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7041,
-            "type": "Milestone",
-            "title": "Строит предложения из пяти или более слов; в разговоре использует слова, чтобы сказать о будущем.",
-            "created_at": "Tue, 09/28/2021 - 21:57",
-            "updated_at": "Tue, 09/28/2021 - 21:57",
-            "body": "<p>Использует слова вместе, чтобы выразить свои идеи; может сказать, что «будет» или «может» случиться в будущем.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7056,
-            "type": "Milestone",
-            "title": "Может считать до десяти и без ошибок посчитать десять предметов",
-            "created_at": "Tue, 09/28/2021 - 21:56",
-            "updated_at": "Tue, 09/28/2021 - 21:56",
-            "body": "<p>Может также называть порядковые числительные «первый, второй» до 10, считать дни недели и месяцы.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 6996,
-            "type": "Milestone",
-            "title": "Знает основные различия между реальными, придуманными и воображаемыми вещами.",
-            "created_at": "Tue, 09/28/2021 - 21:55",
-            "updated_at": "Tue, 09/28/2021 - 21:55",
-            "body": "<p>Придумывает историю о несуществующем персонаже или знает, что животные не могут разговаривать в реальной жизни.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 6981,
-            "type": "Milestone",
-            "title": "Пользуется предложениями от 4 до 5 слов",
-            "created_at": "Tue, 09/28/2021 - 21:54",
-            "updated_at": "Tue, 09/28/2021 - 21:54",
-            "body": "<p>Составляет предложения, собирая слова вместе так, чтобы они имели смысл, и передавали ее / его идеи.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7431
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [6916],
             "mandatory": 0
         },
         {
             "id": 6976,
             "type": "Milestone",
-            "title": "Любит угождать другим и сотрудничать",
-            "created_at": "Tue, 09/28/2021 - 21:53",
-            "updated_at": "Tue, 09/28/2021 - 21:54",
-            "body": "<p>Признает чувства других; часто любит делиться с другими; может соблюдать очередь. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
+            "title": "Basqalardı kewilli islew hám sheriklik islew jaqtıradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:24:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:17:27+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBasqalardıń sezim-sezimlerin tán aladı ; kóbinese basqalar menen usınıwdı jaqsı kóredi ; gezek menen turıwǵa qodir.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7426],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [58521],
             "mandatory": 0
         },
         {
-            "id": 2531,
+            "id": 6996,
             "type": "Milestone",
-            "title": "Возбуждается, когда вы разговариваете с ней /ним",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Когда он/она слышит ваш голос, радуется, но вы также замечаете , что он/она замедляет свои движения,кажется прслушивается к вам , присутствовать…</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
+            "title": "Haqıyqıy, go'yo yamasa qıyalıy zatlar arasındaǵı tiykarǵı ayırmashılıq biledi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:24:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:16:18+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÁmeldegi bolmaǵan yamasa haywanlar turmısta sóylesiw almawın biletuǵın belgi haqqında gúrriń etedi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7441],
             "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
+            "related_video_articles": [58551],
+            "mandatory": 0
+        },
+        {
+            "id": 7011,
+            "type": "Milestone",
+            "title": "Alfavitdegi ayırım háriplerdi jazıwı, yamasa aldınan kórsetilgen súwretlerdi uqsatıwǵa háreket etiwi múmkin",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:24:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:12:36+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHáripler yamasa buyımlardıń súwretlerin kórip, olardı uqsatıwǵa urınadı, hátte olar uǵımsız kóriniske iye bolsa da\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7456],
+            "related_articles": [],
+            "related_video_articles": [58526],
+            "mandatory": 0
+        },
+        {
+            "id": 7021,
+            "type": "Milestone",
+            "title": "Qoidalar asosida oddiy o'yinlarni o'ynaydi ",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:24:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:13:15+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQaǵıydalar tiykarında ápiwayı oyınlardı oynaydı\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7466],
+            "related_articles": [],
+            "related_video_articles": [58541],
+            "mandatory": 0
+        },
+        {
+            "id": 6971,
+            "type": "Milestone",
+            "title": "Basqa balalar hám úlkenler menen oynawǵa qızıǵıwshılıq ańlatadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:59+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:22:16+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOyın oynaw ushın sherikler izleydi, oyında qatnasıw etegi aladı hám oyın dawamında basqa balalar hám úlkenlerden úyrenedi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7421],
+            "related_articles": [],
+            "related_video_articles": [58511],
+            "mandatory": 0
+        },
+        {
+            "id": 6986,
+            "type": "Milestone",
+            "title": "2 hám 3 sanlarınıń mánisin túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:59+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:23:46+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAIltimas etilse eki yamasa ush buyımdı tańlawı ( oyınshıqlar, qasıqlar hám basqalar) yamasa zat-buyımlar toparına qaray, eki yamasa ush bar ekenin aytiwi múmkin\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7436],
+            "related_articles": [],
+            "related_video_articles": [58536],
+            "mandatory": 0
+        },
+        {
+            "id": 7006,
+            "type": "Milestone",
+            "title": "Yodlab olingan qo'shiqlarni kuylaydi yoki hikoyalar aytib beradi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:59+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:20:10+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIlgeri esitilgen gúrriń yamasa qosıq haqqında oylaydı hám sózlerdi eske túsiriw urınadı\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7451],
+            "related_articles": [],
+            "related_video_articles": [58516],
+            "mandatory": 0
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "4-5 sózden ibarat gáplerden paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:30:55+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESózlerdi logikalıq hám pikirlerin etkazadigan usıllar menen birlestiredi.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7431],
+            "related_articles": [],
+            "related_video_articles": [58501],
+            "mandatory": 0
+        },
+        {
+            "id": 6991,
+            "type": "Milestone",
+            "title": "\" Uqsas\" yamasa \" uqsas\" hám \" hár túrlı\" atamaların túsinedi hám zatlardı hár qıylı (mısalı, reń yamasa ólshew ) boyınsha gruppalawı múmkin.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:26:24+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMısal ushın, bala terili hám párli haywanlar haqqında sóylewi múmkin, kitapta basqalardan parq etiwshi bir nárseni kórsetiwi múmkin ( mısalı, top uslap turǵan birden-bir bala)\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7831],
+            "related_articles": [],
+            "related_video_articles": [58546],
+            "mandatory": 0
+        },
+        {
+            "id": 7016,
+            "type": "Milestone",
+            "title": "Barmaqlar hám qoldı anıqlaw isletedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:25:09+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQayshı paydalanıwda taǵı da kóbirek sheberlikti kórsetip beredi, minarlar quradı ( mısalı, 8 hám odan úlkenlew bloklardan )\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7461],
+            "related_articles": [],
+            "related_video_articles": [58531],
+            "mandatory": 0
+        },
+        {
+            "id": 7026,
+            "type": "Milestone",
+            "title": "Jeńil hám sheberlik menen juredi, juwıradı, sekiredi, úlken-kishi toplardı ılaqtıradı hám tóbedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:57+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:10:18+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDeneni sheberlik menen basqaradı ( mısalı, eger bolsa-samokat yamasa velosiped, rolikli Konki hám basqalarda Ushıw aladı)\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7471],
+            "related_articles": [],
+            "related_video_articles": [58496],
+            "mandatory": 0
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "On danaǵa shekem sanap, on dana ob'ektti qátesiz atı menen aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:57+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:09:10+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:09\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESonıń menen birge, \" birinshi, ekinshi\", 10 ge shekem, hápteniń kúnleri hám ayların esaplawı múmkin.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7501],
+            "related_articles": [],
+            "related_video_articles": [58601],
+            "mandatory": 0
+        },
+        {
+            "id": 7071,
+            "type": "Milestone",
+            "title": "Kúndegilik jumıslatiladigan zatlardıń qanday paydalanıwdı túsintirip bere aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:57+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:08:00+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKúndelik turmısta telefon yamasa pul sıyaqlı zatlardıń qanday paydalanılıwın túsindiredi.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7516],
+            "related_articles": [],
+            "related_video_articles": [58576],
+            "mandatory": 0
+        },
+        {
+            "id": 7036,
+            "type": "Milestone",
+            "title": "Adam denesi hám ápiwayı formaların anıq súwretleydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:56+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:12:33+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVizual bólimler menen insan kórinisin sızadı; sheńber, úshmúyeshlik hám basqa geometriyalıq formalardı sızıwı múmki\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7481],
+            "related_articles": [],
+            "related_video_articles": [58571],
+            "mandatory": 0
+        },
+        {
+            "id": 7046,
+            "type": "Milestone",
+            "title": "Gúrrińdi yamasa onıń bir bólegin aytıp beriwi múmkin",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:56+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:14:20+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGúrrińdiń tiykarǵı ideyaları yamasa súygen bólegin ǵárezsiz ayta aladı, úlken adamlarday oy-pikir ete aladı\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7491],
+            "related_articles": [],
+            "related_video_articles": [58591],
+            "mandatory": 0
+        },
+        {
+            "id": 7076,
+            "type": "Milestone",
+            "title": "Dóretiwshilik iskerlik menen baylanıslı ilajlarda Qatnasıwdı ábzal kóredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:56+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:11:12+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQosıq, oyın, súwret sızıw, ılay yamasa basqa materiallardan zat soǵıw sıyaqlı dóretiwshilik xızmetlerde qatnasadı\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7521],
+            "related_articles": [],
+            "related_video_articles": [58586],
+            "mandatory": 0
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Bes hám odan artıq sózlerden ibarat gáplerde sóyleydi; keleshek haqqında sóylew ushın sózlerden paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:55+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:15:06+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓz ideyaların ańlatıw ushın sózlerdi birlestiredi ; keleshekte ne bolıwın \" iroda\" yamasa \" múmkin\" dep ayta aladı.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7486],
+            "related_articles": [],
+            "related_video_articles": [58581],
+            "mandatory": 0
+        },
+        {
+            "id": 7061,
+            "type": "Milestone",
+            "title": "Keminde tórtew reńni tuwrı atı menendi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:55+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:17:48+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EReńni tanıp alıw biynápshe gúli hám toq sarı reńler sıyaqlılardı óz ishine aladı (tekǵana qızıl, sarı, kók )\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7511],
+            "related_articles": [],
+            "related_video_articles": [58556],
+            "mandatory": 0
+        },
+        {
+            "id": 7066,
+            "type": "Milestone",
+            "title": "Aldın hám keyin sıyaqlı waqıt túsiniklerin túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:55+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:18:41+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EWaqıyadan aldın hám keyin ne bolǵanın túsindiredi ; jıl mawsimlerdi tártipke salıwı múmkin (mısalı, báhárden keyin jaz )\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7506],
+            "related_articles": [],
+            "related_video_articles": [58566],
+            "mandatory": 0
+        },
+        {
+            "id": 7031,
+            "type": "Milestone",
+            "title": "Hárekettiń kóp túrlerinde deneni jáne de sheberlik menen basqaradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:54+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:20:00+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir ayoqda turadı, sekiredi, oynaydı, tırmashadi. Múmkinshilik bolsa, velosiped yamasa samokatta Ushıw aladı, tek ǵana qol hám ayaqların paydalanıp toptı sheberlik menen basqaradı\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7476],
+            "related_articles": [],
+            "related_video_articles": [58561],
+            "mandatory": 0
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Kúndegilik jumıslar jáne social ilajlarda ǵárezsiz túrde qatnasıw kónlikpelerinen paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:54+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:20:53+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EǴárezsiz túrde sheshinip, kiyim aladı, qasıq hám vilkadan paydalanadı, hájetxanadan paydalanadı hám qolın juwadı. Ata-anadan ajralıp, ǵárezsiz social iskerlikte qatnasıwı múmkin.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7526],
+            "related_articles": [],
+            "related_video_articles": [58596],
+            "mandatory": 0
+        },
+        {
+            "id": 7121,
+            "type": "Milestone",
+            "title": "Oyın qaǵıydalarına ámel etedi hám geyde jańa qaǵıydalar ushın óziniń ideyaları da ámeldegi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:54+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:24:22+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl ornatılǵan qaǵıydalardı túsinedi ( mısalı, Oyın qaǵıydaları), bıraq geyde jańalıq qosıwdı qáleydi.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7561],
+            "related_articles": [],
+            "related_video_articles": [58621],
+            "mandatory": 0
+        },
+        {
+            "id": 7136,
+            "type": "Milestone",
+            "title": "Basqalardıń ideya hám mútájliklerin túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:54+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:25:17+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESol sebepli ol basqalardıń qálegen yamasa usınıs etken zatlarına kóbirek itibar beredi hám olar menen ushırasıwdı qáleydi-ol dosları menen hám jámáátlik jumıslarda kóbirek sheriklik etedi.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7576],
+            "related_articles": [],
+            "related_video_articles": [58606],
+            "mandatory": 0
+        },
+        {
+            "id": 7091,
+            "type": "Milestone",
+            "title": "Quramalı sırtqı kórinisler, háripler hám tolıq sızılmalar soǵıwǵa qodir",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:53+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:26:10+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESuwretke shın detallardı qosa aladı, quramalıraq súwretler sızıp shıǵıw aladı, múmkinshilik bolǵanda súwret sızıw hám boyaw materiallarınan sheberlik menen paydalanadı.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7536],
+            "related_articles": [],
+            "related_video_articles": [58626],
+            "mandatory": 0
+        },
+        {
+            "id": 7101,
+            "type": "Milestone",
+            "title": "Alifbo háriplerin tanıydı hám oqıwdıń ayırım kónlikpelerine iye",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:53+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:27:04+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAlifbo háripleriniń kópin tanıydı hám dúkan, kitap, o-jı, de-de sıyaqlı kúndelik hám sol sıyaqlı sózlerdi oqıy aladı.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7546],
+            "related_articles": [],
+            "related_video_articles": [58651],
+            "mandatory": 0
+        },
+        {
+            "id": 7126,
+            "type": "Milestone",
+            "title": "Juwapkershilikti óz moynına alıw belgilerin kórinetuǵın etedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:53+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:28:36+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMısalı, ol óz zatların ıqtıyat ete baslaydı\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7566],
+            "related_articles": [],
+            "related_video_articles": [58631],
+            "mandatory": 0
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Qosımsha fizikalıq kónlikpeler talap etetuǵın hár qıylı ilajlarda uqıp menen qatnasadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:52+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:30:25+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir ayoqda turıwı, toptı anıq tebiwi, toptı Nıshanǵa urıwı hám sol sıyaqlılardı etiwge qodir\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7531],
+            "related_articles": [],
+            "related_video_articles": [58611],
+            "mandatory": 0
+        },
+        {
+            "id": 7096,
+            "type": "Milestone",
+            "title": "Quramalı gápler menen sóyleydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:52+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:31:10+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGápler barǵan sayın quramalılasıp barıp atır. Mısalı, bala házirgi, ótken zaman hám keleshek dáwirinden tuwrı paydalanadı.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7541],
+            "related_articles": [],
+            "related_video_articles": [58636],
+            "mandatory": 0
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Shın, eliklew hám oylap tabılǵanlar arasındaǵı ayırmanı túsiniwin kórsetip beredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:52+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:32:09+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl tek kóz aldındaǵı waqıya, gúrriń, qaharmanlardı oylap tabadı, olardı kórkem tárepten oyda sawlelendiriw etedi, súwretleydi hám shın bolmaǵan ózgesheliklerdi beredi. Oyda sawlelendiriw dúnyada hámme zat múmkinligin túsinikli halda bul jumıstı etiwi onı raxatlantıradı\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7571],
+            "related_articles": [],
+            "related_video_articles": [58641],
+            "mandatory": 0
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Gúrrińdi tolıq aytıp beredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:51+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:32:59+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala ózi qatnasqan ilaj yamasa teledastur tuwrısında, málim bir waqıyanı syujetin Xronologiyalık tártipke salıp tolıq, ǵárezsiz hám anıq gúrriń etip beriwge tabıslı boladı\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7826],
+            "related_articles": [],
+            "related_video_articles": [58656],
+            "mandatory": 0
+        },
+        {
+            "id": 7116,
+            "type": "Milestone",
+            "title": "Túrli waqıtları ne júz bolıwın hám waqıt qanday ótiwin túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:23:51+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:33:53+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EWaqıt ótiwin, azanda, pesin hám keshte ne bolıwın túsinedi, ayırım ilajlardı joybarlawı múmkin.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7851],
+            "related_articles": [],
+            "related_video_articles": [59251],
+            "mandatory": 0
+        },
+        {
+            "id": 2671,
+            "type": "Milestone",
+            "title": "Basın tik halda uslap turadı, basın qollap-quwatlamaydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:20+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:34:50+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EYarım otırǵan jaǵdayda ol basın tegis hám tik tut aladı.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7666],
+            "related_articles": [],
+            "related_video_articles": [6841],
+            "mandatory": 0
+        },
+        {
+            "id": 2536,
+            "type": "Milestone",
+            "title": "Perzentinizge jılmayganingizda hám sóylewńizda sizge qaray turadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:51+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:36:23+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPerzentinizge sóylewńizda júz ańlatpańızdı baqlaydı\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7591],
+            "related_articles": [],
+            "related_video_articles": [6291],
             "mandatory": 0
         },
         {
             "id": 2541,
             "type": "Milestone",
-            "title": "Издает звуки",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Ребенок плачет, и в тоже время издает звуки</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
+            "title": "Ovoz chiqaradi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:51+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T09:20:35+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 09:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola yigʻlaydi, tovushlar ham chiqaradi\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7596],
             "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
+            "related_video_articles": [6296],
+            "mandatory": 0
+        },
+        {
+            "id": 2526,
+            "type": "Milestone",
+            "title": "Perzentińizdi qolıngizga alǵanıńımızda tınıshlanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:50+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:37:13+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPerzentińizdi qolıngizga alǵanıńımızda, ol bag'ringizga kónligip, pinjingizga kirip ketip baratırǵanın sezesiz\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7581],
+            "related_articles": [],
+            "related_video_articles": [6286],
+            "mandatory": 0
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Bala menen sóylesiwgeńizda hawlıǵıp ketedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:50+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:06:22+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPerzentińiz dawısıńızdı esitiwinde tolqınlanıwın kórinetuǵın etedi, sizdi tıńlaw ushın háreketlerin páseytiwtirganini da sezesiz\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7586],
+            "related_articles": [],
+            "related_video_articles": [6311],
+            "mandatory": 0
+        },
+        {
+            "id": 2546,
+            "type": "Milestone",
+            "title": "Oǵan álpayımlıq menen túbinganingizda mushın ashadı hám jabadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:49+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:38:17+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBalanıń alaqanǵa tiygendińizda yamasa oǵan qandayda-bir nárseni qoyǵanıńızda mushın bekkem jabadı. Eger oǵan barmaǵıńızdı berseńiz, onı bekkem uslap aladı\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7601],
+            "related_articles": [],
+            "related_video_articles": [6301],
+            "mandatory": 0
+        },
+        {
+            "id": 2551,
+            "type": "Milestone",
+            "title": "Qol hám ayaqların eki tárepinen erkin háreketke keltiredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:49+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:39:32+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala erkin jatqan jaǵdayında qol hám ayaqların tártipsiz háreketlendiriwyotganini kóriwińiz múmkin\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7756],
+            "related_articles": [],
+            "related_video_articles": [6306],
             "mandatory": 0
         },
         {
             "id": 2556,
             "type": "Milestone",
-            "title": "Лежа на животике, поднимает голову",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Когда вы положите его/ее на животик, то ребенок попытается поднять голову, чтобы освободить дыхательные пути.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
+            "title": "Qarında jatqanında basın kóteredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:49+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:40:19+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQarnı menen jatqizganingizda bala nápes jolin ashıw ushın basın kóteriwge háreket etedi\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7606],
             "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
+            "related_video_articles": [6281],
             "mandatory": 0
         },
         {
             "id": 2561,
             "type": "Milestone",
-            "title": "Издает разные звуки, когда он счастлив, расстроен или голоден",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Плач ребенка меняется в зависимости от определенных потребностей, поэтому по звукам, которые он издает, можно определить, счастлив ли он/она, расстроен или имеет какие-то другие потребности.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
+            "title": "Ol quwıwnganida, ókpelegeninde yamasa ash qalǵanda hár qıylı seslerdi shıǵaradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:48+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:41:13+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKishkeneniń jılawı onıń mútájliklerge qaray parıq etedi, sol sebepli balanıń dawıslarına kóre onıń júyrikonganini, ókpelegenin yamasa basqa qandayda-bir mútajligi bar ekenin biliw múmkin\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7611],
             "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
+            "related_video_articles": [6316],
             "mandatory": 0
         },
         {
             "id": 2566,
             "type": "Milestone",
-            "title": "Может утешить себя на некоторое время",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Малыш успокаивается, посасывая свой палец или свою маленькую ручку.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
+            "title": "Ózin ózi bir múddet awuntira aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:48+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:42:06+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala barmaǵın yamasa kishkine qo'lchasini sıpab tınıshlanadı\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7176],
             "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
+            "related_video_articles": [6361],
             "mandatory": 0
         },
         {
             "id": 2571,
             "type": "Milestone",
-            "title": "Поворачивает голову к источнику звука и показывает, что слушает",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Если он/она слышит человеческий голос или какой-то другой звук, он/она поварачивает к нему голву . Слушая голос, он/она смотрит на родителя или говорящего, замедляя свои движения.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
+            "title": "Basın dawıs dáregi tárep burıw, tıńlayotganini kórsetedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:48+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:42:52+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAdamnıń dawısı yamasa basqa qandayda-bir sesti esitiwde bala basın dawıs shıqqan tárepke qaratadı. Dawıstı tıńlaǵanda ata-anasına yamasa sóylewshi kisige tigilip, háreketlerin sekinlestiredi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7721],
             "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
+            "related_video_articles": [6326],
             "mandatory": 0
         },
         {
-            "id": 2586,
+            "id": 2576,
             "type": "Milestone",
-            "title": "Проявляет скуку или плачет, если вид деятельности меняется",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Ребенок плачем выражает недовольство , если его/её надолго оставляют в одном положении, или протестует, если вы опускаете ее/его после того, как держали на руках</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
+            "title": "Shoq'urlaydi, dawıslar shıǵaradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:43:38+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHár qıylı seslerdi aytılıw etedi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7616],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [6321],
+            "mandatory": 0
+        },
+        {
+            "id": 2581,
+            "type": "Milestone",
+            "title": "Kózleri menen deneler hám adamlardıń háreketin baqlaydı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:44:26+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOyınshıqlar, deneler yamasa adamlar onıń kóriw salasında háreket etkende bala háreketler baǵdarın baqlawǵa ıntıladı\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7761],
+            "related_articles": [],
+            "related_video_articles": [6336],
+            "mandatory": 0
+        },
+        {
+            "id": 2591,
+            "type": "Milestone",
+            "title": "Geyde mushtların ashıq halda tutadı, olardı háreketke keltiredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:45:10+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala ele da qolın kóbinese mushti tuwılǵan halda uslap turadı, bıraq waqtı-waqtı menen qolın bosanıwtirib, mushın ashıq halda uslaydı. Ol qolınıń háreketin baqlaydı, olardı awızına alıp keledi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7621],
+            "related_articles": [],
+            "related_video_articles": [6356],
+            "mandatory": 0
+        },
+        {
+            "id": 2596,
+            "type": "Milestone",
+            "title": "Basın bir tárepke, keyin bolsa basqa tárepke buradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:45:51+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBola boʻyin va boshi bilan turli xil harakatlarini amalga oshiradi\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7626],
+            "related_articles": [],
+            "related_video_articles": [6351],
+            "mandatory": 0
+        },
+        {
+            "id": 2601,
+            "type": "Milestone",
+            "title": "Qolı hám ayaqları menen mayda háreketlerdi atqaradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:46+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:46:43+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala erkin jaǵdayda jatqanında qol hám ayaqlarınıń kóplegen tosınarlı háreketlerin baqlawıńız múmkin\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7631],
+            "related_articles": [],
+            "related_video_articles": [6341],
+            "mandatory": 0
+        },
+        {
+            "id": 2606,
+            "type": "Milestone",
+            "title": "Bala qarında jatqanında bilekleri menen Gilemge tayanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:46+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:47:28+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBala qarında jatqanında bilekleri járdeminde polǵa súyene otirip basın kóteriwi múmkin\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7636],
+            "related_articles": [],
+            "related_video_articles": [6346],
+            "mandatory": 0
+        },
+        {
+            "id": 2611,
+            "type": "Milestone",
+            "title": "Adamlardı kórgende kúledi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:46+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:49:32+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÁtirapındaǵı adamlarǵa tez-tez, jeńil ǵana kulip qóyadı\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7641],
+            "related_articles": [],
+            "related_video_articles": [6401],
+            "mandatory": 0
+        },
+        {
+            "id": 2616,
+            "type": "Milestone",
+            "title": "Adamlardıń betlerin dıqqat menen baqlaydı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:45+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:50:16+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAdamlardıń betlerin dıqqat hám qıyqımlıq menen baqlaydı, kóz menen uzaq baylanıs etedi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7186],
+            "related_articles": [],
+            "related_video_articles": [6386],
+            "mandatory": 0
+        },
+        {
+            "id": 2621,
+            "type": "Milestone",
+            "title": "Óz sezimlerin, ǵázeplangani yamasa kewilli bolǵanın kórsetedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:44+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:51:01+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQanıqqani yamasa qanıqmaganini reakciyalarından bilip alsa boladı\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7646],
+            "related_articles": [],
+            "related_video_articles": [6381],
+            "mandatory": 0
+        },
+        {
+            "id": 2626,
+            "type": "Milestone",
+            "title": "Bir tárepinen basqa tárepke qozǵalatuǵın oyınshıqtı gúzetip baradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:44+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:52:01+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAdamlar onıń kóriw salasında háreket etkende bala háreketler baǵdarın baqlawǵa ıntıladı\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7191],
+            "related_articles": [],
+            "related_video_articles": [6396],
             "mandatory": 0
         },
         {
             "id": 2631,
             "type": "Milestone",
-            "title": "Начинает лепетать",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Вокализирует и издает звуки, напоминающие гласные - a, e, и, o, у</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
+            "title": "Shoq'urlashni baslaydı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:44+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:53:07+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:53\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDawısın ısıwlap a, e, i, o, ol dawıslı seslerine uqsas seslerdi aytılıw etedi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7651],
             "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
+            "related_video_articles": [6371],
             "mandatory": 0
         },
         {
             "id": 2636,
             "type": "Milestone",
-            "title": "Поднимается и спускается по лестнице",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Поднимается по лестнице с опорой, попеременно используя одну ногу, затем другую.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
+            "title": "Basqıshtan joqarıǵa shıǵadı hám tómenge túsedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:43+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:57:31+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:57\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAyaqlarına gá súyene otirip basqıshtan kóteriledi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7416],
             "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
+            "related_video_articles": [6811],
+            "mandatory": 0
+        },
+        {
+            "id": 2641,
+            "type": "Milestone",
+            "title": "Oyın waqtında háreket hám júz ańlatpalarına, sonıń menen birge, dawıslaga eliklewdi baslaydı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:43+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:58:32+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBalańızǵa shaqırıq islegenińizde háreketińiz yamasa júz ańlatpańızdı tákirarlaw ıntıladı. Sóylew hám sóylesiwge seslerdi aytıw menen juwap beredi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7656],
+            "related_articles": [3626],
+            "related_video_articles": [6376],
             "mandatory": 0
         },
         {
             "id": 2646,
             "type": "Milestone",
-            "title": "Устанавливает зрительно-моторную координацию",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Нарастает зрительно-моторная координация, например, ваш ребенок смотрит на предмет и пытается дотянуться до него.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
+            "title": "Qol hám kóz háreketin muwapıqlastıradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:43+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T11:59:21+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 11:59\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQol hám kóz háreketin Muwapıqlastırıw qábileti asadı, mısalı, balańız kórip turǵan obektine erisiwge háreket etedi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7661],
             "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
+            "related_video_articles": [6406],
             "mandatory": 0
         },
         {
-            "id": 2696,
+            "id": 2651,
             "type": "Milestone",
-            "title": "Может сидеть с некоторой поддержкой",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Опираясь на что-то или держась за что-то, ребенок может сидеть и в течение короткого времени может самостоятельно сохранять сидячее положение.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
+            "title": "Aǵashlı yamasa mumlı Qálemler járdeminde sheńberler sızadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:42+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:00:04+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAǵashlı yamasa mumlı Qálemler járdeminde sheńberler sızadı\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7411],
+            "related_articles": [],
+            "related_video_articles": [6826],
+            "mandatory": 0
+        },
+        {
+            "id": 2656,
+            "type": "Milestone",
+            "title": "Bir qolı menen oyınshıqqa shóp'ziladi, onı úyrenedi, jipekitadi hám irg'itadi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:42+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:00:53+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQandayda denege shóp'ziladi hám bas barmaǵın isletmay, alaqanlarınıń sırtqı tárepi menen uslaydı. Deneni silkip, urıp yamasa awızına salıp basqaradı\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7196],
+            "related_articles": [],
+            "related_video_articles": [6391],
+            "mandatory": 0
+        },
+        {
+            "id": 2666,
+            "type": "Milestone",
+            "title": "Qolın awızına saladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:21:41+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:01:40+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQolın tez-tez awızına saladı. Sonıń menen birge, basqa zatlardı da awızına salıp úyrenedi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7201],
+            "related_articles": [],
+            "related_video_articles": [6366],
+            "mandatory": 0
+        },
+        {
+            "id": 2851,
+            "type": "Milestone",
+            "title": "Ózi ǵárezsiz túrde, tireksiz o'tira aladı.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:19:33+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:19\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:02:33+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓzi ǵárezsiz túrde, tireksiz o'tira aladı hám otırǵan jaǵdayǵa kele aladı. Hesh nársege súyenmay hám járdemsiz ózi o'tira aladı.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7701],
+            "related_articles": [],
+            "related_video_articles": [6466],
+            "mandatory": 0
+        },
+        {
+            "id": 2756,
+            "type": "Milestone",
+            "title": "Sezimlerdiń keń sheńberin kórsetip beredi, birewlerdiń sezim-sezimlerin ajrata aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:06+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:03:24+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:03\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EǴázep, qáweter, ayıpkerlik, ántek sezimlerin kórinetuǵın etedi hám muńlaslıq kórsete baslaydı, sebebi ol basqalardıń sezim-sezimlerin tusinip jetedi (mısalı, ol jıynaw'layotgan dosına qushaqlap tınıshlandırıw bermekshi ).\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7376],
+            "related_articles": [],
+            "related_video_articles": [6821],
+            "mandatory": 0
+        },
+        {
+            "id": 2726,
+            "type": "Milestone",
+            "title": "Quramalı sózlerdi túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:05+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:04:21+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\" Uqsas\" hám \" hár túrlı\", \" ańsat\" hám \" qıyın\", \" jaqsı\" hám \" jaman\", \" kishi\" hám \" úlken\" sıyaqlı atamalardı túsinedi.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7816],
+            "related_articles": [],
+            "related_video_articles": [6801],
+            "mandatory": 0
+        },
+        {
+            "id": 5861,
+            "type": "Milestone",
+            "title": "Kitaplarǵa kóbirek qızıǵıwshılıq ańlatadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:05+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:05:36+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESúwretli kitaplarǵa qızıǵıwshılıq ańlatadı, qattı muqabalı kitaplardı ǵárezsiz tárzde japıraqlap aladı\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7406],
+            "related_articles": [],
+            "related_video_articles": [6806],
+            "mandatory": 0
+        },
+        {
+            "id": 2716,
+            "type": "Milestone",
+            "title": "Zatlardı awızına salǵan halda úyrenedi.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:04+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:06:21+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl qolı jetken hámme nárseni awızına saladı, hátte ayaqların da awızına alıp keledi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7711],
+            "related_articles": [],
+            "related_video_articles": [6436],
+            "mandatory": 0
+        },
+        {
+            "id": 2736,
+            "type": "Milestone",
+            "title": "Narazılıǵı yamasa quwanıshnı biyik dawıs menen bildiredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:04+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:07:19+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl jaǵımsız sezim-sezimlerdi ańlatıw ushın jıynaw'laydi yamasa biyik dawıs menen narazılıq ańlatadı, hám zawqın ańlatıw ushın biyik dawısta kúledi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7746],
+            "related_articles": [],
+            "related_video_articles": [6411],
+            "mandatory": 0
+        },
+        {
+            "id": 7001,
+            "type": "Milestone",
+            "title": "Óz turmısında júz bolatuǵın zatlar haqqında sóyleydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:04+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:08:01+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓtken hápte bolǵan tuwılǵan kún haqqında aytıp beriwi, yamasa shańaraǵı menen sayaxattı súwretlep beriwi múmkin\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7446],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
         },
         {
-            "id": 2701,
+            "id": 2691,
             "type": "Milestone",
-            "title": "Может сказать предложение из 2–3 слов",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Может составлять и произносить предложения из 2-3 слов достаточно хорошо, чтобы члены семьи могли его/ее понять.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
+            "title": "Shep hám oń tárepten qarınnan keyin basıp hám arttan qarınǵa ag'dariladi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:03+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:09:14+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:09\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl qálegen tárepke aylanıwı hám awdarılıwı múmkin ( shep hám oń tárepten ), qarınnan keyin basıp hám arttan qarınǵa.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7206],
             "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
+            "related_video_articles": [6426],
             "mandatory": 0
         },
         {
-            "id": 2731,
+            "id": 2721,
             "type": "Milestone",
-            "title": "Отзывается на звучащий голос, издавая звуки - слиянием гласных: а, э, у ...",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Когда кто-то обращается к нему/ней, говорит, поет, читает ему/ей... ребенок реагирует.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
+            "title": "Bir qolı menen uzaqta turǵan zatlarǵa shóp'ziladi, uslap alǵanda olardı bir qolınan ekinshige uzatıw aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:03+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:10:14+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl ele da bir qolı menen zatlarǵa ıntıladı, basqa barmaqların isletmegen halda úlken hám kórsetkish barmaqları, alaqanınıń sırtqı tárepinen paydalanıp bir qolınan ekinshige uzatıp basqaradı.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7676],
             "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
+            "related_video_articles": [6431],
+            "mandatory": 0
+        },
+        {
+            "id": 2791,
+            "type": "Milestone",
+            "title": "Shoq'urlaydi, sózlerdegi ba'g'imlarni jámlep, hár qıylı seslerdi aytılıw etedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:03+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:11:04+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShoq'urlaydi, sózlerdegi ba'g'imlarni jámlep, hár qıylı seslerdi aytılıw etedi. Ol seslerdiń bir neshe birikpelerinen hám hár qıylı dawıssız hám dawıslı dawıs juplarınan paydalanadı, úlkenler aytılıw etetuǵın seslerdi tákirarlaw yamasa eliklewge háreket etedi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7231],
+            "related_articles": [],
+            "related_video_articles": [6451],
+            "mandatory": 0
+        },
+        {
+            "id": 2771,
+            "type": "Milestone",
+            "title": "Ata-anası bólmeden shıqqanda qapa boladı hám olar qaytıp kelgende tınıshlanadı.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:02+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:12:08+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAta-anası bólmeden shıqqanda qapa boladı hám olar qaytıp kelgende tınıshlanadı. Áke yamasa anası odan uzaqlasqanında qáweterlik belgilerin kórinetuǵın etedi. Ata-anası yamasa jaqın adamları qaytıp kelgende kewilli boladı.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7681],
+            "related_articles": [],
+            "related_video_articles": [6506],
+            "mandatory": 0
+        },
+        {
+            "id": 2801,
+            "type": "Milestone",
+            "title": "Háreketler jardeminde baylanıs islew baslaydı.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:02+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:13:00+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHáreketler jardeminde baylanıs islew baslaydı. Qálegen dene, buyım qolı menen kórsetip, \" joq\" mánisinde basın shayqatǵan halda Tarnawerbal tárzde sóylesiwge kirisiw.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7686],
+            "related_articles": [],
+            "related_video_articles": [6481],
+            "mandatory": 0
+        },
+        {
+            "id": 2806,
+            "type": "Milestone",
+            "title": "Jıǵılıp atırǵan ob'ektti baqlaydı hám jasırın buyımdı izleydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:02+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:13:55+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EYiqilayotgan ob'ektni kuzatadi va yashirilgan buyumni qidiradi. Agar buyum chashka yoki adyol ostida yashiringan bo'lsa, bola uni topishga harakat qiladi. Agar buyum yiqilayotgan bo'lsa yoki ona tashlasa, chaqaloq tashlangan buyumni ko'zlari bilan qidiradi\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7691],
+            "related_articles": [],
+            "related_video_articles": [6496],
+            "mandatory": 0
+        },
+        {
+            "id": 2776,
+            "type": "Milestone",
+            "title": "Óz atın esitiwinde qatnas ańlatadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:01+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:46:59+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓz atın esitiwinde qatnas ańlatadı. Birew onıń atın aytıp shaqırǵanında, anıq oǵan shaqırıq islenip atırǵanlıǵın biledi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7221],
+            "related_articles": [],
+            "related_video_articles": [6446],
+            "mandatory": 0
+        },
+        {
+            "id": 2826,
+            "type": "Milestone",
+            "title": "Ele da awızına zatlar saladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:01+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T12:50:52+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 12:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EEle da awızına zatlar saladı. Bala buyımlardı awızına salıw arqalı úyrenedi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7236],
+            "related_articles": [],
+            "related_video_articles": [6456],
+            "mandatory": 0
+        },
+        {
+            "id": 2836,
+            "type": "Milestone",
+            "title": "Buyımlardı qoldan qolǵa Jumsaqlıq menen ótkeredi, olardı jipekitadi.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:01+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:08:16+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBuyımlardı qoldan qolǵa Jumsaqlıq menen ótkeredi, olardı jipekitadi. Ol buyımlardı shep qolınan oń qolına hám kerisinshe háreketlendiriw arqalı basqaradı.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7696],
+            "related_articles": [],
+            "related_video_articles": [6501],
+            "mandatory": 0
+        },
+        {
+            "id": 2831,
+            "type": "Milestone",
+            "title": "Ol buyımlardı gruppalawtira aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:09:22+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:09\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl haywanlardı bir toparǵa, baypaqlardı basqa toparǵa ajrata aladı.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7751],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2971,
+            "type": "Milestone",
+            "title": "Sezimlerdi ańlatpa etegi aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:12:11+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EHár qıylı sezimlerdi ańlatıwı hám kórsetiwi múmkin (qáweter, ǵázep, reyim-shápáát, ayıpkerlik, quwanısh ).\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7781],
+            "related_articles": [3656],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7051,
+            "type": "Milestone",
+            "title": "Atı hám mánzildi ayta aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:18:00+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:13:14+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESo'ralganda ózi haqqında tiykarǵı maǵlıwmatlardı aytıp bere aladı\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7496],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2711,
+            "type": "Milestone",
+            "title": "Óz atı, jası hám Jınıstı ayta aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:59+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:14:23+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓz atı, jası hám Jınıstı ayta aladı\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7386],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2886,
+            "type": "Milestone",
+            "title": "Ata-anasınan uzaqlasqanda jıynaw'laydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:59+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:15:43+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAta-anadan uzaqlasqandan keyin uwayım belgilerin ayqın kórsetedi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7251],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2896,
+            "type": "Milestone",
+            "title": "Ardaqlı oyınchog'i bar",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:59+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:16:33+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EArnawlı bir oyınshıqtı ábzal kóredi, onı izleydi, ózi menen alıp juredi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7726],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2676,
+            "type": "Milestone",
+            "title": "Jatqan jaǵdayında bilekchalariga bekkem súyenip, tirsekleri menen joqarıǵa qaray iyteriledi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:18:04+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EJúdátqan júdáǵdayında bilekchalariga bekkem súyenip, tirsekleri Men menen joqarıǵa qaray iyteriledi\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7716],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2761,
+            "type": "Milestone",
+            "title": "Shańaraq aǵzaların tanıydı hám olardı biyganalardan ajrata aladı. Kishkentay biyganalardan qorqıwı múmkin.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:19:44+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShańaraq aǵzaların tanıydı hám olardı biyganalardan ajıratıp turadı. Kishkentay biyganalardan qorqıwı múmkin. Ol tanıs adamlardı kórip kewilli boladı, olarǵa kúledi, tanıs hám tanıs emes adamlarǵa túrlishe juwap beredi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7216],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2841,
+            "type": "Milestone",
+            "title": "Kishi zatlardı toplaydı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:20:54+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKishi zatlardı toplaydı. Ol bas hám kórsetkish barmaqları járdeminde kishi zatlardı teredi. Ol ele da buyımdı uslap turıw ushın barmaq ushların emes, bálki pútkil betin isletedi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7846],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7111,
+            "type": "Milestone",
+            "title": "Óziniń atı, famılıyası, jası hám úy adresin biledi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:58+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:21:46+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl ózi haqqında tiykarǵı maǵlıwmatlardı biledi hám so'ralganda olardı aytiwi múmkin.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7551],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2686,
+            "type": "Milestone",
+            "title": "Qosıqlardan úzindiler qosıq aytadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:57+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:22:43+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQosıqlardan úzindiler qosıq aytadı.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7396],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2926,
+            "type": "Milestone",
+            "title": "Bir neshe ápiwayı kórsetpelerdi túsinedi hám olarǵa ámel etedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:57+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:23:34+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir yamasa bir neshe óz-ara baylanıslı bolǵan, ápiwayı awızsha sorawlardı orınlawı múmkin: \" Kópshik alıp kel\", \" Kel, o'tir\", \" Taslandıq qutısına tasla\".\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7821],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2991,
+            "type": "Milestone",
+            "title": "Ele da biygana adam hám jaǵdaylardan qorqadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:57+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:24:33+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBiygana adam menen sóylesiwde ol qáweterdi kórinetuǵın etedi, tanıs adamdı izleydi yamasa ata-anasına jabıwadı.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7291],
+            "related_articles": [3646, 346],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2706,
+            "type": "Milestone",
+            "title": "Vertikal jaǵdayda uslap tursa, ol qısqa waqıt ishinde ayaqlarına súyenip óz salmaǵın kóteriwi múmkin",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:56+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:25:31+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBalańızdı polǵa vertikal túrde tik tutqanıńızde, ol polǵa súenedi yamasa tap sekirip atırǵanday háreketler etedi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7836],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2741,
+            "type": "Milestone",
+            "title": "\" Meniń, seniki, onıń\" sıyaqlı sózlerdiń mánisin túsinedi, aldınǵı járdemshi hám almasıqlardan paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:17:56+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:26:21+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\" Men\", \" siz\", \" biz\" sıyaqlı sózlerdi aytılıw etedi hám ayırım sózlerdiń kópshiligilik formaların biledi-\" ıytlar\", \" pıshıqlar\".\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7811],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Azǵantay járdem menen o'tira aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:49+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:28:08+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGeypara zatqa súyenip yamasa onı uslap o'tiradi hám az múddet otırǵan jaǵdayın saqlaw aladı.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7671],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
             "id": 2746,
             "type": "Milestone",
-            "title": "Малыш в восторге, когда понимает, что пора играть",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Он/она радуется, выглядит счастливым и наслаждается игрой и общением, особенно с родителями и знакомыми людьми.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
+            "title": "Bala oyın waqtı kelgenin ańlaǵanında raxatlanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:49+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:29:02+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:29\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl tanıs adamlar, hám ásirese, ata-anası menen oynaganida yamasa sóylesiwde bolǵanında júyrikonadi, baxıtlı kórinedi hám raxatlanadı.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7841],
             "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
+            "related_video_articles": [6441],
             "mandatory": 0
         },
         {
-            "id": 2766,
+            "id": 2731,
             "type": "Milestone",
-            "title": "Любит играть в компании детей.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Игра теперь не просто параллельное присутствуе - бок о бок, а она имеет более сложные элементы, воображение и игривость.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
+            "title": "Sesli dawısqa a, e, ol dawıslı seslerin biriktirip juwap beredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:48+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:29:59+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:29\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKimdir oǵan shaqırıq etkende, sóylegende, qosıq aytqanda, oqıǵanda bala ózinshe juwap qaytaradı.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7211],
             "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
+            "related_video_articles": [6421],
             "mandatory": 0
         },
         {
             "id": 2786,
             "type": "Milestone",
-            "title": "Начинает понимать значение слова «нет».",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Начинает понимать значение слова «нет». Когда он/она слышит слово, то прекращает деятельность и признает неодобрение.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
+            "title": "\" Joq\" sóziniń mánisin túsinik baslaydı.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:48+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:30:45+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\" Joq\" sóziniń mánisin túsinik baslaydı. Bul sózdi esitip, ol óz iskerligin toqtatıp, narazılıǵın kórinetuǵın etedi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7226],
             "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2816,
-            "type": "Milestone",
-            "title": "Использует одну руку больше, чем другую",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Начинает больше пользоваться одной рукой - левой или правой.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2856,
-            "type": "Milestone",
-            "title": "Приподнимается в положении ползания. Некоторые дети уже ползают.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Приподнимает себя до положения ползания. Некоторые дети уже ползают. Он/она может самостоятельно ползать. Он/она движется ползком вперед или назад.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
+            "related_video_articles": [6476],
             "mandatory": 0
         },
         {
             "id": 2866,
             "type": "Milestone",
-            "title": "Отталкивается, пытается встать.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Отталкивается, пытается встать. Она/он пытается подняться, придерживаясь за мебель, но ей/ему нужна помощь и поддержка.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7241
-            ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
+            "title": "Iyteriledi, turıwǵa háreket etedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:48+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:31:39+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIyteriledi, turıwǵa háreket etedi. Mebeldi uslaǵan halda turıwǵa háreket etedi, bıraq oǵan járdem hám tayansh kerek.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7241],
+            "related_articles": [],
+            "related_video_articles": [6471],
             "mandatory": 0
         },
         {
-            "id": 2876,
+            "id": 2856,
             "type": "Milestone",
-            "title": "Часть детского общения также понятна людям, которые не находятся рядом с ним каждый день",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Он\\она начинает выговаривать слова понятнее и использует все больше и больше слов со смыслом, поэтому общение становится проще.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
+            "title": "Emesklayotgan waqtında denesin kóteredi. Ayırım balalar biymálel eńbeklep júriwedi.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:32:43+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EEńbeklep júriw jaǵdayı dárejesine shekem denesin kóteredi. Ayırım balalar biymálel eńbeklep júriwedi. Ǵárezsiz túrde emesklay aladı. Eńbeklep alǵa yamasa keyin basıp háreketlenedi.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7706],
+            "related_articles": [],
+            "related_video_articles": [6486],
+            "mandatory": 0
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Barmaqları menen kishi zatlardı teredi, awqatlanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:34:06+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EJaqsılap \" pincetli basıp alıw\" ǵa iye-júdá kishi zatlardı bas hám kórsetkish barmaqları menen alıp, olardı basqarıwı múmkin.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7766],
+            "related_articles": [],
+            "related_video_articles": [6536],
+            "mandatory": 0
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Kiyiniwge járdem beredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:47+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:34:54+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOnı Qıyıntirganingizda sizge járdem beredi, qolın kóylek eńinen, ayaqların shalbarınıń boyınshaychasidan ótkeredi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7276],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
@@ -16491,138 +19401,456 @@ export const MileStonesData: any = {
         {
             "id": 2901,
             "type": "Milestone",
-            "title": "Непроизвольно стремится разделить интересы и радость со взрослыми",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Наслаждается взаимными играми: \"Я даю это тебе - ты даешь это мне\", \"Я делаю - ты делаешь\" и тому подобное.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
+            "title": "Eriksiz úlkenler menen qızıǵıwshılıǵı hám zawıqlın usınıwǵa ıntıladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:46+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:36:22+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓz-ara oyınlardan raxatlanadı, \" Men saǵan bunı beremen-sen maǵan bunı bereseń\", \" Men etemen-sen etesen\" hám sol sıyaqlılar\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7731],
             "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
+            "related_video_articles": [6551],
             "mandatory": 0
         },
         {
-            "id": 2936,
+            "id": 2986,
             "type": "Milestone",
-            "title": "Собирает мелкие предметы пальцами, кушает пальцами",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Обладает лучшим \"пинцетным захватом \" - может манипулировать очень маленькими объектами, беря их большим и указательным пальцами.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
+            "title": "Sózlerdi mánisli etip aytılıw etedi.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:46+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:37:37+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAta-anasına shaqırıq islewde keminde bir yamasa bir neshe bólek sózlerdi aytılıw etedi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7286],
+            "related_articles": [],
+            "related_video_articles": [6851],
             "mandatory": 0
         },
         {
-            "id": 2961,
+            "id": 3001,
             "type": "Milestone",
-            "title": "Помогает при одевании",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Содействует вам, когда вы его одеваете, просовывает руку через рукава и ноги через штанины.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
+            "title": "Qaǵazǵa qálem yamasa ba'rchalar menen ǵárezsiz túrde sızadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:46+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:38:48+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQaǵazǵa qálem, qumda qolı, Ílayǵa tayaq yamasa betonǵa suw menen shıjbay sızıqlar sızadı.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7296],
             "related_articles": [],
-            "related_video_articles": [],
+            "related_video_articles": [6606],
+            "mandatory": 0
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Bir qolın ekinshisinen kóre kóbirek isletedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:45+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:39:34+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBir qolın kóbirek isletiw aladı-shepin yamasa ońın.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7356],
+            "related_articles": [],
+            "related_video_articles": [6666],
             "mandatory": 0
         },
         {
             "id": 2966,
             "type": "Milestone",
-            "title": "Становится все более независимым",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Thu, 08/12/2021 - 21:40",
-            "body": "<p>Иногда сопротивляется указаниям, злится, хочет контролировать других, ссорится, приказывает, оберегает свои вещи.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [
-                4781
-            ],
+            "title": "Barǵan sayın ǵárezsiz bolıp barıp atır",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:45+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:40:26+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGeyde kórsetpelerge qarsılıq etedi, ǵázeplenedi, basqalardı basqarıwdı qáleydi, jánjellesedi, buyrıq beredi, óz zatların qorǵaw etedi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7786],
+            "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
         },
         {
             "id": 2981,
             "type": "Milestone",
-            "title": "Понимает и выполняет простые указания",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Следует просто изложенным инструкциям без демонстрции, может выполнять то, что от него/неё ожидают.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7326
-            ],
-            "related_articles": [
-                4776
-            ],
-            "related_video_articles": [
-                6571
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2986,
-            "type": "Milestone",
-            "title": "Произносит слова со смыслом.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Обращаясь к родителям, она/он произносит хотя бы одно или несколько отдельных слов.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7286
-            ],
+            "title": "Ápiwayı kórsetpelerdi túsinedi hám atqaradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:45+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:41:11+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKórsetip berilmegen halda ápiwayı aytılǵan kórsetpelerge ámel etedi, odan kútilgen nárseni orınlawı múmkin.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7326],
             "related_articles": [],
-            "related_video_articles": [
-                6851
-            ],
+            "related_video_articles": [6571],
             "mandatory": 0
         },
         {
-            "id": 3001,
+            "id": 2701,
             "type": "Milestone",
-            "title": "Самостоятельно пишет карандашом или мелками на бумаге",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 10/13/2021 - 11:27",
-            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Любит чиркать каракули, карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7296
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6606
-            ],
+            "title": "2 den 3 danege shekem sózlerden ibarat bolǵan gáplerdi ayta aladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:44+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:42:14+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E2-3 sózden ibarat gápler dúziwi hám shańaraq aǵzaları onı túsiniwi ushın jetkilikli dárejede anıq aytiwi múmkin.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7391],
+            "related_articles": [],
+            "related_video_articles": [6816],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Balalar sheńberinde oynawdı jaqsı kóredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:44+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:44:02+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOyın endi jaysha qasında emes, bálki quramalıraq elementlerge, kóz aldına keltiriw hám oyınshıllıqqa iye.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7371],
+            "related_articles": [],
+            "related_video_articles": [6931],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Bala sóylesiwdiń málim bir bólegi hár kúni onıń janında bolmaǵan adamlarǵa da túsinikli bolıp tabıladı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:44+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:44:47+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl seslerdi anıqlaw aytıwdı baslaydı, mániske iye sózlerdi kóbirek isletedi hám sol sebepli ol menen baylanıs ańsatlasadı.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7346],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2921,
+            "type": "Milestone",
+            "title": "Ím-ishara-belgilerdi eliklew etedi hám isletedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:43+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:45:39+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl qutlıqlaw ushın \" de-da\" dep ayta aladı, \" joq\" dep bas shama menenyqaydi, ózi qálegen zatqa belgi etedi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7266],
+            "related_articles": [],
+            "related_video_articles": [6521],
+            "mandatory": 0
+        },
+        {
+            "id": 2931,
+            "type": "Milestone",
+            "title": "Oyınshıqlardı qızıǵıp tamasha etedi : olardı jipekitadi, urıw, ılaqtıradı, detallarǵa itibar beredi.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:43+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:46:31+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBuyımlardı Qarsıldawlatish, bir-bir-birine urıw arqalı (stakanı stolǵa yamasa oyınshıqn basqa oyınshıqqa urıw) úyrenedi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7271],
+            "related_articles": [],
+            "related_video_articles": [6561],
+            "mandatory": 0
+        },
+        {
+            "id": 2941,
+            "type": "Milestone",
+            "title": "Zatlardı qutıǵa salıp, odan alıp shıǵadı.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:43+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:47:18+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDenelerdi anıqlaw basqarıw qábiletine qaray iye. Ol hátte kishkene zatlardı qutıǵa yamasa shiyshege salıp, taǵı alıp shıǵıwı múmkin.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7771],
+            "related_articles": [],
+            "related_video_articles": [6846],
+            "mandatory": 0
+        },
+        {
+            "id": 2871,
+            "type": "Milestone",
+            "title": "Tanıs emes adamlar menen sóylesiwde uyalshaqlıq hám qáhárlilikti kórsetip beredi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:42+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:48:04+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl tanıs emes adamlar aldında tanıs adamlar aldındaǵına qaraǵanda ózin basqasha tutadı. minez-qulqlardı kórsetip beredi. Ol tanımaytuǵın adamlardan uyaladı ( kóz menen baylanıs etiwden qashadı, tanıs adamlarǵa jabısıp aladı ).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7246],
+            "related_articles": [],
+            "related_video_articles": [6526],
+            "mandatory": 0
+        },
+        {
+            "id": 2911,
+            "type": "Milestone",
+            "title": "Buwınlardı tákirarlaydı, ayırım balalar álleqashan sózlerdi mánisin túsinikli halda sóylesedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:42+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:48:50+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKóp túrli seslerdi aytılıw etedi (maaa, baaa, daaad... ) hám olardıń geyparaların mánisin biletuǵın birinshi tanıs sózler retinde isletedi (sheshe, ake... ).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7736],
+            "related_articles": [],
+            "related_video_articles": [6531],
+            "mandatory": 0
+        },
+        {
+            "id": 2951,
+            "type": "Milestone",
+            "title": "Mebeldi uslap túriedi, mebel janında júriwdi baslaydı.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:42+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:49:37+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl járdem menen turıwı yamasa hátte hesh qanday járdemsiz málim waqıt tik turıwı múmkin. Ol mebeldi yamasa úlkenlerdiń qolınan júriwge háreket etedi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7776],
+            "related_articles": [3346],
+            "related_video_articles": [6556],
+            "mandatory": 0
+        },
+        {
+            "id": 2906,
+            "type": "Milestone",
+            "title": "Óziniń atın, tanıs adamlardıń atların, átirapındaǵı zatlardıń atların, kúndelik háreketlerin hám \" joq\" sózin túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:41+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:50:32+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAtınıń shaqırılıwına yamasa \" joq\" sózine muwapıq tárzde qatnas ańlatadı.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7256],
+            "related_articles": [],
+            "related_video_articles": [6546],
+            "mandatory": 0
+        },
+        {
+            "id": 2916,
+            "type": "Milestone",
+            "title": "Qısqa kórsetpe yamasa buyrıqtı túsinedi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:41+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:51:51+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOǵan \" toptı alıp kel\" yamasa \" anańa ber\" dep aytqanıńiznida túsinedi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7741],
+            "related_articles": [],
+            "related_video_articles": [6541],
+            "mandatory": 0
+        },
+        {
+            "id": 3016,
+            "type": "Milestone",
+            "title": "Sóylesiwde óz-ara túsiniw ushın ım-ishara-belgilerden paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:41+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:52:35+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl úlkenlerdiń ım-ishara-ımları hám sózlerine eliklewge háreket etedi. Sorawlarǵa juwap retinde ım-ishara-belgilerden aqılǵa say paydalanadı ( \" Xosh\" yamasa \" joq\" ).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7311],
+            "related_articles": [],
+            "related_video_articles": [6596],
+            "mandatory": 0
+        },
+        {
+            "id": 2996,
+            "type": "Milestone",
+            "title": "Rollı oyınlardı jaqtıradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:40+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:53:34+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:53\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\"Rolli\" o'yinlar o'ynaydi. \"Taqlid o'yini\" paydo bo'ladi, bunda bola o'zini choy ichayotganday, qo'g'irchoqni ovqatlantirayotganday ko'rsatadi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7856],
+            "related_articles": [2141],
+            "related_video_articles": [6576],
+            "mandatory": 0
+        },
+        {
+            "id": 3006,
+            "type": "Milestone",
+            "title": "Kúndelik paydalanılatuǵın buyımlardan qanday paydalanıwdı biledi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:40+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T09:54:25+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 09:54\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQasıq, tıs sabınlaǵıshı, telefon sıyaqlı zatlardıń paydalanıw boyınsha kónlikpelerin kórsetip beredi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7316],
+            "related_articles": [3991],
+            "related_video_articles": [6601],
+            "mandatory": 0
+        },
+        {
+            "id": 3021,
+            "type": "Milestone",
+            "title": "Birgeliktegi iskerlikti qáleydi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:40+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:01:27+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl mimika, ım-ishara-belgiler hám jaqın adamlardıń ayırım háreketlerine eliklew etedi, kórsetkish barmaǵı menen ne Qızıqtıratuǵınlıǵına belgi etedi yamasa olardı qızıqtırıw hám oyınǵa tartıw ushın basqa adamlarǵa bir-nege usınıs etedi.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7306],
+            "related_articles": [3646],
+            "related_video_articles": [6581],
+            "mandatory": 0
+        },
+        {
+            "id": 2881,
+            "type": "Milestone",
+            "title": "Haywanlar jáne onıń seslerin biledi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:39+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:02:21+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDawıstı haywanlar menen baylanıstıradı.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7791],
+            "related_articles": [],
+            "related_video_articles": [6616],
+            "mandatory": 0
+        },
+        {
+            "id": 2976,
+            "type": "Milestone",
+            "title": "Ǵárezsiz túrde turadı, háreket etedi hám juredi.",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:39+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:03:16+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:03\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl ǵárezsiz túrde túrli jónelislerde, hár qıylı tezlik penen háreketleniw yamasa túrli háreketlerdi birlestiriwi múmkin ( toqta hám qo'lni silkiw).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7281],
+            "related_articles": [4841],
+            "related_video_articles": [6591],
+            "mandatory": 0
+        },
+        {
+            "id": 3011,
+            "type": "Milestone",
+            "title": "Bir buyımdı ekinshige jaylastıradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:39+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:35:36+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGeypara zattı kese yamasa Ídıstıń ishine salıp, odan alıp shıǵadı.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7301],
+            "related_articles": [1986],
+            "related_video_articles": [6586, 2116],
+            "mandatory": 0
+        },
+        {
+            "id": 2796,
+            "type": "Milestone",
+            "title": "Basqıshtan joqarıǵa eliriwi hám tómenge túsiwi múmkin",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:38+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:36:36+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQandayda bir bir tirek jardeminde basqıshtan joqarıǵa shıǵıwı hám tómenge túsiwi múmkin, azǵantay járdem menen qollap-quwatlaw menen Basqıshtan kóteriliwge yamasa azǵantay járdem menen tómenge túsiwge qodir.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7361],
+            "related_articles": [],
+            "related_video_articles": [6626],
+            "mandatory": 0
+        },
+        {
+            "id": 2811,
+            "type": "Milestone",
+            "title": "Ayaq ushında turıwı, juwırıwı, sekiriw, toptı tebiwi múmkin",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:38+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:37:46+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAyaq ushında turıwı, juwırıwı, sekiriw, toptı tebiwi yamasa basınan asırıp jiberiw múmkin.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7321],
+            "related_articles": [],
+            "related_video_articles": [6646],
+            "mandatory": 0
+        },
+        {
+            "id": 2956,
+            "type": "Milestone",
+            "title": "U katta odamlar va o'zidan kattaroq bolalarning xatti-harakatlariga taqlid qiladi",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:38+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:41:41+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÚlkenlerge eliklew etedi hám olardıń háreketlerin tákirarlaydı, mısalı : balalar Arbashanı iytradi, gazeta oqıydı...\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7331],
+            "related_articles": [],
+            "related_video_articles": [6641],
+            "mandatory": 0
+        },
+        {
+            "id": 2821,
+            "type": "Milestone",
+            "title": "Ǵárezsiz tárzde qaǵazǵa shıjbay sızıqlar sızadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:37+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:42:35+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOl qálemdi uslap, shıjbay sızıqlar, sızıq hám sheńberlerdi uqsatıp sızıp shıǵıw aladı.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7806],
+            "related_articles": [],
+            "related_video_articles": [6661],
+            "mandatory": 0
+        },
+        {
+            "id": 2861,
+            "type": "Milestone",
+            "title": "Ápiwayı \" Rolli\" oyınlar oynań",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:37+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:43:35+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÁpiwayı \" Rolli\" oyınlar oynaydı, mısalı-quwırshaqtı awqatlantiradi, tart jeydi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7796],
+            "related_articles": [3651],
+            "related_video_articles": [6631],
+            "mandatory": 0
+        },
+        {
+            "id": 2891,
+            "type": "Milestone",
+            "title": "Adamlar menen sóylesiwde sóz hám ım-ishara-belgilerden uyqaslıqta paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:37+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:44:34+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E2 den 4 ta sózge shekem bolǵan gápler sóyleydi, \" Ma?a qáleydi\", \" Emme o'tiradi\" sıyaqlı úshinshi shaxs retinde sóyleydi\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7341],
+            "related_articles": [],
+            "related_video_articles": [6621],
+            "mandatory": 0
+        },
+        {
+            "id": 2946,
+            "type": "Milestone",
+            "title": "Basqa balalar menen qasında oynaydı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:37+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:48:17+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EǴárezsiz túrde basqa balalardıń janında oynaydı, olarǵa qosıwǵa mútajligi joq, bıraq olardıń oyınların buzbaydı, olardı oyınǵa az-azdan tartıwı múmkin, mısalı, olarǵa oyınchog'ini usınıs etedi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7336],
+            "related_articles": [],
+            "related_video_articles": [6636],
+            "mandatory": 0
+        },
+        {
+            "id": 2681,
+            "type": "Milestone",
+            "title": "Ádetten tıs oyındı baslaydı hám basqalardı bul oyınǵa tartadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:36+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:49:00+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKóplegen oylap tabılǵan elementlerden quram tapqan Rollı, dóretiwshilik oyınlardı jaqsı kóredi. Geyde haqıyqıy hám oylap tabılǵan zatlarr shatastırıp ketedi\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7401],
+            "related_articles": [],
+            "related_video_articles": [6831],
+            "mandatory": 0
+        },
+        {
+            "id": 2781,
+            "type": "Milestone",
+            "title": "Ata-anasınan ańsatlaw ajraladi'",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:36+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:49:42+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAjırasıwǵa qatnası azıraq, ata-anası odan bir múddetke uzaqlasqanlarında qasındaǵı basqa adamlarǵa isenim artıp, tez awunadi.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7366],
+            "related_articles": [],
+            "related_video_articles": [6796],
+            "mandatory": 0
+        },
+        {
+            "id": 2846,
+            "type": "Milestone",
+            "title": "Oyınlarda oyınshıqlardan maqsetli paydalanadı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:36+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:50:22+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOyınshıqlar menen oynay aladı, olardıń ne ushın kerekligin hám oyında qanday isletiwdi biledi.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7801],
+            "related_articles": [],
+            "related_video_articles": [6656],
+            "mandatory": 0
+        },
+        {
+            "id": 2751,
+            "type": "Milestone",
+            "title": "Eki yamasa ush kórsetpeli tapsırmalardı atqaradı",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:35+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-19T10:52:46+01:00\" class=\"datetime\"\u003EThu, 03/19/2026 - 10:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EÓz-ara baylanısqan bir neshe awızsha kórsetpelerdi atqara aladı (\" quwırshaqtı qaldırıw hám stulǵa o'tir\", \" sırımaqngni sheship, Shıppagingni kimy\").\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7381],
+            "related_articles": [],
+            "related_video_articles": [6836],
             "mandatory": 0
         }
     ],

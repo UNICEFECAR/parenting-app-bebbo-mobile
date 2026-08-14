@@ -1112,7 +1112,7 @@ export const articledata: any = {
             "type": "Article",
             "title": "Sosyo-duygusal gelişimi teşvik etmek: 24 - 36 ay",
             "created_at": "\u003Ctime datetime=\"2024-04-09T11:54:46+03:00\" class=\"datetime\"\u003ETue, 04/09/2024 - 11:54\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-05-19T05:29:38+03:00\" class=\"datetime\"\u003ETue, 05/19/2026 - 05:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-07-20T18:22:40+03:00\" class=\"datetime\"\u003EMon, 07/20/2026 - 18:22\u003C/time\u003E\n",
             "summary": "\"Bir çocuk diğer çocuklarla ortak faaliyetlere giderek daha fazla ilgi gösteriyor. Oyunlar daha karmaşık ve çeşitli hale geliyor. Hayal gücü ve rol yapma içeren oyunlar, fikirlerin, dilin, başkalarıyla ilişkilerin ve kişisel kimliğin gelişimine ek bir ivme kazandırır. Duygular daha karmaşık hale geliyor.\"",
             "body": "\u003Ch2\u003EAkranlarla birlikte oynamanın önemi\u003C/h2\u003E\u003Cul\u003E\u003Cli\u003EAkranlarla oyun oynama süresi artıyor. Ara sıra çatışmalar ve hayal kırıklıkları kaçınılmazdır. Deneyim yoluyla, çocuk kişisel ihtiyaçlarını başkalarının ihtiyaçlarıyla uyumlu hale getirme ve tanıma konusunda daha iyi hale gelir. Empati kurma - başkalarının duygularını fark etme ve kabul etme - yeteneği gelişir.\u003C/li\u003E\u003Cli\u003EDiğer çocuklarla iletişim kurması için fırsatlar yaratın. Anaokulu, oyun odaları, parklar ve küçük çocukları olan diğer aileleri ziyaret etmek çocuğunuzun hayatında önemli faaliyetlerdir\u003C/li\u003E\u003Cli\u003EEğer çocuğunuz daha utangaçsa, cesaretlendirici ama sabırlı olun. Zorlamayın, çocuğa başa çıkması için zaman tanıyın.\u003C/li\u003E\u003Cli\u003EÇocuğunuz daha huzursuzsa ve yeterince dikkatli değilse, yakın olun. Gerektiğinde tepki verin. Net talimatlar verin ve tutarlı olun.\u003C/li\u003E\u003C/ul\u003E\u003Ch2\u003EBağımsızlık\u003C/h2\u003E\u003Cul\u003E\u003Cli\u003EBağımsızlığı teşvik etmek çocuğunuzun kişiliğinin gelişimi için büyük önem taşır. Başarılı bağımsız eylemler memnuniyet ve gurur duygusu yaratır. Siz göstermek, yardım etmek ve takdir etmek için buradasınız\u003C/li\u003E\u003Cli\u003EÇocuğunuzu daha bağımsız olmaya teşvik etmek için günlük aktiviteleri kullanın. Kişisel hijyen, beslenme, giyinme bunun için ideal fırsatlardır.\u003C/li\u003E\u003Cli\u003EÇocuğunuza sizin için bir şey yapması, size bir şey getirmesi için şans verin. Bunun sizin için bir anlamı olduğunu gösterin, bunu yapabildiği için çocuğunuzu takdir edin.\u003C/li\u003E\u003Cli\u003EBaşarısız olduklarında bile çocukların girişimlerini görün ve destekleyin. Çocuk pes etmeyecek ve bir dahaki sefere daha kolay olacaktır.\u003C/li\u003E\u003C/ul\u003E\u003Ch2\u003Eİşbirliği\u003C/h2\u003E\u003Cul\u003E\u003Cli\u003EÇocuk arzularının giderek daha fazla farkına varır. İstediklerini elde etme konusunda ısrarcı olabilir ve aynı zamanda çeşitli olumsuz duygular ve istenmeyen davranışlar gösterebilir. Bu konuda kendinizi çaresiz ya da kızgın hissedebilirsiniz. Çocuğunuzun da aynı şekilde hissettiğini bilin.\u003C/li\u003E\u003Cli\u003EÇocuğun size ne söylemek istediğini dinleyin. Çocuğunuzun isteklerine anlayış gösterin. Neye izin verildiğini ve neyin verilmediğini açıklayın. İşbirliği yapmaya istekli olduğunu gösterdiğinde çocuğu övün. Ödül olarak çocuğun sevdiği başka bir şey sunabilirsiniz.\u003C/li\u003E\u003Cli\u003EÇocuğa nasıl hissettiğini bildiğinizi söyleyin. Çocukta tanıdığınız duyguyu adlandırın ve isteğinin neden yerine getirilemeyeceğini açıklayın.\u003C/li\u003E\u003Cli\u003EOlumsuz yorum yapmayın veya çocuğa kızmayın. Anlayış ve sakinlik gösterin. Açık olun, kısa açıklamalar yapın ve tutarlı olun. Özdenetiminiz, kontrollü oluşunuz ve net kurallarınız çocuğa çok yardımcı olacaktır.\u003C/li\u003E\u003C/ul\u003E",
             "field_type_of_article": 0,
@@ -1124,11 +1124,11 @@ export const articledata: any = {
             "keywords": [2401, 1546],
             "meta_keywords": "davranış yönetimi, kendini düzenleme, kardeşler",
             "cover_image": {
-                "url": "",
-                "name": "",
-                "alt": ""
+                "url": "https://merhababebek.app/sites/turkey/files/styles/content_1200xh_/public/2026-07/child-playing-with-blocks.webp?itok=GH16pfAu",
+                "name": "child-playing-with-blocks.jpg",
+                "alt": "Child playing with blocks"
             },
-            "related_articles": [1986, 1006, 936, 941, 951, 1401, 1836, 951, 931, 1601],
+            "related_articles": [1986, 1006, 936, 941, 1401, 1836, 931, 1601],
             "related_video_articles": [1216, 1221, 1376, 1341, 1371, 911, 741, 1316, 1351],
             "premature": 0,
             "do_not_feature": "0",
