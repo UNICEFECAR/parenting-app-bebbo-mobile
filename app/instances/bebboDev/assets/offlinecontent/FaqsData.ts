@@ -1,3 +1,25 @@
 export const FaqsData:any = {
-    "en":[]
+    "en": [],
+    "ru": [],
+    "al-sq": [],
+    "by-be": [],
+    "by-ru": [],
+    "bg-bg": [],
+    "gr-el": [],
+    "kg-ky": [],
+    "kg-ru": [],
+    "md-ro": [],
+    "me-cnr": [],
+    "mk-mk": [],
+    "mk-sq": [],
+    "ro-ro": [],
+    "rs-sr": [],
+    "rs-en": [],
+    "tj-tg": [],
+    "tj-ru": [],
+    "uk": [],
+    "uz-uz": [],
+    "uz-ru": [],
+    "uz-kaa": [],
+    "sk": []
 };

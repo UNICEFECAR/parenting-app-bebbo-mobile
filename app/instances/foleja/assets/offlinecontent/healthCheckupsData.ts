@@ -55,7 +55,7 @@ export const healthCheckupsData: any = {
             "type": "Health Check-ups - Age Periods",
             "title": "12 muaj",
             "growth_period": 6532,
-            "pinned_article": 63016,
+            "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "\u003Ctime datetime=\"2021-07-17T13:54:31+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 13:54\u003C/time\u003E\n",
             "updated_at": "\u003Ctime datetime=\"2022-06-08T16:14:12+02:00\" class=\"datetime\"\u003EWed, 06/08/2022 - 16:14\u003C/time\u003E\n"
@@ -65,7 +65,7 @@ export const healthCheckupsData: any = {
             "type": "Health Check-ups - Age Periods",
             "title": "11 muaj",
             "growth_period": 6531,
-            "pinned_article": 63016,
+            "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "\u003Ctime datetime=\"2021-07-17T13:54:07+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 13:54\u003C/time\u003E\n",
             "updated_at": "\u003Ctime datetime=\"2022-06-08T16:09:27+02:00\" class=\"datetime\"\u003EWed, 06/08/2022 - 16:09\u003C/time\u003E\n"

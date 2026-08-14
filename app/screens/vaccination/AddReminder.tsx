@@ -74,7 +74,7 @@ import LocalNotifications from "../../services/LocalNotifications";
 import {
   formatStringDate,
   formatStringTime,
-  getLanguageCode,
+  getDatePickerLocale,
 } from "../../services/Utils";
 import * as RNLocalize from "react-native-localize";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
@@ -131,7 +131,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
   );
 
   const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
+    getDatePickerLocale(state.selectedCountry?.languageCode)
   );
 
   const timeZone = RNLocalize.getTimeZone();

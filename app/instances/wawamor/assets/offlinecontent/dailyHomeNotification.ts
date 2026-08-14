@@ -17,9 +17,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 306,
             "type": "Daily Homescreen Messages",
-            "title": "Cuando esté tenso, relájese respirando profundamente",
+            "title": "🧘 Cuando sientas tensión, haz una pausa y respira profundamente.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T22:03:13+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 22:03\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T19:00:10+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 19:00\u003C/time\u003E\n"
         },
         {
             "id": 821,
@@ -38,9 +38,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 311,
             "type": "Daily Homescreen Messages",
-            "title": "Dé el ejemplo de una alimentación sana a su hija o hijo",
+            "title": "🥗 Da el ejemplo: si eliges alimentos saludables, tus hijos aprenderán a comer mejor.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T21:56:03+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 21:56\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T19:01:29+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 19:01\u003C/time\u003E\n"
         },
         {
             "id": 826,
@@ -59,9 +59,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 316,
             "type": "Daily Homescreen Messages",
-            "title": "Cree en ti mismo y en tus fortalezas",
+            "title": "💪 Confía en ti y reconoce todo lo que haces bien.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T21:53:09+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 21:53\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T19:02:16+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 19:02\u003C/time\u003E\n"
         },
         {
             "id": 831,
@@ -80,9 +80,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 321,
             "type": "Daily Homescreen Messages",
-            "title": "Disfrute cada día del viaje de ser madre o padre ",
+            "title": "💛 Disfruta cada día de la hermosa experiencia de ser madre, padre o cuidador.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T21:37:56+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 21:37\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T22:15:49+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 22:15\u003C/time\u003E\n"
         },
         {
             "id": 836,
@@ -101,9 +101,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 326,
             "type": "Daily Homescreen Messages",
-            "title": "Cuando tu familia trabaja en equipo, todos se sienten apoyados",
+            "title": "🏡 Cuando una familia trabaja en equipo, todos se sienten acompañados.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T21:33:15+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 21:33\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T22:18:05+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 22:18\u003C/time\u003E\n"
         },
         {
             "id": 841,
@@ -122,9 +122,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 331,
             "type": "Daily Homescreen Messages",
-            "title": " Tus necesidades son importantes: ¡encuentra tiempo para dedicarte a actividades que te gusten!",
+            "title": "😊 Tú también importas. Regálate tiempo para hacer algo que te guste.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T21:19:45+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 21:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T22:19:58+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 22:19\u003C/time\u003E\n"
         },
         {
             "id": 846,
@@ -143,9 +143,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 336,
             "type": "Daily Homescreen Messages",
-            "title": "Con amor y amabilidad, puedes ayudar a tu hija/o a aprender lo que es un comportamiento adecuado",
+            "title": "💛 La mejor disciplina se enseña con amor, paciencia y respeto.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T21:14:00+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 21:14\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T22:22:47+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 22:22\u003C/time\u003E\n"
         },
         {
             "id": 851,
@@ -178,9 +178,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 346,
             "type": "Daily Homescreen Messages",
-            "title": "Si eres una madre o padre primerizo, es normal sentirse inseguro",
+            "title": "👶 Es normal tener dudas en la crianza. Confía en ti: aprenderás poco a poco con tu hijo o hija.",
             "created_at": "\u003Ctime datetime=\"2024-09-09T20:19:16+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 20:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:48:14+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:48\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T22:25:51+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 22:25\u003C/time\u003E\n"
         },
         {
             "id": 861,
@@ -710,9 +710,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 746,
             "type": "Daily Homescreen Messages",
-            "title": "Ser padres es una de las experiencias más valiosas y hermosas de la vida.",
+            "title": "Ser papá y mamá es una de las experiencias hermosas de la vida.",
             "created_at": "\u003Ctime datetime=\"2024-09-03T00:19:15+02:00\" class=\"datetime\"\u003ETue, 09/03/2024 - 00:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T00:01:20+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 00:01\u003C/time\u003E\n"
         },
         {
             "id": 491,
@@ -724,9 +724,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 751,
             "type": "Daily Homescreen Messages",
-            "title": "El uso de pantallas antes de acostarse puede reducir la calidad del sueño",
+            "title": "📵 Evita las pantallas antes de dormir para ayudar a tu hija o hijo a descansar mejor.",
             "created_at": "\u003Ctime datetime=\"2024-09-03T00:17:33+02:00\" class=\"datetime\"\u003ETue, 09/03/2024 - 00:17\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T00:03:54+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 00:03\u003C/time\u003E\n"
         },
         {
             "id": 496,
@@ -738,16 +738,16 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 756,
             "type": "Daily Homescreen Messages",
-            "title": "Planificar las comidas con antelación puede llevarte a elegir alimentos más saludables ",
+            "title": "🥗 Planifica tus comidas para elegir alimentos más saludables.",
             "created_at": "\u003Ctime datetime=\"2024-09-03T00:15:01+02:00\" class=\"datetime\"\u003ETue, 09/03/2024 - 00:15\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T00:05:52+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 00:05\u003C/time\u003E\n"
         },
         {
             "id": 501,
             "type": "Daily Homescreen Messages",
-            "title": "Con tu amor y apoyo, el mundo se convierte en un lugar seguro y amigable para tu hija o hijo",
+            "title": "💛 Con tu amor y apoyo, tu hija o hijo se siente seguro para explorar el mundo.",
             "created_at": "\u003Ctime datetime=\"2024-09-03T00:13:33+02:00\" class=\"datetime\"\u003ETue, 09/03/2024 - 00:13\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:47:07+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:47\u003C/time\u003E\n"
         },
         {
             "id": 246,
@@ -759,16 +759,16 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 761,
             "type": "Daily Homescreen Messages",
-            "title": "Dedica un tiempo cada mañana para ti mismo ",
+            "title": "🌅 Regálate unos minutos cada mañana para cuidarte y empezar el día con calma.",
             "created_at": "\u003Ctime datetime=\"2024-09-03T00:10:48+02:00\" class=\"datetime\"\u003ETue, 09/03/2024 - 00:10\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T18:57:01+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 18:57\u003C/time\u003E\n"
         },
         {
             "id": 506,
             "type": "Daily Homescreen Messages",
-            "title": "Habla con tu pareja para encontrar formas de apoyarse mutuamente",
+            "title": "🤝 Conversa con tu pareja y encuentren juntos formas de cuidarse y apoyarse.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T23:50:41+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 23:50\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:47:48+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:47\u003C/time\u003E\n"
         },
         {
             "id": 251,
@@ -780,142 +780,142 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 766,
             "type": "Daily Homescreen Messages",
-            "title": "No es importante ser los mejores padres, sino ser un poco mejor cada día",
+            "title": "✨ Ser la mejor madre o el mejor padre se aprende cada día.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T22:36:43+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 22:36\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T18:58:36+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 18:58\u003C/time\u003E\n"
         },
         {
             "id": 511,
             "type": "Daily Homescreen Messages",
-            "title": "Su familia es el refugio seguro de su hija/o",
+            "title": "🏡 Tu familia es el lugar donde tu hija o hijo se siente amado, protegido y seguro.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T22:30:11+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 22:30\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T23:48:15+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 23:48\u003C/time\u003E\n"
         },
         {
             "id": 256,
             "type": "Daily Homescreen Messages",
-            "title": "A las niñas y niños les encanta que sus padres conversen con ellos y los escuchen",
+            "title": "💬 A los niños les encanta que papá y mamá los escúchalo con cariño.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:51:57+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:51\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:46:25+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:46\u003C/time\u003E\n"
         },
         {
             "id": 771,
             "type": "Daily Homescreen Messages",
-            "title": "Disfrute hablando con su hija/o durante la hora del baño y la comida",
+            "title": "💬 Aprovecha la hora del baño y las comidas para conversar y disfrutar juntos.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:48:22+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:48\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-19T18:59:13+02:00\" class=\"datetime\"\u003ESun, 07/19/2026 - 18:59\u003C/time\u003E\n"
         },
         {
             "id": 516,
             "type": "Daily Homescreen Messages",
-            "title": "Las niñas y niños aprenden a ser justos cuando las responsabilidades familiares se comparten",
+            "title": "🤝 Cuando las responsabilidades se comparten en familia, tu hija o hijo aprende a colaborar.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:44:33+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:44\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:50+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T23:59:49+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 23:59\u003C/time\u003E\n"
         },
         {
             "id": 261,
             "type": "Daily Homescreen Messages",
-            "title": "Atiende a tus propias necesidades de salud de manera oportuna",
+            "title": "🩺 Tu salud también importa. Si te cuidas puedes cuidar mejor de tu familia.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:41:07+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:41\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:51+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:37:21+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:37\u003C/time\u003E\n"
         },
         {
             "id": 776,
             "type": "Daily Homescreen Messages",
-            "title": "Las relaciones pueden cambiar cuando los miembros de la pareja se convierten en padres",
+            "title": "👶 La llegada de una bebé puede cambiar la relación de pareja. Conversar ayuda a adaptarse juntos.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:39:28+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:39\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:51+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:44:10+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:44\u003C/time\u003E\n"
         },
         {
             "id": 521,
             "type": "Daily Homescreen Messages",
-            "title": "El estrés es inevitable, pero puedes aprender maneras sencillas de manejarlo",
+            "title": "🌿 El estrés es parte de la vida, pero puedes aprender formas sencillas de manejarlo y sentirte mejor.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:38:47+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:38\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:51+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:38:46+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:38\u003C/time\u003E\n"
         },
         {
             "id": 266,
             "type": "Daily Homescreen Messages",
-            "title": "Una relación amorosa es la base para un crecimiento y desarrollo saludable de una niña o niño",
+            "title": "💞 El amor y la atención que recibe tu hija o hijo son la base para que crezca sano, seguro y feliz.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:37:15+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:37\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:51+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:38:12+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:38\u003C/time\u003E\n"
         },
         {
             "id": 781,
             "type": "Daily Homescreen Messages",
-            "title": "Cuidar tu cuerpo te da una sensación de autoconfianza y control",
+            "title": "💪 Cuidar tu cuerpo te ayuda a sentirte más fuerte, seguro y con mayor bienestar.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T21:32:54+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 21:32\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:50:51+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:50\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:43:47+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:43\u003C/time\u003E\n"
         },
         {
             "id": 526,
             "type": "Daily Homescreen Messages",
-            "title": "Discuta y acuerde el estilo de crianza con su pareja",
+            "title": "🤝 Conversa con tu pareja y construyan juntos una forma de criar con amor.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T19:14:09+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 19:14\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:19:40+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:19\u003C/time\u003E\n"
         },
         {
             "id": 271,
             "type": "Daily Homescreen Messages",
-            "title": "Tener una hora de acostarse regular no solo es beneficioso para sus hijas/os; también mejora su salud",
+            "title": "🕘 Una hora regular para dormir beneficia a tus hijos y también cuida tu salud.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:32:48+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:32\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:14:09+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:14\u003C/time\u003E\n"
         },
         {
             "id": 786,
             "type": "Daily Homescreen Messages",
-            "title": "Participe con entusiasmo en el juego imaginario de su hija o hijo",
+            "title": "🎭 Participar en los juegos imaginarios de tus hijos fortalece su creatividad.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:30:40+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:30\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:26:25+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:26\u003C/time\u003E\n"
         },
         {
             "id": 531,
             "type": "Daily Homescreen Messages",
-            "title": "Comprender las necesidades de su hija/o y responder a ellas le convierte en una madre o padre exitoso",
+            "title": "💛 Comprender y responder a las necesidades de tu hija o hijo te ayuda a criar con amor y confianza.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:29:51+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:29\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:21:52+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:21\u003C/time\u003E\n"
         },
         {
             "id": 276,
             "type": "Daily Homescreen Messages",
-            "title": "Las rutinas familiares armoniosas contribuyen a la satisfacción de todos los miembros",
+            "title": "🏡 Las rutinas familiares ayudan a que todos se sientan más tranquilos y felices.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:24:47+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:24\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:14:57+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:14\u003C/time\u003E\n"
         },
         {
             "id": 791,
             "type": "Daily Homescreen Messages",
-            "title": "Cada éxito es una oportunidad para empoderar a sus hijas/os y reforzar la confianza en sí mismos",
+            "title": "🌟 Cada logro de tu hijo o hija es una oportunidad para fortalecer su confianza en sí mismo.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:07:35+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:07\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:28:04+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:28\u003C/time\u003E\n"
         },
         {
             "id": 536,
             "type": "Daily Homescreen Messages",
-            "title": "Adapta tu estilo de crianza a medida que tu hija/o crece y cambia.",
+            "title": "🌱 Adapta tu forma de criar según la edad y las necesidades de tu hija o hijo.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:04:18+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:04\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:23:40+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:23\u003C/time\u003E\n"
         },
         {
             "id": 281,
             "type": "Daily Homescreen Messages",
-            "title": "Si una niña o niño crece rodeado de elogios, aprende a apreciar",
+            "title": "🌟 Elogiar los logros de tus hijos les ayuda a sentirse bien y a valorar a los demás.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:02:59+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:02\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:18:43+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:18\u003C/time\u003E\n"
         },
         {
             "id": 796,
             "type": "Daily Homescreen Messages",
-            "title": "Para ser una madre o padre tranquilo, cariñoso y sensible, cuida bien de ti mismo.",
+            "title": "💛 Para criar con calma, cariño y sensibilidad, también necesitas cuidarte: descansa y pide ayuda.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T18:01:43+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 18:01\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:29:26+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:29\u003C/time\u003E\n"
         },
         {
             "id": 541,
             "type": "Daily Homescreen Messages",
-            "title": "Diez minutos de relajación con música pueden ayudarte a recargar tu energía",
+            "title": "🎵 Relajarte diez minutos con música puede ayudarte a recuperar energía.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T17:51:33+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 17:51\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:03+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:24:17+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:24\u003C/time\u003E\n"
         },
         {
             "id": 286,
@@ -969,9 +969,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 811,
             "type": "Daily Homescreen Messages",
-            "title": "La fatiga y la falta de sueño pueden afectar a su salud",
+            "title": "😴 Dormir poco puede afectar tu salud y tu ánimo. Procura descansar.",
             "created_at": "\u003Ctime datetime=\"2024-09-02T17:36:25+02:00\" class=\"datetime\"\u003EMon, 09/02/2024 - 17:36\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:51:04+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:51\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-07-18T20:13:23+02:00\" class=\"datetime\"\u003ESat, 07/18/2026 - 20:13\u003C/time\u003E\n"
         },
         {
             "id": 556,

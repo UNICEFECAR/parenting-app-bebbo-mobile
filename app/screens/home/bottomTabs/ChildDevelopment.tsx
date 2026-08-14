@@ -87,6 +87,8 @@ import {
 import useDigitConverter from "../../../customHooks/useDigitConvert";
 import { appConfig } from "../../../instances";
 import { selectActiveChild, selectActivitiesDataAll, selectChildAge, selectChildDevData, selectMileStonesData, selectPinnedChildDevData } from "../../../services/selectors";
+import LoadableImage from "../../../services/LoadableImage";
+import FastImage from "react-native-fast-image";
 const styles = StyleSheet.create({
   bgWhite: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -95,27 +97,53 @@ const styles = StyleSheet.create({
   fullWidth: { width: "100%" },
   titleUnderline: { textDecorationLine: "underline" },
 });
-const VideoPlayerWrapper = React.memo(({ selectedPinnedArticleData, listLoading }: any) => {
-  const { width } = useWindowDimensions();
+const VideoPlayerWrapper = React.memo(
+  ({ selectedPinnedArticleData, listLoading }: any) => {
+    const { width } = useWindowDimensions();
+    const netInfo = useNetInfoHook();
 
-  return (
-    <View style={{ height: width * 0.565, overflow: "hidden" }}>
-      {Platform.OS === "ios" ? (
-        listLoading ? (
+    const toggleSwitchVal = useAppSelector((state: any) =>
+      state.bandWidthData?.lowbandWidth
+        ? state.bandWidthData.lowbandWidth
+        : false
+    );
+
+    const showVideo =
+      netInfo.isConnected &&
+      selectedPinnedArticleData?.cover_video &&
+      selectedPinnedArticleData?.cover_video?.url;
+
+    const renderContent = () => {
+      if (showVideo) {
+        return (
           <VideoPlayer
             style={{ width: "100%" }}
             selectedPinnedArticleData={selectedPinnedArticleData}
           />
-        ) : null
-      ) : (
-        <VideoPlayer
-          style={{ width: "100%" }}
-          selectedPinnedArticleData={selectedPinnedArticleData}
+        );
+      }
+
+      return (
+        <LoadableImage
+          style={{ width: "100%", height: width * 0.565 }}
+          item={selectedPinnedArticleData}
+          toggleSwitchVal={toggleSwitchVal}
+          resizeMode={FastImage.resizeMode.cover}
         />
-      )}
-    </View>
-  );
-});
+      );
+    };
+
+    return (
+      <View style={{ height: width * 0.565, overflow: "hidden" }}>
+        {Platform.OS === "ios"
+          ? listLoading
+            ? renderContent()
+            : null
+          : renderContent()}
+      </View>
+    );
+  }
+);
 
 const ChildDevelopment = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();

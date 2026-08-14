@@ -1,5 +1,5 @@
-export const standardDevData:any = {
-    "en": [ {
+export const standardDevData: any = {
+    "en": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -702,7 +702,7 @@ export const standardDevData:any = {
             ]
         }
     ],
-    "al-sq":[{
+    "al-sq": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -1208,7 +1208,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "by-be":[ {
+    "by-be": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -1714,7 +1714,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "by-ru":[ {
+    "by-ru": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -2220,7 +2220,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "bg-bg":[ {
+    "bg-bg": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -2726,7 +2726,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "gr-el":[ {
+    "gr-el": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -3232,7 +3232,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "kg-ky":[ {
+    "kg-ky": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -3738,7 +3738,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "kg-ru":[{
+    "kg-ru": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -4771,7 +4771,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "me-cnr": [ {
+    "me-cnr": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -5277,7 +5277,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "mk-mk": [ {
+    "mk-mk": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -6816,7 +6816,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "rs-sr":[ {
+    "rs-sr": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -7322,7 +7322,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "rs-en": [ {
+    "rs-en": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -7828,7 +7828,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "tj-tg":[{
+    "tj-tg": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -8334,7 +8334,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "tj-ru":[ {
+    "tj-ru": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -8840,7 +8840,7 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "uk":[{
+    "uk": [{
         "weight_for_height": [
             {
                 "child_age": [
@@ -9370,1517 +9370,782 @@ export const standardDevData:any = {
     "uz-uz": [{
         "weight_for_height": [
             {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
+                "child_age": [43, 44, 45, 46],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Birinchi 6 oy ichida o'sish haqida – bolaning vazni uning uzunlik / bo'yiga  mos",
-                    "text": "Barakalla! Farzandingiz yaxshi o'smoqda va uning vazni bo'yiga mos kelmoqda. To'g'ri ovqatlanish, jismoniy faollik va uyqu bo'yicha tavsiyalarga amal qilishda davom eting. Farzandingizning o'sishini kuzatib boring."
+                    "articleID": [3401, 3416, 3346, 3341],
+                    "name": "Dastlabki 6 oyda oʻsish haqida batafsil maʼlumot – vazn tana uzunligiga mos",
+                    "text": "Juda yaxshi! Farzandingiz yaxshi oʻsyapti, uning vazni tana uzunligiga mos. Oziqlanish, jismoniy faollik va uyqu boʻyicha tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oylikda o'sish haqida - yengil vazn etishmasligi",
-                    "text": "Diqqat! Farzandingiz vazn yo'qotmoqda (yoki vazn qo'shmayapti) va unda uzunligi / bo'yi uchun o'rtacha vazn etishmasligi mavjud. Ushbu holat bir necha hafta ichida yuz berishi mumkin, shuning uchun buning sabablarni aniqlashni o'ylab ko'ring: yaqin orada o'tkazilgan yuqumli kasallik yoki diareya, boshqa ba'zi surunkali kasalliklar, etarli bo'lmagan yoki noto'g'ri ovqatlanish, oiladagi o'zgarishlar va boshqalar. Buning sababini aniqlash, ovqatlanishni to'g'rilash va o'sishni keyingi kuzatish dinamikasini aniqlash uchun pediatrga albatta murojaat qiling. Ovqatlanish ratsionini yaxshilash uchun bolangiz katta e'tiborga muhtoj."
+                    "articleID": [6236, 3401, 3416, 3341, 3346],
+                    "name": "Dastlabki 6 oyda oʻsish haqida batafsil maʼlumot – kamvaznlik ehtimoli",
+                    "text": "Diqqat! Farzandingiz ozib ketyapti (yoki vazni ortmayapti), unda tana uzunligiga nisbatan kamvaznlik bor. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir bevosita sabablarni aniqlang: yaqin orada kechirilgan yuqumli kasallik yoki ichketish, biror-bir boshqa surunkali kasallik, yetarli darajada ovqatlanmaslik yoki notoʻgʻri ovqatlanish, oiladagi oʻzgarishlar va hokazo. Sababni aniqlash, vazn yoʻqotishni toʻхtatish va oʻsish surʼatini aniqlash, keyingi davrda qanday kuzatib borish kerakligini bilib olish va ovqatlanishini yaxshilash uchun pediatr koʻrigiga albatta boring."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3401,
-                        3371,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oyda o'sish haqida ko'proq ma'lumot - og'ir ovqatlanish",
-                    "text": "diqqat Farzandingiz uzunlik / bo'y uchun og'irlik etishmovchiligiga ega. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring, ba'zi sabablar bo'lishi mumkin: so'nggi kasalliklar, metabolik va surunkali kasalliklar, etarli va noto'g'ri ovqatlanish, atrofdagi muhit o'zgarishi va boshqalar. Buning sababini o'rganish va yo'qotish o'rnini qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
+                    "articleID": [6236, 3371, 3401, 3341, 3346],
+                    "name": "Dastlabki 6 oyda oʻsish haqida batafsil maʼlumot – oziqlanishning ogʻir buzilishi",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan juda kam. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir ehtimoliy bevosita sabablarni aniqlang. Masalan: yaqin orada kasal boʻlgani, metabolik va surunkali kasalliklar, kam va notoʻgʻri ovqatlanish, oiladagi muhitning oʻzgarishi va boshqalar. Buning sababini aniqlash va yoʻqotilgan vaznni qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oyda o'sish haqida ko'proq ma'lumot - ortiqcha vazn",
-                    "text": "diqqat Farzandingiz bo'yi uchun o'rtacha darajada ortiqcha vaznga ega. Ushbu ortiqcha vazn uning sog'lig'iga xavf tug'dirishi mumkin, shuning uchun bunga nima sabab bo'lganligi haqida o'ylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli ovqatlarni iste'mol qilish, jismoniy faollikning pasayishi, ko'rish vaqtining ko'payishi yoki darhol o'zgarishi atrof-muhit va boshqalar. Qo'shimcha tavsiyalar olish va bolangizning o'sishini kuzatish dinamikasini aniqlash uchun pediatr bilan uchrashishga ishonch hosil qiling."
+                    "articleID": [3401, 3376, 3346, 3341],
+                    "name": "Dastlabki 6 oyda oʻsish haqida batafsil maʼlumot –ortiqcha vazn",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan ortiqcha. Ushbu ortiqcha vazn uning sogʻligʻiga xavf tugʻdirishi mumkin. Shuning uchun bunga nima sabab boʻlgani haqida oʻylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha isteʼmol qilish (masalan, shirin va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta muroaat eting."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oyda o'sish haqida ko'proq ma'lumot - semirish",
-                    "text": "Shoshilinch e'tibor! Farzandingiz semirib ketgan, ya'ni uning balandligi uchun ortiqcha vazn bor. Ushbu og'irlik bolangizning sog'lig'iga jiddiy zarar etkazishi mumkin. Bunga nima sabab bo'lganligi haqida o'ylab ko'ring: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli oziq-ovqatlarni iste'mol qilish, jismoniy faollikni kamaytirish, ko'rish vaqtining ko'payishi yoki yaqin atrofdagi o'zgarishlar va boshqalar. Pediatrga ko'rik va qo'shimcha diagnostika qilish uchun tashrif buyurishni, shuningdek o'sishni keyingi kuzatib borish dinamikasini aniqlashni unutmang!"
+                    "articleID": [3401, 3341, 3376, 3346],
+                    "name": "Dastlabki 6 oyda oʻsish haqida batafsil maʼlumot – semizlik",
+                    "text": "Faqat ona suti bilan oziqlanadigan 0–6 oylik bola uchun ortiqcha vazn xavfi yoʻq yoki minimal. Ayniqsa uzoq muddat davomida – kamida 12 oy koʻkrak suti bilan oziqlanish keyinchalik oʻrta yoshda va voyaga yetganida bolaning semirishini oldini olishi isbotlangan va ilmiy jihatdan tasdiqlangan.Sunʼiy oziqlanadigan bolalar uchun ortiqcha vazn xavfi doim mavjud. Ortiqcha vaznli yoki semizligi bor bolalar uchun pediatr maslahati foydali boʻlishi mumkin. Vaznni kamaytiraman deb bolangizni ovqatdan hech qachon qismang. Bolalar oʻsishi va rivojlanishi uchun hayotning dastlabki 6 oyi davomida toʻgʻri ovqatlanishi zarur, ularni faqat emizish kerak. Sunʼiy oziqlanishda boʻlgan chaqaloqlar uchun ozuqalarni toʻgʻri tayyorlash boʻyicha koʻrsatmalarga (suv va kukunning toʻgʻri miqdori) rioya qilganingizga ishonch hosil qiling va kuniga ozuqalar soni va miqdori boʻyicha koʻrsatmalarga amal qiling."
                 }
             },
             {
-                "child_age": [
-                    47
-                ],
+                "child_age": [47],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylikda o'sish haqida – bolaning vazni uning uzunlik / bo'yiga  mos",
-                    "text": "Barakalla! Farzandingiz yaxshi o'smoqda va uning vazni bo'yiga mos kelmoqda. To'g'ri ovqatlanish, jismoniy faollik va uyqu bo'yicha tavsiyalarga amal qilishda davom eting. Farzandingizning o'sishini kuzatib boring."
+                    "articleID": [3406, 3416, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – vazn tana uzunligiga mos",
+                    "text": "Juda yaxshi! Farzandingiz yaxshi oʻsyapti, uning vazni tana uzunligiga mos. Oziqlanish, jismoniy faollik va uyqu boʻyicha tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylik o'sish haqida ko'proq ma'lumot - engil ovqatlanish",
-                    "text": "diqqat Farzandingiz vazni yo'qotmoqda (yoki vazn orttirmayapti) va uzunligi / bo'yi uchun o'rtacha vazn etishmasligi mavjud. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni topishni o'ylab ko'ring: yaqinda yuqumli kasallik yoki diareya, boshqa surunkali kasalliklar, etarli bo'lmagan ovqatlanish va juda noto'g'ri ovqatlanish, yaqin atrofdagi o'zgarishlar va boshqalar. Buning sababini aniqlash, yo'qotishni to'g'irlash va o'sishni keyingi kuzatib borish dinamikasini aniqlash uchun pediatr bilan tekshiruvni tayinlaganingizga ishonch hosil qiling. Ratsionni yaxshilash uchun bolangiz katta e'tiborga muhtoj."
+                    "articleID": [6201, 3406, 3371, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – kamvaznlik ehtimoli",
+                    "text": "Diqqat! Farzandingiz ozib ketyapti (yoki vazni ortmayapti), unda tana uzunligiga nisbatan kamvaznlik bor. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir bevosita sabablarni aniqlang: yaqin orada kechirilgan yuqumli kasallik yoki ichketish, biror-bir boshqa surunkali kasallik, yetarli darajada ovqatlanmaslik yoki notoʻgʻri ovqatlanish, oiladagi oʻzgarishlar va hokazo. Sababni aniqlash, vazn yoʻqotishni toʻхtatish va oʻsish surʼatini aniqlash, keyingi davrda qanday kuzatib borish kerakligini bilib olish va ovqatlanishini yaxshilash uchun pediatr koʻrigiga albatta boring."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylik o'sish haqida ko'proq ma'lumot - og'ir ovqatlanish etishmovchiligi",
-                    "text": "diqqat Farzandingiz uzunlik / bo'y uchun og'irlik etishmovchiligiga ega. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring, ba'zi sabablar bo'lishi mumkin: so'nggi kasalliklar, metabolik va surunkali kasalliklar, etarli va noto'g'ri ovqatlanish, atrofdagi muhit o'zgarishi va boshqalar. Buning sababini o'rganish va yo'qotish o'rnini qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
+                    "articleID": [6201, 3406, 3371, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – oziqlanishning ogʻir buzilishi",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan juda kam. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir ehtimoliy bevosita sabablarni aniqlang. Masalan: yaqin orada kasal boʻlgani, metabolik va surunkali kasalliklar, kam va notoʻgʻri ovqatlanish, oiladagi muhitning oʻzgarishi va boshqalar. Buning sababini aniqlash va yoʻqotilgan vaznni qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 7 - 9 oy - ortiqcha vazn",
-                    "text": "diqqat Farzandingiz bo'yi uchun o'rtacha darajada ortiqcha vaznga ega. Ushbu ortiqcha vazn uning sog'lig'iga xavf tug'dirishi mumkin, shuning uchun bunga nima sabab bo'lganligi haqida o'ylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli ovqatlarni iste'mol qilish, jismoniy faollikning pasayishi, ko'rish vaqtining ko'payishi yoki darhol o'zgarishi atrof-muhit va boshqalar. Qo'shimcha tavsiyalar olish va bolangizning o'sishini kuzatish dinamikasini aniqlash uchun pediatr bilan uchrashishga ishonch hosil qiling."
+                    "articleID": [3406, 3376, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – ortiqcha vazn",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan ortiqcha. Ushbu ortiqcha vazn uning sogʻligʻiga xavf tugʻdirishi mumkin. Shuning uchun bunga nima sabab boʻlgani haqida oʻylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha isteʼmol qilish (masalan, shirin va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murioaat eting."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 7 - 9 oy - ortiqcha vazn",
-                    "text": "Shoshilinch e'tibor! Farzandingiz semirib ketgan, ya'ni uning balandligi uchun ortiqcha vazn bor. Ushbu og'irlik farzandingizning sog'lig'iga jiddiy zarar etkazishi mumkin. Bunga nima sabab bo'lganligi haqida o'ylab ko'ring: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli oziq-ovqatlarni iste'mol qilish, jismoniy faollikni kamaytirish, ko'rish vaqtining ko'payishi yoki yaqin atrofdagi o'zgarishlar va boshqalar. Pediatrga ko'rik va qo'shimcha diagnostika qilish uchun tashrif buyurishni, shuningdek o'sishni keyingi kuzatib borish dinamikasini aniqlashni unutmang!"
+                    "articleID": [3406, 3376, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – semizlik",
+                    "text": "Diqqat! Farzandingizning vazni ortiqcha, yaʼni vazni tana uzunligiga nisbatan ortiqcha. Bu ortiqcha vazn uning sogʻligʻiga jiddiy xavf tugʻdirishi mumkin. Bunga nima sabab boʻlganini oʻylab koʻring: meʼyordan ortiq kaloriyalarga boy oziq-ovqat mahsulotlarini isteʼmol qilish (masalan, shirinliklar va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish, qoʻshimcha tekshiruvlardan oʻtish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 }
             },
             {
-                "child_age": [
-                    48
-                ],
+                "child_age": [48],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "10-12 oylikda o'sish haqida – bolaning vazni uning uzunlik / bo'yiga  mos",
-                    "text": "Barakalla! Farzandingiz yaxshi o'smoqda va uning vazni bo'yiga mos kelmoqda. To'g'ri ovqatlanish, jismoniy faollik va uyqu bo'yicha tavsiyalarga amal qilishda davom eting. Farzandingizning o'sishini kuzatib boring."
+                    "articleID": [3411, 3416, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – vazn tana uzunligiga mos",
+                    "text": "Juda yaxshi! Farzandingiz yaxshi oʻsyapti, uning vazni tana uzunligiga mos. Oziqlanish, jismoniy faollik va uyqu boʻyicha tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3371,
-                        3356,
-                        3346
-                    ],
-                    "name": "10-12 oylik o'sish haqida ko'proq ma'lumot - engil ovqatlanish",
-                    "text": "diqqat Farzandingiz vazni yo'qotmoqda (yoki vazn orttirmayapti) va uzunligi / bo'yi uchun o'rtacha vazn etishmasligi mavjud. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring: yaqinda yuqumli kasallik yoki diareya, boshqa surunkali kasalliklar, etarli bo'lmagan ovqatlanish va juda noto'g'ri ovqatlanish, yaqin atrofdagi o'zgarishlar va boshqalar. Buning sababini aniqlash, yo'qotishni to'g'irlash va o'sishni keyingi kuzatib borish dinamikasini aniqlash uchun pediatr bilan tekshiruvni tayinlaganingizga ishonch hosil qiling. Ratsionni yaxshilash uchun bolangiz katta e'tiborga muhtoj."
+                    "articleID": [6201, 3411, 3371, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – kamvaznlik ehtimoli",
+                    "text": "Diqqat! Farzandingiz ozib ketyapti (yoki vazni ortmayapti), unda tana uzunligiga nisbatan kamvaznlik bor. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir bevosita sabablarni aniqlang: yaqin orada kechirilgan yuqumli kasallik yoki ichketish, biror-bir boshqa surunkali kasallik, yetarli darajada ovqatlanmaslik yoki notoʻgʻri ovqatlanish, oiladagi oʻzgarishlar va hokazo. Sababni aniqlash, vazn yoʻqotishni toʻхtatish va oʻsish surʼatini aniqlash, keyingi davrda qanday kuzatib borish kerakligini bilib olish va ovqatlanishini yaxshilash uchun pediatr koʻrigiga albatta boring."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "10-12 oylik o'sish haqida ko'proq ma'lumot - og'ir ovqatlanish",
-                    "text": "diqqat Farzandingiz uzunlik / bo'y uchun og'irlik etishmovchiligiga ega. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring, ba'zi sabablar bo'lishi mumkin: so'nggi kasalliklar, metabolik va surunkali kasalliklar, etarli va noto'g'ri ovqatlanish, atrofdagi muhit o'zgarishi va boshqalar. Buning sababini o'rganish va yo'qotish o'rnini qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
+                    "articleID": [6201, 3411, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – oziqlanishning ogʻir buzilishi",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan juda kam. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir ehtimoliy bevosita sabablarni aniqlang. Masalan: yaqin orada kasal boʻlgani, metabolik va surunkali kasalliklar, kam va notoʻgʻri ovqatlanish, oiladagi muhitning oʻzgarishi va boshqalar. Buning sababini aniqlash va yoʻqotilgan vaznni qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "10-12 oylik o'sish haqida ko'proq ma'lumot - ortiqcha vazn",
-                    "text": "diqqat Farzandingiz bo'yi uchun o'rtacha darajada ortiqcha vaznga ega. Ushbu ortiqcha vazn uning sog'lig'iga xavf tug'dirishi mumkin, shuning uchun bunga nima sabab bo'lganligi haqida o'ylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli ovqatlarni iste'mol qilish, jismoniy faollikning pasayishi, ko'rish vaqtining ko'payishi yoki darhol o'zgarishi atrof-muhit va boshqalar. Qo'shimcha tavsiyalar olish va bolangizning o'sishini kuzatish dinamikasini aniqlash uchun pediatr bilan uchrashishga ishonch hosil qiling."
+                    "articleID": [3411, 3376, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – ortiqcha vazn",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan ortiqcha. Ushbu ortiqcha vazn uning sogʻligʻiga xavf tugʻdirishi mumkin. Shuning uchun bunga nima sabab boʻlgani haqida oʻylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha isteʼmol qilish (masalan, shirin va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 10 - 12 oy - ortiqcha vazn",
-                    "text": "Shoshilinch e'tibor! Farzandingiz semirib ketgan, ya'ni uning balandligi uchun ortiqcha vazn bor. Ushbu og'irlik farzandingizning sog'lig'iga jiddiy zarar etkazishi mumkin. Bunga nima sabab bo'lganligi haqida o'ylab ko'ring: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli oziq-ovqatlarni iste'mol qilish, jismoniy faollikni kamaytirish, ko'rish vaqtining ko'payishi yoki yaqin atrofdagi o'zgarishlar va boshqalar. Pediatrga ko'rik va qo'shimcha diagnostika qilish uchun tashrif buyurishni, shuningdek o'sishni keyingi kuzatib borish dinamikasini aniqlashni unutmang!"
+                    "articleID": [3411, 3376, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – semizlik",
+                    "text": "Diqqat! Farzandingizning vazni ortiqcha, yaʼni vazni tana uzunligiga nisbatan ortiqcha. Bu ortiqcha vazn uning sogʻligʻiga jiddiy xavf tugʻdirishi mumkin. Bunga nima sabab boʻlganini oʻylab koʻring: meʼyordan ortiq kaloriyalarga boy oziq-ovqat mahsulotlarini isteʼmol qilish (masalan, shirinliklar va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish, qoʻshimcha tekshiruvlardan oʻtish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 }
             },
             {
-                "child_age": [
-                    50,
-                    49
-                ],
+                "child_age": [49, 50],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "13-24 oylikda o'sish haqida – bolaning vazni uning uzunlik / bo'yiga mos",
-                    "text": "Barakalla! Farzandingiz yaxshi o'smoqda va uning vazni bo'yiga mos kelmoqda. To'g'ri ovqatlanish, jismoniy faollik va uyqu bo'yicha tavsiyalarga amal qilishda davom eting. Farzandingizning o'sishini kuzatib boring."
+                    "articleID": [3391, 3416, 3386, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – vazn tana uzunligiga mos",
+                    "text": "Juda yaxshi! Farzandingiz yaxshi oʻsyapti, uning vazni tana uzunligiga mos. Oziqlanish, jismoniy faollik va uyqu boʻyicha tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "13-24 oylik o'sish haqida ko'proq ma'lumot - engil ovqatlanish",
-                    "text": "diqqat Farzandingiz vazni yo'qotmoqda (yoki vazn orttirmayapti) va uzunligi / bo'yi uchun o'rtacha vazn etishmasligi mavjud. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni topishni o'ylab ko'ring: yaqinda yuqumli kasallik yoki diareya, boshqa surunkali kasalliklar, etarli bo'lmagan ovqatlanish va juda noto'g'ri ovqatlanish, yaqin atrofdagi o'zgarishlar va boshqalar. Buning sababini aniqlash, yo'qotishni to'g'irlash va o'sishni keyingi kuzatib borish dinamikasini aniqlash uchun pediatr bilan tekshiruvni tayinlaganingizga ishonch hosil qiling. Ratsionni yaxshilash uchun bolangiz katta e'tiborga muhtoj."
+                    "articleID": [6201, 3371, 3391, 3386, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – kamvaznlik ehtimoli",
+                    "text": "Diqqat! Farzandingiz ozib ketyapti (yoki vazni ortmayapti), unda tana uzunligiga nisbatan kamvaznlik bor. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir bevosita sabablarni aniqlang: yaqin orada kechirilgan yuqumli kasallik yoki ichketish, biror-bir boshqa surunkali kasallik, yetarli darajada ovqatlanmaslik yoki notoʻgʻri ovqatlanish, oiladagi oʻzgarishlar va hokazo. Sababni aniqlash, vazn yoʻqotishni toʻхtatish va oʻsish surʼatini aniqlash, keyingi davrda qanday kuzatib borish kerakligini bilib olish va ovqatlanishini yaxshilash uchun pediatr koʻrigiga albatta boring."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 13 - 24 oy - og'ir ovqatlanish etishmovchiligi",
-                    "text": "diqqat Farzandingiz uzunlik / bo'y uchun og'irlik etishmovchiligiga ega. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring, ba'zi sabablar bo'lishi mumkin: so'nggi kasalliklar, metabolik va surunkali kasalliklar, etarli va noto'g'ri ovqatlanish, atrofdagi muhit o'zgarishi va boshqalar. Buning sababini o'rganish va yo'qotish o'rnini qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
+                    "articleID": [6201, 3391, 3371, 3386, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – oziqlanishning ogʻir buzilishi",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan juda kam. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir ehtimoliy bevosita sabablarni aniqlang. Masalan: yaqin orada kasal boʻlgani, metabolik va surunkali kasalliklar, kam va notoʻgʻri ovqatlanish, oiladagi muhitning oʻzgarishi va boshqalar. Buning sababini aniqlash va yoʻqotilgan vaznni qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "13-24 oylik o'sish haqida ko'proq ma'lumot - ortiqcha vazn",
-                    "text": "diqqat Farzandingiz bo'yi uchun o'rtacha darajada ortiqcha vaznga ega. Ushbu ortiqcha vazn uning sog'lig'iga xavf tug'dirishi mumkin, shuning uchun bunga nima sabab bo'lganligi haqida o'ylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli ovqatlarni iste'mol qilish, jismoniy faollikning pasayishi, ko'rish vaqtining ko'payishi yoki darhol o'zgarishi atrof-muhit va boshqalar. Qo'shimcha tavsiyalar olish va bolangizning o'sishini kuzatish dinamikasini aniqlash uchun pediatr bilan uchrashishga ishonch hosil qiling."
+                    "articleID": [3391, 3386, 3381, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – ortiqcha vazn",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan ortiqcha. Ushbu ortiqcha vazn uning sogʻligʻiga xavf tugʻdirishi mumkin. Shuning uchun bunga nima sabab boʻlgani haqida oʻylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha isteʼmol qilish (masalan, shirin va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 13 - 24 oy - ortiqcha vazn",
-                    "text": "Shoshilinch e'tibor! Farzandingiz semirib ketgan, ya'ni uning balandligi uchun ortiqcha vazn bor. Ushbu og'irlik bolangizning sog'lig'iga jiddiy zarar etkazishi mumkin. Bunga nima sabab bo'lganligi haqida o'ylab ko'ring: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli oziq-ovqatlarni iste'mol qilish, jismoniy faollikni kamaytirish, ko'rish vaqtining ko'payishi yoki yaqin atrofdagi o'zgarishlar va boshqalar. Pediatrga ko'rik va qo'shimcha diagnostika qilish uchun tashrif buyurishni, shuningdek o'sishni keyingi kuzatib borish dinamikasini aniqlashni unutmang!"
+                    "articleID": [3391, 3386, 3381, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – semizlik",
+                    "text": "Diqqat! Farzandingizning vazni ortiqcha, yaʼni vazni tana uzunligiga nisbatan ortiqcha. Bu ortiqcha vazn uning sogʻligʻiga jiddiy xavf tugʻdirishi mumkin. Bunga nima sabab boʻlganini oʻylab koʻring: meʼyordan ortiq kaloriyalarga boy oziq-ovqat mahsulotlarini isteʼmol qilish (masalan, shirinliklar va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish, qoʻshimcha tekshiruvlardan oʻtish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 }
             },
             {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
+                "child_age": [51, 52, 57, 58],
                 "goodText": {
-                    "articleID": [
-                        5891,
-                        3416,
-                        3396,
-                        3366
-                    ],
-                    "name": "25-60 oylikda o'sish haqida - bolaning vazni uning bo'yiga  mos",
-                    "text": "Barakalla! Farzandingiz yaxshi o'smoqda va uning vazni bo'yiga mos kelmoqda. To'g'ri ovqatlanish, jismoniy faollik va uyqu bo'yicha tavsiyalarga amal qilishda davom eting. Farzandingizning o'sishini kuzatib boring."
+                    "articleID": [3396, 3416, 5891, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – vazn boʻyga mos",
+                    "text": "Juda yaxshi! Farzandingiz yaxshi oʻsyapti, uning vazni boʻyiga mos. Oziqlanish, jismoniy faollik va uyqu boʻyicha tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 25-60 oy - engil ovqatlanish",
-                    "text": "diqqat Farzandingiz vazni yo'qotmoqda (yoki vazn orttirmayapti) va uzunligi / bo'yi uchun o'rtacha vazn etishmasligi mavjud. Bunday holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring: yaqinda yuqumli kasallik yoki diareya, boshqa surunkali kasalliklar, etarli bo'lmagan ovqatlanish va juda noto'g'ri ovqatlanish, yaqin atrofdagi o'zgarishlar va boshqalar. Buning sababini aniqlash, yo'qotishni to'g'irlash va o'sishni keyingi kuzatib borish dinamikasini aniqlash uchun pediatr bilan tekshiruvni tayinlaganingizga ishonch hosil qiling. Ratsionni yaxshilash uchun bolangiz katta e'tiborga muhtoj."
+                    "articleID": [6201, 3371, 3396, 5891, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – kamvaznlik ehtimoli",
+                    "text": "Diqqat! Farzandingiz ozib ketyapti (yoki vazni ortmayapti), unda boʻyiga nisbatan kamvaznlik bor. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir bevosita sabablarni aniqlang: yaqin orada kechirilgan yuqumli kasallik yoki ichketish, biror-bir boshqa surunkali kasallik, yetarli darajada ovqatlanmaslik yoki notoʻgʻri ovqatlanish, oiladagi oʻzgarishlar va hokazo. Sababni aniqlash, vazn yoʻqotishni toʻхtatish va oʻsish surʼatini aniqlash, keyingi davrda qanday kuzatib borish kerakligini bilib olish va ovqatlanishini yaxshilash uchun pediatr koʻrigiga albatta boring."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 25-60 oy - og'ir ovqatlanish etishmovchiligi",
-                    "text": "diqqat Farzandingiz uzunlik / bo'y uchun og'irlik etishmovchiligiga ega. Bu holat bir necha hafta ichida sodir bo'lishi mumkin edi, shuning uchun ba'zi bir tezkor sabablarni aniqlashni o'ylab ko'ring, ba'zi sabablar bo'lishi mumkin: so'nggi kasalliklar, metabolik va surunkali kasalliklar, etarli va noto'g'ri ovqatlanish, atrofdagi muhit o'zgarishi va boshqalar. Buning sababini o'rganish va yo'qotish o'rnini qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
+                    "articleID": [6201, 3396, 3371, 5891, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – oziqlanishning ogʻir buzilishi",
+                    "text": "Diqqat! Farzandingizning vazni tana uzunligiga nisbatan juda kam. Bu jarayon bir necha hafta davomida yuz bergan boʻlishi mumkin, shuning uchun baʼzi bir ehtimoliy bevosita sabablarni aniqlang. Masalan: yaqin orada kasal boʻlgani, metabolik va surunkali kasalliklar, kam va notoʻgʻri ovqatlanish, oiladagi muhitning oʻzgarishi va boshqalar. Buning sababini aniqlash va yoʻqotilgan vaznni qanday qoplashni aniqlash uchun shoshilinch ravishda pediatrga murojaat qiling."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 25-60 oy - ortiqcha vazn",
-                    "text": "diqqat Farzandingiz bo'yi uchun o'rtacha darajada ortiqcha vaznga ega. Ushbu ortiqcha vazn uning sog'lig'iga xavf tug'dirishi mumkin, shuning uchun bunga nima sabab bo'lganligi haqida o'ylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli ovqatlarni iste'mol qilish, jismoniy faollikning pasayishi, ko'rish vaqtining ko'payishi yoki darhol o'zgarishi atrof-muhit va boshqalar. Qo'shimcha tavsiyalar olish va bolangizning o'sishini kuzatish dinamikasini aniqlash uchun pediatr bilan uchrashishga ishonch hosil qiling."
+                    "articleID": [3396, 5891, 3381, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – ortiqcha vazn",
+                    "text": "Diqqat! Farzandingizning vazni boʻyiga nisbatan ortiqcha. Ushbu ortiqcha vazn uning sogʻligʻiga xavf tugʻdirishi mumkin. Shuning uchun bunga nima sabab boʻlgani haqida oʻylang: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha isteʼmol qilish (masalan, shirin va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 25-60 oy - ortiqcha vazn",
-                    "text": "Shoshilinch e'tibor! Farzandingiz semirib ketgan, ya'ni uning balandligi uchun ortiqcha vazn bor. Ushbu og'irlik farzandingizning sog'lig'iga jiddiy zarar etkazishi mumkin. Bunga nima sabab bo'lganligi haqida o'ylab ko'ring: energiyaga boy oziq-ovqat mahsulotlarini ortiqcha iste'mol qilish (masalan, shirin va yog'li mahsulotlar), zararli oziq-ovqatlarni iste'mol qilish, jismoniy faollikni kamaytirish, ko'rish vaqtining ko'payishi yoki yaqin atrofdagi o'zgarishlar va boshqalar. Pediatrga ko'rik va qo'shimcha diagnostika qilish uchun tashrif buyurishni, shuningdek o'sishni keyingi kuzatib borish dinamikasini aniqlashni unutmang!"
+                    "articleID": [5891, 3396, 3381, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – semizlik",
+                    "text": "Diqqat! Farzandingizning vazni ortiqcha, yaʼni vazni boʻyiga nisbatan ortiqcha. Bu ortiqcha vazn uning sogʻligʻiga jiddiy xavf tugʻdirishi mumkin. Bunga nima sabab boʻlganini oʻylab koʻring: meʼyordan ortiq kaloriyalarga boy oziq-ovqat mahsulotlarini isteʼmol qilish (masalan, shirinliklar va yogʻli mahsulotlar), notoʻgʻri ovqatlanish, jismoniy faollikning pasayishi, ekran oldida koʻp oʻtirish, atrof-muhitning oʻzgarishi va boshqalar. Qoʻshimcha tavsiyalar olish, qoʻshimcha tekshiruvlardan oʻtish va bolangizning oʻsish surʼatini aniqlash uchun pediatrga albatta murojaat eting."
                 }
             }
         ],
         "height_for_age": [
             {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
+                "child_age": [43, 44, 45, 46],
                 "goodText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oylik o'sish haqida ko'proq ma'lumot - yoshga xos o'sish",
-                    "text": "Bravo! Farzandingiz uzunligi / bo'yi bo'yicha yoki uning yoshi va jinsi uchun kutilgan ko'rsatkichdan biroz kattaroq o'sadi. Oziqlanish, jismoniy faollik va uxlash bo'yicha yaxshi amaliyot tavsiyalariga amal qilishni davom eting va bolangizning o'sishini kuzatib boring."
+                    "articleID": [3401, 3346, 3341, 3416],
+                    "name": "Dastlabki 6 oyda oʻsish haqida batafsil maʼlumot – yoshiga mos oʻsish",
+                    "text": "Juda yaxshi! Farzandingizning tana uzunligi uning yoshi va jinsiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oylik o'sish haqida batafsil ma'lumot - o'sishning o'rtacha darajada orqada qolishi",
-                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada  orqada qolyapti. Bunga sabab boʻlishi mumkin boʻlgan uzoq muddatli sabablardan birini koʻrib chiqing: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va h. Qoʻshimcha tekshiruvdan oʻtish uchun, tavsiyalar olish uchun va keyingi oʻsishni kuzatish dinamikasini aniqlash uchun pediatr bilan maslahatlashing!"
+                    "articleID": [3606, 3401, 3341, 3346],
+                    "name": "Dastlabki 6 oylik oʻsish haqida batafsil maʼlumot – oʻsishning oʻrtacha darajada orqada qolishi",
+                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada orqada qolyapti. Bunga olib kelishi mumkin boʻlgan va uzoq muddat davom etgan sabablarni izlang: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va hokazo. Qoʻshimcha tekshiruvdan oʻtish, tavsiyalar olish va keyingi kuzatuvlar uchun oʻsish surʼatini aniqlab olish maqsadida pediatr bilan maslahatlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oylikda o'sish bo'yicha to'liq ma'lumot - o'sishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning tana uzunligining o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [3401, 3346, 3341],
+                    "name": "Dastlabki 6 oylikda oʻsish boʻyicha batafsil maʼlumot – oʻsishning juda ortda qolishi",
+                    "text": "Shoshilinch! Farzandingiz tana uzunligining oʻsishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch yoziling: ravishda tegishli muolajalarni olish va keyingi kuzatuvlar uchun oʻsish surʼatini aniqlab olish hamda qoʻshimcha tekshiruvdan oʻtish uchun!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oydagi o'sish -  tana uzunligi o'rtachadan yuqori",
-                    "text": "Farzandingiz o'sdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy salohiyatining natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning o'sishini muntazam ravishda kuzatib boring."
+                    "articleID": [3401, 3346, 3341],
+                    "name": "Dastlabki 6 oydagi oʻsish haqida batafsil maʼlumot – tana uzunligi oʻrtachadan yuqori",
+                    "text": "Farzandingiz oʻsdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy imkoniyati natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning oʻsishini muntazam ravishda kuzatib boring."
                 }
             },
             {
-                "child_age": [
-                    47
-                ],
+                "child_age": [47],
                 "goodText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylikda o'sish haqida batafsil maʼlumot - tana uzunligi yoshiga mos",
-                    "text": "Juda yaxshi! Farzandingiz tana uzunligi uning yoshi va jinsiga nisbatan yoshiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishni davom eting va bolangizning oʻsishini kuzatib boring."
+                    "articleID": [3406, 3351, 3346, 3416],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – tana uzunligi yoshiga mos",
+                    "text": "Juda yaxshi! Farzandingizning tana uzunligi uning yoshi va jinsiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylik o'sish haqida - o'sishning o'rtacha kechikishi",
-                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada  orqada qolyapti. Bunga sabab boʻlishi mumkin boʻlgan uzoq muddatli sabablardan birini koʻrib chiqing: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va h. Qoʻshimcha tekshiruvdan oʻtish uchun, tavsiyalar olish uchun va keyingi oʻsishni kuzatish dinamikasini aniqlash uchun pediatr bilan maslahatlashing!"
+                    "articleID": [3606, 3406, 3346, 3351],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning oʻrtacha darajada orqada qolishi",
+                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada orqada qolyapti. Bunga olib kelishi mumkin boʻlgan va uzoq muddat davom etgan sabablarni izlang: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va hokazo. Qoʻshimcha tekshiruvdan oʻtish, tavsiyalar olish va keyingi kuzatuvlar uchun oʻsish surʼatini aniqlab olish maqsadida pediatr bilan maslahatlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylik o'sish haqida ko'proq ma'lumot - o'sishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning tana uzunligining o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [3606, 3406, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning juda ortda qolishi",
+                    "text": "Shoshilinch! Farzandingiz tana uzunligining oʻsishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch yoziling: tegishli muolajalarni olish, keyingi kuzatuvlar uchun oʻsish surʼatini aniqlash va qoʻshimcha tekshiruvdan oʻtish zarur!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7 - 9 oylikda o'sish bo'yicha to'liq ma'lumot - tana uzunligi yoshi uchun o'rtachadan yuqori",
-                    "text": "Farzandingiz o'sdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy salohiyatining natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning o'sishini muntazam ravishda kuzatib boring."
+                    "articleID": [6116, 3406, 3351, 3346],
+                    "name": "7–9-oylarda oʻsish boʻyicha batafsil maʼlumot – tana uzunligi yoshi uchun oʻrtachadan yuqori",
+                    "text": "Farzandingiz oʻsdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy imkoniyati natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning oʻsishini muntazam ravishda kuzatib boring."
                 }
             },
             {
-                "child_age": [
-                    48
-                ],
+                "child_age": [48],
                 "goodText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "10-12 oylikda o'sish haqida batafsil maʼlumot - tana uzunligi yoshiga mos",
-                    "text": "Juda yaxshi! Farzandingiz tana uzunligi uning yoshi va jinsiga nisbatan yoshiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishni davom eting va bolangizning oʻsishini kuzatib boring."
+                    "articleID": [3411, 3356, 3346, 3416],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – tana uzunligi yoshiga mos",
+                    "text": "Juda yaxshi! Farzandingizning tana uzunligi uning yoshi va jinsiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "10-12 oylikda o'sish haqida batafsil maʼlumot - osʼishning oʼrtacha darajada orqada qolishi",
-                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada  orqada qolyapti. Bunga sabab boʻlishi mumkin boʻlgan uzoq muddatli sabablardan birini koʻrib chiqing: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va h. Qoʻshimcha tekshiruvdan oʻtish uchun, tavsiyalar olish uchun va keyingi oʻsishni kuzatish dinamikasini aniqlash uchun pediatr bilan maslahatlashing!"
+                    "articleID": [3606, 3411, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning oʻrtacha darajada orqada qolishi",
+                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada orqada qolyapti. Bunga olib kelishi mumkin boʻlgan va uzoq muddat davom etgan sabablarni izlang: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va hokazo. Qoʻshimcha tekshiruvdan oʻtish, tavsiyalar olish va keyingi kuzatuvlar uchun oʻsish surʼatini aniqlab olish maqsadida pediatr bilan maslahatlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "10 - 12 oylikda o'sish bo'yicha to'liq ma'lumot - osʼishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning tana uzunligining o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [3606, 3411, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning juda ortda qolishi",
+                    "text": "Shoshilinch! Farzandingiz tana uzunligining oʻsishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch yoziling: tegishli muolajalarni olish, keyingi kuzatuvlar uchun oʻsish surʼatini aniqlash va qoʻshimcha tekshiruvdan oʻtish zarur!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "10 - 12 oylikda o'sish bo'yicha to'liq ma'lumot - tana uzunligi yoshi uchun o'rtachadan yuqori",
-                    "text": "Farzandingiz o'sdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy salohiyatining natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning o'sishini muntazam ravishda kuzatib boring."
+                    "articleID": [6116, 3411, 3356, 3346],
+                    "name": "10–12-oylarda oʻsish boʻyicha batafsil maʼlumot – tana uzunligi yoshi uchun oʻrtachadan yuqori",
+                    "text": "Farzandingiz oʻsdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy imkoniyati natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning oʻsishini muntazam ravishda kuzatib boring."
                 }
             },
             {
-                "child_age": [
-                    50,
-                    49
-                ],
+                "child_age": [49, 50],
                 "goodText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "13-24 oylikda o'sish haqida batafsil maʼlumot - tana uzunligi yoshiga mos",
-                    "text": "Juda yaxshi! Farzandingiz tana uzunligi uning yoshi va jinsiga nisbatan yoshiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishni davom eting va bolangizning oʻsishini kuzatib boring."
+                    "articleID": [3391, 3386, 3361, 3416],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – tana uzunligi yoshiga mos",
+                    "text": "Juda yaxshi! Farzandingizning tana uzunligi uning yoshi va jinsiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "O'sish haqida batafsil ma'lumot 13 - 24 oy - o'sishning oʼrtacha darajada orqada qolishi",
-                    "text": "Diqqat! Farzandingizning tana uzunligining oʻsishi sekin va oʻrtacha darajada orqada qolyapti. Bunga sabab boʻlishi mumkin boʻlgan uzoq muddatli sabablardan birini koʻrib chiqing: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va h. Qoʻshimcha tekshiruvdan oʻtish uchun, tavsiyalar olish uchun va keyingi oʻsishni kuzatish dinamikasini aniqlash uchun pediatr bilan maslahatlashing!"
+                    "articleID": [3606, 3391, 3386, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning oʻrtacha darajada orqada qolishi",
+                    "text": "Diqqat! Farzandingizning tana uzunligi oʻsishi sekin va oʻrtacha darajada orqada qolyapti. Bunga olib kelishi mumkin boʻlgan va uzoq muddat davom etgan sabablarni izlang: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va hokazo. Qoʻshimcha tekshiruvdan oʻtish, tavsiyalar olish va keyingi kuzatuvlar uchun oʻsish surʼatini aniqlab olish maqsadida pediatr bilan maslahatlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 13 - 24 oy - osʼishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning tana uzunligining o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [3606, 3391, 3386, 3361],
+                    "name": "13–24-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning juda ortda qolishi",
+                    "text": "Shoshilinch! Farzandingiz tana uzunligining oʻsishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch yoziling: tegishli muolajalarni olish, keyingi kuzatuvlar uchun oʻsish surʼatini aniqlash va qoʻshimcha tekshiruvdan oʻtish zarur!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "13 - 24 oylikda o'sish bo'yicha to'liq ma'lumot - tana uzunligi yoshi uchun o'rtachadan yuqori",
-                    "text": "Farzandingiz o'sdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy salohiyatining natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning o'sishini muntazam ravishda kuzatib boring."
+                    "articleID": [6116, 3391, 3386, 3361],
+                    "name": "13–24-oylarda oʻsish boʻyicha batafsil maʼlumot – tana uzunligi yoshi uchun oʻrtachadan yuqori",
+                    "text": "Farzandingiz oʻsdi, uning tana uzunligi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy imkoniyati natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning oʻsishini muntazam ravishda kuzatib boring."
                 }
             },
             {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
+                "child_age": [51, 52, 57, 58],
                 "goodText": {
-                    "articleID": [
-                        5891,
-                        3396
-                    ],
-                    "name": "25-72 oylikda o'sish haqida batafsil maʼlumot - bo'y yoshiga mos",
-                    "text": "Juda yaxshi! Farzandingiz boʻyi uning yoshi va jinsiga nisbatan yoshiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishni davom eting va bolangizning oʻsishini kuzatib boring."
+                    "articleID": [5891, 3396, 3386, 3416],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – boʻy yoshga mos",
+                    "text": "Juda yaxshi! Farzandingiz boʻyi uning yoshi va jinsiga nisbatan yoshiga mos yoki kutilgan koʻrsatkichdan biroz yuqori. Oziqlanish, jismoniy faollik va uyqu masalasida toʻgʻri amaliy tavsiyalarga amal qilishda davom eting va bolangizning oʻsishini kuzatib boring."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "25 - 60 oylikda o'sish bo'yicha to'liq ma'lumot - osʼishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning bo'y o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!!"
+                    "articleID": [3606, 5891, 3396, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning oʻrtacha darajada orqada qolishi",
+                    "text": "Diqqat! Farzandingizning boʻy oʻsishi sekin va oʻrtacha darajada orqada qolyapti. Bunga olib kelishi mumkin boʻlgan va uzoq muddat davom etgan sabablarni izlang: doimiy ravishda toʻyib ovqatlanmaslik, surunkali kasallik, endokrin kasallik va hokazo. Qoʻshimcha tekshiruvdan oʻtish, tavsiyalar olish va keyingi kuzatuvlar uchun oʻsish surʼatini aniqlab olish maqsadida pediatr bilan maslahatlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "25 - 60 oylikda o'sish bo'yicha to'liq ma'lumot - osʼishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning bo'y o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [5891, 3606, 3396, 3366],
+                    "name": "25–60-oylarda oʻsish haqida batafsil maʼlumot – oʻsishning juda ortda qolishi",
+                    "text": "Shoshilinch! Farzandingizning boʻy oʻsishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch yoziling: tegishli muolajalarni olish, keyingi kuzatuvlar uchun oʻsish surʼatini aniqlash va qoʻshimcha tekshiruvdan oʻtish zarur!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3366
-                    ],
-                    "name": "25 oylikdan 60 oygacha bo'y uzunligi - bo'yi yoshi uchun o'rtachadan yuqori",
-                    "text": "Farzandingiz o'sdi, uning bo'yi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy salohiyatining natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning o'sishini muntazam ravishda kuzatib boring."
+                    "articleID": [6116, 5891, 3396, 3366],
+                    "name": "25–60-oylarda oʻsish boʻyicha batafsil maʼlumot – boʻy yoshi uchun oʻrtachadan yuqori",
+                    "text": "Farzandingiz oʻsdi, uning boʻyi shu yoshdagi va jinsdagi bolalalarga qaraganda odatdagidan ancha baland. Ehtimol, bu uning irsiy imkoniyati natijasidir, ammo pediatr bilan bu haqda gaplashing. Qabul qilingan tavsiyalarni bajarishda davom eting va bolangizning oʻsishini muntazam ravishda kuzatib boring."
                 }
             }
         ]
     }],
-    "uz-ru": [ {
+    "uz-ru": [{
         "weight_for_height": [
             {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
+                "child_age": [43, 44, 45, 46],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - вес соответствует длине тела / росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3401, 3416, 3346, 3341],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — вес соответствует длине тела / росту",
+                    "text": "Браво! Ваш ребенок хорошо растет, и его / ее вес соответствует его / ее росту. Продолжайте следовать рекомендациям по питанию, физической активности и сну. Следите за ростом вашего ребенка."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев – риск низкого веса.",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса по отношению длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в  семье и т. д. Обязательно обратитесь педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом."
+                    "articleID": [6236, 3401, 3416, 3341, 3346],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — риск низкого веса",
+                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в семье и т. д. Обязательно обратитесь к педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом. Нужно улучшить питание вашего ребенка."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3401,
-                        3371,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6236, 3371, 3401, 3341, 3346],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — тяжелое нарушение питания",
+                    "text": "Внимание! У вашего ребенка очень низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить некоторые возможные непосредственные причины: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес для роста. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирный продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой роста вашего ребенка."
+                    "articleID": [3401, 3376, 3346, 3341],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — избыточный вес",
+                    "text": "Внимание! Ваш ребенок имеет избыточный вес по отношению к росту. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и определить динамику дальнейшего наблюдения за ростом вашего ребенка."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - ожирение",
-                    "text": "Для ребенка в возрасте 0–6 месяцев, находящегося на исключительно грудном вскармливании, риск избыточного веса отсутствует или минимален. Доказано и научно подтверждено, что грудное вскармливание, особенно продолжительное - не менее 12 месяцев, защищает ребенка от ожирения в более позднем детстве и в зрелом возрасте.Для малышей, находящихся на искусственном питании, всегда существует опасность ожирения. Для детей с избыточным весом или ожирением может оказаться полезным совет педиатра. Никогда не отказывайте ребенку в еде, чтобы вызвать потерю веса. Чтобы расти и развиваться должным образом, малышам необходимо правильное питание, исключительно грудное вскармливание в течение первых 6 месяцев жизни. Для младенцев, находящихся на искусственном вскармливании, убедитесь, что вы правильно следуете инструкциям по приготовлению смесей (правильное количество воды и порошка) и тщательно следуете инструкциям по количеству кормлений и объему кормлений в день."
+                    "articleID": [3401, 3341, 3376, 3346],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — ожирение",
+                    "text": "Для ребенка в возрасте 0–6 месяцев, находящегося исключительно на грудном вскармливании, риск избыточного веса отсутствует или минимален. Доказано и научно подтверждено, что грудное вскармливание, особенно продолжительное — не менее 12 месяцев, защищает ребенка от ожирения позже в детстве и зрелом возрасте.&nbsp;Для малышей, находящихся на искусственном питании, всегда существует опасность ожирения. Для детей с избыточным весом или ожирением необходим осмотр педиатра. Никогда не отказывайте ребенку в еде с целью вызвать потерю веса. Чтобы расти и развиваться должным образом, малышам необходимо правильное питание, исключительно грудное вскармливание в течение первых 6 месяцев жизни. Для младенцев, находящихся на искусственном вскармливании, убедитесь, что вы верно следуете инструкциям по приготовлению смесей (правильное количество воды и порошка) и тщательно следуете инструкциям по количеству и объему кормлений в день."
                 }
             },
             {
-                "child_age": [
-                    47
-                ],
+                "child_age": [47],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - вес соответствует длине тела/ росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3406, 3416, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — вес соответствует длине тела / росту",
+                    "text": "Браво! Ваш ребенок хорошо растет, и его / ее вес соответствует его / ее росту. Продолжайте следовать рекомендациям по питанию, физической активности и сну. Следите за ростом вашего ребенка."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запишитесь на осмотр у педиатра, чтобы выявить причину, скорректировать понижение и определить динамику дальнейшего наблюдения за ростом. О вашем ребенке нужно серьезно подумать, чтобы улучшить питание."
+                    "articleID": [6201, 3406, 3371, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — риск низкого веса",
+                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Обязательно обратитесь к педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом. Нужно улучшить питание вашего ребенка."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3406, 3371, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — тяжелое нарушение питания",
+                    "text": "Внимание! У вашего ребенка очень низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить некоторые возможные непосредственные причины: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 7 - 9 oyПодробнее о росте 7-9 месяцев - лишний вес - ortiqcha vazn",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес для роста. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой  роста вашего ребенка."
+                    "articleID": [3406, 3376, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — избыточный вес",
+                    "text": "Внимание! Ваш ребенок имеет избыточный вес по отношению к росту. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и определить динамику дальнейшего наблюдения за ростом вашего ребенка."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - лишний вес",
-                    "text": "Безотлагательное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса в соотношении с ростом. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой роста!"
+                    "articleID": [3406, 3376, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — ожирение",
+                    "text": "Внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса по отношению к его / ее росту. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в окружающей среде и т. д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения динамики дальнейшего наблюдения за ростом!"
                 }
             },
             {
-                "child_age": [
-                    48
-                ],
+                "child_age": [48],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - вес соответствует длине тела/ росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3411, 3416, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — вес соответствует длине тела / росту",
+                    "text": "Браво! Ваш ребенок хорошо растет, и его / ее вес соответствует его / ее росту. Продолжайте следовать рекомендациям по питанию, физической активности и сну. Следите за ростом вашего ребенка."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3371,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении с длиной тела / ростом. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запланируйте осмотр у педиатра, чтобы выявить причину, скорректировать снижение и установить  дальнейшее наблюдение за динамикой роста. О вашем ребенке нужно серьезно подумать, чтобы улучшить диету."
+                    "articleID": [6201, 3411, 3371, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — риск низкого веса",
+                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Обязательно обратитесь к педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом. Нужно улучшить питание вашего ребенка."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3411, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — тяжелое нарушение питания",
+                    "text": "Внимание! У вашего ребенка очень низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить некоторые возможные непосредственные причины: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес в соотношении с ростом. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой роста вашего ребенка."
+                    "articleID": [3411, 3376, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — избыточный вес",
+                    "text": "Внимание! Ваш ребенок имеет избыточный вес по отношению к росту. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и определить динамику дальнейшего наблюдения за ростом вашего ребенка."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - лишний вес",
-                    "text": "Срочное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса в соотношении с ростом. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой роста!"
+                    "articleID": [3411, 3376, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — ожирение",
+                    "text": "Внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса по отношению к его / ее росту. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в окружающей среде и т. д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения динамики дальнейшего наблюдения за ростом!"
                 }
             },
             {
-                "child_age": [
-                    50,
-                    49
-                ],
+                "child_age": [49, 50],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - вес соответствует длине тела/ росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3391, 3416, 3386, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — вес соответствует длине тела / росту",
+                    "text": "Браво! Ваш ребенок хорошо растет, и его / ее вес соответствует его / ее росту. Продолжайте следовать рекомендациям по питанию, физической активности и сну. Следите за ростом вашего ребенка."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении с длиной тела / ростом. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запишитесь на осмотр у педиатра, чтобы выявить причину, скорректировать снижение и установить дальнейшее наблюдение за динамикой роста. О вашем ребенке нужно серьезно подумать, чтобы улучшить диету."
+                    "articleID": [6201, 3371, 3391, 3386, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — риск низкого веса",
+                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Обязательно обратитесь к педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом. Нужно улучшить питание вашего ребенка."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13 - 24 месяца - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3391, 3371, 3386, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — тяжелое нарушение питания",
+                    "text": "Внимание! У вашего ребенка очень низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить некоторые возможные непосредственные причины: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес в соотношении с ростом. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой  роста вашего ребенка."
+                    "articleID": [3391, 3386, 3381, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — избыточный вес",
+                    "text": "Внимание! Ваш ребенок имеет избыточный вес по отношению к росту. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и определить динамику дальнейшего наблюдения за ростом вашего ребенка."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13 - 24 месяцев - лишний вес",
-                    "text": "Безотлагательное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса в соотношении с ростом. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой роста!"
+                    "articleID": [3391, 3386, 3381, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — ожирение",
+                    "text": "Внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса по отношению к его / ее росту. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в окружающей среде и т. д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения динамики дальнейшего наблюдения за ростом!"
                 }
             },
             {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
+                "child_age": [51, 52, 57, 58],
                 "goodText": {
-                    "articleID": [
-                        5891,
-                        3416,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - вес соответствует росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3396, 3416, 5891, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — вес соответствует росту",
+                    "text": "Браво! Ваш ребенок хорошо растет, и его / ее вес соответствует его / ее росту. Продолжайте следовать рекомендациям по питанию, физической активности и сну. Следите за ростом вашего ребенка."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, какое-то другое хроническое заболевание, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запишитесь на осмотр у педиатра, чтобы выявить причину, скорректировать снижение и установить дальнейшее наблюдение за динамикой роста. О вашем ребенке нужно серьезно подумать, чтобы улучшить диету."
+                    "articleID": [6201, 3371, 3396, 5891, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — риск низкого веса",
+                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Обязательно обратитесь к педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом. Нужно улучшить питание вашего ребенка."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3396, 3371, 5891, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — тяжелое нарушение питания",
+                    "text": "Внимание! У вашего ребенка очень низкий вес по отношению к длине тела / росту. Такая ситуация могла сложиться в течение нескольких недель, поэтому необходимо выяснить некоторые возможные непосредственные причины: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т. д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес в соотношении с ростом. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой роста вашего ребенка."
+                    "articleID": [3396, 5891, 3381, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — избыточный вес",
+                    "text": "Внимание! Ваш ребенок имеет избыточный вес по отношению к росту. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и определить динамику дальнейшего наблюдения за ростом вашего ребенка."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - лишний вес",
-                    "text": "Безотлагательное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса для роста. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой  роста!"
+                    "articleID": [5891, 3396, 3381, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — ожирение",
+                    "text": "Внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса по отношению к его / ее росту. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: чрезмерное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времяпрепровождения перед экраном или изменения в окружающей среде и т. д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения динамики дальнейшего наблюдения за ростом!"
                 }
             }
         ],
         "height_for_age": [
             {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
+                "child_age": [43, 44, 45, 46],
                 "goodText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3401, 3346, 3341, 3416],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — типичный рост для возраста",
+                    "text": "Браво! Ваш ребенок растет в длину / рост в соответствии или немного выше диапазона, ожидаемого для его / ее возраста и пола. Продолжайте следовать рекомендациям по питанию, физической активности и сну и следите за ростом вашего ребенка."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3401, 3341, 3346],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — задержка роста",
+                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения динамики дальнейшего наблюдения за ростом."
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - сильная задержка роста",
-                    "text": "Срочно! Рост длины тела / рост вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения дальнейшего наблюдения за динамикой  роста!"
+                    "articleID": [3401, 3346, 3341],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — крайне низкорослый",
+                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oydagi o'sish -  tana uzunligi oПодробнее о росте в первые 6 месяцев - длина тела / рост выше среднего'rtachadan yuqori",
-                    "text": "Ваш ребенок вырос и его длина тела / рост, значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [3401, 3346, 3341],
+                    "name": "Подробнее о росте ребенка в первые 6 месяцев — длина тела / рост выше среднего",
+                    "text": "Ваш ребенок вырос и его / ее &nbsp;длина тела / рост значительно превышает нормальный диапазон для его / ее возраста и пола. Вероятно, это результат его / ее генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать полученным рекомендациям и регулярно следите за ростом вашего ребенка."
                 }
             },
             {
-                "child_age": [
-                    47
-                ],
+                "child_age": [47],
                 "goodText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3406, 3351, 3346, 3416],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — типичный рост для возраста",
+                    "text": "Браво! Ваш ребенок растет в длину / рост в соответствии или немного выше диапазона, ожидаемого для его / ее возраста и пола. Продолжайте следовать рекомендациям по питанию, физической активности и сну и следите за ростом вашего ребенка."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3406, 3346, 3351],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — задержка роста",
+                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения динамики дальнейшего наблюдения за ростом."
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylik o'sish haqida ko'proq ma'lumot - o'sishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning tana uzunligining o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [3606, 3406, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — крайне низкорослый",
+                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7 - 9 месяцев - длина тела/рост для возраста выше среднего",
-                    "text": "Ваш ребенок вырос и его рост значительно выше нормального диапазона по своему возрасту и полу. Вероятно, это результат его генетического потенциала, но по-прежнему поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и следить за ростом вашего ребенка через регулярные промежутки времени."
+                    "articleID": [6116, 3406, 3351, 3346],
+                    "name": "Подробнее о росте ребенка в 7–9 месяцев — длина тела / рост выше среднего",
+                    "text": "Ваш ребенок вырос и его / ее &nbsp;длина тела / рост значительно превышает нормальный диапазон для его / ее возраста и пола. Вероятно, это результат его / ее генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать полученным рекомендациям и регулярно следите за ростом вашего ребенка."
                 }
             },
             {
-                "child_age": [
-                    48
-                ],
+                "child_age": [48],
                 "goodText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3411, 3356, 3346, 3416],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — типичный рост для возраста",
+                    "text": "Браво! Ваш ребенок растет в длину / рост в соответствии или немного выше диапазона, ожидаемого для его / ее возраста и пола. Продолжайте следовать рекомендациям по питанию, физической активности и сну и следите за ростом вашего ребенка."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3411, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — задержка роста",
+                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения динамики дальнейшего наблюдения за ростом."
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - сильная задержка роста",
-                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения дальнейшего наблюдения за динамикой  роста!"
+                    "articleID": [3606, 3411, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — крайне низкорослый",
+                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте от 10 до 12 месяцев - длина тела / рост выше среднего для возраста",
-                    "text": "Ваш ребенок вырос и длина тела / рост, значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [6116, 3411, 3356, 3346],
+                    "name": "Подробнее о росте ребенка в 10–12 месяцев — длина тела / рост выше среднего",
+                    "text": "Ваш ребенок вырос и его / ее &nbsp;длина тела / рост значительно превышает нормальный диапазон для его / ее возраста и пола. Вероятно, это результат его / ее генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать полученным рекомендациям и регулярно следите за ростом вашего ребенка."
                 }
             },
             {
-                "child_age": [
-                    50,
-                    49
-                ],
+                "child_age": [49, 50],
                 "goodText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3391, 3386, 3361, 3416],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — типичный рост для возраста",
+                    "text": "Браво! Ваш ребенок растет в длину / рост в соответствии или немного выше диапазона, ожидаемого для его / ее возраста и пола. Продолжайте следовать рекомендациям по питанию, физической активности и сну и следите за ростом вашего ребенка."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13 - 24 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. Д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3391, 3386, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — задержка роста",
+                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения динамики дальнейшего наблюдения за ростом."
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о физическом росте 13 - 24 месяца - низкий рост тяжелой степени",
-                    "text": "Срочно! Рост вашего ребенка в длину и рост сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
+                    "articleID": [3606, 3391, 3386, 3361],
+                    "name": "Подробнее о росте ребенка в 13–24 месяцев — крайне низкорослый",
+                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте от 13 до 24 месяцев - длина тела / рост выше среднего для возраста",
-                    "text": "Ваш ребенок вырос и длина тела / роста значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [6116, 3391, 3386, 3361],
+                    "name": "Подробнее о росте ребенка от 13 до 24 месяцев — длина тела / рост выше среднего",
+                    "text": "Ваш ребенок вырос и его / ее &nbsp;длина тела / рост значительно превышает нормальный диапазон для его / ее возраста и пола. Вероятно, это результат его / ее генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать полученным рекомендациям и регулярно следите за ростом вашего ребенка."
                 }
             },
             {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
+                "child_age": [51, 52, 57, 58],
                 "goodText": {
-                    "articleID": [
-                        5891,
-                        3396
-                    ],
-                    "name": "Подробнее о росте 25 - 72 месяца - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [5891, 3396, 3386, 3416],
+                    "name": "Подробнее о росте ребенка от 25 до 72 месяцев — типичный рост для возраста",
+                    "text": "Браво! Ваш ребенок растет в длину / рост в соответствии или немного выше диапазона, ожидаемого для его / ее возраста и пола. Продолжайте следовать рекомендациям по питанию, физической активности и сну и следите за ростом вашего ребенка."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 5891, 3396, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — задержка роста",
+                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения динамики дальнейшего наблюдения за ростом."
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - сильная задержка роста",
-                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения дальнейшего наблюдения за динамикой роста!"
+                    "articleID": [5891, 3606, 3396, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — крайне низкорослый",
+                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте от 25 до 60 месяцев - длина тела / рост для возраста выше среднего",
-                    "text": "Ваш ребенок вырос и длина тела / рост, значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [6116, 5891, 3396, 3366],
+                    "name": "Подробнее о росте ребенка от 25 до 60 месяцев — длина тела / рост выше среднего",
+                    "text": "Ваш ребенок вырос и его / ее &nbsp;длина тела / рост значительно превышает нормальный диапазон для его / ее возраста и пола. Вероятно, это результат его / ее генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать полученным рекомендациям и регулярно следите за ростом вашего ребенка."
                 }
             }
         ]
     }],
-    "uz-kaa": [ {
+    "uz-kaa": [{
         "weight_for_height": [
             {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
+                "child_age": [43, 44, 45, 46],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - вес соответствует длине тела / росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3401, 3416, 3346, 3341],
+                    "name": "Dáslepki 6 ayda ósiw haqqında tolıq maǵlıwmat-salmaq dene uzınlıǵına uyqas",
+                    "text": "Áp-áneydey! Perzentińiz jaqsı ósyapti, onıń salmaǵı dene uzınlıǵına uyqas. Azıqlanıw, fizikalıq aktivlik hám uyqı boyınsha usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев – риск низкого веса.",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса по отношению длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или неправильное питание, изменения в  семье и т. д. Обязательно обратитесь педиатру, чтобы выявить причину, откорректировать питание и определить динамику дальнейшего наблюдения за ростом."
+                    "articleID": [6236, 3401, 3416, 3341, 3346],
+                    "name": "Dáslepki 6 ayda ósiw haqqında tolıq maǵlıwmat-azvaznlik múmkinshiligı",
+                    "text": "Dıqqat! Perzentińiz azıp ketip atır (yamasa salmaǵı artmayapti ), ol jaǵdayda dene uzınlıǵına salıstırǵanda azvaznlik bar. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara tikkeley sebeplerdi anıqlań: jaqın aralıq keshirilgen juqpalı kesellik yamasa ishketish, qandayda bir-bir basqa sozılmalı kesellik, jetkilikli dárejede awqatlanbay juriw yamasa nadurıs awqatlanıw, shańaraqtaǵı ózgerisler hám taǵı basqa. Sebep anıqlaw, salmaq joytıwdı toqtatıw hám ósiw pátin anıqlaw, keyingi dáwirde qanday gúzetip barıw kerekligin bilip alıw hám awqatlanıwın jaqsılaw ushın pediatr kóp'rigiga álbette barıń."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3401,
-                        3371,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6236, 3371, 3401, 3341, 3346],
+                    "name": "Dáslepki 6 ayda ósiw haqqında tolıq maǵlıwmat-azıqlanıwdıń salmaqli aynıwı",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda júdá kem. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara itimallı tikkeley sebeplerdi anıqlań. Mısalı: jaqın aralıq kesel bolǵanı, metabolik hám sozılmalı kesellikler, kem hám nadurıs awqatlanıw, shańaraqtaǵı ortalıqtıń ózgeriwi hám basqalar. Óytkenin anıqlaw hám joǵatılǵan salmaqtı qanday orawdı anıqlaw ushın asıǵıs túrde pediatrga shaqırıq etiń."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес для роста. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирный продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой роста вашего ребенка."
+                    "articleID": [3401, 3376, 3346, 3341],
+                    "name": "Dáslepki 6 ayda ósiw haqqında tolıq maǵlıwmat - artıqsha salmaq",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına qáwip tuwdırıwı múmkin. Sol sebepli buǵan ne sebep bolǵanı haqqında oylań: energiyaǵa bay azıq-awqat ónimlerin artıqsha tutınıw qılıw (mısalı, shıyrın hám maylı ónimler), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette muroaat etin."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - ожирение",
-                    "text": "Для ребенка в возрасте 0–6 месяцев, находящегося на исключительно грудном вскармливании, риск избыточного веса отсутствует или минимален. Доказано и научно подтверждено, что грудное вскармливание, особенно продолжительное - не менее 12 месяцев, защищает ребенка от ожирения в более позднем детстве и в зрелом возрасте.Для малышей, находящихся на искусственном питании, всегда существует опасность ожирения. Для детей с избыточным весом или ожирением может оказаться полезным совет педиатра. Никогда не отказывайте ребенку в еде, чтобы вызвать потерю веса. Чтобы расти и развиваться должным образом, малышам необходимо правильное питание, исключительно грудное вскармливание в течение первых 6 месяцев жизни. Для младенцев, находящихся на искусственном вскармливании, убедитесь, что вы правильно следуете инструкциям по приготовлению смесей (правильное количество воды и порошка) и тщательно следуете инструкциям по количеству кормлений и объему кормлений в день."
+                    "articleID": [3401, 3341, 3376, 3346],
+                    "name": "Dáslepki 6 ayda ósiw haqqında tolıq maǵlıwmat-semizlik",
+                    "text": "Tek aq sút menen azıqlanatuǵın 0-6 aylıq bala ushın artıqsha salmaq qáwipi joq yamasa minimal. Ásirese uzaq múddet dawamında-keminde 12 ay tós sút menen azıqlanıw keyinirek orta jasta hám erjetken jetkende balanıń semiriwshilikin aldın alıwı dálillengen hám ilimiy tárepten tastıyıqlanǵan.Jasalma azıqlanatuǵın balalar ushın artıqsha salmaq qáwipi mudam bar. Artıqsha salmaqlı yamasa tompaqlıǵı bar balalar ushın pediatr másláhát paydalı bolıwı múmkin. salmaqtı azaytıwman dep balańızdı awqattan hesh qashan tolıq emesg. Balalar ósiwi hám rawajlanıwı ushın turmıstıń dáslepki 6 sheshe dawamında tuwrı awqatlanıwı zárúr, olardı tek emizish kerek. Jasalma azıqlanıwda bolǵan bópeler ushın azıqlıq zatlardı tuwrı tayarlaw boyınsha kórsetpelerge ( suw hám untaqtıń tuwrı muǵdarı) ámel islegeninizge isenim payda etiń hám kúnine azıqlar sanı hám muǵdarı boyınsha kórsetpelerge ámel etiń."
                 }
             },
             {
-                "child_age": [
-                    47
-                ],
+                "child_age": [47],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - вес соответствует длине тела/ росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3406, 3416, 3351, 3346],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-salmaq dene uzınlıǵına uyqas",
+                    "text": "Áp-áneydey! Perzentińiz jaqsı ósyapti, onıń salmaǵı dene uzınlıǵına uyqas. Azıqlanıw, fizikalıq aktivlik hám uyqı boyınsha usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запишитесь на осмотр у педиатра, чтобы выявить причину, скорректировать понижение и определить динамику дальнейшего наблюдения за ростом. О вашем ребенке нужно серьезно подумать, чтобы улучшить питание."
+                    "articleID": [6201, 3406, 3371, 3351, 3346],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-azvaznlik múmkinshiligı",
+                    "text": "Dıqqat! Perzentińiz azıp ketip atır (yamasa salmaǵı artmayapti ), ol jaǵdayda dene uzınlıǵına salıstırǵanda azvaznlik bar. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara tikkeley sebeplerdi anıqlań: jaqın aralıq keshirilgen juqpalı kesellik yamasa ishketish, qandayda bir-bir basqa sozılmalı kesellik, jetkilikli dárejede awqatlanbay juriw yamasa nadurıs awqatlanıw, shańaraqtaǵı ózgerisler hám taǵı basqa. Sebep anıqlaw, salmaq joytıwdı toqtatıw hám ósiw pátin anıqlaw, keyingi dáwirde qanday gúzetip barıw kerekligin bilip alıw hám awqatlanıwın jaqsılaw ushın pediatr kóp'rigiga álbette barıń."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3406, 3371, 3351, 3346],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-azıqlanıwdıń salmaqli aynıwı",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda júdá kem. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara itimallı tikkeley sebeplerdi anıqlań. Mısalı:jaqın aralıq kesel bolǵanı, metabolik hám sozılmalı kesellikler, kem hám nadurıs awqatlanıw, shańaraqtaǵı ortalıqtıń ózgeriwi hám basqalar. Óytkenin anıqlaw hám joǵatılǵan salmaqtı qanday orawdı anıqlaw ushın asıǵıs túrde pediatrga shaqırıq etiń."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "O'sish haqida ko'proq ma'lumot 7 - 9 oyПодробнее о росте 7-9 месяцев - лишний вес - ortiqcha vazn",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес для роста. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой  роста вашего ребенка."
+                    "articleID": [3406, 3376, 3351, 3346],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-artıqsha salmaq",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına qáwip tuwdırıwı múmkin. Sol sebepli buǵan ne sebep bolǵanı haqqında oylań : energiyaǵa bay azıq-awqat ónimlerin artıqsha tutınıw qılıw ( mısalı, shıyrın hám maylı ónimler ), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette murıoaat etin."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - лишний вес",
-                    "text": "Безотлагательное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса в соотношении с ростом. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой роста!"
+                    "articleID": [3406, 3376, 3351, 3346],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-semizlik",
+                    "text": "Dıqqat! Perzentingizning salmaǵı artıqsha, yaǵnıy salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına saldamlı qáwip tuwdırıwı múmkin. Buǵan ne sebep bolǵanın oylap kóriń : normadan artıq kaloriyalarǵa bay azıq-awqat ónimlerin tutınıw qılıw ( mısalı, shıyrınlıklar hám maylı ónimler ), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw, qosımsha tekseriwlerden ótiw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 }
             },
             {
-                "child_age": [
-                    48
-                ],
+                "child_age": [48],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - вес соответствует длине тела/ росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3411, 3416, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-salmaq dene uzınlıǵına uyqas",
+                    "text": "Áp-áneydey! Perzentińiz jaqsı ósyapti, onıń salmaǵı dene uzınlıǵına uyqas. Azıqlanıw, fizikalıq aktivlik hám uyqı boyınsha usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3371,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении с длиной тела / ростом. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запланируйте осмотр у педиатра, чтобы выявить причину, скорректировать снижение и установить  дальнейшее наблюдение за динамикой роста. О вашем ребенке нужно серьезно подумать, чтобы улучшить диету."
+                    "articleID": [6201, 3411, 3371, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-azvaznlik múmkinshiligı",
+                    "text": "Dıqqat! Perzentińiz azıp ketip atır (yamasa salmaǵı artmayapti), ol jaǵdayda dene uzınlıǵına salıstırǵanda azvaznlik bar. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara tikkeley sebeplerdi anıqlań: jaqın aralıq keshirilgen juqpalı kesellik yamasa ishketish, qandayda bir-bir basqa sozılmalı kesellik, jetkilikli dárejede awqatlanbay juriw yamasa nadurıs awqatlanıw, shańaraqtaǵı ózgerisler hám taǵı basqa. Sebep anıqlaw, salmaq joytıwdı toqtatıw hám ósiw pátin anıqlaw, keyingi dáwirde qanday gúzetip barıw kerekligin bilip alıw hám awqatlanıwın jaqsılaw ushın pediatr kóp'rigiga álbette barıń."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3411, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-azıqlanıwdıń salmaqli aynıwı",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda júdá kem. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara itimallı tikkeley sebeplerdi anıqlań. Mısalı: jaqın aralıq kesel bolǵanı, metabolik hám sozılmalı kesellikler, kem hám nadurıs awqatlanıw, shańaraqtaǵı ortalıqtıń ózgeriwi hám basqalar. Óytkenin anıqlaw hám joǵatılǵan salmaqtı qanday orawdı anıqlaw ushın asıǵıs túrde pediatrga shaqırıq etiń."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10-12 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес в соотношении с ростом. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой роста вашего ребенка."
+                    "articleID": [3411, 3376, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-artıqsha salmaq",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına qáwip tuwdırıwı múmkin. Sol sebepli buǵan ne sebep bolǵanı haqqında oylań :energiyaǵa bay azıq-awqat ónimlerin artıqsha tutınıw qılıw (mısalı, shıyrın hám maylı ónimler ), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - лишний вес",
-                    "text": "Срочное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса в соотношении с ростом. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой роста!"
+                    "articleID": [3411, 3376, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-semizlik",
+                    "text": "Dıqqat! Perzentingizning salmaǵı artıqsha, yaǵnıy salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına saldamlı qáwip tuwdırıwı múmkin. Buǵan ne sebep bolǵanın oylap kóriń:normadan artıq kaloriyalarǵa bay azıq-awqat ónimlerin tutınıw qılıw (mısalı, shıyrınlıklar hám maylı ónimler), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw, qosımsha tekseriwlerden ótiw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 }
             },
             {
-                "child_age": [
-                    50,
-                    49
-                ],
+                "child_age": [49, 50],
                 "goodText": {
-                    "articleID": [
-                        3416,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - вес соответствует длине тела/ росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3391, 3416, 3386, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat - salmaq dene uzınlıǵına uyqas",
+                    "text": "Áp-áneydey! Perzentińiz jaqsı ósyapti, onıń salmaǵı dene uzınlıǵına uyqas. Azıqlanıw, fizikalıq aktivlik hám uyqı boyınsha usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении с длиной тела / ростом. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, некоторые другие хронические заболевания, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запишитесь на осмотр у педиатра, чтобы выявить причину, скорректировать снижение и установить дальнейшее наблюдение за динамикой роста. О вашем ребенке нужно серьезно подумать, чтобы улучшить диету."
+                    "articleID": [6201, 3371, 3391, 3386, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat-azvaznlik múmkinshiligı",
+                    "text": "Dıqqat! Perzentińiz azıp ketip atır (yamasa salmaǵı artmayapti), ol jaǵdayda dene uzınlıǵına salıstırǵanda azvaznlik bar. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara tikkeley sebeplerdi anıqlań: jaqın aralıq keshirilgen juqpalı kesellik yamasa ishketish, qandayda bir-bir basqa sozılmalı kesellik, jetkilikli dárejede awqatlanbay juriw yamasa nadurıs awqatlanıw, shańaraqtaǵı ózgerisler hám taǵı basqa. Sebep anıqlaw, salmaq joytıwdı toqtatıw hám ósiw pátin anıqlaw, keyingi dáwirde qanday gúzetip barıw kerekligin bilip alıw hám awqatlanıwın jaqsılaw ushın pediatr kóp'rigiga álbette barıń."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13 - 24 месяца - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3391, 3371, 3386, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat-azıqlanıwdıń salmaqli aynıwı",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda júdá kem. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara itimallı tikkeley sebeplerdi anıqlań. Mısalı: jaqın aralıq kesel bolǵanı, metabolik hám sozılmalı kesellikler, kem hám nadurıs awqatlanıw, shańaraqtaǵı ortalıqtıń ózgeriwi hám basqalar. Óytkenin anıqlaw hám joǵatılǵan salmaqtı qanday orawdı anıqlaw ushın asıǵıs túrde pediatrga shaqırıq etiń."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес в соотношении с ростом. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой  роста вашего ребенка."
+                    "articleID": [3391, 3386, 3381, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat- artıqsha salmaq",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına qáwip tuwdırıwı múmkin. Sol sebepli buǵan ne sebep bolǵanı haqqında oylań: energiyaǵa bay azıq-awqat ónimlerin artıqsha tutınıw qılıw ( mısalı, shıyrın hám maylı ónimler), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13 - 24 месяцев - лишний вес",
-                    "text": "Безотлагательное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса в соотношении с ростом. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой роста!"
+                    "articleID": [3391, 3386, 3381, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat-semizlik",
+                    "text": "Dıqqat! Perzentingizning salmaǵı artıqsha, yaǵnıy salmaǵı dene uzınlıǵına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına saldamlı qáwip tuwdırıwı múmkin. Buǵan ne sebep bolǵanın oylap kóriń:normadan artıq kaloriyalarǵa bay azıq-awqat ónimlerin tutınıw qılıw (mısalı, shıyrınlıklar hám maylı ónimler), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw, qosımsha tekseriwlerden ótiw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 }
             },
             {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
+                "child_age": [51, 52, 57, 58],
                 "goodText": {
-                    "articleID": [
-                        5891,
-                        3416,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - вес соответствует росту",
-                    "text": "Браво! Ваш ребенок хорошо растет, и его вес гармонирует с его ростом. Продолжайте соблюдать рекомендации по оптимальному питанию, физической активности и сну. Следите за ростом вашего ребенка."
+                    "articleID": [3396, 3416, 5891, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-salmaq ba'yga uyqas",
+                    "text": "Áp-áneydey! Perzentińiz jaqsı ósyapti, onıń salmaǵı boyına uyqas. Azıqlanıw, fizikalıq aktivlik hám uyqı boyınsha usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - легкое недоедание",
-                    "text": "Внимание! Ваш ребенок худеет (или не набирает вес) и имеет умеренную нехватку веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые непосредственные причины: недавнее инфекционное заболевание или диарея, какое-то другое хроническое заболевание, недостаточное или очень неправильное питание, изменения в ближайшем окружении и т.д. Обязательно запишитесь на осмотр у педиатра, чтобы выявить причину, скорректировать снижение и установить дальнейшее наблюдение за динамикой роста. О вашем ребенке нужно серьезно подумать, чтобы улучшить диету."
+                    "articleID": [6201, 3371, 3396, 5891, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-azvaznlik múmkinshiligı",
+                    "text": "Dıqqat! Perzentińiz azıp ketip atır ( yamasa salmaǵı artmayapti), ol jaǵdayda boyına salıstırǵanda azvaznlik bar. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara tikkeley sebeplerdi anıqlań: jaqın aralıq keshirilgen juqpalı kesellik yamasa ishketish, qandayda bir-bir basqa sozılmalı kesellik, jetkilikli dárejede awqatlanbay juriw yamasa nadurıs awqatlanıw, shańaraqtaǵı ózgerisler hám taǵı basqa. Sebep anıqlaw, salmaq joytıwdı toqtatıw hám ósiw pátin anıqlaw, keyingi dáwirde qanday gúzetip barıw kerekligin bilip alıw hám awqatlanıwın jaqsılaw ushın pediatr kóp'rigiga álbette barıń."
                 },
                 "emergencySmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - тяжелое недоедание",
-                    "text": "Внимание! У вашего ребенка серьезная нехватка веса в соотношении к длине тела / росту. Такая ситуация могла произойти в течение нескольких недель, поэтому подумайте о том, чтобы выяснить некоторые возможные непосредственные причины, некоторыми причинами могут быть: недавнее заболевание, метаболические и хронические заболевания, недостаточное или неправильное питание, изменения в ближайшем окружении и т.д. Срочно обратитесь к педиатру, чтобы выяснить причину и определить, как компенсировать потерю."
+                    "articleID": [6201, 3396, 3371, 5891, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-azıqlanıwdıń salmaqli aynıwı",
+                    "text": "Dıqqat! Perzentingizning salmaǵı dene uzınlıǵına salıstırǵanda júdá kem. Bul process bir neshe hápte dawamında júz bergen bolıwı múmkin, sol sebepli birpara itimallı tikkeley sebeplerdi anıqlań. Mısalı : jaqın aralıq kesel bolǵanı, metabolik hám sozılmalı kesellikler, kem hám nadurıs awqatlanıw, shańaraqtaǵı ortalıqtıń ózgeriwi hám basqalar. Óytkenin anıqlaw hám joǵatılǵan salmaqtı qanday orawdı anıqlaw ushın asıǵıs túrde pediatrga shaqırıq etiń."
                 },
                 "warrningBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - лишний вес",
-                    "text": "Внимание! Ваш ребенок имеет умеренный избыточный вес в соотношении с ростом. Избыточный вес может поставить под угрозу его / ее здоровье, поэтому подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени просмотра экрана или изменения в повседневной жизни, окружающей среде и т. д. Обязательно запишитесь на прием к педиатру, чтобы получить дополнительные рекомендации и установить наблюдение за динамикой роста вашего ребенка."
+                    "articleID": [3396, 5891, 3381, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-artıqsha salmaq",
+                    "text": "Dıqqat! Perzentingizning salmaǵı boyına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına qáwip tuwdırıwı múmkin. Sol sebepli buǵan ne sebep bolǵanı haqqında oylań:energiyaǵa bay azıq-awqat ónimlerin artıqsha tutınıw qılıw (mısalı, shıyrın hám maylı ónimler), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 },
                 "emergencyBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - лишний вес",
-                    "text": "Безотлагательное внимание! Ваш ребенок страдает ожирением, то есть имеет серьезный избыток веса для роста. Этот вес может серьезно навредить здоровью вашего ребенка. Подумайте, что этому способствовало: избыточное потребление богатой калориями пищи (например, сладких и жирных продуктов), употребление нездоровой пищи, снижение физической активности, увеличение времени перед экраном или изменения в окружающей среде и т.д. Обязательно запланируйте визит к педиатру для осмотра и дополнительной диагностики, а также для определения дальнейшего мониторинга за динамикой  роста!"
+                    "articleID": [5891, 3396, 3381, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-semizlik",
+                    "text": "Dıqqat! Perzentingizning salmaǵı artıqsha, yaǵnıy salmaǵı boyına salıstırǵanda artıqsha. Bul artıqsha salmaq onıń sawlıgına saldamlı qáwip tuwdırıwı múmkin. Buǵan ne sebep bolǵanın oylap kóriń : normadan artıq kaloriyalarǵa bay azıq-awqat ónimlerin tutınıw qılıw (mısalı, shıyrınlıklar hám maylı ónimler), nadurıs awqatlanıw, fizikalıq aktivliktiń tómenlewi, ekran aldında kóp otırıw, átirap-ortalıqtıń ózgeriwi hám basqalar. Qosımsha usınıslar alıw, qosımsha tekseriwlerden ótiw hám balańızdıń ósiw pátin anıqlaw ushın pediatrga álbette shaqırıq etin."
                 }
             }
         ],
         "height_for_age": [
             {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
+                "child_age": [43, 44, 45, 46],
                 "goodText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3401, 3346, 3341, 3416],
+                    "name": "Dáslepki 6 ayda ósiw haqqında tolıq maǵlıwmat-jasına qaray uyqas ósiw",
+                    "text": "Áp-áneydey! Perzentingizning dene uzınlıǵı onıń jası hám Jınısqa uyqas yamasa kútilgen kórsetkishten azmaz joqarı. Azıqlanıw, fizikalıq aktivlik hám uyqı máselesinde tuwrı ámeliy usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3401, 3341, 3346],
+                    "name": "Dáslepki 6 aylıq ósiw haqqında tolıq maǵlıwmat-ósiwdiń ortasha dárejede artta qalıwı",
+                    "text": "Dıqqat! Perzentingizning dene uzınlıǵı ósiwi aste hám ortasha dárejede artta qalıp atır. Buǵan alıp keliwi múmkin bolǵan hám uzaq múddet dawam etken sebeplerdi izleń:turaqlı túrde shekem'yib awqatlanbay juriw, sozılmalı kesellik, endokrin kesellik hám taǵı basqa. Qosımsha tekseriwden ótiw, usınıslar alıw hám keyingi baqlawlar ushın ósiw pátin anıqlap alıw maqsetinde pediatr menen máslahátlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Подробнее о росте в первые 6 месяцев - сильная задержка роста",
-                    "text": "Срочно! Рост длины тела / рост вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения дальнейшего наблюдения за динамикой  роста!"
+                    "articleID": [3401, 3346, 3341],
+                    "name": "Dáslepki 6 Aylıqta ósiw boyınsha tolıq maǵlıwmat-ósiwdiń júdá artta qalıwı",
+                    "text": "Asıǵıs! Perzentińiz dene uzınlıǵınıń ósiwi saldamlı dárejede artta qalıp atır. Pediatrga asıǵıs jazılıń:túrde tiyisli proceduralardı alıw hám keyingi baqlawlar ushın ósiw pátin anıqlap alıw hám de qosımsha tekseriwden ótiw ushın!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "Dastlabki 6 oydagi o'sish -  tana uzunligi oПодробнее о росте в первые 6 месяцев - длина тела / рост выше среднего'rtachadan yuqori",
-                    "text": "Ваш ребенок вырос и его длина тела / рост, значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [3401, 3346, 3341],
+                    "name": "Dáslepki 6 Aydaǵı ósiw haqqında tolıq maǵlıwmat-dene uzınlıǵı ortashadan joqarı",
+                    "text": "Perzentińiz ósti, onıń dene uzınlıǵı sol jastaǵı hám jınıstaǵı balalalarga qaraǵanda Ádettegiden artıq talay biyik. Itimal, bul onıń násillik múmkinshiligi nátiyjesi, biraq pediatr menen bul haqqında soylesiń. Qabıl etilgen usınıslardı orınlawda dawam etin hám balańızdıń artıwın úzliksiz túrde gúzetip barıń."
                 }
             },
             {
-                "child_age": [
-                    47
-                ],
+                "child_age": [47],
                 "goodText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3406, 3351, 3346, 3416],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat - dene uzınlıǵı jasına qaray uyqas",
+                    "text": "Áp-áneydey! Perzentingizning dene uzınlıǵı onıń jası hám Jınısqa uyqas yamasa kútilgen kórsetkishten azmaz joqarı. Azıqlanıw, fizikalıq aktivlik hám uyqı máselesinde tuwrı ámeliy usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7-9 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3406, 3346, 3351],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń ortasha dárejede artta qalıwı",
+                    "text": "Dıqqat! Perzentingizning dene uzınlıǵı ósiwi aste hám ortasha dárejede artta qalıp atır. Buǵan alıp keliwi múmkin bolǵan hám uzaq múddet dawam etken sebeplerdi izleń : turaqlı túrde shekem'yib awqatlanbay juriw, sozılmalı kesellik, endokrin kesellik hám taǵı basqa. Qosımsha tekseriwden ótiw, usınıslar alıw hám keyingi baqlawlar ushın ósiw pátin anıqlap alıw maqsetinde pediatr menen máslahátlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "7-9 oylik o'sish haqida ko'proq ma'lumot - o'sishning juda ortda qolishi",
-                    "text": "Shoshilinch! Farzandingizning tana uzunligining o'sishi jiddiy darajada orqada qolyapti. Pediatrga shoshilinch ravishda tegishli muolajalarni olish va o'sish dinamikasining keyingi kuzatuvlarini aniqlash hamda qo'shimcha tekshiruvdan o'tish uchun yoziling!"
+                    "articleID": [3606, 3406, 3351, 3346],
+                    "name": "7-9-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń júdá artta qalıwı",
+                    "text": "Asıǵıs! Perzentińiz dene uzınlıǵınıń ósiwi saldamlı dárejede artta qalıp atır. Pediatrga asıǵıs jazılıń:tiyisli proceduralardı alıw, keyingi baqlawlar ushın ósiw pátin anıqlaw hám qosımsha tekseriwden ótiw zárúr!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 7 - 9 месяцев - длина тела/рост для возраста выше среднего",
-                    "text": "Ваш ребенок вырос и его рост значительно выше нормального диапазона по своему возрасту и полу. Вероятно, это результат его генетического потенциала, но по-прежнему поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и следить за ростом вашего ребенка через регулярные промежутки времени."
+                    "articleID": [6116, 3406, 3351, 3346],
+                    "name": "7-9-aylarda ósiw boyınsha tolıq maǵlıwmat-dene uzınlıǵı jası ushın ortashadan joqarı",
+                    "text": "Perzentińiz ósti, onıń dene uzınlıǵı sol jastaǵı hám jınıstaǵı balalalarga qaraǵanda Ádettegiden artıq talay biyik. Itimal, bul onıń násillik múmkinshiligi nátiyjesi, biraq pediatr menen bul haqqında soylesiń. Qabıl etilgen usınıslardı orınlawda dawam etin hám balańızdıń artıwın úzliksiz túrde gúzetip barıń."
                 }
             },
             {
-                "child_age": [
-                    48
-                ],
+                "child_age": [48],
                 "goodText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3411, 3356, 3346, 3416],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-dene uzınlıǵı jasına qaray uyqas",
+                    "text": "Áp-áneydey! Perzentingizning dene uzınlıǵı onıń jası hám Jınısqa uyqas yamasa kútilgen kórsetkishten azmaz joqarı. Azıqlanıw, fizikalıq aktivlik hám uyqı máselesinde tuwrı ámeliy usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3411, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń ortasha dárejede artta qalıwı",
+                    "text": "Dıqqat! Perzentingizning dene uzınlıǵı ósiwi aste hám ortasha dárejede artta qalıp atır. Buǵan alıp keliwi múmkin bolǵan hám uzaq múddet dawam etken sebeplerdi izleń : turaqlı túrde shekem'yib awqatlanbay juriw, sozılmalı kesellik, endokrin kesellik hám taǵı basqa. Qosımsha tekseriwden ótiw, usınıslar alıw hám keyingi baqlawlar ushın ósiw pátin anıqlap alıw maqsetinde pediatr menen máslahátlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте 10 - 12 месяцев - сильная задержка роста",
-                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения дальнейшего наблюдения за динамикой  роста!"
+                    "articleID": [3606, 3411, 3356, 3346],
+                    "name": "10-12-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń júdá artta qalıwı",
+                    "text": "Asıǵıs! Perzentińiz dene uzınlıǵınıń ósiwi saldamlı dárejede artta qalıp atır. Pediatrga asıǵıs jazılıń : tiyisli proceduralardı alıw, keyingi baqlawlar ushın ósiw pátin anıqlaw hám qosımsha tekseriwden ótiw zárúr!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Подробнее о росте от 10 до 12 месяцев - длина тела / рост выше среднего для возраста",
-                    "text": "Ваш ребенок вырос и длина тела / рост, значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [6116, 3411, 3356, 3346],
+                    "name": "10-12-aylarda ósiw boyınsha tolıq maǵlıwmat-dene uzınlıǵı jası ushın ortashadan joqarı",
+                    "text": "Perzentińiz ósti, onıń dene uzınlıǵı sol jastaǵı hám jınıstaǵı balalalarga qaraǵanda Ádettegiden artıq talay biyik. Itimal, bul onıń násillik múmkinshiligi nátiyjesi, biraq pediatr menen bul haqqında soylesiń. Qabıl etilgen usınıslardı orınlawda dawam etin hám balańızdıń artıwın úzliksiz túrde gúzetip barıń."
                 }
             },
             {
-                "child_age": [
-                    50,
-                    49
-                ],
+                "child_age": [49, 50],
                 "goodText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13-24 месяцев - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [3391, 3386, 3361, 3416],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat-dene uzınlıǵı jasına qaray uyqas",
+                    "text": "Áp-áneydey! Perzentingizning dene uzınlıǵı onıń jası hám Jınısqa uyqas yamasa kútilgen kórsetkishten azmaz joqarı. Azıqlanıw, fizikalıq aktivlik hám uyqı máselesinde tuwrı ámeliy usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте 13 - 24 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т. Д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 3391, 3386, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń ortasha dárejede artta qalıwı",
+                    "text": "Dıqqat! Perzentingizning dene uzınlıǵı ósiwi aste hám ortasha dárejede artta qalıp atır. Buǵan alıp keliwi múmkin bolǵan hám uzaq múddet dawam etken sebeplerdi izleń :turaqlı túrde shekem'yib awqatlanbay juriw, sozılmalı kesellik, endokrin kesellik hám taǵı basqa. Qosımsha tekseriwden ótiw, usınıslar alıw hám keyingi baqlawlar ushın ósiw pátin anıqlap alıw maqsetinde pediatr menen máslahátlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о физическом росте 13 - 24 месяца - низкий рост тяжелой степени",
-                    "text": "Срочно! Рост вашего ребенка в длину и рост сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения динамики дальнейшего наблюдения за ростом!"
+                    "articleID": [3606, 3391, 3386, 3361],
+                    "name": "13-24-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń júdá artta qalıwı",
+                    "text": "Asıǵıs! Perzentińiz dene uzınlıǵınıń ósiwi saldamlı dárejede artta qalıp atır. Pediatrga asıǵıs jazılıń: tiyisli proceduralardı alıw, keyingi baqlawlar ushın ósiw pátin anıqlaw hám qosımsha tekseriwden ótiw zárúr!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Подробнее о росте от 13 до 24 месяцев - длина тела / рост выше среднего для возраста",
-                    "text": "Ваш ребенок вырос и длина тела / роста значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [6116, 3391, 3386, 3361],
+                    "name": "13-24-aylarda ósiw boyınsha tolıq maǵlıwmat-dene uzınlıǵı jası ushın ortashadan joqarı",
+                    "text": "Perzentińiz ósti, onıń dene uzınlıǵı sol jastaǵı hám jınıstaǵı balalalarga qaraǵanda Ádettegiden artıq talay biyik. Itimal, bul onıń násillik múmkinshiligi nátiyjesi, biraq pediatr menen bul haqqında soylesiń. Qabıl etilgen usınıslardı orınlawda dawam etin hám balańızdıń artıwın úzliksiz túrde gúzetip barıń."
                 }
             },
             {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
+                "child_age": [51, 52, 57, 58],
                 "goodText": {
-                    "articleID": [
-                        5891,
-                        3396
-                    ],
-                    "name": "Подробнее о росте 25 - 72 месяца - типичный рост для возраста",
-                    "text": "Браво! Ваш ребенок растет в длину тела / рост в соответствии или немного выше диапазона, ожидаемого для его возраста и пола. Продолжайте следовать рекомендациям хорошей практики в питании, физической активности и сне и следите за ростом вашего ребенка."
+                    "articleID": [5891, 3396, 3386, 3416],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-boy jasqa uyqas",
+                    "text": "Áp-áneydey! Perzentińiz boyı onıń jası hám Jınısqa salıstırǵanda jasına qaray uyqas yamasa kútilgen kórsetkishten azmaz joqarı. Azıqlanıw, fizikalıq aktivlik hám uyqı máselesinde tuwrı ámeliy usınıslarǵa ámel islewde dawam etin hám balańızdıń artıwın gúzetip barıń."
                 },
                 "warrningSmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - умеренная задержка роста",
-                    "text": "Внимание! Рост вашего ребенка в длину тела / рост происходит медленно и сейчас умеренно задерживается. Подумайте, способствовала ли этому какая-либо из возможных долгосрочных причин: хроническое недоедание, хроническое заболевание, эндокринное расстройство и т.д. Обязательно запишитесь на прием к педиатру для дополнительного обследования, получения дополнительных рекомендаций и определения дальнейшего наблюдения за динамикой роста."
+                    "articleID": [3606, 5891, 3396, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń ortasha dárejede artta qalıwı",
+                    "text": "Dıqqat! Perzentingizning boy ósiwi aste hám ortasha dárejede artta qalıp atır. Buǵan alıp keliwi múmkin bolǵan hám uzaq múddet dawam etken sebeplerdi izleń :turaqlı túrde shekem'yib awqatlanbay juriw, sozılmalı kesellik, endokrin kesellik hám taǵı basqa. Qosımsha tekseriwden ótiw, usınıslar alıw hám keyingi baqlawlar ushın ósiw pátin anıqlap alıw maqsetinde pediatr menen máslahátlashing!"
                 },
                 "emergencySmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте 25-60 месяцев - сильная задержка роста",
-                    "text": "Срочно! Рост длины тела / роста вашего ребенка сильно задерживается. Срочно записывайтесь на прием к педиатру для дообследования, получения соответствующего лечения и определения дальнейшего наблюдения за динамикой роста!"
+                    "articleID": [5891, 3606, 3396, 3366],
+                    "name": "25-60-aylarda ósiw haqqında tolıq maǵlıwmat-ósiwdiń júdá artta qalıwı",
+                    "text": "Asıǵıs! Perzentingizning boy ósiwi saldamlı dárejede artta qalıp atır. Pediatrga asıǵıs jazılıń : tiyisli proceduralardı alıw, keyingi baqlawlar ushın ósiw pátin anıqlaw hám qosımsha tekseriwden ótiw zárúr!"
                 },
                 "warrningBigLengthText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3366
-                    ],
-                    "name": "Подробнее о росте от 25 до 60 месяцев - длина тела / рост для возраста выше среднего",
-                    "text": "Ваш ребенок вырос и длина тела / рост, значительно превышает нормальный диапазон для его возраста и пола. Вероятно, это результат его генетического потенциала, но все же поговорите об этом с педиатром. Продолжайте следовать принятым рекомендациям и регулярно следите за ростом вашего ребенка."
+                    "articleID": [6116, 5891, 3396, 3366],
+                    "name": "25-60-aylarda ósiw boyınsha tolıq maǵlıwmat-boy jası ushın ortashadan joqarı",
+                    "text": "Perzentińiz ósti, onıń boyı sol jastaǵı hám jınıstaǵı balalalarga qaraǵanda Ádettegiden artıq talay biyik. Itimal, bul onıń násillik múmkinshiligi nátiyjesi, biraq pediatr menen bul haqqında soylesiń. Qabıl etilgen usınıslardı orınlawda dawam etin hám balańızdıń artıwın úzliksiz túrde gúzetip barıń."
                 }
             }
         ]

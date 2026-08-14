@@ -98,7 +98,7 @@ import {
   isGrowthMeasureExistForDate,
   isVaccineMeasureExistForDate,
 } from "../../services/measureUtils";
-import { formatStringDate, getLanguageCode } from "../../services/Utils";
+import { formatStringDate, getDatePickerLocale } from "../../services/Utils";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { selectActiveChild, selectVaccineData } from "../../services/selectors";
@@ -145,7 +145,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
   const activeChild = useAppSelector(selectActiveChild);
   const { convertDigits } = useDigitConverter();
   const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
+    getDatePickerLocale(state.selectedCountry?.languageCode)
   );
 
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] =
