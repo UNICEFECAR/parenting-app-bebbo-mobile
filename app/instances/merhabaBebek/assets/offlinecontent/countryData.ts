@@ -19,7 +19,7 @@ export const countryData: any = {
         "name": "Turkish_white_vertical_RGB.png",
         "alt": "UNICEF logo in Turkish "
       },
-      "content_toggle": "Pregnancy",
+      "content_toggle": "pregnancy",
       "app_name": "merhababebek",
       "languages": [
         {

@@ -1,5 +1,5 @@
-export const ChildDevelopmentData:any = {
-    "en":   [
+export const ChildDevelopmentData: any = {
+    "en": [
         {
             "id": 12001,
             "type": "Child Development - Age Periods",
@@ -3235,168 +3235,144 @@ export const ChildDevelopmentData:any = {
             "id": 12001,
             "type": "Child Development - Age Periods",
             "title": "Bir-biri bilan tanishish",
-            "child_age": [
-                43
-            ],
+            "child_age": [43],
             "boy_video_article": 7886,
             "girl_video_article": 7891,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>juda koʻp yigʻlasa va uni yupata olmasangiz</li>\n\t<li>koʻkrakni yomon emsa, juda sekin oziqlansa</li>\n\t<li>keragidan koʻproq uxlasa (kuniga 16 soatdan ortiq), yoki notinch uxlasa</li>\n\t<li>qoʻllarini yoki oyoqlarini umuman harakatlantirmasa</li>\n\t<li>baland tovushdan choʻchimasa</li>\n\t<li>yorugʻ chiroqdan koʻzlari qamashmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:51",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ejuda koʻp yigʻlasa va uni yupata olmasangiz\u003C/li\u003E\n\t\u003Cli\u003Ekoʻkrakni yomon emsa, juda sekin oziqlansa\u003C/li\u003E\n\t\u003Cli\u003Ekeragidan koʻproq uxlasa (kuniga 16 soatdan ortiq), yoki notinch uxlasa\u003C/li\u003E\n\t\u003Cli\u003Eqoʻllarini yoki oyoqlarini umuman harakatlantirmasa\u003C/li\u003E\n\t\u003Cli\u003Ebaland tovushdan choʻchimasa\u003C/li\u003E\n\t\u003Cli\u003Eyorugʻ chiroqdan koʻzlari qamashmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:51:33+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:51\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12002,
             "type": "Child Development - Age Periods",
             "title": "Umumiy o'zaro moslashish va kun tartiblarini o'rnatish davri",
-            "child_age": [
-                44
-            ],
+            "child_age": [44],
             "boy_video_article": 7901,
             "girl_video_article": 7896,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>tez-tez yig'lasa va uni yupata olmasangiz</li>\n\t<li>  qisqa vaqtga boʻlsa ham yuzlarga qaramasa</li>\n\t<li>    yorug'lik yoki baland tovushlarga javob bermasa</li>\n\t<li>  yaxshi oziqlanmasa yoki yaxshi uxlamasa (kuniga 16 soatdan ortiq uxlasa)</li>\n\t<li>   qoʻllarini yoki oyoqlarini umuman harakatlantirmasa</li>\n\t<li>  qoʻllarini ogʻziga olib kelmasa</li>\n\t<li>   odamlarga tabassum qilmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:53",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Etez-tez yig'lasa va uni yupata olmasangiz\u003C/li\u003E\n\t\u003Cli\u003E  qisqa vaqtga boʻlsa ham yuzlarga qaramasa\u003C/li\u003E\n\t\u003Cli\u003E    yorug'lik yoki baland tovushlarga javob bermasa\u003C/li\u003E\n\t\u003Cli\u003E  yaxshi oziqlanmasa yoki yaxshi uxlamasa (kuniga 16 soatdan ortiq uxlasa)\u003C/li\u003E\n\t\u003Cli\u003E   qoʻllarini yoki oyoqlarini umuman harakatlantirmasa\u003C/li\u003E\n\t\u003Cli\u003E  qoʻllarini ogʻziga olib kelmasa\u003C/li\u003E\n\t\u003Cli\u003E   odamlarga tabassum qilmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:53:33+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:53\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12003,
             "type": "Child Development - Age Periods",
             "title": "Turli tajribalar",
-            "child_age": [
-                45
-            ],
+            "child_age": [45],
             "boy_video_article": 7911,
             "girl_video_article": 7906,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>tez-tez koʻp yigʻlasa va ovunolmasa</li>\n\t<li>odamlarning koʻzlariga qaramasa yoki odamlarning yuzlariga eʼtibor bermasa</li>\n\t<li>harakatlanayotgan narsalarni kuzatmasa</li>\n\t<li>hech qanday tovush chiqarmasa yoki tovushlarga javob bermasa</li>\n\t<li>boshini tuta olmasa</li>\n\t<li>oldida turgan oʻyinchoqni yoki narsani olmasa</li>\n\t<li>narsalarni ogʻziga olib kelmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:53",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Etez-tez koʻp yigʻlasa va ovunolmasa\u003C/li\u003E\n\t\u003Cli\u003Eodamlarning koʻzlariga qaramasa yoki odamlarning yuzlariga eʼtibor bermasa\u003C/li\u003E\n\t\u003Cli\u003Eharakatlanayotgan narsalarni kuzatmasa\u003C/li\u003E\n\t\u003Cli\u003Ehech qanday tovush chiqarmasa yoki tovushlarga javob bermasa\u003C/li\u003E\n\t\u003Cli\u003Eboshini tuta olmasa\u003C/li\u003E\n\t\u003Cli\u003Eoldida turgan oʻyinchoqni yoki narsani olmasa\u003C/li\u003E\n\t\u003Cli\u003Enarsalarni ogʻziga olib kelmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:53:50+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:53\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12004,
             "type": "Child Development - Age Periods",
             "title": "Intensiv oʻrganish",
-            "child_age": [
-                46
-            ],
+            "child_age": [46],
             "boy_video_article": 7921,
             "girl_video_article": 7916,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>muntazam ravishda uzoq vaqt yigʻlasa va ovunmasa</li>\n\t<li>koʻzingizga qaramasa yoki harakatlanayotgan narsalarni ko'zi bilan kuzatmasa</li>\n\t<li>chug'urlamasa yoki tovush manbai tomon qaramasa</li>\n\t<li>kulmasa yoki chinqirmasa</li>\n\t<li>yon tomonlarga agʻdarilmasa</li>\n\t<li>boʻyin va boshini boshqarolmasa</li>\n\t<li>sizning yordamingiz va tirgagingiz bilan ham oʻtirolmasa</li>\n\t<li>jalb qilib tursangiz ham narsalarga yetib borgisi kelmasa</li>\n\t<li>yonida turgan narsalarni olishga harakat qilmasa</li>\n\t<li>ogʻziga narsalarni olishda qiynalsa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:54",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Emuntazam ravishda uzoq vaqt yigʻlasa va ovunmasa\u003C/li\u003E\n\t\u003Cli\u003Ekoʻzingizga qaramasa yoki harakatlanayotgan narsalarni ko'zi bilan kuzatmasa\u003C/li\u003E\n\t\u003Cli\u003Echug'urlamasa yoki tovush manbai tomon qaramasa\u003C/li\u003E\n\t\u003Cli\u003Ekulmasa yoki chinqirmasa\u003C/li\u003E\n\t\u003Cli\u003Eyon tomonlarga agʻdarilmasa\u003C/li\u003E\n\t\u003Cli\u003Eboʻyin va boshini boshqarolmasa\u003C/li\u003E\n\t\u003Cli\u003Esizning yordamingiz va tirgagingiz bilan ham oʻtirolmasa\u003C/li\u003E\n\t\u003Cli\u003Ejalb qilib tursangiz ham narsalarga yetib borgisi kelmasa\u003C/li\u003E\n\t\u003Cli\u003Eyonida turgan narsalarni olishga harakat qilmasa\u003C/li\u003E\n\t\u003Cli\u003Eogʻziga narsalarni olishda qiynalsa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:54:09+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:54\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12005,
             "type": "Child Development - Age Periods",
             "title": "Yangi kashfiyotlar",
-            "child_age": [
-                47
-            ],
+            "child_age": [47],
             "boy_video_article": 7931,
             "girl_video_article": 7926,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>koʻzingizga qaramasa yoki harakatlanayotgan narsalarni ko'zi bilan kuzatmasa</li>\n\t<li>oʻzini tilida gapirmasa (“oyi” “dada,” va h.)</li>\n\t<li>boshini tovush kelayotgan tomonga burmasa</li>\n\t<li>siz koʻrsatgan joyga qaramasa</li>\n\t<li>o'ziga gʻamxoʻrlik qilayotgan odamlarga (ota-onasiga) tabassum qilmasa</li>\n\t<li>ismi bilan chaqirilganda e'tibor qilmasa</li>\n\t<li>o'z yaqinlarini koʻrganda tanimasa</li>\n\t<li>dumalamasa</li>\n\t<li>uni koʻtarganingizda oʻzini o'ta bo'sh qo'sa yoki taranglashsa</li>\n\t<li>sizning yordamingiz va tirgagingiz bilan ham oʻtirolmasa</li>\n\t<li>quyuq ovqat yeyishda qiynalsa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:54",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ekoʻzingizga qaramasa yoki harakatlanayotgan narsalarni ko'zi bilan kuzatmasa\u003C/li\u003E\n\t\u003Cli\u003Eoʻzini tilida gapirmasa (“oyi” “dada,” va h.)\u003C/li\u003E\n\t\u003Cli\u003Eboshini tovush kelayotgan tomonga burmasa\u003C/li\u003E\n\t\u003Cli\u003Esiz koʻrsatgan joyga qaramasa\u003C/li\u003E\n\t\u003Cli\u003Eo'ziga gʻamxoʻrlik qilayotgan odamlarga (ota-onasiga) tabassum qilmasa\u003C/li\u003E\n\t\u003Cli\u003Eismi bilan chaqirilganda e'tibor qilmasa\u003C/li\u003E\n\t\u003Cli\u003Eo'z yaqinlarini koʻrganda tanimasa\u003C/li\u003E\n\t\u003Cli\u003Edumalamasa\u003C/li\u003E\n\t\u003Cli\u003Euni koʻtarganingizda oʻzini o'ta bo'sh qo'sa yoki taranglashsa\u003C/li\u003E\n\t\u003Cli\u003Esizning yordamingiz va tirgagingiz bilan ham oʻtirolmasa\u003C/li\u003E\n\t\u003Cli\u003Equyuq ovqat yeyishda qiynalsa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:54:23+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:54\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12006,
             "type": "Child Development - Age Periods",
             "title": "Odatlar va izchillikni oʻrnatish",
-            "child_age": [
-                48
-            ],
+            "child_age": [48],
             "boy_video_article": 7941,
             "girl_video_article": 7936,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>koʻzingizga qaramasa yoki harakatlanayotgan narsalarni ko'zi bilan kuzatmasa</li>\n\t<li>tovushlarga qiziqish bildirmasa</li>\n\t<li>ismi bilan chaqirganingizda qaramasa</li>\n\t<li>oʻz tilida chug'urlab gapirmasa</li>\n\t<li>xohish va istaklari haqida sizga biron-bir tarzda bildirishga urinmasa</li>\n\t<li>narsalarni qoʻli bilan koʻrsatmasa</li>\n\t<li>his-tuygʻularni ifoda etmasa</li>\n\t<li>emaklamasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:54",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ekoʻzingizga qaramasa yoki harakatlanayotgan narsalarni ko'zi bilan kuzatmasa\u003C/li\u003E\n\t\u003Cli\u003Etovushlarga qiziqish bildirmasa\u003C/li\u003E\n\t\u003Cli\u003Eismi bilan chaqirganingizda qaramasa\u003C/li\u003E\n\t\u003Cli\u003Eoʻz tilida chug'urlab gapirmasa\u003C/li\u003E\n\t\u003Cli\u003Exohish va istaklari haqida sizga biron-bir tarzda bildirishga urinmasa\u003C/li\u003E\n\t\u003Cli\u003Enarsalarni qoʻli bilan koʻrsatmasa\u003C/li\u003E\n\t\u003Cli\u003Ehis-tuygʻularni ifoda etmasa\u003C/li\u003E\n\t\u003Cli\u003Eemaklamasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:54:38+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:54\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12007,
             "type": "Child Development - Age Periods",
             "title": "Birinchi qadam va birinchi soʻz",
-            "child_age": [
-                49
-            ],
+            "child_age": [49],
             "boy_video_article": 7951,
             "girl_video_article": 7946,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>baʼzi narsalarni koʻrishda yoki eshitishda qiynalsa</li>\n\t<li>birorta soʻz aytmasa</li>\n\t<li>hatto oddiy koʻrsatmalarga amal qilishga qiynalsa</li>\n\t<li>muloqotda imo-ishoralarni ishlatmasa va narsalarni koʻrsatmasa</li>\n\t<li>koʻzlaringizga qaramasa va sizni quchoqlamasa</li>\n\t<li>oʻzi mustaqil yurmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:54",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ebaʼzi narsalarni koʻrishda yoki eshitishda qiynalsa\u003C/li\u003E\n\t\u003Cli\u003Ebirorta soʻz aytmasa\u003C/li\u003E\n\t\u003Cli\u003Ehatto oddiy koʻrsatmalarga amal qilishga qiynalsa\u003C/li\u003E\n\t\u003Cli\u003Emuloqotda imo-ishoralarni ishlatmasa va narsalarni koʻrsatmasa\u003C/li\u003E\n\t\u003Cli\u003Ekoʻzlaringizga qaramasa va sizni quchoqlamasa\u003C/li\u003E\n\t\u003Cli\u003Eoʻzi mustaqil yurmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:54:53+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:54\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12008,
             "type": "Child Development - Age Periods",
             "title": "Mustaqil boʻlish",
-            "child_age": [
-                50
-            ],
+            "child_age": [50],
             "boy_video_article": 7961,
             "girl_video_article": 7956,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>Sizga qaramasa (koʻz orqali muloqot)</li>\n\t<li>ma'lum bir narsalarni koʻrmasa yoki eshitmasa</li>\n\t<li>birorta soʻz aytmasa</li>\n\t<li>narsalarni qoʻli bilan koʻrsatmasa</li>\n\t<li>oddiy koʻrsatmalarga amal qilmasa</li>\n\t<li>his-tuygʻularni koʻrsatmasa</li>\n\t<li>mustahkam yurmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:55",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ESizga qaramasa (koʻz orqali muloqot)\u003C/li\u003E\n\t\u003Cli\u003Ema'lum bir narsalarni koʻrmasa yoki eshitmasa\u003C/li\u003E\n\t\u003Cli\u003Ebirorta soʻz aytmasa\u003C/li\u003E\n\t\u003Cli\u003Enarsalarni qoʻli bilan koʻrsatmasa\u003C/li\u003E\n\t\u003Cli\u003Eoddiy koʻrsatmalarga amal qilmasa\u003C/li\u003E\n\t\u003Cli\u003Ehis-tuygʻularni koʻrsatmasa\u003C/li\u003E\n\t\u003Cli\u003Emustahkam yurmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:55:11+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:55\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12009,
             "type": "Child Development - Age Periods",
             "title": "Tasavvur uygʻonishi",
-            "child_age": [
-                51
-            ],
+            "child_age": [51],
             "boy_video_article": 7881,
             "girl_video_article": 7966,
-            "milestone": "<p>muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<p> </p>\n\n<ul><li>Sizga qaramasa (koʻz orqali muloqot oʻrnatmasa)</li>\n\t<li>ayrim narsalarni koʻrish yoki eshitishda qiyinchiliklarga duch kelsa</li>\n\t<li>qisqa jumlalarni gapira olmasa ( kamida 3 ta soʻzdan iborat)</li>\n\t<li>nutqi tiniq bo'lmasa</li>\n\t<li>oddiy koʻrsatmalarga amal qilmasa</li>\n\t<li>boshqa bolalar bilan yoki oʻyinchoqlar va boshqa narsalar bilan oʻynashni xohlamasa</li>\n\t<li>oʻynayotganda tasavvur qilmasa va syujetli o'yinlarda ishtirok etmasa</li>\n\t<li>yugura olmasa</li>\n\t<li>yozmasa yoki chizmasa</li>\n\t<li>qoʻlida kichik jismlarni ushlab turolmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:55",
+            "milestone": "\u003Cp\u003Emuammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cp\u003E&nbsp;\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ESizga qaramasa (koʻz orqali muloqot oʻrnatmasa)\u003C/li\u003E\n\t\u003Cli\u003Eayrim narsalarni koʻrish yoki eshitishda qiyinchiliklarga duch kelsa\u003C/li\u003E\n\t\u003Cli\u003Eqisqa jumlalarni gapira olmasa ( kamida 3 ta soʻzdan iborat)\u003C/li\u003E\n\t\u003Cli\u003Enutqi tiniq bo'lmasa\u003C/li\u003E\n\t\u003Cli\u003Eoddiy koʻrsatmalarga amal qilmasa\u003C/li\u003E\n\t\u003Cli\u003Eboshqa bolalar bilan yoki oʻyinchoqlar va boshqa narsalar bilan oʻynashni xohlamasa\u003C/li\u003E\n\t\u003Cli\u003Eoʻynayotganda tasavvur qilmasa va syujetli o'yinlarda ishtirok etmasa\u003C/li\u003E\n\t\u003Cli\u003Eyugura olmasa\u003C/li\u003E\n\t\u003Cli\u003Eyozmasa yoki chizmasa\u003C/li\u003E\n\t\u003Cli\u003Eqoʻlida kichik jismlarni ushlab turolmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:55:31+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:55\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12010,
             "type": "Child Development - Age Periods",
             "title": "Savollar berish",
-            "child_age": [
-                52
-            ],
+            "child_age": [52],
             "boy_video_article": 7976,
             "girl_video_article": 7971,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>Boshqalar bilan oʻynashga yoki hayoliy/rolli oʻyinlarga qiziqish bildirmasa</li>\n\t<li>Boshqa bolalar yoki oiladan tashqari bo'lgan odamlarg parvo qilmaydi</li>\n\t<li>Turgan joyida sakray olmasa</li>\n\t<li>Yozishda qiynalsa (qoʻgʻozda belgilar qo'ysa)</li>\n\t<li>Uch qismli koʻrsatmalarga amal qilmasa</li>\n\t<li>Sevimli hikoyasini aytib berolmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:55",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EBoshqalar bilan oʻynashga yoki hayoliy/rolli oʻyinlarga qiziqish bildirmasa\u003C/li\u003E\n\t\u003Cli\u003EBoshqa bolalar yoki oiladan tashqari bo'lgan odamlarg parvo qilmaydi\u003C/li\u003E\n\t\u003Cli\u003ETurgan joyida sakray olmasa\u003C/li\u003E\n\t\u003Cli\u003EYozishda qiynalsa (qoʻgʻozda belgilar qo'ysa)\u003C/li\u003E\n\t\u003Cli\u003EUch qismli koʻrsatmalarga amal qilmasa\u003C/li\u003E\n\t\u003Cli\u003ESevimli hikoyasini aytib berolmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:55:44+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:55\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12011,
             "type": "Child Development - Age Periods",
             "title": "Muloqot zavqi",
-            "child_age": [
-                57
-            ],
+            "child_age": [57],
             "boy_video_article": 7996,
             "girl_video_article": 7991,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>Dadil yurmasa, yugurmasa, sakramasa yoki zinalardan foydalana olmasa</li>\n\t<li>Oddiy savollarga javob berolmasa (Ismingiz nima? Oilangiz kimlardan iborat? Sevimli hikoyangiz qaysi?</li>\n\t<li>Ikki qismadan iborat koʻrsatmalarga amal qilolmasa (Finjonni stol ustiga qoʻying! Yoki: Koptokni yotoq ostiga olib qoʻying!)</li>\n\t<li>Mustaqil ovqatlanish yoki kiyinish kabi kundalik ishlarni bajara olmasa</li>\n\t<li>Qalamni ushlashda qiynalayotganday koʻrinsa</li>\n\t<li>Keskin xatti-harakatlarni namoyish qilsa (kuchli qoʻrquv, jahldoplik yoki tushkun holatlar)</li>\n\t<li>Kundalik faoliyati haqida gapirmasa</li>\n\t<li>Kattalar bilan ham, bolalar bilan ham muloqot qilishga qiziqish bildirmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:56",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EDadil yurmasa, yugurmasa, sakramasa yoki zinalardan foydalana olmasa\u003C/li\u003E\n\t\u003Cli\u003EOddiy savollarga javob berolmasa (Ismingiz nima? Oilangiz kimlardan iborat? Sevimli hikoyangiz qaysi?\u003C/li\u003E\n\t\u003Cli\u003EIkki qismadan iborat koʻrsatmalarga amal qilolmasa (Finjonni stol ustiga qoʻying! Yoki: Koptokni yotoq ostiga olib qoʻying!)\u003C/li\u003E\n\t\u003Cli\u003EMustaqil ovqatlanish yoki kiyinish kabi kundalik ishlarni bajara olmasa\u003C/li\u003E\n\t\u003Cli\u003EQalamni ushlashda qiynalayotganday koʻrinsa\u003C/li\u003E\n\t\u003Cli\u003EKeskin xatti-harakatlarni namoyish qilsa (kuchli qoʻrquv, jahldoplik yoki tushkun holatlar)\u003C/li\u003E\n\t\u003Cli\u003EKundalik faoliyati haqida gapirmasa\u003C/li\u003E\n\t\u003Cli\u003EKattalar bilan ham, bolalar bilan ham muloqot qilishga qiziqish bildirmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:56:05+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:56\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12012,
             "type": "Child Development - Age Periods",
             "title": "Yangi muhitga tayyorlik",
-            "child_age": [
-                58
-            ],
+            "child_age": [58],
             "boy_video_article": 7986,
             "girl_video_article": 7981,
-            "milestone": "<p>Kichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:</p>\n\n<ul><li>Juda qisqa oraliqdagi diqqatga ega boʻlsa</li>\n\t<li>Harflar, raqamlar, oʻqish yoki yozishga umuman qiziqmasa</li>\n\t<li>Yaxshi eshitmayotganday ko'rinsa</li>\n\t<li>5 va undan ortiq soʻzlardan iborat jumlalarda aniq gapirmasa</li>\n\t<li>Jumlalarni toʻliq qilib uzun hikoyalarni gapirib bera olmasa</li>\n\t<li>Yordamsiz kiyinolmasa yoki hojatxonadan foydalana olmasa</li>\n\t<li>Suhbatlarda qatnasha olmasa</li>\n\t<li>Bir nechta usulda oʻynay olmasa</li>\n\t<li>Oʻzining ismini va manzilini aytib berolmasa</li>\n\t<li>Bir oyogʻda tura olmasa yoki sakray olmasa</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:56",
+            "milestone": "\u003Cp\u003EKichkintoyingizning xatti-harakatlarini kuzatib boring va agar birinchi oyning oxirida quyidagi muammolarni bolangizda kuzatsangiz, unda pediatr koʻrigidan oʻting yoki oilaviy hamshira bilan maslahatlashing:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EJuda qisqa oraliqdagi diqqatga ega boʻlsa\u003C/li\u003E\n\t\u003Cli\u003EHarflar, raqamlar, oʻqish yoki yozishga umuman qiziqmasa\u003C/li\u003E\n\t\u003Cli\u003EYaxshi eshitmayotganday ko'rinsa\u003C/li\u003E\n\t\u003Cli\u003E5 va undan ortiq soʻzlardan iborat jumlalarda aniq gapirmasa\u003C/li\u003E\n\t\u003Cli\u003EJumlalarni toʻliq qilib uzun hikoyalarni gapirib bera olmasa\u003C/li\u003E\n\t\u003Cli\u003EYordamsiz kiyinolmasa yoki hojatxonadan foydalana olmasa\u003C/li\u003E\n\t\u003Cli\u003ESuhbatlarda qatnasha olmasa\u003C/li\u003E\n\t\u003Cli\u003EBir nechta usulda oʻynay olmasa\u003C/li\u003E\n\t\u003Cli\u003EOʻzining ismini va manzilini aytib berolmasa\u003C/li\u003E\n\t\u003Cli\u003EBir oyogʻda tura olmasa yoki sakray olmasa\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:56+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:56:21+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:56\u003C/time\u003E\n",
             "mandatory": 1
         }
     ],
@@ -3405,338 +3381,290 @@ export const ChildDevelopmentData:any = {
             "id": 12001,
             "type": "Child Development - Age Periods",
             "title": "Знакомство друг с другом",
-            "child_age": [
-                43
-            ],
+            "child_age": [43],
             "boy_video_article": 7886,
             "girl_video_article": 7891,
-            "milestone": "<p>Понаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметите, что к концу первого месяца ваш ребёнок:</p>\n\n<ul><li>много плачет, и вы не можете успокоить малыша</li>\n\t<li>плохо сосет, очень медленно питается</li>\n\t<li>спит больше чем нужно (более 16 часов в сутки), или беспокоен во сне</li>\n\t<li>вообще не двигает руками или ногами</li>\n\t<li>не вздрагивает при громком шуме</li>\n\t<li>не мигает при ярком свете.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:56",
+            "milestone": "\u003Cp\u003EПонаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметите, что к концу первого месяца ваш ребёнок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eмного плачет, и вы не можете успокоить малыша\u003C/li\u003E\n\t\u003Cli\u003Eплохо сосет, очень медленно питается\u003C/li\u003E\n\t\u003Cli\u003Eспит больше чем нужно (более 16 часов в сутки), или беспокоен во сне\u003C/li\u003E\n\t\u003Cli\u003Eвообще не двигает руками или ногами\u003C/li\u003E\n\t\u003Cli\u003Eне вздрагивает при громком шуме\u003C/li\u003E\n\t\u003Cli\u003Eне мигает при ярком свете.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:56:42+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:56\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12002,
             "type": "Child Development - Age Periods",
             "title": "Общая корректировка и установление распорядка",
-            "child_age": [
-                44
-            ],
+            "child_age": [44],
             "boy_video_article": 7901,
             "girl_video_article": 7896,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметили, что к концу второго месяца ваш ребенок:</p>\n\n<ul><li>часто плачет, и вы не всегда можете успокоить своего ребенка</li>\n\t<li>не смотрит на лица даже на короткое время</li>\n\t<li>не реагирует на яркий свет или громкие звуки</li>\n\t<li>плохо ест или спит (более 16 часов в сутки)</li>\n\t<li>вообще не двигает руками или ногами</li>\n\t<li>не тянет руку в рот</li>\n\t<li>не улыбается людям.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 15:51",
+            "milestone": "\u003Cp\u003EНаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметили, что к концу второго месяца ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eчасто плачет, и вы не всегда можете успокоить своего ребенка\u003C/li\u003E\n\t\u003Cli\u003Eне смотрит на лица даже на короткое время\u003C/li\u003E\n\t\u003Cli\u003Eне реагирует на яркий свет или громкие звуки\u003C/li\u003E\n\t\u003Cli\u003Eплохо ест или спит (более 16 часов в сутки)\u003C/li\u003E\n\t\u003Cli\u003Eвообще не двигает руками или ногами\u003C/li\u003E\n\t\u003Cli\u003Eне тянет руку в рот\u003C/li\u003E\n\t\u003Cli\u003Eне улыбается людям.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T15:51:06+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 15:51\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12003,
             "type": "Child Development - Age Periods",
             "title": "Разнообразный опыт",
-            "child_age": [
-                45
-            ],
+            "child_age": [45],
             "boy_video_article": 7911,
             "girl_video_article": 7906,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметили, что к концу второго месяца ваш ребенок:</p>\n\n<ul><li>часто много плачет и не может успокоится</li>\n\t<li>не смотрит в глаза и не обращает внимания на лица людей</li>\n\t<li>не наблюдает за движением вещей</li>\n\t<li>не издает никаких звуков и не реагирует на звуки</li>\n\t<li>не может держатьсвою голову устойчиво</li>\n\t<li>не тянется за игрушкой находящейся перед собой</li>\n\t<li>не подносит вещи ко рту.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:56",
+            "milestone": "\u003Cp\u003EНаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметили, что к концу второго месяца ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eчасто много плачет и не может успокоится\u003C/li\u003E\n\t\u003Cli\u003Eне смотрит в глаза и не обращает внимания на лица людей\u003C/li\u003E\n\t\u003Cli\u003Eне наблюдает за движением вещей\u003C/li\u003E\n\t\u003Cli\u003Eне издает никаких звуков и не реагирует на звуки\u003C/li\u003E\n\t\u003Cli\u003Eне может держатьсвою голову устойчиво\u003C/li\u003E\n\t\u003Cli\u003Eне тянется за игрушкой находящейся перед собой\u003C/li\u003E\n\t\u003Cli\u003Eне подносит вещи ко рту.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:56:56+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:56\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12004,
             "type": "Child Development - Age Periods",
             "title": "Интенсивное исследование",
-            "child_age": [
-                46
-            ],
+            "child_age": [46],
             "boy_video_article": 7921,
             "girl_video_article": 7916,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметите, что к концу шестого месяца ваш ребенок:</p>\n\n<ul><li>регулярно долго плачет и не может успокоится</li>\n\t<li>не смотрит вам в глаза или не следит глазами за движущимися объектами</li>\n\t<li>не бормочет и не поворачивается к источнику звука</li>\n\t<li>не смеется и не издаёт визжащие звуки</li>\n\t<li>не переворачивается</li>\n\t<li>не может удержать свою шею и голову</li>\n\t<li>не может сидеть даже с вашей помощью и поддержкой</li>\n\t<li>совсем не тянется к предметам, даже когда вы помогаете ему</li>\n\t<li>не пытается получить то, что находится в пределах досягаемости</li>\n\t<li>испытывает трудности с поднесением чего-либо ко рту.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:57",
+            "milestone": "\u003Cp\u003EНаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметите, что к концу шестого месяца ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eрегулярно долго плачет и не может успокоится\u003C/li\u003E\n\t\u003Cli\u003Eне смотрит вам в глаза или не следит глазами за движущимися объектами\u003C/li\u003E\n\t\u003Cli\u003Eне бормочет и не поворачивается к источнику звука\u003C/li\u003E\n\t\u003Cli\u003Eне смеется и не издаёт визжащие звуки\u003C/li\u003E\n\t\u003Cli\u003Eне переворачивается\u003C/li\u003E\n\t\u003Cli\u003Eне может удержать свою шею и голову\u003C/li\u003E\n\t\u003Cli\u003Eне может сидеть даже с вашей помощью и поддержкой\u003C/li\u003E\n\t\u003Cli\u003Eсовсем не тянется к предметам, даже когда вы помогаете ему\u003C/li\u003E\n\t\u003Cli\u003Eне пытается получить то, что находится в пределах досягаемости\u003C/li\u003E\n\t\u003Cli\u003Eиспытывает трудности с поднесением чего-либо ко рту.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T16:57:12+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 16:57\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12005,
             "type": "Child Development - Age Periods",
             "title": "Новые открытия",
-            "child_age": [
-                47
-            ],
+            "child_age": [47],
             "boy_video_article": 7931,
             "girl_video_article": 7926,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной медсестрой, если вы заметили, что к концу девятого месяца ваш ребенок:</p>\n\n<ul><li>не смотрит вам в глаза или не следит глазами за движущимися объектами</li>\n\t<li>Не лепечет («мама», «папа» и т. д.)</li>\n\t<li>Не поворачивает голову к источнику звука</li>\n\t<li>не смотрит туда, куда вы указываете</li>\n\t<li>не проявляет привязанности к своим родителям (опекунам) - не улыбается им</li>\n\t<li>не реагирует на свое имя</li>\n\t<li>не узнает близких людей</li>\n\t<li>не переворачивается</li>\n\t<li>когда вы поднимаете его, он либо расслабленный, либо слишком напряжённый</li>\n\t<li>не может сидеть даже с вашей помощью и поддержкой</li>\n\t<li>с трудом ест твёрдую пищу</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:22",
+            "milestone": "\u003Cp\u003EНаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной медсестрой, если вы заметили, что к концу девятого месяца ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eне смотрит вам в глаза или не следит глазами за движущимися объектами\u003C/li\u003E\n\t\u003Cli\u003EНе лепечет («мама», «папа» и т. д.)\u003C/li\u003E\n\t\u003Cli\u003EНе поворачивает голову к источнику звука\u003C/li\u003E\n\t\u003Cli\u003Eне смотрит туда, куда вы указываете\u003C/li\u003E\n\t\u003Cli\u003Eне проявляет привязанности к своим родителям (опекунам) - не улыбается им\u003C/li\u003E\n\t\u003Cli\u003Eне реагирует на свое имя\u003C/li\u003E\n\t\u003Cli\u003Eне узнает близких людей\u003C/li\u003E\n\t\u003Cli\u003Eне переворачивается\u003C/li\u003E\n\t\u003Cli\u003Eкогда вы поднимаете его, он либо расслабленный, либо слишком напряжённый\u003C/li\u003E\n\t\u003Cli\u003Eне может сидеть даже с вашей помощью и поддержкой\u003C/li\u003E\n\t\u003Cli\u003Eс трудом ест твёрдую пищу\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:22:12+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:22\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12006,
             "type": "Child Development - Age Periods",
             "title": "Формирование привычек и последовательности",
-            "child_age": [
-                48
-            ],
+            "child_age": [48],
             "boy_video_article": 7941,
             "girl_video_article": 7936,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу первого года жизни ваш ребенок:</p>\n\n<ul><li>не смотрит вам в глаза или не следит глазами за движущимися объектами</li>\n\t<li>не интересуется звуками</li>\n\t<li>не реагирует на свое имя, когда вы зовёте ее/его</li>\n\t<li>не болтает</li>\n\t<li>никак не пытается донести до вас свои желания или потребности</li>\n\t<li>не указывает на объекты</li>\n\t<li>не проявляет эмоций</li>\n\t<li>не ползает</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:22",
+            "milestone": "\u003Cp\u003EНаблюдайте за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу первого года жизни ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eне смотрит вам в глаза или не следит глазами за движущимися объектами\u003C/li\u003E\n\t\u003Cli\u003Eне интересуется звуками\u003C/li\u003E\n\t\u003Cli\u003Eне реагирует на свое имя, когда вы зовёте ее/его\u003C/li\u003E\n\t\u003Cli\u003Eне болтает\u003C/li\u003E\n\t\u003Cli\u003Eникак не пытается донести до вас свои желания или потребности\u003C/li\u003E\n\t\u003Cli\u003Eне указывает на объекты\u003C/li\u003E\n\t\u003Cli\u003Eне проявляет эмоций\u003C/li\u003E\n\t\u003Cli\u003Eне ползает\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:22:39+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:22\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12007,
             "type": "Child Development - Age Periods",
             "title": "Первый шаг и первое слово",
-            "child_age": [
-                49
-            ],
+            "child_age": [49],
             "boy_video_article": 7951,
             "girl_video_article": 7946,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром, если вы заметили, что ваш ребенок:</p>\n\n<ul><li>плохо видит или слышит некоторые вещи</li>\n\t<li>не говорит ни слова</li>\n\t<li>затрудняется выполнять даже простые указания</li>\n\t<li>не использует жесты и указания при общении</li>\n\t<li>не смотрит вам в глаза и не обнимает</li>\n\t<li>не ходит самостоятельно.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:22",
+            "milestone": "\u003Cp\u003EНаблюдайте за поведением своего ребенка и поговорите со своим педиатром, если вы заметили, что ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eплохо видит или слышит некоторые вещи\u003C/li\u003E\n\t\u003Cli\u003Eне говорит ни слова\u003C/li\u003E\n\t\u003Cli\u003Eзатрудняется выполнять даже простые указания\u003C/li\u003E\n\t\u003Cli\u003Eне использует жесты и указания при общении\u003C/li\u003E\n\t\u003Cli\u003Eне смотрит вам в глаза и не обнимает\u003C/li\u003E\n\t\u003Cli\u003Eне ходит самостоятельно.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:22:55+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:22\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12008,
             "type": "Child Development - Age Periods",
             "title": "Обретение независимости",
-            "child_age": [
-                50
-            ],
+            "child_age": [50],
             "boy_video_article": 7961,
             "girl_video_article": 7956,
-            "milestone": "<p>Следите за поведением вашего ребенка и поговорите со своим педиатром, если вы заметите, что к концу второго года жизни ваш ребенок:</p>\n\n<ul><li>Не смотрит на вас (зрительный контакт)</li>\n\t<li>плохо видит или слышит определенные вещи</li>\n\t<li>не говорит ни слова</li>\n\t<li>не указывает на объекты</li>\n\t<li>не следует простым указаниям</li>\n\t<li>не проявляет чувств</li>\n\t<li>не ходит устойчиво</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EСледите за поведением вашего ребенка и поговорите со своим педиатром, если вы заметите, что к концу второго года жизни ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EНе смотрит на вас (зрительный контакт)\u003C/li\u003E\n\t\u003Cli\u003Eплохо видит или слышит определенные вещи\u003C/li\u003E\n\t\u003Cli\u003Eне говорит ни слова\u003C/li\u003E\n\t\u003Cli\u003Eне указывает на объекты\u003C/li\u003E\n\t\u003Cli\u003Eне следует простым указаниям\u003C/li\u003E\n\t\u003Cli\u003Eне проявляет чувств\u003C/li\u003E\n\t\u003Cli\u003Eне ходит устойчиво\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:23:09+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:23\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12009,
             "type": "Child Development - Age Periods",
             "title": "Расцвет воображения",
-            "child_age": [
-                51
-            ],
+            "child_age": [51],
             "boy_video_article": 7881,
             "girl_video_article": 7966,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу третьего года жизни ваш ребенок:</p>\n\n<ul><li>Не смотрит на вас (зрительный контакт)</li>\n\t<li>плохо слышит или видит некоторые вещи</li>\n\t<li>не говорит короткими предложениями (минимум 3 слова вместе)</li>\n\t<li>говорит нечётко</li>\n\t<li>не следует простым указаниям</li>\n\t<li>не хочет играть с другими детьми, игрушками и другими предметами</li>\n\t<li>не фантазирует и не может применить сюжетные игры</li>\n\t<li>не может бегать</li>\n\t<li>не пишет и не рисует</li>\n\t<li>не может держать в руке мелкие предметы.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EСледите за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу третьего года жизни ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EНе смотрит на вас (зрительный контакт)\u003C/li\u003E\n\t\u003Cli\u003Eплохо слышит или видит некоторые вещи\u003C/li\u003E\n\t\u003Cli\u003Eне говорит короткими предложениями (минимум 3 слова вместе)\u003C/li\u003E\n\t\u003Cli\u003Eговорит нечётко\u003C/li\u003E\n\t\u003Cli\u003Eне следует простым указаниям\u003C/li\u003E\n\t\u003Cli\u003Eне хочет играть с другими детьми, игрушками и другими предметами\u003C/li\u003E\n\t\u003Cli\u003Eне фантазирует и не может применить сюжетные игры\u003C/li\u003E\n\t\u003Cli\u003Eне может бегать\u003C/li\u003E\n\t\u003Cli\u003Eне пишет и не рисует\u003C/li\u003E\n\t\u003Cli\u003Eне может держать в руке мелкие предметы.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:23:22+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:23\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12010,
             "type": "Child Development - Age Periods",
             "title": "Задаём вопросы",
-            "child_age": [
-                52
-            ],
+            "child_age": [52],
             "boy_video_article": 7976,
             "girl_video_article": 7971,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу четвертого года жизни ваш ребенок:</p>\n\n<ul><li>Не проявляет интереса к играм с другими или к воображаемым / ролевым играм.</li>\n\t<li>Игнорирует других детей или не реагирует на людей вне семьи</li>\n\t<li>Не может прыгнуть на месте</li>\n\t<li>С трудом пишет (делает отметки на бумаге)</li>\n\t<li>Не следует указаниям, состоящим из трех частей.</li>\n\t<li>Не следует указаниям, состоящим из трех частей.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EСледите за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу четвертого года жизни ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EНе проявляет интереса к играм с другими или к воображаемым / ролевым играм.\u003C/li\u003E\n\t\u003Cli\u003EИгнорирует других детей или не реагирует на людей вне семьи\u003C/li\u003E\n\t\u003Cli\u003EНе может прыгнуть на месте\u003C/li\u003E\n\t\u003Cli\u003EС трудом пишет (делает отметки на бумаге)\u003C/li\u003E\n\t\u003Cli\u003EНе следует указаниям, состоящим из трех частей.\u003C/li\u003E\n\t\u003Cli\u003EНе следует указаниям, состоящим из трех частей.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:23:35+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:23\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12011,
             "type": "Child Development - Age Periods",
             "title": "Радость общения",
-            "child_age": [
-                57
-            ],
+            "child_age": [57],
             "boy_video_article": 7996,
             "girl_video_article": 7991,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если заметите, что к концу пятого года жизни ваш ребенок:</p>\n\n<ul><li>Не может уверенно ходить, бегать, подниматься, прыгать или пользоваться лестницей</li>\n\t<li>Не может ответить на простые вопросы (как тебя зовут? Кто твоя семья? Какая твоя любимая история?)</li>\n\t<li>Не может следовать указаниям состоящих из двух частей (Поставь чашку на стол! Или возьми мяч из под кровати!)</li>\n\t<li>Не может самостоятельно выполнять такие повседневные дела, как есть или одеваться.</li>\n\t<li>С трудом держит карандаш</li>\n\t<li>Показывает крайнее поведение (например, очень пугливое, агрессивное или грустное)</li>\n\t<li>Не говорит о повседневных делах</li>\n\t<li>Не проявляет интереса к общению ни со взрослыми, ни с детьми</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EСледите за поведением своего ребенка и поговорите со своим педиатром, если заметите, что к концу пятого года жизни ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EНе может уверенно ходить, бегать, подниматься, прыгать или пользоваться лестницей\u003C/li\u003E\n\t\u003Cli\u003EНе может ответить на простые вопросы (как тебя зовут? Кто твоя семья? Какая твоя любимая история?)\u003C/li\u003E\n\t\u003Cli\u003EНе может следовать указаниям состоящих из двух частей (Поставь чашку на стол! Или возьми мяч из под кровати!)\u003C/li\u003E\n\t\u003Cli\u003EНе может самостоятельно выполнять такие повседневные дела, как есть или одеваться.\u003C/li\u003E\n\t\u003Cli\u003EС трудом держит карандаш\u003C/li\u003E\n\t\u003Cli\u003EПоказывает крайнее поведение (например, очень пугливое, агрессивное или грустное)\u003C/li\u003E\n\t\u003Cli\u003EНе говорит о повседневных делах\u003C/li\u003E\n\t\u003Cli\u003EНе проявляет интереса к общению ни со взрослыми, ни с детьми\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:23:49+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:23\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12012,
             "type": "Child Development - Age Periods",
             "title": "Готовность к новым условиям",
-            "child_age": [
-                58
-            ],
+            "child_age": [58],
             "boy_video_article": 7986,
             "girl_video_article": 7981,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если заметите, что к концу шестого года жизни ваш ребенок:</p>\n\n<ul><li>Обладает очень короткой концентрацией внимания</li>\n\t<li>Совершенно не интересуется буквами, цифрами, чтением или письмом</li>\n\t<li>По вашему мнению, плохо слышит</li>\n\t<li>Не выговаривает четко предложения состоящих из 5 или более слов</li>\n\t<li>Не рассказывает длинные истории, используя законченные предложения</li>\n\t<li>Не одевается и не пользуется туалетом без посторонней помощи</li>\n\t<li>Не может участвовать в разговорах</li>\n\t<li>Не может играть более чем одним способом</li>\n\t<li>Не может назвать свое имя и адрес</li>\n\t<li>Не может стоять или прыгать на одной ноге</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:24",
+            "milestone": "\u003Cp\u003EСледите за поведением своего ребенка и поговорите со своим педиатром, если заметите, что к концу шестого года жизни ваш ребенок:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EОбладает очень короткой концентрацией внимания\u003C/li\u003E\n\t\u003Cli\u003EСовершенно не интересуется буквами, цифрами, чтением или письмом\u003C/li\u003E\n\t\u003Cli\u003EПо вашему мнению, плохо слышит\u003C/li\u003E\n\t\u003Cli\u003EНе выговаривает четко предложения состоящих из 5 или более слов\u003C/li\u003E\n\t\u003Cli\u003EНе рассказывает длинные истории, используя законченные предложения\u003C/li\u003E\n\t\u003Cli\u003EНе одевается и не пользуется туалетом без посторонней помощи\u003C/li\u003E\n\t\u003Cli\u003EНе может участвовать в разговорах\u003C/li\u003E\n\t\u003Cli\u003EНе может играть более чем одним способом\u003C/li\u003E\n\t\u003Cli\u003EНе может назвать свое имя и адрес\u003C/li\u003E\n\t\u003Cli\u003EНе может стоять или прыгать на одной ноге\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:55+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T17:24:10+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 17:24\u003C/time\u003E\n",
             "mandatory": 1
         }
     ],
     "uz-kaa": [
         {
-            "id": 12001,
-            "type": "Child Development - Age Periods",
-            "title": "Знакомство друг с другом",
-            "child_age": [
-                43
-            ],
-            "boy_video_article": 7886,
-            "girl_video_article": 7891,
-            "milestone": "<p>Понаблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметите, что к концу первого месяца ваш ребёнок:</p>\n\n<ul><li>много плачет, и вы не можете успокоить малыша</li>\n\t<li>плохо сосет, очень медленно питается</li>\n\t<li>спит больше чем нужно (более 16 часов в сутки), или беспокоен во сне</li>\n\t<li>вообще не двигает руками или ногами</li>\n\t<li>не вздрагивает при громком шуме</li>\n\t<li>не мигает при ярком свете.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:56",
-            "mandatory": 1
-        },
-        {
-            "id": 12002,
-            "type": "Child Development - Age Periods",
-            "title": "Общая корректировка и установление распорядка",
-            "child_age": [
-                44
-            ],
-            "boy_video_article": 7901,
-            "girl_video_article": 7896,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметили, что к концу второго месяца ваш ребенок:</p>\n\n<ul><li>часто плачет, и вы не всегда можете успокоить своего ребенка</li>\n\t<li>не смотрит на лица даже на короткое время</li>\n\t<li>не реагирует на яркий свет или громкие звуки</li>\n\t<li>плохо ест или спит (более 16 часов в сутки)</li>\n\t<li>вообще не двигает руками или ногами</li>\n\t<li>не тянет руку в рот</li>\n\t<li>не улыбается людям.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 15:51",
-            "mandatory": 1
-        },
-        {
-            "id": 12003,
-            "type": "Child Development - Age Periods",
-            "title": "Разнообразный опыт",
-            "child_age": [
-                45
-            ],
-            "boy_video_article": 7911,
-            "girl_video_article": 7906,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметили, что к концу второго месяца ваш ребенок:</p>\n\n<ul><li>часто много плачет и не может успокоится</li>\n\t<li>не смотрит в глаза и не обращает внимания на лица людей</li>\n\t<li>не наблюдает за движением вещей</li>\n\t<li>не издает никаких звуков и не реагирует на звуки</li>\n\t<li>не может держатьсвою голову устойчиво</li>\n\t<li>не тянется за игрушкой находящейся перед собой</li>\n\t<li>не подносит вещи ко рту.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:56",
-            "mandatory": 1
-        },
-        {
-            "id": 12004,
-            "type": "Child Development - Age Periods",
-            "title": "Интенсивное исследование",
-            "child_age": [
-                46
-            ],
-            "boy_video_article": 7921,
-            "girl_video_article": 7916,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной патронажной медсестрой, если вы заметите, что к концу шестого месяца ваш ребенок:</p>\n\n<ul><li>регулярно долго плачет и не может успокоится</li>\n\t<li>не смотрит вам в глаза или не следит глазами за движущимися объектами</li>\n\t<li>не бормочет и не поворачивается к источнику звука</li>\n\t<li>не смеется и не издаёт визжащие звуки</li>\n\t<li>не переворачивается</li>\n\t<li>не может удержать свою шею и голову</li>\n\t<li>не может сидеть даже с вашей помощью и поддержкой</li>\n\t<li>совсем не тянется к предметам, даже когда вы помогаете ему</li>\n\t<li>не пытается получить то, что находится в пределах досягаемости</li>\n\t<li>испытывает трудности с поднесением чего-либо ко рту.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 16:57",
-            "mandatory": 1
-        },
-        {
-            "id": 12005,
-            "type": "Child Development - Age Periods",
-            "title": "Новые открытия",
-            "child_age": [
-                47
-            ],
-            "boy_video_article": 7931,
-            "girl_video_article": 7926,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром или патронажной медсестрой, если вы заметили, что к концу девятого месяца ваш ребенок:</p>\n\n<ul><li>не смотрит вам в глаза или не следит глазами за движущимися объектами</li>\n\t<li>Не лепечет («мама», «папа» и т. д.)</li>\n\t<li>Не поворачивает голову к источнику звука</li>\n\t<li>не смотрит туда, куда вы указываете</li>\n\t<li>не проявляет привязанности к своим родителям (опекунам) - не улыбается им</li>\n\t<li>не реагирует на свое имя</li>\n\t<li>не узнает близких людей</li>\n\t<li>не переворачивается</li>\n\t<li>когда вы поднимаете его, он либо расслабленный, либо слишком напряжённый</li>\n\t<li>не может сидеть даже с вашей помощью и поддержкой</li>\n\t<li>с трудом ест твёрдую пищу</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:22",
-            "mandatory": 1
-        },
-        {
-            "id": 12006,
-            "type": "Child Development - Age Periods",
-            "title": "Формирование привычек и последовательности",
-            "child_age": [
-                48
-            ],
-            "boy_video_article": 7941,
-            "girl_video_article": 7936,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу первого года жизни ваш ребенок:</p>\n\n<ul><li>не смотрит вам в глаза или не следит глазами за движущимися объектами</li>\n\t<li>не интересуется звуками</li>\n\t<li>не реагирует на свое имя, когда вы зовёте ее/его</li>\n\t<li>не болтает</li>\n\t<li>никак не пытается донести до вас свои желания или потребности</li>\n\t<li>не указывает на объекты</li>\n\t<li>не проявляет эмоций</li>\n\t<li>не ползает</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:22",
-            "mandatory": 1
-        },
-        {
-            "id": 12007,
-            "type": "Child Development - Age Periods",
-            "title": "Первый шаг и первое слово",
-            "child_age": [
-                49
-            ],
-            "boy_video_article": 7951,
-            "girl_video_article": 7946,
-            "milestone": "<p>Наблюдайте за поведением своего ребенка и поговорите со своим педиатром, если вы заметили, что ваш ребенок:</p>\n\n<ul><li>плохо видит или слышит некоторые вещи</li>\n\t<li>не говорит ни слова</li>\n\t<li>затрудняется выполнять даже простые указания</li>\n\t<li>не использует жесты и указания при общении</li>\n\t<li>не смотрит вам в глаза и не обнимает</li>\n\t<li>не ходит самостоятельно.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:22",
-            "mandatory": 1
-        },
-        {
             "id": 12008,
             "type": "Child Development - Age Periods",
-            "title": "Обретение независимости",
-            "child_age": [
-                50
-            ],
+            "title": "Ǵárezsiz bolıw",
+            "child_age": [50],
             "boy_video_article": 7961,
             "girl_video_article": 7956,
-            "milestone": "<p>Следите за поведением вашего ребенка и поговорите со своим педиатром, если вы заметите, что к концу второго года жизни ваш ребенок:</p>\n\n<ul><li>Не смотрит на вас (зрительный контакт)</li>\n\t<li>плохо видит или слышит определенные вещи</li>\n\t<li>не говорит ни слова</li>\n\t<li>не указывает на объекты</li>\n\t<li>не следует простым указаниям</li>\n\t<li>не проявляет чувств</li>\n\t<li>не ходит устойчиво</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing :\u003C/p\u003E\u003Cp\u003ESizge qaramasa (kóz arqalı baylanıs)\u003C/p\u003E\u003Cp\u003EMálim bir zatlardı kórmese yamasa esitmasa\u003C/p\u003E\u003Cp\u003EQandayda-bir sóz aytpasa\u003C/p\u003E\u003Cp\u003EZatlardı qolı menen kórsetpese\u003C/p\u003E\u003Cp\u003EÁpiwayı kórsetpelerge ámel qılmasa\u003C/p\u003E\u003Cp\u003ESezim-sezimlerdi kórsetpese\u003C/p\u003E\u003Cp\u003EBekkem júrmese\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:51+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:42:36+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:42\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12009,
             "type": "Child Development - Age Periods",
-            "title": "Расцвет воображения",
-            "child_age": [
-                51
-            ],
+            "title": "Oyda sawlelendiriw oyanıwı",
+            "child_age": [51],
             "boy_video_article": 7881,
             "girl_video_article": 7966,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу третьего года жизни ваш ребенок:</p>\n\n<ul><li>Не смотрит на вас (зрительный контакт)</li>\n\t<li>плохо слышит или видит некоторые вещи</li>\n\t<li>не говорит короткими предложениями (минимум 3 слова вместе)</li>\n\t<li>говорит нечётко</li>\n\t<li>не следует простым указаниям</li>\n\t<li>не хочет играть с другими детьми, игрушками и другими предметами</li>\n\t<li>не фантазирует и не может применить сюжетные игры</li>\n\t<li>не может бегать</li>\n\t<li>не пишет и не рисует</li>\n\t<li>не может держать в руке мелкие предметы.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EMashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing :\u003C/p\u003E\u003Cp\u003ESizge qaramasa (kóz arqalı baylanıs ornatpasa)\u003C/p\u003E\u003Cp\u003EAyırım zatlardı kóriw yamasa esitiwde qıyınshılıqlarǵa dus kelse\u003C/p\u003E\u003Cp\u003EQısqa gáplerdi sóylew almasa ( keminde 3 ta sózden ibarat)\u003C/p\u003E\u003Cp\u003ESóylewi tınıq bolmasa\u003C/p\u003E\u003Cp\u003EÁpiwayı kórsetpelerge ámel qılmasa\u003C/p\u003E\u003Cp\u003EBasqa balalar menen yamasa oyınshıqlar hám basqa zatlar menen oynawdı qálemeytuǵına\u003C/p\u003E\u003Cp\u003EOynayotganda oyda sawlelendiriw qılmasa hám syujetli oyınlarda qatnasıw bolmasa\u003C/p\u003E\u003Cp\u003EJuwırıw almasa\u003C/p\u003E\u003Cp\u003EJazbasa yamasa sızılmasa\u003C/p\u003E\u003Cp\u003EQolında kishi denelerdi uslap túrolmasa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:51+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:44:06+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:44\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12010,
             "type": "Child Development - Age Periods",
-            "title": "Задаём вопросы",
-            "child_age": [
-                52
-            ],
+            "title": "Sorawlar beriw",
+            "child_age": [52],
             "boy_video_article": 7976,
             "girl_video_article": 7971,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если вы заметите, что к концу четвертого года жизни ваш ребенок:</p>\n\n<ul><li>Не проявляет интереса к играм с другими или к воображаемым / ролевым играм.</li>\n\t<li>Игнорирует других детей или не реагирует на людей вне семьи</li>\n\t<li>Не может прыгнуть на месте</li>\n\t<li>С трудом пишет (делает отметки на бумаге)</li>\n\t<li>Не следует указаниям, состоящим из трех частей.</li>\n\t<li>Не следует указаниям, состоящим из трех частей.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing :\u003C/p\u003E\u003Cp\u003EBasqalar menen oynawǵa yamasa iybeliy/rolli oyınlarǵa qızıǵıwshılıq bildiriwse\u003C/p\u003E\u003Cp\u003EBasqa balalar yamasa shańaraqtan tısqarı bolǵan adamlarg ǵamxorlıq islemeydi\u003C/p\u003E\u003Cp\u003ETurǵan jayında sakray almasa\u003C/p\u003E\u003Cp\u003EJazıwda qıynalsa (qo'g'ozda belgiler qoysa)\u003C/p\u003E\u003Cp\u003EÚsh bólekli kórsetpelerge ámel qılmasa\u003C/p\u003E\u003Cp\u003EArdaqlı gúrrińin aytıp bere almasa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:50+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:44:56+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:44\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12011,
             "type": "Child Development - Age Periods",
-            "title": "Радость общения",
-            "child_age": [
-                57
-            ],
+            "title": "Baylanıs zawqı",
+            "child_age": [57],
             "boy_video_article": 7996,
             "girl_video_article": 7991,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если заметите, что к концу пятого года жизни ваш ребенок:</p>\n\n<ul><li>Не может уверенно ходить, бегать, подниматься, прыгать или пользоваться лестницей</li>\n\t<li>Не может ответить на простые вопросы (как тебя зовут? Кто твоя семья? Какая твоя любимая история?)</li>\n\t<li>Не может следовать указаниям состоящих из двух частей (Поставь чашку на стол! Или возьми мяч из под кровати!)</li>\n\t<li>Не может самостоятельно выполнять такие повседневные дела, как есть или одеваться.</li>\n\t<li>С трудом держит карандаш</li>\n\t<li>Показывает крайнее поведение (например, очень пугливое, агрессивное или грустное)</li>\n\t<li>Не говорит о повседневных делах</li>\n\t<li>Не проявляет интереса к общению ни со взрослыми, ни с детьми</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:23",
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing :\u003C/p\u003E\u003Cp\u003EÓzine isenimli júrmese, juwırıwmasa, sekirmese yamasa tekshelerden paydalanıw almasa\u003C/p\u003E\u003Cp\u003EÁpiwayı sorawlarǵa juwap bere almasa ( Atıńız ne? Shańaraǵıń kimlerden ibarat? Ardaqlı gúrrińńiz qaysı?\u003C/p\u003E\u003Cp\u003EEki bólekadan ibarat kórsetpelerge ámel isley almaytuǵına ( Finjonni stol ústine qoyıng! Yamasa: Toptı jatıw astına alıp qoyıng! )\u003C/p\u003E\u003Cp\u003EǴárezsiz awqatlanıw yamasa Kiyiniw sıyaqlı kúndegilik jumıslardı atqara almasa\u003C/p\u003E\u003Cp\u003EQálemdi ustawda qıynalayotganday kóp'rinsa\u003C/p\u003E\u003Cp\u003EKeskin minez-qulqlardı kórsetiw qılsa (kúshli qáweter, ashıwdoplik yamasa kewilsiz jaǵdaylar)\u003C/p\u003E\u003Cp\u003EKúndelik iskerligi haqqında sóylemese\u003C/p\u003E\u003Cp\u003EÚlkenler menen de, balalar menen de ushırasıwǵa qızıǵıwshılıq bildiriwse\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:50+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:45:46+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:45\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12012,
             "type": "Child Development - Age Periods",
-            "title": "Готовность к новым условиям",
-            "child_age": [
-                58
-            ],
+            "title": "Jańa ortalıqqa tayınlıq",
+            "child_age": [58],
             "boy_video_article": 7986,
             "girl_video_article": 7981,
-            "milestone": "<p>Следите за поведением своего ребенка и поговорите со своим педиатром, если заметите, что к концу шестого года жизни ваш ребенок:</p>\n\n<ul><li>Обладает очень короткой концентрацией внимания</li>\n\t<li>Совершенно не интересуется буквами, цифрами, чтением или письмом</li>\n\t<li>По вашему мнению, плохо слышит</li>\n\t<li>Не выговаривает четко предложения состоящих из 5 или более слов</li>\n\t<li>Не рассказывает длинные истории, используя законченные предложения</li>\n\t<li>Не одевается и не пользуется туалетом без посторонней помощи</li>\n\t<li>Не может участвовать в разговорах</li>\n\t<li>Не может играть более чем одним способом</li>\n\t<li>Не может назвать свое имя и адрес</li>\n\t<li>Не может стоять или прыгать на одной ноге</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 17:24",
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing:\u003C/p\u003E\u003Cp\u003EJúdá qısqa aradaǵı dıqqat iye bolsa\u003C/p\u003E\u003Cp\u003EHáripler, nomerler, oqıw yamasa jazıwǵa ulıwma qızıqmasa\u003C/p\u003E\u003Cp\u003EJaqsı esitiwsizotganday kóp'rinsa\u003C/p\u003E\u003Cp\u003E5 hám odan artıq sózlerden ibarat gáplerde anıq sóylemese\u003C/p\u003E\u003Cp\u003EGáplerdi tolıq etip uzın gúrrińlerdi sóylep bere almasa\u003C/p\u003E\u003Cp\u003EJárdemsiz Qıyınolmasa yamasa hájetxanadan paydalanıw almasa\u003C/p\u003E\u003Cp\u003ESáwbetlerde qatnasa almasa\u003C/p\u003E\u003Cp\u003EBir neshe usılda oynay almasa\u003C/p\u003E\u003Cp\u003EÓziniń atın hám adresin aytıp bere almasa\u003C/p\u003E\u003Cp\u003EBir ayog'da túr almasa yamasa sakray almasa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:50+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:46:48+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:46\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12001,
+            "type": "Child Development - Age Periods",
+            "title": "Bir-biri menen tanısıw",
+            "child_age": [43],
+            "boy_video_article": 7886,
+            "girl_video_article": 7891,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing:\u003C/p\u003E\u003Cp\u003EJúdá kóp jıynaw'lasa jáne onı jubatıw almasańız\u003C/p\u003E\u003Cp\u003ETósni jaman emse, júdá aste azıqlansa\u003C/p\u003E\u003Cp\u003EKereginen kóbirek uyıqlasa ( kúnine 16 saattan artıq), yamasa alaǵada uyıqlasa\u003C/p\u003E\u003Cp\u003EQolın yamasa ayaqların ulıwma háreketlantirmasa\u003C/p\u003E\u003Cp\u003EBiyik dawıstan shóp'chimasa\u003C/p\u003E\u003Cp\u003EJarıq shıradan kózleri Qamashmasa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:05+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:35:41+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:35\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12002,
+            "type": "Child Development - Age Periods",
+            "title": "Ulıwma óz-ara iykemlesiw hám kún tártibin ornatıw dáwiri",
+            "child_age": [44],
+            "boy_video_article": 7901,
+            "girl_video_article": 7896,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing :\u003C/p\u003E\u003Cp\u003ETez-tez jıynaw'lasa jáne onı jubatıw almasańız\u003C/p\u003E\u003Cp\u003EQısqa waqıtqa bolsa da júzlerge qaramasa\u003C/p\u003E\u003Cp\u003EJaqtılıq yamasa biyik seslerge juwap bermese\u003C/p\u003E\u003Cp\u003EJaqsı azıqlanmasa yamasa jaqsı uyıqlamasa (kúnine 16 saattan artıq uyıqlasa)\u003C/p\u003E\u003Cp\u003EQolın yamasa ayaqların ulıwma háreketlantirmasa\u003C/p\u003E\u003Cp\u003EQolın awızına alıp kelmese\u003C/p\u003E\u003Cp\u003EAdamlarǵa mıyıq tartıw qılmasa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:05+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:33:28+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:33\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12003,
+            "type": "Child Development - Age Periods",
+            "title": "Túrli tájiriybeler",
+            "child_age": [45],
+            "boy_video_article": 7911,
+            "girl_video_article": 7906,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing:\u003C/p\u003E\u003Cp\u003ETez-tez kóp jıynaw'lasa hám awunolmasa\u003C/p\u003E\u003Cp\u003EAdamlardıń kózlerine qaramasa yamasa adamlardıń betlerine itibar bermese\u003C/p\u003E\u003Cp\u003EHáreketleniwshi zatlardı baqlawmasa\u003C/p\u003E\u003Cp\u003EHesh qanday dawıs shıǵarmasa yamasa seslerge juwap bermese\u003C/p\u003E\u003Cp\u003EBasın tut almasa\u003C/p\u003E\u003Cp\u003EAldında turǵan oyınshıqtı yamasa nárseni almasa\u003C/p\u003E\u003Cp\u003EZatlardı awızına alıp kelmese\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:05+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:37:26+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:37\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12004,
+            "type": "Child Development - Age Periods",
+            "title": "Intensiv úyreniw",
+            "child_age": [46],
+            "boy_video_article": 7921,
+            "girl_video_article": 7916,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing :\u003C/p\u003E\u003Cp\u003EÚzliksiz túrde uzaq waqıt jıynaw'lasa hám awunmasa\u003C/p\u003E\u003Cp\u003EKózingizga qaramasa yamasa háreketleniwshi zatlardı kózi menen baqlawmasa\u003C/p\u003E\u003Cp\u003EShoq'urlamasa yamasa dawıs dáregi tárep qaramasa\u003C/p\u003E\u003Cp\u003EKúlkise yamasa haqıyqatqirmasa\u003C/p\u003E\u003Cp\u003EQaptal tárepke ag'darilmasa\u003C/p\u003E\u003Cp\u003EMoyin hám basın basqarolmasa\u003C/p\u003E\u003Cp\u003ESizdiń járdemińiz hám tirekńiz menen de o'tirolmasa\u003C/p\u003E\u003Cp\u003ETartıp tursańız da zatlarǵa jetip barǵısı kelmese\u003C/p\u003E\u003Cp\u003EJanında turǵan zatlardı alıwǵa háreket qılmasa\u003C/p\u003E\u003Cp\u003EAwızına zatlardı alıwda qıynalsa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:04+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:38:28+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:38\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12005,
+            "type": "Child Development - Age Periods",
+            "title": "Jańa ashılıwlar",
+            "child_age": [47],
+            "boy_video_article": 7931,
+            "girl_video_article": 7926,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing:\u003C/p\u003E\u003Cp\u003EKózingizga qaramasa yamasa háreketleniwshi zatlardı kózi menen baqlawmasa\u003C/p\u003E\u003Cp\u003EÓzin tilinde sóylemese ( “ana” “ake, ” hám h.)\u003C/p\u003E\u003Cp\u003EBasın dawıs kiyatırǵan tárepke búrmese\u003C/p\u003E\u003Cp\u003ESiz kórsetken orınǵa qaramasa\u003C/p\u003E\u003Cp\u003EÓzine ǵamxorlıq qılıp atırǵan adamlarǵa ( ata-anasına) mıyıq tartıw qılmasa\u003C/p\u003E\u003Cp\u003EAtı menen shaqırılǵanda itibar qılmasa\u003C/p\u003E\u003Cp\u003EÓz jaqınların kórgende tanımaytuǵına\u003C/p\u003E\u003Cp\u003EDomalaqamasa\u003C/p\u003E\u003Cp\u003EOnı kóterganingizda ózin oǵada bos qo'sa yamasa nıqlashsa\u003C/p\u003E\u003Cp\u003ESizdiń járdemińiz hám tirekńiz menen de o'tirolmasa\u003C/p\u003E\u003Cp\u003EGewek awqat jewde qıynalsa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:04+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:39:34+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:39\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12006,
+            "type": "Child Development - Age Periods",
+            "title": "Ádetler hám izbe-izlikti ornatıw",
+            "child_age": [48],
+            "boy_video_article": 7941,
+            "girl_video_article": 7936,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing:\u003C/p\u003E\u003Cp\u003EKózingizga qaramasa yamasa háreketleniwshi zatlardı kózi menen baqlawmasa\u003C/p\u003E\u003Cp\u003ESeslerge qızıǵıwshılıq bildiriwse\u003C/p\u003E\u003Cp\u003EAtı menen shaqırǵanıńızda qaramasa\u003C/p\u003E\u003Cp\u003EÓz tilinde shoq'urlab sóylemese\u003C/p\u003E\u003Cp\u003EQálew hám tilekler haqqında sizge qandayda-bir tárzde bildiriwge urınbasa\u003C/p\u003E\u003Cp\u003EZatlardı qolı menen kórsetpese\u003C/p\u003E\u003Cp\u003ESezim-sezimlerdi ańlatpasa\u003C/p\u003E\u003Cp\u003EEmesklamasa\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:04+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:40:38+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:40\u003C/time\u003E\n",
+            "mandatory": 1
+        },
+        {
+            "id": 12007,
+            "type": "Child Development - Age Periods",
+            "title": "Birinshi qádem hám birinshi sóz",
+            "child_age": [49],
+            "boy_video_article": 7951,
+            "girl_video_article": 7946,
+            "milestone": "\u003Cp\u003EKishkentayıńızdıń minez-qulqların gúzetip barıń hám eger birinshi aynıń aqırında tómendegi mashqalalardi balańızda baqlawńız, ol jaǵdayda pediatr kóp'rigidan ótiń yamasa shańaraqqa tiyisli miyirbiyke menen máslahátlashing:\u003C/p\u003E\u003Cp\u003EAyırım zatlardı kóriwde yamasa esitiwde qıynalsa\u003C/p\u003E\u003Cp\u003EQandayda-bir sóz aytpasa\u003C/p\u003E\u003Cp\u003EHátte ápiwayı kórsetpelerge ámel etiwge qıynalsa\u003C/p\u003E\u003Cp\u003ESóylesiwde ım-ishara-belgilerdi isletmasa hám zatlardı kórsetpese\u003C/p\u003E\u003Cp\u003EKózlerińizge qaramasa hám sizdi qushaqlamasa\u003C/p\u003E\u003Cp\u003EÓzi ǵárezsiz júrmese\u003C/p\u003E",
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:16:03+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-18T10:41:48+01:00\" class=\"datetime\"\u003EWed, 03/18/2026 - 10:41\u003C/time\u003E\n",
             "mandatory": 1
         }
     ],

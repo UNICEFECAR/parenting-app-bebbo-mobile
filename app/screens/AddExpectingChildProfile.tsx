@@ -20,7 +20,7 @@ import { RootStackParamList } from "@navigation/types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { formatStringDate, getLanguageCode } from "../services/Utils";
+import { formatStringDate, getDatePickerLocale } from "../services/Utils";
 import { Heading2w, ShiftFromTop10 } from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -84,7 +84,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
 
   const childAge = useAppSelector(selectChildAge);
   const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
+    getDatePickerLocale(state.selectedCountry?.languageCode)
   );
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();

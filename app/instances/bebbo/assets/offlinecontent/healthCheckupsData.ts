@@ -2774,22 +2774,22 @@ export const healthCheckupsData: any = {
         {
             "id": 57766,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 2 oyda",
+            "title": "To‘liq 2 oyda",
             "growth_period": 6476,
             "pinned_article": 4446,
             "pinned_video_article": 0,
-            "created_at": "Fri, 08/13/2021 - 21:34",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-08-13T21:34:26+02:00\" class=\"datetime\"\u003EFri, 08/13/2021 - 21:34\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 57761,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 1 oyda",
+            "title": "To‘liq 1 oyda",
             "growth_period": 6471,
             "pinned_article": 4441,
             "pinned_video_article": 0,
-            "created_at": "Fri, 08/13/2021 - 21:34",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-08-13T21:34:00+02:00\" class=\"datetime\"\u003EFri, 08/13/2021 - 21:34\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-12T11:58:48+01:00\" class=\"datetime\"\u003EWed, 01/12/2022 - 11:58\u003C/time\u003E\n"
         },
         {
             "id": 57756,
@@ -2798,490 +2798,490 @@ export const healthCheckupsData: any = {
             "growth_period": 6466,
             "pinned_article": 4526,
             "pinned_video_article": 0,
-            "created_at": "Fri, 08/13/2021 - 21:33",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-08-13T21:33:32+02:00\" class=\"datetime\"\u003EFri, 08/13/2021 - 21:33\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56646,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 60 oyda",
+            "title": "To‘liq 60 oyda",
             "growth_period": 6551,
-            "pinned_article": 0,
+            "pinned_article": 59246,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:58",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:58:22+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56641,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 54 oyda",
+            "title": "To‘liq 54 oyda",
             "growth_period": 6549,
-            "pinned_article": 0,
+            "pinned_article": 59241,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:57",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:57:39+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56636,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 48 oyda",
+            "title": "To‘liq 48 oyda",
             "growth_period": 6548,
-            "pinned_article": 0,
+            "pinned_article": 59236,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:56",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:56:39+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56631,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 42 oyda",
+            "title": "To‘liq 42 oyda",
             "growth_period": 6547,
-            "pinned_article": 0,
+            "pinned_article": 59231,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:56",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:56:04+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56626,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 36 oyda",
+            "title": "To‘liq 36 oyda",
             "growth_period": 6543,
             "pinned_article": 4511,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:55",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:55:20+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:55\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56621,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 33 oyda",
+            "title": "To‘liq 33 oyda",
             "growth_period": 6542,
-            "pinned_article": 0,
+            "pinned_article": 59226,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:54",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:54:40+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56616,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 30 oyda",
+            "title": "To‘liq 30 oyda",
             "growth_period": 6541,
-            "pinned_article": 0,
+            "pinned_article": 59221,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:54",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:54:06+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56611,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 27 oyda",
+            "title": "To‘liq 27 oyda",
             "growth_period": 6540,
-            "pinned_article": 0,
+            "pinned_article": 59211,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:53",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:53:03+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56606,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 24 oyda",
+            "title": "To‘liq 24 oyda",
             "growth_period": 6538,
-            "pinned_article": 0,
+            "pinned_article": 59216,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:52",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:52:27+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:52\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56601,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 21 oyda",
+            "title": "To‘liq 21 oyda",
             "growth_period": 6537,
-            "pinned_article": 0,
+            "pinned_article": 59206,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:51",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:51:47+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56596,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 18 oyda",
+            "title": "To‘liq 18 oyda",
             "growth_period": 6560,
             "pinned_article": 4476,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:51",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:51:12+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56591,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 16 oyda",
+            "title": "To‘liq 16 oyda",
             "growth_period": 6535,
-            "pinned_article": 0,
+            "pinned_article": 59201,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:50",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:50:26+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56586,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 15 oyda",
+            "title": "To‘liq 15 oyda",
             "growth_period": 6534,
-            "pinned_article": 0,
+            "pinned_article": 59196,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:49",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:49:47+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56581,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 12 oyda",
+            "title": "To‘liq 12 oyda",
             "growth_period": 6532,
             "pinned_article": 4471,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:49",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:49:13+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56576,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 11 oyda",
+            "title": "To‘liq 11 oyda",
             "growth_period": 6531,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:48",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:48:33+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56571,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 10 oyda",
+            "title": "To‘liq 10 oyda",
             "growth_period": 6526,
-            "pinned_article": 0,
+            "pinned_article": 59186,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:47",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:47:57+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56566,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 9 oyda",
+            "title": "To‘liq 9 oyda",
             "growth_period": 6521,
             "pinned_article": 4466,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:47",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:47:13+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56561,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 8 oyda",
+            "title": "To‘liq 8 oyda",
             "growth_period": 6516,
-            "pinned_article": 0,
+            "pinned_article": 59171,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:45",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:45:58+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56556,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 7 oyda",
+            "title": "To‘liq 7 oyda",
             "growth_period": 6511,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:45",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:45:20+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56551,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 6 oyda",
+            "title": "To‘liq 6 oyda",
             "growth_period": 6501,
             "pinned_article": 4461,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:44",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:44:42+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56546,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 5 oyda",
+            "title": "To‘liq 5 oyda",
             "growth_period": 6496,
             "pinned_article": 4456,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:43",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:43:50+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56541,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 4 oyda",
+            "title": "To‘liq 4 oyda",
             "growth_period": 6491,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:43",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:43:06+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56536,
             "type": "Health Check-ups - Age Periods",
-            "title": "to‘liq 3 oyda",
+            "title": "To‘liq 3 oyda",
             "growth_period": 6481,
-            "pinned_article": 0,
+            "pinned_article": 59156,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 12:42",
-            "updated_at": "Sat, 08/28/2021 - 03:44"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T12:42:11+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 12:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         }
     ],
     "uz-ru": [
         {
             "id": 56061,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 60 месяца",
+            "title": "В полные 60 месяца",
             "growth_period": 6551,
-            "pinned_article": 0,
+            "pinned_article": 59246,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:13:58+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:13\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56056,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 54 месяца",
+            "title": "В полные 54 месяца",
             "growth_period": 6549,
-            "pinned_article": 0,
+            "pinned_article": 59241,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:13:37+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:13\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56051,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 48 месяца",
+            "title": "В полные 48 месяца",
             "growth_period": 6548,
-            "pinned_article": 0,
+            "pinned_article": 59236,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:13:15+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:13\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56046,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 42 месяца",
+            "title": "В полные 42 месяца",
             "growth_period": 6547,
-            "pinned_article": 0,
+            "pinned_article": 59231,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:12",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:12:49+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56041,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 36 месяца",
+            "title": "В полные 36 месяца",
             "growth_period": 6543,
             "pinned_article": 4511,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:12",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:12:24+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56036,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 33 месяца",
+            "title": "В полные 33 месяца",
             "growth_period": 6542,
-            "pinned_article": 0,
+            "pinned_article": 59226,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:12",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:12:01+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56031,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 30 месяца",
+            "title": "В полные 30 месяца",
             "growth_period": 6541,
-            "pinned_article": 0,
+            "pinned_article": 59221,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:11",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:11:37+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56026,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 27 месяца",
+            "title": "В полные 27 месяца",
             "growth_period": 6540,
-            "pinned_article": 0,
+            "pinned_article": 59211,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:11",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:11:04+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56021,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 24 месяца",
+            "title": "В полные 24 месяца",
             "growth_period": 6538,
-            "pinned_article": 0,
+            "pinned_article": 59216,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:10",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:10:30+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-22T06:20:26+01:00\" class=\"datetime\"\u003ESat, 01/22/2022 - 06:20\u003C/time\u003E\n"
         },
         {
             "id": 56016,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 21 месяца",
+            "title": "В полные 21 месяца",
             "growth_period": 6537,
-            "pinned_article": 0,
+            "pinned_article": 59206,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:09",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:09:53+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56011,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 15 месяца",
+            "title": "В полные 15 месяца",
             "growth_period": 6534,
-            "pinned_article": 0,
+            "pinned_article": 59196,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:09",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:09:24+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56006,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 11 месяца",
+            "title": "В полные 11 месяца",
             "growth_period": 6531,
-            "pinned_article": 0,
+            "pinned_article": 59191,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:08",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:08:27+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 56001,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 10 месяца",
+            "title": "В полные 10 месяца",
             "growth_period": 6526,
-            "pinned_article": 0,
+            "pinned_article": 59186,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:08",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:08:03+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 55996,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 8 месяца",
+            "title": "В полные 8 месяцев",
             "growth_period": 6516,
-            "pinned_article": 0,
+            "pinned_article": 59171,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:07",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:07:33+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-22T07:05:14+01:00\" class=\"datetime\"\u003ESat, 01/22/2022 - 07:05\u003C/time\u003E\n"
         },
         {
             "id": 55991,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 7 месяца",
+            "title": "В полные 7 месяца",
             "growth_period": 6511,
-            "pinned_article": 0,
+            "pinned_article": 59166,
             "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:06",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-17T14:06:50+02:00\" class=\"datetime\"\u003ESat, 07/17/2021 - 14:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23291,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 18 месяцев",
+            "title": "В полные 18 месяцев",
             "growth_period": 6560,
             "pinned_article": 4476,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:21",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:21:23+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23271,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 16 месяцев",
+            "title": "В полные 16 месяцев",
             "growth_period": 6535,
-            "pinned_article": 0,
+            "pinned_article": 59201,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:17",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:17:42+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23256,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 12 месяца",
+            "title": "В полные 12 месяца",
             "growth_period": 6532,
             "pinned_article": 4471,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:13:53+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:13\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23231,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 9 месяца",
+            "title": "В полные 9 месяца",
             "growth_period": 6521,
             "pinned_article": 4466,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:08",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:08:45+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23216,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 6 месяцев",
+            "title": "В полные 6 месяцев",
             "growth_period": 6501,
             "pinned_article": 4461,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:07",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:07:28+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23201,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 5 месяцев",
+            "title": "В полные 5 месяцев",
             "growth_period": 6496,
             "pinned_article": 4456,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:06",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:06:03+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23191,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 4 месяца",
+            "title": "В полные 4 месяца",
             "growth_period": 6491,
-            "pinned_article": 0,
+            "pinned_article": 59161,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:03",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T13:03:33+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 13:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23181,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 3 месяца",
+            "title": "В полные 3 месяца",
             "growth_period": 6481,
-            "pinned_article": 0,
+            "pinned_article": 59156,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:59",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T12:59:03+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 12:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23171,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 2 месяца",
+            "title": "В полные 2 месяца",
             "growth_period": 6476,
             "pinned_article": 4446,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:57",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T12:57:11+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 12:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23161,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полный 1 месяц",
+            "title": "В полный 1 месяц",
             "growth_period": 6471,
             "pinned_article": 4441,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:53",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T12:53:59+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 12:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         },
         {
             "id": 23151,
@@ -3290,270 +3290,270 @@ export const healthCheckupsData: any = {
             "growth_period": 6466,
             "pinned_article": 4526,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:45",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T12:45:24+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 12:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n"
         }
     ],
     "uz-kaa": [
         {
-            "id": 56061,
+            "id": 57766,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полные 60 месяца",
-            "growth_period": 6551,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56056,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 54 месяца",
-            "growth_period": 6549,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56051,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 48 месяца",
-            "growth_period": 6548,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56046,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 42 месяца",
-            "growth_period": 6547,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:12",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56041,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 36 месяца",
-            "growth_period": 6543,
-            "pinned_article": 4511,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:12",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56036,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 33 месяца",
-            "growth_period": 6542,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:12",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56031,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 30 месяца",
-            "growth_period": 6541,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:11",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56026,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 27 месяца",
-            "growth_period": 6540,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:11",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56021,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 24 месяца",
-            "growth_period": 6538,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:10",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56016,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 21 месяца",
-            "growth_period": 6537,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:09",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56011,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 15 месяца",
-            "growth_period": 6534,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:09",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56006,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 11 месяца",
-            "growth_period": 6531,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:08",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 56001,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 10 месяца",
-            "growth_period": 6526,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:08",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 55996,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 8 месяца",
-            "growth_period": 6516,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:07",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 55991,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 7 месяца",
-            "growth_period": 6511,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Sat, 07/17/2021 - 14:06",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23291,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 18 месяцев",
-            "growth_period": 6560,
-            "pinned_article": 4476,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:21",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23271,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 16 месяцев",
-            "growth_period": 6535,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:17",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23256,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 12 месяца",
-            "growth_period": 6532,
-            "pinned_article": 4471,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:13",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23231,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 9 месяца",
-            "growth_period": 6521,
-            "pinned_article": 4466,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:08",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23216,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 6 месяцев",
-            "growth_period": 6501,
-            "pinned_article": 4461,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:07",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23201,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 5 месяцев",
-            "growth_period": 6496,
-            "pinned_article": 4456,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:06",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23191,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 4 месяца",
-            "growth_period": 6491,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 13:03",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23181,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 3 месяца",
-            "growth_period": 6481,
-            "pinned_article": 0,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:59",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23171,
-            "type": "Health Check-ups - Age Periods",
-            "title": "в полные 2 месяца",
+            "title": "Tolıq 2 ayda",
             "growth_period": 6476,
             "pinned_article": 4446,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:57",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:20+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:16:05+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:16\u003C/time\u003E\n"
         },
         {
-            "id": 23161,
+            "id": 57756,
             "type": "Health Check-ups - Age Periods",
-            "title": "в полный 1 месяц",
-            "growth_period": 6471,
-            "pinned_article": 4441,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:53",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
-        },
-        {
-            "id": 23151,
-            "type": "Health Check-ups - Age Periods",
-            "title": "При рождении",
+            "title": "Tuwılıw dáwirinde",
             "growth_period": 6466,
             "pinned_article": 4526,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 12:45",
-            "updated_at": "Sat, 08/28/2021 - 03:43"
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:20+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:25:58+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:25\u003C/time\u003E\n"
+        },
+        {
+            "id": 56601,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 21 ayda",
+            "growth_period": 6537,
+            "pinned_article": 59206,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:15:39+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:15\u003C/time\u003E\n"
+        },
+        {
+            "id": 56646,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 60 ayda",
+            "growth_period": 6551,
+            "pinned_article": 59246,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:24:46+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:24\u003C/time\u003E\n"
+        },
+        {
+            "id": 56641,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 54 ayda",
+            "growth_period": 6549,
+            "pinned_article": 59241,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:24:21+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:24\u003C/time\u003E\n"
+        },
+        {
+            "id": 56636,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 48 ayda",
+            "growth_period": 6548,
+            "pinned_article": 59236,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:23:55+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:23\u003C/time\u003E\n"
+        },
+        {
+            "id": 56631,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 42 ayda",
+            "growth_period": 6547,
+            "pinned_article": 59231,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:23:31+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:23\u003C/time\u003E\n"
+        },
+        {
+            "id": 56626,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 36 ayda",
+            "growth_period": 6543,
+            "pinned_article": 4511,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:23:00+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:23\u003C/time\u003E\n"
+        },
+        {
+            "id": 56621,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 33 ayda",
+            "growth_period": 6542,
+            "pinned_article": 59226,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:18:57+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:18\u003C/time\u003E\n"
+        },
+        {
+            "id": 56616,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 30 ayda",
+            "growth_period": 6541,
+            "pinned_article": 59221,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:18:14+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:18\u003C/time\u003E\n"
+        },
+        {
+            "id": 56611,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 27 ayda",
+            "growth_period": 6540,
+            "pinned_article": 59211,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:17:26+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:17\u003C/time\u003E\n"
+        },
+        {
+            "id": 56606,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 24 ayda",
+            "growth_period": 6538,
+            "pinned_article": 59216,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:16:30+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:16\u003C/time\u003E\n"
+        },
+        {
+            "id": 56596,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 18 ayda",
+            "growth_period": 6560,
+            "pinned_article": 4476,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:20:24+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:20\u003C/time\u003E\n"
+        },
+        {
+            "id": 56591,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 16 ayda",
+            "growth_period": 6535,
+            "pinned_article": 59201,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:19+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:20:03+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:20\u003C/time\u003E\n"
+        },
+        {
+            "id": 56536,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 3 ayda",
+            "growth_period": 6481,
+            "pinned_article": 59156,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:20:49+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:20\u003C/time\u003E\n"
+        },
+        {
+            "id": 56586,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 15 ayda",
+            "growth_period": 6534,
+            "pinned_article": 59196,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:19:42+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:19\u003C/time\u003E\n"
+        },
+        {
+            "id": 56581,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 12 ayda",
+            "growth_period": 6532,
+            "pinned_article": 4471,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:21:12+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:21\u003C/time\u003E\n"
+        },
+        {
+            "id": 56576,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 11 ayda",
+            "growth_period": 6531,
+            "pinned_article": 59191,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:21:41+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:21\u003C/time\u003E\n"
+        },
+        {
+            "id": 56571,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 10 ayda",
+            "growth_period": 6526,
+            "pinned_article": 59186,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:22:08+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:22\u003C/time\u003E\n"
+        },
+        {
+            "id": 56566,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 9 ayda",
+            "growth_period": 6521,
+            "pinned_article": 4466,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:22:34+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:22\u003C/time\u003E\n"
+        },
+        {
+            "id": 56561,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 8 ayda",
+            "growth_period": 6516,
+            "pinned_article": 59171,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:19:20+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:19\u003C/time\u003E\n"
+        },
+        {
+            "id": 56556,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 7 ayda",
+            "growth_period": 6511,
+            "pinned_article": 59166,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:18:35+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:18\u003C/time\u003E\n"
+        },
+        {
+            "id": 56551,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 6 ayda",
+            "growth_period": 6501,
+            "pinned_article": 4461,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:17:51+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:17\u003C/time\u003E\n"
+        },
+        {
+            "id": 56546,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 5 ayda",
+            "growth_period": 6496,
+            "pinned_article": 4456,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:17:00+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:17\u003C/time\u003E\n"
+        },
+        {
+            "id": 56541,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 4 ayda",
+            "growth_period": 6491,
+            "pinned_article": 59161,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:18+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:25:28+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:25\u003C/time\u003E\n"
+        },
+        {
+            "id": 57761,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Tolıq 1 ayda",
+            "growth_period": 6471,
+            "pinned_article": 4441,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-08-06T14:22:17+02:00\" class=\"datetime\"\u003EWed, 08/06/2025 - 14:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-28T20:25:09+01:00\" class=\"datetime\"\u003ESat, 03/28/2026 - 20:25\u003C/time\u003E\n"
         }
     ],
 

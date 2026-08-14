@@ -11,7 +11,7 @@ import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
-import { formatStringDate, getLanguageCode } from "../services/Utils";
+import { formatStringDate, getDatePickerLocale } from "../services/Utils";
 import Checkbox, { CheckboxActive, CheckboxItem } from "./shared/CheckboxStyle";
 import {
   FormDateAction,
@@ -58,7 +58,7 @@ const ChildDate = (props: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [dobModalVisible, setDobModalVisible] = useState(false);
   const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
+    getDatePickerLocale(state.selectedCountry?.languageCode)
   );
   const isFutureDate = (date: Date): any => {
     return (

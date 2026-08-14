@@ -178,9 +178,28 @@ android {
             enable false
         }
     }
+    bundle {
+        abi { enableSplit = true }
+        density { enableSplit = true }
+        language { enableSplit = true }
+    }
     packaging {
         jniLibs {
-            pickFirst '**/libc++_shared.so'
+            // Compress native libraries and let the platform extract them to
+            // /data/app/<pkg>/lib/<abi> at install time. This removes SoLoader's
+            // DirectApkSoSource from the SoSource chain, which is the path that
+            // fails to resolve libc++_shared.so on devices whose reported ABI
+            // list disagrees with the ABI split Google Play installed.
+            // AGP injects android:extractNativeLibs="true" into the merged
+            // manifest as a result, so do not also set it by hand.
+            useLegacyPackaging = true
+
+            // react-android, Realm, Skia, Reanimated, image-crop-picker and video
+            // each ship a libc++_shared.so. AGP resolves this per ABI entry path,
+            // keeping one copy of lib/<abi>/libc++_shared.so. Without it,
+            // mergeNativeLibs fails the build. Do not add patterns for libraries
+            // that do not actually collide.
+            pickFirsts.add('**/libc++_shared.so')
         }
     }
     signingConfigs {
@@ -237,13 +256,13 @@ android {
         }
         merhababebek {
             applicationId 'org.unicef.ecar.merhababebek'
-            versionCode 5
-            versionName "1.0.3"
+            versionCode 6
+            versionName "1.1.0"
             signingConfig signingConfigs.merhababebek
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 15
+            versionCode 16
             versionName "1.1.0"
             signingConfig signingConfigs.wawamor
         }

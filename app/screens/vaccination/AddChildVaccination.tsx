@@ -92,7 +92,7 @@ import {
   isGrowthMeasureExistForDate,
   isVaccineMeasureExistForDate,
 } from "../../services/measureUtils";
-import { formatStringDate, getLanguageCode } from "../../services/Utils";
+import { formatStringDate, getDatePickerLocale } from "../../services/Utils";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import ToggleRadiosBgColor from "@components/ToggleRadiosBgColor";
@@ -166,7 +166,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
   const dispatch = useAppDispatch();
   const activeChild = useAppSelector(selectActiveChild);
   const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
+    getDatePickerLocale(state.selectedCountry?.languageCode)
   );
 
   const deleteVaccination = async (): Promise<any> => {

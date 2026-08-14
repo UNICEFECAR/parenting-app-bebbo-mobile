@@ -714,6 +714,16 @@ export const getLanguageCode = (languageCode: string): string => {
   return "en";
 };
 
+export const getDatePickerLocale = (languageCode: string): string => {
+  switch (languageCode) {
+    case "rs-sr":
+      return "sr-Latn-RS";
+    case "xk-rs":
+      return "sr-Latn-XK";
+    default:
+      return getLanguageCode(languageCode);
+  }
+};
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
   try {

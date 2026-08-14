@@ -297,14 +297,6 @@ export const taxonomydata: any = {
             ],
             "child_age": [
                 {
-                    "id": 33176,
-                    "name": "Hamilelik",
-                    "days_from": -300,
-                    "days_to": -1,
-                    "buffers_days": 0,
-                    "age_bracket": [33176]
-                },
-                {
                     "id": 596,
                     "name": "1. ay",
                     "days_from": 0,
@@ -787,171 +779,213 @@ export const taxonomydata: any = {
             "subcategory": [
                 {
                     "id": 33536,
-                    "name": "Düşük ve ölü doğum"
+                    "name": "Düşük ve ölü doğum",
+                    "unique_name": ""
                 },
                 {
                     "id": 33026,
-                    "name": "Dil ve Okuma"
+                    "name": "Dil ve Okuma",
+                    "unique_name": ""
                 },
                 {
                     "id": 33541,
-                    "name": "Sağlık ile ilgili Kaygılar"
+                    "name": "Sağlık ile ilgili Kaygılar",
+                    "unique_name": ""
                 },
                 {
                     "id": 33031,
-                    "name": "Oyun Önerileri"
+                    "name": "Oyun Önerileri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33036,
-                    "name": "İlk yardım"
+                    "name": "İlk yardım",
+                    "unique_name": ""
                 },
                 {
                     "id": 33551,
-                    "name": "Ruhsal Sağlık"
+                    "name": "Ruhsal Sağlık",
+                    "unique_name": ""
                 },
                 {
                     "id": 33041,
-                    "name": "Riskleri önleme"
+                    "name": "Riskleri önleme",
+                    "unique_name": ""
                 },
                 {
                     "id": 33556,
-                    "name": "Fiziksel Sağlık"
+                    "name": "Fiziksel Sağlık",
+                    "unique_name": ""
                 },
                 {
                     "id": 33046,
-                    "name": "Çocuk koruma"
+                    "name": "Çocuk koruma",
+                    "unique_name": ""
                 },
                 {
                     "id": 33561,
-                    "name": "İş ve Yaşam Dengesi"
+                    "name": "İş ve Yaşam Dengesi",
+                    "unique_name": ""
                 },
                 {
                     "id": 33051,
-                    "name": "Acil durumlar"
+                    "name": "Acil durumlar",
+                    "unique_name": ""
                 },
                 {
                     "id": 33566,
-                    "name": "Eş İlişkileri"
+                    "name": "Eş İlişkileri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33056,
-                    "name": "Ebeveynlik stratejileri"
+                    "name": "Ebeveynlik stratejileri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33061,
-                    "name": "Emzirmenin Temelleri"
+                    "name": "Emzirmenin Temelleri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33071,
-                    "name": "İlk gıdalar"
+                    "name": "İlk gıdalar",
+                    "unique_name": ""
                 },
                 {
                     "id": 33101,
-                    "name": "Çocuk davranışlarını anlamak"
+                    "name": "Çocuk davranışlarını anlamak",
+                    "unique_name": ""
                 },
                 {
                     "id": 33106,
-                    "name": "Ebeveyn çocuk bağlanması"
+                    "name": "Ebeveyn çocuk bağlanması",
+                    "unique_name": ""
                 },
                 {
                     "id": 33111,
-                    "name": "Aile ilişkileri"
+                    "name": "Aile ilişkileri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33431,
-                    "name": "Eş desteği"
+                    "name": "Eş desteği",
+                    "unique_name": ""
                 },
                 {
                     "id": 33441,
-                    "name": "Hamilelik Senaryoları"
+                    "name": "Hamilelik Senaryoları",
+                    "unique_name": ""
                 },
                 {
                     "id": 33451,
-                    "name": "İlk haftalar"
+                    "name": "İlk haftalar",
+                    "unique_name": ""
                 },
                 {
                     "id": 33471,
-                    "name": "0-12 hafta"
+                    "name": "0-12 hafta",
+                    "unique_name": ""
                 },
                 {
                     "id": 33476,
-                    "name": "13-28 hafta"
+                    "name": "13-28 hafta",
+                    "unique_name": ""
                 },
                 {
                     "id": 33481,
-                    "name": "29-40 hafta"
+                    "name": "29-40 hafta",
+                    "unique_name": ""
                 },
                 {
                     "id": 33486,
-                    "name": "Sağlık alışkanlıkları"
+                    "name": "Sağlık alışkanlıkları",
+                    "unique_name": ""
                 },
                 {
                     "id": 33491,
-                    "name": "Ruhsal sağlık"
+                    "name": "Ruhsal sağlık",
+                    "unique_name": ""
                 },
                 {
                     "id": 32981,
-                    "name": "Uyku"
+                    "name": "Uyku",
+                    "unique_name": ""
                 },
                 {
                     "id": 33496,
-                    "name": "Testler ve sağlık kontrolleri"
+                    "name": "Testler ve sağlık kontrolleri",
+                    "unique_name": ""
                 },
                 {
                     "id": 32986,
-                    "name": "Bakım ve Hijyen"
+                    "name": "Bakım ve Hijyen",
+                    "unique_name": ""
                 },
                 {
                     "id": 33501,
-                    "name": "Bebek ürünleri"
+                    "name": "Bebek ürünleri",
+                    "unique_name": ""
                 },
                 {
                     "id": 32991,
-                    "name": "Aşılama ve Sağlık Kontrolleri"
+                    "name": "Aşılama ve Sağlık Kontrolleri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33506,
-                    "name": "İş yaşamı ve kariyer"
+                    "name": "İş yaşamı ve kariyer",
+                    "unique_name": ""
                 },
                 {
                     "id": 32996,
-                    "name": "Gelişimle ilgili Kaygılar"
+                    "name": "Gelişimle ilgili Kaygılar",
+                    "unique_name": ""
                 },
                 {
                     "id": 33511,
-                    "name": "Eş ilişkileri"
+                    "name": "Eş ilişkileri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33516,
-                    "name": "Planlama"
+                    "name": "Planlama",
+                    "unique_name": ""
                 },
                 {
                     "id": 33006,
-                    "name": "Temek Tarifleri"
+                    "name": "Temek Tarifleri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33521,
-                    "name": "Doğum türleri"
+                    "name": "Doğum türleri",
+                    "unique_name": ""
                 },
                 {
                     "id": 33011,
-                    "name": "Sağlıklı beslenme"
+                    "name": "Sağlıklı beslenme",
+                    "unique_name": ""
                 },
                 {
                     "id": 33526,
-                    "name": "Doğum sonrası süreç"
+                    "name": "Doğum sonrası süreç",
+                    "unique_name": ""
                 },
                 {
                     "id": 33016,
-                    "name": "Fiziksel Aktivite"
+                    "name": "Fiziksel Aktivite",
+                    "unique_name": ""
                 },
                 {
                     "id": 33531,
-                    "name": "Prematüre doğum"
+                    "name": "Prematüre doğum",
+                    "unique_name": ""
                 },
                 {
                     "id": 33021,
-                    "name": "Sosyo-duygusal Beceriler"
+                    "name": "Sosyo-duygusal Beceriler",
+                    "unique_name": ""
                 }
             ],
             "type_of_support": [
@@ -963,6 +997,11 @@ export const taxonomydata: any = {
                     "id": 33131,
                     "name": "Ebeveyn yönlendirmesinde"
                 }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation": [
+
             ]
         }
     }],

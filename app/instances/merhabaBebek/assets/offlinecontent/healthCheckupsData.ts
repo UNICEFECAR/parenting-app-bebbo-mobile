@@ -170,6 +170,6 @@ export const healthCheckupsData: any = {
             "created_at": "\u003Ctime datetime=\"2024-10-08T14:47:02+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:47\u003C/time\u003E\n",
             "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:20+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n"
         }
-    ],
+    ]
 
 };
