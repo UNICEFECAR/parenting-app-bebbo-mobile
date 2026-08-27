@@ -83,7 +83,7 @@ export const taxonomydata: any = {
                     "id": 421,
                     "name": "Vaccination",
                     "unique_name": "vaccination",
-                    "field_type_of_article": ""
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 426,
@@ -1009,7 +1009,7 @@ export const taxonomydata: any = {
                     "id": 421,
                     "name": "Vaccination",
                     "unique_name": "vaccination",
-                    "field_type_of_article": ""
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 426,
