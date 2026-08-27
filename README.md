@@ -40,6 +40,23 @@ Discover the most comprehensive parenting and pregnancy app that provides you wi
 
 Personalize the app to access daily toddler games, parenting advice, pregnancy tips, and guidance on taking care of both your child and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child's developmental needs.
 
+## Digital Public Good and Reusability
+
+Bebbo is an open-source Digital Public Good designed to support reuse and adaptation by governments, UNICEF offices, implementation partners and other eligible organizations.
+
+The mobile application uses a shared React Native codebase with instance-specific configuration for branding, localization, content, Firebase services, application identifiers and selected functionality. Multiple country and branded applications can therefore be maintained using the same core application code.
+
+Bebbo is designed to support:
+
+- multi-country deployment from a shared codebase;
+- multiple languages and localized content;
+- offline access to downloaded application content;
+- instance-specific branding and configuration;
+- user-initiated export, import and backup of child-profile information; and
+- country-specific backend content delivered through the Bebbo CMS/API.
+
+The Bebbo Mobile App and associated Bebbo CMS form part of the broader Bebbo open-source ecosystem.
+
 ### Bebbo offers
 
 - Expert advice and parenting articles covering early learning, health, nutrition, caregiving, and safety, tailored to both your questions and your child’s age.
@@ -64,7 +81,7 @@ The app can also operate in offline mode in environments with limited internet c
 - [React Native](https://reactnative.dev/) version **0.78.2** is used to build native mobile applications for both iOS and Android using the same codebase.
 - [TypeScript](https://www.typescriptlang.org/) is used as the primary programming language.
 - [NPM](https://www.npmjs.com/) is used to install third-party packages and run development scripts.
-- Firebase is used for application services and analytics.
+- Firebase services are used for analytics, crash reporting and messaging.
 - The project uses React Native CLI and does not use Expo.
 
 Refer to [`package.json`](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for the complete list of dependencies.
@@ -73,7 +90,7 @@ Refer to [`package.json`](https://github.com/UNICEFECAR/parenting-app-bebbo-mobi
 
 The project currently uses:
 
-- Node.js: **21.7.3**
+- Node.js: **18 or later**
 - NPM: **10.8.2**
 - React Native: **0.78.2**
 
@@ -88,7 +105,7 @@ Before setting up the project, install the required development tools for your p
 ## All platforms
 
 - Git
-- Node.js **21.7.3**
+- Node.js **18 or later**
 - NPM **10.8.2**
 
 You can download Node.js from:
@@ -158,10 +175,10 @@ git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
 cd parenting-app-bebbo-mobile
 ```
 
-When starting work on a new feature, create a branch from the `development` branch:
+When starting work on a new feature, create a branch from the `Development` branch:
 
 ```bash
-git checkout development
+git checkout Development
 git checkout -b myFeature
 ```
 
@@ -191,21 +208,30 @@ env/.env.bebboDev
 
 ### Example `.env.bebboDev`
 
-Use your own Firebase/project values when setting up an independent development environment.
+The following example can be copied directly into \`env/.env.bebboDev\` to run the application locally.
+
+The values below are **dummy development values**. They are provided so that the application can start without requiring access to the project's private Firebase, Facebook, Google, or encryption configuration.
 
 ```env
-apiUrlDevelop='https://dev.bebbo.app/api'
+apiUrlDevelop='https\://dev.bebbo.app/api'
 
-facebookAppDisplayName=Bebbo
-facebookAppId=YOUR_FACEBOOK_APP_ID
-facebookClientToken=YOUR_FACEBOOK_CLIENT_TOKEN
-projectNumber=YOUR_FIREBASE_PROJECT_NUMBER
-clientIdKey=YOUR_CLIENT_ID_KEY
-webId=YOUR_FIREBASE_WEB_APP_ID
-iosId=YOUR_IOS_APP_ID
-encryptionsKey=YOUR_ENCRYPTION_KEY
-encryptionsIVKey=YOUR_ENCRYPTION_IV_KEY
+facebookAppDisplayName=FbDisplayName
+facebookAppId=000000000000000
+facebookClientToken=00000000000000000000000000000000
+projectNumber=000000000000
+clientIdKey=00000000000000000000000000000000
+webId=00000000000000000000000000000000
+iosId=00000000000000000000000000000000
+encryptionsKey=0000000000000000000000000000000000000000000000000000000000000000
+encryptionsIVKey=00000000000000000000000000000000
 ```
+> **Important:** The values above are dummy values for local development only. Do not use them for production or any environment where real application services are required.
+
+> **Dummy encryption values:** The `encryptionsKey` and `encryptionsIVKey` values above are intentionally provided in the required format/length so that the application's encryption code can initialize during local development. These values are **not the project's real encryption credentials**.
+
+> **Firebase, Google and Facebook services:** The dummy Firebase/Google/Facebook values allow the application configuration to be populated, but services that depend on valid credentials will not work correctly. This includes functionality such as Firebase Analytics, Crashlytics, Firebase Messaging/push notifications, Google Sign-In/Google Drive backup, and Facebook integration.
+
+> To use these services, replace the corresponding dummy values with valid configuration values from your own development Firebase, Google and Facebook projects.
 
 ### Environment variable description
 
@@ -219,25 +245,30 @@ encryptionsIVKey=YOUR_ENCRYPTION_IV_KEY
 | `clientIdKey` | Google OAuth iOS client ID suffix used to configure the iOS URL scheme |
 | `webId` | Google OAuth Web Client ID suffix used to construct the Web Client ID |
 | `iosId` | Google OAuth iOS Client ID suffix used to construct the iOS Client ID |
-| `encryptionsKey` | Encryption key used to encrypt user data |
-| `encryptionsIVKey` | Initialization vector (IV) used by the user-data encryption process |
+| `encryptionsKey` | AES-256 encryption key used to encrypt and decrypt user backup data. A correctly formatted dummy value is provided in the example above for local development. |
+| `encryptionsIVKey` | Initialization vector (IV) used by the AES-256-CBC encryption process. A correctly formatted dummy value is provided in the example above for local development. |
 
 > **Note:** `clientIdKey` and `iosId` may have the same value because both are used for the Google OAuth iOS configuration. `clientIdKey` is used to construct the iOS Google Sign-In URL scheme, while `iosId` is used to construct the iOS OAuth Client ID. Keep both values consistent with the Google OAuth configuration for the iOS application.
 
+> **Security:** Do not commit private production credentials, signing passwords, private keys, real encryption keys, or other secrets to the repository. The dummy values shown in this README are intentionally non-secret development placeholders.
+
 ### External/Open-Source Developers
 
-External developers should use their own development configuration wherever possible.
+External developers can use the dummy values provided in the example above to run the application locally.
 
-In particular:
+The application itself can start with these dummy values, but functionality that depends on external services will not work until the corresponding real configuration is provided.
+
+To enable the full functionality of the application:
 
 - Create your own Firebase project.
 - Create your own Android and iOS applications inside the Firebase project.
 - Download the corresponding Firebase configuration files.
 - Use your own Firebase project number and application IDs.
 - Create and configure your own Facebook application if Facebook integration is required.
-- Use appropriate development values for application encryption configuration.
+- Configure Google OAuth/Google Drive credentials if Google Sign-In or Google Drive backup is required.
+- Replace the dummy encryption values with an appropriate development encryption key and IV if encrypted user backup/import data needs to be shared with another environment or existing application instance.
 
-The values shown above are placeholders and must be replaced with valid values for your development environment.
+> **Note:** The dummy encryption values should only be used for local development. Data encrypted with the dummy encryption key cannot be expected to be compatible with data encrypted using the project's real encryption key.
 
 ### Internal Developers
 

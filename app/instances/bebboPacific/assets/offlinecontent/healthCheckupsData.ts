@@ -134,16 +134,6 @@ export const healthCheckupsData: any = {
             "pinned_video_article": 0,
             "created_at": "\u003Ctime datetime=\"2025-05-22T12:56:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:56\u003C/time\u003E\n",
             "updated_at": "\u003Ctime datetime=\"2026-02-20T01:43:59+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:43\u003C/time\u003E\n"
-        },
-        {
-            "id": 8916,
-            "type": "Health Check-ups - Age Periods",
-            "title": "with full 6 years ",
-            "growth_period": 176,
-            "pinned_article": 7171,
-            "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T12:56:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:56\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:06+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n"
         }
     ],
     "fj-fj": [
