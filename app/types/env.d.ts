@@ -7,6 +7,8 @@ declare module 'react-native-dotenv' {
   export const projectNumber: string;
   export const webId: string;
   export const iosId: string;
+  export const BebboDistributionChannel: string;
+  export const BebboDistributionCountry: string;
 }
 declare module '@robinbobin/react-native-google-drive-api-wrapper';
 declare module 'react-native-image-progress';
