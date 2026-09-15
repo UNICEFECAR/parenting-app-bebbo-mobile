@@ -53,9 +53,11 @@ import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
-import { logAnalyticsEvent } from "../services/firebaseAnalytics";
+import { logAnalyticsEvent, setUserProperties } from "../services/firebaseAnalytics";
 import crashlytics from '@react-native-firebase/crashlytics';
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
+import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
+
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -104,6 +106,42 @@ export default (): any => {
   // messaging.getToken().then(token => {
   //   console.log('FCM Token:', token);
   // });
+  const getDistributionChannel = () => {
+    if (BebboDistributionChannel === 'direct_apk') {
+      return 'direct_apk';
+    }
+  
+    return Platform.OS === 'android'
+      ? 'google_play'
+      : 'app_store';
+  };
+  const setDistributionAnalytics = async () => {
+    try {
+      const platform =
+        Platform.OS === 'android' ? 'Android' : 'iOS';
+  
+      const distributionChannel = getDistributionChannel();
+  
+      await setUserProperties({
+        platform,
+        distribution_channel: distributionChannel,
+  
+        ...(distributionChannel === 'direct_apk'
+          ? {
+              distribution_country: BebboDistributionCountry,
+            }
+          : {}),
+      });
+    } catch (error) {
+      console.log(
+        'Failed to set distribution analytics properties:',
+        error
+      );
+    }
+  };
+  useEffect(() => {
+    setDistributionAnalytics();
+  }, []);
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);

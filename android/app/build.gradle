@@ -280,8 +280,8 @@ android {
         }
         bebbopacific {
             applicationId 'org.unicef.pc.bebbopacific'
-            versionCode 7
-            versionName "1.1.0"
+            versionCode 8
+            versionName "1.1.1"
             signingConfig signingConfigs.bebbopacific
         }
     }
