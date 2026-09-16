@@ -58,6 +58,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
 
+import ParentingAssistant from "@screens/home/ParentingAssistant";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -1320,6 +1321,11 @@ export default (): any => {
               name="DetailsScreen"
               options={{ headerShown: false }}
               component={DetailsScreen}
+            />
+            <RootStack.Screen
+              name="ParentingAssistant"
+              component={ParentingAssistant}
+              options={{ headerShown: false }}
             />
             <RootStack.Screen
               name="ChildProfileScreen"

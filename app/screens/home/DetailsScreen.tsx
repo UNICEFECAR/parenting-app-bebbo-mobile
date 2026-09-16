@@ -72,7 +72,7 @@ import {
 } from "../../database/schema/VideoArticleSchema";
 import iframe from "@native-html/iframe-plugin";
 import RelatedVideoArticles from "@components/shared/RelatedVideoArticles";
-import { useIsFocused } from "@react-navigation/native";
+import { CommonActions, useIsFocused } from "@react-navigation/native";
 import { bgcolorBlack2, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
@@ -136,6 +136,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     fromScreen === "Activities" ||
     fromScreen === "FirebaseActivities" ||
     fromScreen === "MileStoneActivity" ||
+    fromScreen === "ChatbotAct" ||
     fromScreen === "HomeAct" ||
     fromScreen === "FavActivities"
   ) {
@@ -160,6 +161,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     fromScreen === "Activities" ||
     fromScreen === "FirebaseActivities" ||
     fromScreen === "MileStoneActivity" ||
+    fromScreen === "ChatbotAct" ||
     fromScreen === "HomeAct" ||
     fromScreen === "FavActivities"
       ? false
@@ -264,7 +266,13 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         },
         merge: true,
       });
-    } else if (fromScreen == "HomeAct" || fromScreen == "HomeArt") {
+    } else if (
+      fromScreen == "ChatbotArt" ||
+      fromScreen == "ChatbotAct"
+    ) {
+      navigation.navigate("ParentingAssistant");  
+    }  
+    else if (fromScreen == "HomeAct" || fromScreen == "HomeArt") {
       if (fromAdditionalScreen == "DailyScreen") {
         navigation.navigate("Home", {
           screen: "Home",
@@ -332,6 +340,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         fromScreen == "AddChildHealthCheckup" ||
         fromScreen == "AddChildVaccination" ||
         fromScreen == "MileStone" ||
+        fromScreen == "ChatbotArt" ||
         fromScreen == "HomeArt" ||
         fromScreen == "FavArticles" ||
         fromScreen == "SupportChat"
@@ -350,6 +359,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
               fromScreen === "Activities" ||
               fromScreen === "FirebaseActivities" ||
               fromScreen === "MileStoneActivity" ||
+              fromScreen === "ChatbotAct" ||
               fromScreen === "HomeAct" ||
               fromScreen === "FavActivities"
             ) {
@@ -394,6 +404,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                 fromScreen === "Activities" ||
                 fromScreen === "FirebaseActivities" ||
                 fromScreen === "MileStoneActivity" ||
+                fromScreen === "ChatbotAct" ||
                 fromScreen === "HomeAct" ||
                 fromScreen === "FavActivities"
               ) {
@@ -449,6 +460,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             fromScreen === "Activities" ||
             fromScreen === "FirebaseActivities" ||
             fromScreen === "MileStoneActivity" ||
+            fromScreen === "ChatbotAct" ||
             fromScreen === "HomeAct" ||
             fromScreen === "FavActivities"
           ) {
@@ -482,6 +494,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         }
       } else {
         if (
+          fromScreen == "ChatbotAct" ||
           fromScreen == "HomeAct" ||
           fromScreen == "Activities" ||
           fromScreen === "FirebaseActivities"
@@ -498,6 +511,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                 fromScreen === "Activities" ||
                 fromScreen === "FirebaseActivities" ||
                 fromScreen === "MileStoneActivity" ||
+                fromScreen === "ChatbotAct" ||
                 fromScreen === "HomeAct" ||
                 fromScreen === "FavActivities"
               ) {
@@ -550,6 +564,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
               fromScreen === "Activities" ||
               fromScreen === "FirebaseActivities" ||
               fromScreen === "MileStoneActivity" ||
+              fromScreen === "ChatbotAct" ||
               fromScreen === "HomeAct" ||
               fromScreen === "FavActivities"
             ) {
@@ -588,6 +603,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             fromScreen === "Activities" ||
             fromScreen === "FirebaseActivities" ||
             fromScreen === "MileStoneActivity" ||
+            fromScreen === "ChatbotAct" ||
             fromScreen === "HomeAct" ||
             fromScreen === "FavActivities"
           ) {
@@ -1062,6 +1078,7 @@ const renderHtmlImage = ({ tnode }: any): any => {
             fromScreen == "AddChildVaccination" ||
             fromScreen == "AddChildHealthCheckup" ||
             fromScreen == "MileStone" ||
+            fromScreen === "ChatbotArt" ||
             fromScreen === "HomeArt" ||
             fromScreen === "FavArticles" ||
             fromScreen === "SupportChat" ? (
@@ -1131,6 +1148,7 @@ const renderHtmlImage = ({ tnode }: any): any => {
               </>
             ) : null}
             {fromScreen === "MileStoneActivity" ||
+            fromScreen === "ChatbotAct" ||
             fromScreen === "HomeAct" ||
             fromScreen === "FavActivities" ? (
               <>

@@ -23,6 +23,7 @@ export type RootStackParamList = {
   AddChildHealthCheckup:undefined;
   AllChildgrowthMeasures:undefined;
   DetailsScreen: {};
+  ParentingAssistant:undefined;
   ChildProfileScreen: undefined;
 };
 

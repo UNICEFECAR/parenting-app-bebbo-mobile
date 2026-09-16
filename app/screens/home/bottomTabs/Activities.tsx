@@ -91,6 +91,7 @@ import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray, selectChildAge, selectMileStonesData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
+import ChatFloatingButton from "@components/parentingAssistant/ChatFloatingButton";
 
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -1172,6 +1173,7 @@ const Activities = ({ route, navigation }: any): any => {
               }
             </FlexCol>
           </FlexCol>
+          <ChatFloatingButton />
           <FirstTimeModal
             modalVisible={modalVisible}
             setIsModalOpened={setIsModalOpened}

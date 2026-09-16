@@ -66,6 +66,7 @@ import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectArticleCategoryArray, selectArticleDataAll, selectChildAge, selectPinnedChildDevData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
+import ChatFloatingButton from "@components/parentingAssistant/ChatFloatingButton";
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -1081,6 +1082,7 @@ const Articles = ({ route, navigation }: any): any => {
               />
             }
           </FlexCol>
+          <ChatFloatingButton />
           <FirstTimeModal
             modalVisible={modalVisible}
             setIsModalOpened={setIsModalOpened}

@@ -113,6 +113,7 @@ import {
   selectAppVersion,
 } from "../../../services/selectors";
 import QuickLinksRow from "@components/homeScreen/QuickLinksRow";
+import ChatFloatingButton from "@components/parentingAssistant/ChatFloatingButton";
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -845,6 +846,7 @@ const Home = ({ route, navigation }: any): any => {
             </FlexCol>
           </FlexCol>
         </ScrollView>
+        <ChatFloatingButton />
         <Modal
           animationType="none"
           transparent={true}
