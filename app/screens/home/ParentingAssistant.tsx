@@ -23,12 +23,21 @@
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   BackHandler,
   FlatList,
   Keyboard,
   KeyboardAvoidingView,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  PanResponder,
   Platform,
   StyleSheet,
   Text,
@@ -52,13 +61,14 @@ import {
 import { useAppSelector } from "../../../App";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { sendChatMessage } from "../../services/parentingAssistantApi";
-import { selectActiveChild, selectChildAge } from "../../services/selectors";
+import { selectActiveChild } from "../../services/selectors";
 
 const styles = StyleSheet.create({
   // top inset is painted by FocusAwareStatusBar (header colour);
   // bottom inset stays white to match the footnote strip
   safeArea: { flex: 1, backgroundColor: chatTheme.card },
   container: { flex: 1, backgroundColor: chatTheme.surface },
+  messagesViewport: { flex: 1 },
   messagesList: {
     paddingHorizontal: 18,
     paddingTop: 10,
@@ -91,8 +101,12 @@ const ParentingAssistant = (): any => {
   const navigation = useNavigation<any>();
   const netInfo = useNetInfoHook();
   const listRef = useRef<FlatList<ChatMessage>>(null);
+  const listViewportRef = useRef<View | null>(null);
   const sessionIdRef = useRef<string>("");
-  const lastBotMessageIdRef = useRef<string | null>(null);
+  const lastBotResponseRef = useRef<View | null>(null);
+  const listScrollOffsetRef = useRef(0);
+  const keyboardVisibleRef = useRef(false);
+  const keyboardDismissedBySwipeRef = useRef(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [chips, setChips] = useState<ChatSuggestedQuestion[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -104,7 +118,7 @@ const ParentingAssistant = (): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const activeChild = useAppSelector(selectActiveChild);
-  console.log("activechild chatbot is--", activeChild)
+  console.log("activechild chatbot is--", activeChild);
   const childAgeId =
     activeChild?.taxonomyData.prematureTaxonomyId ||
     activeChild?.taxonomyData.id;
@@ -112,9 +126,7 @@ const ParentingAssistant = (): any => {
   contextRef.current = {
     langcode: languageCode ? String(languageCode) : "",
     childageid:
-      childAgeId !== null && childAgeId !== undefined
-        ? String(childAgeId)
-        : "",
+      childAgeId !== null && childAgeId !== undefined ? String(childAgeId) : "",
   };
 
   const scrollToEnd = useCallback((): void => {
@@ -122,27 +134,52 @@ const ParentingAssistant = (): any => {
       listRef.current?.scrollToEnd({ animated: true });
     });
   }, []);
-  const scrollToLastBotResponse = useCallback((): void => {
-    const lastBotIndex = [...messages]
-      .map((message, index) => ({ message, index }))
-      .reverse()
-      .find(({ message }) => message.role === "bot")?.index;
 
-    if (lastBotIndex === undefined) {
+  const lastBotMessageId = useMemo(
+    () => [...messages].reverse().find((message) => message.role === "bot")?.id,
+    [messages]
+  );
+
+  /**
+   * Align the end of the latest bot response with the bottom of the
+   * visible message area. The measured view contains only the response
+   * bubble, so source cards below it are deliberately excluded.
+   */
+  const scrollToLastBotResponseEnd = useCallback((): void => {
+    const list = listRef.current;
+    const viewport = listViewportRef.current;
+    const response = lastBotResponseRef.current;
+
+    if (!list || !viewport || !response) {
       return;
     }
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        listRef.current?.scrollToIndex({
-          index: lastBotIndex,
-          animated: true,
-          viewPosition: 0,
-        });
+    response.measureInWindow((_x, responseY, _width, responseHeight) => {
+      viewport.measureInWindow((_listX, listY, _listWidth, listHeight) => {
+        if (responseHeight <= 0 || listHeight <= 0) {
+          return;
+        }
+
+        const responseBottom = responseY + responseHeight;
+        const visibleListBottom = listY + listHeight;
+        const targetOffset = Math.max(
+          0,
+          listScrollOffsetRef.current + responseBottom - visibleListBottom + 8
+        );
+
+        list.scrollToOffset({ offset: targetOffset, animated: true });
       });
     });
-  }, [messages]);
-  
+  }, []);
+
+  const scheduleScrollToLastBotResponseEnd = useCallback((): void => {
+    // Wait for KeyboardAvoidingView and the FlatList viewport to finish
+    // resizing before measuring their final on-screen positions.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToLastBotResponseEnd);
+    });
+  }, [scrollToLastBotResponseEnd]);
+
   const appendMessage = useCallback(
     (message: ChatMessage): void => {
       setMessages((previous) => [...previous, message]);
@@ -151,67 +188,70 @@ const ParentingAssistant = (): any => {
     [scrollToEnd]
   );
 
-  const appendBotMessage = useCallback(
-    (message: ChatMessage): void => {
-      lastBotMessageIdRef.current = message.id;
-  
-      setMessages((previous) => {
-        const newMessages = [...previous, message];
-        const newMessageIndex = newMessages.length - 1;
-  
+  const appendBotMessage = useCallback((message: ChatMessage): void => {
+    setMessages((previous) => {
+      const newMessages = [...previous, message];
+      const newMessageIndex = newMessages.length - 1;
+
+      requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            listRef.current?.scrollToIndex({
-              index: newMessageIndex,
-              animated: true,
-              viewPosition: 0,
-            });
+          listRef.current?.scrollToIndex({
+            index: newMessageIndex,
+            animated: true,
+            viewPosition: 0,
           });
         });
-  
-        return newMessages;
       });
-    },
-    []
-  );
-  const scrollToLastBotMessage = useCallback((): void => {
-    const botMessageId = lastBotMessageIdRef.current;
-  
-    if (!botMessageId) {
-      return;
-    }
-  
-    const botIndex = messages.findIndex(
-      (message) => message.id === botMessageId
-    );
-  
-    if (botIndex === -1) {
-      return;
-    }
-  
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        listRef.current?.scrollToIndex({
-          index: botIndex,
-          animated: true,
-          viewPosition: 0,
-        });
-      });
+
+      return newMessages;
     });
-  }, [messages]);
+  }, []);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       "keyboardDidShow",
       () => {
-        scrollToLastBotMessage();
+        keyboardVisibleRef.current = true;
+        scheduleScrollToLastBotResponseEnd();
       }
     );
-  
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        keyboardVisibleRef.current = false;
+        keyboardDismissedBySwipeRef.current = false;
+      }
+    );
+
     return () => {
       keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
     };
-  }, [scrollToLastBotMessage]);
+  }, [scheduleScrollToLastBotResponseEnd]);
+
+  const footerPanResponder = useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponderCapture: (_event, gestureState) =>
+          Platform.OS === "ios" &&
+          keyboardVisibleRef.current &&
+          gestureState.dy > 8 &&
+          Math.abs(gestureState.dy) > Math.abs(gestureState.dx),
+        onPanResponderMove: (_event, gestureState) => {
+          if (gestureState.dy > 24 && !keyboardDismissedBySwipeRef.current) {
+            keyboardDismissedBySwipeRef.current = true;
+            Keyboard.dismiss();
+          }
+        },
+        onPanResponderRelease: () => {
+          keyboardDismissedBySwipeRef.current = false;
+        },
+        onPanResponderTerminate: () => {
+          keyboardDismissedBySwipeRef.current = false;
+        },
+      }),
+    []
+  );
   /**
    * Sends the "Initialize" handshake for a fresh session and shows the
    * API reply (message + sources + suggested-question chips). Falls
@@ -225,12 +265,14 @@ const ParentingAssistant = (): any => {
         chatConfig.initChatInput,
         contextRef.current
       );
-      console.log("reply is--", reply)
+      console.log("reply is--", reply);
       // const { body } = splitSources(reply.text);
       // const { body, sources } = splitSources(reply.text); //uncomment this line and comment above when response shows sources.
       // const sources = chatConfig.fallbackWelcome.sources //remove this when response shows sources
       setChips(reply.suggestedQuestions);
-      setMessages([{ id: uuidv4(), role: "bot", text: reply.text, sources: reply.sources }]);
+      setMessages([
+        { id: uuidv4(), role: "bot", text: reply.text, sources: reply.sources },
+      ]);
     } catch (error) {
       setMessages([
         { id: uuidv4(), role: "bot", text: chatConfig.fallbackWelcome.text },
@@ -320,7 +362,7 @@ const ParentingAssistant = (): any => {
         navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
       };
-    }, [])
+    }, [navigation])
   );
   // First open per app launch: reset. Later opens in the same run:
   // restore the stored history and skip the Initialize call.
@@ -429,7 +471,13 @@ const ParentingAssistant = (): any => {
         setIsTyping(false);
       }
     },
-    [appendMessage, appendBotMessage, isTyping, netInfo.isConnected, scrollToEnd]
+    [
+      appendMessage,
+      appendBotMessage,
+      isTyping,
+      netInfo.isConnected,
+      scrollToEnd,
+    ]
   );
 
   const handleRetry = useCallback((): void => {
@@ -447,9 +495,19 @@ const ParentingAssistant = (): any => {
         busy={isTyping}
         message={item}
         onRetry={item.isError ? handleRetry : undefined}
+        responseRef={
+          item.id === lastBotMessageId ? lastBotResponseRef : undefined
+        }
       />
     ),
-    [handleRetry]
+    [handleRetry, isTyping, lastBotMessageId]
+  );
+
+  const handleListScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>): void => {
+      listScrollOffsetRef.current = event.nativeEvent.contentOffset.y;
+    },
+    []
   );
 
   return (
@@ -468,41 +526,50 @@ const ParentingAssistant = (): any => {
       />
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        <FlatList
-          ref={listRef}
-          data={messages}
-          renderItem={renderItem}
-          keyExtractor={(item): string => item.id}
-          contentContainerStyle={styles.messagesList}
-          // onContentSizeChange={scrollToEnd}
-          // onContentSizeChange={() => {
-          //   requestAnimationFrame(() => {
-          //     listRef.current?.scrollToEnd({ animated: false });
-          //   });
-          // }}
-          ListFooterComponent={isTyping ? <TypingBubble /> : null}
-          keyboardShouldPersistTaps="handled"
-          removeClippedSubviews={false}
-        />
-        <QuickReplies
-          questions={chips}
-          onSelect={(question): void => {
-            sendMessage(question);
-          }}
-          disabled={isTyping}
-        />
-        <ChatInput
-          onSend={(text): void => {
-            sendMessage(text);
-          }}
-          disabled={isTyping}
-        />
-        <View style={styles.footnote}>
-          <Text style={styles.footnoteText}>
-            {chatConfig.strings.disclaimer}
-          </Text>
+        behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <View ref={listViewportRef} style={styles.messagesViewport}>
+          <FlatList
+            ref={listRef}
+            style={styles.messagesViewport}
+            data={messages}
+            renderItem={renderItem}
+            keyExtractor={(item): string => item.id}
+            contentContainerStyle={styles.messagesList}
+            // onContentSizeChange={scrollToEnd}
+            // onContentSizeChange={() => {
+            //   requestAnimationFrame(() => {
+            //     listRef.current?.scrollToEnd({ animated: false });
+            //   });
+            // }}
+            ListFooterComponent={isTyping ? <TypingBubble /> : null}
+            keyboardShouldPersistTaps="handled"
+            keyboardDismissMode={
+              Platform.OS === "ios" ? "interactive" : "on-drag"
+            }
+            onScroll={handleListScroll}
+            scrollEventThrottle={16}
+            removeClippedSubviews={false}
+          />
+        </View>
+        <View {...footerPanResponder.panHandlers}>
+          <QuickReplies
+            questions={chips}
+            onSelect={(question): void => {
+              sendMessage(question);
+            }}
+            disabled={isTyping}
+          />
+          <ChatInput
+            onSend={(text): void => {
+              sendMessage(text);
+            }}
+            disabled={isTyping}
+          />
+          <View style={styles.footnote}>
+            <Text style={styles.footnoteText}>
+              {chatConfig.strings.disclaimer}
+            </Text>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

@@ -62,6 +62,7 @@ interface MessageBubbleProps {
   busy: boolean;
   message: ChatMessage;
   onRetry?: () => void;
+  responseRef?: React.Ref<View>;
 }
 
 export const TypingBubble = (): any => (
@@ -72,7 +73,12 @@ export const TypingBubble = (): any => (
   </View>
 );
 
-const MessageBubble = ({ busy, message, onRetry }: MessageBubbleProps): any => {
+const MessageBubble = ({
+  busy,
+  message,
+  onRetry,
+  responseRef,
+}: MessageBubbleProps): any => {
   if (message.role === "user") {
     return (
       <View style={[styles.row, styles.rowUser]}>
@@ -84,15 +90,14 @@ const MessageBubble = ({ busy, message, onRetry }: MessageBubbleProps): any => {
   }
   return (
     <>
-      <View style={styles.row}>
+      <View ref={responseRef} style={styles.row}>
         <View style={[styles.bubble, styles.bot]}>
           <ChatMarkdown text={message.text} busy={busy} />
           {message.isError && onRetry ? (
             <TouchableOpacity
               style={styles.retryChip}
               activeOpacity={0.7}
-              onPress={onRetry}
-            >
+              onPress={onRetry}>
               <Text style={styles.retryText}>{chatConfig.strings.retry}</Text>
             </TouchableOpacity>
           ) : null}
