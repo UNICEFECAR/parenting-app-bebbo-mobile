@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   wrap: {
     maxWidth: "82%",
     marginTop: -4,
-    marginBottom: 14,
+    marginBottom: 4,
   },
   label: {
     fontSize: 11,

@@ -76,7 +76,7 @@ export const chatConfig = {
   },
 
   strings: {
-    title: "Parenting Assistant",
+    title: "Parent Buddy",
     beta: "BETA",
     subtitle: "Ask the AI chatbot about parenting, child development and more.",
     inputPlaceholder: "Type your question...",

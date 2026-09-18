@@ -124,7 +124,8 @@ interface ChatMarkdownProps {
 const ChatMarkdown = ({ text, textColor, busy }: ChatMarkdownProps): any => {
   const navigation = useNavigation<any>();
   const themeContext = useContext<any>(ThemeContext);
-  const blocks = (text || "").trim().split(/\n{2,}/);
+  const normalizedText = `${(text || "").trim()}\u00A0`;
+  const blocks = normalizedText.split(/\n{2,}/);
   const colorStyle = textColor ? { color: textColor } : null;
 
   const onLinkPress = (url: string): void => {

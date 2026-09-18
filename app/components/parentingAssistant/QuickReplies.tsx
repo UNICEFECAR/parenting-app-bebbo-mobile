@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     paddingHorizontal: 17,
-    paddingTop: 10,
+    paddingTop: 6,
     backgroundColor: chatTheme.card,
   },
   chip: {

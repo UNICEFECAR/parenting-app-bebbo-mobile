@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: chatTheme.headerBg,
     paddingHorizontal: 20,
-    paddingTop: 15,
+    paddingTop: 6,
     paddingBottom: 17,
   },
   row: {

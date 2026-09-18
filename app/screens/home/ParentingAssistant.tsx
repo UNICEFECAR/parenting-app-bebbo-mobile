@@ -27,6 +27,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   BackHandler,
   FlatList,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -60,14 +61,14 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: chatTheme.surface },
   messagesList: {
     paddingHorizontal: 18,
-    paddingTop: 20,
-    paddingBottom: 12,
+    paddingTop: 10,
+    paddingBottom: 0,
   },
   footnote: {
     backgroundColor: chatTheme.card,
     paddingHorizontal: 20,
-    paddingTop: 7,
-    paddingBottom: 9,
+    paddingTop: 2,
+    paddingBottom: 2,
   },
   footnoteText: {
     textAlign: "center",
@@ -81,12 +82,17 @@ const styles = StyleSheet.create({
 // app run. On the first open per launch the stored session is wiped,
 // which implements "clear history when the app closes".
 let sessionResetDoneForThisLaunch = false;
+let previousChatContext: {
+  langcode: string;
+  childageid: string;
+} | null = null;
 
 const ParentingAssistant = (): any => {
   const navigation = useNavigation<any>();
   const netInfo = useNetInfoHook();
   const listRef = useRef<FlatList<ChatMessage>>(null);
   const sessionIdRef = useRef<string>("");
+  const lastBotMessageIdRef = useRef<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [chips, setChips] = useState<ChatSuggestedQuestion[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -98,7 +104,7 @@ const ParentingAssistant = (): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const activeChild = useAppSelector(selectActiveChild);
-  console.log("activechild chatbot is--",activeChild)
+  console.log("activechild chatbot is--", activeChild)
   const childAgeId =
     activeChild?.taxonomyData.prematureTaxonomyId ||
     activeChild?.taxonomyData.id;
@@ -106,7 +112,7 @@ const ParentingAssistant = (): any => {
   contextRef.current = {
     langcode: languageCode ? String(languageCode) : "",
     childageid:
-    childAgeId !== null && childAgeId !== undefined
+      childAgeId !== null && childAgeId !== undefined
         ? String(childAgeId)
         : "",
   };
@@ -116,7 +122,27 @@ const ParentingAssistant = (): any => {
       listRef.current?.scrollToEnd({ animated: true });
     });
   }, []);
+  const scrollToLastBotResponse = useCallback((): void => {
+    const lastBotIndex = [...messages]
+      .map((message, index) => ({ message, index }))
+      .reverse()
+      .find(({ message }) => message.role === "bot")?.index;
 
+    if (lastBotIndex === undefined) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        listRef.current?.scrollToIndex({
+          index: lastBotIndex,
+          animated: true,
+          viewPosition: 0,
+        });
+      });
+    });
+  }, [messages]);
+  
   const appendMessage = useCallback(
     (message: ChatMessage): void => {
       setMessages((previous) => [...previous, message]);
@@ -125,6 +151,67 @@ const ParentingAssistant = (): any => {
     [scrollToEnd]
   );
 
+  const appendBotMessage = useCallback(
+    (message: ChatMessage): void => {
+      lastBotMessageIdRef.current = message.id;
+  
+      setMessages((previous) => {
+        const newMessages = [...previous, message];
+        const newMessageIndex = newMessages.length - 1;
+  
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            listRef.current?.scrollToIndex({
+              index: newMessageIndex,
+              animated: true,
+              viewPosition: 0,
+            });
+          });
+        });
+  
+        return newMessages;
+      });
+    },
+    []
+  );
+  const scrollToLastBotMessage = useCallback((): void => {
+    const botMessageId = lastBotMessageIdRef.current;
+  
+    if (!botMessageId) {
+      return;
+    }
+  
+    const botIndex = messages.findIndex(
+      (message) => message.id === botMessageId
+    );
+  
+    if (botIndex === -1) {
+      return;
+    }
+  
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        listRef.current?.scrollToIndex({
+          index: botIndex,
+          animated: true,
+          viewPosition: 0,
+        });
+      });
+    });
+  }, [messages]);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        scrollToLastBotMessage();
+      }
+    );
+  
+    return () => {
+      keyboardDidShowListener.remove();
+    };
+  }, [scrollToLastBotMessage]);
   /**
    * Sends the "Initialize" handshake for a fresh session and shows the
    * API reply (message + sources + suggested-question chips). Falls
@@ -138,7 +225,7 @@ const ParentingAssistant = (): any => {
         chatConfig.initChatInput,
         contextRef.current
       );
-      console.log("reply is--",reply)
+      console.log("reply is--", reply)
       // const { body } = splitSources(reply.text);
       // const { body, sources } = splitSources(reply.text); //uncomment this line and comment above when response shows sources.
       // const sources = chatConfig.fallbackWelcome.sources //remove this when response shows sources
@@ -171,24 +258,70 @@ const ParentingAssistant = (): any => {
     await initSession(fresh);
   }, [initSession]);
 
-  useFocusEffect(
-      React.useCallback(() => {
-        const backAction = (): any => {
-          navigation.goBack();
-          return true;
-        };
-        const backHandler = BackHandler.addEventListener(
-          "hardwareBackPress",
-          backAction
-        );
-        navigation.addListener("gestureEnd", backAction);
-  
-        return (): any => {
-          navigation.removeListener("gestureEnd", backAction);
-          backHandler.remove();
-        };
-      }, [])
+  useEffect(() => {
+    console.log("in Parenting useeffect");
+
+    const currentContext = contextRef.current;
+
+    console.log(
+      "previous context:",
+      previousChatContext,
+      "current context:",
+      currentContext
     );
+
+    // First time chatbot is opened during this app run
+    if (previousChatContext === null) {
+      previousChatContext = {
+        langcode: currentContext.langcode,
+        childageid: currentContext.childageid,
+      };
+      console.log("First chatbot context stored");
+      return;
+    }
+
+    console.log(
+      previousChatContext.childageid,
+      "!==",
+      currentContext.childageid
+    );
+
+    const contextChanged =
+      previousChatContext.langcode !== currentContext.langcode ||
+      previousChatContext.childageid !== currentContext.childageid;
+
+    console.log("contextChanged---", contextChanged);
+
+    if (contextChanged) {
+      previousChatContext = {
+        langcode: currentContext.langcode,
+        childageid: currentContext.childageid,
+      };
+
+      console.log("Context changed - starting new chatbot session");
+
+      startNewSession();
+    }
+  }, [languageCode, childAgeId, startNewSession]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const backAction = (): any => {
+        navigation.goBack();
+        return true;
+      };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+      navigation.addListener("gestureEnd", backAction);
+
+      return (): any => {
+        navigation.removeListener("gestureEnd", backAction);
+        backHandler.remove();
+      };
+    }, [])
+  );
   // First open per app launch: reset. Later opens in the same run:
   // restore the stored history and skip the Initialize call.
   useEffect(() => {
@@ -278,7 +411,7 @@ const ParentingAssistant = (): any => {
         );
         // const { body, sources } = splitSources(reply.text);
         setChips(reply.suggestedQuestions);
-        appendMessage({
+        appendBotMessage({
           id: uuidv4(),
           role: "bot",
           text: reply.text,
@@ -296,7 +429,7 @@ const ParentingAssistant = (): any => {
         setIsTyping(false);
       }
     },
-    [appendMessage, isTyping, netInfo.isConnected, scrollToEnd]
+    [appendMessage, appendBotMessage, isTyping, netInfo.isConnected, scrollToEnd]
   );
 
   const handleRetry = useCallback((): void => {
@@ -343,7 +476,12 @@ const ParentingAssistant = (): any => {
           renderItem={renderItem}
           keyExtractor={(item): string => item.id}
           contentContainerStyle={styles.messagesList}
-          onContentSizeChange={scrollToEnd}
+          // onContentSizeChange={scrollToEnd}
+          // onContentSizeChange={() => {
+          //   requestAnimationFrame(() => {
+          //     listRef.current?.scrollToEnd({ animated: false });
+          //   });
+          // }}
           ListFooterComponent={isTyping ? <TypingBubble /> : null}
           keyboardShouldPersistTaps="handled"
           removeClippedSubviews={false}
