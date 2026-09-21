@@ -8,11 +8,12 @@ import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native
 import LinearGradient from "react-native-linear-gradient";
 import Svg, { G, Path } from "react-native-svg";
 import { chatConfig } from "./chatConfig";
-import { chatTheme } from "./chatTheme";
+import { chatBetaGradient, chatCard, chatHeaderBg, chatInk, chatLogoBorder, chatSubtitle } from "@styles/style";
+import { chatHeartsLogoBig, chatHeartsLogoSmall } from "../../instances/reraiUmntwana/styles/style";
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: chatTheme.headerBg,
+    backgroundColor: chatHeaderBg,
     paddingHorizontal: 20,
     paddingTop: 6,
     paddingBottom: 17,
@@ -26,13 +27,13 @@ const styles = StyleSheet.create({
     width: 52,
     height: 52,
     borderRadius: 26,
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: chatTheme.logoBorder,
+    borderColor: chatLogoBorder,
     marginRight: 13,
-    shadowColor: chatTheme.ink,
+    shadowColor: chatInk,
     shadowOpacity: 0.12,
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: "600",
     lineHeight: 23,
-    color: chatTheme.ink,
+    color: chatInk,
   },
   betaPill: {
     width: 44,
@@ -57,13 +58,13 @@ const styles = StyleSheet.create({
   betaText: {
     fontSize: 9,
     fontWeight: "800",
-    color: chatTheme.ink,
+    color: chatInk,
   },
   subtitle: {
     marginTop: 4,
     fontSize: 12.5,
     lineHeight: 18,
-    color: chatTheme.subtitle,
+    color: chatSubtitle,
   },
   buttonsRow: {
     position: "absolute",
@@ -86,12 +87,12 @@ const HeartsLogo = (): any => (
   <Svg width={30} height={26} viewBox="0 0 56 48" fill="none">
     <Path
       d="M22 42C13 35 4 27.4 4 17.6 4 10.6 9.4 5 16.2 5c3.6 0 6.6 1.6 8.8 4.2C27.2 6.6 30.2 5 33.8 5 40.6 5 46 10.6 46 17.6c0 9.8-9 17.4-18 24.4l-3 2.4-3-2.4z"
-      fill="#2A3388"
+      fill={chatHeartsLogoBig}
     />
     <G transform="rotate(24 41 34)">
       <Path
         d="M41 44.5c-5.4-4.2-10.8-8.8-10.8-14.6 0-4.2 3.2-7.5 7.3-7.5 2.1 0 3.9 1 5.2 2.5 1.3-1.5 3.1-2.5 5.2-2.5 4.1 0 7.3 3.3 7.3 7.5 0 5.8-5.4 10.4-10.8 14.6l-1.7 1.3-1.7-1.3z"
-        fill="#4FC3F0"
+        fill={chatHeartsLogoSmall}
         fillOpacity={0.88}
       />
     </G>
@@ -116,7 +117,7 @@ const ChatHeader = ({ busy, onClose, onNewConversation }: ChatHeaderProps): any 
             <Text style={styles.title}>{chatConfig.strings.title}</Text>
             <View style={{ marginLeft: 8 }}>
               <LinearGradient
-                colors={chatTheme.betaGradient}
+                colors={chatBetaGradient}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={styles.betaPill}
@@ -141,13 +142,13 @@ const ChatHeader = ({ busy, onClose, onNewConversation }: ChatHeaderProps): any 
           <Svg width={16} height={16} viewBox="0 0 24 24" fill="none">
             <Path
               d="M20 11A8 8 0 1 0 12 20"
-              stroke={chatTheme.ink}
+              stroke={chatInk}
               strokeWidth={2.4}
               strokeLinecap="round"
             />
             <Path
               d="M20 4v7h-7"
-              stroke={chatTheme.ink}
+              stroke={chatInk}
               strokeWidth={2.4}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -163,7 +164,7 @@ const ChatHeader = ({ busy, onClose, onNewConversation }: ChatHeaderProps): any 
           <Svg width={16} height={16} viewBox="0 0 24 24" fill="none">
             <Path
               d="M6 6l12 12M18 6L6 18"
-              stroke={chatTheme.ink}
+              stroke={chatInk}
               strokeWidth={2.4}
               strokeLinecap="round"
             />

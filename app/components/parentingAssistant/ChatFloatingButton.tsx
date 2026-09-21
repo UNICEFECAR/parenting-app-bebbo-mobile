@@ -14,7 +14,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
-import { chatTheme } from "./chatTheme";
+import { chatAccent, chatInk } from "@styles/style";
 
 const styles = StyleSheet.create({
   fab: {
@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: chatTheme.accent,
+    backgroundColor: chatAccent,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: chatTheme.ink,
+    shadowColor: chatInk,
     shadowOpacity: 0.3,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 3 },

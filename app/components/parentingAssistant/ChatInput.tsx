@@ -11,15 +11,15 @@ import {
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { chatConfig } from "./chatConfig";
-import { chatTheme } from "./chatTheme";
+import { chatAccent, chatBlue, chatCard, chatDisabled, chatLine, chatSurface, chatText, chatTextSoft } from "@styles/style";
 
 const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
     alignItems: "flex-end",
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
     borderTopWidth: 1,
-    borderTopColor: chatTheme.line,
+    borderTopColor: chatLine,
     paddingHorizontal: 12,
     paddingVertical: 10,
   },
@@ -27,27 +27,27 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 48,
     maxHeight: 124,
-    backgroundColor: chatTheme.surface,
+    backgroundColor: chatSurface,
     borderWidth: 1.5,
-    borderColor: chatTheme.line,
+    borderColor: chatLine,
     borderRadius: 16,
     paddingHorizontal: 15,
     paddingTop: 13,
     paddingBottom: 13,
     fontSize: 15,
-    color: chatTheme.text,
+    color: chatText,
     marginRight: 10,
   },
-  inputFocused: { borderColor: chatTheme.blue },
+  inputFocused: { borderColor: chatBlue },
   sendButton: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: chatTheme.accent,
+    backgroundColor: chatAccent,
     alignItems: "center",
     justifyContent: "center",
   },
-  sendButtonDisabled: { backgroundColor: chatTheme.disabled },
+  sendButtonDisabled: { backgroundColor: chatDisabled },
 });
 
 interface ChatInputProps {
@@ -76,7 +76,7 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps): any => {
         value={text}
         onChangeText={setText}
         placeholder={chatConfig.strings.inputPlaceholder}
-        placeholderTextColor={chatTheme.textSoft}
+        placeholderTextColor={chatTextSoft}
         multiline
         onFocus={(): void => setFocused(true)}
         onBlur={(): void => setFocused(false)}

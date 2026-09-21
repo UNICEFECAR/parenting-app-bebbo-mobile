@@ -9,8 +9,8 @@
  */
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { chatTheme } from "./chatTheme";
 import { ChatSuggestedQuestion } from "./chatTypes";
+import { chatBlue, chatCard } from "@styles/style";
 
 const styles = StyleSheet.create({
   wrap: {
@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     paddingHorizontal: 17,
     paddingTop: 6,
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
   },
   chip: {
     borderWidth: 1.5,
-    borderColor: chatTheme.blue,
+    borderColor: chatBlue,
     borderRadius: 999,
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
     paddingVertical: 7,
     paddingHorizontal: 14,
     marginRight: 8,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   chipText: {
     fontSize: 13,
     fontWeight: "600",
-    color: chatTheme.blue,
+    color: chatBlue,
   },
 });
 

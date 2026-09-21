@@ -8,24 +8,32 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { chatConfig } from "./chatConfig";
 import ChatMarkdown from "./chatMarkdown";
-import { chatTheme } from "./chatTheme";
 import { ChatMessage } from "./chatTypes";
 import SourceCards from "./SourceCards";
 import TypingIndicator from "./TypingIndicator";
+import { chatBlue, chatCard, chatLine, chatUserBubble, chatUserText } from "@styles/style";
 
 const styles = StyleSheet.create({
-  row: { flexDirection: "row", marginBottom: 14 },
-  rowUser: { justifyContent: "flex-end" },
+  row: {
+    flexDirection: "row",
+    width: "100%",
+    marginBottom: 14,
+  },
+
+  rowUser: {
+    justifyContent: "flex-end",
+  },
+
   bubble: {
-    maxWidth: "82%",
     borderRadius: 18,
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
+
   bot: {
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
     borderWidth: 1,
-    borderColor: chatTheme.line,
+    borderColor: chatLine,
     borderBottomLeftRadius: 5,
     shadowColor: "#1F2E3D",
     shadowOpacity: 0.05,
@@ -33,12 +41,22 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     elevation: 1,
   },
+
+  botResponse: {
+    width: "82%",
+    minWidth: 0,
+    flexShrink: 1,
+  },
+
   user: {
-    backgroundColor: chatTheme.userBubble,
+    maxWidth: "82%",
+    minWidth: 0,
+    flexShrink: 1,
+    backgroundColor: chatUserBubble,
     borderBottomRightRadius: 5,
   },
   userText: {
-    color: chatTheme.userText,
+    color: chatUserText,
     fontSize: 15,
     lineHeight: 23,
   },
@@ -46,7 +64,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginTop: 10,
     borderWidth: 1.5,
-    borderColor: chatTheme.blue,
+    borderColor: chatBlue,
     borderRadius: 999,
     paddingVertical: 6,
     paddingHorizontal: 14,
@@ -54,7 +72,7 @@ const styles = StyleSheet.create({
   retryText: {
     fontSize: 13,
     fontWeight: "600",
-    color: chatTheme.blue,
+    color: chatBlue,
   },
 });
 
@@ -91,7 +109,7 @@ const MessageBubble = ({
   return (
     <>
       <View ref={responseRef} style={styles.row}>
-        <View style={[styles.bubble, styles.bot]}>
+        <View style={[styles.bubble, styles.bot, styles.botResponse]}>
           <ChatMarkdown text={message.text} busy={busy} />
           {message.isError && onRetry ? (
             <TouchableOpacity

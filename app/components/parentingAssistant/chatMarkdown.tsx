@@ -17,33 +17,41 @@ import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ThemeContext } from "styled-components";
 import { openChatLink } from "./chatLinks";
-import { chatTheme } from "./chatTheme";
-import { ChatSource } from "./chatTypes";
+import { chatBlue, chatText } from "@styles/style";
 
 const styles = StyleSheet.create({
+  content: {
+    width: "100%",
+    alignSelf: "stretch",
+  },
   paragraph: {
-    color: chatTheme.text,
+    color: chatText,
     fontSize: 15,
     lineHeight: 23,
     marginBottom: 8,
   },
-  lastBlock: { marginBottom: 0 },
+  lastBlock: {
+    marginBottom: 0,
+  },
+  finalTextSafety: {
+    paddingBottom: 1,
+  },
   bold: { fontWeight: "700" },
   italic: { fontStyle: "italic" },
   link: {
-    color: chatTheme.blue,
+    color: chatBlue,
     textDecorationLine: "underline",
   },
   listRow: { flexDirection: "row", marginBottom: 5 },
   listMarker: {
-    color: chatTheme.text,
+    color: chatText,
     fontSize: 15,
     lineHeight: 23,
     width: 18,
     fontWeight: "700",
   },
   listNumber: {
-    color: chatTheme.text,
+    color: chatText,
     fontSize: 15,
     lineHeight: 23,
     minWidth: 22,
@@ -52,7 +60,7 @@ const styles = StyleSheet.create({
   listText: { flex: 1 },
   listBlock: { marginBottom: 8 },
   heading: {
-    color: chatTheme.text,
+    color: chatText,
     fontSize: 15.5,
     lineHeight: 23,
     fontWeight: "700",
@@ -124,8 +132,7 @@ interface ChatMarkdownProps {
 const ChatMarkdown = ({ text, textColor, busy }: ChatMarkdownProps): any => {
   const navigation = useNavigation<any>();
   const themeContext = useContext<any>(ThemeContext);
-  const normalizedText = `${(text || "").trim()}\u00A0`;
-  const blocks = normalizedText.split(/\n{2,}/);
+  const blocks = (text || "").trim().split(/\n{2,}/);
   const colorStyle = textColor ? { color: textColor } : null;
 
   const onLinkPress = (url: string): void => {
@@ -169,6 +176,9 @@ const ChatMarkdown = ({ text, textColor, busy }: ChatMarkdownProps): any => {
                     styles.paragraph,
                     styles.lastBlock,
                     styles.listText,
+                    isLast &&
+                      lineIndex === lines.length - 1 &&
+                      styles.finalTextSafety,
                     colorStyle,
                   ]}
                 >
@@ -191,7 +201,7 @@ const ChatMarkdown = ({ text, textColor, busy }: ChatMarkdownProps): any => {
       return (
         <Text
           key={`blk-${blockIndex}`}
-          style={[styles.heading, isLast && styles.lastBlock, colorStyle]}
+          style={[styles.heading, isLast && styles.lastBlock, isLast && styles.finalTextSafety, colorStyle]}
         >
           {renderInline(headingMatch[1], `h-${blockIndex}`, onLinkPress,busy)}
         </Text>
@@ -201,14 +211,14 @@ const ChatMarkdown = ({ text, textColor, busy }: ChatMarkdownProps): any => {
     return (
       <Text
         key={`blk-${blockIndex}`}
-        style={[styles.paragraph, isLast && styles.lastBlock, colorStyle]}
+        style={[styles.paragraph, isLast && styles.lastBlock, isLast && styles.finalTextSafety, colorStyle]}
       >
         {renderInline(lines.join("\n"), `p-${blockIndex}`, onLinkPress,busy)}
       </Text>
     );
   });
 
-  return <View>{rendered}</View>;
+  return <View style={styles.content}>{rendered}</View>;
 };
 
 export default ChatMarkdown;

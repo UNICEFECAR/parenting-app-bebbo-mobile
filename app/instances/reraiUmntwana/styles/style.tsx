@@ -52,5 +52,23 @@ export const dailyReadsTagColor = '#86C289';
 export const menuDrawerTextColor = '#FFFFFF';
 export const chatDotLoaderBGColor = '#86C289';
 export const botBubbleContainerColor = '#ffffff';
-
+export const chatInk = "#24435E"; // soft navy, headings and text on light blue
+export const chatBlue = "#4E86BD"; // friendly mid blue, buttons and borders
+export const chatBlueSoft = "#6FA3D2";
+export const chatHeaderBg = "#D9E9F8"; // powder blue header
+export const chatUserBubble = "#BBDCF5"; // pastel blue user bubble
+export const chatUserText = "#1F3A52";
+export const chatSurface = "#F2F5F8"; // cool grey white
+export const chatCard = "#FFFFFF";
+export const chatLine = "#DCE4EB";
+export const chatAccent = "#1CABE2"; // clear cyan, single energy accent
+export const chatAccentDeep = "#148FBE";
+export const chatText = "#263743";
+export const chatTextSoft = "#5D7080";
+export const chatDisabled = "#9DB1C0";
+export const chatLogoBorder = "#C3D9EC";
+export const chatSubtitle = "#55738E";
+export const chatBetaGradient = ["#7FD4F2", "#1CABE2"];
+export const chatHeartsLogoBig = "#2A3388";
+export const chatHeartsLogoSmall = "#4FC3F0";
 

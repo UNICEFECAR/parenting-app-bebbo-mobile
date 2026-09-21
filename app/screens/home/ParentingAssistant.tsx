@@ -53,7 +53,6 @@ import MessageBubble, {
 } from "@components/parentingAssistant/MessageBubble";
 import QuickReplies from "@components/parentingAssistant/QuickReplies";
 import { chatConfig } from "@components/parentingAssistant/chatConfig";
-import { chatTheme } from "@components/parentingAssistant/chatTheme";
 import {
   ChatMessage,
   ChatSuggestedQuestion,
@@ -62,12 +61,13 @@ import { useAppSelector } from "../../../App";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { sendChatMessage } from "../../services/parentingAssistantApi";
 import { selectActiveChild } from "../../services/selectors";
+import { chatCard, chatHeaderBg, chatSurface, chatTextSoft } from "@styles/style";
 
 const styles = StyleSheet.create({
   // top inset is painted by FocusAwareStatusBar (header colour);
   // bottom inset stays white to match the footnote strip
-  safeArea: { flex: 1, backgroundColor: chatTheme.card },
-  container: { flex: 1, backgroundColor: chatTheme.surface },
+  safeArea: { flex: 1, backgroundColor: chatCard },
+  container: { flex: 1, backgroundColor: chatSurface },
   messagesViewport: { flex: 1 },
   messagesList: {
     paddingHorizontal: 18,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
   },
   footnote: {
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
     paddingHorizontal: 20,
     paddingTop: 2,
     paddingBottom: 2,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 11,
     lineHeight: 16,
-    color: chatTheme.textSoft,
+    color: chatTextSoft,
   },
 });
 
@@ -514,7 +514,7 @@ const ParentingAssistant = (): any => {
     <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
       <FocusAwareStatusBar
         animated={true}
-        backgroundColor={chatTheme.headerBg}
+        backgroundColor={chatHeaderBg}
         barStyle="dark-content"
       />
       <ChatHeader
@@ -549,6 +549,11 @@ const ParentingAssistant = (): any => {
             onScroll={handleListScroll}
             scrollEventThrottle={16}
             removeClippedSubviews={false}
+            onScrollToIndexFailed={({ index }) => {
+              requestAnimationFrame(() => {
+                listRef.current?.scrollToEnd({ animated: true });
+              });
+            }}
           />
         </View>
         <View {...footerPanResponder.panHandlers}>

@@ -4,7 +4,7 @@
  */
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
-import { chatTheme } from "./chatTheme";
+import { chatAccent } from "@styles/style";
 
 const styles = StyleSheet.create({
   row: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     width: 9,
     height: 9,
     borderRadius: 5,
-    backgroundColor: chatTheme.accent,
+    backgroundColor: chatAccent,
     marginRight: 6,
   },
 });

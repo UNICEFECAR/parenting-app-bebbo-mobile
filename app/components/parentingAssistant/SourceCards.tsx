@@ -18,8 +18,8 @@ import Svg, { Path } from "react-native-svg";
 import { ThemeContext } from "styled-components";
 import { chatConfig } from "./chatConfig";
 import { openChatLink } from "./chatLinks";
-import { chatTheme } from "./chatTheme";
 import { ChatSource } from "./chatTypes";
+import { chatAccent, chatCard, chatLine, chatText, chatTextSoft } from "@styles/style";
 
 const styles = StyleSheet.create({
   wrap: {
@@ -31,16 +31,16 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: "700",
     letterSpacing: 1,
-    color: chatTheme.textSoft,
+    color: chatTextSoft,
     paddingLeft: 4,
     marginBottom: 7,
   },
   card: {
     flexDirection: "row",
     alignItems: "stretch",
-    backgroundColor: chatTheme.card,
+    backgroundColor: chatCard,
     borderWidth: 1,
-    borderColor: chatTheme.line,
+    borderColor: chatLine,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 14,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   accentBar: {
     width: 4,
-    backgroundColor: chatTheme.accent, // --um-accent cyan strip
+    backgroundColor: chatAccent, // --um-accent cyan strip
   },
   cardContent: {
     flex: 1,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 13.5,
     fontWeight: "700",
     lineHeight: 18,
-    color: chatTheme.text,
+    color: chatText,
     marginRight: 10,
   },
 });
@@ -106,7 +106,7 @@ const SourceCards = ({ sources, busy }: SourceCardsProps): any => {
             <Svg width={16} height={16} viewBox="0 0 24 24" fill="none">
               <Path
                 d="M7 17 17 7M7 7h10v10"
-                stroke={chatTheme.textSoft}
+                stroke={chatTextSoft}
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
