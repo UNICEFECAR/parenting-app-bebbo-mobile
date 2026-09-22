@@ -242,17 +242,35 @@ export const getAllHealthCheckupPeriods = (): any => {
   let upcomingPeriods = specialPeriod.length > 0 ? specialPeriod : sortedGroupsForPeriods.filter(
     (period: any) => period?.vaccination_opens > childAgeIndays,
   );
-  const previousPeriods = specialPeriod.length > 0 ? sortedGroupsForPeriods
-    .filter(
+  // Sort previous periods: most recent period first, and within the same period,
+  // newest check-up date first (descending). Previously this used .reverse() on the
+  // ascending-period sort, which also flipped the within-period date order so
+  // additional check-ups appeared oldest-first within a period.
+  const sortPreviousPeriods = (list: any[]): any[] =>
+    [...list].sort((a: any, b: any) => {
+      const aOpen = Number(a.vaccination_opens);
+      const bOpen = Number(b.vaccination_opens);
+      if (aOpen !== bOpen) return bOpen - aOpen; // most recent period first
+      const aDate = a?.growthMeasures?.measurementDate
+        ? new Date(a.growthMeasures.measurementDate).getTime()
+        : 0;
+      const bDate = b?.growthMeasures?.measurementDate
+        ? new Date(b.growthMeasures.measurementDate).getTime()
+        : 0;
+      return bDate - aDate; // newest check-up first within the same period
+    });
+
+  const previousPeriods = specialPeriod.length > 0 ? sortPreviousPeriods(
+    sortedGroupsForPeriods.filter(
       (p: any) =>
       (
         p.vaccination_opens === 0 &&
         p.vaccination_ends === appConfig.maxPeriodDays && p.isAdditional && p.isAdditional === true
       )
     )
-    .reverse() : sortedGroupsForPeriods
-      .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
-      .reverse();
+  ) : sortPreviousPeriods(
+    sortedGroupsForPeriods.filter((period: any) => period?.vaccination_opens <= childAgeIndays)
+  );
 
   // logic to add current period to upcomingPeriods and remove it from previousPeriods
   let currentPeriod;
