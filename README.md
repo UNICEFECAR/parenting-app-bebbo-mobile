@@ -1,6 +1,11 @@
-# Bebbo
+<h1>
+  <img src="images/BebboDPGLogo.png"
+       alt="Bebbo Parenting Programme Logo"
+       height="120"
+       style="vertical-align: -10px;">
+</h1>
 
-[Bebbo](https://bebbo.app/) is an interactive mobile application for parenting.
+[Bebbo](https://bebbo.app/) is an interactive mobile application for parenting. This is the source code repository for the mobile app. For CMS, refer to [Bebbo CMS](https://github.com/UNICEFECAR/parenting-app-bebbo-CMS) 
 
 ## Table of Contents
 
