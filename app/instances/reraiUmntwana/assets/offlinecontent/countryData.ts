@@ -4,6 +4,8 @@ export const countryData: any = {
       "CountryID": "1",
       "name": "Zimbabwe",
       "country_email": "reraiumntwana@gmail.com",
+      "content_toggle": "",
+      "app_name": "reraiumntwana",
       "country_national_partner": {
         "url": "",
         "name": "",
@@ -16,11 +18,9 @@ export const countryData: any = {
       },
       "unicef_logo": {
         "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2025-09/RU%20UNICEF%20%26%20Ministry%20logo_0.webp?itok=5EgbR43w",
-        "name": "RU UNICEF & Ministry logo.png",
-        "alt": "RU UNICEF & Ministry logo"
+        "name": "RU UNICEF &amp; Ministry logo.png",
+        "alt": "RU UNICEF &amp; Ministry logo"
       },
-      "content_toggle": "",
-      "app_name": "reraiumntwana",
       "languages": [
         {
           "name": "Zimbabwe",
@@ -28,7 +28,8 @@ export const countryData: any = {
           "languageCode": "zw-en",
           "locale": "ZWen",
           "luxonLocale": "en-ZW",
-          "pluralShow": "true"
+          "pluralShow": "true",
+          "content_toggle": ""
         },
         {
           "name": "Zimbabwe",
@@ -36,7 +37,17 @@ export const countryData: any = {
           "languageCode": "zw-sn",
           "locale": "ZWsn",
           "luxonLocale": "sn-ZW",
-          "pluralShow": "false"
+          "pluralShow": "false",
+          "content_toggle": ""
+        },
+        {
+          "name": "Zimbabwe",
+          "displayName": "Ndebele",
+          "languageCode": "zw-nd",
+          "locale": "ZWnd",
+          "luxonLocale": "nd-ZW",
+          "pluralShow": "false",
+          "content_toggle": ""
         }
       ]
     }

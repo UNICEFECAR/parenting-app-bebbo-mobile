@@ -302,6 +302,11 @@ export const standardDevData: any = {
                     "name": "Zvakawanda pamusoro pekukura pamwedzi 7-9 - kuperezeka muviri zvishoma",
                     "text": "Chenjerera! Mwana wenyu ari kurasikirwa nehuremu (kana kuti haasi kuwedzera huremu) uye ane huremu huripasi zvishoma maererano nekureba kwake. Chimiro ichi chinogona kunge chakaitika mumavhiki mashoma apfuura, naizvozvo fungai zvimwe zvezvikonzero zvechimbichimbi se: chirwere chenguva pfupi kana manyoka, zvimwe zvirwere zvinoraramiwa nazvo, kudya kusina kukwana uye kusina kukodzera, kana shanduko dzakaitika munzvimbo yamunogara, nezvimwe. Endai kuchipatara chiri pedyo nemi kuti muzive chikonzero, mugadzirise kuperezeka muviri uku uye muenderere mberi nekuongorora kukura kwemwana wenyu. Mwana wenyu anofanirwa kuwana kudya kunovaka muviri kwakavandudzwa."
                 },
+                "emergencySmallHeightText": {
+                    "articleID": [3591, 2656, 6961, 3606, 1761],
+                    "name": "Zvakawanda pamusoro pekukura pamwedzi 7 - 9 - kushomeka kwechikafu mumuviri kwakanyanya",
+                    "text": "Chenjerai! Mwana wenyu ane uremu hushoma zvikuru zvichienzaniswa nehurefu hwake. Chimiro ichi chinogona kunge chakaitika mukati memavhiki mashoma, saka edzai kutsvaga zvikonzero zvinokwanisa kunge zvakakonzera izvi. Zvimwe zvezvikonzero zvinogona kusanganisira: kurwara munguva pfupi yapfuura, zvirwere zvinoraramiwa nazvo kwenguva refu kana zvinokanganisa metabolism, kudya kusina kukwana uye kusina kukodzera, shanduko dzakaitika munzvimbo yamunogara, nezvimwewo. Kukurumidzai kushanyira chipatara chemumunharaunda kana chiremba kuti vatsvakurudze chikonzero uye kuti muwane mazano azvakakodzera kuitwa kuti mwana adzokere muhutano hwakanaka."
+                },
                 "warrningBigHeightText": {
                     "articleID": [2656, 1766, 3606, 1761],
                     "name": "Zvakawanda pamusoro pekukura pamwedzi minomwe kusvika pamipfumbamwe - kuwandisa kwehuremu",
