@@ -29,97 +29,97 @@ export const taxonomydata: any = {
                     "id": 376,
                     "name": "Child Development",
                     "unique_name": "child_development",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 386,
                     "name": "Child Growth",
                     "unique_name": "child_growth",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 391,
                     "name": "Health",
                     "unique_name": "health_and_wellbeing",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 401,
                     "name": "Health Check-ups",
                     "unique_name": "health_check_ups",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 406,
                     "name": "Nutrition and Breastfeeding",
                     "unique_name": "nutrition_and_breastfeeding",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 411,
                     "name": "Parental Wellbeing",
                     "unique_name": "parenting_corner",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 416,
                     "name": "Play and Learning",
                     "unique_name": "play_and_learning",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 421,
                     "name": "Responsive Parenting",
                     "unique_name": "responsive_parenting",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 426,
                     "name": "Child Safety",
                     "unique_name": "safety_and_protection",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 431,
                     "name": "Vaccination",
                     "unique_name": "vaccination",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 436,
                     "name": "Week by Week",
                     "unique_name": "week_by_week",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 446,
                     "name": "Staying Healthy",
                     "unique_name": "staying_healthy",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 451,
                     "name": "Preparing for a baby",
                     "unique_name": "preparing_for_a_baby",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 456,
                     "name": "Support during pregnancy",
                     "unique_name": "support_during_pregnancy",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 461,
                     "name": "Labour and Birth",
                     "unique_name": "labour_and_birth",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 466,
                     "name": "Pregnancy Complications",
                     "unique_name": "pregnancy_complications",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 }
             ],
             "chatbot_category": [
@@ -151,10 +151,6 @@ export const taxonomydata: any = {
             ],
             "chatbot_child_age": [
                 {
-                    "id": 516,
-                    "name": "All"
-                },
-                {
                     "id": 496,
                     "name": "Newborn"
                 },
@@ -169,6 +165,10 @@ export const taxonomydata: any = {
                 {
                     "id": 511,
                     "name": "Pre-schooler"
+                },
+                {
+                    "id": 516,
+                    "name": "All"
                 }
             ],
             "chatbot_subcategory": [
@@ -442,20 +442,6 @@ export const taxonomydata: any = {
             ],
             "growth_introductory": [
                 {
-                    "id": 771,
-                    "name": "18 months (covers the second year)",
-                    "body": "In the second year, the gradual slowdown in growth continues. During this year, a child grows about 12 cm, gains 2-2.5 kg in weight and the head circumference increases by 2-2.5 cm.",
-                    "days_from": 366,
-                    "days_to": 730
-                },
-                {
-                    "id": 776,
-                    "name": "3 years onwards (third year onwards)",
-                    "body": "The growth from the third years onwards becomes more even. A child gains 5-7.5 cm in height and 2-3 kg in weight per year.",
-                    "days_from": 731,
-                    "days_to": 2190
-                },
-                {
                     "id": 741,
                     "name": "1 Month",
                     "body": "During the first 5 days, the newborn will lose up to 10% of his body weight but with appropriate care and nutrition, primarily breastfeeding, they will compensate for this loss by the end of the second week of life. In the following period, the newborn will be gaining 20 to 30 g per day in weight, up to 5 cm monthly in length and 2-2.5 cm in head circumference.",
@@ -496,6 +482,20 @@ export const taxonomydata: any = {
                     "body": "In the last trimester of the first year, the child gains about 1 cm per month while the weight varies and depends on the activity level. During the first year, a child usually triples its weight at birth, grows 25 cm on an average and the head circumference increases by 12.5 cm.",
                     "days_from": 275,
                     "days_to": 365
+                },
+                {
+                    "id": 771,
+                    "name": "18 months (covers the second year)",
+                    "body": "In the second year, the gradual slowdown in growth continues. During this year, a child grows about 12 cm, gains 2-2.5 kg in weight and the head circumference increases by 2-2.5 cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 776,
+                    "name": "3 years onwards (third year onwards)",
+                    "body": "The growth from the third years onwards becomes more even. A child gains 5-7.5 cm in height and 2-3 kg in weight per year.",
+                    "days_from": 731,
+                    "days_to": 2190
                 }
             ],
             "growth_period": [
@@ -503,11 +503,6 @@ export const taxonomydata: any = {
                     "id": 1,
                     "name": "with full 5,5 years",
                     "vaccination_opens": 2007
-                },
-                {
-                    "id": 271,
-                    "name": "from 2 to 4 months",
-                    "vaccination_opens": 60
                 },
                 {
                     "id": 16,
@@ -530,6 +525,171 @@ export const taxonomydata: any = {
                     "vaccination_opens": 91
                 },
                 {
+                    "id": 41,
+                    "name": "with full 4 months",
+                    "vaccination_opens": 121
+                },
+                {
+                    "id": 46,
+                    "name": "with full 5 months",
+                    "vaccination_opens": 152
+                },
+                {
+                    "id": 51,
+                    "name": "with full 6 months",
+                    "vaccination_opens": 182
+                },
+                {
+                    "id": 61,
+                    "name": "with full 7 months",
+                    "vaccination_opens": 213
+                },
+                {
+                    "id": 66,
+                    "name": "with full 8 months",
+                    "vaccination_opens": 244
+                },
+                {
+                    "id": 71,
+                    "name": "with full 9 months",
+                    "vaccination_opens": 274
+                },
+                {
+                    "id": 76,
+                    "name": "with full 10 months",
+                    "vaccination_opens": 305
+                },
+                {
+                    "id": 81,
+                    "name": "with full 11 months",
+                    "vaccination_opens": 335
+                },
+                {
+                    "id": 86,
+                    "name": "with full 12 months",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 96,
+                    "name": "with full 15 months",
+                    "vaccination_opens": 456
+                },
+                {
+                    "id": 101,
+                    "name": "with full 16 months",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 106,
+                    "name": "with full 18 months",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 111,
+                    "name": "with full 21 months",
+                    "vaccination_opens": 639
+                },
+                {
+                    "id": 116,
+                    "name": "with full 2 years",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 121,
+                    "name": "with full 27 Months",
+                    "vaccination_opens": 821
+                },
+                {
+                    "id": 126,
+                    "name": "with full 2,5 years",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 131,
+                    "name": "with full 33 months",
+                    "vaccination_opens": 1004
+                },
+                {
+                    "id": 136,
+                    "name": "with full 3 years",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 156,
+                    "name": "with full 3,5 years",
+                    "vaccination_opens": 1277
+                },
+                {
+                    "id": 161,
+                    "name": "with full 4 years",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 166,
+                    "name": "with full 4,5 years",
+                    "vaccination_opens": 1642
+                },
+                {
+                    "id": 176,
+                    "name": "with full 5 years",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 186,
+                    "name": "with full 6 years",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 201,
+                    "name": "with full 13 months",
+                    "vaccination_opens": 396
+                },
+                {
+                    "id": 226,
+                    "name": "with 15 days",
+                    "vaccination_opens": 15
+                },
+                {
+                    "id": 231,
+                    "name": "with full 7 days",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 271,
+                    "name": "from 2 to 4 months",
+                    "vaccination_opens": 60
+                },
+                {
+                    "id": 301,
+                    "name": "with full 3 days",
+                    "vaccination_opens": 3
+                },
+                {
+                    "id": 326,
+                    "name": "from 5 to 7 months",
+                    "vaccination_opens": 122
+                },
+                {
+                    "id": 331,
+                    "name": "from 7 to 9 months",
+                    "vaccination_opens": 183
+                },
+                {
+                    "id": 356,
+                    "name": "with full 6 weeks",
+                    "vaccination_opens": 42
+                },
+                {
+                    "id": 366,
+                    "name": "with full 10 weeks",
+                    "vaccination_opens": 70
+                },
+                {
+                    "id": 371,
+                    "name": "with full 14 weeks",
+                    "vaccination_opens": 98
+                },
+                {
                     "id": 8736,
                     "name": "with full 17 months",
                     "vaccination_opens": 516
@@ -540,34 +700,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 424
                 },
                 {
-                    "id": 41,
-                    "name": "with full 4 months",
-                    "vaccination_opens": 121
-                },
-                {
                     "id": 8746,
                     "name": "with full 19 months",
                     "vaccination_opens": 577
                 },
                 {
-                    "id": 301,
-                    "name": "with full 3 days",
-                    "vaccination_opens": 3
-                },
-                {
-                    "id": 46,
-                    "name": "with full 5 months",
-                    "vaccination_opens": 152
-                },
-                {
                     "id": 8751,
                     "name": "with full 20 months",
                     "vaccination_opens": 608
-                },
-                {
-                    "id": 51,
-                    "name": "with full 6 months",
-                    "vaccination_opens": 182
                 },
                 {
                     "id": 8756,
@@ -580,19 +720,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 699
                 },
                 {
-                    "id": 61,
-                    "name": "with full 7 months",
-                    "vaccination_opens": 213
-                },
-                {
                     "id": 8766,
                     "name": "with full 24 months",
                     "vaccination_opens": 730
-                },
-                {
-                    "id": 66,
-                    "name": "with full 8 months",
-                    "vaccination_opens": 244
                 },
                 {
                     "id": 8771,
@@ -600,29 +730,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 789
                 },
                 {
-                    "id": 326,
-                    "name": "from 5 to 7 months",
-                    "vaccination_opens": 122
-                },
-                {
-                    "id": 71,
-                    "name": "with full 9 months",
-                    "vaccination_opens": 274
-                },
-                {
                     "id": 8776,
                     "name": "with full 25 months",
                     "vaccination_opens": 761
-                },
-                {
-                    "id": 331,
-                    "name": "from 7 to 9 months",
-                    "vaccination_opens": 183
-                },
-                {
-                    "id": 76,
-                    "name": "with full 10 months",
-                    "vaccination_opens": 305
                 },
                 {
                     "id": 8781,
@@ -630,19 +740,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 850
                 },
                 {
-                    "id": 81,
-                    "name": "with full 11 months",
-                    "vaccination_opens": 335
-                },
-                {
                     "id": 8786,
                     "name": "with full 29 months",
                     "vaccination_opens": 881
-                },
-                {
-                    "id": 86,
-                    "name": "with full 12 months",
-                    "vaccination_opens": 365
                 },
                 {
                     "id": 8791,
@@ -655,24 +755,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 973
                 },
                 {
-                    "id": 96,
-                    "name": "with full 15 months",
-                    "vaccination_opens": 456
-                },
-                {
                     "id": 8801,
                     "name": "with full 34 months",
                     "vaccination_opens": 1034
-                },
-                {
-                    "id": 356,
-                    "name": "with full 6 weeks",
-                    "vaccination_opens": 42
-                },
-                {
-                    "id": 101,
-                    "name": "with full 16 months",
-                    "vaccination_opens": 486
                 },
                 {
                     "id": 8806,
@@ -680,24 +765,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1064
                 },
                 {
-                    "id": 106,
-                    "name": "with full 18 months",
-                    "vaccination_opens": 547
-                },
-                {
                     "id": 8811,
                     "name": "with full 36 months",
                     "vaccination_opens": 1095
-                },
-                {
-                    "id": 366,
-                    "name": "with full 10 weeks",
-                    "vaccination_opens": 70
-                },
-                {
-                    "id": 111,
-                    "name": "with full 21 months",
-                    "vaccination_opens": 639
                 },
                 {
                     "id": 8816,
@@ -705,24 +775,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1126
                 },
                 {
-                    "id": 371,
-                    "name": "with full 14 weeks",
-                    "vaccination_opens": 98
-                },
-                {
-                    "id": 116,
-                    "name": "with full 2 years",
-                    "vaccination_opens": 730
-                },
-                {
                     "id": 8821,
                     "name": "with full 38 months",
                     "vaccination_opens": 1154
-                },
-                {
-                    "id": 121,
-                    "name": "with full 27 Months",
-                    "vaccination_opens": 821
                 },
                 {
                     "id": 8826,
@@ -730,29 +785,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1185
                 },
                 {
-                    "id": 126,
-                    "name": "with full 30 months",
-                    "vaccination_opens": 912
-                },
-                {
                     "id": 8831,
                     "name": "with full 40 months",
                     "vaccination_opens": 1215
                 },
                 {
-                    "id": 131,
-                    "name": "with full 33 months",
-                    "vaccination_opens": 1004
-                },
-                {
                     "id": 8836,
                     "name": "with full 41 months",
                     "vaccination_opens": 1246
-                },
-                {
-                    "id": 136,
-                    "name": "with full 3 years",
-                    "vaccination_opens": 1095
                 },
                 {
                     "id": 8841,
@@ -775,29 +815,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1399
                 },
                 {
-                    "id": 156,
-                    "name": "with full 42 months",
-                    "vaccination_opens": 1277
-                },
-                {
                     "id": 8861,
                     "name": "with full 47 months",
                     "vaccination_opens": 1429
                 },
                 {
-                    "id": 161,
-                    "name": "with full 4 years",
-                    "vaccination_opens": 1460
-                },
-                {
                     "id": 8866,
                     "name": "with full 49 months",
                     "vaccination_opens": 1491
-                },
-                {
-                    "id": 166,
-                    "name": "with full 54 months",
-                    "vaccination_opens": 1642
                 },
                 {
                     "id": 8871,
@@ -810,11 +835,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1550
                 },
                 {
-                    "id": 176,
-                    "name": "with full 5 years",
-                    "vaccination_opens": 1825
-                },
-                {
                     "id": 8881,
                     "name": "with full 52 months",
                     "vaccination_opens": 1580
@@ -823,11 +843,6 @@ export const taxonomydata: any = {
                     "id": 8886,
                     "name": "with full 53 months",
                     "vaccination_opens": 1611
-                },
-                {
-                    "id": 186,
-                    "name": "with full 6 years",
-                    "vaccination_opens": 2190
                 },
                 {
                     "id": 8891,
@@ -845,11 +860,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1733
                 },
                 {
-                    "id": 201,
-                    "name": "with full 13 months",
-                    "vaccination_opens": 396
-                },
-                {
                     "id": 8906,
                     "name": "with full 58 months",
                     "vaccination_opens": 1764
@@ -858,16 +868,6 @@ export const taxonomydata: any = {
                     "id": 8911,
                     "name": "with full 59 months",
                     "vaccination_opens": 1794
-                },
-                {
-                    "id": 226,
-                    "name": "with 15 days",
-                    "vaccination_opens": 15
-                },
-                {
-                    "id": 231,
-                    "name": "with full 7 days",
-                    "vaccination_opens": 7
                 }
             ],
             "growth_type": [
@@ -953,176 +953,219 @@ export const taxonomydata: any = {
             ],
             "subcategory": [
                 {
-                    "id": 8706,
-                    "name": "Mental health"
-                },
-                {
-                    "id": 8711,
-                    "name": "Physical health"
-                },
-                {
-                    "id": 8716,
-                    "name": "Work-life balance"
-                },
-                {
-                    "id": 8721,
-                    "name": "Partner relationships"
-                },
-                {
                     "id": 8506,
-                    "name": "Sleep"
+                    "name": "Sleep",
+                    "unique_name": "sleep"
                 },
                 {
                     "id": 8511,
-                    "name": "Care & Hygiene"
+                    "name": "Care & Hygiene",
+                    "unique_name": "care_hygiene"
                 },
                 {
                     "id": 8516,
-                    "name": "Vaccinations & Check-ups"
+                    "name": "Vaccinations & Check-ups",
+                    "unique_name": "vaccinations_check_ups"
                 },
                 {
                     "id": 8521,
-                    "name": "Developmental concerns"
+                    "name": "Developmental concerns",
+                    "unique_name": "developmental_concerns"
                 },
                 {
                     "id": 8526,
-                    "name": "Food recipes"
+                    "name": "Food recipes",
+                    "unique_name": "food_recipes"
                 },
                 {
                     "id": 8531,
-                    "name": "Healthy eating"
+                    "name": "Healthy eating",
+                    "unique_name": "healthy_eating"
                 },
                 {
                     "id": 8536,
-                    "name": "Physical activity"
+                    "name": "Physical activity",
+                    "unique_name": "physical_activity"
                 },
                 {
                     "id": 8541,
-                    "name": "Socio-emotional skills"
+                    "name": "Socio-emotional skills",
+                    "unique_name": "socio_emotional_skills"
                 },
                 {
                     "id": 8546,
-                    "name": "Language & Reading"
+                    "name": "Language & Reading",
+                    "unique_name": "language_reading"
                 },
                 {
                     "id": 8551,
-                    "name": "Play tips"
+                    "name": "Play tips",
+                    "unique_name": "play_tips"
                 },
                 {
                     "id": 8556,
-                    "name": "First aid"
+                    "name": "First aid",
+                    "unique_name": "first_aid"
                 },
                 {
                     "id": 8561,
-                    "name": "Preventing risks"
+                    "name": "Preventing risks",
+                    "unique_name": "preventing_risks"
                 },
                 {
                     "id": 8566,
-                    "name": "Child protection"
+                    "name": "Child protection",
+                    "unique_name": "child_protection"
                 },
                 {
                     "id": 8571,
-                    "name": "Emergencies"
+                    "name": "Emergencies",
+                    "unique_name": "emergencies"
                 },
                 {
                     "id": 8576,
-                    "name": "Parenting strategies"
+                    "name": "Parenting strategies",
+                    "unique_name": "parenting_strategies"
                 },
                 {
                     "id": 8581,
-                    "name": "Breastfeeding basics"
+                    "name": "Breastfeeding basics",
+                    "unique_name": "breastfeeding_basics"
                 },
                 {
                     "id": 8586,
-                    "name": "Breastfeeding challenges"
+                    "name": "Breastfeeding challenges",
+                    "unique_name": "breastfeeding_challenges"
                 },
                 {
                     "id": 8591,
-                    "name": "First foods"
+                    "name": "First foods",
+                    "unique_name": "first_foods"
                 },
                 {
                     "id": 8596,
-                    "name": "Understanding child behaviour"
+                    "name": "Understanding child behaviour",
+                    "unique_name": "understanding_child_behaviour"
                 },
                 {
                     "id": 8601,
-                    "name": "Parent-child bond"
+                    "name": "Parent-child bond",
+                    "unique_name": "parent_child_bond"
                 },
                 {
                     "id": 8606,
-                    "name": "Family relationships"
+                    "name": "Family relationships",
+                    "unique_name": "family_relationships"
                 },
                 {
                     "id": 8616,
-                    "name": "0-12 weeks"
+                    "name": "0-12 weeks",
+                    "unique_name": "0_12_weeks"
                 },
                 {
                     "id": 8621,
-                    "name": "13-28 weeks"
+                    "name": "13-28 weeks",
+                    "unique_name": "13_28_weeks"
                 },
                 {
                     "id": 8626,
-                    "name": "29-40 weeks"
+                    "name": "29-40 weeks",
+                    "unique_name": "29_40_weeks"
                 },
                 {
                     "id": 8631,
-                    "name": "Healthy habits"
+                    "name": "Healthy habits",
+                    "unique_name": "healthy_habits"
                 },
                 {
                     "id": 8636,
-                    "name": "Mental health"
+                    "name": "Mental health",
+                    "unique_name": "mental_health"
                 },
                 {
                     "id": 8641,
-                    "name": "Tests & Check-ups"
+                    "name": "Tests & Check-ups",
+                    "unique_name": "tests_check_ups"
                 },
                 {
                     "id": 8646,
-                    "name": "Baby products"
+                    "name": "Baby products",
+                    "unique_name": "baby_products"
                 },
                 {
                     "id": 8651,
-                    "name": "Work and career"
+                    "name": "Work and career",
+                    "unique_name": "work_and_career"
                 },
                 {
                     "id": 8656,
-                    "name": "Pregnancy scenarios"
+                    "name": "Pregnancy scenarios",
+                    "unique_name": "pregnancy_scenarios"
                 },
                 {
                     "id": 8661,
-                    "name": "Partner support"
+                    "name": "Partner support",
+                    "unique_name": "partner_support"
                 },
                 {
                     "id": 8666,
-                    "name": "Partner relations"
+                    "name": "Partner relations",
+                    "unique_name": "partner_relations"
                 },
                 {
                     "id": 8671,
-                    "name": "Planning"
+                    "name": "Planning",
+                    "unique_name": "planning"
                 },
                 {
                     "id": 8676,
-                    "name": "Birth types"
+                    "name": "Birth types",
+                    "unique_name": "birth_types"
                 },
                 {
                     "id": 8681,
-                    "name": "Recovery"
+                    "name": "Recovery",
+                    "unique_name": "recovery"
                 },
                 {
                     "id": 8686,
-                    "name": "First weeks"
+                    "name": "First weeks",
+                    "unique_name": "first_weeks"
                 },
                 {
                     "id": 8691,
-                    "name": "Premature birth"
+                    "name": "Premature birth",
+                    "unique_name": "premature_birth"
                 },
                 {
                     "id": 8696,
-                    "name": "Miscarriage & Stillbirth"
+                    "name": "Miscarriage & Stillbirth",
+                    "unique_name": "miscarriage_stillbirth"
                 },
                 {
                     "id": 8701,
-                    "name": "Health concerns"
+                    "name": "Health concerns",
+                    "unique_name": "health_concerns"
+                },
+                {
+                    "id": 8706,
+                    "name": "Mental health",
+                    "unique_name": "mental_health"
+                },
+                {
+                    "id": 8711,
+                    "name": "Physical health",
+                    "unique_name": "physical_health"
+                },
+                {
+                    "id": 8716,
+                    "name": "Work-life balance",
+                    "unique_name": "work_life_balance"
+                },
+                {
+                    "id": 8721,
+                    "name": "Partner relationships",
+                    "unique_name": "partner_relationships"
                 }
             ],
             "type_of_support": [
@@ -1172,97 +1215,97 @@ export const taxonomydata: any = {
                     "id": 376,
                     "name": "Kukura kwemwana",
                     "unique_name": "child_development",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 386,
                     "name": "Kukura kwemuviri wemwana",
                     "unique_name": "child_growth",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 391,
                     "name": "Hutano",
                     "unique_name": "health_and_wellbeing",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 401,
                     "name": "Kuongororwa kwehutano",
                     "unique_name": "health_check_ups",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 406,
                     "name": "Kudya kunovaka muviri nekuyamwisa",
                     "unique_name": "nutrition_and_breastfeeding",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 411,
                     "name": "Kuchengetdzeka kwakanaka kwemubereki",
                     "unique_name": "parenting_corner",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 416,
                     "name": "Kutamba nekudzidza",
                     "unique_name": "play_and_learning",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 421,
                     "name": "Kurera vana zvine hanya",
                     "unique_name": "responsive_parenting",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 426,
                     "name": "Kuchengetedzeka kwemwana",
                     "unique_name": "safety_and_protection",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 431,
                     "name": "Nhomba",
                     "unique_name": "vaccination",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 436,
                     "name": "Vhiki nevhiki",
                     "unique_name": "week_by_week",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 446,
                     "name": "Kugara uine hutano",
                     "unique_name": "staying_healthy",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 451,
                     "name": "Kugadzirira kusununguka kwemwana",
                     "unique_name": "preparing_for_a_baby",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 456,
                     "name": "Rutsigiro panguva yekuzvitakura",
                     "unique_name": "support_during_pregnancy",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 461,
                     "name": "Kurwadziwa nepamuviri nekusununguka",
                     "unique_name": "labour_and_birth",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 466,
                     "name": "Zvinetso zvenguva yekunge wakazvitakura",
                     "unique_name": "pregnancy_complications",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 }
             ],
             "chatbot_category": [
@@ -1289,10 +1332,6 @@ export const taxonomydata: any = {
             ],
             "chatbot_child_age": [
                 {
-                    "id": 516,
-                    "name": "Zvose"
-                },
-                {
                     "id": 496,
                     "name": "Mwana mucheche"
                 },
@@ -1307,6 +1346,10 @@ export const taxonomydata: any = {
                 {
                     "id": 511,
                     "name": "Mwana mudiki asati aenda kuchikoro"
+                },
+                {
+                    "id": 516,
+                    "name": "Zvose"
                 }
             ],
             "chatbot_subcategory": [
@@ -1580,20 +1623,6 @@ export const taxonomydata: any = {
             ],
             "growth_introductory": [
                 {
-                    "id": 771,
-                    "name": "Mwedzi gumi nesere (inosanganisira gore rechipiri)",
-                    "body": "Mugore rechipiri, kukura kwemwana kunoenderera mberi nekudzikira. Mugore iri, mwana anoreba angangoita 12 cm, anowedzera 2-2.5 kg muhuremu uye kukomberedzwa kwemusoro kunowedzera 2-2.5 cm.",
-                    "days_from": 366,
-                    "days_to": 730
-                },
-                {
-                    "id": 776,
-                    "name": "Kubva pamakore matatu (gore rechitatu zvichienda mberi)",
-                    "body": "Kukura kubva pagore rechitatu zvichienda mberi kunova kwakadzikama. Mwana anowedzera 5-7.5 cm pakureba uye 2-3 kg muhuremu pagore.",
-                    "days_from": 731,
-                    "days_to": 2190
-                },
-                {
                     "id": 741,
                     "name": "Mwedzi wekutanga",
                     "body": "Mumazuva mashanu ekutanga, mwana achangoberekwa anogona kurasikirwa nehuremu hwake kusvika pa10%, asi nekuchengetedzwa kunokurudzirwa  uye kuyamwiswa kwakakwana mwana achadzorera kurasikirwa uku pakupera kwevhiki yechipiri. Munguva inotevera, mwana achawedzera huremu ne20-30g pazuva, kusvika pa5cm pakureba pamwedzi uye 2-2.5 cm pakukura kwemusoro. ",
@@ -1634,6 +1663,20 @@ export const taxonomydata: any = {
                     "body": "Mumwedzi yekupedzisira wegore rekutanga, mwana anowedzera kureba angangoita 1 cm pamwedzi uye huremu huchishanduka zvichienderana nematambiro anenge achiitwa nemwana. Mugore rekutanga mwana anofanira kuwedzera huremu zvakapetwa katatu kubva pahuremu wekuzvarwa, kureba zvinosvika 25 cm uye kukura musoro ne 12.5 cm.",
                     "days_from": 275,
                     "days_to": 365
+                },
+                {
+                    "id": 771,
+                    "name": "Mwedzi gumi nesere (inosanganisira gore rechipiri)",
+                    "body": "Mugore rechipiri, kukura kwemwana kunoenderera mberi nekudzikira. Mugore iri, mwana anoreba angangoita 12 cm, anowedzera 2-2.5 kg muhuremu uye kukomberedzwa kwemusoro kunowedzera 2-2.5 cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 776,
+                    "name": "Kubva pamakore matatu (gore rechitatu zvichienda mberi)",
+                    "body": "Kukura kubva pagore rechitatu zvichienda mberi kunova kwakadzikama. Mwana anowedzera 5-7.5 cm pakureba uye 2-3 kg muhuremu pagore.",
+                    "days_from": 731,
+                    "days_to": 2190
                 }
             ],
             "growth_period": [
@@ -1663,6 +1706,151 @@ export const taxonomydata: any = {
                     "vaccination_opens": 91
                 },
                 {
+                    "id": 41,
+                    "name": "Pamwedzi 4 yakazara",
+                    "vaccination_opens": 121
+                },
+                {
+                    "id": 46,
+                    "name": "Pamwedzi 5 yakazara",
+                    "vaccination_opens": 152
+                },
+                {
+                    "id": 51,
+                    "name": "Pamwedzi 6 yakazara",
+                    "vaccination_opens": 182
+                },
+                {
+                    "id": 61,
+                    "name": "Pamwedzi 7 yakazara",
+                    "vaccination_opens": 213
+                },
+                {
+                    "id": 66,
+                    "name": "Pamwedzi 8 yakazara",
+                    "vaccination_opens": 244
+                },
+                {
+                    "id": 71,
+                    "name": "pamwedzi mipfumbamwe yakazara",
+                    "vaccination_opens": 274
+                },
+                {
+                    "id": 76,
+                    "name": "Pamwedzi 10 yakazara",
+                    "vaccination_opens": 305
+                },
+                {
+                    "id": 81,
+                    "name": "Pamwedzi 11 yakazara",
+                    "vaccination_opens": 335
+                },
+                {
+                    "id": 86,
+                    "name": "Pamwedzi 12 yakazara",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 96,
+                    "name": "Pamwedzi 15 yakazara",
+                    "vaccination_opens": 456
+                },
+                {
+                    "id": 101,
+                    "name": "Pamwedzi 16 yakazara",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 106,
+                    "name": "pamwedzi gumi nesere yakazara",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 111,
+                    "name": "Pamwedzi 21 yakazara",
+                    "vaccination_opens": 639
+                },
+                {
+                    "id": 116,
+                    "name": "Pamakore 2 akazara",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 121,
+                    "name": "Pamwedzi 27 yakazara",
+                    "vaccination_opens": 821
+                },
+                {
+                    "id": 126,
+                    "name": "Nemwedzi 2,5 yakazara",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 131,
+                    "name": "Pamwedzi 33 yakazara",
+                    "vaccination_opens": 1004
+                },
+                {
+                    "id": 136,
+                    "name": "Pamakore 3 akazara",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 156,
+                    "name": "Nemwedzi 3,5 yakazara",
+                    "vaccination_opens": 1277
+                },
+                {
+                    "id": 161,
+                    "name": "Pamakore 4 akazara",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 166,
+                    "name": "Nemwedzi 4,5 yakazara",
+                    "vaccination_opens": 1642
+                },
+                {
+                    "id": 176,
+                    "name": "pamakore mashanu akazara",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 186,
+                    "name": "Nemwedzi 6 yakazara",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 201,
+                    "name": "Pamwedzi 13 yakazara",
+                    "vaccination_opens": 396
+                },
+                {
+                    "id": 231,
+                    "name": "nemazuva minomwe akazara",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 301,
+                    "name": "nemazuva matatu akazara",
+                    "vaccination_opens": 3
+                },
+                {
+                    "id": 356,
+                    "name": "mavhiki matanhatu akazara",
+                    "vaccination_opens": 42
+                },
+                {
+                    "id": 366,
+                    "name": "pamazera gumi evhiki",
+                    "vaccination_opens": 70
+                },
+                {
+                    "id": 371,
+                    "name": "pamazera gumi nemana evhiki",
+                    "vaccination_opens": 98
+                },
+                {
                     "id": 8736,
                     "name": "Nemwedzi 17 yakazara",
                     "vaccination_opens": 516
@@ -1673,34 +1861,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 424
                 },
                 {
-                    "id": 41,
-                    "name": "Pamwedzi 4 yakazara",
-                    "vaccination_opens": 121
-                },
-                {
                     "id": 8746,
                     "name": "Nemwedzi 19 yakazara",
                     "vaccination_opens": 577
                 },
                 {
-                    "id": 301,
-                    "name": "nemazuva matatu akazara",
-                    "vaccination_opens": 3
-                },
-                {
-                    "id": 46,
-                    "name": "Pamwedzi 5 yakazara",
-                    "vaccination_opens": 152
-                },
-                {
                     "id": 8751,
                     "name": "Nemwedzi 20 yakazara",
                     "vaccination_opens": 608
-                },
-                {
-                    "id": 51,
-                    "name": "Pamwedzi 6 yakazara",
-                    "vaccination_opens": 182
                 },
                 {
                     "id": 8756,
@@ -1713,19 +1881,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 699
                 },
                 {
-                    "id": 61,
-                    "name": "Pamwedzi 7 yakazara",
-                    "vaccination_opens": 213
-                },
-                {
                     "id": 8766,
                     "name": "Pamakore 2 akazara",
                     "vaccination_opens": 730
-                },
-                {
-                    "id": 66,
-                    "name": "Pamwedzi 8 yakazara",
-                    "vaccination_opens": 244
                 },
                 {
                     "id": 8771,
@@ -1733,19 +1891,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 789
                 },
                 {
-                    "id": 71,
-                    "name": "pamwedzi mipfumbamwe yakazara",
-                    "vaccination_opens": 274
-                },
-                {
                     "id": 8776,
                     "name": "Nemwedzi 25 yakazara",
                     "vaccination_opens": 761
-                },
-                {
-                    "id": 76,
-                    "name": "Pamwedzi 10 yakazara",
-                    "vaccination_opens": 305
                 },
                 {
                     "id": 8781,
@@ -1753,19 +1901,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 850
                 },
                 {
-                    "id": 81,
-                    "name": "Pamwedzi 11 yakazara",
-                    "vaccination_opens": 335
-                },
-                {
                     "id": 8786,
                     "name": "Nemwedzi 29 yakazara",
                     "vaccination_opens": 881
-                },
-                {
-                    "id": 86,
-                    "name": "Pamwedzi 12 yakazara",
-                    "vaccination_opens": 365
                 },
                 {
                     "id": 8791,
@@ -1778,24 +1916,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 973
                 },
                 {
-                    "id": 96,
-                    "name": "Pamwedzi 15 yakazara",
-                    "vaccination_opens": 456
-                },
-                {
                     "id": 8801,
                     "name": "Nemwedzi 34 yakazara",
                     "vaccination_opens": 1034
-                },
-                {
-                    "id": 356,
-                    "name": "mavhiki matanhatu akazara",
-                    "vaccination_opens": 42
-                },
-                {
-                    "id": 101,
-                    "name": "Pamwedzi 16 yakazara",
-                    "vaccination_opens": 486
                 },
                 {
                     "id": 8806,
@@ -1803,24 +1926,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1064
                 },
                 {
-                    "id": 106,
-                    "name": "pamwedzi gumi nesere yakazara",
-                    "vaccination_opens": 547
-                },
-                {
                     "id": 8811,
                     "name": "Pamakore 3 akazara",
                     "vaccination_opens": 1095
-                },
-                {
-                    "id": 366,
-                    "name": "pamazera gumi evhiki",
-                    "vaccination_opens": 70
-                },
-                {
-                    "id": 111,
-                    "name": "Pamwedzi 21 yakazara",
-                    "vaccination_opens": 639
                 },
                 {
                     "id": 8816,
@@ -1828,24 +1936,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1126
                 },
                 {
-                    "id": 371,
-                    "name": "pamazera gumi nemana evhiki",
-                    "vaccination_opens": 98
-                },
-                {
-                    "id": 116,
-                    "name": "Pamakore 2 akazara",
-                    "vaccination_opens": 730
-                },
-                {
                     "id": 8821,
                     "name": "Nemwedzi 38 yakazara",
                     "vaccination_opens": 1154
-                },
-                {
-                    "id": 121,
-                    "name": "Pamwedzi 27 yakazara",
-                    "vaccination_opens": 821
                 },
                 {
                     "id": 8826,
@@ -1853,29 +1946,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1185
                 },
                 {
-                    "id": 126,
-                    "name": "Pamwedzi 30 yakazara",
-                    "vaccination_opens": 912
-                },
-                {
                     "id": 8831,
                     "name": "Nemwedzi 40 yakazara",
                     "vaccination_opens": 1215
                 },
                 {
-                    "id": 131,
-                    "name": "Pamwedzi 33 yakazara",
-                    "vaccination_opens": 1004
-                },
-                {
                     "id": 8836,
                     "name": "Nemwedzi 41 yakazara",
                     "vaccination_opens": 1246
-                },
-                {
-                    "id": 136,
-                    "name": "Pamakore 3 akazara",
-                    "vaccination_opens": 1095
                 },
                 {
                     "id": 8841,
@@ -1898,29 +1976,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1399
                 },
                 {
-                    "id": 156,
-                    "name": "Pamwedzi 42 yakazara",
-                    "vaccination_opens": 1277
-                },
-                {
                     "id": 8861,
                     "name": "Nemwedzi 47 yakazara",
                     "vaccination_opens": 1429
                 },
                 {
-                    "id": 161,
-                    "name": "Pamakore 4 akazara",
-                    "vaccination_opens": 1460
-                },
-                {
                     "id": 8866,
                     "name": "Nemwedzi 49 yakazara",
                     "vaccination_opens": 1491
-                },
-                {
-                    "id": 166,
-                    "name": "Pamwedzi 54 yakazara",
-                    "vaccination_opens": 1642
                 },
                 {
                     "id": 8871,
@@ -1933,11 +1996,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1550
                 },
                 {
-                    "id": 176,
-                    "name": "pamakore mashanu akazara",
-                    "vaccination_opens": 1825
-                },
-                {
                     "id": 8881,
                     "name": "Nemwedzi 52 yakazara",
                     "vaccination_opens": 1580
@@ -1946,11 +2004,6 @@ export const taxonomydata: any = {
                     "id": 8886,
                     "name": "Nemwedzi 53 yakazara",
                     "vaccination_opens": 1611
-                },
-                {
-                    "id": 186,
-                    "name": "Nemwedzi 6 yakazara",
-                    "vaccination_opens": 2190
                 },
                 {
                     "id": 8891,
@@ -1968,11 +2021,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1733
                 },
                 {
-                    "id": 201,
-                    "name": "Pamwedzi 13 yakazara",
-                    "vaccination_opens": 396
-                },
-                {
                     "id": 8906,
                     "name": "Nemwedzi 58 yakazara",
                     "vaccination_opens": 1764
@@ -1981,11 +2029,6 @@ export const taxonomydata: any = {
                     "id": 8911,
                     "name": "Nemwedzi 59 yakazara",
                     "vaccination_opens": 1794
-                },
-                {
-                    "id": 231,
-                    "name": "nemazuva minomwe akazara",
-                    "vaccination_opens": 7
                 }
             ],
             "growth_type": [
@@ -2071,176 +2114,219 @@ export const taxonomydata: any = {
             ],
             "subcategory": [
                 {
-                    "id": 8706,
-                    "name": "Utano hwepfungwa"
-                },
-                {
-                    "id": 8711,
-                    "name": "Utano hwemuviri"
-                },
-                {
-                    "id": 8716,
-                    "name": "Kubatanidza Basa Neupenyu"
-                },
-                {
-                    "id": 8721,
-                    "name": "Hukama hwevaviri"
-                },
-                {
                     "id": 8506,
-                    "name": "Kurara"
+                    "name": "Kurara",
+                    "unique_name": "sleep"
                 },
                 {
                     "id": 8511,
-                    "name": "Kuchengetedza nehutsananan"
+                    "name": "Kuchengetedza nehutsananan",
+                    "unique_name": "care_hygiene"
                 },
                 {
                     "id": 8516,
-                    "name": "Kubayisa mwana nekutariswa makuriro"
+                    "name": "Kubayisa mwana nekutariswa makuriro",
+                    "unique_name": "vaccinations_check_ups"
                 },
                 {
                     "id": 8521,
-                    "name": "Zvinetso zvekukura"
+                    "name": "Zvinetso zvekukura",
+                    "unique_name": "developmental_concerns"
                 },
                 {
                     "id": 8526,
-                    "name": "Mabikiro ezvokudya"
+                    "name": "Mabikiro ezvokudya",
+                    "unique_name": "food_recipes"
                 },
                 {
                     "id": 8531,
-                    "name": "Kudya kwakanaka"
+                    "name": "Kudya kwakanaka",
+                    "unique_name": "healthy_eating"
                 },
                 {
                     "id": 8536,
-                    "name": "Basa remuviri"
+                    "name": "Basa remuviri",
+                    "unique_name": "physical_activity"
                 },
                 {
                     "id": 8541,
-                    "name": "Unyanzvi hweMafungiro neManzwiro"
+                    "name": "Unyanzvi hweMafungiro neManzwiro",
+                    "unique_name": "socio_emotional_skills"
                 },
                 {
                     "id": 8546,
-                    "name": "Mutauro & Kuverenga"
+                    "name": "Mutauro & Kuverenga",
+                    "unique_name": "language_reading"
                 },
                 {
                     "id": 8551,
-                    "name": "Mazano ekutamba"
+                    "name": "Mazano ekutamba",
+                    "unique_name": "play_tips"
                 },
                 {
                     "id": 8556,
-                    "name": "Rubatsiro rwekutanga"
+                    "name": "Rubatsiro rwekutanga",
+                    "unique_name": "first_aid"
                 },
                 {
                     "id": 8561,
-                    "name": "Kudzivirira Njodzi"
+                    "name": "Kudzivirira Njodzi",
+                    "unique_name": "preventing_risks"
                 },
                 {
                     "id": 8566,
-                    "name": "Kudzivirirwa kweMwana"
+                    "name": "Kudzivirirwa kweMwana",
+                    "unique_name": "child_protection"
                 },
                 {
                     "id": 8571,
-                    "name": "Zviitiko Zvekukurumidzira"
+                    "name": "Zviitiko Zvekukurumidzira",
+                    "unique_name": "emergencies"
                 },
                 {
                     "id": 8576,
-                    "name": "Mazano Ekurera Mwana"
+                    "name": "Mazano Ekurera Mwana",
+                    "unique_name": "parenting_strategies"
                 },
                 {
                     "id": 8581,
-                    "name": "Zvakakosha pakuyamwisa"
+                    "name": "Zvakakosha pakuyamwisa",
+                    "unique_name": "breastfeeding_basics"
                 },
                 {
                     "id": 8586,
-                    "name": "Matambudziko pakuyamwisa"
+                    "name": "Matambudziko pakuyamwisa",
+                    "unique_name": "breastfeeding_challenges"
                 },
                 {
                     "id": 8591,
-                    "name": "Chikafu chokutanga"
+                    "name": "Chikafu chokutanga",
+                    "unique_name": "first_foods"
                 },
                 {
                     "id": 8596,
-                    "name": "Kunzwisisa Maitiro eMwana"
+                    "name": "Kunzwisisa Maitiro eMwana",
+                    "unique_name": "understanding_child_behaviour"
                 },
                 {
                     "id": 8601,
-                    "name": "Hukama hweMubereki nemwana"
+                    "name": "Hukama hweMubereki nemwana",
+                    "unique_name": "parent_child_bond"
                 },
                 {
                     "id": 8606,
-                    "name": "Hukama Hwemhuri"
+                    "name": "Hukama Hwemhuri",
+                    "unique_name": "family_relationships"
                 },
                 {
                     "id": 8616,
-                    "name": "Mavhiki 0-12"
+                    "name": "Mavhiki 0-12",
+                    "unique_name": "0_12_weeks"
                 },
                 {
                     "id": 8621,
-                    "name": "Mavhiki 13-28"
+                    "name": "Mavhiki 13-28",
+                    "unique_name": "13_28_weeks"
                 },
                 {
                     "id": 8626,
-                    "name": "Mavhiki 29-40"
+                    "name": "Mavhiki 29-40",
+                    "unique_name": "29_40_weeks"
                 },
                 {
                     "id": 8631,
-                    "name": "Tsika dzekudya dzakanaka"
+                    "name": "Tsika dzekudya dzakanaka",
+                    "unique_name": "healthy_habits"
                 },
                 {
                     "id": 8636,
-                    "name": "Utano Hwepfungwa"
+                    "name": "Utano Hwepfungwa",
+                    "unique_name": "mental_health"
                 },
                 {
                     "id": 8641,
-                    "name": "Zvidzidzo & Kuongororwa"
+                    "name": "Zvidzidzo & Kuongororwa",
+                    "unique_name": "tests_check_ups"
                 },
                 {
                     "id": 8646,
-                    "name": "Zvigadzirwa zvemwana"
+                    "name": "Zvigadzirwa zvemwana",
+                    "unique_name": "baby_products"
                 },
                 {
                     "id": 8651,
-                    "name": "Basa uye Basa Rehupenyu"
+                    "name": "Basa uye Basa Rehupenyu",
+                    "unique_name": "work_and_career"
                 },
                 {
                     "id": 8656,
-                    "name": "Mamiriro Ekuzvitakura"
+                    "name": "Mamiriro Ekuzvitakura",
+                    "unique_name": "pregnancy_scenarios"
                 },
                 {
                     "id": 8661,
-                    "name": "Rutsigiro rweMudiwa"
+                    "name": "Rutsigiro rweMudiwa",
+                    "unique_name": "partner_support"
                 },
                 {
                     "id": 8666,
-                    "name": "Hukama Hwevaviri"
+                    "name": "Hukama Hwevaviri",
+                    "unique_name": "partner_relations"
                 },
                 {
                     "id": 8671,
-                    "name": "Kuronga"
+                    "name": "Kuronga",
+                    "unique_name": "planning"
                 },
                 {
                     "id": 8676,
-                    "name": "Mhando dzeKuberekwa"
+                    "name": "Mhando dzeKuberekwa",
+                    "unique_name": "birth_types"
                 },
                 {
                     "id": 8681,
-                    "name": "Kupora"
+                    "name": "Kupora",
+                    "unique_name": "recovery"
                 },
                 {
                     "id": 8686,
-                    "name": "Mavhiki Ekutanga"
+                    "name": "Mavhiki Ekutanga",
+                    "unique_name": "first_weeks"
                 },
                 {
                     "id": 8691,
-                    "name": "Kubereka mwana nguva isati yakwana"
+                    "name": "Kubereka mwana nguva isati yakwana",
+                    "unique_name": "premature_birth"
                 },
                 {
                     "id": 8696,
-                    "name": "Kubuda Mwana Asina Hupenyu"
+                    "name": "Kubuda Mwana Asina Hupenyu",
+                    "unique_name": "miscarriage_stillbirth"
                 },
                 {
                     "id": 8701,
-                    "name": "Zvinonetsa zvehutano"
+                    "name": "Zvinonetsa zvehutano",
+                    "unique_name": "health_concerns"
+                },
+                {
+                    "id": 8706,
+                    "name": "Utano hwepfungwa",
+                    "unique_name": "mental_health"
+                },
+                {
+                    "id": 8711,
+                    "name": "Utano hwemuviri",
+                    "unique_name": "physical_health"
+                },
+                {
+                    "id": 8716,
+                    "name": "Kubatanidza Basa Neupenyu",
+                    "unique_name": "work_life_balance"
+                },
+                {
+                    "id": 8721,
+                    "name": "Hukama hwevaviri",
+                    "unique_name": "partner_relationships"
                 }
             ],
             "type_of_support": [
@@ -2290,97 +2376,97 @@ export const taxonomydata: any = {
                     "id": 376,
                     "name": "Ukukhula komntwana",
                     "unique_name": "child_development",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 386,
                     "name": "Ukukhula komzimba womntwana",
                     "unique_name": "child_growth",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 391,
                     "name": "Impilakahle",
                     "unique_name": "health_and_wellbeing",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 401,
                     "name": "Ukuhlolwa impilakahle",
                     "unique_name": "health_check_ups",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 406,
                     "name": "Ukudla lokumunyisa",
                     "unique_name": "nutrition_and_breastfeeding",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 411,
                     "name": "Impilakahle yabazali",
                     "unique_name": "parenting_corner",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 416,
                     "name": "Ukudlala lokufunda",
                     "unique_name": "play_and_learning",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 421,
                     "name": "Wondla okukhaliphileyo",
                     "unique_name": "responsive_parenting",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 426,
                     "name": "Ukuvikela abantwana",
                     "unique_name": "safety_and_protection",
-                    "field_type_of_article": "Article for birth to 6 years"
+                    "field_type_of_article": "article_for_birth_to_6_years"
                 },
                 {
                     "id": 431,
                     "name": "Ukuhlatshiswa kwabantwana",
                     "unique_name": "vaccination",
-                    "field_type_of_article": "Article for health and growth tools"
+                    "field_type_of_article": "article_for_health_and_growth_tools"
                 },
                 {
                     "id": 436,
                     "name": "Iviki ngeviki",
                     "unique_name": "week_by_week",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 446,
                     "name": "Ukuba lempilakahle",
                     "unique_name": "staying_healthy",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 451,
                     "name": "Ukulungiselela umntwana",
                     "unique_name": "preparing_for_a_baby",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 456,
                     "name": "Ukusekelwa ngesikhathi uzithwele",
                     "unique_name": "support_during_pregnancy",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 461,
                     "name": "Ukuhelelwa lokubeletha",
                     "unique_name": "labour_and_birth",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 },
                 {
                     "id": 466,
                     "name": "Inhlupho uzithwele",
                     "unique_name": "pregnancy_complications",
-                    "field_type_of_article": "Article for pregnancy"
+                    "field_type_of_article": "article_for_pregnancy"
                 }
             ],
             "chatbot_category": [
@@ -2412,10 +2498,6 @@ export const taxonomydata: any = {
             ],
             "chatbot_child_age": [
                 {
-                    "id": 516,
-                    "name": "Bonke"
-                },
-                {
                     "id": 496,
                     "name": "Umntwana osanda kuzalwa"
                 },
@@ -2430,6 +2512,10 @@ export const taxonomydata: any = {
                 {
                     "id": 511,
                     "name": "Umntwana"
+                },
+                {
+                    "id": 516,
+                    "name": "Bonke"
                 }
             ],
             "chatbot_subcategory": [
@@ -2703,20 +2789,6 @@ export const taxonomydata: any = {
             ],
             "growth_introductory": [
                 {
-                    "id": 771,
-                    "name": "Inyanga ezilitshumi lasitshiyangalonye (kugoqela lomnyaka wesibili)",
-                    "body": "Ngomnyaka wesibili, ukukhula kuyaqhubeka kuncipha kancane kancane. Ubude buyangezeleleka nge 12cm, isisindo nge 2 kusiya ku 2.5 kg lesingombolozi sekhanda nge 2 kusiya ku 2.5cm.",
-                    "days_from": 366,
-                    "days_to": 730
-                },
-                {
-                    "id": 776,
-                    "name": "Eminyakeni emithathu kusiya phambili",
-                    "body": "Kusukela emnyakeni wesithathu kusiyaphambili kukhula kulokulingana, ubude bungezelela nge 5 kusiya ku 7.5cm isisindo nge 2 kusiya ku 3kg ngomnyaka.",
-                    "days_from": 731,
-                    "days_to": 2190
-                },
-                {
                     "id": 741,
                     "name": "Inyanga yakuqala (1)",
                     "body": "Ngamalanga okuqala amahlanu umntwana osanda kubelethwa uyehla esisindweni kancane (10%), kodwa engaqhubeka emunya ngemfanelo, umzimba wakhe uyaphenduka sokudlule amaviki amabili. Ngesibanga esilandelayo kumele isisindo singezeleleke nge-20g kusisya ku30g ngelanga, njalo ubude nge 5cm ngenyanga lesigombolozi sekhanda nge 2-2,5cm.",
@@ -2757,12 +2829,26 @@ export const taxonomydata: any = {
                     "body": "Ngenyanya ezintathu zokucina zomnyaka wakuqala ubude bukhula nge 1 cm ngenyanga, njalo isisido sikhula okuhambelana lokudla komntwana. Ngomnyaka wokuqala umntwana uvame ukuphinda kathathu isisindo sakhe sokuzalwa, ukwengeza ubude bokuzalwa nge25cm, lokukhula isigombolozi sekhanda nge 12.5cm.",
                     "days_from": 275,
                     "days_to": 365
+                },
+                {
+                    "id": 771,
+                    "name": "Inyanga ezilitshumi lasitshiyangalonye (kugoqela lomnyaka wesibili)",
+                    "body": "Ngomnyaka wesibili, ukukhula kuyaqhubeka kuncipha kancane kancane. Ubude buyangezeleleka nge 12cm, isisindo nge 2 kusiya ku 2.5 kg lesingombolozi sekhanda nge 2 kusiya ku 2.5cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 776,
+                    "name": "Eminyakeni emithathu kusiya phambili",
+                    "body": "Kusukela emnyakeni wesithathu kusiyaphambili kukhula kulokulingana, ubude bungezelela nge 5 kusiya ku 7.5cm isisindo nge 2 kusiya ku 3kg ngomnyaka.",
+                    "days_from": 731,
+                    "days_to": 2190
                 }
             ],
             "growth_period": [
                 {
                     "id": 1,
-                    "name": "emnyakeni engu 6 epheleleyo",
+                    "name": "emnyakeni engu 5,5 epheleleyo",
                     "vaccination_opens": 2007
                 },
                 {
@@ -2786,6 +2872,151 @@ export const taxonomydata: any = {
                     "vaccination_opens": 91
                 },
                 {
+                    "id": 41,
+                    "name": "ngenyanga ezipheleleyo ezingu 4",
+                    "vaccination_opens": 121
+                },
+                {
+                    "id": 46,
+                    "name": "ngenyanga ezipheleleyo ezingu 5",
+                    "vaccination_opens": 152
+                },
+                {
+                    "id": 51,
+                    "name": "ngenyanga ezipheleleyo ezingu 6",
+                    "vaccination_opens": 182
+                },
+                {
+                    "id": 61,
+                    "name": "ngenyanga ezipheleleyo ezingu 7",
+                    "vaccination_opens": 213
+                },
+                {
+                    "id": 66,
+                    "name": "ngenyanga ezipheleleyo ezingu 8",
+                    "vaccination_opens": 244
+                },
+                {
+                    "id": 71,
+                    "name": "ngenyanga ezipheleleyo ezingu 9",
+                    "vaccination_opens": 274
+                },
+                {
+                    "id": 76,
+                    "name": "ngenyanga ezipheleleyo ezingu 10",
+                    "vaccination_opens": 305
+                },
+                {
+                    "id": 81,
+                    "name": "ngenyanga ezipheleleyo ezingu 11",
+                    "vaccination_opens": 335
+                },
+                {
+                    "id": 86,
+                    "name": "ngenyanga ezipheleleyo ezingu 12",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 96,
+                    "name": "ngenyanga ezipheleleyo ezingu 15",
+                    "vaccination_opens": 456
+                },
+                {
+                    "id": 101,
+                    "name": "ngenyanga ezipheleleyo ezingu 16",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 106,
+                    "name": "ngenyanga ezipheleleyo ezingu 18",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 111,
+                    "name": "ngenyanga ezipheleleyo ezingu 21",
+                    "vaccination_opens": 639
+                },
+                {
+                    "id": 116,
+                    "name": "Emnyakeni engu 2 epheleleyo",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 121,
+                    "name": "ngenyanga ezipheleleyo ezingu 27",
+                    "vaccination_opens": 821
+                },
+                {
+                    "id": 126,
+                    "name": "emnyakeni engu 2,5 epheleleyo",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 131,
+                    "name": "ngenyanga ezipheleleyo ezingu 33",
+                    "vaccination_opens": 1004
+                },
+                {
+                    "id": 136,
+                    "name": "Emnyakeni engu 3 epheleleyo",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 156,
+                    "name": "emnyakeni engu 3,5 epheleleyo",
+                    "vaccination_opens": 1277
+                },
+                {
+                    "id": 161,
+                    "name": "emnyakeni engu 4 epheleleyo",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 166,
+                    "name": "emnyakeni engu 4,5 epheleleyo",
+                    "vaccination_opens": 1642
+                },
+                {
+                    "id": 176,
+                    "name": "emnyakeni engu 5 epheleleyo",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 186,
+                    "name": "emnyakeni engu 5.5",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 201,
+                    "name": "ngenyanga ezipheleleyo ezingu 13",
+                    "vaccination_opens": 396
+                },
+                {
+                    "id": 231,
+                    "name": "ngamazinsuku 7 ezigcweleyo",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 301,
+                    "name": "ngamazinsuku 3 ezigcweleyo",
+                    "vaccination_opens": 3
+                },
+                {
+                    "id": 356,
+                    "name": "ngamaviki 6 agcweleyo",
+                    "vaccination_opens": 42
+                },
+                {
+                    "id": 366,
+                    "name": "ngamaviki 10 agcweleyo",
+                    "vaccination_opens": 70
+                },
+                {
+                    "id": 371,
+                    "name": "ngamaviki 14 agcweleyo",
+                    "vaccination_opens": 98
+                },
+                {
                     "id": 8736,
                     "name": "ngenyanga ezipheleleyo ezingu 17",
                     "vaccination_opens": 516
@@ -2796,34 +3027,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 424
                 },
                 {
-                    "id": 41,
-                    "name": "ngenyanga ezipheleleyo ezingu 4",
-                    "vaccination_opens": 121
-                },
-                {
                     "id": 8746,
                     "name": "ngenyanga ezipheleleyo ezingu 19",
                     "vaccination_opens": 577
                 },
                 {
-                    "id": 301,
-                    "name": "ngamazinsuku 3 ezigcweleyo",
-                    "vaccination_opens": 3
-                },
-                {
-                    "id": 46,
-                    "name": "ngenyanga ezipheleleyo ezingu 5",
-                    "vaccination_opens": 152
-                },
-                {
                     "id": 8751,
                     "name": "ngenyanga ezipheleleyo ezingu 20",
                     "vaccination_opens": 608
-                },
-                {
-                    "id": 51,
-                    "name": "ngenyanga ezipheleleyo ezingu 6",
-                    "vaccination_opens": 182
                 },
                 {
                     "id": 8756,
@@ -2836,19 +3047,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 699
                 },
                 {
-                    "id": 61,
-                    "name": "ngenyanga ezipheleleyo ezingu 7",
-                    "vaccination_opens": 213
-                },
-                {
                     "id": 8766,
                     "name": "emnyakeni engu 2 epheleleyo",
                     "vaccination_opens": 730
-                },
-                {
-                    "id": 66,
-                    "name": "ngenyanga ezipheleleyo ezingu 8",
-                    "vaccination_opens": 244
                 },
                 {
                     "id": 8771,
@@ -2856,19 +3057,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 789
                 },
                 {
-                    "id": 71,
-                    "name": "ngenyanga ezipheleleyo ezingu 9",
-                    "vaccination_opens": 274
-                },
-                {
                     "id": 8776,
                     "name": "ngenyanga ezipheleleyo ezingu 25",
                     "vaccination_opens": 761
-                },
-                {
-                    "id": 76,
-                    "name": "ngenyanga ezipheleleyo ezingu 10",
-                    "vaccination_opens": 305
                 },
                 {
                     "id": 8781,
@@ -2876,19 +3067,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 850
                 },
                 {
-                    "id": 81,
-                    "name": "ngenyanga ezipheleleyo ezingu 11",
-                    "vaccination_opens": 335
-                },
-                {
                     "id": 8786,
                     "name": "ngenyanga ezipheleleyo ezingu 29",
                     "vaccination_opens": 881
-                },
-                {
-                    "id": 86,
-                    "name": "ngenyanga ezipheleleyo ezingu 12",
-                    "vaccination_opens": 365
                 },
                 {
                     "id": 8791,
@@ -2901,24 +3082,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 973
                 },
                 {
-                    "id": 96,
-                    "name": "ngenyanga ezipheleleyo ezingu 15",
-                    "vaccination_opens": 456
-                },
-                {
                     "id": 8801,
                     "name": "ngenyanga ezipheleleyo ezingu 34",
                     "vaccination_opens": 1034
-                },
-                {
-                    "id": 356,
-                    "name": "ngamaviki 6 agcweleyo",
-                    "vaccination_opens": 42
-                },
-                {
-                    "id": 101,
-                    "name": "ngenyanga ezipheleleyo ezingu 16",
-                    "vaccination_opens": 486
                 },
                 {
                     "id": 8806,
@@ -2926,24 +3092,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1064
                 },
                 {
-                    "id": 106,
-                    "name": "ngenyanga ezipheleleyo ezingu 18",
-                    "vaccination_opens": 547
-                },
-                {
                     "id": 8811,
                     "name": "emnyakeni engu 3 epheleleyo",
                     "vaccination_opens": 1095
-                },
-                {
-                    "id": 366,
-                    "name": "ngamaviki 10 agcweleyo",
-                    "vaccination_opens": 70
-                },
-                {
-                    "id": 111,
-                    "name": "ngenyanga ezipheleleyo ezingu 21",
-                    "vaccination_opens": 639
                 },
                 {
                     "id": 8816,
@@ -2951,24 +3102,9 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1126
                 },
                 {
-                    "id": 371,
-                    "name": "ngamaviki 14 agcweleyo",
-                    "vaccination_opens": 98
-                },
-                {
-                    "id": 116,
-                    "name": "Emnyakeni engu 2 epheleleyo",
-                    "vaccination_opens": 730
-                },
-                {
                     "id": 8821,
                     "name": "ngenyanga ezipheleleyo ezingu 38",
                     "vaccination_opens": 1154
-                },
-                {
-                    "id": 121,
-                    "name": "ngenyanga ezipheleleyo ezingu 27",
-                    "vaccination_opens": 821
                 },
                 {
                     "id": 8826,
@@ -2976,29 +3112,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1185
                 },
                 {
-                    "id": 126,
-                    "name": "ngenyanga ezipheleleyo ezingu 30",
-                    "vaccination_opens": 912
-                },
-                {
                     "id": 8831,
                     "name": "ngenyanga ezingu 40 ezipheleleyo",
                     "vaccination_opens": 1215
                 },
                 {
-                    "id": 131,
-                    "name": "ngenyanga ezipheleleyo ezingu 33",
-                    "vaccination_opens": 1004
-                },
-                {
                     "id": 8836,
                     "name": "ngenyanga ezingu 41 ezipheleleyo",
                     "vaccination_opens": 1246
-                },
-                {
-                    "id": 136,
-                    "name": "Emnyakeni engu 3 epheleleyo",
-                    "vaccination_opens": 1095
                 },
                 {
                     "id": 8841,
@@ -3021,29 +3142,14 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1399
                 },
                 {
-                    "id": 156,
-                    "name": "ngenyanga ezingu 42 ezipheleleyo",
-                    "vaccination_opens": 1277
-                },
-                {
                     "id": 8861,
                     "name": "ngenyanga ezingu 47 ezipheleleyo",
                     "vaccination_opens": 1429
                 },
                 {
-                    "id": 161,
-                    "name": "emnyakeni engu 4 epheleleyo",
-                    "vaccination_opens": 1460
-                },
-                {
                     "id": 8866,
                     "name": "ngenyanga ezingu 49 ezipheleleyo",
                     "vaccination_opens": 1491
-                },
-                {
-                    "id": 166,
-                    "name": "ngenyanga ezingu 54 ezipheleleyo",
-                    "vaccination_opens": 1642
                 },
                 {
                     "id": 8871,
@@ -3056,11 +3162,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1550
                 },
                 {
-                    "id": 176,
-                    "name": "emnyakeni engu 5 epheleleyo",
-                    "vaccination_opens": 1825
-                },
-                {
                     "id": 8881,
                     "name": "ngenyanga ezingu 52 ezipheleleyo",
                     "vaccination_opens": 1580
@@ -3069,11 +3170,6 @@ export const taxonomydata: any = {
                     "id": 8886,
                     "name": "ngenyanga ezingu 53 ezipheleleyo",
                     "vaccination_opens": 1611
-                },
-                {
-                    "id": 186,
-                    "name": "emnyakeni engu 5.5",
-                    "vaccination_opens": 2190
                 },
                 {
                     "id": 8891,
@@ -3091,11 +3187,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1733
                 },
                 {
-                    "id": 201,
-                    "name": "ngenyanga ezipheleleyo ezingu 13",
-                    "vaccination_opens": 396
-                },
-                {
                     "id": 8906,
                     "name": "ngenyanga ezingu 58 ezipheleleyo",
                     "vaccination_opens": 1764
@@ -3104,11 +3195,6 @@ export const taxonomydata: any = {
                     "id": 8911,
                     "name": "ngenyanga ezingu 59 ezipheleleyo",
                     "vaccination_opens": 1794
-                },
-                {
-                    "id": 231,
-                    "name": "ngamazinsuku 7 ezigcweleyo",
-                    "vaccination_opens": 7
                 }
             ],
             "growth_type": [
@@ -3194,176 +3280,219 @@ export const taxonomydata: any = {
             ],
             "subcategory": [
                 {
-                    "id": 8706,
-                    "name": "Impilakahle yengqondo"
-                },
-                {
-                    "id": 8711,
-                    "name": "Impilakahle yomzimba"
-                },
-                {
-                    "id": 8716,
-                    "name": "Ukuqathanisa umsebenzi lokuphila kahle"
-                },
-                {
-                    "id": 8721,
-                    "name": "Ubudlelwano babazali"
-                },
-                {
                     "id": 8506,
-                    "name": "Ukulala"
+                    "name": "Ukulala",
+                    "unique_name": "sleep"
                 },
                 {
                     "id": 8511,
-                    "name": "Ukunakekela lokuhlanzeka"
+                    "name": "Ukunakekela lokuhlanzeka",
+                    "unique_name": "care_hygiene"
                 },
                 {
                     "id": 8516,
-                    "name": "ukuhlabisa abantwana lokuhlolwa"
+                    "name": "ukuhlabisa abantwana lokuhlolwa",
+                    "unique_name": "vaccinations_check_ups"
                 },
                 {
                     "id": 8521,
-                    "name": "Inhlupho zokukhula"
+                    "name": "Inhlupho zokukhula",
+                    "unique_name": "developmental_concerns"
                 },
                 {
                     "id": 8526,
-                    "name": "Indlela zokulungisa lokupheka ukudla"
+                    "name": "Indlela zokulungisa lokupheka ukudla",
+                    "unique_name": "food_recipes"
                 },
                 {
                     "id": 8531,
-                    "name": "Ukudla okulempilakahle"
+                    "name": "Ukudla okulempilakahle",
+                    "unique_name": "healthy_eating"
                 },
                 {
                     "id": 8536,
-                    "name": "Imidlalo kumbe imisebenzi eqinisa umzimba"
+                    "name": "Imidlalo kumbe imisebenzi eqinisa umzimba",
+                    "unique_name": "physical_activity"
                 },
                 {
                     "id": 8541,
-                    "name": "Ubuciko bokuziphatha lezemizwa"
+                    "name": "Ubuciko bokuziphatha lezemizwa",
+                    "unique_name": "socio_emotional_skills"
                 },
                 {
                     "id": 8546,
-                    "name": "Ulimi lokubala"
+                    "name": "Ulimi lokubala",
+                    "unique_name": "language_reading"
                 },
                 {
                     "id": 8551,
-                    "name": "Amacebo okudlala"
+                    "name": "Amacebo okudlala",
+                    "unique_name": "play_tips"
                 },
                 {
                     "id": 8556,
-                    "name": "Usizo lwezempilakahle lwakuqala"
+                    "name": "Usizo lwezempilakahle lwakuqala",
+                    "unique_name": "first_aid"
                 },
                 {
                     "id": 8561,
-                    "name": "Ukuvimbela ingozi"
+                    "name": "Ukuvimbela ingozi",
+                    "unique_name": "preventing_risks"
                 },
                 {
                     "id": 8566,
-                    "name": "Ukuvikela abantwana"
+                    "name": "Ukuvikela abantwana",
+                    "unique_name": "child_protection"
                 },
                 {
                     "id": 8571,
-                    "name": "Izehlakalo esingazikhangelelanga"
+                    "name": "Izehlakalo esingazikhangelelanga",
+                    "unique_name": "emergencies"
                 },
                 {
                     "id": 8576,
-                    "name": "Indlela lamaqhinga okondla abantwana"
+                    "name": "Indlela lamaqhinga okondla abantwana",
+                    "unique_name": "parenting_strategies"
                 },
                 {
                     "id": 8581,
-                    "name": "Okuyinsika yokumunyisa"
+                    "name": "Okuyinsika yokumunyisa",
+                    "unique_name": "breastfeeding_basics"
                 },
                 {
                     "id": 8586,
-                    "name": "Inhlupho zokumunyisa"
+                    "name": "Inhlupho zokumunyisa",
+                    "unique_name": "breastfeeding_challenges"
                 },
                 {
                     "id": 8591,
-                    "name": "Ukudla kwakuqala"
+                    "name": "Ukudla kwakuqala",
+                    "unique_name": "first_foods"
                 },
                 {
                     "id": 8596,
-                    "name": "Ukuzwisisa ukuziphatha komntwana"
+                    "name": "Ukuzwisisa ukuziphatha komntwana",
+                    "unique_name": "understanding_child_behaviour"
                 },
                 {
                     "id": 8601,
-                    "name": "Ubudlelwano bomntwana labazali"
+                    "name": "Ubudlelwano bomntwana labazali",
+                    "unique_name": "parent_child_bond"
                 },
                 {
                     "id": 8606,
-                    "name": "Ubudlelwano emulini"
+                    "name": "Ubudlelwano emulini",
+                    "unique_name": "family_relationships"
                 },
                 {
                     "id": 8616,
-                    "name": "Amaviki 0-12"
+                    "name": "Amaviki 0-12",
+                    "unique_name": "0_12_weeks"
                 },
                 {
                     "id": 8621,
-                    "name": "Amaviki 13-28"
+                    "name": "Amaviki 13-28",
+                    "unique_name": "13_28_weeks"
                 },
                 {
                     "id": 8626,
-                    "name": "Amaviki 29-40"
+                    "name": "Amaviki 29-40",
+                    "unique_name": "29_40_weeks"
                 },
                 {
                     "id": 8631,
-                    "name": "Izenzo ezinhle ezempilakahle"
+                    "name": "Izenzo ezinhle ezempilakahle",
+                    "unique_name": "healthy_habits"
                 },
                 {
                     "id": 8636,
-                    "name": "Impilakahle yengqondo"
+                    "name": "Impilakahle yengqondo",
+                    "unique_name": "mental_health"
                 },
                 {
                     "id": 8641,
-                    "name": "Ukuhlolwa"
+                    "name": "Ukuhlolwa",
+                    "unique_name": "tests_check_ups"
                 },
                 {
                     "id": 8646,
-                    "name": "Izinto zabantwana"
+                    "name": "Izinto zabantwana",
+                    "unique_name": "baby_products"
                 },
                 {
                     "id": 8651,
-                    "name": "Umsebenzi lemisebenzini"
+                    "name": "Umsebenzi lemisebenzini",
+                    "unique_name": "work_and_career"
                 },
                 {
                     "id": 8656,
-                    "name": "Izimo zokuzithwala"
+                    "name": "Izimo zokuzithwala",
+                    "unique_name": "pregnancy_scenarios"
                 },
                 {
                     "id": 8661,
-                    "name": "Ukusekela omunye wakho"
+                    "name": "Ukusekela omunye wakho",
+                    "unique_name": "partner_support"
                 },
                 {
                     "id": 8666,
-                    "name": "Ubudlelwano babazali"
+                    "name": "Ubudlelwano babazali",
+                    "unique_name": "partner_relations"
                 },
                 {
                     "id": 8671,
-                    "name": "Ukuhlela"
+                    "name": "Ukuhlela",
+                    "unique_name": "planning"
                 },
                 {
                     "id": 8676,
-                    "name": "Indlela zokubeletha"
+                    "name": "Indlela zokubeletha",
+                    "unique_name": "birth_types"
                 },
                 {
                     "id": 8681,
-                    "name": "Ukuphola"
+                    "name": "Ukuphola",
+                    "unique_name": "recovery"
                 },
                 {
                     "id": 8686,
-                    "name": "Amaviki akuqala"
+                    "name": "Amaviki akuqala",
+                    "unique_name": "first_weeks"
                 },
                 {
                     "id": 8691,
-                    "name": "Kubeletha isikhathi singekeneli"
+                    "name": "Kubeletha isikhathi singekeneli",
+                    "unique_name": "premature_birth"
                 },
                 {
                     "id": 8696,
-                    "name": "Ukulahlekelwa ngumntwana ubeletha"
+                    "name": "Ukulahlekelwa ngumntwana ubeletha",
+                    "unique_name": "miscarriage_stillbirth"
                 },
                 {
                     "id": 8701,
-                    "name": "Inhlupho zempilakahle"
+                    "name": "Inhlupho zempilakahle",
+                    "unique_name": "health_concerns"
+                },
+                {
+                    "id": 8706,
+                    "name": "Impilakahle yengqondo",
+                    "unique_name": "mental_health"
+                },
+                {
+                    "id": 8711,
+                    "name": "Impilakahle yomzimba",
+                    "unique_name": "physical_health"
+                },
+                {
+                    "id": 8716,
+                    "name": "Ukuqathanisa umsebenzi lokuphila kahle",
+                    "unique_name": "work_life_balance"
+                },
+                {
+                    "id": 8721,
+                    "name": "Ubudlelwano babazali",
+                    "unique_name": "partner_relationships"
                 }
             ],
             "type_of_support": [
