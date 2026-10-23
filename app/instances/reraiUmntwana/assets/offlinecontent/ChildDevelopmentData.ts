@@ -8,8 +8,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 2251,
             "girl_video_article": 6926,
             "milestone": "\u003Cp\u003EWatch your baby's behaviour and talk to your health worker if you notice that at the end of the first month your baby: \u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eis crying a lot, and you are not able to comfort your baby\u003C/li\u003E\u003Cli\u003Esucks poorly and feeds very slowly\u003C/li\u003E\u003Cli\u003Esleeps more than expected (more than 16 hours a day), or does not sleep peacefully\u003C/li\u003E\u003Cli\u003Eis not moving her/his arms or legs at all\u003C/li\u003E\u003Cli\u003Edoes not startle when a loud noise is made\u003C/li\u003E\u003Cli\u003Edoes not blink at bright lights.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:04+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T11:52:26+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 11:52\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:04+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T09:52:26+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 09:52\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -20,8 +20,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6801,
             "girl_video_article": 6816,
             "milestone": "\u003Cp\u003EFollow your child’s behaviour and talk to your health worker if you notice that at the end of the sixth year of life your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EHas a very short attention span.\u003C/li\u003E\u003Cli\u003EIs not at all interested in letters, numbers, reading or writing.\u003C/li\u003E\u003Cli\u003ESeems not to hear well.\u003C/li\u003E\u003Cli\u003EDoesn’t speak clearly in sentences of 5 or more words.\u003C/li\u003E\u003Cli\u003EDoesn’t tell longer stories using complete sentences.\u003C/li\u003E\u003Cli\u003EDoesn’t dress and use toilet without help.\u003C/li\u003E\u003Cli\u003ECan’t take part in conversations.\u003C/li\u003E\u003Cli\u003ECan’t play in more than one way.\u003C/li\u003E\u003Cli\u003ECan’t give her/his name and address.\u003C/li\u003E\u003Cli\u003ECan’t stand or hop on one foot.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T11:53:59+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 11:53\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T09:53:59+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 09:53\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -32,8 +32,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6826,
             "girl_video_article": 1796,
             "milestone": "\u003Cp\u003EWatch your baby's behaviour and talk to your health worker if you notice that at the end of the fourth month your baby: \u003C/p\u003E\u003Cul\u003E\u003Cli\u003Efrequently cries a lot and cannot be comforted\u003C/li\u003E\u003Cli\u003Eisn’t making eye contact or paying attention to people's faces\u003C/li\u003E\u003Cli\u003Edoesn’t watch things as they move\u003C/li\u003E\u003Cli\u003Eisn’t making any sounds or responding to sounds\u003C/li\u003E\u003Cli\u003Ecan’t hold her/his head steady\u003C/li\u003E\u003Cli\u003Eisn’t reaching for a toy or object that is in front of her/him\u003C/li\u003E\u003Cli\u003Edoesn’t bring things to her/his mouth.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T11:55:04+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 11:55\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T09:55:04+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 09:55\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -44,8 +44,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6836,
             "girl_video_article": 3146,
             "milestone": "\u003Cp\u003EWatch your baby's behaviour and talk to your health worker if you notice that at the end of the sixth month your baby: \u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eregularly cries for a long time and cannot be comforted\u003C/li\u003E\u003Cli\u003Eisn’t making eye contact with you or isn’t following moving objects with her/his eyes\u003C/li\u003E\u003Cli\u003Eisn’t babbling or turning towards the source of a sound\u003C/li\u003E\u003Cli\u003Eisn’t laughing or making squealing sounds\u003C/li\u003E\u003Cli\u003Eisn’t rolling over\u003C/li\u003E\u003Cli\u003Ehas no control over her/his neck and head\u003C/li\u003E\u003Cli\u003Ecannot sit even with your help and support\u003C/li\u003E\u003Cli\u003Eisn’t reaching for objects at all even when you encourage her/him to do so\u003C/li\u003E\u003Cli\u003Edoesn’t try to get things that are within reach\u003C/li\u003E\u003Cli\u003Ehas difficulty getting things to her/his mouth.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T12:28:23+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 12:28\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T10:28:23+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 10:28\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -56,8 +56,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3601,
             "girl_video_article": 6846,
             "milestone": "\u003Cp\u003EWatch your baby’s behaviour and talk to your health worker if you notice that at the end of the ninth month your baby: \u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eisn’t making eye contact with you or isn’t following moving objects with her/his eyes\u003C/li\u003E\u003Cli\u003EIsn’t babbling (“mama,” “dada,” etc.)\u003C/li\u003E\u003Cli\u003EIsn’t turning her/his head towards a sound source\u003C/li\u003E\u003Cli\u003Edoesn’t look where you point\u003C/li\u003E\u003Cli\u003Edoesn’t show affection for her/his caregivers – doesn’t smile at them\u003C/li\u003E\u003Cli\u003Edoesn’t respond to her/his own name\u003C/li\u003E\u003Cli\u003Edoesn’t seem to recognize familiar people\u003C/li\u003E\u003Cli\u003Eisn’t rolling\u003C/li\u003E\u003Cli\u003Ewhen you lift her/him, she/he is either floppy or too stiff\u003C/li\u003E\u003Cli\u003Ecan’t sit even with your help and support\u003C/li\u003E\u003Cli\u003Ehas difficulties eating solid food.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T11:56:27+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 11:56\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T09:56:27+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 09:56\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -68,8 +68,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6856,
             "girl_video_article": 6861,
             "milestone": "\u003Cp\u003EWatch your child’s behaviour and talk to your health worker if you notice that your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Ehas difficulty seeing or hearing some things\u003C/li\u003E\u003Cli\u003Edoes not say a single word\u003C/li\u003E\u003Cli\u003Efinds it difficult to follow even straightforward instructions\u003C/li\u003E\u003Cli\u003Edoes not use gestures and pointing in communication\u003C/li\u003E\u003Cli\u003Edoesn’t make eye contact with you and does not cuddle\u003C/li\u003E\u003Cli\u003Eisn`t walking independently by herself/himself.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T12:26:42+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 12:26\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T10:26:42+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 10:26\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -80,8 +80,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6871,
             "girl_video_article": 6881,
             "milestone": "\u003Cp\u003EFollow your child's behaviour and talk to your health worker if you notice that at the end of the second year your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Edoesn’t look at you (eye contact)\u003C/li\u003E\u003Cli\u003Ehas difficulties seeing or hearing certain things\u003C/li\u003E\u003Cli\u003Edoesn’t say a single word\u003C/li\u003E\u003Cli\u003Edoesn’t point to objects\u003C/li\u003E\u003Cli\u003Edoesn’t follow simple instructions\u003C/li\u003E\u003Cli\u003Edoesn’t show feelings\u003C/li\u003E\u003Cli\u003Eisn’t walking steadily.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-26T16:06:20+01:00\" class=\"datetime\"\u003EWed, 11/26/2025 - 16:06\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-26T15:06:20+00:00\" class=\"datetime\"\u003EWed, 11/26/2025 - 15:06\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -92,8 +92,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6891,
             "girl_video_article": 3821,
             "milestone": "\u003Cp\u003EFollow your child’s behaviour and talk to your health worker if you notice that at the end of the third year of life your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Edoesn’t look at you (eye contact)\u003C/li\u003E\u003Cli\u003Ehas difficulties hearing or seeing some things\u003C/li\u003E\u003Cli\u003Edoesn’t speak in short sentences (at least 3 words together)\u003C/li\u003E\u003Cli\u003Ehas very unclear speech\u003C/li\u003E\u003Cli\u003Edoesn’t follow simple instructions\u003C/li\u003E\u003Cli\u003Edoesn’t want to play with other children or with toys and other objects\u003C/li\u003E\u003Cli\u003Edoesn’t make-believe or pretend during play\u003C/li\u003E\u003Cli\u003Ecannot run\u003C/li\u003E\u003Cli\u003Eisn’t scribbling or drawing\u003C/li\u003E\u003Cli\u003Ecannot hold small objects in her/his hand.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T12:29:31+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 12:29\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T10:29:31+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 10:29\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -104,8 +104,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6901,
             "girl_video_article": 6906,
             "milestone": "\u003Cp\u003EFollow your child’s behaviour and talk to your health worker if you notice that at the end of the fourth year of life your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EShows no interest in playing games with others or playing make-believe/pretend games.\u003C/li\u003E\u003Cli\u003EIgnores other children or does not respond to people outside the family.\u003C/li\u003E\u003Cli\u003ECan't jump in place.\u003C/li\u003E\u003Cli\u003EHas difficulty scribbling (making marks on paper).\u003C/li\u003E\u003Cli\u003EDoes not follow an instruction that has three parts.\u003C/li\u003E\u003Cli\u003ECan't tell a favorite story.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T12:38:47+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 12:38\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T10:38:47+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 10:38\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -116,8 +116,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6916,
             "girl_video_article": 3876,
             "milestone": "\u003Cp\u003EFollow your child’s behaviour and talk to your health worker if you notice that at the end of the fifth year of life your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003ECan't confidently walk, run, climb, jump or use stairs\u003C/li\u003E\u003Cli\u003ECan't answer simple questions (What's your name? Who is your family? What's your favorite story?)\u003C/li\u003E\u003Cli\u003ECan't follow a two-part direction (Put a cup on the table! Or Take the ball under the bed!)\u003C/li\u003E\u003Cli\u003ECan't perform daily routines such as eating or dressing on her/his own\u003C/li\u003E\u003Cli\u003ESeems to have difficulty holding a pencil\u003C/li\u003E\u003Cli\u003EShows extreme behavior (such as extremely fearful ,or aggressive, or sad)\u003C/li\u003E\u003Cli\u003EDoesn’t talk about daily activities\u003C/li\u003E\u003Cli\u003EDoesn't show interest in interacting with either adults or children\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T12:35:34+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 12:35\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T10:35:34+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 10:35\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -128,8 +128,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3111,
             "girl_video_article": 3816,
             "milestone": "\u003Cp\u003EWatch your baby's behaviour and talk to your health worker or visiting nurse if you notice that at the end of the second month your baby:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Efrequently cries a lot, and you are not usually able to soothe your baby\u003C/li\u003E\u003Cli\u003Eisn’t watching faces even for a short time\u003C/li\u003E\u003Cli\u003Eisn’t responding to bright light or loud sounds\u003C/li\u003E\u003Cli\u003Eisn’t feeding or sleeping well (or sleeps more than 16 hours a day)\u003C/li\u003E\u003Cli\u003Eisn’t moving her/his arms or legs at all\u003C/li\u003E\u003Cli\u003Eisn`t bringing her/his hands to her/his mouth \u003C/li\u003E\u003Cli\u003Eisn’t smiling at people.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-10T12:36:26+02:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 12:36\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-10T10:36:26+00:00\" class=\"datetime\"\u003EWed, 09/10/2025 - 10:36\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -140,8 +140,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3121,
             "girl_video_article": 6941,
             "milestone": "\u003Cp\u003EWatch your child’s behaviour and talk to your health worker if you notice that at the end of the first year of life your baby:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eisn’t making eye contact with you or isn’t following moving objects with her/his eyes\u003C/li\u003E\u003Cli\u003Eisn’t interested in sounds\u003C/li\u003E\u003Cli\u003Edoes not respond to her/his name when you call her/him\u003C/li\u003E\u003Cli\u003Eisn’t babbling\u003C/li\u003E\u003Cli\u003Eisn’t trying to let you know in any way what her/his desires or needs are\u003C/li\u003E\u003Cli\u003Eisn’t pointing to objects\u003C/li\u003E\u003Cli\u003Eisn’t showing emotions\u003C/li\u003E\u003Cli\u003Eisn’t crawling\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-04-22T21:00:03+02:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-09-11T12:33:01+02:00\" class=\"datetime\"\u003EThu, 09/11/2025 - 12:33\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-04-22T19:00:03+00:00\" class=\"datetime\"\u003ETue, 04/22/2025 - 19:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-09-11T10:33:01+00:00\" class=\"datetime\"\u003EThu, 09/11/2025 - 10:33\u003C/time\u003E\n",
             "mandatory": 1
         }
     ],
@@ -154,8 +154,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6836,
             "girl_video_article": 3146,
             "milestone": "\u003Cp\u003EOngorora tsika dzemwana wako ugotaura nevehutano kana ukaona kuti panopera mwedzi wechitanhatu mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eanogara achichema kwenguva yakareba uye haanyararidzike\u003C/li\u003E\u003Cli\u003Ehaasi kukutarisa mumaziso kana kuti maziso ake haasi kutevera zvinhu zvinofamba pamberi pake\u003C/li\u003E\u003Cli\u003Ehaasi kurezva kana kutendeukira kunenge kwabva izwi\u003C/li\u003E\u003Cli\u003Ehaasi kuseka kana kuita ruzha\u003C/li\u003E\u003Cli\u003Ehaapinduke kana akaradzikwa pasi\u003C/li\u003E\u003Cli\u003EHaakwanise kumisa musoro wake kana mutsipa wake zvakanaka ega\u003C/li\u003E\u003Cli\u003Ehaagone kugara kunyangwe akabatsirwa kana kupihwa rutsigiro\u003C/li\u003E\u003Cli\u003Ehaasi kusvikira zvinhu zvachose kunyangwe uchimukurudzira\u003C/li\u003E\u003Cli\u003Ehaaedze kutora zvinhu kana zviri pedyo naye\u003C/li\u003E\u003Cli\u003Eane dambudziko rekusvitsa zvinhu kumuromo wake.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-21T18:31:00+01:00\" class=\"datetime\"\u003EFri, 11/21/2025 - 18:31\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-12T19:24:23+01:00\" class=\"datetime\"\u003EThu, 02/12/2026 - 19:24\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-21T17:31:00+00:00\" class=\"datetime\"\u003EFri, 11/21/2025 - 17:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-12T18:24:23+00:00\" class=\"datetime\"\u003EThu, 02/12/2026 - 18:24\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -166,8 +166,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3601,
             "girl_video_article": 6846,
             "milestone": "\u003Cp\u003ETarisa tsika dzemwana wako ugotaura nevehutano kana ukaona kuti panopera mwedzi wechipfumbamwe mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Ehaasi kukutarisa mumaziso kana kuti maziso ake haasi kutevera zvinhu zvinopfura nepamberi pake\u003C/li\u003E\u003Cli\u003EHaasi kurezva (“mama,” “baba,” etc.)\u003C/li\u003E\u003Cli\u003EHaatendeuki musoro wake kutarisa kunenge kwabva mazwi.\u003C/li\u003E\u003Cli\u003Ehaatarise kwaunenge wanongedza.\u003C/li\u003E\u003Cli\u003Ehaaratidze rudo kune vanomuchengeta- haavasekereri\u003C/li\u003E\u003Cli\u003Ehaaratidzi kuti ane zvaanzwa kana zita rake radaidzwa\u003C/li\u003E\u003Cli\u003EAnoita seasingayeuke vanhu vaanoziva\u003C/li\u003E\u003Cli\u003Ehaasi kupinduka\u003C/li\u003E\u003Cli\u003Epaunomusimudza, anenge akarembezeka(floppy) kana kuomesa muviri zvakanyanya\u003C/li\u003E\u003Cli\u003Ehaagone kugara kunyangwe akabatsirwa kana kupihwa rutsigiro\u003C/li\u003E\u003Cli\u003Eanonetseka pakudya chikafu.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-20T21:13:04+01:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 21:13\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-12T15:48:09+01:00\" class=\"datetime\"\u003EThu, 02/12/2026 - 15:48\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-20T20:13:04+00:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 20:13\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-12T14:48:09+00:00\" class=\"datetime\"\u003EThu, 02/12/2026 - 14:48\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -178,8 +178,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6856,
             "girl_video_article": 6861,
             "milestone": "\u003Cp\u003ETarisa tsika dzemwana wako ugotaura nevehutano kana ukaona kuti mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eane dambudziko rekuona kana kunzwa zvimwe zvinhu\u003C/li\u003E\u003Cli\u003Ehaatauri kana izwi rimwe chete\u003C/li\u003E\u003Cli\u003Ehaagoni kutevedzera kunyange mirairo yakajeka.\u003C/li\u003E\u003Cli\u003Ehaashandise muviri wake(gestures) kana kunongedza paunokurukura naye.\u003C/li\u003E\u003Cli\u003Ehaakutarise mumaziso kana kukumbundira zvine rudo(cuddle)\u003C/li\u003E\u003Cli\u003Ehaagone kufamba ari ega.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-20T21:10:12+01:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 21:10\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-12T15:09:30+01:00\" class=\"datetime\"\u003EThu, 02/12/2026 - 15:09\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-20T20:10:12+00:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 20:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-12T14:09:30+00:00\" class=\"datetime\"\u003EThu, 02/12/2026 - 14:09\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -190,8 +190,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6871,
             "girl_video_article": 6881,
             "milestone": "\u003Cp\u003EWongorora tsika dzemwana wako ugotaura neveutano kana ukaona kuti pakupera kwegore rechipiri mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Ehaakutarise mumaziso\u003C/li\u003E\u003Cli\u003Eane dambudziko rekuona kana kunzwa zvimwe zvinhu\u003C/li\u003E\u003Cli\u003Ehaataure kana izwi rimwe chete\u003C/li\u003E\u003Cli\u003Ehaanongedze zvinhu\u003C/li\u003E\u003Cli\u003Ehaatevedzere mirairo iri nyore\u003C/li\u003E\u003Cli\u003Ehaaratidzi zvaanonzwa mumoyo make\u003C/li\u003E\u003Cli\u003Ehaafambi zvakadzikama\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-20T21:05:49+01:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 21:05\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-16T10:53:28+01:00\" class=\"datetime\"\u003EFri, 01/16/2026 - 10:53\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-20T20:05:49+00:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 20:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-16T09:53:28+00:00\" class=\"datetime\"\u003EFri, 01/16/2026 - 09:53\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -202,8 +202,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6891,
             "girl_video_article": 3821,
             "milestone": "\u003Cp\u003EWongorora tsika dzemwana wako ugotaura neveutano kana ukaona kuti pakupera kwegore rechitatu rehupenyu mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Ehaakutarise &nbsp;mumaziso\u003C/li\u003E\u003Cli\u003Eane dambudziko rekunzwa kana kuona zvimwe zvinhu\u003C/li\u003E\u003Cli\u003Ehaatauri mitsara mipfupi (Kana mazwi matatu pamwechete)\u003C/li\u003E\u003Cli\u003Ezvaanotaura hazvinzwike\u003C/li\u003E\u003Cli\u003Ehaatevedzeri mirairo iri nyore\u003C/li\u003E\u003Cli\u003Ehaadi kutamba nevamwe vana kana zvimwe zvinhu kusanganisira ma toys\u003C/li\u003E\u003Cli\u003Ehaanyepedzeri panguva yekutamba\u003C/li\u003E\u003Cli\u003Ehaagoni kumhanya\u003C/li\u003E\u003Cli\u003Ehaasi kungonyora nyora kana kudhirowa(drawing)\u003C/li\u003E\u003Cli\u003Ehaakwanise kubata zvinhu zvidiki muruoko rwake.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-20T21:03:48+01:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 21:03\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:35:17+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:35\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-20T20:03:48+00:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 20:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:35:17+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:35\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -214,8 +214,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6901,
             "girl_video_article": 6906,
             "milestone": "\u003Cp\u003EWongorora tsika dzemwana wako ugotaura neveutano kana ukaona kuti pakupera kwegore rechina rehupenyu mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EAnoratidza kusafarira kutamba mitambo nevamwe kana kutamba mitambo yekunyepedzera.\u003C/li\u003E\u003Cli\u003EHaataure nekuterera vamwe vana kana kusapindura vanhu vasiri mhuri yake.\u003C/li\u003E\u003Cli\u003EHaakwanise kusvetuka panzvimbo.\u003C/li\u003E\u003Cli\u003EAnonetseka kunyora-nyora (kuisa runyoro pabepa).\u003C/li\u003E\u003Cli\u003EHaatevedzeri mirairo ine zvikamu zvitatu.\u003C/li\u003E\u003Cli\u003EHaakwanise kutaura nyaya yaanofarira.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-20T21:00:27+01:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 21:00\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:38:57+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:38\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-20T20:00:27+00:00\" class=\"datetime\"\u003EThu, 11/20/2025 - 20:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:38:57+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:38\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -226,8 +226,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6916,
             "girl_video_article": 3876,
             "milestone": "\u003Cp\u003EWongorora tsika dzemwana wako ugotaura neveutano kana ukaona kuti pakupera kwegore rechishanu rehupenyu mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EHaana kusununguka kufamba, kumhanya, kukwira, kusvetuka kana kushandisa masitepisi (stairs)\u003C/li\u003E\u003Cli\u003EHaakwanise kupindura mibvunzo iri nyore (Zita rako ndiani? Mhuri yako ndeipi? Nyaya yaunofarira ndeipi?)\u003C/li\u003E\u003Cli\u003EHaakwanise kuita zvaanenge anzi aite (Isa komichi patafura! Kana Tora bhora pasi pemubhedha!)\u003C/li\u003E\u003Cli\u003EHaaite zvaanotarisirwa kuti aite mazuva ose sekudya kana kupfeka ega\u003C/li\u003E\u003Cli\u003EAnoita seane dambudziko pakubata penzura (pencil).\u003C/li\u003E\u003Cli\u003EAne tsika dzinoita sedzakawedzeredzwa (extreme behavior)(dzakadai sekutya zvakanyanya, kana kuita hasha, kana kusuwa)\u003C/li\u003E\u003Cli\u003EHaatauri zvaanoita muzuva rega rega\u003C/li\u003E\u003Cli\u003EHaaratidze kufarira kutaura kana kusangana nevanhu vakuru kana vana\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-19T22:26:23+01:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 22:26\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:42:51+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:42\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-19T21:26:23+00:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 21:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:42:51+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:42\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -238,8 +238,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 2251,
             "girl_video_article": 6926,
             "milestone": "\u003Cp\u003ETarisa tsika dzemwana wako ugotaura neveutano kana ukaona kuti pakupera kwemwedzi wekutanga mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eari kuchema zvikanyanya, uye haukwanisi kumunyaradza \u003C/li\u003E\u003Cli\u003Eanokweva mukaka zvisina kunaka uye anoyamwa zvishoma nezvishoma\u003C/li\u003E\u003Cli\u003Eanorara zvakanyanya kupfuura zvinotarisirwa (kupfuura maawa 16 pazuva), kana kuti haarare zvine runyararo\u003C/li\u003E\u003Cli\u003Ehaatombo fambisa maoko kana makumbo\u003C/li\u003E\u003Cli\u003Ehaavhunduke pakaitwa ruzha rukuru\u003C/li\u003E\u003Cli\u003Ehaabwairi pane chiedza chinopenya.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-19T17:08:23+01:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 17:08\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:53:11+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:53\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-19T16:08:23+00:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 16:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:53:11+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:53\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -250,8 +250,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3111,
             "girl_video_article": 3816,
             "milestone": "\u003Cp\u003ETarisa tsika dzemwana wako ugotaura neveutano kana ukaona kuti panopera mwedzi wechipiri mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EAnochema zvakanyanya nguva zhinji, uye kazhinji kacho haugoni kumunyaradza.\u003C/li\u003E\u003Cli\u003Ehaatarisa zviso kunyange kwenguva pfupi\u003C/li\u003E\u003Cli\u003Ehaadaire kuchiedza chinopenya kana ruzha rwakanyanya.\u003C/li\u003E\u003Cli\u003Ehaasi kudya kana kurara zvakanaka (kana kurara maawa anopfuura 16 pazuva)\u003C/li\u003E\u003Cli\u003Ehaasi kufambisa maoko kana makumbo zvachose\u003C/li\u003E\u003Cli\u003Ehaasi kuunza maoko ake kumuromo wake\u003C/li\u003E\u003Cli\u003Ehaasekerere vanhu.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-19T16:43:01+01:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 16:43\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:14:45+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:14\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-19T15:43:01+00:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 15:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:14:45+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:14\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -262,8 +262,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3121,
             "girl_video_article": 6941,
             "milestone": "\u003Cp\u003ETarisa tsika dzemwana wako ugotaura neveutano kana ukaona kuti pakupera kwegore rokutanga rehupenyu hwemwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Ehaakutarise mumaziso kana kuti haasi kutevera zvinhu zvinopfuura nepamaziso ake.\u003C/li\u003E\u003Cli\u003Ehaafarire ruzha\u003C/li\u003E\u003Cli\u003Ehaapindure zita rake paunomudaidza\u003C/li\u003E\u003Cli\u003Ehaasi kuita ruzha rwekuedza kutaura\u003C/li\u003E\u003Cli\u003Ehaaedzi kukuzivisa nenzira ipi zvayo zvaanoda kana zvaanofarira.\u003C/li\u003E\u003Cli\u003Ehaanongedzeri zvinhu.\u003C/li\u003E\u003Cli\u003Ehaaratidze manzwiro (emotions).\u003C/li\u003E\u003Cli\u003Ehaasati ave kukambaira.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-19T16:34:23+01:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 16:34\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:10:40+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:10\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-19T15:34:23+00:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 15:34\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:10:40+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:10\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -274,8 +274,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6801,
             "girl_video_article": 6816,
             "milestone": "\u003Cp\u003EWongorora tsika dzemwana wako ugotaura neveutano panopera makore 6 kana mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EHaakwanisi kuita chinhu chimwechete kwenguva refu\u003C/li\u003E\u003Cli\u003EHaatofariri zvemavara, manhamba, kuverenga kana kunyora.\u003C/li\u003E\u003Cli\u003EAchiita seasinganzwe zvakanaka.\u003C/li\u003E\u003Cli\u003EAsingataure zvinonzwika pamutsara une mazwi mashanu kana kupfuura.\u003C/li\u003E\u003Cli\u003EAsingataure nyaya refu achishandisa mitsara yakazara.\u003C/li\u003E\u003Cli\u003EAsingakwanise kupfeka nekushandisa chimbuzi pasina rubatsiro.\u003C/li\u003E\u003Cli\u003EAsingakwanise kuita nhaurirano nevamwe.\u003C/li\u003E\u003Cli\u003EAsingakwanise kutamba nenzira dzinopfuura imwe.\u003C/li\u003E\u003Cli\u003EAsingakwanise kupa zita nekero yake.\u003C/li\u003E\u003Cli\u003EAsingakwanise kumira kana kusvetuka netsoka imwe.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-19T16:24:17+01:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 16:24\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-15T08:24:55+01:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 08:24\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-19T15:24:17+00:00\" class=\"datetime\"\u003EWed, 11/19/2025 - 15:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-15T07:24:55+00:00\" class=\"datetime\"\u003EThu, 01/15/2026 - 07:24\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -286,8 +286,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6826,
             "girl_video_article": 1796,
             "milestone": "\u003Cp\u003ETarisa maitiro emwana wako ugotaura nevehutano kana ukaona kuti panopera mwedzi wechina mwana wako:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EAnochema zvakanyanya nguva zhinji uye haanyararidzike.\u003C/li\u003E\u003Cli\u003Ehaasi kukutarisa mumaziso kana kutarisa zviso zvevanhu\u003C/li\u003E\u003Cli\u003Ehaatarisi zvinhu zvichifamba\u003C/li\u003E\u003Cli\u003Ehaasi kuita ruzha kana kutaridza kuti anonzwa ruzha\u003C/li\u003E\u003Cli\u003Ehaagoni kumisa musoro wake wakadzikama\u003C/li\u003E\u003Cli\u003Ehaasi kusvikira zvekutambisa kana chinhu chiri pamberi pake\u003C/li\u003E\u003Cli\u003Ehaaunzi zvinhu kumuromo wake.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2025-11-14T09:03:21+01:00\" class=\"datetime\"\u003EFri, 11/14/2025 - 09:03\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-01-14T08:01:45+01:00\" class=\"datetime\"\u003EWed, 01/14/2026 - 08:01\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-14T08:03:21+00:00\" class=\"datetime\"\u003EFri, 11/14/2025 - 08:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-01-14T07:01:45+00:00\" class=\"datetime\"\u003EWed, 01/14/2026 - 07:01\u003C/time\u003E\n",
             "mandatory": 1
         }
     ],
@@ -300,8 +300,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3111,
             "girl_video_article": 3816,
             "milestone": "\u003Cp\u003EKhangela ukuziphatha komntwana, ubusukhulumisana labezempilakahle nxa ubona okulandelayo ekupheleni kwenyanga yesi-\u003Cem\u003E2\u003C/em\u003E yomntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eukhala kakhulu njalo awenelisi ukumthulisa kalula\u003C/li\u003E\u003Cli\u003Eakakhangeli ubuso babantu ngitsho okwesikhatshana\u003C/li\u003E\u003Cli\u003Eakaphenduli ekukhanyeni okukhulu kumbe emsindweni omkhulu\u003C/li\u003E\u003Cli\u003Eakamunyi kumbe akalali kuhle (kumbe ulala amahola adlula-1\u003Cem\u003E6\u003C/em\u003E ngelanga)\u003C/li\u003E\u003Cli\u003Eakanyakazisi izandla kumbe inyawo\u003C/li\u003E\u003Cli\u003Eakafaki kumbe ukuletha izandla emlonyeni wakhe\u003C/li\u003E\u003Cli\u003Eakabobothekeli abantu.&nbsp;\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T14:15:39+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 14:15\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:09:20+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:09\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T13:15:39+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:15\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:09:20+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:09\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -312,8 +312,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6871,
             "girl_video_article": 6881,
             "milestone": "\u003Cp\u003ELandela indlela umntwana ayenza ngayo, ukhulumisane labezempilakahle nxa unanzelela okulandelayo ekupheleni komnyaka wesi-2 womntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eakakukhangeli emehlweni (\u003Cem\u003Eeye contact\u003C/em\u003E)\u003C/li\u003E\u003Cli\u003Eulobunzima bokuzwa kumbe ukubona ezinye izinto\u003C/li\u003E\u003Cli\u003Eakakhulumi ibala loba elilodwa\u003C/li\u003E\u003Cli\u003Eakakhombeli izinto\u003C/li\u003E\u003Cli\u003Eakalandeli akutshelwayo okulula\u003C/li\u003E\u003Cli\u003Eakatshengisi imizwa\u003C/li\u003E\u003Cli\u003Eakahambi kuhle&nbsp;\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T14:09:49+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 14:09\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:09:20+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:09\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T13:09:49+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:09:20+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:09\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -324,8 +324,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6856,
             "girl_video_article": 6861,
             "milestone": "\u003Cp\u003EKhangela ukuziphatha komntwana, ukhulumisane labezempilakahle nxa ungabona ukuthi umntwana ulezibonakaliso ezinje:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eulobunzima bokubona kumbe bokuzwa ezinye izinto\u003C/li\u003E\u003Cli\u003Eakakhulumi loba ilizwi linye\u003C/li\u003E\u003Cli\u003Euyakhathazeka ukulandela ngitsho okulula akutshelwayo. \u003C/li\u003E\u003Cli\u003Eakasebenzisi izenzo kumbe ukukhomba into nxa elakho okokutsho\u003C/li\u003E\u003Cli\u003Eakakhangelani lawe emehlweni njalo akazisondezi ukuthi umgone\u003C/li\u003E\u003Cli\u003Eakahambi yedwa/ngokuzimela.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T14:07:29+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 14:07\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:09:20+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:09\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T13:07:29+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:09:20+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:09\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -336,8 +336,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3121,
             "girl_video_article": 6941,
             "milestone": "\u003Cp\u003EKhangela ukuziphatha komntwana ukhulumisane labezempilakahle nxa ungabona lokhu ekupheleni komnyaka wakuqala wokuphila komntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eakakhangelani lani emehlweni kumbe akalandeli izinto ezinyakazayo ngamehlo\u003C/li\u003E\u003Cli\u003Ekabonisi ukuthakazelela imisindo\u003C/li\u003E\u003Cli\u003Eakaphenduli nxa limbiza ngebizo lakhe\u003C/li\u003E\u003Cli\u003Eakakhulumi amazwi abantwana abancane\u003C/li\u003E\u003Cli\u003Eakazami ukukwazisa ngaloba yiphi indlela lokho akufunayo kumbe izidingo zakhe\u003C/li\u003E\u003Cli\u003Eakakhombi izinto\u003C/li\u003E\u003Cli\u003Eakaphumiseli imizwa\u003C/li\u003E\u003Cli\u003Ekakaqalisi ukukhasa\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T14:04:41+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 14:04\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:09:20+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:09\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T13:04:41+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:09:20+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:09\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -348,8 +348,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6901,
             "girl_video_article": 6906,
             "milestone": "\u003Cp\u003ELandela ukuziphatha komntwana; ukhulume labezempilakahle nxa ubona lokhu ekupheleni komnyaka wesine wokuphila umntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EKatshengisi ukuthakazelela ukudlala labanye abantwana kumbe ukudlala imidlalo yamatope.\u003C/li\u003E\u003Cli\u003Ekazwisisani labanye abantwana kumbe akaphenduli kubantu abangekho emulini\u003C/li\u003E\u003Cli\u003EAkenelisi ukweqa endaweni eyodwa.\u003C/li\u003E\u003Cli\u003EUyahlupheka ukubhala-bhala (ukudweba ephepheni)\u003C/li\u003E\u003Cli\u003EAkalandeli akutshelwayo okulengxenye ezintathu\u003C/li\u003E\u003Cli\u003EAkenelisi ukuxoxa indaba ayithandayo\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T14:02:27+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 14:02\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T13:02:27+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -360,8 +360,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 2251,
             "girl_video_article": 6926,
             "milestone": "\u003Cp\u003EKhangela ukuziphatha komntwana ukhulume labezempilakahle nxa ubona lokhu ekupheleni kwenyanga yokuqala yomntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Euyakhala kakhulu njalo awenelisi ukumthulisa\u003C/li\u003E\u003Cli\u003Eakamunyi kuhle njalo umunya ephuza kakhulu\u003C/li\u003E\u003Cli\u003Eulala isikhathi eside kulokukhangelelweyo (phezulu kwamahola angu-\u003Cem\u003E16 \u003C/em\u003Engelanga) kumbe akalali ngokuthula\u003C/li\u003E\u003Cli\u003Eakanyakazisi izandla kumbe inyawo\u003C/li\u003E\u003Cli\u003Ekethuki nxa kuvela umsindo omkhulu\u003C/li\u003E\u003Cli\u003Eakacwayizi amehlo nxa kukhona ukukhanya okukhulu\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T13:56:08+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:56\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T12:56:08+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 12:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -372,8 +372,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6891,
             "girl_video_article": 3821,
             "milestone": "\u003Cp\u003ELandelela ukuziphatha komntwana njalo ukhulume labezempilakahle nxa ubona lokhu ekupheleni komnyaka wesi-3 wokuphila komntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eakakukhangeli emehlweni (\u003Cem\u003Eeye contact)\u003C/em\u003E\u003C/li\u003E\u003Cli\u003Euhlupheka ukuzwa kumbe ukubona ezinye izinto\u003C/li\u003E\u003Cli\u003Eakakhulumi ngemitsho emifitshane (elamabala amathathu kumbe kusedlula)\u003C/li\u003E\u003Cli\u003Eukukhuluma kwakhe akucaci/akuzwakali\u003C/li\u003E\u003Cli\u003Eakenelisi ukulandela akutshelwayo okulula\u003C/li\u003E\u003Cli\u003Eakafuni ukudlala labanye abantwana kumbe lamathoyi kanye lezinye izinto\u003C/li\u003E\u003Cli\u003Eakadlalisi/akalingisi lapho edlala\u003C/li\u003E\u003Cli\u003Eakenelisi ukugijima\u003C/li\u003E\u003Cli\u003Eakabhali-bhali kumbe ukudweba\u003C/li\u003E\u003Cli\u003Eakenelisi ukubamba izinto ezincane ngesandla sakhe\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T13:53:25+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:53\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T12:53:25+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 12:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -384,8 +384,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6826,
             "girl_video_article": 1796,
             "milestone": "\u003Cp\u003EKhangelisisa ukuziphatha komntwana ubusukhuluma labezempilakahle nxa ubona lokhu ekupheleni kwenyanga yesi-4 yokuphila komntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eukhala kakhulu njalo akathuliseki\u003C/li\u003E\u003Cli\u003Eakakhangeli emehlweni kumbe ananzelele ubuso babantu\u003C/li\u003E\u003Cli\u003Eakakhangeli izinto ezinyakazayo\u003C/li\u003E\u003Cli\u003Eakakhiphi umsindo kumbe akaphenduli umsindo awuzwayo\u003C/li\u003E\u003Cli\u003Eakenelisi ukugcina ikhanda lakhe liqondile\u003C/li\u003E\u003Cli\u003Eakafinyeleli ithoyi kumbe into ephambi kwakhe\u003C/li\u003E\u003Cli\u003Eakafaki kumbe ukuletha izinto emlonyeni wakhe\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T13:50:19+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:50\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T12:50:19+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 12:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -396,8 +396,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6801,
             "girl_video_article": 6816,
             "milestone": "\u003Cp\u003ELandelela ukuziphatha komntwana ubusukhuluma labezempilakahle nxa ubona okulandelayo ekupheleni komnyaka wesi-\u003Cem\u003E6\u003C/em\u003E wokuphila komntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EIsikhathi sakhe sokulalelisisa sifitshane (attention span).\u003C/li\u003E\u003Cli\u003EAkalandaba lamabhuku, inombolo, ukubala kumbe ukubhala.\u003C/li\u003E\u003Cli\u003EKubonakala engakwazi ukuzwa kahle endlebeni.\u003C/li\u003E\u003Cli\u003EAkakhulumi ngokucacileyo ngemitsho epheleleyo eyamabala angu-\u003Cem\u003E5\u003C/em\u003E kusiya phezulu.\u003C/li\u003E\u003Cli\u003EAkaxoxi indaba ezinde esebenzisa imitsho epheleleyo.\u003C/li\u003E\u003Cli\u003EAkenelisi ukugqoka lokusebenzisa isambuzi engela ncedo.\u003C/li\u003E\u003Cli\u003EAkenelisi ukuphatheka engxoxweni.\u003C/li\u003E\u003Cli\u003EAkenelisi ukudlala ngendlela engaphezu kweyodwa.\u003C/li\u003E\u003Cli\u003EAkenelisi ukutsho ibizo kanye lekheli yakhe.\u003C/li\u003E\u003Cli\u003EAkenelisi ukuma kumbe ukweqa ngonyawo olulodwa.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T13:47:07+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:47\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T12:47:07+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 12:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -408,8 +408,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6916,
             "girl_video_article": 3876,
             "milestone": "\u003Cp\u003ELandelela ukuziphatha komntwana ubusukhuluma labezempilakahle nxa ubona lokhu ekupheleni komnyaka wesi-\u003Cem\u003E5\u003C/em\u003E wokuphila komntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EAkenelisi ukuhamba, ukugijima, ukugada, ukweqa kumbe ukusebenzisa ama-\u003Cem\u003Esteps\u003C/em\u003E ngokuzethemba\u003C/li\u003E\u003Cli\u003EAkakwazi ukuphendula imibuzo elula (Ibizo lakho ngubani? Abemuli yakho yibaphi? Yiphi ingxoxo oyithandayo?)\u003C/li\u003E\u003Cli\u003EAkenelisi ukulandela akutshelwayo okulengxenye ezimbili (Beka inkomitsho phezu kwetafula! Kumbe Thatha ibhola ngaphansi kombheda!)\u003C/li\u003E\u003Cli\u003EAkenelisi ukwenza imisebenzi yansuku zonke ngokwakhe njengokudla kumbe ukugqoka\u003C/li\u003E\u003Cli\u003EKubonakala elokuhlupheka ekubambeni ipensela\u003C/li\u003E\u003Cli\u003EUtshengisa ukuziphatha okungekho kuhle (ukwesaba kakhulu, ukuba lolaka, kumbe ukuzwisa usizi)\u003C/li\u003E\u003Cli\u003EAkakhulumi ngezinto ezenzeka nsuku zonke\u003C/li\u003E\u003Cli\u003EAkatshengisi ukuthakazelela ukukhulumisana lokuhlangana labantu abadala kumbe labanye abantwana\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T13:41:50+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:41\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T12:41:50+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 12:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -420,8 +420,8 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 3601,
             "girl_video_article": 6846,
             "milestone": "\u003Cp\u003EKhangela ukuziphatha komntwana njalo ukhulumisane labezempilakahle nxa ubona lokhu ekupheleni kwenyanga yesi-9 yomntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EAkakukhangeli emehlweni kumbe akalandeleli izinto ezihambayo ngamehlo\u003C/li\u003E\u003Cli\u003EAkakhulumi imisindo efana leyabanye abantwana abancane (“mama”, “dada”, njalo njalo)\u003C/li\u003E\u003Cli\u003EAkatshibilikisi ikhanda lisiya lapho okuvela umsindo\u003C/li\u003E\u003Cli\u003EAkakhangeli lapho okhombe khona\u003C/li\u003E\u003Cli\u003EAkatshengisi uthando kubanakekeli bakhe—akabobotheki kubo\u003C/li\u003E\u003Cli\u003EAkaphenduli nxa umbiza ngebizo lakhe\u003C/li\u003E\u003Cli\u003EKubonakala engananzeleli abantu ajayele ukubabona\u003C/li\u003E\u003Cli\u003EAkenelisi ukugiqika yedwa (\u003Cem\u003Erolling\u003C/em\u003E)\u003C/li\u003E\u003Cli\u003ENxa umphakamisa, uyalenga kakhulu (\u003Cem\u003Efloppy\u003C/em\u003E) kumbe uqine kakhulu\u003C/li\u003E\u003Cli\u003EAkakwazi ukuhlala lanxa esekelwe\u003C/li\u003E\u003Cli\u003EUlobunzima ekudleni ukudla okuqinileyo (\u003Cem\u003Esolid foods\u003C/em\u003E)\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T13:37:05+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 13:37\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-11T13:17:13+01:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 13:17\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T12:37:05+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 12:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-11T12:17:13+00:00\" class=\"datetime\"\u003EWed, 02/11/2026 - 12:17\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -432,9 +432,9 @@ export const ChildDevelopmentData: any = {
             "boy_video_article": 6836,
             "girl_video_article": 3146,
             "milestone": "\u003Cp\u003ENanzelela ukuziphatha komntwana ubusukhuluma labezempilakahle nxa ubona lokhu ekupheleni kwenyanga yesi-\u003Cem\u003E6\u003C/em\u003E yomntwana:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003Euhlala ekhala okwesikhathi eside njalo akathuliseki\u003C/li\u003E\u003Cli\u003Eakakukhangeli emehlweni kumbe engalandeli izinto ezihambayo ngamehlo\u003C/li\u003E\u003Cli\u003Eakakhiphi imisindo yabantwana (imisindo efana lo “ma-ma, da-da”) kumbe akatshibilikisi ikhanda lisiya lapho okuvela umsindo\u003C/li\u003E\u003Cli\u003Eakahleki kumbe akhiphe imisindo efana lokuhleka\u003C/li\u003E\u003Cli\u003Eakenelisi ukugiqika yedwa\u003C/li\u003E\u003Cli\u003Eakenelisi ukulawula ikhanda lentamo yakhe\u003C/li\u003E\u003Cli\u003Eakenelisi ukuhlala lanxa esekelwe\u003C/li\u003E\u003Cli\u003Eakafinyeleleli ezintweni lanxa engakhuthazwa ukuthi afike kuzo\u003C/li\u003E\u003Cli\u003Eakazami ukuthatha izinto eziseduzane\u003C/li\u003E\u003Cli\u003Eulobunzima bokudonsa izinto ukuthi zize emlonyeni wakhe.\u003C/li\u003E\u003C/ul\u003E",
-            "created_at": "\u003Ctime datetime=\"2026-02-10T10:58:58+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 10:58\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-10T11:50:02+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 11:50\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2026-02-10T09:58:58+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 09:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T10:50:02+00:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 10:50\u003C/time\u003E\n",
             "mandatory": 1
         }
-    ],
+    ]
 };
