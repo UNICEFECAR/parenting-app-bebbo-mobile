@@ -70,7 +70,7 @@ import {
   VideoArticleEntity,
   VideoArticleEntitySchema,
 } from "../../database/schema/VideoArticleSchema";
-import iframe from "@native-html/iframe-plugin";
+import iframe, { iframeModel } from "@native-html/iframe-plugin";
 import RelatedVideoArticles from "@components/shared/RelatedVideoArticles";
 import { useIsFocused } from "@react-navigation/native";
 import { bgcolorBlack2, bgcolorWhite2 } from "@styles/style";
@@ -993,6 +993,9 @@ const renderHtmlImage = ({ tnode }: any): any => {
                         iframe,
                         img: renderHtmlImage,
                       }}
+                  customHTMLElementModels={{
+                    iframe: iframeModel,
+                  }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{

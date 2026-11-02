@@ -113,6 +113,7 @@ import {
   selectAppVersion,
 } from "../../../services/selectors";
 import QuickLinksRow from "@components/homeScreen/QuickLinksRow";
+import CountryAppBanner from "@components/shared/CountryAppBanner";
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -764,7 +765,7 @@ const Home = ({ route, navigation }: any): any => {
           textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
-
+        <CountryAppBanner countryId={countryId} />
         {netInfo && netInfo.isConnected == false ? (
           <OfflineBar>
             <Heading3Centerr>{t("noInternet")}</Heading3Centerr>
