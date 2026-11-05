@@ -14,7 +14,7 @@ import {
   ShiftFromTopBottom10,
 } from "@styles/typography";
 import { DateTime } from "luxon";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import FastImage from "react-native-fast-image";
@@ -40,6 +40,8 @@ import {
   selectFavoriteAdvices,
   selectFavoriteGames,
 } from "../../services/selectors";
+
+const ACTIVITIES_FIRST_AGE_MONTHS = 18;
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -113,14 +115,6 @@ const RenderDailyReadItem = React.memo(({ item,
       </Pressable>
     </View>
   );
-},
-(prevProps, nextProps) => {
-  return (
-    prevProps.item?.id === nextProps.item?.id &&
-    prevProps.isAdvice === nextProps.isAdvice &&
-    prevProps.isFavourite === nextProps.isFavourite &&
-    prevProps.toggleSwitchVal === nextProps.toggleSwitchVal
-  );
 });
 const DailyReads = (): any => {
   const netInfo = useNetInfoHook();
@@ -135,10 +129,14 @@ const DailyReads = (): any => {
   const articleDataAll = useAppSelector(selectArticleDataAll);
   const toggleSwitchVal = useAppSelector(selectLowBandwidth);
 
-  const articleData = articleDataAll.filter((x: any) =>
-    appConfig.articleCategoryIdArray.includes(x.category)
-  );
   const activeChild = useAppSelector(selectActiveChild);
+  const childAgeInMonths = activeChild?.birthDate
+    ? DateTime.now().startOf("day").diff(
+        DateTime.fromJSDate(new Date(activeChild.birthDate)).startOf("day"),
+        "months"
+      ).months
+    : 0;
+  const showActivitiesFirst = childAgeInMonths >= ACTIVITIES_FIRST_AGE_MONTHS;
   const ActivitiesDataall = useAppSelector(selectActivitiesDataAll);
   const activityCategoryArray = useAppSelector(selectActivityCategoryArray);
   const dailyDataCategoryall = useAppSelector(selectDailyDataCategoryAll);
@@ -154,13 +152,28 @@ const DailyReads = (): any => {
   const ActivitiesData = ActivitiesDataall.filter((x: any) =>
     x.child_age.includes(activityTaxonomyId)
   );
-  let ArticlesData = articleData.filter(
-    (x: any) =>
-      x.child_age.includes(activityTaxonomyId) && (x.do_not_feature === 0 || x.do_not_feature === "0")
+  const eligibleArticles = useMemo(
+    () =>
+      articleDataAll.filter(
+        (article: any) =>
+          appConfig.articleCategoryIdArray.includes(article.category) &&
+          article.child_age.includes(activityTaxonomyId) &&
+          (article.do_not_feature === 0 || article.do_not_feature === "0")
+      ),
+    [articleDataAll, activityTaxonomyId]
   );
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
+  const visibleDailyArticles = useMemo(() => {
+    const eligibleById = new Map<string, any>(
+      eligibleArticles.map((article: any) => [String(article.id), article])
+    );
+
+    return dataToShowInList
+      .map((article: any) => eligibleById.get(String(article.id)))
+      .filter((article: any) => article != null);
+  }, [dataToShowInList, eligibleArticles]);
   const goToArticleDetail = useCallback((item: any): any => {
     console.log(
       Object.prototype.hasOwnProperty.call(item, "activity_category"),
@@ -205,6 +218,7 @@ const DailyReads = (): any => {
 
   
   useEffect(() => {
+    let ArticlesData = eligibleArticles;
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
       dailyDataCategory = {
@@ -539,6 +553,11 @@ const DailyReads = (): any => {
   const renderEmptyList = () => {
     return null;
   };
+  const articleList = { key: "articles", data: visibleDailyArticles, isAdvice: true };
+  const activityList = { key: "activities", data: activityDataToShowInList, isAdvice: false };
+  const orderedLists = showActivitiesFirst
+    ? [activityList, articleList]
+    : [articleList, activityList];
 
   return (
     <>
@@ -546,31 +565,21 @@ const DailyReads = (): any => {
         <ShiftFromTopBottom10>
           <Heading2>{t("homeScreendailyReadsTitle")}</Heading2>
         </ShiftFromTopBottom10>
-        <View style={styles.flatlistOuterView}>
-          <FlatList
-            data={dataToShowInList}
-            horizontal
-            renderItem={({ item, index }: any): any =>
-              renderItem(item, index, true)
-            }
-            keyExtractor={(item: any): any => keyExtractor(item)}
-            windowSize={5}
-            initialNumToRender={10}
-            ListEmptyComponent={() => renderEmptyList()}
-          />
-        </View>
-        <View style={styles.flatlistOuterView}>
-          <FlatList
-            data={activityDataToShowInList}
-            horizontal
-            renderItem={({ item, index }: any): any =>
-              renderItem(item, index, false)
-            }
-            keyExtractor={(item: any): any => keyExtractor(item)}
-            windowSize={5}
-            initialNumToRender={10}
-          />
-        </View>
+        {orderedLists.map(({ key, data, isAdvice }) => (
+          <View key={key} style={styles.flatlistOuterView}>
+            <FlatList
+              data={data}
+              horizontal
+              renderItem={({ item, index }: any): any =>
+                renderItem(item, index, isAdvice)
+              }
+              keyExtractor={(item: any): any => keyExtractor(item)}
+              windowSize={5}
+              initialNumToRender={10}
+              ListEmptyComponent={isAdvice ? renderEmptyList : undefined}
+            />
+          </View>
+        ))}
       </MainContainer>
     </>
   );

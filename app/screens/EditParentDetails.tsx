@@ -30,10 +30,10 @@ import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import React, { createRef, useContext, useEffect, useState } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackHandler, Pressable, StyleSheet, Text, View } from "react-native";
-import ActionSheet from "react-native-actions-sheet";
+import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
@@ -41,7 +41,7 @@ import {
   ConfigSettingsEntity,
   ConfigSettingsSchema,
 } from "../database/schema/ConfigSettingsSchema";
-import { updateActiveChild } from "../services/childCRUD";
+import { getAllConfigData, updateActiveChild } from "../services/childCRUD";
 import {
   Heading2w,
   Heading3,
@@ -87,7 +87,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     .filter(function (e: any) {
       return e.unique_name != taxonomyIds?.bothParentGender;
     });
-  const actionSheetRef = createRef<any>();
+  const actionSheetRef = useRef<ActionSheetRef>(null);
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -186,6 +186,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
       String(userRelationToParent),
       taxonomyIds?.boyChildGender
     );
+    await getAllConfigData(dispatch);
     navigation.navigate("ChildProfileScreen");
   };
   const getCheckedParentItem = (checkedItem: any): any => {
@@ -242,8 +243,8 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           <View>
             {userRelationToParent != null &&
             userRelationToParent != undefined &&
-            userRelationToParent != appConfig.relationShipMotherId &&
-            userRelationToParent != appConfig.relationShipFatherId ? (
+            userRelationToParent != taxonomyIds?.relationShipMotherId &&
+            userRelationToParent != taxonomyIds?.relationShipFatherId ? (
               <FormContainer1>
                 <LabelText>{t("parentGender")}</LabelText>
                 <ToggleRadios
@@ -268,6 +269,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                         if (
                           item.unique_name == taxonomyIds?.relationShipMotherId
                         ) {
+                          setRelationshipUniqueName(taxonomyIds?.femaleData?.unique_name);
                           if (
                             typeof taxonomyIds?.femaleData.unique_name ===
                               "string" ||
@@ -285,6 +287,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                         } else if (
                           item.unique_name == taxonomyIds?.relationShipFatherId
                         ) {
+                          setRelationshipUniqueName(taxonomyIds?.maleData?.unique_name);
                           if (
                             typeof taxonomyIds?.maleData.unique_name ===
                               "string" ||

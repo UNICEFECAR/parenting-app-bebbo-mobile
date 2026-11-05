@@ -1,4 +1,4 @@
-import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
+import { CHILD_ADDED_FROM_MANAGE_PROFILE, EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { appConfig } from '../instances';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import { DateTime } from 'luxon';
@@ -458,7 +458,17 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       logEvent(eventData, netInfo.isConnected)
     }
     try {
-      await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+      const createdChildren = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+      if (
+        Array.isArray(createdChildren) && createdChildren.length > 0 &&
+        param === 2 &&
+        data[0].isExpected !== true && data[0].isExpected !== 'true'
+      ) {
+        logEvent({ name: CHILD_ADDED_FROM_MANAGE_PROFILE }, netInfo?.isConnected)
+          .catch((error: any) => {
+            console.error('Error logging child creation event:', error);
+          });
+      }
     } catch (error) {
       Alert.alert('Error', 'Error in creating child' + JSON.stringify(error));
     }

@@ -32,7 +32,7 @@ import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
 import { CommonActions, useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import React, { createRef, useContext, useState } from "react";
+import React, { useRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Pressable,
@@ -43,7 +43,7 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
-import ActionSheet from "react-native-actions-sheet";
+import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
@@ -143,7 +143,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [name, setName] = React.useState("");
   const [loading, setLoading] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
-  const actionSheetRefImport = createRef<any>();
+  const actionSheetRefImport = useRef<ActionSheetRef>(null);
   const netInfo = useNetInfoHook();
   let relationshipData =
     useAppSelector(selectParentGender) || [];
@@ -162,7 +162,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const childAge = useAppSelector(selectChildAge);
-  const actionSheetRef = createRef<any>();
+  const actionSheetRef = useRef<ActionSheetRef>(null);
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
   const sendData = (data: any): any => {

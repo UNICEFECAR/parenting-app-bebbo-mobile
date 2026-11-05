@@ -209,7 +209,16 @@ const GrowthChart = (props: any): any => {
           }
         >
           <VictoryChart
-            containerComponent={<VictoryVoronoiContainer />}
+            containerComponent={
+              <VictoryVoronoiContainer
+                voronoiBlacklist={[
+                  "reference-top",
+                  "reference-bottom",
+                  "reference-middle",
+                  "measurement-line",
+                ]}
+              />
+            }
             theme={VictoryTheme.material}
             width={
               deviceOrientation === "portrait"
@@ -255,6 +264,7 @@ const GrowthChart = (props: any): any => {
             />
             {/* ********* TOP AREA ********* */}
             <VictoryArea
+              name="reference-top"
               interpolation="natural"
               style={{
                 data:
@@ -266,6 +276,7 @@ const GrowthChart = (props: any): any => {
             />
             {/* ********* BOTTOM AREA ********* */}
             <VictoryArea
+              name="reference-bottom"
               interpolation="natural"
               style={{
                 data:
@@ -277,6 +288,7 @@ const GrowthChart = (props: any): any => {
             />
             {/* ********* MIDDLE AREA ********* */}
             <VictoryArea
+              name="reference-middle"
               interpolation="natural"
               style={victoryStyles.VictoryArea}
               data={middleArea}
@@ -285,6 +297,7 @@ const GrowthChart = (props: any): any => {
             {/* ********* LINE CHART ********* */}
             {chartData.length < 2 ? null : (
               <VictoryLine
+                name="measurement-line"
                 data={chartData}
                 interpolation="natural"
                 style={victoryStyles.VictoryLine}
@@ -293,6 +306,7 @@ const GrowthChart = (props: any): any => {
 
             {/********** SCATTER ********* */}
             <VictoryScatter
+              name="measurements"
               data={chartData}
               size={9}
               style={victoryStyles.VictoryScatter}
