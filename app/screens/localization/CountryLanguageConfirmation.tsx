@@ -73,6 +73,7 @@ import { OfflineBar } from "@components/shared/HomeScreenStyle";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
+import CountryAppBanner from "@components/shared/CountryAppBanner";
 const flavor = process.env.FLAVOR || "bebbo";
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -546,7 +547,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             </OnboardingShiftHead>
             <Heading4Centerr>{t("checkonce")}</Heading4Centerr>
           </OnboardingConfirmationHead>
-
+          <CountryAppBanner countryId={countryData?.CountryID ?? countryData?.countryId} />
           <LocalizationContainer>
             <LocalizationRow>
               <LocalizationCol

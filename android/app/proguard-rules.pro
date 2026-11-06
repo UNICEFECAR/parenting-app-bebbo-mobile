@@ -13,3 +13,10 @@
 -keep,allowobfuscation @interface com.facebook.jni.annotations.DoNotStrip
 -keep @com.facebook.jni.annotations.DoNotStrip class *
 -keepclassmembers class * { @com.facebook.jni.annotations.DoNotStrip *; }
+
+# Realm loads this class and its methods by name from native code.
+-keep class io.realm.react.util.SSLHelper { *; }
+
+# React Native registers these classes and callbacks by name through JNI.
+-keep class com.facebook.react.devsupport.CxxInspectorPackagerConnection { *; }
+-keep class com.facebook.react.devsupport.CxxInspectorPackagerConnection$* { *; }

@@ -13,6 +13,7 @@ export const ADVICE_AGEGROUP_SELECTED="advice_age_group_selected"//,{age_id: 'P1
 export const CHILD_DEVELOPMENT_AGEGROUP_SELECTED="child_development_age_group_selected"//,{age_id: 'P12453"}
 export const HEALTH_CHECKUP_REMINDER_SET="child_health_checkup_reminder_set";
 export const EXPECTED_CHILD_ENTERED="expected_child_entered";
+export const CHILD_ADDED_FROM_MANAGE_PROFILE = 'child_added_from_manage_profile';
 export const FEEDBACK_SUBMIT="feedback_submitted";
 export const SURVEY_SUBMIT="survey_submitted";
 export const APP_SHARE="app_shared";

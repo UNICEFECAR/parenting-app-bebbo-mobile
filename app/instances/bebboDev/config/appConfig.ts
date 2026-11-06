@@ -248,7 +248,8 @@ const config = {
   finalUrl: (
     apiEndpoint: string,
     selectedCountry: number | undefined,
-    selectedLang: string
+    selectedLang: string,
+    countryIdOverride?: number
   ): string => {
     const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
     switch (apiEndpoint) {
@@ -273,7 +274,7 @@ const config = {
           isPregnancy() ? "?pregnancy=true" : ""
         }`;
       case config.apiConfig.checkUpdate:
-        return `${baseUrl}/${selectedCountry}`;
+        return `${baseUrl}/${countryIdOverride ?? selectedCountry}`;
       default:
         return `${baseUrl}/${selectedLang}`;
     }

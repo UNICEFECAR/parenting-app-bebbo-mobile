@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import HTML from "react-native-render-html";
@@ -35,7 +35,11 @@ import { useAppSelector } from "../../../App";
 import ThreeDotsLoader from "../../services/ThreeDotsLoader";
 import { imgLogoChatbotNew } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
-import { selectAllConfigData } from "../../services/selectors";
+import {
+  selectAllConfigData,
+  selectArticleDataAll,
+  selectPinnedChildDevData,
+} from "../../services/selectors";
 import { gradientColorFirst, gradientColorSecond, gradientColorThird, menuDrawerTextColor } from "@styles/style";
 const flavor = process.env.FLAVOR || "bebbo";
 const styles = StyleSheet.create({
@@ -44,6 +48,7 @@ const styles = StyleSheet.create({
   font14: { fontSize: 14 },
   htmlView: { padding: 15, paddingTop: 5, paddingBottom: 5 },
   htmlView2: { padding: 15, paddingTop: 15, paddingBottom: 5 },
+  answerBottomSpacing: { paddingBottom: 15 },
   linearGradient: {
     alignItems: "center",
     borderRadius: 100,
@@ -82,6 +87,21 @@ const BotBubble = (props: any): any => {
   const navigation = useNavigation<any>();
   const [answer2visible, setanswer2visible] = useState(false);
   const allConfigData = useAppSelector(selectAllConfigData);
+  const articles = useAppSelector(selectArticleDataAll);
+  const videoArticles = useAppSelector(selectPinnedChildDevData);
+  const relatedArticleId = Number(steps?.textToShow?.related_article);
+  const isRelatedArticleAvailable = useMemo(
+    () =>
+      Number.isInteger(relatedArticleId) &&
+      relatedArticleId > 0 &&
+      (articles.some((article: any) => Number(article.id) === relatedArticleId) ||
+        videoArticles.some((article: any) => Number(article.id) === relatedArticleId)),
+    [articles, videoArticles, relatedArticleId]
+  );
+  const showReadMore = Boolean(steps?.textToShow?.answer_part_2) && !answer2visible;
+  const showRelatedArticleLink =
+    isRelatedArticleAvailable &&
+    (answer2visible || steps?.textToShow?.answer_part_2 == "");
   const userNameData =
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === "userName")
@@ -126,7 +146,13 @@ const BotBubble = (props: any): any => {
         steps.textToShow.answer_part_1 &&
         steps.textToShow.answer_part_1 != "" ? (
           <>
-            <View style={styles.htmlView}>
+            <View
+              style={[
+                styles.htmlView,
+                !answer2visible && !showReadMore && !showRelatedArticleLink &&
+                  styles.answerBottomSpacing,
+              ]}
+            >
               <HTML
                 contentWidth={width}
                 source={{
@@ -139,11 +165,7 @@ const BotBubble = (props: any): any => {
                 }}
               />
             </View>
-            {steps &&
-            steps.textToShow &&
-            steps.textToShow.answer_part_2 &&
-            steps.textToShow.answer_part_2 != "" &&
-            answer2visible == false ? (
+            {showReadMore ? (
               <SideSpacing15>
                 <ButtonLinkPressLeft
                   onPress={(): any => {
@@ -156,7 +178,12 @@ const BotBubble = (props: any): any => {
               </SideSpacing15>
             ) : null}
             {answer2visible == true ? (
-              <View style={styles.htmlView2}>
+              <View
+                style={[
+                  styles.htmlView2,
+                  !showRelatedArticleLink && styles.answerBottomSpacing,
+                ]}
+              >
                 <HTML
                   contentWidth={width}
                   source={{
@@ -170,13 +197,7 @@ const BotBubble = (props: any): any => {
                 />
               </View>
             ) : null}
-            {steps &&
-            steps.textToShow &&
-            steps.textToShow.related_article &&
-            steps.textToShow.related_article != 0 &&
-            (answer2visible == true ||
-              (steps.textToShow.answer_part_2 == "" &&
-                answer2visible == false)) ? (
+            {showRelatedArticleLink ? (
               <SideSpacing15>
                 <ButtonLinkPressLeft
                   onPress={(): any => {
@@ -185,7 +206,7 @@ const BotBubble = (props: any): any => {
                       fromScreen: "SupportChat",
                       headerColor: "",
                       backgroundColor: "",
-                      detailData: steps.textToShow.related_article,
+                      detailData: relatedArticleId,
                       netInfo: netInfo,
                       // setFilteredArticleData: setFilteredArticleData
                     });

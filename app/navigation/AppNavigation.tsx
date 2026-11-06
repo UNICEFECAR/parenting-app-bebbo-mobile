@@ -869,7 +869,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          Linking.openURL(remoteMessage.data.URL);
+          Linking.openURL(trimWhiteSpacePayload(remoteMessage.data.URL));
         } else {
           if (Platform.OS == "ios") {
             setTimeout(() => {
@@ -877,7 +877,7 @@ export default (): any => {
                 (item: any) => item.type == "survey"
               );
               if (surveyItem && surveyItem.survey_feedback_link) {
-                Linking.openURL(surveyItem.survey_feedback_link);
+                Linking.openURL(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
               }
             }, 100);
           } else {
@@ -885,7 +885,7 @@ export default (): any => {
               (item: any) => item.type == "survey"
             );
             if (surveyItem && surveyItem.survey_feedback_link) {
-              Linking.openURL(surveyItem.survey_feedback_link);
+              Linking.openURL(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
             }
           }
         }
@@ -903,7 +903,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          Linking.openURL(remoteMessage.data.URL);
+          Linking.openURL(trimWhiteSpacePayload(remoteMessage.data.URL));
         }
       }
     } else {

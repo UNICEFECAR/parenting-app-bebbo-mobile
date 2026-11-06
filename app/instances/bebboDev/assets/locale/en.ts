@@ -526,6 +526,22 @@ const en = {
       'Bebbo is getting ready to support your journey in providing care!',
     serviceProviderHeaderSubInfoText:
       'Bebbo created a newborn child profile to get you started. You can add more child profiles later.',
+    newAppBannerTitle: "Bebbo has a new home!",
+    newAppBannerMessage: "Learn how to transfer your children's saved information to the new app.",
+    newAppBannerLinkBtn: "Download new app",
+    newAppInfoAccessibility: "Read instructions for transferring saved information",
+    newAppInfoTitle: "Keep your saved information",
+    newAppMigrationInstructions: "The app you know and trust is now [New App Name], provided by [Government Body]. To keep your children's saved information, follow 3 simple steps:\n\n1. Back up: Go to Settings → Back up your data and save your backup to Google Drive.\n\n2. Download: Get the new app.\n\n3. Restore: Bring your saved information into the new app during onboarding. (You can do this only when online.)",
+    newAppStoreUnavailableTitle: "App store unavailable",
+    newAppStoreUnavailableMessage: "The store link is currently unavailable. You can continue using this app.",
+    newAppStoreErrorTitle: "Unable to open app store",
+    newAppStoreErrorMessage: "Please try again later. You can continue using this app.",
+    close: "Close",
+    newAppAlertTitle : 'Another app is available for your country',
+    newAppAlertMessage: 'A Bebbo app specifically for your selected country is available. Would you like to continue with this app or change your country selection?',
+    newAppAlertEditBtn: 'Back',
+    newAppAlertContinueBtn: 'Continue',
+    newAppAlertDownloadBtn: "Download App"
   },
 };
 export default en;

@@ -60,7 +60,7 @@ react {
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
@@ -218,7 +218,8 @@ android {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             ndk.debugSymbolLevel = "FULL"
         }
     }
@@ -226,8 +227,8 @@ android {
     productFlavors {
         prod {
             applicationId 'org.unicef.ecar.bebbo'
-            versionCode 51
-            versionName "2.5.0"
+            versionCode 52
+            versionName "2.5.1"
             signingConfig signingConfigs.release
         }
         prodstaging {

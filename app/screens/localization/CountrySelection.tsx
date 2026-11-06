@@ -7,7 +7,7 @@ import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { SelectionView } from "../../instances/bebbo/styles/style";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable, StyleProp, ViewStyle } from "react-native";
+import { Alert, FlatList, Linking, Platform, Pressable, StyleProp, ViewStyle } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
@@ -21,6 +21,10 @@ import {
   ButtonUpperCaseText,
 } from "@components/shared/ButtonGlobal";
 import { selectAllCountries } from "../../services/selectors";
+import commonApiService from "../../services/commonApiService";
+import { appConfig } from "../../instances";
+import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { saveCachedCountryAppUpdate } from "../../services/countryAppUpdateStorage";
 const CountrySelection = (props: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -41,7 +45,7 @@ const CountrySelection = (props: any): any => {
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded
   );
-
+  const netInfo = useNetInfoHook();
   useEffect(() => {
     console.log("All allCountries datas", allCountries);
     if (props.route?.params?.country == country) {
@@ -146,19 +150,121 @@ const CountrySelection = (props: any): any => {
   const renderItem = ({ item }: any): any => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
+  const continueToLanguageSelection = () => {
+    props.navigation.navigate("LanguageSelection", {
+      country: country,
+      language: language,
+      luxonlocale:
+        luxonLanLocale != undefined ? luxonLanLocale : null,
+      deviceLanCode:
+        deviceLanCode != undefined ? deviceLanCode : null,
+    });
+  };
+  const handleDownloadApp = async (appUpdate: any) => {
+    const storeUrl =
+      Platform.OS === "android"
+        ? appUpdate?.google_play_url
+        : Platform.OS === "ios"
+          ? appUpdate?.app_store_url
+          : null;
+  
+    if (
+      typeof storeUrl !== "string" ||
+      !/^https?:\/\//i.test(storeUrl)
+    ) {
+      Alert.alert(
+        t("newAppStoreUnavailableTitle"),
+        t("newAppStoreUnavailableMessage")
+      );
+      return;
+    }
+  
+    try {
+      await Linking.openURL(storeUrl);
+    } catch (error) {
+      Alert.alert(
+        t("newAppStoreErrorTitle"),
+        t("newAppStoreErrorMessage")
+      );
+    }
+  };
+  
+const handleContinueCountry = async () => {
+  if (!country) return;
+
+  // Offline: allow the user to continue.
+  if (netInfo.isConnected !== true) {
+    continueToLanguageSelection();
+    return;
+  }
+
+  try {
+    const response = await commonApiService(
+      appConfig.apiConfig.checkUpdate,
+      "get",
+      {},
+      Number(country.CountryID)
+    );
+
+    const data = response?.data;
+
+    console.log(country, "data2--", data);
+
+    // Only use a successful API response.
+    if (
+      response?.status >= 200 &&
+      response?.status < 300 &&
+      data?.app_update &&
+      data.app_update.flag != null
+    ) {
+      const appUpdate = data.app_update;
+
+      await saveCachedCountryAppUpdate(
+        country.CountryID,
+        appUpdate
+      );
+
+      if (Number(appUpdate.flag) === 1) {
+        Alert.alert(
+          t("newAppAlertTitle"),
+          t("newAppAlertMessage"),
+          [
+            {
+              text: t("newAppAlertEditBtn"),
+              style: "cancel",
+            },
+            {
+              text: t("newAppAlertContinueBtn"),
+              onPress: continueToLanguageSelection,
+            },
+            {
+              text: t("newAppAlertDownloadBtn"),
+              onPress: () => {
+                handleDownloadApp(appUpdate);
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+
+        return;
+      }
+    }
+
+    continueToLanguageSelection();
+  } catch (error) {
+    console.log("Unable to check country app update:", error);
+
+    // Allow onboarding to continue if the request fails.
+    continueToLanguageSelection();
+  }
+};
 
   const renderHeader = () => {
     return (
       <ButtonLinkRow>
         <ButtonPrimary
-          onPress={(): any => {
-            props.navigation.navigate("LanguageSelection", {
-              country: country,
-              language: language,
-              luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null,
-              deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null,
-            });
-          }}
+          onPress={handleContinueCountry}
         >
           <ButtonUpperCaseText numberOfLines={2}>
             {t("continueCountryLang")}
