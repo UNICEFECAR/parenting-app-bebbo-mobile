@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, FlatList, Dimensions } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, FlatList, Dimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
@@ -12,6 +12,7 @@ import { BannerContainer } from '@components/shared/Container';
 import { SettingHeading, SettingOptions, SettingShareData } from '@components/shared/SettingsStyle';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import AlertModal from '@components/AlertModal';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import AesCrypto from "react-native-aes-crypto";
@@ -27,7 +28,9 @@ const QuickLinksRow = () => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const driveExportRunning = useRef(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
+  const [isDriveBackupRunning, setIsDriveBackupRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
   const actionSheetRef = useRef<any>(null);
   const netInfo = useNetInfoHook();
@@ -40,6 +43,7 @@ const QuickLinksRow = () => {
   const Card = ({ item }: any) => {
     return (
       <Pressable
+        disabled={isExportRunning}
         style={({ pressed }) => [
           styles.card,
           pressed && styles.cardPressed, // subtle feedback
@@ -61,16 +65,24 @@ const QuickLinksRow = () => {
     );
   };
   const exportToDrive = async (): Promise<any> => {
+    if (driveExportRunning.current) return;
+    driveExportRunning.current = true;
     setIsExportRunning(true);
-    const exportIsSuccess = await backup.export();
-    setIsExportRunning(false);
-    if (!exportIsSuccess) {
-      Alert.alert("", t("settingExportError"));
-    } else {
-      Alert.alert("", t("settingExportSuccess"));
+    setIsDriveBackupRunning(true);
+    try {
+      const success = await backup.export();
+      Alert.alert("", t(success ? "settingExportSuccess" : "generalError"));
+    } catch (error) {
+      console.error("Drive backup failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
+      driveExportRunning.current = false;
+      setIsExportRunning(false);
+      setIsDriveBackupRunning(false);
+      actionSheetRef.current?.setModalVisible(false);
     }
-    actionSheetRef.current?.setModalVisible(false);
   };
+
   const encryptData = (text: string, key: any): any => {
     console.log(
       text,
@@ -280,6 +292,14 @@ const QuickLinksRow = () => {
         onConfirm={handleExportAlertConfirm}
         onCancel={onExportCancel}
       ></AlertModal>
+      <Modal
+        transparent
+        visible={isDriveBackupRunning}
+        animationType="none"
+        onRequestClose={() => {}}
+      >
+        <OverlayLoadingComponent loading={isDriveBackupRunning} />
+      </Modal>
     </View>
   );
 };
@@ -331,4 +351,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuickLinksRow; 
+export default QuickLinksRow;

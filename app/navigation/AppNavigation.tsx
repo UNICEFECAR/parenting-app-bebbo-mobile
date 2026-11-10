@@ -1,3 +1,4 @@
+import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
@@ -23,7 +24,7 @@ import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, InteractionManager, Linking, NativeModules, Platform } from "react-native";
+import { Alert, AppState, BackHandler, Linking, NativeModules, Platform } from "react-native";
 import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
@@ -93,7 +94,7 @@ export default (): any => {
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
-  const navigationRef = React.useRef<any>();
+  const navigationRef = React.useRef<any>(null);
   const routesLength = navigationRef?.current?.getRootState()?.routes?.length;
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
@@ -253,7 +254,7 @@ export default (): any => {
     }, [routesLength,userIsOnboarded]);
 
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       // ... handle deep link
       callUrl(linkedURL);
     });
@@ -338,7 +339,7 @@ export default (): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
     console.log(notification.data.uuid, "..notification.data.uuid..");
-    InteractionManager.runAfterInteractions(async () => {
+    scheduleIdleTask(async () => {
       try {
       if (notification && notification.data && notification.data.notitype) {
         if (
@@ -926,12 +927,12 @@ export default (): any => {
       SplashScreen.hide();
     }, 2000);
     if (!userIsOnboarded) return;
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       onNotificationOpenedApp(messaging, (remoteMessage) => {
         if (remoteMessage) {
           // background click noti
           if (userIsOnboarded == true) {
-            InteractionManager.runAfterInteractions(() => {
+            scheduleIdleTask(() => {
               crashlytics().log('NOTI: executing redirectPayload');
               redirectPayload(remoteMessage);
             });
@@ -951,7 +952,7 @@ export default (): any => {
           if (remoteMessage) {
             // after kill and restart application
             if (userIsOnboarded == true) {
-              InteractionManager.runAfterInteractions(() => {
+              scheduleIdleTask(() => {
                 crashlytics().log('NOTI: executing redirectPayload2');
                 redirectPayload(remoteMessage);
               });
@@ -1056,7 +1057,7 @@ export default (): any => {
         }
       }
     }
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       fetchNetInfo();
     });
 
@@ -1128,7 +1129,7 @@ export default (): any => {
 
     return () => clearTimeout(timeout);
   }, [netState]);
-  const routeNameRef = React.useRef<any>();
+  const routeNameRef = React.useRef<any>(null);
 
   const apiJsonDataLoading = [
     {
@@ -1173,6 +1174,7 @@ export default (): any => {
     <SafeAreaProvider>
       {shouldShowNavigator && (
         <NavigationContainer
+          navigationInChildEnabled
           ref={navigationRef}
           onReady={(): any => {
             routeNameRef.current = navigationRef.current.getCurrentRoute().name;
@@ -1207,7 +1209,7 @@ export default (): any => {
                 : AppLayoutDirectionScreen
             }
             screenOptions={{
-              animationEnabled: Platform.OS == "ios" ? true : false,
+              animation: Platform.OS == "ios" ? "default" : "none",
               headerShown: false,
             }}
           >

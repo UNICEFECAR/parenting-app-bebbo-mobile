@@ -1,4 +1,4 @@
-import { GoogleSignin, User } from "@react-native-google-signin/google-signin";
+import { GoogleSignin, isSuccessResponse } from "@react-native-google-signin/google-signin";
 import { projectNumber, webId, iosId } from "react-native-dotenv";
 
 // import { NativeModules, Platform } from "react-native";
@@ -36,54 +36,31 @@ class GoogleAuth {
   }
 
   public async signIn(): Promise<any> {
-    let user: User | null = null;
-    try {
-      await GoogleSignin.hasPlayServices();
-      user = await GoogleSignin.signIn();
-    } catch (error) {
-      console.log("Sign In Error", error);
-    }
+    await GoogleSignin.hasPlayServices();
+    const response = await GoogleSignin.signIn();
+    return isSuccessResponse(response) ? response.data : null;
+  }
 
-    return user;
+  public async ensureSignedIn(): Promise<boolean> {
+    if (!(await this.getCurrentUser()) && !(await this.signIn())) return false;
+    const tokens = await this.getTokens();
+    if (!tokens?.accessToken) throw new Error("Google access token is missing");
+    return true;
   }
 
   public async isSignedIn(): Promise<any> {
-    let isSignedIn = false;
-
-    try {
-      isSignedIn = await GoogleSignin.isSignedIn();
-    } catch (error) {
-      console.log("error-", error);
-    }
-
-    return isSignedIn;
+    return GoogleSignin.hasPreviousSignIn();
   }
 
   public async getCurrentUser(): Promise<any> {
-    let currentUser: User | null = null;
-
-    try {
-      currentUser = await GoogleSignin.getCurrentUser();
-    } catch (error) {
-      console.log("error-", error);
-    }
-
-    return currentUser;
+    return GoogleSignin.getCurrentUser();
   }
 
   /**
    * Don't save tokens anywhere, always request new tokens so they are refreshed.
    */
   public async getTokens(): Promise<any> {
-    let tokens: { idToken: string; accessToken: string } | null = null;
-
-    try {
-      tokens = await GoogleSignin.getTokens();
-    } catch (error) {
-      console.log("error-", error);
-    }
-
-    return tokens;
+    return GoogleSignin.getTokens();
   }
 
   public async signOut(): Promise<any> {

@@ -1,3 +1,4 @@
+import { returnToScreen } from "../../navigation/returnToScreen";
 import { appConfig } from "../../instances";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -41,7 +42,7 @@ import {
   ShiftFromTop20,
 } from "@styles/typography";
 import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@types/types";
-import React, { createRef, useContext, useEffect, useState } from "react";
+import React, { createRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -198,7 +199,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [gender, setGender] = React.useState(
     childData != null ? childData.gender : 0
   );
-  const handleBack = (): any => {
+  useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       //console.log("11")
       navigation.goBack();
@@ -208,16 +209,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       "hardwareBackPress",
       backAction
     );
-    navigation.addListener("gestureEnd", backAction);
 
     return (): any => {
-      navigation.removeListener("gestureEnd", backAction);
       backHandler.remove();
     };
-  };
-  useEffect(() => {
-    handleBack();
-  }, []);
+  }, [navigation]));
   useFocusEffect(
     React.useCallback(() => {
       if (
@@ -356,7 +352,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
-            navigation.navigate("ChildProfileScreen");
+            returnToScreen(navigation, "ChildProfileScreen");
           },
         },
       ]);

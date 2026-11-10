@@ -1,13 +1,16 @@
 import {
     GDrive,
-    MIME_TYPES,
-    ListQueryBuilder
+    MIME_TYPES
 } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { appConfig } from "../instances";
 const _urlFiles = "https://www.googleapis.com/drive/v3";
-const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
+const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension,modifiedTime';
+const queryValue = (value: string) => value.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+const asError = (error: unknown): Error => error instanceof Error ? error : new Error('Google Drive request failed');
 const gdrive = new GDrive();
+// The wrapper defaults to 1.5 seconds, which can abort normal Drive requests.
+gdrive.fetchTimeout = 60_000;
 import RNFS from 'react-native-fs';
 import { PermissionsAndroidLocal } from "../android/sharedAndroid.android";
 /**
@@ -81,7 +84,7 @@ class GoogleDrive {
     }
     public configureGetOptions(): any {
         const headers = new Headers()
-        headers.append('Authorization', `Bearer ${gdrive.apiToken}`)
+        headers.append('Authorization', `Bearer ${gdrive.accessToken}`)
         return {
             method: 'GET',
             headers,
@@ -92,11 +95,11 @@ class GoogleDrive {
      * create download url based on id
      */
     public downloadFile = (fileId: any): any => {
-        this.configureGetOptions()
         if (!fileId) throw new Error('Didn\'t provide a valid file id.')
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
     downloadAndReadFile = async (args: any): Promise<any> => {
+        if (!(await this.setAccessToken())) throw new ErrorAccessTokenNotSet();
         const fromUrl = this.downloadFile(args.fileId)
         const downloadFileOptions: any = {
             fromUrl: fromUrl,
@@ -108,6 +111,9 @@ class GoogleDrive {
 
         const fileresult = await RNFS.downloadFile(downloadFileOptions);
         const downloadResult = await fileresult.promise;
+        if (downloadResult.statusCode !== 200) {
+            throw new Error(`Google Drive download failed (${downloadResult.statusCode})`);
+        }
         return downloadResult;
     }
     static getInstance(): GoogleDrive {
@@ -158,7 +164,7 @@ class GoogleDrive {
                         mimeType: args.contentType,
                         parents: [args.parentFolderId],   // folderId , if you want to upload to folder
                     })
-                    .setIsBase64(false)
+                    .setIsBase64(args.isBase64)
                     .execute()
             ).id;
             if (response != "" && response != null && response != undefined) {
@@ -167,7 +173,7 @@ class GoogleDrive {
                 return new Error('GDrive file was not created');
             }
         } catch (e) {
-            return new Error('GDrive file was not created');
+            return asError(e);
         }
     }
 
@@ -219,41 +225,42 @@ class GoogleDrive {
      * If folder exists, it simply returns its id.
      */
     public async safeCreateFolder(args: SafeCreateFolderArgs): Promise<string | Error> {
-        // Set Google access token
-        console.log("args-", args);
-        const isAccessTokenSet = await this.setAccessToken();
-        console.log(isAccessTokenSet, "args-", appConfig.backupGDriveFolderName);
-        if (!isAccessTokenSet) {
-            return new ErrorAccessTokenNotSet();
-        }
         try {
-            const filenew = await gdrive.files.createIfNotExists({
-                q: new ListQueryBuilder("name", '=', appConfig.backupGDriveFolderName)
-                    .and("trashed", "=", false)
-                    .and("mimeType", "=", MIME_TYPES.application.vndGoogleAppsFolder)
-                    .and("'root' in parents")
-            },
-                gdrive.files.newMetadataOnlyUploader()
-                    .setRequestBody({
-                        name: appConfig.backupGDriveFolderName,
-                        mimeType: MIME_TYPES.application.vndGoogleAppsFolder,
-                        parents: ["root"]
-                    }
-                    )
-            )
-            console.log("filenew--",filenew)
-            if (filenew.result && filenew.result.id != '' && filenew.result.id != null && filenew.result.id != undefined) {
-                return filenew.result.id;
-            }
-            else {
-                console.log("in else")
-                return new Error('GDrive folder was not created');
-            }
-        } catch (e) {
-            console.log("catch error",e)
-            return new Error('GDrive folder was not created');
+            const folders = await this.findFolders(args.name, args.parentFolderId);
+            if (folders instanceof Error) return folders;
+            if (folders.length) return folders[0].id;
+            const folder = await gdrive.files.newMetadataOnlyUploader().setRequestBody({
+                name: args.name,
+                mimeType: MIME_TYPES.application.vndGoogleAppsFolder,
+                parents: [args.parentFolderId],
+            }).execute();
+            if (!folder.id) throw new Error('GDrive folder was not created');
+            return folder.id;
+        } catch (error) {
+            return asError(error);
         }
+    }
 
+    public async findFolders(name: string, parentFolderId = 'root'): Promise<FileMetadata[] | Error> {
+        return this.list({
+            filter: `trashed=false and name='${queryValue(name)}' and mimeType='${MIME_TYPES.application.vndGoogleAppsFolder}' and '${queryValue(parentFolderId)}' in parents`,
+            orderBy: 'modifiedTime desc',
+        });
+    }
+
+    public async findBackupFiles(): Promise<FileMetadata[] | Error> {
+        const folders = await this.findFolders(appConfig.backupGDriveFolderName);
+        if (folders instanceof Error) return folders;
+        const files: FileMetadata[] = [];
+        for (const folder of folders) {
+            const matches = await this.list({
+                filter: `trashed=false and name contains '${queryValue(appConfig.backupGDriveFileName)}' and '${queryValue(folder.id)}' in parents`,
+                orderBy: 'modifiedTime desc',
+            });
+            if (matches instanceof Error) return matches;
+            files.push(...matches);
+        }
+        return files.sort((a, b) => (b.modifiedTime || '').localeCompare(a.modifiedTime || '') || a.id.localeCompare(b.id));
     }
 
     /**
@@ -353,27 +360,25 @@ class GoogleDrive {
         }
         // List files metadata
         try {
-            const response: Response = await gdrive.files.list({
-                fields: `files(${FILE_METADATA_FIELDS})`,
-                // fields: '*', // Use only during development!
-
-                // Filter: https://bit.ly/3ax8TJI
-                q: args.filter,
-                // q: `trashed=false and (name contains 'file1') and ('root' in parents) and (mimeType contains 'text/plain') or (mimeType contains 'folder')`,
-
-                // Order: https://bit.ly/34ZczTf
-                orderBy: args.orderBy,
-            });
-            const results: any = await response;
-            if (results && results.files.length > 0) {
-                return results.files;
-            } else {
-                return new Error('Error listing files: ' + results?.error?.message);
-            }
-        } catch (e) {
-            return new Error('Can not list files');
+            const files: FileMetadata[] = [];
+            let pageToken: string | undefined;
+            do {
+                const response = await gdrive.files.list({
+                    fields: `nextPageToken,files(${FILE_METADATA_FIELDS})`,
+                    q: args.filter,
+                    orderBy: args.orderBy,
+                    // The Drive wrapper stringifies every supplied query value.
+                    // Omit pageToken on the first request instead of passing undefined.
+                    ...(pageToken ? { pageToken } : {}),
+                });
+                if (!Array.isArray(response.files)) throw new Error('Invalid Google Drive listing');
+                files.push(...response.files as FileMetadata[]);
+                pageToken = response.nextPageToken;
+            } while (pageToken);
+            return files;
+        } catch (error) {
+            return asError(error);
         }
-
     }
 
     /**
@@ -440,6 +445,7 @@ interface FileMetadata {
     version: string;
     originalFilename: string;
     fileExtension: string;
+    modifiedTime?: string;
 }
 
 interface GetIdArgs {

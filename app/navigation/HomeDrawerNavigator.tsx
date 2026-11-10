@@ -1,3 +1,4 @@
+import UnmountInactiveScreen from './UnmountInactiveScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerContent from '@screens/CustomDrawerContent';
 import Aboutus from '@screens/home/Aboutus';
@@ -15,9 +16,9 @@ export default (): any => {
   return (
     <HomeDrawerNavigator.Navigator
       screenOptions={{
-        unmountOnBlur: true,
         headerShown: false,
       }}
+      screenLayout={({ children }) => <UnmountInactiveScreen>{children}</UnmountInactiveScreen>}
       detachInactiveScreens={true}
       backBehavior={'initialRoute'}
       drawerContent={(props): any => <CustomDrawerContent {...props} />

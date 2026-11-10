@@ -1,0 +1,53 @@
+diff --git a/node_modules/react-native-vector-image/src/index.js b/node_modules/react-native-vector-image/src/index.js
+index 92b802b..e85d71e 100644
+--- a/node_modules/react-native-vector-image/src/index.js
++++ b/node_modules/react-native-vector-image/src/index.js
+@@ -1,5 +1,5 @@
+ import React from 'react';
+-import AssetRegistry from 'react-native/Libraries/Image/AssetRegistry';
++import { AssetRegistry } from 'react-native';
+ import { VectorImageCompat } from './VectorImageCompat';
+ import getResourceName from './getResourceName';
+ 
+diff --git a/node_modules/react-native-vector-image/src/cli/getAssets.js b/node_modules/react-native-vector-image/src/cli/getAssets.js
+--- a/node_modules/react-native-vector-image/src/cli/getAssets.js
++++ b/node_modules/react-native-vector-image/src/cli/getAssets.js
+@@ -1,6 +1,6 @@
+-const Server = require('metro/src/Server');
++const Server = require('metro/private/Server').default;
+ const { loadConfig } = require('metro-config');
+-const output = require('metro/src/shared/output/bundle');
++const output = require('metro/private/shared/output/bundle');
+ 
+ const getBabelTransformerPath = () => {
+   try {
+@@ -33,7 +33,7 @@
+       transformer: {
+         allowOptionalDependencies: true,
+         babelTransformerPath: getBabelTransformerPath(),
+-        assetRegistryPath: 'react-native/Libraries/Image/AssetRegistry',
++        assetRegistryPath: 'react-native/asset-registry',
+       },
+     }
+   );
+@@ -47,7 +47,7 @@
+     platform: args.platform,
+     unstable_transformProfile: args.unstableTransformProfile,
+   };
+-  const server = new Server(config);
++  const server = new Server(config, { watch: false });
+ 
+   try {
+     await output.build(server, requestOpts);
+diff --git a/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js b/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js
+--- a/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js
++++ b/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js
+@@ -47,7 +47,7 @@
+     sourcePath,
+     svgSource.replace(
+       /rgba\([0-9]+,\s*[0-9]+,\s*[0-9]+,\s*(1|[0-9]*\.[0-9]+)\)/g,
+-      (match) => chroma(match).hex()
++      (match) => chroma(match).hex('argb')
+     )
+   );
+ 

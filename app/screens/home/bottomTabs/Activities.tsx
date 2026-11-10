@@ -1,3 +1,4 @@
+import { scheduleIdleTask } from "../../../services/scheduleIdleTask";
 import ActivitiesCategories from "@components/ActivitiesCategories";
 import AgeBrackets from "@components/AgeBrackets";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -46,7 +47,6 @@ import {
   StyleSheet,
   Text,
   View,
-  InteractionManager,
   ActivityIndicator,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
@@ -461,7 +461,7 @@ const Activities = ({ route, navigation }: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
+      const task = scheduleIdleTask(() => {
         console.log("is child premature", activeChild.isPremature);
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);

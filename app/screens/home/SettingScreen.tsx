@@ -74,6 +74,7 @@ import React, {
   useContext,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
@@ -189,6 +190,7 @@ const SettingScreen = (props: any): any => {
   const isFocused = useIsFocused();
   const { t } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
+  const driveOperationRunning = useRef(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
@@ -215,17 +217,25 @@ const SettingScreen = (props: any): any => {
   }, []);
 
   const importAllData = async (): Promise<any> => {
+    if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
+    driveOperationRunning.current = true;
     setIsImportRunning(true);
-    await backup.import(
-      props.navigation,
-      languageCode,
-      dispatch,
-      childAge,
-      genders,
-      taxonomyIds
-    );
-    setIsImportRunning(false);
-    actionSheetRefImport.current?.setModalVisible(false);
+    try {
+      const result = await backup.import(
+        props.navigation, languageCode, dispatch, childAge, genders, taxonomyIds
+      );
+      if (result instanceof Error) throw result;
+      if (result !== "Imported") throw new Error("Backup restore was not confirmed");
+    } catch (error) {
+      if (!(error instanceof Error && error.message === "loginCanceled")) {
+        console.error("Drive restore failed", error);
+        Alert.alert("", t("generalError"));
+      }
+    } finally {
+      driveOperationRunning.current = false;
+      setIsImportRunning(false);
+      actionSheetRefImport.current?.setModalVisible(false);
+    }
   };
 
   const encryptData = (text: string, key: any): any => {
@@ -367,16 +377,22 @@ const SettingScreen = (props: any): any => {
     setImportAlertVisible(false);
   };
   const exportToDrive = async (): Promise<any> => {
+    if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
+    driveOperationRunning.current = true;
     setIsExportRunning(true);
-    const exportIsSuccess = await backup.export();
-    setIsExportRunning(false);
-    if (!exportIsSuccess) {
-      Alert.alert("", t("settingExportError"));
-    } else {
-      Alert.alert("", t("settingExportSuccess"));
+    try {
+      const success = await backup.export();
+      Alert.alert("", t(success ? "settingExportSuccess" : "generalError"));
+    } catch (error) {
+      console.error("Drive backup failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
+      driveOperationRunning.current = false;
+      setIsExportRunning(false);
+      actionSheetRef.current?.setModalVisible(false);
     }
-    actionSheetRef.current?.setModalVisible(false);
   };
+
   const handleExportAlertConfirm = (): any => {
     setExportAlertVisible(false);
     exportToDrive();

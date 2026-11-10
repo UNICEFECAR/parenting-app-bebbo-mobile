@@ -240,6 +240,7 @@ const AddNewChildWeight = ({ navigation, route }: Props): any => {
                   name: prevRoute,
                   params: { weight: getWeightValue() },
                   merge: true,
+                  pop: true,
                 });
               }}
             >

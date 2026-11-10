@@ -1,3 +1,4 @@
+import { returnToScreen } from "../navigation/returnToScreen";
 import { CHILD_ADDED_FROM_MANAGE_PROFILE, EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { appConfig } from '../instances';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
@@ -567,7 +568,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
             prevPage: 'AddEditChild'
           });
         } else {
-          navigation.navigate('ChildProfileScreen');
+          returnToScreen(navigation, "ChildProfileScreen");
         }
       }
 
@@ -580,7 +581,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
         }
       }
       console.log('===>2')
-      navigation.navigate('ChildProfileScreen');
+      returnToScreen(navigation, "ChildProfileScreen");
     }
     const notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));

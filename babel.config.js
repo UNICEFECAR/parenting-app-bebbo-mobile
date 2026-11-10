@@ -42,7 +42,7 @@ module.exports = (api) => {
       },
     ],
     [
-      "react-native-reanimated/plugin",
+      "react-native-worklets/plugin",
     ],
   ];
   //change to 'production' to check if this is working in 'development' mode

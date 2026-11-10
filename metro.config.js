@@ -9,9 +9,7 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 const path = require("path");
 
 process.env.FLAVOR = process.env.FLAVOR || "bebbo"; // Default to 'bebbo'
-const exclusionList = require("metro-config/src/defaults/exclusionList");
 
-const blacklist = require("metro-config/src/defaults/exclusionList");
 const config = {
   resetCache: true,
   transformer: {
@@ -23,10 +21,10 @@ const config = {
     }),
   },
   resolver: {
-    blacklistRE: exclusionList([
+    blockList: [
       /app\/instances\/.*\/styles\/package\.json/, // Exclude conflicting package.json files
       /app\/instances\/.*\/assets\/images\/package\.json/,
-    ]),
+    ],
     extraNodeModules: {
       "react-native-dotenv": path.resolve(
         __dirname,

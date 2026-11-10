@@ -243,6 +243,7 @@ const AddNewChildHeight = ({ navigation, route }: Props): any => {
                   name: prevRoute,
                   params: { height: getHeightValue() },
                   merge: true,
+                  pop: true,
                 });
               }}
             >

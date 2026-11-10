@@ -1,3 +1,4 @@
+import { returnToScreen } from "../../../navigation/returnToScreen";
 import AgeBrackets from "@components/AgeBrackets";
 import VideoPlayer from "@components/VideoPlayer";
 import ChildDevelopmentCollapsibleItem from "@components/ChildDevelopmentCollapsibleItem";
@@ -282,12 +283,12 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     [ChildDevData, MileStonesData, activeChild.uuid, netInfo.isConnected]
   );
 
-  const onBackPress = (): any => {
+  const onBackPress = React.useCallback((): any => {
     if (route.params?.fromNotificationScreen == true) {
-      navigation.navigate("NotificationsScreen");
+      returnToScreen(navigation, "NotificationsScreen");
       return true;
     } else if (route.params?.fromActivitiesScreen == true) {
-      navigation.navigate("Activities", {
+      returnToScreen(navigation, "Activities", {
         currentSelectedChildId: route.params?.currentSelectedChildId,
         backClicked: "yes",
       });
@@ -296,23 +297,25 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       navigation.goBack();
       return true;
     }
-  };
-  useEffect(() => {
+  }, [navigation, route.params?.fromNotificationScreen, route.params?.fromActivitiesScreen, route.params?.currentSelectedChildId]);
+  useFocusEffect(React.useCallback(() => {
     console.log("USe effect chilkd 2");
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       onBackPress
     );
-    navigation.addListener("gestureEnd", onBackPress);
+    const unsubscribeGesture = navigation.addListener("gestureEnd", onBackPress);
     return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
+      unsubscribeGesture();
       backHandler.remove();
+    };
+  }, [navigation, onBackPress]));
+  useEffect(() => () => {
       navigation.setParams({
         currentSelectedChildId: 0,
         fromActivitiesScreen: false,
       });
-    };
-  }, []);
+  }, [navigation]);
   useEffect(() => {
     if (isFocused) {
       console.log("UseFouusEffect child development");

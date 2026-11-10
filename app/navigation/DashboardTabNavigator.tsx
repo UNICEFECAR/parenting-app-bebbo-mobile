@@ -1,3 +1,4 @@
+import UnmountInactiveScreen from "./UnmountInactiveScreen";
 import { FDirRow } from "@components/shared/FlexBoxStyle";
 import { BottomBarBg, BottomBarList } from "@components/shared/HomeScreenStyle";
 import Icon, { OuterIconLeft, OuterIconRow } from "@components/shared/Icon";
@@ -33,8 +34,9 @@ export type ToolsRootStackParamList = {
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 const secondStack = createStackNavigator<any>();
-const secondaryRoot = (): any => {
+const SecondaryRoot = (): any => {
   return (
+    <UnmountInactiveScreen>
     <secondStack.Navigator initialRouteName="ChildgrowthTab">
       <secondStack.Screen
         name="ChildgrowthTab"
@@ -52,6 +54,7 @@ const secondaryRoot = (): any => {
         options={{ headerShown: false }}
       />
     </secondStack.Navigator>
+    </UnmountInactiveScreen>
   );
 };
 
@@ -166,7 +169,6 @@ export default (): any => {
             tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
-            unmountOnBlur: false,
             headerShown: false,
           }}
         />
@@ -187,7 +189,7 @@ export default (): any => {
           }}
         />
         <DashboardBottomTab.Screen
-          component={secondaryRoot}
+          component={SecondaryRoot}
           name="Tools"
           options={{
             tabBarLabel: t("tabbarLabel3"),
@@ -199,7 +201,6 @@ export default (): any => {
                 style={styles.bottomtabIconStyle}
               />
             ),
-            unmountOnBlur: true,
             headerShown: false,
           }}
           listeners={(): any => ({
@@ -219,10 +220,11 @@ export default (): any => {
           }}
           options={{
             tabBarLabel: t("tabbarLabel4"),
+            // The book glyph is wider than the default square icon container.
+            tabBarIconStyle: { width: 36 },
             tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
-            unmountOnBlur: false,
             headerShown: false,
           }}
         />
@@ -235,7 +237,6 @@ export default (): any => {
             tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
-            unmountOnBlur: false,
             headerShown: false,
           }}
         />

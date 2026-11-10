@@ -1,3 +1,4 @@
+import { scheduleIdleTask } from "../../../services/scheduleIdleTask";
 import { SURVEY_SUBMIT } from "@assets/data/firebaseEvents";
 import { appConfig } from "../../../instances";
 import { getDataToStore } from "@assets/translations/appOfflineData/getDataToStore";
@@ -47,7 +48,7 @@ import {
 } from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { InteractionManager, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -303,7 +304,7 @@ const Home = ({ route, navigation }: any): any => {
   const relfolejaprod = "1.1.0";
 
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       updateContentOnAppVersionChange();
 
       const firstModalVisible = flavor !== "bebbo" ? true : (countryId == appConfig.restOfTheWorldCountryId) ? true : false
@@ -350,7 +351,7 @@ const Home = ({ route, navigation }: any): any => {
 
   useLayoutEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
+      const task = scheduleIdleTask(() => {
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);
         }
@@ -720,7 +721,7 @@ const Home = ({ route, navigation }: any): any => {
         }
       }
     }
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       if (Platform.OS == "ios") {
         if (netInfo.isConnected != null) {
           fetchNetInfo();

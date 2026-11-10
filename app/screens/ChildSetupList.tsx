@@ -1,3 +1,4 @@
+import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
@@ -34,7 +35,6 @@ import {
   Alert,
   BackHandler,
   Dimensions,
-  InteractionManager,
   Platform,
   StyleSheet,
   Text,
@@ -132,7 +132,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
     let task: { cancel: () => void } | undefined;
     setLoading(true)
     if (isFocused) {
-      task = InteractionManager.runAfterInteractions(() => {
+      task = scheduleIdleTask(() => {
         getAllChildren(dispatch, childAge, 0);
         getAllConfigData(dispatch);
         setLoading(false)

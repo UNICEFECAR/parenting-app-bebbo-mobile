@@ -1,3 +1,4 @@
+import { returnToScreen } from "../navigation/returnToScreen";
 import getAllDataToStore, {
   getAllDataOnRetryToStore,
 } from "@assets/translations/appOfflineData/getDataToStore";
@@ -193,7 +194,7 @@ export const onAddEditChildSuccess = async (
     }
   }
 
-  navigation.navigate("ChildProfileScreen");
+  returnToScreen(navigation, "ChildProfileScreen");
 };
 export const onSponsorApiSuccess = async (
   response: any,
