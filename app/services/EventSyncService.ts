@@ -2,14 +2,6 @@ import { dataRealmCommon } from './../database/dbquery/dataRealmCommon';
 import { logAnalyticsEvent } from './firebaseAnalytics';
 import NetInfo from "@react-native-community/netinfo";
 
-//A method to log events to Firebase Analytics
-export const logEventToFirebase = async (analyticsInstance: any, event: any): Promise<void> => {
-  if (event.params != undefined) {
-    analyticsInstance.logEvent(event.name, event.params);
-  } else {
-    analyticsInstance.logEvent(event.name)
-  }
-}
 // A method mark event as synchronized after sync with firebase
 export const markEventAsSynchronized = async (realm: any, event: any): Promise<void> => {
   realm.write(() => {

@@ -2,7 +2,7 @@ import rootReducer from "../redux/reducers";
 import { PERMISSIONS } from "react-native-permissions";
 import { Platform } from "react-native";
 import { DateTime } from "luxon";
-import { DocumentDirectoryPath } from "react-native-fs";
+import { DocumentDirectoryPath } from "@dr.pogodin/react-native-fs";
 
 export type ApplicationState = ReturnType<typeof rootReducer>
 

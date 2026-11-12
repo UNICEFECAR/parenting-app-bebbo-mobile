@@ -17,7 +17,7 @@ import { DateTime } from "luxon";
 import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";

@@ -1,10 +1,12 @@
 import { backup } from '../backup';
+import { openBackupDocument, saveBackupDocument } from '../backupDocuments';
+import { pick, keepLocalCopy, saveDocuments } from '@react-native-documents/picker';
 import { googleAuth } from '../googleAuth';
 import { googleDrive } from '../googleDrive';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { safeOpenRealm } from '../../redux/reducers/realmSafe';
 import { getChild } from '../Utils';
-import RNFS from 'react-native-fs';
+import * as RNFS from '@dr.pogodin/react-native-fs';
 import AesCrypto from 'react-native-aes-crypto';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { getAllChildren, setActiveChild } from '../childCRUD';
@@ -15,7 +17,15 @@ jest.mock('../googleDrive', () => ({ googleDrive: {
   deleteFile: jest.fn(), downloadAndReadFile: jest.fn(),
 } }));
 jest.mock('../../instances', () => ({ appConfig: { backupGDriveFolderName: 'ParentBuddy', backupGDriveFileName: 'mybackup.json' } }));
-jest.mock('react-native-fs', () => ({ DocumentDirectoryPath: '/documents', readFile: jest.fn() }));
+jest.mock('@dr.pogodin/react-native-fs', () => ({
+  DocumentDirectoryPath: '/documents', CachesDirectoryPath: '/cache',
+  readFile: jest.fn(), writeFile: jest.fn(), unlink: jest.fn(),
+}));
+jest.mock('@react-native-documents/picker', () => ({
+  pick: jest.fn(), keepLocalCopy: jest.fn(), saveDocuments: jest.fn(),
+  types: { allFiles: '*/*' }, errorCodes: { OPERATION_CANCELED: 'OPERATION_CANCELED' },
+  isErrorWithCode: (error: any) => error != null && typeof error === 'object' && 'code' in error,
+}));
 jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn() }));
 jest.mock('../../database/dbquery/userRealmCommon', () => ({ userRealmCommon: { openRealm: jest.fn(), exportUserRealmDataToJson: jest.fn() } }));
 jest.mock('../../database/dbquery/dataRealmCommon', () => ({ dataRealmCommon: { getFilteredData: jest.fn().mockResolvedValue([]) } }));
@@ -100,6 +110,15 @@ test('does no Drive work after sign-in cancellation', async () => {
   const result = await restore();
   expect(result).toEqual(new Error('loginCanceled'));
   expect(drive.findBackupFiles).not.toHaveBeenCalled();
+});
+
+test('authorization failure leaves Drive untouched and permits a later backup attempt', async () => {
+  auth.ensureSignedIn.mockRejectedValueOnce(new Error('Drive permission denied'));
+  await expect(backup.export()).rejects.toThrow('Drive permission denied');
+  expect(drive.findBackupFiles).not.toHaveBeenCalled();
+  expect(drive.createFileMultipart).not.toHaveBeenCalled();
+  expect(drive.deleteFile).not.toHaveBeenCalled();
+  await expect(backup.export()).resolves.toBe(true);
 });
 
 test('missing backup is a returned error and never creates a restore folder', async () => {
@@ -217,4 +236,88 @@ test('Settings also restores the older Realm format through the existing child c
   expect(getChild).toHaveBeenCalledWith(completeChild, []);
   expect(close).toHaveBeenCalledTimes(1);
   expect(getAllChildren).toHaveBeenCalled();
+});
+
+
+describe('local backup document selection and saving', () => {
+  beforeEach(() => {
+    jest.mocked(pick).mockResolvedValue([{ uri: 'content://provider/backup', name: 'mybackup.json' }] as any);
+    jest.mocked(keepLocalCopy).mockResolvedValue([{ status: 'success', sourceUri: 'content://provider/backup', localUri: 'file:///cache/import.json' }]);
+    jest.mocked(saveDocuments).mockResolvedValue([{ uri: 'content://provider/saved', name: 'mybackup.json', error: null }]);
+    jest.mocked(RNFS.writeFile).mockResolvedValue(undefined);
+    jest.mocked(RNFS.unlink).mockResolvedValue(undefined);
+  });
+
+  test('reads encrypted JSON unchanged and removes only the temporary local copy', async () => {
+    jest.mocked(RNFS.readFile).mockResolvedValue('"encrypted"');
+    await expect(openBackupDocument()).resolves.toEqual({ name: 'mybackup.json', data: '"encrypted"' });
+    expect(RNFS.readFile).toHaveBeenCalledWith('file:///cache/import.json', 'utf8');
+    expect(RNFS.unlink).toHaveBeenCalledWith('file:///cache/import.json');
+    expect(pick).toHaveBeenCalledTimes(1);
+  });
+
+  test('legacy binary imports use base64 from the same selection, never a second picker', async () => {
+    jest.mocked(pick).mockResolvedValue([{ uri: 'content://provider/realm', name: 'backup.realm' }] as any);
+    jest.mocked(RNFS.readFile).mockResolvedValue('AAECAw==');
+    await expect(openBackupDocument()).resolves.toEqual({ name: 'backup.realm', data: 'AAECAw==' });
+    expect(RNFS.readFile).toHaveBeenCalledWith('file:///cache/import.json', 'base64');
+    expect(pick).toHaveBeenCalledTimes(1);
+  });
+
+  test('uppercase JSON extensions still read as UTF-8', async () => {
+    jest.mocked(pick).mockResolvedValue([{ uri: 'content://provider/json', name: 'BACKUP.JSON' }] as any);
+    await openBackupDocument();
+    expect(RNFS.readFile).toHaveBeenCalledWith(expect.any(String), 'utf8');
+  });
+
+  test('cancelling selection is a neutral result and never reads files', async () => {
+    jest.mocked(pick).mockRejectedValueOnce({ code: 'OPERATION_CANCELED' });
+    await expect(openBackupDocument()).resolves.toBeNull();
+    expect(RNFS.readFile).not.toHaveBeenCalled();
+    expect(userData.openRealm).not.toHaveBeenCalled();
+  });
+
+  test('provider copy failures stop before reading or touching Realm', async () => {
+    jest.mocked(keepLocalCopy).mockResolvedValueOnce([{ status: 'error', sourceUri: 'content://provider/backup', copyError: 'Provider offline' }]);
+    await expect(openBackupDocument()).rejects.toThrow('Provider offline');
+    expect(RNFS.readFile).not.toHaveBeenCalled();
+    expect(userData.openRealm).not.toHaveBeenCalled();
+  });
+
+  test('read failures still clean the local copy without deleting the original document', async () => {
+    jest.mocked(RNFS.readFile).mockRejectedValueOnce(new Error('Read failed'));
+    await expect(openBackupDocument()).rejects.toThrow('Read failed');
+    expect(RNFS.unlink).toHaveBeenCalledTimes(1);
+    expect(RNFS.unlink).toHaveBeenCalledWith('file:///cache/import.json');
+  });
+
+  test('Save As preserves the previous Android JSON-quoted ciphertext and filename', async () => {
+    await expect(saveBackupDocument('encrypted')).resolves.toBe(true);
+    expect(RNFS.writeFile).toHaveBeenCalledWith(expect.any(String), '"encrypted"', 'utf8');
+    expect(saveDocuments).toHaveBeenCalledWith({ sourceUris: [expect.stringMatching(/^file:\/\/\/cache\//)], mimeType: 'application/json', fileName: 'mybackup.json' });
+    expect(RNFS.unlink).toHaveBeenCalledWith(jest.mocked(RNFS.writeFile).mock.calls[0][0]);
+  });
+
+  test('does not clean the export source or report success before the native copy finishes', async () => {
+    let finish!: (value: any) => void;
+    jest.mocked(saveDocuments).mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+    const result = saveBackupDocument('encrypted');
+    for (let index = 0; index < 10 && !finish; index++) await Promise.resolve();
+    expect(RNFS.unlink).not.toHaveBeenCalled();
+    finish([{ uri: 'content://saved', name: 'mybackup.json', error: null }]);
+    await expect(result).resolves.toBe(true);
+    expect(RNFS.unlink).toHaveBeenCalledTimes(1);
+  });
+
+  test('save cancellation cleans the temporary file and does not report success', async () => {
+    jest.mocked(saveDocuments).mockRejectedValueOnce({ code: 'OPERATION_CANCELED' });
+    await expect(saveBackupDocument('encrypted')).resolves.toBe(false);
+    expect(RNFS.unlink).toHaveBeenCalledTimes(1);
+  });
+
+  test('a native write error is a failure even when the provider returned a target URI', async () => {
+    jest.mocked(saveDocuments).mockResolvedValueOnce([{ uri: 'content://saved', name: 'mybackup.json', error: 'No space' }]);
+    await expect(saveBackupDocument('encrypted')).rejects.toThrow('No space');
+    expect(RNFS.unlink).toHaveBeenCalledTimes(1);
+  });
 });

@@ -69,8 +69,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from "styled-components/native";
 import { v4 as uuidv4 } from "uuid";
@@ -648,11 +647,9 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
           ) : null}
         </HeaderRowView>
 
-        <ScrollView
-          style={styles.scrollViewStyle}
-          keyboardShouldPersistTaps={"always"}
-        >
           <KeyboardAwareScrollView
+            style={styles.scrollViewStyle}
+            bottomOffset={20}
             bounces={false}
             keyboardShouldPersistTaps={"always"}
           >
@@ -891,7 +888,6 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
               </ButtonTertiary>
             </ButtonContainer>
           </KeyboardAwareScrollView>
-        </ScrollView>
 
         <Modal
           animationType="none"

@@ -62,7 +62,7 @@ import {
   GAME_DETAILS_OPENED,
 } from "@assets/data/firebaseEvents";
 import { addSpaceToHtml } from "../../services/Utils";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import {
   ActivitiesEntity,
   ActivitiesEntitySchema,

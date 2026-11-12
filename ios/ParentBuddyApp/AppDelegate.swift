@@ -4,7 +4,7 @@ import React_RCTAppDelegate
 import ReactAppDependencyProvider
 import Firebase
 import Lottie
-import react_native_lottie_splash_screen
+import class SplashScreen.SplashScreen
 
 @main
 class AppDelegate: RCTAppDelegate {
@@ -58,17 +58,15 @@ class AppDelegate: RCTAppDelegate {
         window.addSubview(splashContainer)
         window.bringSubviewToFront(splashContainer)
 
-        // Show using RNSplashScreen to track animation
-        RNSplashScreen.showLottieSplash(animationUIView, inRootView: splashContainer)
+        // Keep the branded animation visible until the existing two-second handover.
+        SplashScreen.showLottieSplash(animationUIView, inRootView: splashContainer, forceToCloseByHideMethod: true)
 
-        if let animationView = animationUIView as? LottieAnimationView {
-            dynamic.play(animationView: animationView)
-        }
+        // SplashScreen 3 starts the Lottie view itself.
 
         // Remove splash after delay or when app is ready
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            SplashScreen.hide()
             splashContainer.removeFromSuperview()
-            RNSplashScreen.setAnimationFinished(true)
         }
         // self.splashContainer = splashContainer
     }

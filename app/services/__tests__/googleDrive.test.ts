@@ -1,14 +1,18 @@
 import { googleDrive } from '../googleDrive';
 import { GDrive } from '@robinbobin/react-native-google-drive-api-wrapper';
-import RNFS from 'react-native-fs';
+import * as RNFS from '@dr.pogodin/react-native-fs';
+import { googleAuth } from '../googleAuth';
 
 jest.mock('@robinbobin/react-native-google-drive-api-wrapper', () => ({
   GDrive: jest.fn().mockImplementation(() => ({ files: { list: jest.fn(), newMetadataOnlyUploader: jest.fn() } })),
   MIME_TYPES: { application: { vndGoogleAppsFolder: 'folder' } },
 }));
-jest.mock('../googleAuth', () => ({ googleAuth: { getTokens: jest.fn().mockResolvedValue({ accessToken: 'access' }) } }));
+jest.mock('../googleAuth', () => ({ googleAuth: {
+  getTokens: jest.fn().mockResolvedValue({ accessToken: 'access' }),
+  clearCachedAccessToken: jest.fn().mockResolvedValue(undefined),
+} }));
 jest.mock('../../instances', () => ({ appConfig: { backupGDriveFolderName: 'ParentBuddy', backupGDriveFileName: 'mybackup.json' } }));
-jest.mock('react-native-fs', () => ({ downloadFile: jest.fn() }));
+jest.mock('@dr.pogodin/react-native-fs', () => ({ downloadFile: jest.fn() }));
 jest.mock('../../android/sharedAndroid.android', () => ({ PermissionsAndroidLocal: {} }));
 const drive = (GDrive as jest.Mock).mock.results[0].value;
 beforeEach(() => { jest.clearAllMocks(); });
@@ -29,6 +33,13 @@ test('reads all pages', async () => {
 test('preserves permission errors', async () => {
   drive.files.list.mockRejectedValueOnce(new Error('403 insufficient permission'));
   await expect(googleDrive.list()).resolves.toEqual(new Error('403 insufficient permission'));
+});
+test('clears a rejected token without retrying the Drive operation', async () => {
+  const failure = Object.assign(new Error('401 unauthorized'), { response: { status: 401 } });
+  drive.files.list.mockRejectedValueOnce(failure);
+  await expect(googleDrive.list()).resolves.toBe(failure);
+  expect(googleAuth.clearCachedAccessToken).toHaveBeenCalledWith('access');
+  expect(drive.files.list).toHaveBeenCalledTimes(1);
 });
 test('searches duplicate folders and returns the newest backup first', async () => {
   drive.files.list.mockResolvedValueOnce({ files: [{ id: 'empty' }, { id: 'older' }, { id: 'newer' }] })

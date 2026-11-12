@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import styled from "styled-components/native";
 import { useAppSelector } from "../../../App";
 import LoadableImage from "../../services/LoadableImage";

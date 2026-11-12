@@ -48,7 +48,7 @@ import useDigitConverter from "../customHooks/useDigitConvert";
 import { selectActiveChild, selectActiveChildUuid } from "../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LoadableImage from "../services/LoadableImage";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
   checkboxStyle: { borderWidth: 1 },

@@ -41,12 +41,11 @@ import { appConfig, countryData } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
-import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp, setBackgroundMessageHandler } from "@react-native-firebase/messaging";
+import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp } from "@react-native-firebase/messaging";
 import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
-import PushNotification from "react-native-push-notification";
+import LocalNotifications from "../services/LocalNotifications";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
-import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { trimWhiteSpacePayload } from "../services/Utils";
 import TermsPage from "@screens/TermsPage";
 import { logEvent, synchronizeEvents } from "../services/EventSyncService";
@@ -54,8 +53,7 @@ import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
-import { logAnalyticsEvent, setUserProperties } from "../services/firebaseAnalytics";
-import crashlytics from '@react-native-firebase/crashlytics';
+import { logAnalyticsEvent, setUserProperties, logCrashlyticsMessage, recordError } from "../services/firebaseAnalytics";
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
 
@@ -462,7 +460,7 @@ export default (): any => {
       }
       setProfileLoading(true);
         const start = Date.now();      
-        crashlytics().log(
+        logCrashlyticsMessage(
           'NOTI: setActiveChild start'
         );
         const setData = await setActiveChild(
@@ -472,7 +470,7 @@ export default (): any => {
           child_age,
           true
         );
-        crashlytics().log(
+        logCrashlyticsMessage(
           `NOTI: setActiveChild end ${
             Date.now() - start
           }ms`
@@ -481,86 +479,26 @@ export default (): any => {
           setProfileLoading(false);
         }
     } catch (error) {
-      crashlytics().recordError(error as any);
+      recordError(error as any);
       setProfileLoading(false);
     }
   });
   };
-  const handleNotification = (notification: any): any => {
-    let executed = false;
-    if (!executed) {
-      executed = true;
-      if (Platform.OS == "ios") {
-        PushNotificationIOS.getApplicationIconBadgeNumber((num) => {
-          // get current number
-          console.log(num, "...num...");
-          if (num >= 1) {
-            PushNotificationIOS.setApplicationIconBadgeNumber(0); //set number to 0
-          }
-        });
-      }
-
-      if (notification && notification.userInteraction == true) {
-        if (
-          notification &&
-          notification.data &&
-          notification.data.notitype != "" &&
-          notification.data.notitype != null &&
-          notification.data.notitype != undefined &&
-          userIsOnboarded
-        ) {
-          redirectLocation(notification);
-        }
-      } else {
-        ///////**APP IS CLOSED!!!**
-
-        if (notification && notification.foreground == false) {
-          if (
-            notification &&
-            notification.data &&
-            notification.data.notitype != "" &&
-            notification.data.notitype != null &&
-            notification.data.notitype != undefined &&
-            userIsOnboarded
-          ) {
-            redirectLocation(notification);
-          }
-        }
-      }
-    }
+  const localNotificationHandler = useRef<(notification: any) => boolean>(() => false);
+  localNotificationHandler.current = (notification: any): boolean => {
+    if (!userIsOnboarded || !navigationRef.current?.isReady()) return false;
+    if (notification?.data?.notitype) redirectLocation(notification);
+    return true;
   };
-  const createLocalNotificationListeners = async (): Promise<any> => {
-    try {
-      PushNotification.configure({
-        // this will listen to your local push notifications on clicked
-        onNotification: (notification: any) => {
-          handleNotification(notification);
-          if (Platform.OS == "ios") {
-            notification.finish(PushNotificationIOS.FetchResult.NoData);
-          }
-        },
-        popInitialNotification: true,
-        requestPermissions: false,
-      });
-      PushNotification.popInitialNotification((notification: any) => {
-        handleNotification(notification);
-        // this will listen to your local push notifications on opening app from background state
-      });
-    } catch (e) {
-      console.log("error");
-    }
-  };
-
   useEffect(() => {
     if (!userIsOnboarded) return;
-    const timeout = setTimeout(() => {
-        createLocalNotificationListeners();
-      },2000);
-      return () => clearTimeout(timeout);
+    return LocalNotifications.subscribeToPress((notification: any) =>
+      localNotificationHandler.current(notification)
+    );
   }, [userIsOnboarded]);
 
   const redirectPayload = (remoteMessage: any): any => {
-    crashlytics().log(
+    logCrashlyticsMessage(
       `NOTI: redirectPayload type=${remoteMessage?.data?.type}`
     );
     if (
@@ -923,68 +861,40 @@ export default (): any => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
-    if (!userIsOnboarded) return;
-    const task = scheduleIdleTask(() => {
-      onNotificationOpenedApp(messaging, (remoteMessage) => {
-        if (remoteMessage) {
-          // background click noti
-          if (userIsOnboarded == true) {
-            scheduleIdleTask(() => {
-              crashlytics().log('NOTI: executing redirectPayload');
-              redirectPayload(remoteMessage);
-            });
-          }
+    const splashTimer = setTimeout(() => SplashScreen.hide(), 2000);
+    let active = true;
+    let unsubscribeOpened: (() => void) | undefined;
+    let unsubscribeMessage: (() => void) | undefined;
+    const redirects = new Set<ReturnType<typeof scheduleIdleTask>>();
+    const queueRedirect = (remoteMessage: any, message: string): void => {
+      const redirect = scheduleIdleTask(() => {
+        redirects.delete(redirect);
+        if (!active) return;
+        logCrashlyticsMessage(message);
+        redirectPayload(remoteMessage);
+      });
+      redirects.add(redirect);
+    };
+    const task = userIsOnboarded ? scheduleIdleTask(() => {
+      unsubscribeOpened = onNotificationOpenedApp(messaging, (remoteMessage) => {
+        if (remoteMessage && active) {
+          queueRedirect(remoteMessage, 'NOTI: executing redirectPayload');
         }
       });
-      // Check whether an initial notification is available
+      // Preserve the destination when launching from a notification.
       getInitialNotification(messaging)
         .then((remoteMessage) => {
-          crashlytics().log('NOTI: getInitialNotification start');
-
+          if (!active) return;
+          logCrashlyticsMessage('NOTI: getInitialNotification start');
           if (remoteMessage) {
-            crashlytics().log(
-              `NOTI: opened app type=${remoteMessage?.data?.type}`
-            );
+            logCrashlyticsMessage(`NOTI: opened app type=${remoteMessage?.data?.type}`);
+            queueRedirect(remoteMessage, 'NOTI: executing redirectPayload2');
           }
-          if (remoteMessage) {
-            // after kill and restart application
-            if (userIsOnboarded == true) {
-              scheduleIdleTask(() => {
-                crashlytics().log('NOTI: executing redirectPayload2');
-                redirectPayload(remoteMessage);
-              });
-            }
-          }
-        });
+        })
+        .catch((error) => { if (active) void recordError(error); });
 
-      // let hideDelay = 2000;
-      // if (userIsOnboarded) {
-      //   hideDelay = Platform.OS === 'android' ? 0 : 500;
-      // }
-      // if (Platform.OS === 'ios') {
-      //   NativeModules.RNSplashScreen.setAnimationFinished(true);
-      // }
-      
-
-      setBackgroundMessageHandler(messaging, async (remoteMessage) => {
-        try {
-          // console.log('Remote notification', JSON.stringify(remoteMessage))
-        } catch (err) {
-          console.log(err);
-        }
-      });
-      onMessage(messaging, async (remoteMessage) => {
-        //type article/activities
-        //foreground call
-        if (
-          remoteMessage &&
-          remoteMessage.notification &&
-          remoteMessage.notification.body &&
-          remoteMessage.notification.title
-        ) {
+      unsubscribeMessage = onMessage(messaging, async (remoteMessage) => {
+        if (active && remoteMessage?.notification?.body && remoteMessage.notification.title) {
           Alert.alert(
             remoteMessage.notification.title,
             remoteMessage.notification.body,
@@ -992,8 +902,16 @@ export default (): any => {
           );
         }
       });
-    });
-    return () => task.cancel();
+    }) : undefined;
+    return () => {
+      active = false;
+      clearTimeout(splashTimer);
+      task?.cancel();
+      unsubscribeOpened?.();
+      unsubscribeMessage?.();
+      redirects.forEach((redirect) => redirect.cancel());
+      redirects.clear();
+    };
   }, [userIsOnboarded]);
 
   useMemo(() => {
@@ -1085,7 +1003,7 @@ export default (): any => {
         dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         const start = Date.now();
         getAllChildren(dispatch, child_age, 0);
-        crashlytics().log(
+        logCrashlyticsMessage(
           `STARTUP: getAllChildren ${
             Date.now() - start
           }ms`
@@ -1177,6 +1095,7 @@ export default (): any => {
           navigationInChildEnabled
           ref={navigationRef}
           onReady={(): any => {
+            LocalNotifications.flushPendingPress();
             routeNameRef.current = navigationRef.current.getCurrentRoute().name;
             // SplashScreen.hide();
           }}

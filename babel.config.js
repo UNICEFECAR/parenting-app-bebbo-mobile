@@ -1,14 +1,14 @@
 module.exports = (api) => {
   const babelEnv = api.env();
-  const flavor = process.env.FLAVOR || 'bebbo';
+  const flavor = api.cache.using(() => process.env.FLAVOR || 'bebbo');
   const plugins = [
     [
       'module:react-native-dotenv',
       {
         moduleName: "react-native-dotenv",
         path: `env/.env.${flavor}`,
-        blacklist: null,
-        whitelist: null,
+        blocklist: null,
+        allowlist: null,
         safe: false,
         allowUndefined: true,
         verbose: false,

@@ -8,7 +8,7 @@ import {
 import React, { useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet } from "react-native";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import styled, { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";

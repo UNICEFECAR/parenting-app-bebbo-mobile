@@ -20,6 +20,7 @@ import ErrorBoundary from "react-native-error-boundary";
 import Orientation from "react-native-orientation-locker";
 import { MenuProvider } from "react-native-popup-menu";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import { enableScreens } from "react-native-screens";
 import {
   Provider,
@@ -143,7 +144,9 @@ const App = () => {
                 onBeforeLift={onBeforeLift}
               >
                 <SafeAreaProvider style={styles.flex1}>
-                  <AppNavigation />
+                  <KeyboardProvider preload={false}>
+                    <AppNavigation />
+                  </KeyboardProvider>
                 </SafeAreaProvider>
               </PersistGate>
             </Provider>

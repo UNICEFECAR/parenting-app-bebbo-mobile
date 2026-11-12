@@ -16,8 +16,8 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import AesCrypto from "react-native-aes-crypto";
-import * as ScopedStorage from "react-native-scoped-storage";
-import RNFS from "react-native-fs";
+import { saveBackupDocument } from "../../services/backupDocuments";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import { appConfig } from '../../instances';
 import Share from "react-native-share";
 
@@ -103,32 +103,15 @@ const QuickLinksRow = () => {
         setIsExportRunning(false);
       });
   };
-  const exportDataAndroid = async (cipher: string): Promise<any> => {
-    // const file = await ScopedStorage.openDocumentTree(true);
-    const uri: any = await ScopedStorage.getPersistedUriPermissions();
+  const exportDataAndroid = async (cipher: string): Promise<void> => {
     try {
-      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
-      const fileDownload: any = await ScopedStorage.createDocument(
-        "mybackup",
-        "application/json",
-        JSON.stringify(cipher),
-        "utf8"
-      );
-      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-
-      if (
-        fileDownload != "" &&
-        fileDownload != null &&
-        fileDownload != undefined
-      ) {
+      if (await saveBackupDocument(cipher)) {
         Alert.alert("", t("settingExportSuccess"));
-        setIsExportRunning(false);
-      } else {
-        Alert.alert("", t("settingExportError"));
-        setIsExportRunning(false);
       }
-    } catch (e: any) {
-      console.log("", e.message);
+    } catch (error) {
+      console.error("Backup export failed", error);
+      Alert.alert("", t("settingExportError"));
+    } finally {
       setIsExportRunning(false);
     }
   };

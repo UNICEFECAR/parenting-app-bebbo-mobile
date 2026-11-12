@@ -54,7 +54,7 @@ import {
   View,
 } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
-import { copyFile, exists, mkdir, unlink } from "react-native-fs";
+import { copyFile, exists, mkdir, unlink } from "@dr.pogodin/react-native-fs";
 import { Image as ImageObject } from "react-native-image-crop-picker";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";

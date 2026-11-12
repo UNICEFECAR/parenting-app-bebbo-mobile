@@ -7,11 +7,19 @@ import { appConfig } from "../instances";
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension,modifiedTime';
 const queryValue = (value: string) => value.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-const asError = (error: unknown): Error => error instanceof Error ? error : new Error('Google Drive request failed');
+const asError = async (error: unknown): Promise<Error> => {
+    const failure = error as { response?: { status?: number } };
+    if (failure?.response?.status === 401 && gdrive.accessToken) {
+        // Clear a rejected token for the next user-initiated attempt. Do not retry writes.
+        try { await googleAuth.clearCachedAccessToken(gdrive.accessToken); }
+        catch { /* Preserve the original Drive failure if clearing also fails. */ }
+    }
+    return error instanceof Error ? error : new Error('Google Drive request failed');
+};
 const gdrive = new GDrive();
 // The wrapper defaults to 1.5 seconds, which can abort normal Drive requests.
 gdrive.fetchTimeout = 60_000;
-import RNFS from 'react-native-fs';
+import * as RNFS from '@dr.pogodin/react-native-fs';
 import { PermissionsAndroidLocal } from "../android/sharedAndroid.android";
 /**
  * Access Google drive API.
@@ -112,6 +120,10 @@ class GoogleDrive {
         const fileresult = await RNFS.downloadFile(downloadFileOptions);
         const downloadResult = await fileresult.promise;
         if (downloadResult.statusCode !== 200) {
+            if (downloadResult.statusCode === 401) {
+                try { await googleAuth.clearCachedAccessToken(gdrive.accessToken); }
+                catch { /* Keep the download failure as the reported error. */ }
+            }
             throw new Error(`Google Drive download failed (${downloadResult.statusCode})`);
         }
         return downloadResult;

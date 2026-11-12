@@ -73,9 +73,9 @@ import {
   ShiftFromTopBottom20,
 } from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
-import * as ScopedStorage from "react-native-scoped-storage";
-import RNFS from "react-native-fs";
+import { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
+import { openBackupDocument } from "../services/backupDocuments";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
 import { bgcolorWhite2, primaryColor, secondaryBtnColor } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
@@ -92,7 +92,6 @@ import {
   ConfigSettingsSchema,
 } from "../database/schema/ConfigSettingsSchema";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
-import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -225,7 +224,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   };
   const handleError = (err: any): any => {
     console.log(err, "..err");
-    // if (DocumentPicker.isCancel(err)) {
+    // if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
     //   console.log("cancelled");
     //   // User cancelled the picker, exit any dialogs or menus and move on
     // } else if (isInProgress(err)) {
@@ -283,54 +282,55 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     }
   };
   const importDataAndroid = async (): Promise<any> => {
-    const dataset: any = await ScopedStorage.openDocument(true, "utf8");
-    let oldChildrenData: any = null;
-    let importedrealm: any = null;
-    ToastAndroidLocal.showWithGravityAndOffset(
-      dataset,
-      ToastAndroidLocal.LONG,
-      ToastAndroidLocal.BOTTOM,
-      25,
-      50
-    );
-    if (
-      dataset &&
-      dataset.data != "" &&
-      dataset.data != null &&
-      dataset.data != undefined
-    ) {
-      if (dataset.name.endsWith(".json")) {
-        const decryptedData = decryptData(dataset.data, encryptionsKey)
-          .then((text: any) => {
-            return text;
-          })
-          .catch((error: any) => {
-            console.log("Decrypted error", error);
-            throw error;
-          });
-        const importedJsonData = JSON.parse(await decryptedData);
-        await RNFS.writeFile(
-          appConfig.tempRealmFile,
-          JSON.stringify(decryptedData),
-          "utf8"
-        );
-        oldChildrenData = importedJsonData;
-      } else {
-        const base64Dataset = await ScopedStorage.openDocument(true, "base64");
-        await RNFS.writeFile(
-          appConfig.tempRealmFile,
-          base64Dataset.data,
-          "base64"
-        );
-        importedrealm = await new Realm({ path: "user1.realm" });
-        const user1Path = importedrealm.path;
-        console.log(user1Path, "..user1Path");
-        oldChildrenData = importedrealm.objects("ChildEntity");
+    setIsImportRunning(true);
+    try {
+      const dataset: any = await openBackupDocument();
+      let oldChildrenData: any = null;
+      let importedrealm: any = null;
+      if (
+        dataset &&
+        dataset.data != "" &&
+        dataset.data != null &&
+        dataset.data != undefined
+      ) {
+        if (dataset.name.toLowerCase().endsWith(".json")) {
+          const decryptedData = decryptData(dataset.data, encryptionsKey)
+            .then((text: any) => {
+              return text;
+            })
+            .catch((error: any) => {
+              console.log("Decrypted error", error);
+              throw error;
+            });
+          const importedJsonData = JSON.parse(await decryptedData);
+          await RNFS.writeFile(
+            appConfig.tempRealmFile,
+            JSON.stringify(importedJsonData),
+            "utf8"
+          );
+          oldChildrenData = importedJsonData;
+        } else {
+          await RNFS.writeFile(
+            appConfig.tempRealmFile,
+            dataset.data,
+            "base64"
+          );
+          importedrealm = await new Realm({ path: "user1.realm" });
+          const user1Path = importedrealm.path;
+          console.log(user1Path, "..user1Path");
+          oldChildrenData = importedrealm.objects("ChildEntity");
+        }
+        setImportAlertVisible(false);
+        setLoading(true);
+        setIsImportRunning(true);
+        await handleImportedData(oldChildrenData, importedrealm);
       }
-      setImportAlertVisible(false);
-      setLoading(true);
-      setIsImportRunning(true);
-      handleImportedData(oldChildrenData, importedrealm);
+    } catch (error) {
+      console.error("Backup import failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
+      setIsImportRunning(false);
+      setLoading(false);
     }
   };
   const importDataIOS = async (): Promise<any> => {

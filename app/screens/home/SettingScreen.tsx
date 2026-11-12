@@ -89,8 +89,8 @@ import {
   View,
 } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
-import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
-import RNFS from "react-native-fs";
+import { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
 import { store, useAppDispatch, useAppSelector } from "../../../App";
@@ -110,7 +110,7 @@ import {
   isFutureDateTime,
 } from "../../services/childCRUD";
 import { formatStringDate, formatStringTime } from "../../services/Utils";
-import * as ScopedStorage from "react-native-scoped-storage";
+import { openBackupDocument, saveBackupDocument } from "../../services/backupDocuments";
 import Share from "react-native-share";
 import LocalNotifications from "../../services/LocalNotifications";
 import { bgcolorWhite2, settingThumbFalseColor, settingTrackFalseColor, settingTrackTrueColor } from "@styles/style";
@@ -270,32 +270,15 @@ const SettingScreen = (props: any): any => {
       setIsImportRunning(false);
     });
   };
-  const exportDataAndroid = async (cipher: string): Promise<any> => {
-    // const file = await ScopedStorage.openDocumentTree(true);
-    const uri: any = await ScopedStorage.getPersistedUriPermissions();
+  const exportDataAndroid = async (cipher: string): Promise<void> => {
     try {
-      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*", 'utf8', false);
-      const fileDownload: any = await ScopedStorage.createDocument(
-        "mybackup",
-        "application/json",
-        JSON.stringify(cipher),
-        "utf8"
-      );
-      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-
-      if (
-        fileDownload != "" &&
-        fileDownload != null &&
-        fileDownload != undefined
-      ) {
+      if (await saveBackupDocument(cipher)) {
         Alert.alert("", t("settingExportSuccess"));
-        setIsExportRunning(false);
-      } else {
-        Alert.alert("", t("settingExportError"));
-        setIsExportRunning(false);
       }
-    } catch (e: any) {
-      console.log("", e.message);
+    } catch (error) {
+      console.error("Backup export failed", error);
+      Alert.alert("", t("settingExportError"));
+    } finally {
       setIsExportRunning(false);
     }
   };
@@ -905,7 +888,7 @@ const SettingScreen = (props: any): any => {
   const handleError = (err: any): any => {
     console.log(err, "..err");
 
-    // if (DocumentPicker.isCancel(err)) {
+    // if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
     //   console.log("cancelled");
     //   // User cancelled the picker, exit any dialogs or menus and move on
     // } else if (isInProgress(err)) {
@@ -935,74 +918,80 @@ const SettingScreen = (props: any): any => {
     }
   };
   const importDataAndroid = async (): Promise<any> => {
-    const dataset = await ScopedStorage.openDocument(true, "utf8");
-    let oldChildrenData: any = [];
-    if (
-      dataset &&
-      dataset.data != "" &&
-      dataset.data != null &&
-      dataset.data != undefined
-    ) {
-      if (dataset.name.endsWith(".json")) {
-        const decryptedData = decryptData(dataset.data, encryptionsKey)
-          .then((text: any) => {
-            console.log("decryptData", text);
-            return text.replace(/[\x00-\x1F\x7F]/g, "");
-          })
-          .catch((error: any) => {
-            console.log("Decrypted error", error);
-            Alert.alert(error, t("generalErrorTitle"));
-            throw error;
-          });
+    setIsImportRunning(true);
+    try {
+      const dataset = await openBackupDocument();
+      let oldChildrenData: any = [];
+      if (
+        dataset &&
+        dataset.data != "" &&
+        dataset.data != null &&
+        dataset.data != undefined
+      ) {
+        if (dataset.name.toLowerCase().endsWith(".json")) {
+          const decryptedData = decryptData(dataset.data, encryptionsKey)
+            .then((text: any) => {
+              console.log("decryptData", text);
+              return text.replace(/[\x00-\x1F\x7F]/g, "");
+            })
+            .catch((error: any) => {
+              console.log("Decrypted error", error);
+              throw error;
+            });
 
-        await RNFS.writeFile(
-          appConfig.tempRealmFile,
-          JSON.stringify(decryptedData),
-          "utf8"
-        );
-        const importedJsonData = JSON.parse(await decryptedData);
-        oldChildrenData = importedJsonData;
-      } else {
-        const base64Dataset = await ScopedStorage.openDocument(true, "base64");
-        await RNFS.writeFile(
-          appConfig.tempRealmFile,
-          base64Dataset.data,
-          "base64"
-        );
-        let importedrealm = await new Realm({ path: "user1.realm" });
-        if (importedrealm) {
-          importedrealm.close();
-        }
-        importedrealm = await new Realm({ path: "user1.realm" });
-        const user1Path = importedrealm.path;
-        console.log(user1Path, "..user1Path");
-        oldChildrenData = importedrealm.objects("ChildEntity");
-      }
-
-      console.log(oldChildrenData, "..newoldChildrenData..");
-      setIsImportRunning(true);
-      if (oldChildrenData.length > 0) {
-        await userRealmCommon.openRealm();
-        await userRealmCommon.deleteAllAtOnce();
-        try {
-          console.log("oldchildrenresponse", oldChildrenData);
-          const importResponse = await backup.importFromFile(
-            oldChildrenData,
-            props.navigation,
-            genders,
-            dispatch,
-            childAge,
-            languageCode,
-            taxonomyIds
+          const importedJsonData = JSON.parse(await decryptedData);
+          await RNFS.writeFile(
+            appConfig.tempRealmFile,
+            JSON.stringify(importedJsonData),
+            "utf8"
           );
-
-          console.log(importResponse, "..importResponse");
-        } catch (error) {
-          console.error("importResponse error", error);
+          oldChildrenData = importedJsonData;
+        } else {
+          await RNFS.writeFile(
+            appConfig.tempRealmFile,
+            dataset.data,
+            "base64"
+          );
+          let importedrealm = await new Realm({ path: "user1.realm" });
+          if (importedrealm) {
+            importedrealm.close();
+          }
+          importedrealm = await new Realm({ path: "user1.realm" });
+          const user1Path = importedrealm.path;
+          console.log(user1Path, "..user1Path");
+          oldChildrenData = importedrealm.objects("ChildEntity");
         }
+
+        console.log(oldChildrenData, "..newoldChildrenData..");
+        setIsImportRunning(true);
+        if (oldChildrenData.length > 0) {
+          await userRealmCommon.openRealm();
+          await userRealmCommon.deleteAllAtOnce();
+          try {
+            console.log("oldchildrenresponse", oldChildrenData);
+            const importResponse = await backup.importFromFile(
+              oldChildrenData,
+              props.navigation,
+              genders,
+              dispatch,
+              childAge,
+              languageCode,
+              taxonomyIds
+            );
+
+            console.log(importResponse, "..importResponse");
+          } catch (error) {
+            console.error("importResponse error", error);
+          }
+        }
+        setIsImportRunning(false);
+        actionSheetRefImport.current?.setModalVisible(false);
       }
+    } catch (error) {
+      console.error("Backup import failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
       setIsImportRunning(false);
-      actionSheetRefImport.current?.setModalVisible(false);
     }
   };
   const importDataIOS = async (): Promise<any> => {
@@ -1390,7 +1379,7 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t("settingScreenlocalizationHeader")}</Heading1>
-                {(allCountries?.length > 1 || 
+                {(allCountries?.length > 1 ||
                   (allCountries?.length === 1 && allCountries[0]?.languages?.length > 1)) && (
                     <IconAreaPress
                       onPress={(): any => {
@@ -1543,7 +1532,7 @@ const SettingScreen = (props: any): any => {
                               importFromSettingsFile();
                             }
                           } catch (err) {
-                            if (DocumentPicker.isCancel(err)) {
+                            if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
                               // User cancelled the picker, exit any dialogs or menus and move on
                             } else {
                               throw err;
