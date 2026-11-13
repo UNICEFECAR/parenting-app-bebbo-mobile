@@ -1,0 +1,56 @@
+name: Upgrade regression checks
+on:
+  pull_request:
+  push:
+    branches: [RNSDKUpgrade-review-fixes]
+permissions:
+  contents: read
+concurrency:
+  group: upgrade-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npm test -- --runInBand
+      - run: npm run test:tooling
+      - run: npm run typecheck
+      - run: npm run assets:check
+      - run: npm audit --audit-level=high
+  bundles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
+        platform: [android, ios]
+    env:
+      FLAVOR: ${{ matrix.flavour }}
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - name: Create test-only environment
+        run: node scripts/ci-fixtures.cjs
+      - name: Bundle release JavaScript
+        env:
+          BUNDLE_PLATFORM: ${{ matrix.platform }}
+        run: |
+          mkdir -p /tmp/bebbo-bundle
+          npx react-native bundle --entry-file index.js --platform "$BUNDLE_PLATFORM" --dev false \
+            --bundle-output /tmp/bebbo-bundle/app.bundle --sourcemap-output /tmp/bebbo-bundle/app.bundle.map
+          node scripts/check-production-bundle.cjs /tmp/bebbo-bundle/app.bundle
+      - name: Verify referenced native vector resources
+        run: node scripts/collect-vector-assets.cjs --check

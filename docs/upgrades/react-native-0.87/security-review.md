@@ -1,8 +1,16 @@
 # Dependency security review — 11 November 2026
 
-This review covers the npm dependency tree in the current RN 0.87 upgrade checkout. Audit counts describe vulnerable-package entries, including parent packages affected through dependencies; they are not counts of independently exploitable app vulnerabilities. This is not a complete application security assessment.
+This historical review covers the npm dependency tree at the initial security-fix stage. Audit counts describe vulnerable-package entries, including parent packages affected through dependencies; they are not counts of independently exploitable app vulnerabilities. This is not a complete application security assessment.
 
-## Result
+## Follow-up snapshot — 13 November 2026
+
+The review-fixes branch resolves styled-components 6.6.0 and TypeScript 5.9.3.
+A fresh full-tree `npm audit --json` reports **19 entries: 8 moderate, 11 low,
+0 high and 0 critical**. The original 38-to-21 table and package paths below
+record the earlier snapshot; they do not describe the final dependency tree.
+See [review fixes](review-fixes.md) for validation limits and retained versions.
+
+## Original result
 
 | Severity | Before | After |
 | --- | ---: | ---: |

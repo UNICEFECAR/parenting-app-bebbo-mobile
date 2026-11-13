@@ -1,3 +1,5 @@
+import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
+import { backup } from "../services/backup";
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
 import { appConfig } from "../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -29,17 +31,13 @@ import {
   View,
   ScrollView,
   BackHandler,
+  Alert,
   StyleSheet,
 } from "react-native";
 import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
-import { userRealmCommon } from "../database/dbquery/userRealmCommon";
-import {
-  ChildEntity,
-  ChildEntitySchema,
-} from "../database/schema/ChildDataSchema";
 import {
   ConfigSettingsEntity,
   ConfigSettingsSchema,
@@ -50,7 +48,7 @@ import {
   getAllChildren,
   setActiveChild,
 } from "../services/childCRUD";
-import { getChild, notiPermissionUtil } from "../services/Utils";
+import { notiPermissionUtil } from "../services/Utils";
 import {
   Heading1Centerw,
   Heading3,
@@ -89,7 +87,7 @@ const styles = StyleSheet.create({
 });
 const ChildImportSetup = (props: any): any => {
   const netInfo = useNetInfoHook();
-  let { importResponse } = props.route.params;
+  const { importResponse } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [relationship, setRelationship] = useState("");
@@ -123,12 +121,12 @@ const ChildImportSetup = (props: any): any => {
       "hardwareBackPress",
       backAction
     );
-    props.navigation.addListener("gestureEnd", backAction);
+    const unsubscribeGesture = props.navigation.addListener("gestureEnd", backAction);
     return (): any => {
-      props.navigation.removeListener("gestureEnd", backAction);
+      unsubscribeGesture();
       backHandler.remove();
     };
-  }, []);
+  }, [props.navigation]);
 
   useEffect(() => {
     const propsData = props?.route?.params;
@@ -163,11 +161,52 @@ const ChildImportSetup = (props: any): any => {
           index: routes.length - 1,
         });
       });
-    }, [])
+    }, [props.navigation])
   );
+
+  const restoreRunning = useRef(false);
+  const [restoring, setRestoring] = useState(false);
+  const completeImport = async (): Promise<void> => {
+    if (restoreRunning.current) return;
+    restoreRunning.current = true;
+    setRestoring(true);
+    try {
+      const data = typeof importResponse === "string" ? JSON.parse(importResponse) : importResponse;
+      const children = await backup.restoreChildren(data, genders);
+      for (const [key, value] of [
+        ["userParentalRole", relationship],
+        ["userRelationToParent", String(userRelationToParent)],
+        ["userEnteredChildData", "true"],
+        ["userName", name],
+      ]) {
+        await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, key, value);
+      }
+      const settings = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(
+        ConfigSettingsSchema, "key='currentActiveChildId'"
+      );
+      const previousId = settings?.[0]?.value;
+      await setActiveChild(languageCode,
+        children.some((child: any) => child.uuid === previousId) ? previousId : "",
+        dispatch, childAge, false, taxonomyIds?.boyChildGender);
+      const childList = await getAllChildren(dispatch, childAge, 1);
+      dispatch(setInfoModalOpened({key: "generateNotifications", value: true}));
+      dispatch(setAllLocalNotificationGenerateType({generateFlag: true, generateType: "add", childuuid: "all"}));
+      logEvent({name: ONBOARDING_CHILD_COUNT, params: {child_count: childList?.length}}, netInfo.isConnected);
+      props.navigation.reset({index: 0, routes: [{name: "LoadingScreen", params: {
+        apiJsonData: apiJsonDataGet("all"), prevPage: "ChildSetup",
+      }}]});
+    } catch (error) {
+      console.error("Backup restore failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
+      restoreRunning.current = false;
+      setRestoring(false);
+    }
+  };
 
   return (
     <>
+      <OverlayLoadingComponent loading={restoring} />
       <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView contentContainerStyle={styles.scrollViewStyle}>
@@ -327,153 +366,14 @@ const ChildImportSetup = (props: any): any => {
           <ButtonRow>
             <ButtonPrimary
               disabled={
-                relationship == null ||
+                restoring || relationship == null ||
                 relationship == "" ||
                 relationship == undefined ||
                 userRelationToParent == undefined
                   ? true
                   : false
               }
-              onPress={async (e: any): Promise<any> => {
-                e.stopPropagation();
-                if (importResponse) {
-                  importResponse = JSON.parse(importResponse);
-                }
-                let counter: any = 0;
-                if (importResponse?.length > 0) {
-                  const resolvedPromises = importResponse.map(
-                    async (item: any) => {
-                      if (
-                        item.birthDate != null &&
-                        item.birthDate != undefined
-                      ) {
-                        const itemnew = await getChild(item, genders);
-                        const childData: any = [];
-                        childData.push(itemnew);
-                        await userRealmCommon.create<ChildEntity>(
-                          ChildEntitySchema,
-                          childData
-                        );
-                        let childId =
-                          await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(
-                            ConfigSettingsSchema,
-                            "key='currentActiveChildId'"
-                          );
-                        await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
-                          ConfigSettingsSchema,
-                          "userParentalRole",
-                          relationship
-                        );
-                        await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
-                          ConfigSettingsSchema,
-                          "userRelationToParent",
-                          String(userRelationToParent)
-                        );
-                        await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
-                          ConfigSettingsSchema,
-                          "userEnteredChildData",
-                          "true"
-                        );
-                        await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
-                          ConfigSettingsSchema,
-                          "userName",
-                          name
-                        );
-                        if (counter == 0) {
-                          if (childId?.length > 0) {
-                            childId = childId[0].value;
-                            const activeChildData = importResponse.filter(
-                              (x: any) => x.uuid == childId
-                            );
-                            if (activeChildData.length > 0) {
-                              await setActiveChild(
-                                languageCode,
-                                childId,
-                                dispatch,
-                                childAge,
-                                false,
-                                taxonomyIds?.boyChildGender
-                              );
-                            } else {
-                              await setActiveChild(
-                                languageCode,
-                                "",
-                                dispatch,
-                                childAge,
-                                false,
-                                taxonomyIds?.boyChildGender
-                              );
-                            }
-                          } else {
-                            await setActiveChild(
-                              languageCode,
-                              "",
-                              dispatch,
-                              childAge,
-                              false,
-                              taxonomyIds?.boyChildGender
-                            );
-                          }
-                          counter++;
-                        }
-                      }
-                    }
-                  );
-                  const notiFlagObj = {
-                    key: "generateNotifications",
-                    value: true,
-                  };
-                  dispatch(setInfoModalOpened(notiFlagObj));
-                  const localnotiFlagObj = {
-                    generateFlag: true,
-                    generateType: "add",
-                    childuuid: "all",
-                  };
-                  dispatch(
-                    setAllLocalNotificationGenerateType(localnotiFlagObj)
-                  );
-                  await Promise.all(resolvedPromises).then(async (item) => {
-                    console.log("item--", item);
-                    if (importResponse.length > 0) {
-                      const childList = await getAllChildren(
-                        dispatch,
-                        childAge,
-                        1
-                      );
-                      // const Ages = await getAge(childList, childAge);
-                      // let apiJsonData;
-                      // if (Ages?.length > 0) {
-                      //   apiJsonData = apiJsonDataGet(String(Ages), "all")
-                      // }
-                      // else {
-                      //   apiJsonData = apiJsonDataGet("all", "all")
-                      // }
-                      const apiJsonData = apiJsonDataGet("all");
-                      const eventData = {
-                        name: ONBOARDING_CHILD_COUNT,
-                        params: { child_count: childList?.length },
-                      };
-                      logEvent(eventData, netInfo.isConnected);
-                      // await logAnalyticsEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
-
-                      props.navigation.reset({
-                        index: 0,
-                        routes: [
-                          {
-                            name: "LoadingScreen",
-                            params: {
-                              apiJsonData: apiJsonData,
-                              prevPage: "ChildSetup",
-                            },
-                          },
-                        ],
-                      });
-                    } else {
-                      // BackHandler.exitApp();
-                    }
-                  });
-                }
-              }}
+              onPress={completeImport}
             >
               <ButtonUpperCaseText>
                 {t("childSetupcontinueBtnText")}

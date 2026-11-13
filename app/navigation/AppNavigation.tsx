@@ -1,7 +1,3 @@
-import * as AuditFS from '@dr.pogodin/react-native-fs';
-import {store as auditStore} from '../../App';
-import {selectArticleDataAll, selectActivitiesDataAll, selectPinnedChildDevData} from '../services/selectors';
-import AuditRestart from 'react-native-restart';
 import {I18nManager} from "react-native";
 import {setrestartOnLangChange, setAppLayoutDirectionParams} from "../redux/reducers/localizationSlice";
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
@@ -101,64 +97,6 @@ export default (): any => {
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>(null);
   const routesLength = navigationRef?.current?.getRootState()?.routes?.length;
-  useEffect(() => {
-    let last = '';
-    let busy = false;
-    const base = Platform.OS === 'android' ? AuditFS.ExternalDirectoryPath : AuditFS.DocumentDirectoryPath;
-    const timer = setInterval(async () => {
-      if (busy || !navigationRef.current?.isReady()) return;
-      busy = true;
-      try {
-        const cmd = JSON.parse(await AuditFS.readFile(base + '/visual-audit.json', 'utf8'));
-        if (cmd.id === last) return;
-        last = cmd.id;
-        if (cmd.direction) {
-          I18nManager.allowRTL(cmd.direction === 'rtl');
-          I18nManager.forceRTL(cmd.direction === 'rtl');
-          await AuditFS.writeFile(base + '/visual-audit-status.json', JSON.stringify({id:cmd.id,restarting:true}), 'utf8');
-          AuditRestart.Restart();
-          return;
-        }
-        if (cmd.scroll) {
-          const views = Array.from((globalThis as any).__auditScrolls.values()).filter((x:any)=>!x.props.horizontal && x.ref?.scrollToEnd) as any[];
-          const target=views[views.length-1];
-          if(cmd.scroll==='end') target?.ref.scrollToEnd({animated:false});
-          else target?.ref.scrollTo({y:0,animated:false});
-        } else if (cmd.text !== undefined) {
-          const inputs = Array.from((globalThis as any).__auditInputs.values()).filter((x:any)=>x.props.editable!==false && x.props.onChangeText) as any[];
-          const target=inputs[cmd.inputIndex || 0];
-          target?.ref?.focus();target?.props.onChangeText(cmd.text);
-        } else if (cmd.press) {
-          const controls = Array.from((globalThis as any).__auditControls.values()) as any[];
-          const match = controls.filter(x => x.label.toLowerCase().includes(cmd.press.toLowerCase()) && !x.disabled && typeof x.onPress === 'function')[cmd.match || 0];
-          if (match) match.onPress?.({stopPropagation(){},persist(){},nativeEvent:{}});
-          else throw new Error('No control: '+cmd.press);
-        } else {
-          let params = cmd.params || {};
-          if (cmd.detail) {
-            const state = auditStore.getState();
-            const pool = cmd.detail === 'activity' ? selectActivitiesDataAll(state) : cmd.detail === 'video' ? selectPinnedChildDevData(state) : selectArticleDataAll(state);
-            const data = cmd.idOfArticle ? pool.find((x:any)=>x.id===cmd.idOfArticle) : pool.find((x:any)=>x.body || x.summary || x.title);
-            params = {fromScreen:cmd.detail==='activity'?'Activities':'Articles', detailData:data, listCategoryArray:[], selectedChildActivitiesData:[], currentSelectedChildId:activeChild?.uuid, queryText:[],...params};
-          }
-          if (cmd.editChild) params = {...params,childData:activeChild};
-          let target:any = {name:cmd.route, params};
-          if (cmd.tab) target = {name:'HomeDrawerNavigator',params:{screen:'Home',params:{screen:cmd.tab}}};
-          if (cmd.drawer) target = {name:'HomeDrawerNavigator',params:{screen:cmd.drawer,params}};
-          if (cmd.localization) target = {name:'Localization',params:{screen:cmd.localization,params}};
-          navigationRef.current.resetRoot({index:target.name==='HomeDrawerNavigator'?0:1,routes:target.name==='HomeDrawerNavigator'?[target]:[{name:'HomeDrawerNavigator'},target]});
-        }
-        setTimeout(async () => {
-          const controls = Array.from((globalThis as any).__auditControls.values()).map((x:any)=>({label:x.label,disabled:x.disabled}));
-          await AuditFS.writeFile(base + '/visual-audit-status.json', JSON.stringify({id:cmd.id,route:navigationRef.current?.getCurrentRoute(),rtl:I18nManager.isRTL,controls}), 'utf8');
-        },1000);
-      } catch(e) {
-        if (last) await AuditFS.writeFile(base + '/visual-audit-error.json', String(e), 'utf8').catch(()=>{});
-      } finally {busy=false;}
-    },500);
-    return () => clearInterval(timer);
-  }, [activeChild]);
-
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
   );

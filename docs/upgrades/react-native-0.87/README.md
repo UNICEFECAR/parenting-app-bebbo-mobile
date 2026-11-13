@@ -1,5 +1,7 @@
 # React Native 0.87 migration
 
+See [review fixes and release acceptance gates](review-fixes.md) for the follow-up to PR #1115.
+
 This branch targets React Native 0.87.1 with React 19.2.3, AGP 9.2.1,
 Gradle 9.4.1, Kotlin 2.2.10, and Android compile/target SDK 37.
 RN 0.88 is also a stable release; 0.87 was selected to reduce the jump to
@@ -13,8 +15,10 @@ does not meet RN's requirements. With nvm installed:
 ```sh
 nvm install
 nvm use
-npm install --legacy-peer-deps
+npm ci --legacy-peer-deps
 ```
+
+Run `npm run assets:generate` after changing SVG sources; `npm run assets:check` verifies all flavours.
 
 Install Android SDK Platform 37, Build Tools 37.0.0, and NDK
 27.1.12297006 through Android Studio. Some dependencies may also request
@@ -193,7 +197,7 @@ patches were needed. Firebase and the other deferred upgrades are unchanged.
 | react-native-permissions | 5.4.2 | 5.6.3 | Try camera/gallery with allowed, denied and iOS limited-photo access. |
 | react-native-share | 12.2.0 | 12.3.1 | Export a backup to Files, cancel and retry sharing, then import the exported file. |
 
-`npm install --legacy-peer-deps` completed with all seven existing patches
+`npm ci --legacy-peer-deps` completed with all seven existing patches
 applied. The seven existing regression suites passed (62 tests). CocoaPods
 installed successfully and refreshed the five affected native package versions
 in the local, Git-ignored `ios/Podfile.lock`. No new test files were added.
@@ -224,7 +228,7 @@ to 9.3.1, and `reselect` from 5.1.1 to 5.3.0. The versions are pinned in
 Toolkit now resolves Immer 11.2.9. No store, reducer, selector, hook, persistence
 schema, native configuration, or patch changes were required.
 
-Validation: `npm install --legacy-peer-deps` completed and all seven active
+Validation: `npm ci --legacy-peer-deps` completed and all seven active
 patches applied. All 62 existing tests passed. A temporary validation script
 outside the repository exercised the app's actual store, slices and selectors,
 including child switching, favourites, Daily Reads state, selector memoization,
@@ -258,7 +262,7 @@ The existing Drive 60-second timeout and omitted first-page `pageToken` remain
 in place. Google authentication, scopes, encryption, backup names and data
 formats were not changed by this update.
 
-Installation used `npm install --legacy-peer-deps`; all seven existing patches
+Installation used `npm ci --legacy-peer-deps`; all seven existing patches
 applied, and all 62 existing tests passed. CocoaPods installed 159 pods and
 refreshed the local Git-ignored `ios/Podfile.lock` for Config's native update.
 An isolated script exercised the installed Drive wrapper with simulated HTTP
@@ -777,7 +781,7 @@ Replaced `react-native-push-notification` 8.1.1 and its `@react-native-community
 
 ### Verified on 11 November 2026
 
-- `npm install --legacy-peer-deps`: remaining patches apply successfully.
+- `npm ci --legacy-peer-deps`: remaining patches apply successfully.
 - All service regression suites pass: **9 suites, 87 tests**, including 10 notification tests.
 - Bebbo Android `prodRelease` and iOS `ParentBuddyApp` Release simulator builds pass with temporary diagnostic code removed. Crashlytics mapping upload was excluded from the Android verification build.
 - Installed and ran diagnostic Release builds on the Pixel 9 emulator and iPhone 17 simulator without clearing their existing app data. Native readback confirmed permission state, migration completion, removal of legacy pending alarms, routing metadata for all four reminder types, individual cancellation and exactly one scheduled test reminder. A timed notification was delivered on both platforms.
@@ -829,7 +833,7 @@ Manual acceptance should include Settings and Home local exports, restoring an o
 - `app/components/shared/Icon.tsx` changes only its factory import. All 68 glyph names/codepoints, the `fontello` family, sizes, colours and styled/RTL wrappers retain their existing configuration.
 - Move `app/assets/fonts/fontello.ttf` to the standard `rnvi-fonts/fontello/fontello.ttf` directory and remove the duplicate `android/app/src/main/assets/fonts/fontello.ttf`. The font bytes are unchanged (SHA256 `bf53a1abd9fdd89fae7742d0732a8e51c8a7e8ca77f292dee4c623f001ecf86a`). Gradle and the new CocoaPod automatically bundle this single project-owned font source.
 - Remove the old explicit `RNVectorIcons` pod from `ios/Podfile`. The new package autolinks. All ten iOS target Info.plists already register `fontello.ttf`, so no plist edits or additional Xcode font references are needed. Roboto fonts are unchanged.
-- Update the root README to replace the old manual copy/remove instructions. Do not modify fonts in `node_modules` when switching platforms. Run `npm install --legacy-peer-deps`, then `cd ios && bundle exec pod install` after installing dependencies for an iOS build.
+- Update the root README to replace the old manual copy/remove instructions. Do not modify fonts in `node_modules` when switching platforms. Run `npm ci --legacy-peer-deps`, then `cd ios && bundle exec pod install` after installing dependencies for an iOS build.
 - `FLAVOR=bebbo npx react-native-vector-image generate` remains unchanged for SVG/vector-image assets. This is a separate package; switching between platforms does not require regenerating images because of the icon font migration. When changing the Fontello font itself, update the TTF and its glyph-map JSON together, rerun CocoaPods and rebuild both apps.
 
 References: [Fontello setup](https://github.com/oblador/react-native-vector-icons/blob/master/packages/fontello/README.md), [migration guide](https://github.com/oblador/react-native-vector-icons/blob/master/MIGRATION.md).
@@ -908,7 +912,7 @@ Upstream references: [Google Sign-In releases](https://github.com/react-native-g
 
 ### Build workflow
 
-Continue using Node 22 and `npm install --legacy-peer-deps`. Run CocoaPods after installation (`cd ios && bundle exec pod install`). For SVG assets the command remains `FLAVOR=bebbo npx react-native-vector-image generate`; add `--reset-cache` when regenerating after a flavour/source change. The Fontello font remains automatically bundled from `rnvi-fonts/fontello/fontello.ttf`; do not copy fonts into or out of node_modules. The updated vector generator was run successfully with `--reset-cache`; all previously generated resources match their pre-update bytes.
+Continue using Node 22 and `npm ci --legacy-peer-deps`. Run CocoaPods after installation (`cd ios && bundle exec pod install`). For SVG assets the command remains `FLAVOR=bebbo npx react-native-vector-image generate`; add `--reset-cache` when regenerating after a flavour/source change. The Fontello font remains automatically bundled from `rnvi-fonts/fontello/fontello.ttf`; do not copy fonts into or out of node_modules. The updated vector generator was run successfully with `--reset-cache`; all previously generated resources match their pre-update bytes.
 
 ### Verification
 

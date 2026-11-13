@@ -1,13 +1,11 @@
 import HorizontalContentList from "@components/shared/HorizontalContentList";
 import React, { useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, Dimensions, Modal } from 'react-native';
+import { View, Pressable, StyleSheet, Alert, Dimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import VectorImage from 'react-native-vector-image';
-import { useAppDispatch, useAppSelector } from '../../../App';
 import { backup } from '../../services/backup';
-import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { Heading1, Heading4, Heading4Regular, ShiftFromTopBottom5 } from '@styles/typography';
 import { BannerContainer } from '@components/shared/Container';
 import { SettingHeading, SettingOptions, SettingShareData } from '@components/shared/SettingsStyle';
@@ -15,12 +13,6 @@ import { FDirRow } from '@components/shared/FlexBoxStyle';
 import AlertModal from '@components/AlertModal';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
-import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
-import AesCrypto from "react-native-aes-crypto";
-import { saveBackupDocument } from "../../services/backupDocuments";
-import * as RNFS from "@dr.pogodin/react-native-fs";
-import { appConfig } from '../../instances';
-import Share from "react-native-share";
 
 
 const { width } = Dimensions.get("window");
@@ -28,7 +20,6 @@ const { width } = Dimensions.get("window");
 const QuickLinksRow = () => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const driveExportRunning = useRef(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isDriveBackupRunning, setIsDriveBackupRunning] = useState(false);
@@ -72,7 +63,7 @@ const QuickLinksRow = () => {
     setIsDriveBackupRunning(true);
     try {
       const success = await backup.export();
-      Alert.alert("", t(success ? "settingExportSuccess" : "generalError"));
+      if (success) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
       console.error("Drive backup failed", error);
       Alert.alert("", t("generalError"));
@@ -84,106 +75,20 @@ const QuickLinksRow = () => {
     }
   };
 
-  const encryptData = (text: string, key: any): any => {
-    console.log(
-      text,
-      "..text,key,encryptionsIVKey..",
-      encryptionsIVKey.replace("//:completeSettings = none", "")
-    );
-    return AesCrypto.encrypt(
-      text,
-      key,
-      encryptionsIVKey.replace("//:completeSettings = none", ""),
-      "aes-256-cbc"
-    )
-      .then((cipher: any) => ({
-        cipher,
-      }))
-      .catch((error: any) => {
-        console.log(error, "..error..");
-        setIsExportRunning(false);
-      });
-  };
-  const exportDataAndroid = async (cipher: string): Promise<void> => {
+  const exportFile = async (): Promise<void> => {
+    if (driveExportRunning.current) return;
+    driveExportRunning.current = true;
+    setIsExportRunning(true);
+    setIsDriveBackupRunning(true);
     try {
-      if (await saveBackupDocument(cipher)) {
-        Alert.alert("", t("settingExportSuccess"));
-      }
+      if (await backup.exportToFile()) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
       console.error("Backup export failed", error);
       Alert.alert("", t("settingExportError"));
     } finally {
+      driveExportRunning.current = false;
       setIsExportRunning(false);
-    }
-  };
-  const exportDataIOS = async (cipher: string): Promise<any> => {
-    console.log("exportDataIOS", cipher);
-
-    RNFS.writeFile(appConfig.tempbackUpPath, cipher, "utf8")
-      .then(async (res: any) => {
-        console.log(res, "..res..");
-        const shareOptions = {
-          title: "Backup File",
-          url: appConfig.tempbackUpPath,
-          saveToFiles: true,
-          failOnCancel: false,
-        };
-        try {
-          const ShareResponse = await Share.open(shareOptions);
-          setIsExportRunning(false);
-          if (ShareResponse && ShareResponse.success) {
-            Alert.alert("", t("settingExportSuccess"));
-            await RNFS.exists(appConfig.tempbackUpPath).then((exists) => {
-              console.log(String(exists), "..exists..");
-              if (exists) {
-                RNFS.unlink(appConfig.tempbackUpPath).then(() => {
-                  //RNFS.scanFile(tempbackUpPath);
-                });
-              }
-            });
-          } else {
-            Alert.alert("", t("settingExportError"));
-          }
-        } catch (error: any) {
-          setIsExportRunning(false);
-          if (error.error && error.error.code === "ECANCELLED500") {
-            console.log("canceled");
-          } else {
-            Alert.alert("", t("settingExportError"));
-          }
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsExportRunning(false);
-        Alert.alert("", t("settingExportError"));
-      });
-  };
-  const exportFile = async (): Promise<any> => {
-    //need to add code.
-    setIsExportRunning(true);
-    try {
-      userRealmCommon
-        .exportUserRealmDataToJson()
-        .then(async (jsonData: any) => {
-          encryptData(JSON.stringify(jsonData), encryptionsKey).then(
-            async (cipher: any) => {
-              if (Platform.OS === "android") {
-                exportDataAndroid(cipher.cipher);
-              } else {
-                console.log("cipher is", cipher.cipher);
-                exportDataIOS(cipher.cipher);
-              }
-            }
-          );
-        })
-        .catch((error) => {
-          console.log("Error exporting data:", error);
-          setIsExportRunning(false);
-          Alert.alert("", t("settingExportError"));
-        });
-    } catch (err) {
-      console.log("Error", err);
+      setIsDriveBackupRunning(false);
     }
   };
   const handleExportAlertConfirm = (): any => {

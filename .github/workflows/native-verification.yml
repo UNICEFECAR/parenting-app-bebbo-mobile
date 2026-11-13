@@ -1,0 +1,79 @@
+name: Unsigned native verification
+on:
+  workflow_call:
+    inputs:
+      platform:
+        required: true
+        type: string
+      flavour:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      platform:
+        type: choice
+        options: [android, ios]
+        required: true
+      flavour:
+        type: choice
+        options: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
+        required: true
+permissions:
+  contents: read
+jobs:
+  compile:
+    runs-on: ${{ inputs.platform == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
+    timeout-minutes: 90
+    env:
+      FLAVOR: ${{ inputs.flavour }}
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - name: Prepare fake configuration for compile checks
+        run: node scripts/ci-fixtures.cjs
+      - run: npm run assets:check
+      - uses: actions/setup-java@v6.2.0
+        if: inputs.platform == 'android'
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install pinned Android tools
+        if: inputs.platform == 'android'
+        run: sdkmanager 'platforms;android-37' 'build-tools;37.0.0' 'ndk;27.1.12297006'
+      - name: Compile unsigned Android release
+        if: inputs.platform == 'android'
+        working-directory: android
+        run: ./gradlew ":app:bundle${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon
+      - uses: ruby/setup-ruby@v1
+        if: inputs.platform == 'ios'
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - name: Resolve pinned CocoaPods tooling
+        if: inputs.platform == 'ios'
+        working-directory: ios
+        run: bundle exec pod install
+      - name: Compile unsigned iOS archive
+        if: inputs.platform == 'ios'
+        run: |
+          xcodebuild -version
+          xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme "$IOS_SCHEME" \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/verification.xcarchive" CODE_SIGNING_ALLOWED=NO archive
+      - name: Preserve resolved native dependency versions
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: dependency-locks-${{ inputs.platform }}-${{ inputs.flavour }}
+          path: |
+            package-lock.json
+            Gemfile.lock
+            ios/Podfile.lock
+          if-no-files-found: error
+# Fake Firebase/environment configuration and disabled signing make these
+# compile checks unsuitable for distribution. Signed device QA is separate.

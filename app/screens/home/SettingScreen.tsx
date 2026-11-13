@@ -80,7 +80,6 @@ import { useTranslation } from "react-i18next";
 import {
   Alert,
   Modal,
-  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -88,13 +87,10 @@ import {
   View,
 } from "react-native";
 import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
-import { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
-import * as RNFS from "@dr.pogodin/react-native-fs";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
 import { store, useAppDispatch, useAppSelector } from "../../../App";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
 import { onNetworkStateChange } from "../../redux/reducers/bandwidthSlice";
 import {
   setAllLocalNotificationGenerateType,
@@ -109,13 +105,9 @@ import {
   isFutureDateTime,
 } from "../../services/childCRUD";
 import { formatStringDate, formatStringTime } from "../../services/Utils";
-import { openBackupDocument, saveBackupDocument } from "../../services/backupDocuments";
-import Share from "react-native-share";
 import LocalNotifications from "../../services/LocalNotifications";
 import { bgcolorWhite2, settingThumbFalseColor, settingTrackFalseColor, settingTrackTrueColor } from "@styles/style";
 import { logEvent } from "../../services/EventSyncService";
-import AesCrypto from "react-native-aes-crypto";
-import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
 import { fetchAPI } from "../../redux/sagaMiddleware/sagaActions";
 import {
   selectActiveChild,
@@ -237,119 +229,18 @@ const SettingScreen = (props: any): any => {
     }
   };
 
-  const encryptData = (text: string, key: any): any => {
-    console.log(
-      text,
-      "..text,key,encryptionsIVKey..",
-      encryptionsIVKey.replace("//:completeSettings = none", "")
-    );
-    return AesCrypto.encrypt(
-      text,
-      key,
-      encryptionsIVKey.replace("//:completeSettings = none", ""),
-      "aes-256-cbc"
-    )
-      .then((cipher: any) => ({
-        cipher,
-      }))
-      .catch((error: any) => {
-        console.log(error, "..error..");
-        setIsExportRunning(false);
-      });
-  };
-  const decryptData = (text: string, key: any): any => {
-    console.log(encryptionsIVKey);
-    return AesCrypto.decrypt(
-      text,
-      key,
-      encryptionsIVKey.replace("//:completeSettings = none", ""),
-      "aes-256-cbc"
-    ).catch((error: any) => {
-      console.log(error, "..error..");
-      setIsImportRunning(false);
-    });
-  };
-  const exportDataAndroid = async (cipher: string): Promise<void> => {
+  const exportFile = async (): Promise<void> => {
+    if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
+    driveOperationRunning.current = true;
+    setIsExportRunning(true);
     try {
-      if (await saveBackupDocument(cipher)) {
-        Alert.alert("", t("settingExportSuccess"));
-      }
+      if (await backup.exportToFile()) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
       console.error("Backup export failed", error);
       Alert.alert("", t("settingExportError"));
     } finally {
+      driveOperationRunning.current = false;
       setIsExportRunning(false);
-    }
-  };
-  const exportDataIOS = async (cipher: string): Promise<any> => {
-    console.log("exportDataIOS", cipher);
-
-    RNFS.writeFile(appConfig.tempbackUpPath, cipher, "utf8")
-      .then(async (res: any) => {
-        console.log(res, "..res..");
-        const shareOptions = {
-          title: "Backup File",
-          url: appConfig.tempbackUpPath,
-          saveToFiles: true,
-          failOnCancel: false,
-        };
-        try {
-          const ShareResponse = await Share.open(shareOptions);
-          setIsExportRunning(false);
-          if (ShareResponse && ShareResponse.success) {
-            Alert.alert("", t("settingExportSuccess"));
-            await RNFS.exists(appConfig.tempbackUpPath).then((exists) => {
-              console.log(String(exists), "..exists..");
-              if (exists) {
-                RNFS.unlink(appConfig.tempbackUpPath).then(() => {
-                  //RNFS.scanFile(tempbackUpPath);
-                });
-              }
-            });
-          } else {
-            Alert.alert("", t("settingExportError"));
-          }
-        } catch (error: any) {
-          setIsExportRunning(false);
-          if (error.error && error.error.code === "ECANCELLED500") {
-            console.log("canceled");
-          } else {
-            Alert.alert("", t("settingExportError"));
-          }
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsExportRunning(false);
-        Alert.alert("", t("settingExportError"));
-      });
-  };
-
-  const exportFile = async (): Promise<any> => {
-    //need to add code.
-    setIsExportRunning(true);
-    try {
-      userRealmCommon
-        .exportUserRealmDataToJson()
-        .then(async (jsonData: any) => {
-          encryptData(JSON.stringify(jsonData), encryptionsKey).then(
-            async (cipher: any) => {
-              if (Platform.OS === "android") {
-                exportDataAndroid(cipher.cipher);
-              } else {
-                console.log("cipher is", cipher.cipher);
-                exportDataIOS(cipher.cipher);
-              }
-            }
-          );
-        })
-        .catch((error) => {
-          console.log("Error exporting data:", error);
-          setIsExportRunning(false);
-          Alert.alert("", t("settingExportError"));
-        });
-    } catch (err) {
-      console.log("Error", err);
     }
   };
   const onExportCancel = (): any => {
@@ -364,7 +255,7 @@ const SettingScreen = (props: any): any => {
     setIsExportRunning(true);
     try {
       const success = await backup.export();
-      Alert.alert("", t(success ? "settingExportSuccess" : "generalError"));
+      if (success) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
       console.error("Drive backup failed", error);
       Alert.alert("", t("generalError"));
@@ -884,215 +775,24 @@ const SettingScreen = (props: any): any => {
     }
   }, [isFocused, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
 
-  const handleError = (err: any): any => {
-    console.log(err, "..err");
-
-    // if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
-    //   console.log("cancelled");
-    //   // User cancelled the picker, exit any dialogs or menus and move on
-    // } else if (isInProgress(err)) {
-    //   console.log(
-    //     "multiple pickers were opened, only the last will be considered"
-    //   );
-    // } else {
-    //   throw err;
-    // }
-
-    if (isErrorWithCode(err)) {
-      switch (err.code) {
-        case errorCodes.IN_PROGRESS:
-          console.warn('user attempted to present a picker, but a previous one was already presented')
-          break
-        case errorCodes.UNABLE_TO_OPEN_FILE_TYPE:
-          console.log('unable to open file type')
-          break
-        case errorCodes.OPERATION_CANCELED:
-          // ignore
-          break
-        default:
-          console.error(err)
-      }
-    } else {
-      throw err;
-    }
-  };
-  const importDataAndroid = async (): Promise<any> => {
+  const importFromSettingsFile = async (): Promise<void> => {
+    if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
+    driveOperationRunning.current = true;
     setIsImportRunning(true);
     try {
-      const dataset = await openBackupDocument();
-      let oldChildrenData: any = [];
-      if (
-        dataset &&
-        dataset.data != "" &&
-        dataset.data != null &&
-        dataset.data != undefined
-      ) {
-        if (dataset.name.toLowerCase().endsWith(".json")) {
-          const decryptedData = decryptData(dataset.data, encryptionsKey)
-            .then((text: any) => {
-              console.log("decryptData", text);
-              return text.replace(/[\x00-\x1F\x7F]/g, "");
-            })
-            .catch((error: any) => {
-              console.log("Decrypted error", error);
-              throw error;
-            });
-
-          const importedJsonData = JSON.parse(await decryptedData);
-          await RNFS.writeFile(
-            appConfig.tempRealmFile,
-            JSON.stringify(importedJsonData),
-            "utf8"
-          );
-          oldChildrenData = importedJsonData;
-        } else {
-          await RNFS.writeFile(
-            appConfig.tempRealmFile,
-            dataset.data,
-            "base64"
-          );
-          let importedrealm = await new Realm({ path: "user1.realm" });
-          if (importedrealm) {
-            importedrealm.close();
-          }
-          importedrealm = await new Realm({ path: "user1.realm" });
-          const user1Path = importedrealm.path;
-          console.log(user1Path, "..user1Path");
-          oldChildrenData = importedrealm.objects("ChildEntity");
-        }
-
-        console.log(oldChildrenData, "..newoldChildrenData..");
-        setIsImportRunning(true);
-        if (oldChildrenData.length > 0) {
-          await userRealmCommon.openRealm();
-          await userRealmCommon.deleteAllAtOnce();
-          try {
-            console.log("oldchildrenresponse", oldChildrenData);
-            const importResponse = await backup.importFromFile(
-              oldChildrenData,
-              props.navigation,
-              genders,
-              dispatch,
-              childAge,
-              languageCode,
-              taxonomyIds
-            );
-
-            console.log(importResponse, "..importResponse");
-          } catch (error) {
-            console.error("importResponse error", error);
-          }
-        }
-        setIsImportRunning(false);
-        actionSheetRefImport.current?.hide();
-      }
+      const data = await backup.readLocalBackup();
+      if (data === null) return;
+      const result = await backup.importFromFile(
+        data, props.navigation, genders, dispatch, childAge, languageCode, taxonomyIds
+      );
+      if (result instanceof Error) throw result;
+      if (result !== "Imported") throw new Error("Backup restore was not confirmed");
     } catch (error) {
-      console.error("Backup import failed", error);
+      console.error("Backup restore failed", error);
       Alert.alert("", t("generalError"));
     } finally {
+      driveOperationRunning.current = false;
       setIsImportRunning(false);
-    }
-  };
-  const importDataIOS = async (): Promise<any> => {
-    console.log("<<<<<importDataIOS>>>>>>");
-    pick({
-      allowMultiSelection: false,
-      allowedTypes: ['*/*'],
-    })
-      .then(async (res: any) => {
-        console.log("<<<<<importDataIOS>>>>>>", res);
-        let oldChildrenData: any = [];
-        if (res.length > 0 && res[0].uri) {
-          if (res[0].name.endsWith(".json")) {
-            const decryptFileContent: any = await RNFS.readFile(
-              decodeURIComponent(res[0].uri),
-              "utf8"
-            )
-              .then((edata: any) => {
-                return decryptData(edata, encryptionsKey)
-                  .then((text: any) => {
-                    //console.log('decryptData',text)
-                    return text.replace(/[\x00-\x1F\x7F]/g, "");
-                  })
-                  .catch((error: any) => {
-                    //console.log("Decrypted error", error);
-                    throw error;
-                    Alert.alert("", t("generalErrorTitle"));
-                  });
-              })
-              .catch((error) => {
-                //console.error('Error:', error);
-                Alert.alert("", t("generalErrorTitle"));
-                throw error;
-              });
-            //console.log('ios data is',decryptFileContent)
-            const importedJsonData = JSON.parse(decryptFileContent);
-            console.log("importedJsonData data is", importedJsonData);
-            oldChildrenData = importedJsonData;
-            console.log("oldChildrenData-if", oldChildrenData);
-            try {
-              //console.log("tempRealmFile", tempRealmFile);
-
-              await RNFS.writeFile(
-                appConfig.tempRealmFile,
-                JSON.stringify(importedJsonData),
-                "utf8"
-              );
-            } catch (error) {
-              console.log("In Write file", error);
-            }
-          } else {
-            const exportedFileContent: any = await RNFS.readFile(
-              decodeURIComponent(res[0].uri),
-              "base64"
-            );
-            await RNFS.writeFile(
-              appConfig.tempRealmFile,
-              exportedFileContent,
-              "base64"
-            );
-            let importedrealm = await new Realm({ path: "user1.realm" });
-            if (importedrealm) {
-              //console.log( "importedrealm")
-              importedrealm.close();
-            }
-            importedrealm = await new Realm({ path: "user1.realm" });
-            const user1Path = importedrealm.path;
-            //console.log(user1Path, "..user1Path")
-            oldChildrenData = importedrealm.objects("ChildEntity");
-          }
-
-          console.log(oldChildrenData, "..newoldChildrenData..");
-          setIsImportRunning(true);
-          if (oldChildrenData.length > 0) {
-            try {
-              console.log("..importResponse");
-              await userRealmCommon.openRealm();
-              await userRealmCommon.deleteAllAtOnce();
-              const importResponse = await backup.importFromFile(
-                oldChildrenData,
-                props.navigation,
-                genders,
-                dispatch,
-                childAge,
-                languageCode,
-                taxonomyIds
-              );
-            } catch (error) {
-              console.error(error, "..importResponse error");
-            }
-          }
-          setIsImportRunning(false);
-          actionSheetRefImport.current?.hide();
-        }
-      })
-      .catch(handleError);
-  };
-  const importFromSettingsFile = async (): Promise<any> => {
-    if (Platform.OS == "android") {
-      importDataAndroid();
-    } else {
-      importDataIOS();
     }
   };
 
@@ -1505,16 +1205,7 @@ const SettingScreen = (props: any): any => {
                     <Pressable
                       onPress={async (): Promise<void> => {
                         if (!(await actionSheetRefImport.current?.hideAndWait())) return;
-                        try {
-                          await importFromSettingsFile();
-                        } catch (error) {
-                          if (
-                            !(isErrorWithCode(error) && error.code === errorCodes.OPERATION_CANCELED)
-                          ) {
-                            console.error(error);
-                            Alert.alert("", t("generalError"));
-                          }
-                        }
+                        await importFromSettingsFile();
                       }}
                     >
                       <VectorImage source={require("@images/ic_file.svg")} />

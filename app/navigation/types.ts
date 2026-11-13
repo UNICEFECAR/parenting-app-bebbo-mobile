@@ -1,7 +1,13 @@
 export type RootStackParamList = {
   Localization: undefined;
   ChildSetup: undefined;
-  AddChildSetup: undefined;
+  AddChildSetup: {
+    birthDate: Date;
+    relationship: string;
+    relationshipname: string;
+    userRelationToParent?: number;
+    parentName: string;
+  };
   ChildImportSetup: {};
   ChildSetupList: undefined;
   ServiceProviderInfoSetup: undefined;

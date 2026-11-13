@@ -63,7 +63,7 @@ const Aboutus = (): any => {
             {aboutusdata != "" ? (
               <RenderHTML
                 source={{ html: addSpaceToHtml(aboutusdata) }}
-                baseStyle={styles.fontStyle}
+                baseStyle={{...styles.fontStyle, direction: appLayoutDirection()}}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}
                 tagsStyles={{
                   img: { maxWidth: Dimensions.get("window").width - 30 },
@@ -107,6 +107,7 @@ const Aboutus = (): any => {
                   <WebView renderToHardwareTextureAndroid={true} />
                 )}
                 renderersProps={{
+                  ...htmlListRenderers,
                   iframe: { webViewProps: { allowsFullscreenVideo: true } },
                 }}
               />

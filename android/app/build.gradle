@@ -324,3 +324,18 @@ tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
     inputs.property('appFlavor', providers.environmentVariable('FLAVOR').orElse('bebbo'))
     inputs.property('appEnvFile', providers.environmentVariable('ENVFILE').orElse(''))
 }
+
+// Compile-only CI runs have fake Firebase configuration and cannot be shipped.
+// Normal local/release builds retain their existing per-flavour signing keys.
+if (providers.gradleProperty("unsignedVerification").getOrElse("false").toBoolean()) {
+    android.productFlavors.configureEach { signingConfig = null }
+    android.buildTypes.release.signingConfig = null
+}
+
+def verifyVectorAssets = tasks.register("verifyVectorAssets", Exec) {
+    workingDir rootProject.projectDir.parentFile
+    commandLine(react.nodeExecutableAndArgs.get() + ["scripts/vector-assets.cjs"])
+}
+tasks.configureEach { task ->
+    if (task.name == "preBuild") task.dependsOn(verifyVectorAssets)
+}
