@@ -62,3 +62,6 @@ The status-only result/provenance files are in [evidence](evidence/). Android [r
 
 
 The actual legacy converter also has five regressions for empty/null or height-only/weight-only vaccination records and unchanged current array-format units. Previously four legacy cases omitted native-required string fields and prevented the whole restore; now available values are converted, absent values remain empty (never zero), and vaccination IDs/comments remain attached to their profile. These new edge cases are distinguished from the earlier four native happy-path legacy runs until the extended native results are recorded.
+
+
+Explicit expected-child flags are now preserved even when a pregnancy due date has passed. A date is not proof of birth; only files without an explicit flag use legacy date inference. Legacy boolean premature/default-child flags are normalised to the current string representation. Three actual-converter regressions verify these cases; native schema handling of current pregnancy/flag strings is covered by the captured runs, but these specific overdue/boolean edge cases have unit-only evidence and require real historical-device acceptance.

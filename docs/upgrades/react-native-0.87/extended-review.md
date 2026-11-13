@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-345 Jest tests / 39 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+348 Jest tests / 39 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
@@ -81,3 +81,6 @@ Profile deletion now handles missing records safely, detaches embedded reminders
 Legacy backup vaccination-only/partial-measurement fixtures exposed missing required height/weight strings: the old converter skipped fields for blank/null measurements, causing otherwise valid imports to fail native validation. Convert each available legacy value in its original units, preserve absent values as empty strings and retain the existing measured flag rule. Five tests execute the actual converter (four failed before correction), including unchanged current array-format records. Native acceptance is extended with the vaccination-only case.
 
 One final startup check was blocked by the app's existing poor-connection/data-saver prompt. Its screenshot shows that prompt, not a crash. The smoke harness now declines this recognised prompt and waits a bounded time for the same required download-retry screen, retaining strict blank/error-screen checks. Other unexpected dialogs still fail the test.
+
+
+The field-by-field legacy comparison also reproduced past-due pregnancy profiles being reclassified as born children on restore. Preserve an explicit stored expected-child flag and infer from dates only when an old file has none; normalise legacy boolean premature/placeholder flags to the existing string schema without losing true values. Three actual-converter regressions fail before the change and pass afterwards. These flag edge cases have unit verification; installed historical pregnancy fixtures still require device acceptance. No schema version or stored-data rewrite is introduced.

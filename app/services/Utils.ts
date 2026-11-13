@@ -749,8 +749,8 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
     console.log("reminders output---", childmeasures);
     const childreminders = await formatImportedReminders(child.reminders);
     console.log("reminders output---", childreminders);
-    const isPremature: any = child?.isPremature == "true" ? "true" : "false";
-    const autoChild: any = child?.autoChild == "true" ? "true" : "false";
+    const isPremature: any = child?.isPremature === true || child?.isPremature === "true" ? "true" : "false";
+    const autoChild: any = child?.autoChild === true || child?.autoChild === "true" ? "true" : "false";
     const childName: any =
       "name" in child === true
         ? child.name
@@ -801,7 +801,11 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
       reminders: childreminders,
       isMigrated: true,
       isPremature: isPremature,
-      isExpected: inFuture == true ? "true" : "false",
+      // A due date passing does not establish that an expected child was born.
+      // Preserve stored flags; only infer dates for legacy files without one.
+      isExpected: child.isExpected === true || child.isExpected === "true" ? "true"
+        : child.isExpected === false || child.isExpected === "false" ? "false"
+        : inFuture == true ? "true" : "false",
       favoriteadvices: favoriteadvices,
       favoritegames: favoritegames,
       autoChild: autoChild,
