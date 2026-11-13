@@ -1,3 +1,4 @@
+import { returnToScreen } from "../navigation/returnToScreen";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonMangeProfileContainer,
@@ -254,7 +255,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
-            navigation.navigate("ChildProfileScreen");
+            returnToScreen(navigation, "ChildProfileScreen");
           },
         },
       ]);

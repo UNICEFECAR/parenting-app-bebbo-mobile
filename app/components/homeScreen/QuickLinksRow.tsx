@@ -1,8 +1,9 @@
+import HorizontalContentList from "@components/shared/HorizontalContentList";
 import React, { useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, FlatList, Dimensions } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, Dimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import VectorImage from 'react-native-vector-image';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { backup } from '../../services/backup';
@@ -12,11 +13,12 @@ import { BannerContainer } from '@components/shared/Container';
 import { SettingHeading, SettingOptions, SettingShareData } from '@components/shared/SettingsStyle';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import AlertModal from '@components/AlertModal';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import AesCrypto from "react-native-aes-crypto";
-import * as ScopedStorage from "react-native-scoped-storage";
-import RNFS from "react-native-fs";
+import { saveBackupDocument } from "../../services/backupDocuments";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import { appConfig } from '../../instances';
 import Share from "react-native-share";
 
@@ -27,9 +29,11 @@ const QuickLinksRow = () => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const driveExportRunning = useRef(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
+  const [isDriveBackupRunning, setIsDriveBackupRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
-  const actionSheetRef = useRef<any>(null);
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
   const netInfo = useNetInfoHook();
   const data = [
     { id: "1", title: t("favScreenHeader"), icon: require("@images/ic_favorites_link.svg"), route: "Favourites" },
@@ -40,6 +44,7 @@ const QuickLinksRow = () => {
   const Card = ({ item }: any) => {
     return (
       <Pressable
+        disabled={isExportRunning}
         style={({ pressed }) => [
           styles.card,
           pressed && styles.cardPressed, // subtle feedback
@@ -47,7 +52,7 @@ const QuickLinksRow = () => {
         android_ripple={{ color: "#D9EAF6", borderless: false }}
         onPress={() => {
           if (item.id == "3") {
-            SheetManager.show("export_action_sheet")
+            actionSheetRef.current?.show()
           } else {
             navigation.navigate(item.route as never)
           }
@@ -61,16 +66,24 @@ const QuickLinksRow = () => {
     );
   };
   const exportToDrive = async (): Promise<any> => {
+    if (driveExportRunning.current) return;
+    driveExportRunning.current = true;
     setIsExportRunning(true);
-    const exportIsSuccess = await backup.export();
-    setIsExportRunning(false);
-    if (!exportIsSuccess) {
-      Alert.alert("", t("settingExportError"));
-    } else {
-      Alert.alert("", t("settingExportSuccess"));
+    setIsDriveBackupRunning(true);
+    try {
+      const success = await backup.export();
+      Alert.alert("", t(success ? "settingExportSuccess" : "generalError"));
+    } catch (error) {
+      console.error("Drive backup failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
+      driveExportRunning.current = false;
+      setIsExportRunning(false);
+      setIsDriveBackupRunning(false);
+      actionSheetRef.current?.hide();
     }
-    actionSheetRef.current?.setModalVisible(false);
   };
+
   const encryptData = (text: string, key: any): any => {
     console.log(
       text,
@@ -91,32 +104,15 @@ const QuickLinksRow = () => {
         setIsExportRunning(false);
       });
   };
-  const exportDataAndroid = async (cipher: string): Promise<any> => {
-    // const file = await ScopedStorage.openDocumentTree(true);
-    const uri: any = await ScopedStorage.getPersistedUriPermissions();
+  const exportDataAndroid = async (cipher: string): Promise<void> => {
     try {
-      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
-      const fileDownload: any = await ScopedStorage.createDocument(
-        "mybackup",
-        "application/json",
-        JSON.stringify(cipher),
-        "utf8"
-      );
-      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-
-      if (
-        fileDownload != "" &&
-        fileDownload != null &&
-        fileDownload != undefined
-      ) {
+      if (await saveBackupDocument(cipher)) {
         Alert.alert("", t("settingExportSuccess"));
-        setIsExportRunning(false);
-      } else {
-        Alert.alert("", t("settingExportError"));
-        setIsExportRunning(false);
       }
-    } catch (e: any) {
-      console.log("", e.message);
+    } catch (error) {
+      console.error("Backup export failed", error);
+      Alert.alert("", t("settingExportError"));
+    } finally {
       setIsExportRunning(false);
     }
   };
@@ -199,7 +195,7 @@ const QuickLinksRow = () => {
   };
   return (
     <View style={styles.container}>
-      <FlatList
+      <HorizontalContentList
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Card item={item} />}
@@ -207,7 +203,7 @@ const QuickLinksRow = () => {
         contentContainerStyle={styles.listContainer}
         showsHorizontalScrollIndicator={false}
       />
-      <ActionSheet id="export_action_sheet" ref={actionSheetRef}>
+      <ActionSheet ref={actionSheetRef}>
         <BannerContainer>
           <SettingHeading>
             <Heading1>{t("settingScreenexportOptionHeader")}</Heading1>
@@ -216,23 +212,12 @@ const QuickLinksRow = () => {
             <FDirRow>
               <SettingOptions>
                 <Pressable
-                  onPress={async (): Promise<any> => {
-                    console.log("icon clicked");
+                  onPress={async (): Promise<void> => {
+                    if (!(await actionSheetRef.current?.hideAndWait())) return;
                     try {
-                      if (Platform.OS === "android") {
-                        console.log("1233");
-
-                        console.log("You can write");
-                        actionSheetRef.current?.setModalVisible(false);
-                        exportFile();
-                      } else {
-                        actionSheetRef.current?.setModalVisible(false);
-                        setTimeout(() => {
-                          exportFile();
-                        }, 350);
-                      }
-                    } catch (err) {
-                      console.warn(err);
+                      await exportFile();
+                    } catch (error) {
+                      console.warn(error);
                     }
                   }}
                 >
@@ -246,14 +231,10 @@ const QuickLinksRow = () => {
               </SettingOptions>
               <SettingOptions>
                 <Pressable
-                  onPress={(): any => {
-                    actionSheetRef.current?.setModalVisible(false);
-                    if (netInfo && netInfo.isConnected == true) {
-                      Platform.OS == "ios"
-                        ? setTimeout(() => {
-                          setExportAlertVisible(true);
-                        }, 350)
-                        : setExportAlertVisible(true);
+                  onPress={async (): Promise<void> => {
+                    if (!(await actionSheetRef.current?.hideAndWait())) return;
+                    if (netInfo && netInfo.isConnected === true) {
+                      setExportAlertVisible(true);
                     } else {
                       Alert.alert("", t("noInternet"));
                     }
@@ -280,6 +261,14 @@ const QuickLinksRow = () => {
         onConfirm={handleExportAlertConfirm}
         onCancel={onExportCancel}
       ></AlertModal>
+      <Modal
+        transparent
+        visible={isDriveBackupRunning}
+        animationType="none"
+        onRequestClose={() => {}}
+      >
+        <OverlayLoadingComponent loading={isDriveBackupRunning} />
+      </Modal>
     </View>
   );
 };
@@ -331,4 +320,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuickLinksRow; 
+export default QuickLinksRow;

@@ -56,7 +56,7 @@ export const LabelTextVac = styled.Text`
 export const LabelTextTerms = styled.Text`
   color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
   font-size: 14px;
-  text-align:left;
+  text-align: start;
 `;
 
 export const LabelDatePlaceHolderText = styled.Text`
@@ -66,14 +66,14 @@ export const LabelDatePlaceHolderText = styled.Text`
 `;
 
 export const LabelText = styled(LabelTextVac)`
-  text-align:left;
+  text-align: start;
 `;
 export const LabelWithInfoText = styled(LabelTextVac)`
-  text-align:left;
+  text-align: start;
   flex:2;
 `;
 export const LabelChildText = styled(LabelTextVac)`
-  text-align:left;
+  text-align: start;
   margin-top: 0px;
   flex-shrink: 1;
   flex-grow: 1;
@@ -95,7 +95,7 @@ export const LinkContainer = styled.View`
   flex-direction: row;
 `;
 export const LabelText1 = styled(LabelTextVac)`
-text-align:left;
+text-align: start;
 `;
 export const ChildSection = styled.View`
   flex: 1;
@@ -119,7 +119,7 @@ export const ChildListingBox = styled.View`
 export const ChildListTitle = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  text-align:left;
+  text-align: start;
 `;
 
 export const ChildColArea1 = styled.View`

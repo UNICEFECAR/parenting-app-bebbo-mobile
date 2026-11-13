@@ -1,17 +1,18 @@
-import { bgcolortransparent } from "../instances/bebbo/styles/style";
-import React from "react";
+import {bgcolortransparent} from '../instances/bebbo/styles/style';
+import React from 'react';
 import {
   Animated,
   Dimensions,
+  I18nManager,
   StyleSheet,
   Text,
   View,
   ViewStyle,
-} from "react-native";
-import { convertDigits } from "../services/Utils";
+} from 'react-native';
+import {convertDigits} from '../services/Utils';
 
-const { width } = Dimensions.get("screen");
-const { height } = Dimensions.get("screen");
+const {width} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 type Props = {
   /**
    * Container style
@@ -113,15 +114,12 @@ type Props = {
 };
 interface State {
   value: number;
-  scrollX: {
-    addListener: Function;
-    removeListener: Function;
-  };
+  scrollX: Animated.Value;
   scrollValue: number;
 }
 export const styles = StyleSheet.create({
-  flexEndScrollView: { justifyContent: "flex-end" },
-  indicatorOuterView: { flexDirection: "row" },
+  flexEndScrollView: {justifyContent: 'flex-end'},
+  indicatorOuterView: {flexDirection: 'row'},
   indicatorViewSet: {
     borderLeftColor: bgcolortransparent,
     borderLeftWidth: 15,
@@ -132,24 +130,25 @@ export const styles = StyleSheet.create({
     marginTop: 0,
   },
   mainViewOuter: {
-    alignItems: "flex-end",
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   numberView: {
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
   },
-  renderOuterView: { position: "relative" },
-  rulerView: { flexDirection: "column-reverse" },
-  textOuterView: { marginLeft: -25, width: 40 },
-  textView: { fontSize: 11, textAlign: "center" },
+  renderOuterView: {position: 'relative'},
+  rulerView: {flexDirection: 'column-reverse'},
+  textOuterView: {marginLeft: -25, width: 40},
+  textView: {fontSize: 11, textAlign: 'center'},
 });
 class Ruler extends React.Component<Props, State> {
   scrollViewRef: React.RefObject<any>;
   rulerWidth: number;
   scrollListener: any;
+  positioned = false;
   snapSegment: number;
   spacerWidth: number;
   static defaultProps: Props;
@@ -157,7 +156,10 @@ class Ruler extends React.Component<Props, State> {
     super(props);
     this.state = {
       scrollX: new Animated.Value(0),
-      value: 0,
+      value: Math.max(
+        props.minimum,
+        Math.min(props.maximum, Math.round(props.initialValue)),
+      ),
       scrollValue: 0,
     };
 
@@ -171,28 +173,18 @@ class Ruler extends React.Component<Props, State> {
   }
 
   componentDidMount(): any {
-    const { minimum, initialValue, onChangeValue } = this.props;
-    if (this.scrollViewRef && this.scrollViewRef.current) {
-      setTimeout(() => {
-        this.scrollViewRef.current?.scrollTo({
-          x: (initialValue - minimum) * this.snapSegment,
-          y: 0,
-          animated: true,
-        });
-      });
-      this.setState({
-        value: initialValue,
-      });
-      onChangeValue(initialValue);
-    }
+    const {minimum, maximum, onChangeValue} = this.props;
+    onChangeValue(this.state.value);
 
     // Create a listener
-    this.scrollListener = this.state.scrollX.addListener(({ value }: any) => {
-      this.setState({
-        value: Math.round(value / this.snapSegment) + minimum,
-        scrollValue: value,
-      });
-      onChangeValue(Math.round(value / this.snapSegment) + minimum);
+    this.scrollListener = this.state.scrollX.addListener(({value}: any) => {
+      if (!this.positioned) return;
+      const selectedValue = Math.max(
+        minimum,
+        Math.min(maximum, Math.round(value / this.snapSegment) + minimum),
+      );
+      this.setState({value: selectedValue, scrollValue: value});
+      onChangeValue(selectedValue);
     });
   }
 
@@ -224,8 +216,7 @@ class Ruler extends React.Component<Props, State> {
           {
             width: this.rulerWidth,
           },
-        ]}
-      >
+        ]}>
         {/* Spacer */}
         <View
           style={{
@@ -236,18 +227,34 @@ class Ruler extends React.Component<Props, State> {
         {/* Ruler */}
         {data.map((i, index) => {
           return (
-            <View key={index} style={styles.rulerView}>
+            <View
+              key={index}
+              style={[
+                styles.rulerView,
+                {
+                  width:
+                    index === data.length - 1 ? segmentWidth : this.snapSegment,
+                },
+              ]}>
               <View
                 style={{
                   backgroundColor: i % step === 0 ? stepColor : normalColor,
                   height: i % step === 0 ? stepHeight : normalHeight,
                   width: segmentWidth,
-                  marginRight: segmentSpacing,
+                  marginRight: index === data.length - 1 ? 0 : segmentSpacing,
                 }}
               />
               {i % step === Number(0.0) ? (
-                <View style={styles.textOuterView}>
-                  <Text style={styles.textView}>
+                <View
+                  style={[
+                    styles.textOuterView,
+                    {marginLeft: (segmentWidth - 40) / 2},
+                  ]}>
+                  <Text
+                    style={[
+                      styles.textView,
+                      I18nManager.isRTL && {transform: [{scaleX: -1}]},
+                    ]}>
                     {convertDigits(Number(stepPreFix * i).toFixed(2), locale)}
                   </Text>
                 </View>
@@ -281,9 +288,7 @@ class Ruler extends React.Component<Props, State> {
       height,
       vertical,
     } = this.props;
-    const data = [...Array(maximum - minimum + 1).keys()].map(
-      (i) => i + minimum
-    );
+    const data = [...Array(maximum - minimum + 1).keys()].map(i => i + minimum);
     return (
       <View
         style={[
@@ -293,10 +298,11 @@ class Ruler extends React.Component<Props, State> {
             width,
             height,
             backgroundColor,
-            transform: vertical ? [{ rotate: "90deg" }] : undefined,
+            // Keep native offsets physical/LTR; mirror only the scroll viewport.
+            direction: 'ltr',
+            transform: vertical ? [{rotate: '90deg'}] : undefined,
           },
-        ]}
-      >
+        ]}>
         {/* Number && Unit */}
         <View
           style={[
@@ -307,8 +313,7 @@ class Ruler extends React.Component<Props, State> {
               left: (width - indicatorWidth) / 2,
             },
           ]}
-          pointerEvents="none"
-        >
+          pointerEvents="none">
           {/* Indicator */}
           <View style={styles.indicatorOuterView}>
             <View
@@ -316,22 +321,40 @@ class Ruler extends React.Component<Props, State> {
                 height: indicatorHeight,
                 backgroundColor: indicatorColor,
                 width: segmentWidth,
-              }}
-            >
+              }}>
               <View
                 style={[
                   styles.indicatorViewSet,
                   {
                     borderTopColor: indicatorColor,
                   },
-                ]}
-              ></View>
+                ]}></View>
             </View>
           </View>
         </View>
         <Animated.ScrollView
           ref={this.scrollViewRef}
           horizontal
+          style={I18nManager.isRTL ? {transform: [{scaleX: -1}]} : undefined}
+          contentOffset={{
+            x:
+              (Math.max(
+                minimum,
+                Math.min(maximum, Math.round(this.props.initialValue)),
+              ) -
+                minimum) *
+              this.snapSegment,
+            y: 0,
+          }}
+          onContentSizeChange={(): void => {
+            if (this.positioned) return;
+            this.positioned = true;
+            this.scrollViewRef.current?.scrollTo({
+              x: (this.state.value - minimum) * this.snapSegment,
+              y: 0,
+              animated: false,
+            });
+          }}
           contentContainerStyle={styles.flexEndScrollView}
           scrollToOverflowEnabled={true}
           bounces={false}
@@ -342,19 +365,18 @@ class Ruler extends React.Component<Props, State> {
             [
               {
                 nativeEvent: {
-                  contentOffset: { x: this.state.scrollX },
+                  contentOffset: {x: this.state.scrollX},
                 },
               },
             ],
-            { useNativeDriver: false }
+            {useNativeDriver: false},
           )}
           onMomentumScrollEnd={(): any => {
             this.scrollViewRef.current?.scrollTo({
-              x: this.state.value * this.snapSegment + minimum,
+              x: (this.state.value - minimum) * this.snapSegment,
               y: 0,
             });
-          }}
-        >
+          }}>
           {this.renderRuler(data)}
         </Animated.ScrollView>
       </View>
@@ -367,25 +389,25 @@ Ruler.defaultProps = {
   width,
   height: height * 0.23,
   onChangeValue: (): any => {
-    console.log("ruler value change");
+    console.log('ruler value change');
   },
   minimum: 0,
   maximum: 100,
   segmentWidth: 2,
   segmentSpacing: 20,
-  indicatorColor: "#FF0000",
+  indicatorColor: '#FF0000',
   indicatorWidth: 100,
   indicatorHeight: 80,
   indicatorBottom: 20,
   step: 10,
   stepPreFix: 0,
-  stepColor: "#333333",
+  stepColor: '#333333',
   stepHeight: 40,
-  normalColor: "#999999",
+  normalColor: '#999999',
   normalHeight: 20,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: '#FFFFFF',
   initialValue: 0,
-  locale: "bn",
+  locale: 'bn',
 };
 
 export default Ruler;

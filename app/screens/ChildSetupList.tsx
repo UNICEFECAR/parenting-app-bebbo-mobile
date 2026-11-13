@@ -1,9 +1,10 @@
+import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
+import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
   ButtonPrimary,
-  ButtonTextLg,
   ButtonUpperCaseText,
   ButtonWithBorder,
 } from "@components/shared/ButtonGlobal";
@@ -17,7 +18,7 @@ import {
   ChildListingBox,
   ChildListTitle,
 } from "@components/shared/ChildSetupStyle";
-import Icon, { OuterIconRow } from "@components/shared/Icon";
+import Icon from "@components/shared/Icon";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingHeading from "@components/shared/OnboardingHeading";
 import { RootStackParamList } from "@navigation/types";
@@ -34,7 +35,6 @@ import {
   Alert,
   BackHandler,
   Dimensions,
-  InteractionManager,
   Platform,
   StyleSheet,
   Text,
@@ -132,7 +132,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
     let task: { cancel: () => void } | undefined;
     setLoading(true)
     if (isFocused) {
-      task = InteractionManager.runAfterInteractions(() => {
+      task = scheduleIdleTask(() => {
         getAllChildren(dispatch, childAge, 0);
         getAllConfigData(dispatch);
         setLoading(false)
@@ -367,11 +367,10 @@ const ChildSetupList = ({ navigation }: Props): any => {
                   })
                 }
               >
-                <OuterIconRow>
-                  <ButtonTextLg style={styles.plusBtnColor}>
-                    {t("childSetupListaddSiblingBtn")}
-                  </ButtonTextLg>
-                </OuterIconRow>
+                <ButtonLeadingPlusLabel
+                  label={t("childSetupListaddSiblingBtn")}
+                  style={styles.plusBtnColor}
+                />
               </ButtonWithBorder>
               <ButtonPrimary
                 onPress={(e: any): any => {

@@ -67,8 +67,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from "styled-components/native";
 import { v4 as uuidv4 } from "uuid";
@@ -670,10 +669,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
     <>
       <View style={[styles.flex1, { backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <ScrollView
-          nestedScrollEnabled={true}
-          keyboardShouldPersistTaps={"always"}
-        >
+        <View style={styles.flex1}>
           <HeaderRowView
             style={[
               styles.maxHeight,
@@ -711,6 +707,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
           </HeaderRowView>
           <FlexCol>
             <KeyboardAwareScrollView
+              bottomOffset={20}
               bounces={false}
               keyboardShouldPersistTaps={"always"}
             >
@@ -965,7 +962,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
               </ModalPopupContainer>
             </PopupOverlay>
           </Modal>
-        </ScrollView>
+        </View>
       </View>
     </>
   );

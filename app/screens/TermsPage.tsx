@@ -1,3 +1,4 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { ChildAddTop } from "@components/shared/ChildSetupStyle";
 import Icon from "@components/shared/Icon";
@@ -97,17 +98,17 @@ const TermsPage = ({ navigation }: Props): any => {
               <HTML
                 contentWidth={width}
                 source={{ html: addSpaceToHtml(termsdata) }}
-                baseStyle={styles.htmlStyle}
+                baseStyle={{...(styles.htmlStyle), direction: appLayoutDirection()}}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}
                 tagsStyles={{
-                  p: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h1: { marginBottom: 0, marginTop: 10, textAlign: "left" },
-                  h2: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h3: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h4: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h5: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h6: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  span: { marginBottom: 15, marginTop: 0, textAlign: "left" },
+                  p: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h1: { marginBottom: 0, marginTop: 10, textAlign: htmlTextAlign() },
+                  h2: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h3: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h4: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h5: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h6: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  span: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
                   br: { height: 0 },
                   img: { maxWidth: Dimensions.get("window").width - 50 },
                   iframe: { maxWidth: "100%", height: 200 },
@@ -133,7 +134,7 @@ const TermsPage = ({ navigation }: Props): any => {
                 WebView={() => (
                   <WebView renderToHardwareTextureAndroid={true} />
                 )}
-                renderersProps={{
+                renderersProps={{...htmlListRenderers,
                   iframe: { webViewProps: { allowsFullscreenVideo: true } },
                 }}
               />

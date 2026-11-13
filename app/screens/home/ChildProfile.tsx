@@ -1,7 +1,8 @@
+import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
+import { scheduleIdleTask } from "../../services/scheduleIdleTask";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonLinkPress,
-  ButtonTextLg,
   ButtonWithBorder,
 } from "@components/shared/ButtonGlobal";
 import { AreaContainer } from "@components/shared/Container";
@@ -53,7 +54,6 @@ import { useTranslation } from "react-i18next";
 import {
   BackHandler,
   Dimensions,
-  InteractionManager,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -128,11 +128,11 @@ const ChildProfile = ({ navigation }: Props): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
+      const task = scheduleIdleTask(() => {
         getAllChildren(dispatch, childAge, 0);
         getAllConfigData(dispatch);
       });
-      setTimeout(() => {
+      const cleanupTimer = setTimeout(() => {
         navigation.dispatch((state: any) => {
           // Remove the home route from the stack
           const routes = state.routes.filter(
@@ -149,14 +149,17 @@ const ChildProfile = ({ navigation }: Props): any => {
           });
         });
       }, 50);
-      return () => task.cancel();
+      return () => {
+        clearTimeout(cleanupTimer);
+        task.cancel();
+      };
     }, [])
   );
 
   const childList = useAppSelector(selectChildList);
   const activeChild = useAppSelector(selectActiveChild);
 
-  useEffect(() => {
+  useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       navigation.goBack();
       return true;
@@ -165,13 +168,11 @@ const ChildProfile = ({ navigation }: Props): any => {
       "hardwareBackPress",
       backAction
     );
-    navigation.addListener("gestureEnd", backAction);
 
     return (): any => {
-      navigation.removeListener("gestureEnd", backAction);
       backHandler.remove();
     };
-  }, [navigation, isFocused]);
+  }, [navigation]));
   const isFutureDate = (date: Date): any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -604,11 +605,10 @@ const ChildProfile = ({ navigation }: Props): any => {
                       });
                     }}
                   >
-                    <OuterIconRow>
-                      <ButtonTextLg style={styles.plusBtnColor}>
-                        {t("childSetupListaddSiblingBtn")}
-                      </ButtonTextLg>
-                    </OuterIconRow>
+                    <ButtonLeadingPlusLabel
+                      label={t("childSetupListaddSiblingBtn")}
+                      style={styles.plusBtnColor}
+                    />
                   </ButtonWithBorder>
 
                   <ButtonWithBorder
@@ -618,11 +618,10 @@ const ChildProfile = ({ navigation }: Props): any => {
                       });
                     }}
                   >
-                    <OuterIconRow>
-                      <ButtonTextLg style={styles.plusBtnColor}>
-                        {t("expectChildAddTxt")}
-                      </ButtonTextLg>
-                    </OuterIconRow>
+                    <ButtonLeadingPlusLabel
+                      label={t("expectChildAddTxt")}
+                      style={styles.plusBtnColor}
+                    />
                   </ButtonWithBorder>
                 </ShiftFromTop30>
               </View>

@@ -43,7 +43,7 @@ export const CheckboxChkActive = styled(CheckboxActive)`
 
 
 export const CheckboxItemText = styled.Text`
-  text-align: left;
+  text-align: start;
   font-size: 16px;
   line-height: 20px;
   color: #777779;

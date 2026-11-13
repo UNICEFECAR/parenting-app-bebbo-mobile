@@ -1,435 +1,493 @@
-import { chartInnerViewBg, outerViewbg } from "@styles/style";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import {chartInnerViewBg, outerViewbg} from '@styles/style';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {I18nManager, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Circle, Path, Skia} from 'react-native-skia';
+import {area, curveNatural} from 'd3-shape';
 import {
-  Dimensions,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-} from "react-native";
-import Svg from "react-native-svg";
-import { VictoryAreaProps } from "victory-area";
-import { LabelProps, VictoryAxisCommonProps } from "victory-core";
-import { VictoryLineProps } from "victory-line";
+  CartesianChart,
+  Line,
+  type CartesianChartRenderArg,
+} from 'victory-native';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import {
-  VictoryArea,
-  VictoryAxis,
-  VictoryChart,
-  VictoryLabel,
-  VictoryLine,
-  VictoryScatter,
-  VictoryTheme,
-  VictoryTooltip,
-  VictoryVoronoiContainer,
-} from "victory-native";
-import { VictoryScatterProps } from "victory-scatter";
-import { VictoryTooltipProps } from "victory-tooltip";
-import useDigitConverter from "../../customHooks/useDigitConvert";
-import { convertMeasuresData } from "../../services/growthService";
-export interface LineChartData {
-  x: number;
-  y: number;
-}
-export interface ChartData {
-  measurementDate: number;
-  weight: number;
-  length: number;
-}
-export interface GrowtChartStyles {
-  container?: ViewStyle;
-  contentWrapper?: ViewStyle;
-  chartLegend: ViewStyle;
-  chartLegendItem: ViewStyle;
-  chartHeader: ViewStyle;
-  mainView: ViewStyle;
-  chartInnerView: ViewStyle;
-  textFont: ViewStyle;
-  outerView: ViewStyle;
-}
-export interface VictoryStyles {
-  VictoryAxis: VictoryAxisCommonProps["style"];
-  VictoryAxisVertical: VictoryAxisCommonProps["style"];
-  VictoryLine: VictoryLineProps["style"];
-  VictoryScatter: VictoryScatterProps["style"];
-  VictoryArea: VictoryAreaProps["style"];
-  axisLabel?: LabelProps;
-  VictoryTooltip: VictoryTooltipProps;
-}
+  convertMeasuresData,
+  type ChartAreaDataFormat,
+} from '../../services/growthService';
+import {
+  clampTooltipPosition,
+  getGrowthChartDomain,
+  getOuterReferenceBand,
+  prepareGrowthChartData,
+} from './growthChartData';
+
 export enum chartTypes {
   WeightForHeight,
   HeightForAge,
 }
-const styles = StyleSheet.create<GrowtChartStyles>({
-  chartHeader: {
-    flexDirection: "row",
-    paddingLeft: 20,
-    paddingTop: 20,
+
+type Scales = Pick<
+  CartesianChartRenderArg<{x: number; y: number}, 'y'>,
+  'xScale' | 'yScale'
+>;
+type Props = {
+  activeChild: any;
+  chartType: chartTypes;
+  bgObj: ChartAreaDataFormat;
+  windowWidth: number;
+  windowHeight: number;
+};
+
+const styles = StyleSheet.create({
+  mainView: {alignItems: 'center'},
+  chart: {direction: 'ltr'},
+  axisText: {
+    position: 'absolute',
+    color: '#455A64',
+    fontSize: 12,
+    textAlign: 'center',
   },
+  yTick: {left: 0, width: 42, textAlign: 'right'},
+  xTick: {width: 50},
+  unitX: {bottom: 12, width: 120},
+  tickX: {
+    position: 'absolute',
+    width: 1,
+    height: 5,
+    backgroundColor: '#90A4AE',
+  },
+  tickY: {
+    left: 45,
+    position: 'absolute',
+    width: 5,
+    height: 1,
+    backgroundColor: '#90A4AE',
+  },
+  unitY: {left: 4, top: 12, width: 70},
+  measurement: {position: 'absolute', width: 42, height: 42, borderRadius: 21},
+  tooltip: {
+    position: 'absolute',
+    backgroundColor: '#262626',
+    borderRadius: 5,
+    paddingHorizontal: 4,
+    paddingVertical: 6,
+  },
+  tooltipText: {
+    color: 'white',
+    fontSize: 14,
+    lineHeight: 14,
+    textAlign: 'center',
+  },
+  pointerBelow: {top: -10, borderBottomWidth: 10, borderBottomColor: '#262626'},
+  pointerAbove: {bottom: -10, borderTopWidth: 10, borderTopColor: '#262626'},
+  tooltipPointer: {
+    position: 'absolute',
+    width: 0,
+    height: 0,
+    borderLeftWidth: 5,
+    borderRightWidth: 5,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+  },
+  chartLegend: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    width: '100%',
+  },
+  chartLegendItem: {alignItems: 'center', flexDirection: 'row'},
   chartInnerView: {
     backgroundColor: chartInnerViewBg,
     height: 12,
     margin: 10,
     width: 27,
   },
-  chartLegend: {
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "100%",
-  },
-  chartLegendItem: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-  },
-  contentWrapper: {
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  mainView: { alignItems: "center", flexDirection: "column" },
-  outerView: {
-    backgroundColor: outerViewbg,
-    height: 12,
-    margin: 10,
-    width: 27,
-  },
-  textFont: { fontSize: 11, opacity: 0.5 },
+  outerView: {backgroundColor: outerViewbg, height: 12, margin: 10, width: 27},
+  textFont: {fontSize: 11, opacity: 0.5},
 });
-const victoryStyles: VictoryStyles = {
-  VictoryAxis: {
-    grid: { stroke: "transparent" },
-    axis: { stroke: "none" },
-  },
-  VictoryAxisVertical: {
-    grid: { stroke: "transparent" },
-    axis: { stroke: "none" },
-    axisLabel: { angle: 0 },
-  },
-  VictoryLine: {
-    data: { stroke: "#0C66FF", strokeWidth: 9, strokeLinecap: "round" },
-  },
-  VictoryScatter: {
-    data: { fill: "white", stroke: "#ACACAC", strokeWidth: 3 },
-    labels: { fill: "red" },
-  },
-  VictoryArea: {
-    data: { fill: "#D8D8D8" },
-  },
 
-  VictoryTooltip: {
-    flyoutStyle: {
-      stroke: "none",
-      fill: "#262626",
-      opacity: 85,
-    },
-    style: {
-      padding: 15,
-      fill: "white",
-    },
-  },
+// Measure each tooltip's text instead of stretching every tooltip to a fixed width.
+const MeasurementTooltip = ({
+  x,
+  y,
+  width,
+  height,
+  text,
+}: {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  text: string;
+}): React.JSX.Element => {
+  const [size, setSize] = useState({width: 54, height: 40});
+  const position = clampTooltipPosition(
+    x,
+    y,
+    width,
+    height,
+    size.width,
+    size.height,
+  );
+  const below = position.top > y;
+  const pointerLeft = Math.max(
+    6,
+    Math.min(x - position.left - 5, size.width - 16),
+  );
+  return (
+    <View
+      pointerEvents="none"
+      testID="growth-measurement-tooltip"
+      onLayout={({nativeEvent: {layout}}) =>
+        setSize(previous =>
+          previous.width === layout.width && previous.height === layout.height
+            ? previous
+            : {width: layout.width, height: layout.height},
+        )
+      }
+      style={[styles.tooltip, position, {maxWidth: Math.min(190, width - 8)}]}>
+      <Text style={styles.tooltipText}>{text}</Text>
+      <View
+        style={[
+          styles.tooltipPointer,
+          {left: pointerLeft},
+          below ? styles.pointerBelow : styles.pointerAbove,
+        ]}
+      />
+    </View>
+  );
 };
-const GrowthChart = (props: any): any => {
-  const { activeChild, chartType, bgObj, windowWidth, windowHeight } = props;
-  const { t } = useTranslation();
-  const { convertDigits } = useDigitConverter();
+
+// Use d3's area generator with a Y0 at every reference point, just as the
+// legacy chart did. A constant baseline would distort the reference bands.
+const ReferenceBands = React.memo(
+  ({
+    reference,
+    xScale,
+    yScale,
+    portrait,
+  }: Scales & {
+    reference: ChartAreaDataFormat;
+    portrait: boolean;
+  }) => {
+    const paths = useMemo(() => {
+      const generator = area<ChartAreaDataFormat['topArea'][number]>()
+        .defined(
+          point =>
+            typeof point.x === 'number' &&
+            Number.isFinite(point.x) &&
+            typeof point.y === 'number' &&
+            Number.isFinite(point.y) &&
+            typeof point.y0 === 'number' &&
+            Number.isFinite(point.y0),
+        )
+        .x(point => xScale(point.x!))
+        .y1(point => yScale(point.y!))
+        .y0(point => yScale(point.y0!))
+        .curve(curveNatural);
+      const outer = getOuterReferenceBand(reference);
+      const bands = outer
+        ? [
+            {data: outer, outer: true},
+            {data: reference.middleArea, outer: false},
+          ]
+        : [
+            {data: reference.topArea, outer: true},
+            {data: reference.bottomArea, outer: true},
+            {data: reference.middleArea, outer: false},
+          ];
+      return bands.map(band => {
+        const svg = generator(
+          band.data.slice().sort((a, b) => (a.x ?? 0) - (b.x ?? 0)),
+        );
+        return {
+          path: svg ? Skia.Path.MakeFromSVGString(svg) : null,
+          outer: band.outer,
+        };
+      });
+    }, [reference, xScale, yScale]);
+    return (
+      <>
+        {paths.map(
+          ({path, outer}, index) =>
+            path && (
+              <Path
+                key={index}
+                path={path}
+                color={outer && !portrait ? '#F9C49E' : '#D8D8D8'}
+              />
+            ),
+        )}
+      </>
+    );
+  },
+);
+
+const GrowthChart = ({
+  activeChild,
+  chartType,
+  bgObj,
+  windowWidth,
+  windowHeight,
+}: Props): React.JSX.Element => {
+  const {t} = useTranslation();
+  const rtl = I18nManager.isRTL;
+  const {convertDigits} = useDigitConverter();
+  const portrait = windowWidth < windowHeight;
+  const width = Math.max(120, windowWidth - (portrait ? 30 : 60));
+  const height = Math.max(120, portrait ? windowWidth - 60 : windowHeight - 50);
   const childBirthDate = activeChild?.taxonomyData?.prematureTaxonomyId
     ? activeChild.plannedTermDate
     : activeChild.birthDate;
-  const labelX =
-    props.chartType == chartTypes.WeightForHeight
-      ? t("growthScreencmText")
-      : t("month");
-  const labelY =
-    props.chartType == chartTypes.WeightForHeight
-      ? t("growthScreenkgText")
-      : t("growthScreencmText");
-  const [deviceOrientation, setDeviceOrientation] = useState(
-    windowWidth < windowHeight ? "portrait" : "landscape"
-  );
-
-  useEffect(() => {
-    setDeviceOrientation(windowWidth < windowHeight ? "portrait" : "landscape");
-  }, [windowWidth, windowHeight]);
-  useEffect(() => {
-    const deviceOrientation = (): any => {
-      if (windowWidth < windowHeight) {
-        setDeviceOrientation("portrait");
-      } else {
-        setDeviceOrientation("landscape");
-      }
-    };
-    const subscription = Dimensions.addEventListener(
-      "change",
-      deviceOrientation
+  const weightForHeight = chartType === chartTypes.WeightForHeight;
+  const labelX = weightForHeight ? t('growthScreencmText') : t('month');
+  const labelY = weightForHeight
+    ? t('growthScreenkgText')
+    : t('growthScreencmText');
+  const {measurements, domainData} = useMemo(() => {
+    const eligible = activeChild.measures.filter(
+      (item: any) =>
+        item.isChildMeasured == true && item.weight > 0 && item.height > 0,
     );
-
-    return (): any => {
-      //cleanup work
-      subscription.remove();
-    };
-  }, [deviceOrientation]);
-
-  const growthMeasures = activeChild.measures.filter(
-    (item: any) =>
-      item.isChildMeasured == true && item.weight > 0 && item.height > 0
-  );
-  const convertedMeasures: any = convertMeasuresData(
-    growthMeasures,
-    childBirthDate
-  );
-  /* Create line chart array fochartDatar type chart */
-  const chartData: any[] = [];
-  convertedMeasures.map((item: any) => {
-    chartData.push(
-      chartType == chartTypes.WeightForHeight
-        ? { x: item.height, y: item.weight }
-        : { x: item.measurementDate / 30, y: item.height }
+    const converted = convertMeasuresData(eligible, childBirthDate);
+    return prepareGrowthChartData(
+      converted.map((item: any) =>
+        weightForHeight
+          ? {x: item.height, y: item.weight}
+          : {x: item.measurementDate / 30, y: item.height},
+      ),
+      bgObj,
     );
-  });
-  const { topArea, bottomArea, middleArea } = bgObj;
-  const ChartClick = View;
+  }, [activeChild.measures, childBirthDate, weightForHeight, bgObj]);
+  const domain = useMemo(() => getGrowthChartDomain(domainData), [domainData]);
+  const [rawScales, setRawScales] = useState<Scales | null>(null);
+  // CartesianChart automatically calls nice() on its Y scale. Use a copy with
+  // the exact legacy data extent for all geometry, labels and touch targets.
+  const scales = useMemo(
+    () =>
+      rawScales
+        ? {
+            xScale: rawScales.xScale
+              .copy()
+              .domain(domain.x)
+              .range(
+                rtl
+                  ? rawScales.xScale.range().slice().reverse()
+                  : rawScales.xScale.range(),
+              ),
+            yScale: rawScales.yScale.copy().domain([domain.y[1], domain.y[0]]),
+          }
+        : null,
+    [rawScales, domain, rtl],
+  );
+  const [selected, setSelected] = useState<number[]>([]);
+  const onScaleChange = useCallback(
+    (xScale: Scales['xScale'], yScale: Scales['yScale']) => {
+      setRawScales({xScale, yScale});
+    },
+    [],
+  );
+  useEffect(() => {
+    setSelected([]);
+  }, [measurements, width, height]);
+  const describe = (point: {x: number; y: number}): string =>
+    `${convertDigits(point.y)} ${labelY} / \n${convertDigits(
+      Math.round((point.x + Number.EPSILON) * 100) / 100,
+    )} ${labelX}`;
   return (
-    <>
-      <View style={styles.mainView}>
-        <ChartClick
-          width={
-            deviceOrientation === "portrait"
-              ? windowWidth - 30
-              : windowWidth - 60
-          }
-          height={
-            deviceOrientation === "portrait"
-              ? windowWidth - 60
-              : windowHeight - 50
-          }
-        >
-          <VictoryChart
-            containerComponent={
-              <VictoryVoronoiContainer
-                voronoiBlacklist={[
-                  "reference-top",
-                  "reference-bottom",
-                  "reference-middle",
-                  "measurement-line",
-                ]}
-              />
-            }
-            theme={VictoryTheme.material}
-            width={
-              deviceOrientation === "portrait"
-                ? windowWidth - 30
-                : windowWidth - 60
-            }
-            height={
-              deviceOrientation === "portrait"
-                ? windowWidth - 60
-                : windowHeight - 50
-            }
-          >
-            {/* ********* AXIS HORIZONTAL ********* */}
-
-            <VictoryAxis
-              style={victoryStyles.VictoryAxis}
-              label={labelX}
-              axisLabelComponent={
-                <VictoryLabel
-                  x={
-                    deviceOrientation === "portrait"
-                      ? windowWidth - 180
-                      : windowHeight - 30
-                  }
-                  y={
-                    deviceOrientation === "portrait"
-                      ? windowWidth - 75
-                      : windowHeight - 70
-                  }
+    <View style={styles.mainView}>
+      <View style={[styles.chart, {width, height}]}>
+        <CartesianChart
+          data={domainData}
+          xKey="x"
+          yKeys={['y']}
+          padding={50}
+          xAxis={{lineWidth: 0, lineColor: 'transparent'}}
+          yAxis={[{lineWidth: 0, lineColor: 'transparent'}]}
+          onScaleChange={onScaleChange}
+          renderOutside={() =>
+            scales &&
+            measurements.map((point, index) => (
+              <React.Fragment key={index}>
+                <Circle
+                  cx={scales.xScale(point.x)}
+                  cy={scales.yScale(point.y)}
+                  r={9}
+                  color="white"
                 />
-              }
-              tickFormat={(t) => convertDigits(t)}
-            />
-            {/* ********* AXIS VERTICAL ********* */}
-            <VictoryAxis
-              style={victoryStyles.VictoryAxisVertical}
-              axisLabelComponent={
-                <VictoryLabel y={deviceOrientation === "portrait" ? 15 : 30} />
-              }
-              dependentAxis
-              label={labelY}
-              tickFormat={(t) => convertDigits(t)}
-            />
-            {/* ********* TOP AREA ********* */}
-            <VictoryArea
-              name="reference-top"
-              interpolation="natural"
-              style={{
-                data:
-                  deviceOrientation !== "portrait"
-                    ? { fill: "#F9C49E" }
-                    : { fill: "#D8D8D8" },
-              }}
-              data={topArea}
-            />
-            {/* ********* BOTTOM AREA ********* */}
-            <VictoryArea
-              name="reference-bottom"
-              interpolation="natural"
-              style={{
-                data:
-                  deviceOrientation !== "portrait"
-                    ? { fill: "#F9C49E" }
-                    : { fill: "#D8D8D8" },
-              }}
-              data={bottomArea}
-            />
-            {/* ********* MIDDLE AREA ********* */}
-            <VictoryArea
-              name="reference-middle"
-              interpolation="natural"
-              style={victoryStyles.VictoryArea}
-              data={middleArea}
-            />
-
-            {/* ********* LINE CHART ********* */}
-            {chartData.length < 2 ? null : (
-              <VictoryLine
-                name="measurement-line"
-                data={chartData}
-                interpolation="natural"
-                style={victoryStyles.VictoryLine}
-              />
-            )}
-
-            {/********** SCATTER ********* */}
-            <VictoryScatter
-              name="measurements"
-              data={chartData}
-              size={9}
-              style={victoryStyles.VictoryScatter}
-              labelComponent={
-                <VictoryTooltip
-                  renderInPortal={false}
-                  style={victoryStyles.VictoryTooltip.style}
-                  flyoutStyle={victoryStyles.VictoryTooltip.flyoutStyle}
+                <Circle
+                  cx={scales.xScale(point.x)}
+                  cy={scales.yScale(point.y)}
+                  r={9}
+                  style="stroke"
+                  strokeWidth={3}
+                  color={selected.includes(index) ? 'orange' : '#ACACAC'}
                 />
-              }
-              labels={(props: any): any =>
-                convertDigits(props.datum.y) +
-                " " +
-                labelY +
-                " / \n" +
-                convertDigits(
-                  Math.round((props.datum.x + Number.EPSILON) * 100) / 100
-                ) +
-                " " +
-                labelX
-              }
-              events={[
-                {
-                  target: "data",
-                  eventHandlers: {
-                    onPressIn: (evt: any, pressedProps: any): any => {
-                      const selectedDataIndex = pressedProps.index;
-                      return [
-                        {
-                          eventKey: selectedDataIndex,
-                          target: "labels",
-                          mutation: (props: any): any => {
-                            let activeState: boolean | null = true;
-                            if (props.active === true) {
-                              activeState = null;
-                            }
-                            return props.index === selectedDataIndex
-                              ? { active: activeState }
-                              : { active: false };
-                          },
-                        },
-                        {
-                          eventKey: selectedDataIndex,
-                          target: "data",
-                          mutation: (props: any): any => {
-                            const stroke = props.style && props.style.stroke;
-                            let st;
-                            let activeState: boolean | null = true;
-                            if (props.active === true) {
-                              activeState = null;
-                            }
-                            if (stroke === "orange") {
-                              st = "#ACACAC";
-                            } else {
-                              st = "orange";
-                            }
-
-                            return props.index === selectedDataIndex
-                              ? {
-                                  style: {
-                                    stroke: st,
-                                    strokeWidth: 3,
-                                    fill: "white",
-                                  },
-                                }
-                              : null;
-                          },
-                        },
-                      ];
-                    },
-                    onPressOut: (evt: any, pressedProps: any): any => {
-                      const selectedDataIndex = pressedProps.index;
-                      return [
-                        {
-                          eventKey: selectedDataIndex,
-                          target: "labels",
-                          mutation: (props: any): any => {
-                            return props.index === selectedDataIndex
-                              ? { active: props.active }
-                              : null;
-                          },
-                        },
-                        {
-                          eventKey: selectedDataIndex,
-                          target: "data",
-                          mutation: (props: any): any => {
-                            return props.index === selectedDataIndex
-                              ? {
-                                  style: {
-                                    fill: "white",
-                                    stroke: props.style.stroke,
-                                    strokeWidth: 3,
-                                  },
-                                }
-                              : null;
-                          },
-                        },
-                      ];
-                    },
+              </React.Fragment>
+            ))
+          }>
+          {() => {
+            if (!scales) return null;
+            const {xScale, yScale} = scales;
+            const points = measurements.map(point => ({
+              x: xScale(point.x),
+              y: yScale(point.y),
+              xValue: point.x,
+              yValue: point.y,
+            }));
+            return (
+              <>
+                <ReferenceBands
+                  reference={bgObj}
+                  xScale={xScale}
+                  yScale={yScale}
+                  portrait={portrait}
+                />
+                {points.length > 1 && (
+                  <Line
+                    points={points}
+                    curveType="natural"
+                    color="#0C66FF"
+                    strokeWidth={9}
+                    strokeCap="round"
+                  />
+                )}
+              </>
+            );
+          }}
+        </CartesianChart>
+        {/* Native text retains system font fallback for all translated digits.
+            Only measurement dots receive presses; reference curves never do. */}
+        {scales && (
+          <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+            <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+              {scales.xScale.ticks(5).map(value => (
+                <React.Fragment key={value}>
+                  <View
+                    style={[
+                      styles.tickX,
+                      {left: scales.xScale(value), top: height - 50},
+                    ]}
+                  />
+                  <Text
+                    key={value}
+                    style={[
+                      styles.axisText,
+                      styles.xTick,
+                      {left: scales.xScale(value) - 25, top: height - 40},
+                    ]}>
+                    {convertDigits(value)}
+                  </Text>
+                </React.Fragment>
+              ))}
+              {scales.yScale.ticks(5).map(value => (
+                <React.Fragment key={value}>
+                  <View
+                    style={[
+                      styles.tickY,
+                      {left: rtl ? width - 50 : 45, top: scales.yScale(value)},
+                    ]}
+                  />
+                  <Text
+                    key={value}
+                    style={[
+                      styles.axisText,
+                      styles.yTick,
+                      {
+                        top: scales.yScale(value) - 8,
+                        left: rtl ? width - 42 : 0,
+                        textAlign: rtl ? 'left' : 'right',
+                      },
+                    ]}>
+                    {convertDigits(value)}
+                  </Text>
+                </React.Fragment>
+              ))}
+              <Text
+                style={[
+                  styles.axisText,
+                  styles.unitX,
+                  {
+                    left: rtl
+                      ? Math.max(
+                          0,
+                          width -
+                            ((portrait
+                              ? windowWidth - 180
+                              : windowHeight - 30) -
+                              60) -
+                            120,
+                        )
+                      : (portrait ? windowWidth - 180 : windowHeight - 30) - 60,
                   },
-                },
-              ]}
-            />
-          </VictoryChart>
-        </ChartClick>
-        <View style={styles.chartLegend}>
-          <View style={styles.chartLegendItem}>
-            <View style={styles.chartInnerView}></View>
-            <Text style={styles.textFont}>
-              {t("growthChartLegendSilverLabel")}
-            </Text>
-          </View>
-          {deviceOrientation != "portrait" && (
-            <View style={styles.chartLegendItem}>
-              <View style={styles.outerView}></View>
-              <Text style={styles.textFont}>
-                {t("growthChartLegendOrangeLabel")}
+                ]}>
+                {labelX}
+              </Text>
+              <Text
+                style={[
+                  styles.axisText,
+                  styles.unitY,
+                  {left: rtl ? width - 74 : 4},
+                ]}>
+                {labelY}
               </Text>
             </View>
-          )}
-        </View>
+            {measurements.map((point, index) => (
+              <Pressable
+                key={index}
+                accessibilityRole="button"
+                accessibilityLabel={describe(point)}
+                accessibilityState={{selected: selected.includes(index)}}
+                testID={`growth-measurement-${index}`}
+                onPress={() =>
+                  setSelected(previous =>
+                    previous.includes(index)
+                      ? previous.filter(value => value !== index)
+                      : [...previous, index],
+                  )
+                }
+                style={[
+                  styles.measurement,
+                  {
+                    left: scales.xScale(point.x) - 21,
+                    top: scales.yScale(point.y) - 21,
+                  },
+                ]}
+              />
+            ))}
+            {selected.map(
+              index =>
+                measurements[index] && (
+                  <MeasurementTooltip
+                    key={index}
+                    x={scales.xScale(measurements[index].x)}
+                    y={scales.yScale(measurements[index].y)}
+                    width={width}
+                    height={height}
+                    text={describe(measurements[index])}
+                  />
+                ),
+            )}
+          </View>
+        )}
       </View>
-    </>
+      <View style={styles.chartLegend}>
+        <View style={styles.chartLegendItem}>
+          <View style={styles.chartInnerView} />
+          <Text style={styles.textFont}>
+            {t('growthChartLegendSilverLabel')}
+          </Text>
+        </View>
+        {!portrait && (
+          <View style={styles.chartLegendItem}>
+            <View style={styles.outerView} />
+            <Text style={styles.textFont}>
+              {t('growthChartLegendOrangeLabel')}
+            </Text>
+          </View>
+        )}
+      </View>
+    </View>
   );
 };
 export default React.memo(GrowthChart);

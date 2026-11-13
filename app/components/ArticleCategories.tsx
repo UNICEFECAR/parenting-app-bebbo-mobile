@@ -4,9 +4,9 @@ import { ArticleCategoriesProps } from "@screens/home/bottomTabs/Articles";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useAppSelector } from "../../App";
-import { ArticleFilter, FilterBox, FilterText } from "./shared/FilterStyle";
+import { ArticleFilter, FilterBox, FilterIconSlot, FilterText } from "./shared/FilterStyle";
 import { FlexDirRow } from "./shared/FlexBoxStyle";
-import Icon, { OuterIconLeft, OuterIconRow } from "./shared/Icon";
+import Icon from "./shared/Icon";
 import { ADVICE_CATEGORY_SELECTED } from "@assets/data/firebaseEvents";
 import { articleColor, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
@@ -18,9 +18,6 @@ const styles = StyleSheet.create({
   },
   filterBoxbg2: {
     backgroundColor: bgcolorWhite2,
-  },
-  iconStyle: {
-    marginLeft: 10,
   },
   innerView: { flex: 1, flexDirection: "column" },
   pressableView: { flex: 1 },
@@ -76,20 +73,17 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
                             : styles.filterBoxbg2
                         }
                       >
-                        <OuterIconRow>
-                          <OuterIconLeft>
-                            <Icon
-                              style={styles.iconStyle}
-                              name={item.image}
-                              size={20}
-                              color={
-                                props.filterArray.includes(item.id)
-                                  ? props.iconColor
-                                  : "#000"
-                              }
-                            />
-                          </OuterIconLeft>
-                        </OuterIconRow>
+                        <FilterIconSlot>
+                          <Icon
+                            name={item.image}
+                            size={20}
+                            color={
+                              props.filterArray.includes(item.id)
+                                ? props.iconColor
+                                : "#000"
+                            }
+                          />
+                        </FilterIconSlot>
                         <FilterText
                           numberOfLines={2}
                           style={

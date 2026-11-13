@@ -134,5 +134,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>RCTNewArchEnabled</key>
+	<true/>
 </dict>
 </plist>

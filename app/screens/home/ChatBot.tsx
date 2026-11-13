@@ -1,3 +1,4 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
 import React, { useEffect, useMemo, useState } from "react";
 import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -158,10 +159,10 @@ const BotBubble = (props: any): any => {
                 source={{
                   html: addSpaceToHtml(steps.textToShow.answer_part_1),
                 }}
-                baseStyle={styles.font14}
+                baseStyle={{...(styles.font14), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}
                 tagsStyles={{
-                  p: { marginBottom: 0, marginTop: 0, textAlign: "left" },
+                  p: { marginBottom: 0, marginTop: 0, textAlign: htmlTextAlign() },
                 }}
               />
             </View>
@@ -189,10 +190,10 @@ const BotBubble = (props: any): any => {
                   source={{
                     html: addSpaceToHtml(steps.textToShow.answer_part_2),
                   }}
-                  baseStyle={styles.font14}
+                  baseStyle={{...(styles.font14), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
                   ignoredStyles={["color", "fontSize", "fontFamily"]}
                   tagsStyles={{
-                    p: { marginBottom: 0, marginTop: 0, textAlign: "left" },
+                    p: { marginBottom: 0, marginTop: 0, textAlign: htmlTextAlign() },
                   }}
                 />
               </View>

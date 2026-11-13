@@ -20,3 +20,9 @@
 # React Native registers these classes and callbacks by name through JNI.
 -keep class com.facebook.react.devsupport.CxxInspectorPackagerConnection { *; }
 -keep class com.facebook.react.devsupport.CxxInspectorPackagerConnection$* { *; }
+
+# Firebase discovers registrars through manifest metadata and invokes their
+# no-argument constructors reflectively. Keep those constructors under R8.
+-keep class * implements com.google.firebase.components.ComponentRegistrar {
+    public <init>();
+}

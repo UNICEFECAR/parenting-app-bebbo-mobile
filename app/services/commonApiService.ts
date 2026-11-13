@@ -1,3 +1,4 @@
+import { returnToScreen } from "../navigation/returnToScreen";
 import getAllDataToStore, {
   getAllDataOnRetryToStore,
 } from "@assets/translations/appOfflineData/getDataToStore";
@@ -5,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import i18n from "i18next";
 import { DateTime } from "luxon";
 import { Alert } from "react-native";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import { store } from "../../App";
 import { appConfig } from "../instances";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
@@ -193,7 +194,7 @@ export const onAddEditChildSuccess = async (
     }
   }
 
-  navigation.navigate("ChildProfileScreen");
+  returnToScreen(navigation, "ChildProfileScreen");
 };
 export const onSponsorApiSuccess = async (
   response: any,

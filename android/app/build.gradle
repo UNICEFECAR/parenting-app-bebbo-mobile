@@ -27,8 +27,13 @@ react {
     // debuggableVariants = ["liteDebug", "prodDebug"]
 
     /* Bundling */
-    //   A list containing the node command and its flags. Default is just 'node'.
-    // nodeExecutableAndArgs = ["node"]
+    // Use an explicit executable: Gradle can resolve an older Node than the shell.
+    // CI and other installations can override this with -PnodeBinary or NODE_BINARY.
+    def configuredNode = providers.gradleProperty("nodeBinary")
+        .orElse(providers.environmentVariable("NODE_BINARY")).orNull
+    def homebrewNode = ["/opt/homebrew/opt/node@22/bin/node", "/usr/local/opt/node@22/bin/node"]
+        .find { new File(it).canExecute() }
+    nodeExecutableAndArgs = [configuredNode ?: homebrewNode ?: "node"]
     //
     //   The command to run when bundling. By default is 'bundle'
     // bundleCommand = "ram-bundle"
@@ -76,7 +81,7 @@ def enableProguardInReleaseBuilds = true
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 android {
-    ndkVersion ndkVersion
+    ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
@@ -291,6 +296,9 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    // HTML images use RN Image; GIF decoding is optional in Fresco.
+    // Match RN 0.87.1's Fresco version in react-native/gradle/libs.versions.toml.
+    implementation("com.facebook.fresco:animated-gif:3.7.0")
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
@@ -298,4 +306,21 @@ dependencies {
         implementation jscFlavor
     }
     implementation 'androidx.multidex:multidex:2.0.1'
+    // AuthorizationClient is independent of the legacy GoogleSignIn API.
+    implementation 'com.google.android.gms:play-services-auth:22.0.0'
+}
+
+// RN excludes node_modules from bundle inputs. Rebundle after dependency,
+// compatibility-patch or Metro/Babel/flavour changes.
+tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
+    inputs.files(
+        rootProject.file('../package.json'),
+        rootProject.file('../package-lock.json'),
+        rootProject.file('../babel.config.js'),
+        rootProject.file('../metro.config.js')
+    )
+    inputs.files(rootProject.fileTree('../env') { include '.env*' })
+    inputs.files(rootProject.fileTree('../patches') { include '*.patch' })
+    inputs.property('appFlavor', providers.environmentVariable('FLAVOR').orElse('bebbo'))
+    inputs.property('appEnvFile', providers.environmentVariable('ENVFILE').orElse(''))
 }

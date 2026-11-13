@@ -70,10 +70,10 @@ import {
 } from "@styles/typography";
 import { DateTime } from "luxon";
 import React, {
-  createRef,
   useContext,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
@@ -87,9 +87,9 @@ import {
   Switch,
   View,
 } from "react-native";
-import ActionSheet from "react-native-actions-sheet";
-import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
-import RNFS from "react-native-fs";
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
+import { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
 import { store, useAppDispatch, useAppSelector } from "../../../App";
@@ -109,7 +109,7 @@ import {
   isFutureDateTime,
 } from "../../services/childCRUD";
 import { formatStringDate, formatStringTime } from "../../services/Utils";
-import * as ScopedStorage from "react-native-scoped-storage";
+import { openBackupDocument, saveBackupDocument } from "../../services/backupDocuments";
 import Share from "react-native-share";
 import LocalNotifications from "../../services/LocalNotifications";
 import { bgcolorWhite2, settingThumbFalseColor, settingTrackFalseColor, settingTrackTrueColor } from "@styles/style";
@@ -189,6 +189,7 @@ const SettingScreen = (props: any): any => {
   const isFocused = useIsFocused();
   const { t } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
+  const driveOperationRunning = useRef(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
@@ -197,8 +198,8 @@ const SettingScreen = (props: any): any => {
   const [country, setCountry] = useState<any>("");
   const [language, setlanguage] = useState<any>("");
   const navigation = useNavigation<any>();
-  const actionSheetRef = createRef<any>();
-  const actionSheetRefImport = createRef<any>();
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
+  const actionSheetRefImport = useRef<AppActionSheetRef>(null);
 
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(selectLanguageCode);
@@ -215,17 +216,25 @@ const SettingScreen = (props: any): any => {
   }, []);
 
   const importAllData = async (): Promise<any> => {
+    if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
+    driveOperationRunning.current = true;
     setIsImportRunning(true);
-    await backup.import(
-      props.navigation,
-      languageCode,
-      dispatch,
-      childAge,
-      genders,
-      taxonomyIds
-    );
-    setIsImportRunning(false);
-    actionSheetRefImport.current?.setModalVisible(false);
+    try {
+      const result = await backup.import(
+        props.navigation, languageCode, dispatch, childAge, genders, taxonomyIds
+      );
+      if (result instanceof Error) throw result;
+      if (result !== "Imported") throw new Error("Backup restore was not confirmed");
+    } catch (error) {
+      if (!(error instanceof Error && error.message === "loginCanceled")) {
+        console.error("Drive restore failed", error);
+        Alert.alert("", t("generalError"));
+      }
+    } finally {
+      driveOperationRunning.current = false;
+      setIsImportRunning(false);
+      actionSheetRefImport.current?.hide();
+    }
   };
 
   const encryptData = (text: string, key: any): any => {
@@ -260,32 +269,15 @@ const SettingScreen = (props: any): any => {
       setIsImportRunning(false);
     });
   };
-  const exportDataAndroid = async (cipher: string): Promise<any> => {
-    // const file = await ScopedStorage.openDocumentTree(true);
-    const uri: any = await ScopedStorage.getPersistedUriPermissions();
+  const exportDataAndroid = async (cipher: string): Promise<void> => {
     try {
-      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*", 'utf8', false);
-      const fileDownload: any = await ScopedStorage.createDocument(
-        "mybackup",
-        "application/json",
-        JSON.stringify(cipher),
-        "utf8"
-      );
-      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-
-      if (
-        fileDownload != "" &&
-        fileDownload != null &&
-        fileDownload != undefined
-      ) {
+      if (await saveBackupDocument(cipher)) {
         Alert.alert("", t("settingExportSuccess"));
-        setIsExportRunning(false);
-      } else {
-        Alert.alert("", t("settingExportError"));
-        setIsExportRunning(false);
       }
-    } catch (e: any) {
-      console.log("", e.message);
+    } catch (error) {
+      console.error("Backup export failed", error);
+      Alert.alert("", t("settingExportError"));
+    } finally {
       setIsExportRunning(false);
     }
   };
@@ -367,16 +359,22 @@ const SettingScreen = (props: any): any => {
     setImportAlertVisible(false);
   };
   const exportToDrive = async (): Promise<any> => {
+    if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
+    driveOperationRunning.current = true;
     setIsExportRunning(true);
-    const exportIsSuccess = await backup.export();
-    setIsExportRunning(false);
-    if (!exportIsSuccess) {
-      Alert.alert("", t("settingExportError"));
-    } else {
-      Alert.alert("", t("settingExportSuccess"));
+    try {
+      const success = await backup.export();
+      Alert.alert("", t(success ? "settingExportSuccess" : "generalError"));
+    } catch (error) {
+      console.error("Drive backup failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
+      driveOperationRunning.current = false;
+      setIsExportRunning(false);
+      actionSheetRef.current?.hide();
     }
-    actionSheetRef.current?.setModalVisible(false);
   };
+
   const handleExportAlertConfirm = (): any => {
     setExportAlertVisible(false);
     exportToDrive();
@@ -386,7 +384,7 @@ const SettingScreen = (props: any): any => {
     importAllData();
   };
   const exportAllData = async (): Promise<any> => {
-    actionSheetRef.current?.setModalVisible(true);
+    actionSheetRef.current?.show();
   };
   const toggleSwitch = (): any => {
     if (
@@ -889,7 +887,7 @@ const SettingScreen = (props: any): any => {
   const handleError = (err: any): any => {
     console.log(err, "..err");
 
-    // if (DocumentPicker.isCancel(err)) {
+    // if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
     //   console.log("cancelled");
     //   // User cancelled the picker, exit any dialogs or menus and move on
     // } else if (isInProgress(err)) {
@@ -919,74 +917,80 @@ const SettingScreen = (props: any): any => {
     }
   };
   const importDataAndroid = async (): Promise<any> => {
-    const dataset = await ScopedStorage.openDocument(true, "utf8");
-    let oldChildrenData: any = [];
-    if (
-      dataset &&
-      dataset.data != "" &&
-      dataset.data != null &&
-      dataset.data != undefined
-    ) {
-      if (dataset.name.endsWith(".json")) {
-        const decryptedData = decryptData(dataset.data, encryptionsKey)
-          .then((text: any) => {
-            console.log("decryptData", text);
-            return text.replace(/[\x00-\x1F\x7F]/g, "");
-          })
-          .catch((error: any) => {
-            console.log("Decrypted error", error);
-            Alert.alert(error, t("generalErrorTitle"));
-            throw error;
-          });
+    setIsImportRunning(true);
+    try {
+      const dataset = await openBackupDocument();
+      let oldChildrenData: any = [];
+      if (
+        dataset &&
+        dataset.data != "" &&
+        dataset.data != null &&
+        dataset.data != undefined
+      ) {
+        if (dataset.name.toLowerCase().endsWith(".json")) {
+          const decryptedData = decryptData(dataset.data, encryptionsKey)
+            .then((text: any) => {
+              console.log("decryptData", text);
+              return text.replace(/[\x00-\x1F\x7F]/g, "");
+            })
+            .catch((error: any) => {
+              console.log("Decrypted error", error);
+              throw error;
+            });
 
-        await RNFS.writeFile(
-          appConfig.tempRealmFile,
-          JSON.stringify(decryptedData),
-          "utf8"
-        );
-        const importedJsonData = JSON.parse(await decryptedData);
-        oldChildrenData = importedJsonData;
-      } else {
-        const base64Dataset = await ScopedStorage.openDocument(true, "base64");
-        await RNFS.writeFile(
-          appConfig.tempRealmFile,
-          base64Dataset.data,
-          "base64"
-        );
-        let importedrealm = await new Realm({ path: "user1.realm" });
-        if (importedrealm) {
-          importedrealm.close();
-        }
-        importedrealm = await new Realm({ path: "user1.realm" });
-        const user1Path = importedrealm.path;
-        console.log(user1Path, "..user1Path");
-        oldChildrenData = importedrealm.objects("ChildEntity");
-      }
-
-      console.log(oldChildrenData, "..newoldChildrenData..");
-      setIsImportRunning(true);
-      if (oldChildrenData.length > 0) {
-        await userRealmCommon.openRealm();
-        await userRealmCommon.deleteAllAtOnce();
-        try {
-          console.log("oldchildrenresponse", oldChildrenData);
-          const importResponse = await backup.importFromFile(
-            oldChildrenData,
-            props.navigation,
-            genders,
-            dispatch,
-            childAge,
-            languageCode,
-            taxonomyIds
+          const importedJsonData = JSON.parse(await decryptedData);
+          await RNFS.writeFile(
+            appConfig.tempRealmFile,
+            JSON.stringify(importedJsonData),
+            "utf8"
           );
-
-          console.log(importResponse, "..importResponse");
-        } catch (error) {
-          console.error("importResponse error", error);
+          oldChildrenData = importedJsonData;
+        } else {
+          await RNFS.writeFile(
+            appConfig.tempRealmFile,
+            dataset.data,
+            "base64"
+          );
+          let importedrealm = await new Realm({ path: "user1.realm" });
+          if (importedrealm) {
+            importedrealm.close();
+          }
+          importedrealm = await new Realm({ path: "user1.realm" });
+          const user1Path = importedrealm.path;
+          console.log(user1Path, "..user1Path");
+          oldChildrenData = importedrealm.objects("ChildEntity");
         }
+
+        console.log(oldChildrenData, "..newoldChildrenData..");
+        setIsImportRunning(true);
+        if (oldChildrenData.length > 0) {
+          await userRealmCommon.openRealm();
+          await userRealmCommon.deleteAllAtOnce();
+          try {
+            console.log("oldchildrenresponse", oldChildrenData);
+            const importResponse = await backup.importFromFile(
+              oldChildrenData,
+              props.navigation,
+              genders,
+              dispatch,
+              childAge,
+              languageCode,
+              taxonomyIds
+            );
+
+            console.log(importResponse, "..importResponse");
+          } catch (error) {
+            console.error("importResponse error", error);
+          }
+        }
+        setIsImportRunning(false);
+        actionSheetRefImport.current?.hide();
       }
+    } catch (error) {
+      console.error("Backup import failed", error);
+      Alert.alert("", t("generalError"));
+    } finally {
       setIsImportRunning(false);
-      actionSheetRefImport.current?.setModalVisible(false);
     }
   };
   const importDataIOS = async (): Promise<any> => {
@@ -1079,7 +1083,7 @@ const SettingScreen = (props: any): any => {
             }
           }
           setIsImportRunning(false);
-          actionSheetRefImport.current?.setModalVisible(false);
+          actionSheetRefImport.current?.hide();
         }
       })
       .catch(handleError);
@@ -1374,7 +1378,7 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t("settingScreenlocalizationHeader")}</Heading1>
-                {(allCountries?.length > 1 || 
+                {(allCountries?.length > 1 ||
                   (allCountries?.length === 1 && allCountries[0]?.languages?.length > 1)) && (
                     <IconAreaPress
                       onPress={(): any => {
@@ -1428,7 +1432,7 @@ const SettingScreen = (props: any): any => {
               <ButtonPrimary
                 disabled={isExportRunning || isImportRunning}
                 onPress={(): any => {
-                  actionSheetRefImport.current?.setModalVisible(true);
+                  actionSheetRefImport.current?.show();
                 }}
               >
                 <ButtonText numberOfLines={2}>
@@ -1450,23 +1454,12 @@ const SettingScreen = (props: any): any => {
                 <FDirRow>
                   <SettingOptions>
                     <Pressable
-                      onPress={async (): Promise<any> => {
-                        console.log("icon clicked");
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRef.current?.hideAndWait())) return;
                         try {
-                          if (Platform.OS === "android") {
-                            console.log("1233");
-
-                            console.log("You can write");
-                            actionSheetRef.current?.setModalVisible(false);
-                            exportFile();
-                          } else {
-                            actionSheetRef.current?.setModalVisible(false);
-                            setTimeout(() => {
-                              exportFile();
-                            }, 350);
-                          }
-                        } catch (err) {
-                          console.warn(err);
+                          await exportFile();
+                        } catch (error) {
+                          console.warn(error);
                         }
                       }}
                     >
@@ -1480,14 +1473,10 @@ const SettingScreen = (props: any): any => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable
-                      onPress={(): any => {
-                        actionSheetRef.current?.setModalVisible(false);
-                        if (netInfo && netInfo.isConnected == true) {
-                          Platform.OS == "ios"
-                            ? setTimeout(() => {
-                                setExportAlertVisible(true);
-                              }, 350)
-                            : setExportAlertVisible(true);
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRef.current?.hideAndWait())) return;
+                        if (netInfo && netInfo.isConnected === true) {
+                          setExportAlertVisible(true);
                         } else {
                           Alert.alert("", t("noInternet"));
                         }
@@ -1514,26 +1503,18 @@ const SettingScreen = (props: any): any => {
                 <FDirRow>
                   <SettingOptions>
                     <Pressable
-                      onPress={(): any => {
-                        console.log("icon clicked");
-                        actionSheetRefImport.current?.setModalVisible(false);
-                        setTimeout(async () => {
-                          try {
-                            //import
-                            if (Platform.OS === "android") {
-                              console.log("1233");
-                              importFromSettingsFile();
-                            } else {
-                              importFromSettingsFile();
-                            }
-                          } catch (err) {
-                            if (DocumentPicker.isCancel(err)) {
-                              // User cancelled the picker, exit any dialogs or menus and move on
-                            } else {
-                              throw err;
-                            }
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRefImport.current?.hideAndWait())) return;
+                        try {
+                          await importFromSettingsFile();
+                        } catch (error) {
+                          if (
+                            !(isErrorWithCode(error) && error.code === errorCodes.OPERATION_CANCELED)
+                          ) {
+                            console.error(error);
+                            Alert.alert("", t("generalError"));
                           }
-                        }, 350);
+                        }
                       }}
                     >
                       <VectorImage source={require("@images/ic_file.svg")} />
@@ -1544,14 +1525,10 @@ const SettingScreen = (props: any): any => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable
-                      onPress={(): any => {
-                        actionSheetRefImport.current?.setModalVisible(false);
-                        if (netInfo && netInfo.isConnected == true) {
-                          Platform.OS == "ios"
-                            ? setTimeout(() => {
-                                setImportAlertVisible(true);
-                              }, 350)
-                            : setImportAlertVisible(true);
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRefImport.current?.hideAndWait())) return;
+                        if (netInfo && netInfo.isConnected === true) {
+                          setImportAlertVisible(true);
                         } else {
                           Alert.alert("", t("noInternet"));
                         }

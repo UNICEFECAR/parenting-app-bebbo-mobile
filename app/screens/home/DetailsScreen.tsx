@@ -1,3 +1,5 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
+import { returnToScreen } from "../../navigation/returnToScreen";
 import ActivitiesCategories from "@components/ActivitiesCategories";
 import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -61,7 +63,7 @@ import {
   GAME_DETAILS_OPENED,
 } from "@assets/data/firebaseEvents";
 import { addSpaceToHtml } from "../../services/Utils";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import {
   ActivitiesEntity,
   ActivitiesEntitySchema,
@@ -72,7 +74,7 @@ import {
 } from "../../database/schema/VideoArticleSchema";
 import iframe, { iframeModel } from "@native-html/iframe-plugin";
 import RelatedVideoArticles from "@components/shared/RelatedVideoArticles";
-import { useIsFocused } from "@react-navigation/native";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { bgcolorBlack2, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
@@ -164,11 +166,14 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     fromScreen === "FavActivities"
       ? false
       : true;
-  const onHeaderBack = (): any => {
+  const onHeaderBack = React.useCallback((): any => {
+    const navigateBack = (destination: any, params?: any): void => {
+      returnToScreen(navigation, destination, params);
+    };
     console.log(fromScreen, "/", fromCd);
     if (fromScreen == "ChildDevelopment") {
       if (fromCd == true) {
-        navigation.navigate("Home", {
+        navigateBack("Home", {
           screen: "Articles",
           params: {
             categoryArray: listCategoryArray,
@@ -177,7 +182,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           merge: true,
         });
       } else {
-        navigation.navigate({
+        navigateBack({
           name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
           params: { currentSelectedChildId: currentSelectedChildId },
           merge: true,
@@ -185,7 +190,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       }
     } else if (fromScreen == "Home") {
       if (fromCd == true) {
-        navigation.navigate("Home", {
+        navigateBack("Home", {
           screen: "Articles",
           params: {
             categoryArray: listCategoryArray,
@@ -194,20 +199,20 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           merge: true,
         });
       } else {
-        navigation.navigate("Home", {
+        navigateBack("Home", {
           screen: "Home",
           params: { categoryArray: listCategoryArray, backClicked: "yes" },
           merge: true,
         });
       }
     } else if (fromScreen == "MileStone" || fromScreen == "MileStoneActivity") {
-      navigation.navigate({
+      navigateBack({
         name: "ChildDevelopment",
         params: { currentSelectedChildId: currentSelectedChildId },
         merge: true,
       });
     } else if (fromScreen == "Activities") {
-      navigation.navigate({
+      navigateBack({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {
           categoryArray: listCategoryArray,
@@ -217,7 +222,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         merge: true,
       });
     } else if (fromScreen == "Articles") {
-      navigation.navigate({
+      navigateBack({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {
           categoryArray: listCategoryArray,
@@ -227,7 +232,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         merge: true,
       });
     } else if (fromScreen == "FirebaseActivities") {
-      navigation.navigate("Home", {
+      navigateBack("Home", {
         screen: "Activities",
         params: {
           categoryArray: listCategoryArray,
@@ -237,7 +242,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         merge: true,
       });
     } else if (fromScreen == "FirebaseVaccinationTab") {
-      navigation.navigate("Home", {
+      navigateBack("Home", {
         screen: "Tools",
         params: {
           screen: "VaccinationTab",
@@ -246,7 +251,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       });
     } else if (fromScreen == "FirebaseHealthCheckupsTab") {
       console.log(fromScreen, "fromScreen");
-      navigation.navigate("Home", {
+      navigateBack("Home", {
         screen: "Tools",
         params: {
           screen: "HealthCheckupsTab",
@@ -256,7 +261,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     } else if (fromScreen == "FirebaseArticles") {
       const screenName = route.name;
       console.log("Articles callled", screenName);
-      navigation.navigate("Home", {
+      navigateBack("Home", {
         screen: "Articles",
         params: {
           categoryArray: listCategoryArray,
@@ -266,13 +271,13 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       });
     } else if (fromScreen == "HomeAct" || fromScreen == "HomeArt") {
       if (fromAdditionalScreen == "DailyScreen") {
-        navigation.navigate("Home", {
+        navigateBack("Home", {
           screen: "Home",
           params: { categoryArray: listCategoryArray, backClicked: "yes" },
           merge: true,
         });
       } else {
-        navigation.navigate({
+        navigateBack({
           name:
             fromScreen == "HomeAct" || fromScreen == "HomeArt"
               ? "Home"
@@ -282,7 +287,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         });
       }
     } else if (fromScreen == "FavActivities" || fromScreen == "FavArticles") {
-      navigation.navigate({
+      navigateBack({
         name:
           fromScreen == "FavActivities" || fromScreen == "FavArticles"
             ? "Favourites"
@@ -295,14 +300,14 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       });
     } else {
       console.log("else callled");
-      navigation.navigate({
+      navigateBack({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: { categoryArray: listCategoryArray, backClicked: "yes" },
         merge: true,
       });
     }
-  };
-  useEffect(() => {
+  }, [navigation, fromScreen, fromCd, fromAdditionalScreen, listCategoryArray, currentSelectedChildId]);
+  useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       //console.log("dwferfef")
       onHeaderBack();
@@ -313,13 +318,13 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       "hardwareBackPress",
       backAction
     );
-    navigation.addListener("gestureEnd", backAction);
+    const unsubscribeGesture = navigation.addListener("gestureEnd", backAction);
 
     return (): any => {
-      navigation.removeListener("gestureEnd", backAction);
+      unsubscribeGesture();
       backHandler.remove();
     };
-  }, []);
+  }, [navigation, onHeaderBack]));
   useEffect(() => {
     const functionOnLoad = async (): Promise<any> => {
       if (
@@ -829,18 +834,18 @@ const renderHtmlImage = ({ tnode }: any): any => {
           contentWidth={width}
           source={{ html: addSpaceToHtml(highlightData) }}
           key={detailDataToUse.id}
-          baseStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
+          baseStyle={{...(isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
           tagsStyles={{
             img: { maxWidth: Dimensions.get("window").width },
-            p: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h1: { marginBottom: 0, marginTop: 10, textAlign: "left" },
-            h2: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h3: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h4: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h5: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h6: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            span: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            li: { textAlign: "left" },
+            p: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h1: { marginBottom: 0, marginTop: 10, textAlign: htmlTextAlign() },
+            h2: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h3: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h4: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h5: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h6: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            span: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            li: { textAlign: htmlTextAlign() },
             br: { height: 0 },
             iframe: { maxWidth: "100%", height: 200 },
           }}
@@ -967,19 +972,19 @@ const renderHtmlImage = ({ tnode }: any): any => {
                         : addSpaceToHtml(detailDataToUse?.body),
                   }}
                   key={detailDataToUse.id}
-                  baseStyle={styles.htmlCode}
+                  baseStyle={{...(styles.htmlCode), direction: appLayoutDirection()}}
                   ignoredStyles={["color", "fontSize", "fontFamily"]}
                   tagsStyles={{
                     img: { maxWidth: Dimensions.get("window").width - 30 },
-                    p: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h1: { marginBottom: 0, marginTop: 10, textAlign: "left" },
-                    h2: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h3: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h4: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h5: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h6: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    span: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    li: { textAlign: "left" },
+                    p: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h1: { marginBottom: 0, marginTop: 10, textAlign: htmlTextAlign() },
+                    h2: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h3: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h4: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h5: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h6: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    span: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    li: { textAlign: htmlTextAlign() },
                     br: { height: 0 },
                     iframe: { maxWidth: "100%", height: 200 },
                   }}
@@ -998,7 +1003,7 @@ const renderHtmlImage = ({ tnode }: any): any => {
                   }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}
-                  renderersProps={{
+                  renderersProps={{...htmlListRenderers,
                     table: {
                       cssRules,
                       // Put the table config here (previously,

@@ -1,3 +1,5 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../../localization/layoutDirection";
+import { returnToScreen } from "../../../navigation/returnToScreen";
 import AgeBrackets from "@components/AgeBrackets";
 import VideoPlayer from "@components/VideoPlayer";
 import ChildDevelopmentCollapsibleItem from "@components/ChildDevelopmentCollapsibleItem";
@@ -63,7 +65,7 @@ import {
   ChildEntity,
   ChildEntitySchema,
 } from "../../../database/schema/ChildDataSchema";
-import ProgressCircle from "react-native-progress-circle";
+import ProgressCircle from "@components/shared/ProgressCircle";
 import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
 import FirstTimeModal from "@components/shared/FirstTimeModal";
 import { addSpaceToHtml, isPregnancy } from "../../../services/Utils";
@@ -88,7 +90,7 @@ import useDigitConverter from "../../../customHooks/useDigitConvert";
 import { appConfig } from "../../../instances";
 import { selectActiveChild, selectActivitiesDataAll, selectChildAge, selectChildDevData, selectMileStonesData, selectPinnedChildDevData } from "../../../services/selectors";
 import LoadableImage from "../../../services/LoadableImage";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 const styles = StyleSheet.create({
   bgWhite: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -282,12 +284,12 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     [ChildDevData, MileStonesData, activeChild.uuid, netInfo.isConnected]
   );
 
-  const onBackPress = (): any => {
+  const onBackPress = React.useCallback((): any => {
     if (route.params?.fromNotificationScreen == true) {
-      navigation.navigate("NotificationsScreen");
+      returnToScreen(navigation, "NotificationsScreen");
       return true;
     } else if (route.params?.fromActivitiesScreen == true) {
-      navigation.navigate("Activities", {
+      returnToScreen(navigation, "Activities", {
         currentSelectedChildId: route.params?.currentSelectedChildId,
         backClicked: "yes",
       });
@@ -296,23 +298,25 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       navigation.goBack();
       return true;
     }
-  };
-  useEffect(() => {
+  }, [navigation, route.params?.fromNotificationScreen, route.params?.fromActivitiesScreen, route.params?.currentSelectedChildId]);
+  useFocusEffect(React.useCallback(() => {
     console.log("USe effect chilkd 2");
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       onBackPress
     );
-    navigation.addListener("gestureEnd", onBackPress);
+    const unsubscribeGesture = navigation.addListener("gestureEnd", onBackPress);
     return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
+      unsubscribeGesture();
       backHandler.remove();
+    };
+  }, [navigation, onBackPress]));
+  useEffect(() => () => {
       navigation.setParams({
         currentSelectedChildId: 0,
         fromActivitiesScreen: false,
       });
-    };
-  }, []);
+  }, [navigation]);
   useEffect(() => {
     if (isFocused) {
       console.log("UseFouusEffect child development");
@@ -426,18 +430,18 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                       source={{
                         html: addSpaceToHtml(selectedChildDevData?.milestone),
                       }}
-                      baseStyle={styles.font14}
+                      baseStyle={{...(styles.font14), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
                       ignoredStyles={["color", "fontSize", "fontFamily"]}
                       tagsStyles={{
-                        p: { textAlign: "left", marginBottom: 15 },
-                        h1: { textAlign: "left" },
-                        h2: { textAlign: "left" },
-                        h3: { textAlign: "left" },
-                        h4: { textAlign: "left" },
-                        h5: { textAlign: "left" },
-                        h6: { textAlign: "left" },
-                        span: { textAlign: "left" },
-                        li: { textAlign: "left" },
+                        p: { textAlign: htmlTextAlign(), marginBottom: 15 },
+                        h1: { textAlign: htmlTextAlign() },
+                        h2: { textAlign: htmlTextAlign() },
+                        h3: { textAlign: htmlTextAlign() },
+                        h4: { textAlign: htmlTextAlign() },
+                        h5: { textAlign: htmlTextAlign() },
+                        h6: { textAlign: htmlTextAlign() },
+                        span: { textAlign: htmlTextAlign() },
+                        li: { textAlign: htmlTextAlign() },
                       }}
                     />
                   ) : null}

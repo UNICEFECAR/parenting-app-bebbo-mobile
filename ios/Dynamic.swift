@@ -20,10 +20,6 @@ import Lottie
   }
 
   @objc func play(animationView: LottieAnimationView) {
-    animationView.play(
-      completion: { (success) in
-        RNSplashScreen.setAnimationFinished(true)
-      }
-    );
+    animationView.play();
   }
 }

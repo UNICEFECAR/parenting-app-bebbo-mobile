@@ -1,3 +1,4 @@
+import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -12,7 +13,6 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
-  InteractionManager,
   Modal,
   Platform,
   Pressable,
@@ -146,7 +146,7 @@ const HeaderBabyMenu = (props: any): any => {
     if (a.uuid == currentActiveChild) return -1;
   });
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       const gender = genders.find((g: any) => g.id === activeChild?.gender);
       setActiveChildGenderData(gender);
     });

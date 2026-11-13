@@ -1,3 +1,10 @@
+import * as AuditFS from '@dr.pogodin/react-native-fs';
+import {store as auditStore} from '../../App';
+import {selectArticleDataAll, selectActivitiesDataAll, selectPinnedChildDevData} from '../services/selectors';
+import AuditRestart from 'react-native-restart';
+import {I18nManager} from "react-native";
+import {setrestartOnLangChange, setAppLayoutDirectionParams} from "../redux/reducers/localizationSlice";
+import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
@@ -23,7 +30,7 @@ import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, InteractionManager, Linking, NativeModules, Platform } from "react-native";
+import { Alert, AppState, BackHandler, Linking, NativeModules, Platform } from "react-native";
 import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
@@ -40,12 +47,11 @@ import { appConfig, countryData } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
-import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp, setBackgroundMessageHandler } from "@react-native-firebase/messaging";
+import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp } from "@react-native-firebase/messaging";
 import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
-import PushNotification from "react-native-push-notification";
+import LocalNotifications from "../services/LocalNotifications";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
-import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { trimWhiteSpacePayload } from "../services/Utils";
 import TermsPage from "@screens/TermsPage";
 import { logEvent, synchronizeEvents } from "../services/EventSyncService";
@@ -53,8 +59,7 @@ import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
-import { logAnalyticsEvent, setUserProperties } from "../services/firebaseAnalytics";
-import crashlytics from '@react-native-firebase/crashlytics';
+import { logAnalyticsEvent, setUserProperties, logCrashlyticsMessage, recordError } from "../services/firebaseAnalytics";
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
 
@@ -78,6 +83,7 @@ export default (): any => {
   const restartOnLangChange = useAppSelector(
     (state: any) => state.selectedCountry.restartOnLangChange
   );
+  const AppLayoutDirectionParams = useAppSelector((state: any) => state.selectedCountry.AppLayoutDirectionParams);
   const AppLayoutDirectionScreen = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionScreen
   );
@@ -93,8 +99,66 @@ export default (): any => {
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
-  const navigationRef = React.useRef<any>();
+  const navigationRef = React.useRef<any>(null);
   const routesLength = navigationRef?.current?.getRootState()?.routes?.length;
+  useEffect(() => {
+    let last = '';
+    let busy = false;
+    const base = Platform.OS === 'android' ? AuditFS.ExternalDirectoryPath : AuditFS.DocumentDirectoryPath;
+    const timer = setInterval(async () => {
+      if (busy || !navigationRef.current?.isReady()) return;
+      busy = true;
+      try {
+        const cmd = JSON.parse(await AuditFS.readFile(base + '/visual-audit.json', 'utf8'));
+        if (cmd.id === last) return;
+        last = cmd.id;
+        if (cmd.direction) {
+          I18nManager.allowRTL(cmd.direction === 'rtl');
+          I18nManager.forceRTL(cmd.direction === 'rtl');
+          await AuditFS.writeFile(base + '/visual-audit-status.json', JSON.stringify({id:cmd.id,restarting:true}), 'utf8');
+          AuditRestart.Restart();
+          return;
+        }
+        if (cmd.scroll) {
+          const views = Array.from((globalThis as any).__auditScrolls.values()).filter((x:any)=>!x.props.horizontal && x.ref?.scrollToEnd) as any[];
+          const target=views[views.length-1];
+          if(cmd.scroll==='end') target?.ref.scrollToEnd({animated:false});
+          else target?.ref.scrollTo({y:0,animated:false});
+        } else if (cmd.text !== undefined) {
+          const inputs = Array.from((globalThis as any).__auditInputs.values()).filter((x:any)=>x.props.editable!==false && x.props.onChangeText) as any[];
+          const target=inputs[cmd.inputIndex || 0];
+          target?.ref?.focus();target?.props.onChangeText(cmd.text);
+        } else if (cmd.press) {
+          const controls = Array.from((globalThis as any).__auditControls.values()) as any[];
+          const match = controls.filter(x => x.label.toLowerCase().includes(cmd.press.toLowerCase()) && !x.disabled && typeof x.onPress === 'function')[cmd.match || 0];
+          if (match) match.onPress?.({stopPropagation(){},persist(){},nativeEvent:{}});
+          else throw new Error('No control: '+cmd.press);
+        } else {
+          let params = cmd.params || {};
+          if (cmd.detail) {
+            const state = auditStore.getState();
+            const pool = cmd.detail === 'activity' ? selectActivitiesDataAll(state) : cmd.detail === 'video' ? selectPinnedChildDevData(state) : selectArticleDataAll(state);
+            const data = cmd.idOfArticle ? pool.find((x:any)=>x.id===cmd.idOfArticle) : pool.find((x:any)=>x.body || x.summary || x.title);
+            params = {fromScreen:cmd.detail==='activity'?'Activities':'Articles', detailData:data, listCategoryArray:[], selectedChildActivitiesData:[], currentSelectedChildId:activeChild?.uuid, queryText:[],...params};
+          }
+          if (cmd.editChild) params = {...params,childData:activeChild};
+          let target:any = {name:cmd.route, params};
+          if (cmd.tab) target = {name:'HomeDrawerNavigator',params:{screen:'Home',params:{screen:cmd.tab}}};
+          if (cmd.drawer) target = {name:'HomeDrawerNavigator',params:{screen:cmd.drawer,params}};
+          if (cmd.localization) target = {name:'Localization',params:{screen:cmd.localization,params}};
+          navigationRef.current.resetRoot({index:target.name==='HomeDrawerNavigator'?0:1,routes:target.name==='HomeDrawerNavigator'?[target]:[{name:'HomeDrawerNavigator'},target]});
+        }
+        setTimeout(async () => {
+          const controls = Array.from((globalThis as any).__auditControls.values()).map((x:any)=>({label:x.label,disabled:x.disabled}));
+          await AuditFS.writeFile(base + '/visual-audit-status.json', JSON.stringify({id:cmd.id,route:navigationRef.current?.getCurrentRoute(),rtl:I18nManager.isRTL,controls}), 'utf8');
+        },1000);
+      } catch(e) {
+        if (last) await AuditFS.writeFile(base + '/visual-audit-error.json', String(e), 'utf8').catch(()=>{});
+      } finally {busy=false;}
+    },500);
+    return () => clearInterval(timer);
+  }, [activeChild]);
+
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
   );
@@ -253,7 +317,7 @@ export default (): any => {
     }, [routesLength,userIsOnboarded]);
 
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       // ... handle deep link
       callUrl(linkedURL);
     });
@@ -338,7 +402,7 @@ export default (): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
     console.log(notification.data.uuid, "..notification.data.uuid..");
-    InteractionManager.runAfterInteractions(async () => {
+    scheduleIdleTask(async () => {
       try {
       if (notification && notification.data && notification.data.notitype) {
         if (
@@ -461,7 +525,7 @@ export default (): any => {
       }
       setProfileLoading(true);
         const start = Date.now();      
-        crashlytics().log(
+        logCrashlyticsMessage(
           'NOTI: setActiveChild start'
         );
         const setData = await setActiveChild(
@@ -471,7 +535,7 @@ export default (): any => {
           child_age,
           true
         );
-        crashlytics().log(
+        logCrashlyticsMessage(
           `NOTI: setActiveChild end ${
             Date.now() - start
           }ms`
@@ -480,86 +544,26 @@ export default (): any => {
           setProfileLoading(false);
         }
     } catch (error) {
-      crashlytics().recordError(error as any);
+      recordError(error as any);
       setProfileLoading(false);
     }
   });
   };
-  const handleNotification = (notification: any): any => {
-    let executed = false;
-    if (!executed) {
-      executed = true;
-      if (Platform.OS == "ios") {
-        PushNotificationIOS.getApplicationIconBadgeNumber((num) => {
-          // get current number
-          console.log(num, "...num...");
-          if (num >= 1) {
-            PushNotificationIOS.setApplicationIconBadgeNumber(0); //set number to 0
-          }
-        });
-      }
-
-      if (notification && notification.userInteraction == true) {
-        if (
-          notification &&
-          notification.data &&
-          notification.data.notitype != "" &&
-          notification.data.notitype != null &&
-          notification.data.notitype != undefined &&
-          userIsOnboarded
-        ) {
-          redirectLocation(notification);
-        }
-      } else {
-        ///////**APP IS CLOSED!!!**
-
-        if (notification && notification.foreground == false) {
-          if (
-            notification &&
-            notification.data &&
-            notification.data.notitype != "" &&
-            notification.data.notitype != null &&
-            notification.data.notitype != undefined &&
-            userIsOnboarded
-          ) {
-            redirectLocation(notification);
-          }
-        }
-      }
-    }
+  const localNotificationHandler = useRef<(notification: any) => boolean>(() => false);
+  localNotificationHandler.current = (notification: any): boolean => {
+    if (!userIsOnboarded || !navigationRef.current?.isReady()) return false;
+    if (notification?.data?.notitype) redirectLocation(notification);
+    return true;
   };
-  const createLocalNotificationListeners = async (): Promise<any> => {
-    try {
-      PushNotification.configure({
-        // this will listen to your local push notifications on clicked
-        onNotification: (notification: any) => {
-          handleNotification(notification);
-          if (Platform.OS == "ios") {
-            notification.finish(PushNotificationIOS.FetchResult.NoData);
-          }
-        },
-        popInitialNotification: true,
-        requestPermissions: false,
-      });
-      PushNotification.popInitialNotification((notification: any) => {
-        handleNotification(notification);
-        // this will listen to your local push notifications on opening app from background state
-      });
-    } catch (e) {
-      console.log("error");
-    }
-  };
-
   useEffect(() => {
     if (!userIsOnboarded) return;
-    const timeout = setTimeout(() => {
-        createLocalNotificationListeners();
-      },2000);
-      return () => clearTimeout(timeout);
+    return LocalNotifications.subscribeToPress((notification: any) =>
+      localNotificationHandler.current(notification)
+    );
   }, [userIsOnboarded]);
 
   const redirectPayload = (remoteMessage: any): any => {
-    crashlytics().log(
+    logCrashlyticsMessage(
       `NOTI: redirectPayload type=${remoteMessage?.data?.type}`
     );
     if (
@@ -922,68 +926,40 @@ export default (): any => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
-    if (!userIsOnboarded) return;
-    const task = InteractionManager.runAfterInteractions(() => {
-      onNotificationOpenedApp(messaging, (remoteMessage) => {
-        if (remoteMessage) {
-          // background click noti
-          if (userIsOnboarded == true) {
-            InteractionManager.runAfterInteractions(() => {
-              crashlytics().log('NOTI: executing redirectPayload');
-              redirectPayload(remoteMessage);
-            });
-          }
+    const splashTimer = setTimeout(() => SplashScreen.hide(), 2000);
+    let active = true;
+    let unsubscribeOpened: (() => void) | undefined;
+    let unsubscribeMessage: (() => void) | undefined;
+    const redirects = new Set<ReturnType<typeof scheduleIdleTask>>();
+    const queueRedirect = (remoteMessage: any, message: string): void => {
+      const redirect = scheduleIdleTask(() => {
+        redirects.delete(redirect);
+        if (!active) return;
+        logCrashlyticsMessage(message);
+        redirectPayload(remoteMessage);
+      });
+      redirects.add(redirect);
+    };
+    const task = userIsOnboarded ? scheduleIdleTask(() => {
+      unsubscribeOpened = onNotificationOpenedApp(messaging, (remoteMessage) => {
+        if (remoteMessage && active) {
+          queueRedirect(remoteMessage, 'NOTI: executing redirectPayload');
         }
       });
-      // Check whether an initial notification is available
+      // Preserve the destination when launching from a notification.
       getInitialNotification(messaging)
         .then((remoteMessage) => {
-          crashlytics().log('NOTI: getInitialNotification start');
-
+          if (!active) return;
+          logCrashlyticsMessage('NOTI: getInitialNotification start');
           if (remoteMessage) {
-            crashlytics().log(
-              `NOTI: opened app type=${remoteMessage?.data?.type}`
-            );
+            logCrashlyticsMessage(`NOTI: opened app type=${remoteMessage?.data?.type}`);
+            queueRedirect(remoteMessage, 'NOTI: executing redirectPayload2');
           }
-          if (remoteMessage) {
-            // after kill and restart application
-            if (userIsOnboarded == true) {
-              InteractionManager.runAfterInteractions(() => {
-                crashlytics().log('NOTI: executing redirectPayload2');
-                redirectPayload(remoteMessage);
-              });
-            }
-          }
-        });
+        })
+        .catch((error) => { if (active) void recordError(error); });
 
-      // let hideDelay = 2000;
-      // if (userIsOnboarded) {
-      //   hideDelay = Platform.OS === 'android' ? 0 : 500;
-      // }
-      // if (Platform.OS === 'ios') {
-      //   NativeModules.RNSplashScreen.setAnimationFinished(true);
-      // }
-      
-
-      setBackgroundMessageHandler(messaging, async (remoteMessage) => {
-        try {
-          // console.log('Remote notification', JSON.stringify(remoteMessage))
-        } catch (err) {
-          console.log(err);
-        }
-      });
-      onMessage(messaging, async (remoteMessage) => {
-        //type article/activities
-        //foreground call
-        if (
-          remoteMessage &&
-          remoteMessage.notification &&
-          remoteMessage.notification.body &&
-          remoteMessage.notification.title
-        ) {
+      unsubscribeMessage = onMessage(messaging, async (remoteMessage) => {
+        if (active && remoteMessage?.notification?.body && remoteMessage.notification.title) {
           Alert.alert(
             remoteMessage.notification.title,
             remoteMessage.notification.body,
@@ -991,8 +967,16 @@ export default (): any => {
           );
         }
       });
-    });
-    return () => task.cancel();
+    }) : undefined;
+    return () => {
+      active = false;
+      clearTimeout(splashTimer);
+      task?.cancel();
+      unsubscribeOpened?.();
+      unsubscribeMessage?.();
+      redirects.forEach((redirect) => redirect.cancel());
+      redirects.clear();
+    };
   }, [userIsOnboarded]);
 
   useMemo(() => {
@@ -1056,7 +1040,7 @@ export default (): any => {
         }
       }
     }
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       fetchNetInfo();
     });
 
@@ -1084,7 +1068,7 @@ export default (): any => {
         dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         const start = Date.now();
         getAllChildren(dispatch, child_age, 0);
-        crashlytics().log(
+        logCrashlyticsMessage(
           `STARTUP: getAllChildren ${
             Date.now() - start
           }ms`
@@ -1128,7 +1112,7 @@ export default (): any => {
 
     return () => clearTimeout(timeout);
   }, [netState]);
-  const routeNameRef = React.useRef<any>();
+  const routeNameRef = React.useRef<any>(null);
 
   const apiJsonDataLoading = [
     {
@@ -1173,8 +1157,15 @@ export default (): any => {
     <SafeAreaProvider>
       {shouldShowNavigator && (
         <NavigationContainer
+          direction={I18nManager.isRTL ? "rtl" : "ltr"}
+          navigationInChildEnabled
           ref={navigationRef}
           onReady={(): any => {
+            if (restartOnLangChange === "yes") {
+              dispatch(setrestartOnLangChange("no"));
+              dispatch(setAppLayoutDirectionParams({}));
+            }
+            LocalNotifications.flushPendingPress();
             routeNameRef.current = navigationRef.current.getCurrentRoute().name;
             // SplashScreen.hide();
           }}
@@ -1207,7 +1198,7 @@ export default (): any => {
                 : AppLayoutDirectionScreen
             }
             screenOptions={{
-              animationEnabled: Platform.OS == "ios" ? true : false,
+              animation: Platform.OS == "ios" ? "default" : "none",
               headerShown: false,
             }}
           >
@@ -1265,11 +1256,13 @@ export default (): any => {
               name="LoadingScreen"
               component={LoadingScreen}
               options={{ headerShown: false, gestureEnabled: false }}
-              initialParams={{
-                apiJsonData: apiJsonDataLoading,
-                prevPage: "CountryLanguageSelection",
-                isFirst: true,
-              }}
+              initialParams={restartOnLangChange === "yes" && AppLayoutDirectionScreen === "LoadingScreen"
+                ? AppLayoutDirectionParams
+                : {
+                    apiJsonData: apiJsonDataLoading,
+                    prevPage: "CountryLanguageSelection",
+                    isFirst: true,
+                  }}
             />
             <RootStack.Screen
               name="HomeDrawerNavigator"

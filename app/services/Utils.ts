@@ -2,7 +2,7 @@ import { CHILDREN_PATH } from "@types/types";
 import { DateTime } from "luxon";
 import { Platform } from "react-native";
 import { store } from "../../App";
-import RNFS from "react-native-fs";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import { requestNotifications } from "react-native-permissions";
 import { ObjectSchema, PrimaryKey } from "realm";
 import { v4 as uuidv4 } from "uuid";
@@ -57,7 +57,7 @@ import {
 } from "../database/schema/VideoArticleSchema";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
-import PushNotification from "react-native-push-notification";
+import LocalNotifications from "./LocalNotifications";
 import moment from "moment";
 import { Country, CountrySchema } from "../database/schema/CountrySchema";
 import { apiUrlDevelop } from "react-native-dotenv";
@@ -72,7 +72,7 @@ export const notiPermissionUtil = async (): Promise<any> => {
     if (Platform.OS == "android") {
       requestNotificationPermission();
     } else {
-      PushNotification.requestPermissions();
+      LocalNotifications.requestPermissions();
     }
   }, 100);
 };
@@ -252,14 +252,37 @@ export const addSpaceToHtml = (htmlInput: any): any => {
     html = html.replace(/<[/]u> /g, " </u>");
     html = html.replace(/<[/]span> /g, " </span>");
 
-    html = html.replace(/<img\s+[^>]*src=["']([^"']+)["']/gi, (match: string, src: string) => {
-      if (/^https?:\/\//i.test(src)) {
-        return match;
+    const baseUrl = apiUrlDevelop.replace(/\/api\/?$/, "").replace(/\/$/, "");
+    html = html.replace(
+      /(<img\b[^>]*?\s+src\s*=\s*)(["'])(.*?)\2/gi,
+      (match: string, prefix: string, quote: string, src: string) => {
+        const imageUrl = src.trim();
+        if (!imageUrl) return match;
+        // Preserve local/bundled/data sources rather than treating them as CMS paths.
+        if (/^[a-z][a-z\d+.-]*:/i.test(imageUrl) && !/^https?:/i.test(imageUrl)) {
+          return match;
+        }
+        try {
+          const cmsUrl = new URL(baseUrl + "/");
+          let resolvedSrc = imageUrl;
+          const parsedImageUrl = new URL(imageUrl, cmsUrl);
+          if (!/^https?:\/\//i.test(imageUrl)) {
+            resolvedSrc = parsedImageUrl.href;
+          } else if (
+            cmsUrl.protocol === "https:" &&
+            parsedImageUrl.protocol === "http:" &&
+            parsedImageUrl.host === cmsUrl.host
+          ) {
+            // Old CMS HTML can contain HTTP URLs even when the CMS uses HTTPS.
+            // Keep the complete path/query, including Drupal image-style tokens.
+            resolvedSrc = imageUrl.replace(/^http:/i, "https:");
+          }
+          return `${prefix}${quote}${resolvedSrc}${quote}`;
+        } catch {
+          return match;
+        }
       }
-      const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
-      const absoluteSrc = src.startsWith("/") ? baseUrl + src : baseUrl + "/" + src;
-      return match.replace(src, absoluteSrc);
-    });
+    );
     return html;
   }
 };

@@ -1,6 +1,6 @@
 import { Platform } from "react-native";
 import { apiUrlDevelop } from "react-native-dotenv";
-import RNFS from "react-native-fs";
+import * as RNFS from "@dr.pogodin/react-native-fs";
 import { isPregnancy } from "../../../services/Utils";
 import { offlineImageMap } from "../assets/offlineImageMap";
 const config = {

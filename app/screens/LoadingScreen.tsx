@@ -1,10 +1,11 @@
+import {applyLanguageDirection} from "../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
-import { BackHandler, I18nManager, Platform } from "react-native";
+import { BackHandler } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import LoadingScreenComponent from "../components/LoadingScreenComponent";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
@@ -29,7 +30,6 @@ import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { apiJsonDataGet, getAge } from "../services/childCRUD";
 import { deleteArticleNotPinned } from "../services/commonApiService";
 import KeepAwake from "@sayem314/react-native-keep-awake";
-import RNRestart from "react-native-restart";
 import i18next from "i18next";
 import {
   onLocalizationSelect,
@@ -41,7 +41,6 @@ import {
   selectActiveChild,
   selectAllCountries,
   selectAllDataDownloadFlag,
-  selectAppLayoutDirection,
   selectBufferAgeBracket,
   selectChildAge,
   selectChildList,
@@ -65,7 +64,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
   const childAge = useAppSelector(selectChildAge);
   const childList = useAppSelector(selectChildList);
   const sponsors = useAppSelector(selectSponsors);
-  const AppLayoutDirection = useAppSelector(selectAppLayoutDirection);
   const {
     apiJsonData = null,
     prevPage = null,
@@ -77,6 +75,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     isFirst = false,
   } = route.params || {};
 
+  const [languageReady, setLanguageReady] = useState(!isFirst);
   const allCountries = useAppSelector(selectAllCountries);
 
   const languageCode = useAppSelector(selectLanguageCode);
@@ -384,7 +383,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         "incrementalSyncDT in useeffect laoding---",
         netflag
       );
-      if (netInfo.isConnected != null && netflag == false) {
+      if (languageReady && netInfo.isConnected != null && netflag == false) {
         let enableImageDownload = false;
         if (toggleSwitchVal == false && netInfo.isConnected == true) {
           enableImageDownload = true;
@@ -395,7 +394,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         setnetflag(true);
         callSagaApi(enableImageDownload);
       }
-    }, [netInfo.isConnected])
+    }, [netInfo.isConnected, languageReady])
   );
   useEffect(() => {
     const backAction = (): any => {
@@ -412,43 +411,24 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
   }, []);
 
   useEffect(() => {
-    if (
-      allCountries?.length === 1 &&
-      allCountries[0]?.languages?.length === 1 &&
-      isFirst
-    ) {
-      const language = allCountries[0]?.languages?.[0];
-      i18next.changeLanguage(language.locale).then(() => {
-        moment.locale(getLanguageCode(language?.languageCode));
-        if (language?.locale == "GRarb" || language?.locale == "GRda") {
-          if (AppLayoutDirection == "ltr") {
-            //remove rtl on backhandler
-            Platform.OS == "ios"
-              ? setTimeout(() => {
-                  I18nManager.forceRTL(true);
-                  RNRestart.Restart();
-                }, 100)
-              : setTimeout(() => {
-                  I18nManager.forceRTL(true);
-                  RNRestart.Restart();
-                }, 0);
-          } else {
-            I18nManager.forceRTL(true);
-          }
-        } else {
-          I18nManager.forceRTL(false);
-        }
-      });
-
-      dispatch(setSponsorStore(allCountries[0]));
-      dispatch(
-        onLocalizationSelect({
-          languages: allCountries[0]?.languages,
-          countryId: allCountries[0]?.CountryID,
-        })
-      );
-    }
-  }, [isFirst]);
+    let active = true;
+    const selectInitialLanguage = async (): Promise<void> => {
+      if (isFirst && allCountries?.length === 1 && allCountries[0]?.languages?.length === 1) {
+        const language = allCountries[0].languages[0];
+        await i18next.changeLanguage(language.locale);
+        moment.locale(getLanguageCode(language.languageCode));
+        dispatch(setSponsorStore(allCountries[0]));
+        dispatch(onLocalizationSelect({languages: allCountries[0].languages, countryId: allCountries[0].CountryID}));
+        if (await applyLanguageDirection(language, {
+          screen: "LoadingScreen",
+          params: {...route.params, isFirst: false},
+        })) return;
+      }
+      if (active) setLanguageReady(true);
+    };
+    selectInitialLanguage().catch(error => console.error('Unable to apply initial language', error));
+    return () => { active = false; };
+  }, [isFirst, allCountries]);
 
   return (
     <>

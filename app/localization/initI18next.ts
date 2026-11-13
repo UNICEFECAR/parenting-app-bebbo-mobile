@@ -31,9 +31,8 @@ const findLangCode = (languageTag: string | undefined): any => {
 const AVALAILABLE_LANG_CODES: any = findAllByKey(localisationnew, 'luxonLocale');
 const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
-  // If this is set to true, your detect function receives a callback function that you should call with your language,
-  //useful to retrieve your language stored in AsyncStorage for example
   async: true,
+  callbackApi: false,
   init: (
     _services: Services,
     _detectorOptions: object,
@@ -41,25 +40,32 @@ const languageDetector: LanguageDetectorAsyncModule = {
   ) => {
     /* use services and options */
   },
-  detect: (callback: (lng: string) => void) => {
-    AsyncStorage.getItem('APP_LANG', (err, lng) => {
-      // Error fetching stored data or no language was stored
-      if (err || !lng) {
-        
-        const bestLng = RNLocalize.findBestLanguageTag(AVALAILABLE_LANG_CODES);
-       const langCodeNew = findLangCode(bestLng?.languageTag);
-       const lang2 = langCodeNew ? langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
-       const country = localization.find((x:any) => x.languages.some((item:any) => item.locale === lang2));
-      const language = localization.reduce((prev: any, product: any) => prev || product.languages.find((item:any) => item.locale === lang2), undefined);
-      store.dispatch(onLocalizationSelect({country,language}))
-        callback(langCodeNew ?? localization[localization.length-1]?.languages[0]?.locale);
-        return;
-      }
-      callback(lng);
-    });
+  detect: async () => {
+    let lng: string | null = null;
+    try {
+      lng = await AsyncStorage.getItem('APP_LANG');
+    } catch (error) {
+      console.log('Unable to read saved app language:', error);
+    }
+    if (lng) {
+      return lng;
+    }
+
+    // Keep the existing device-language/default-country selection on missing data or read failure.
+    const bestLng = RNLocalize.findBestLanguageTag(AVALAILABLE_LANG_CODES);
+    const langCodeNew = findLangCode(bestLng?.languageTag);
+    const lang2 = langCodeNew ? langCodeNew : localization[localization.length - 1]?.languages[0]?.locale;
+    const country = localization.find((x: any) => x.languages.some((item: any) => item.locale === lang2));
+    const language = localization.reduce((prev: any, product: any) => prev || product.languages.find((item: any) => item.locale === lang2), undefined);
+    store.dispatch(onLocalizationSelect({ country, language }));
+    return langCodeNew ?? localization[localization.length - 1]?.languages[0]?.locale;
   },
-  cacheUserLanguage: (lng: string) => {
-    AsyncStorage.setItem('APP_LANG', lng);
+  cacheUserLanguage: async (lng: string) => {
+    try {
+      await AsyncStorage.setItem('APP_LANG', lng);
+    } catch (error) {
+      console.log('Unable to save app language:', error);
+    }
   },
 };
 const trimwhiteSpace = (str:any):any => {
@@ -76,7 +82,10 @@ i18n
     }
   })
   .init({
-    compatibilityJSON: 'v3',
+    // Preserve pre-v27 locale casing, empty translations and fallback behaviour.
+    cleanCode: false,
+    returnEmptyString: true,
+    fallbackLng: ['dev'],
     resources: AVAILABLE_LANGUAGES,
   //   load: 'currentOnly',
     react: {

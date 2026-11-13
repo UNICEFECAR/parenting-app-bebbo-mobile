@@ -1,0 +1,69 @@
+diff --git a/node_modules/@attarchi/react-native-lottie-splash-screen/android/build.gradle b/node_modules/@attarchi/react-native-lottie-splash-screen/android/build.gradle
+index dff97d6..5d22050 100644
+--- a/node_modules/@attarchi/react-native-lottie-splash-screen/android/build.gradle
++++ b/node_modules/@attarchi/react-native-lottie-splash-screen/android/build.gradle
+@@ -1,5 +1,7 @@
+ apply plugin: 'com.android.library'
+-apply plugin: 'kotlin-android'
++if (project.extensions.findByName('kotlin') == null) {
++    apply plugin: 'kotlin-android'
++}
+ 
+ def DEFAULT_COMPILE_SDK_VERSION             = 35
+ def DEFAULT_BUILD_TOOLS_VERSION             = "35.0.0"
+@@ -21,7 +23,7 @@ android {
+     buildTypes {
+         release {
+             minifyEnabled false
+-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+         }
+     }
+ }
+diff --git a/node_modules/@attarchi/react-native-lottie-splash-screen/android/src/main/java/org/devio/rn/splashscreen/SplashScreenModule.kt b/node_modules/@attarchi/react-native-lottie-splash-screen/android/src/main/java/org/devio/rn/splashscreen/SplashScreenModule.kt
+index d186cb7..43fb6fc 100644
+--- a/node_modules/@attarchi/react-native-lottie-splash-screen/android/src/main/java/org/devio/rn/splashscreen/SplashScreenModule.kt
++++ b/node_modules/@attarchi/react-native-lottie-splash-screen/android/src/main/java/org/devio/rn/splashscreen/SplashScreenModule.kt
+@@ -23,6 +23,6 @@ class SplashScreenModule(reactContext: ReactApplicationContext) : ReactContextBa
+      */
+     @ReactMethod
+     fun hide() {
+-        SplashScreen.hide(currentActivity)
++        SplashScreen.hide(reactApplicationContext.currentActivity)
+     }
+ }
+diff --git a/node_modules/@attarchi/react-native-lottie-splash-screen/ios/RNSplashScreen.swift b/node_modules/@attarchi/react-native-lottie-splash-screen/ios/RNSplashScreen.swift
+index de33b6c..e487fd7 100644
+--- a/node_modules/@attarchi/react-native-lottie-splash-screen/ios/RNSplashScreen.swift
++++ b/node_modules/@attarchi/react-native-lottie-splash-screen/ios/RNSplashScreen.swift
+@@ -44,10 +44,11 @@ public class SplashScreen: NSObject, RCTBridgeModule {
+         animationView.center = rootView.center
+         animationView.backgroundColor = backgroundColor
+ 
+-        showLottieSplash(animationView, inRootView: rootView)
++        showLottieSplash(animationView, inRootView: rootView, forceToCloseByHideMethod: forceToCloseByHideMethod)
+     }
+             
+-    @objc public static func showLottieSplash(_ animationView: UIView, inRootView rootView: UIView) {
++    @objc public static func showLottieSplash(_ animationView: UIView, inRootView rootView: UIView, forceToCloseByHideMethod: Bool = false) {
++        self.forceToCloseByHideMethod = forceToCloseByHideMethod
+         loadingView = animationView
+         isAnimationFinished = false
+         
+@@ -67,14 +68,14 @@ public class SplashScreen: NSObject, RCTBridgeModule {
+             lottieView.play { finished in
+                 DispatchQueue.main.async {
+                     isAnimationFinished = true
+-                    hideSplashScreen()
++                    if !forceToCloseByHideMethod { hideSplashScreen() }
+                 }
+             }
+         } else {
+             // Fallback for non-Lottie views
+             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                 isAnimationFinished = true
+-                hideSplashScreen()
++                if !forceToCloseByHideMethod { hideSplashScreen() }
+             }
+         }
+     }

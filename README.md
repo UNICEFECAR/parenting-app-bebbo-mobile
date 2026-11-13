@@ -338,23 +338,19 @@ For the existing Bebbo development configuration, the file is located under the 
 ## 6. iOS Additional Setup
 ### Fontello
 
-The application uses a custom `fontello.ttf` font.
-
-Copy:
+The application uses `@react-native-vector-icons/fontello`. Its custom font is tracked at:
 
 ```text
-android/app/src/main/assets/fonts/fontello.ttf
+rnvi-fonts/fontello/fontello.ttf
 ```
 
-to:
+Android Gradle and iOS CocoaPods bundle this font automatically. Do not copy fonts into `node_modules`, remove fonts when switching platforms, or add a second Android font copy. All existing iOS targets already register `fontello.ttf` in `UIAppFonts`.
 
-```text
-node_modules/react-native-vector-icons/Fonts/
-```
+After installing dependencies, run CocoaPods before building iOS. When replacing the custom font, update this file and the matching glyph map in `app/assets/iconConfig/config.json`, then run CocoaPods again and rebuild both apps.
 
-Refer to the [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons) project for information about custom fonts.
+`FLAVOR=bebbo npx react-native-vector-image generate` remains the command for generating SVG/vector-image resources. It is separate from the Fontello icon font and is not needed just to switch between Android and iOS.
 
-> **Note:** This font copy is required for the iOS setup. Before running the Android application, remove the copied `fontello.ttf` from `node_modules/react-native-vector-icons/Fonts/` and regenerate the vector images using the command from the previous section.
+Refer to the [Fontello package setup](https://github.com/oblador/react-native-vector-icons/blob/master/packages/fontello/README.md).
 
 ### Install CocoaPods Dependencies
 From the project root:

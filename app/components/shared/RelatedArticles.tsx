@@ -1,3 +1,4 @@
+import HorizontalContentList from "@components/shared/HorizontalContentList";
 import { appConfig } from "../../instances";
 import { useFocusEffect } from "@react-navigation/native";
 import { RelatedArticlesProps } from "@screens/home/DetailsScreen";
@@ -9,8 +10,8 @@ import {
 } from "../../instances/bebbo/styles/typography";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable, StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
+import { Pressable, StyleSheet, View } from "react-native";
+import FastImage from "@d11/react-native-fast-image";
 import styled from "styled-components/native";
 import { useAppSelector } from "../../../App";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
@@ -230,7 +231,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
             <Heading2>{t("growthScreenrelatedArticle")}</Heading2>
           </ArticleHeading>
           <View style={styles.listParentView}>
-            <FlatList
+            <HorizontalContentList
               data={relatedArticleData}
               horizontal
               removeClippedSubviews={true} // Unmount components when outside of window

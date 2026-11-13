@@ -19,7 +19,7 @@ export const RadioActive = styled(Radio)`
 `;
 
 export const RadioItemText = styled.Text`
-  text-align: left;
+  text-align: start;
   font-size: 16px;
   line-height: 20px;
   color: #2D2926;

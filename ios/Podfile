@@ -8,7 +8,9 @@ require Pod::Executable.execute_command('node', ['-p',
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# Keep Firebase on CocoaPods with our existing static framework integration.
+$RNFirebaseDisableSPM = true
+
 require_relative '../node_modules/react-native-permissions/scripts/setup'
 
 # Firebase (modular header support)
@@ -35,8 +37,7 @@ def shared_pods
   # pod 'lottie-ios', '4.5.0'
   # pod '@attarchi/react-native-lottie-splash-screen', :path => '../node_modules/@attarchi/react-native-lottie-splash-screen'
   pod 'lottie-ios'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'ReactNativeFs', :path => '../node_modules/@dr.pogodin/react-native-fs'
 end
 
 linkage = ENV['USE_FRAMEWORKS']

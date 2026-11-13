@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, ImageSourcePropType } from "react-native";
-import FastImage from "react-native-fast-image";
+import FastImage from "@d11/react-native-fast-image";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { DefaultImage } from "@components/shared/Image";
 import { createImageProgress } from "./ImageLoad";

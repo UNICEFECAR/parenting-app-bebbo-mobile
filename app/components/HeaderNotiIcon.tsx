@@ -1,9 +1,10 @@
+import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Heading6w } from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { InteractionManager, Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
@@ -93,7 +94,7 @@ const HeaderNotiIcon = (props: any): any => {
   const [flagValue, setFlagValue] = useState<boolean>(false);
   useEffect(() => {
     console.log("firstuseeffect", generateNotificationsFlag);
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       if (generateNotificationsFlag == true) {
         const fetchDataOfNotifications = async (): Promise<any> => {
           const childList = await getAllChildrenDetails(dispatch, childAge, 1);
@@ -269,7 +270,7 @@ const HeaderNotiIcon = (props: any): any => {
   useFocusEffect(
     React.useCallback(() => {
       // Your dismiss logic here
-      const task = InteractionManager.runAfterInteractions(() => {
+      const task = scheduleIdleTask(() => {
         if (allnotis.length > 0) {
           const currentChildNotis = allnotis?.find(
             (item: any) => item.childuuid == activeChild.uuid
@@ -449,14 +450,14 @@ const HeaderNotiIcon = (props: any): any => {
           }
         }
       };
-      const task = InteractionManager.runAfterInteractions(() => {
+      const task = scheduleIdleTask(() => {
         fetchData();
       });
       return () => task.cancel();
     }, [localNotificationGenerateType])
   );
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       if (flagValue == true) {
         // Alert.alert(String(flagValue),String(newAllChildNotis));
         dispatch(setAllScheduledLocalNotificationData([]));
@@ -516,7 +517,7 @@ const HeaderNotiIcon = (props: any): any => {
       });
       dispatch(setAllScheduledLocalNotificationData(filteredschedulednoti));
     };
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       fetchDataOfScheduled();
     });
     return () => task.cancel();
@@ -542,7 +543,7 @@ const HeaderNotiIcon = (props: any): any => {
           setFavouriteGames(Object.values(childData[0]?.favoritegames) || [])
         );
     };
-    const task = InteractionManager.runAfterInteractions(() => {
+    const task = scheduleIdleTask(() => {
       fetchDataFav();
     });
     return () => task.cancel();

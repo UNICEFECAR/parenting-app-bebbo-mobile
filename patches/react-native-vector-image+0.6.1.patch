@@ -1,0 +1,68 @@
+diff --git a/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js b/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js
+index 36dc465..ad2cca6 100644
+--- a/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js
++++ b/node_modules/react-native-vector-image/src/cli/convertSvgToVd.js
+@@ -47,7 +47,7 @@ function convertSvgToVd(svgSource) {
+     sourcePath,
+     svgSource.replace(
+       /rgba\([0-9]+,\s*[0-9]+,\s*[0-9]+,\s*(1|[0-9]*\.[0-9]+)\)/g,
+-      (match) => chroma(match).hex()
++      (match) => chroma(match).hex('argb')
+     )
+   );
+ 
+diff --git a/node_modules/react-native-vector-image/src/cli/getAssets.js b/node_modules/react-native-vector-image/src/cli/getAssets.js
+index b02b51e..961dbf5 100644
+--- a/node_modules/react-native-vector-image/src/cli/getAssets.js
++++ b/node_modules/react-native-vector-image/src/cli/getAssets.js
+@@ -52,7 +52,7 @@ async function createMetroServerAndBundleRequest(
+       transformer: {
+         allowOptionalDependencies: true,
+         babelTransformerPath: getBabelTransformerPath(),
+-        assetRegistryPath: 'react-native/Libraries/Image/AssetRegistry',
++        assetRegistryPath: 'react-native/asset-registry',
+       },
+     }
+   );
+@@ -66,7 +66,7 @@ async function createMetroServerAndBundleRequest(
+     platform: args.platform,
+     unstable_transformProfile: args.unstableTransformProfile,
+   };
+-  const server = new Server(config);
++  const server = new Server(config, { watch: false });
+ 
+   return { server, bundleRequest };
+ }
+diff --git a/node_modules/react-native-vector-image/src/index.js b/node_modules/react-native-vector-image/src/index.js
+index 593bd3c..fa6bbdb 100644
+--- a/node_modules/react-native-vector-image/src/index.js
++++ b/node_modules/react-native-vector-image/src/index.js
+@@ -1,6 +1,7 @@
+ import React from 'react';
+-import { Image } from 'react-native';
+-import { getAssetByID } from '@react-native/assets-registry/registry';
++import { Image, Platform } from 'react-native';
++import VectorDrawable from '@klarna/react-native-vector-drawable';
++import { getAssetByID } from 'react-native/asset-registry';
+ import getResourceName from './getResourceName';
+ 
+ export function resolveVectorAssetSource(source) {
+@@ -21,9 +22,15 @@ export default function VectorImage({ source, ...props }) {
+     return null;
+   }
+ 
+-  return (
+-    <Image source={asset} {...props} />
+-  );
++  // Keep native VectorDrawable rendering on Android: Fresco does not decode
++  // generated vector XML resources as bitmap images.
++  return Platform.OS === 'android'
++    ? <VectorDrawable
++        resourceName={asset.uri}
++        {...props}
++        style={[{ width: asset.width, height: asset.height }, props.style]}
++      />
++    : <Image source={asset} {...props} />;
+ }
+ 
+ VectorImage.resolveAssetSource = resolveVectorAssetSource;
