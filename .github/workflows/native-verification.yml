@@ -57,7 +57,10 @@ jobs:
         shell: bash
         run: |
           args=(":app:bundle${ANDROID_VARIANT}Release" ":app:assemble${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2 --continue)
-          if [[ "$NATIVE_SMOKE" == "true" ]]; then args+=(-PreactNativeArchitectures=arm64-v8a,x86_64); fi
+          # Bebbo also verifies the production default, including 32-bit ABIs.
+          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then
+            args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
+          fi
           ./gradlew "${args[@]}"
       - name: Check Android native library packaging
         if: inputs.platform == 'android'

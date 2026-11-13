@@ -43,7 +43,8 @@ Automatic CI builds production JS for all eight flavours on both platforms.
 Two representative flavours (Bebbo and Rerai) also run unsigned native builds.
 The native workflow now installs the actual SDK repository package
 `platforms;android-37.0`, explicitly sets up SDK tooling and JDK 21, assembles an
-APK as well as an AAB, checks native packaging and launches Android on an API-35
+APK as well as an AAB, checks native packaging (all four configured ABIs for Bebbo; arm64-v8a and
+x86_64 for Rerai) and launches Android on an API-35
 emulator. AGP’s overloaded signing setter uses an explicitly selected public setter for unsigned checks. Screenshots, UI hierarchy, logs and packaging results are preserved as
 artifacts when those steps run. Fake configuration and a temporary CI signing
 key are used; these builds are not distributable releases.
