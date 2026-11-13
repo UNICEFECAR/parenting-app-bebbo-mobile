@@ -21,6 +21,7 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - run: npm test -- --runInBand
       - run: npm run test:tooling
+      - run: python3 -m unittest discover -s scripts/__tests__ -p 'test_*.py' -v
       - run: npm run typecheck
       - run: npm run assets:check
       - run: npm audit --audit-level=high

@@ -62,12 +62,27 @@ jobs:
             args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
           fi
           ./gradlew "${args[@]}"
+      - name: Install pinned bundletool
+        if: inputs.platform == 'android'
+        shell: bash
+        run: |
+          jar="$RUNNER_TEMP/bundletool.jar"
+          curl --fail --location --silent --show-error \
+            'https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar' -o "$jar"
+          printf '%s  %s\n' 'a099cfa1543f55593bc2ed16a70a7c67fe54b1747bb7301f37fdfd6d91028e29' "$jar" | sha256sum --check
+          echo "BUNDLETOOL_JAR=$jar" >> "$GITHUB_ENV"
       - name: Check Android native library packaging
         if: inputs.platform == 'android'
         shell: bash
         run: |
           bundle=$(python3 -c 'from pathlib import Path; files=list(Path("android/app/build/outputs/bundle").glob("**/*.aab")); assert len(files)==1, files; print(files[0])')
-          python3 scripts/check-android-bundle.py "$bundle" --report "$RUNNER_TEMP/native-smoke/packaging.json"
+          report="$RUNNER_TEMP/native-smoke"
+          mkdir -p "$report"
+          java -jar "$BUNDLETOOL_JAR" dump manifest --bundle="$bundle" --module=base > "$report/manifest.xml"
+          abis=armeabi-v7a,arm64-v8a,x86,x86_64
+          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then abis=arm64-v8a,x86_64; fi
+          python3 scripts/check-android-bundle.py "$bundle" --expected-abis "$abis" \
+            --manifest "$report/manifest.xml" --report "$report/packaging.json"
       - name: Enable emulator acceleration
         if: inputs.platform == 'android' && inputs.smoke
         run: sudo chmod 666 /dev/kvm

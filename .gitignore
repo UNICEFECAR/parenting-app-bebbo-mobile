@@ -111,3 +111,7 @@ buck-out/
 
 # Temporary all-flavour vector conversion
 .vector-assets/
+
+# Python native packaging checks
+__pycache__/
+*.pyc

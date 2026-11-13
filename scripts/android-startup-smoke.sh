@@ -5,11 +5,16 @@ set -euo pipefail
 if [[ "${CI:-}" != "true" ]]; then echo 'Unsigned fixture smoke checks require CI'; exit 1; fi
 report="$RUNNER_TEMP/native-smoke"
 mkdir -p "$report"
-apk=$(python3 -c 'from pathlib import Path; files=sorted(Path("android/app/build/outputs/apk").glob("**/*release*.apk")); assert len(files)==1, files; print(files[0])')
-tools="$ANDROID_HOME/build-tools/37.0.0"
+: "${BUNDLETOOL_JAR:?Missing pinned bundletool}"
+bundle=$(python3 -c 'from pathlib import Path; files=list(Path("android/app/build/outputs/bundle").glob("**/*.aab")); assert len(files)==1, files; print(files[0])')
+serial=$(adb get-serialno | tr -d '\r')
 keytool -genkeypair -noprompt -keystore "$RUNNER_TEMP/smoke.jks" -alias smoke -storepass android -keypass android -keyalg RSA -validity 1 -dname 'CN=Bebbo CI'
-"$tools/apksigner" sign --ks "$RUNNER_TEMP/smoke.jks" --ks-key-alias smoke --ks-pass pass:android --key-pass pass:android --out "$RUNNER_TEMP/smoke.apk" "$apk"
-adb install -r "$RUNNER_TEMP/smoke.apk"
+java -jar "$BUNDLETOOL_JAR" get-device-spec --device-id="$serial" --output="$report/device-spec.json"
+java -jar "$BUNDLETOOL_JAR" build-apks --bundle="$bundle" --output="$RUNNER_TEMP/smoke.apks" \
+  --device-spec="$report/device-spec.json" --ks="$RUNNER_TEMP/smoke.jks" --ks-key-alias=smoke \
+  --ks-pass=pass:android --key-pass=pass:android
+python3 scripts/check-android-splits.py "$RUNNER_TEMP/smoke.apks" "$report/split-packaging.json"
+java -jar "$BUNDLETOOL_JAR" install-apks --apks="$RUNNER_TEMP/smoke.apks" --device-id="$serial"
 adb shell pm grant "$ANDROID_APP_ID" android.permission.POST_NOTIFICATIONS || true
 capture_state() {
   local stage="$1"

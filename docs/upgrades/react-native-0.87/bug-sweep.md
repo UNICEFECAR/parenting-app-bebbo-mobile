@@ -35,9 +35,14 @@ transaction rollback model; they do not replace installed-app migration tests.
   (original-head baseline: 141). Raw `tsc --noEmit` is still not clean.
 - All 96 generated native resources verified; workflow syntax checked with
   actionlint and the Android launch script checked with `bash -n`.
-- Android AAB checker tested against eight positive/negative ELF/packaging
-  fixtures. It checks the number of C++ runtimes and 64-bit ELF load alignment;
-  it does not prove APK ZIP alignment or execution on a real 16 KB device.
+- 18 Python packaging guard tests cover 32/64-bit and big-endian ELF parsing,
+  missing/duplicate C++ runtimes, 16 KB load alignment, missing configured ABIs,
+  target SDK/extraction flags and the native splits selected for a device.
+- CI inspects the actual AAB manifest, requires every configured ABI, and uses
+  checksum-pinned [bundletool 1.18.3](https://github.com/google/bundletool/releases/tag/1.18.3) to generate/install device APK splits from
+  that AAB. Their native libraries must be compressed and contain exactly one
+  C++ runtime for the selected device. Actual 16 KB-device execution remains a
+  separate acceptance check.
 
 Automatic CI builds production JS for all eight flavours on both platforms.
 Two representative flavours (Bebbo and Rerai) also run unsigned native builds.
@@ -45,7 +50,7 @@ The native workflow now installs the actual SDK repository package
 `platforms;android-37.0`, explicitly sets up SDK tooling and JDK 21, assembles an
 APK as well as an AAB, checks native packaging (all four configured ABIs for Bebbo; arm64-v8a and
 x86_64 for Rerai) and launches Android on an API-35
-emulator. AGP’s overloaded signing setter uses an explicitly selected public setter for unsigned checks. Screenshots, UI hierarchy, logs and packaging results are preserved as
+emulator using generated APK splits. AGP’s overloaded signing setter uses an explicitly selected public setter for unsigned checks. Screenshots, UI hierarchy, logs and packaging results are preserved as
 artifacts when those steps run. Fake configuration and a temporary CI signing
 key are used; these builds are not distributable releases.
 
@@ -64,6 +69,11 @@ the invalid API fixture, so this is startup/failure-path evidence, not successfu
 live-service onboarding. The following smoke script also exercises cancellation
 and captures the bundled fallback separately. Rerai's missing source-set resources
 were exposed by this run and are corrected in the next revision.
+
+The same Bebbo AAB was also verified with bundletool locally: its manifest targets
+SDK 37 and sets `extractNativeLibs=true`. Generating SDK-35 x86_64 device splits
+produced 31 compressed native libraries and exactly one C++ runtime. The final
+CI revision installs these generated splits on the emulator as well.
 
 Bebbo and Rerai produced byte-identical `Gemfile.lock` and `ios/Podfile.lock`.
 The native vector-resource hook now resolves the typed React Gradle extension;
