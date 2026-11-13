@@ -71,7 +71,18 @@ PYCODE
 )
 adb shell am start -W -n "$component"
 sleep 20
-capture_state startup
+# Slow emulator networking can legitimately show the existing data-saver prompt
+# before the fixture download error. Decline it, then require the same retry UI;
+# never dismiss arbitrary dialogs or accept a blank screen as successful startup.
+for attempt in {1..8}; do
+  capture_state startup
+  if grep -Eqi 'not all content' "$report/startup.xml"; then break; fi
+  if grep -Eqi 'Poor connection' "$report/startup.xml"; then
+    cp "$report/startup.png" "$report/data-saver-prompt.png"
+    tap_label "$report/startup.xml" CANCEL || { echo 'Data-saver cancellation button missing'; exit 1; }
+  fi
+  sleep 2
+done
 # The deliberately invalid API fixture exercises the initial download failure.
 # Also exercise its existing cancel/confirmation path to the bundled fallback.
 if ! grep -Eqi 'not all content' "$report/startup.xml"; then

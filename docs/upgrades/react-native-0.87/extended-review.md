@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-340 Jest tests / 38 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+345 Jest tests / 39 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
@@ -76,3 +76,8 @@ Four rendered bookmark-control regressions additionally verify confirmed removal
 
 
 Profile deletion now handles missing records safely, detaches embedded reminders before deleting their owner, cancels them only after confirmed deletion, prevents overlapping requests and emits one confirmed `profile_deleted` event with placeholder/caregiver distinction. All three caller screens retain current selection/navigation on failed deletion. Post-commit cancellation failure produces a generic nonfatal diagnostic rather than falsely reporting that the profile was restored. Seven regressions cover these service outcomes. Native UI deletion/permission reconciliation still needs the device journey check.
+
+
+Legacy backup vaccination-only/partial-measurement fixtures exposed missing required height/weight strings: the old converter skipped fields for blank/null measurements, causing otherwise valid imports to fail native validation. Convert each available legacy value in its original units, preserve absent values as empty strings and retain the existing measured flag rule. Five tests execute the actual converter (four failed before correction), including unchanged current array-format records. Native acceptance is extended with the vaccination-only case.
+
+One final startup check was blocked by the app's existing poor-connection/data-saver prompt. Its screenshot shows that prompt, not a crash. The smoke harness now declines this recognised prompt and waits a bounded time for the same required download-retry screen, retaining strict blank/error-screen checks. Other unexpected dialogs still fail the test.

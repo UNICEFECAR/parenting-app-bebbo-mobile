@@ -582,28 +582,15 @@ const formatImportedMeasures = async (measures: any): Promise<any> => {
             measure.measurementPlace = 1;
           }
         } //titleDateInMonth
-        if (
-          "length" in measure &&
-          measure.length != null &&
-          measure.length != undefined
-        ) {
-          if (
-            isNaN(parseFloat(measure.length)) ||
-            isNaN(parseFloat(measure.weight))
-          ) {
-            measure.isChildMeasured = false;
-          } else {
-            measure.weight =
-              measure.weight == ""
-                ? ""
-                : (parseFloat(measure?.weight) / 1000).toFixed(2);
-            measure.height =
-              measure.length == ""
-                ? ""
-                : parseFloat(measure?.length).toFixed(2);
-            measure.isChildMeasured = true;
-            delete measure.length;
-          }
+        if ("length" in measure) {
+          // Old vaccination/health-only records legitimately have blank or
+          // null measurements. Realm still requires string height/weight fields.
+          const height = parseFloat(measure.length);
+          const weight = parseFloat(measure.weight);
+          measure.isChildMeasured = Number.isFinite(height) && Number.isFinite(weight);
+          measure.height = Number.isFinite(height) ? height.toFixed(2) : "";
+          measure.weight = Number.isFinite(weight) ? (weight / 1000).toFixed(2) : "";
+          delete measure.length;
         }
       });
       return importedMeasures;
