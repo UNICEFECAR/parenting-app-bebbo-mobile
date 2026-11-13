@@ -307,6 +307,16 @@ android {
 }
 
 dependencies {
+    // Keep vulnerable transitive Java libraries out of every flavour's app.
+    // Gson: CVE-2022-25647; Guava: CVE-2026-102554.
+    constraints {
+        implementation('com.google.code.gson:gson:2.13.2') {
+            because 'Fix unsafe deserialisation in older Gson releases'
+        }
+        implementation('com.google.guava:guava:33.7.2-android') {
+            because 'Avoid attacker-sized allocations during collection deserialisation'
+        }
+    }
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     // HTML images use RN Image; GIF decoding is optional in Fresco.
