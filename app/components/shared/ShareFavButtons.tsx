@@ -5,17 +5,12 @@ import {
   GAME_SHARED,
 } from "@assets/data/firebaseEvents";
 import { appConfig } from "../../instances";
-import { Heading4 } from "../../instances/bebbo/styles/typography";
-import React from "react";
+import { Heading4 } from "@styles/typography";
+import React, {useRef} from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Share, StyleSheet, View, Text } from "react-native";
 import styled from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
-import {
-  ChildEntity,
-  ChildEntitySchema,
-} from "../../database/schema/ChildDataSchema";
 import {
   setFavouriteAdvices,
   setFavouriteGames,
@@ -25,6 +20,7 @@ import Icon, { OuterIconRow, OuterIconLeft1 } from "./Icon";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { selectActiveChildUuid } from "../../services/selectors";
+import {toggleBookmark} from "../../services/bookmarks";
 export const ShareFavBox = styled.View`
   flex-direction: row;
   padding: 5px 10px 0;
@@ -42,6 +38,9 @@ const styles = StyleSheet.create({
 const ShareFavButtons = React.memo((props: any) => {
   const netInfo = useNetInfoHook();
   const activeChilduuid = useAppSelector(selectActiveChildUuid);
+  const bookmarkBusy = useRef(false);
+  const latestChild = useRef(activeChilduuid);
+  latestChild.current = activeChilduuid;
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
@@ -80,77 +79,28 @@ const ShareFavButtons = React.memo((props: any) => {
       Alert.alert(t("generalError"));
     }
   };
-  const onFavClick = async (): Promise<any> => {
-    const filterQuery = 'uuid == "' + activeChilduuid + '"';
-    console.log("on click",filterQuery)
-    if (isAdvice) {
-      await userRealmCommon.updateFavorites<ChildEntity>(
-        ChildEntitySchema,
-        item?.id,
-        "advices",
-        filterQuery
-      );
-      const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-        ChildEntitySchema,
-        filterQuery
-      );
-      dispatch(
-        setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices))
-      );
-      const favAdviceData = {
-        name: FAVOURITE_ADVICE_ADDED,
-        params: { advise_id: item?.id },
-      };
-      logEvent(favAdviceData, netInfo.isConnected);
-    } else {
-      await userRealmCommon.updateFavorites<ChildEntity>(
-        ChildEntitySchema,
-        item?.id,
-        "games",
-        filterQuery
-      );
-      const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-        ChildEntitySchema,
-        filterQuery
-      );
-      dispatch(setFavouriteGames(childData[0].favoritegames));
-      const favGameData = {
-        name: FAVOURITE_GAME_ADDED,
-        params: { game_id: item?.id },
-      };
-      logEvent(favGameData, netInfo.isConnected);
+  const onFavClick = async (): Promise<void> => {
+    if (bookmarkBusy.current) return;
+    bookmarkBusy.current = true;
+    const childId = activeChilduuid;
+    try {
+      const result = await toggleBookmark(childId, item?.id, Boolean(isAdvice));
+      // A profile switch while the native write is pending must not replace the
+      // newly selected child's visible bookmarks with the previous child's list.
+      if (latestChild.current === childId) {
+        dispatch(isAdvice ? setFavouriteAdvices(result.ids) : setFavouriteGames(result.ids));
+      }
+      const eventName = isAdvice
+        ? (result.added ? FAVOURITE_ADVICE_ADDED : 'favourite_advise_removed')
+        : (result.added ? FAVOURITE_GAME_ADDED : 'favourite_game_removed');
+      void logEvent({name: eventName, params: isAdvice ? {advise_id: item?.id} : {game_id: item?.id}}, netInfo.isConnected);
+    } catch {
+      Alert.alert(t("generalError"));
+    } finally {
+      bookmarkBusy.current = false;
     }
   };
-  const unFavHandler = async (): Promise<any> => {
-    const filterQuery = 'uuid == "' + activeChilduuid + '"';
-    if (isAdvice) {
-      await userRealmCommon.updateFavorites<ChildEntity>(
-        ChildEntitySchema,
-        item?.id,
-        "advices",
-        filterQuery
-      );
-      const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-        ChildEntitySchema,
-        filterQuery
-      );
-      dispatch(
-        setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices))
-      );
-    } else {
-      await userRealmCommon.updateFavorites<ChildEntity>(
-        ChildEntitySchema,
-        item?.id,
-        "games",
-        filterQuery
-      );
-      const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-        ChildEntitySchema,
-        filterQuery
-      );
-      dispatch(setFavouriteGames(childData[0]?.favoritegames));
-    }
-  };
+  const unFavHandler = onFavClick;
   return (
     <>
       <ShareFavBox style={{ backgroundColor: backgroundColor }}>

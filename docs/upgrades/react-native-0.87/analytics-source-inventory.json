@@ -322,30 +322,23 @@
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
-      "line": 68,
+      "line": 67,
       "api": "logEvent",
       "event": "{ name: ADVICE_SHARED, params: { advise_id: item?.id }, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
-      "line": 74,
+      "line": 73,
       "api": "logEvent",
       "event": "{ name: GAME_SHARED, params: { game_id: item?.id }, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
-      "line": 104,
+      "line": 96,
       "api": "logEvent",
-      "event": "{ name: FAVOURITE_ADVICE_ADDED, params: { advise_id: item?.id }, }",
-      "parameters": "netInfo.isConnected"
-    },
-    {
-      "file": "app/components/shared/ShareFavButtons.tsx",
-      "line": 121,
-      "api": "logEvent",
-      "event": "{ name: FAVOURITE_GAME_ADDED, params: { game_id: item?.id }, }",
+      "event": "{name: eventName, params: isAdvice ? {advise_id: item?.id} : {game_id: item?.id}}",
       "parameters": "netInfo.isConnected"
     },
     {
