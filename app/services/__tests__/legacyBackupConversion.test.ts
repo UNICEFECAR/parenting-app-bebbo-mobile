@@ -1,3 +1,4 @@
+import * as RNFS from '@dr.pogodin/react-native-fs';
 jest.mock('../../../App',()=>({store:{getState:jest.fn()}}));
 jest.mock('@dr.pogodin/react-native-fs',()=>({exists:jest.fn().mockResolvedValue(false)}));
 jest.mock('react-native-permissions',()=>({requestNotifications:jest.fn()}));
@@ -38,4 +39,17 @@ test('an explicit born-child flag is not overwritten by a date-based guess',asyn
 test('legacy boolean profile flags are normalised without losing their meaning',async()=>{
   const restored=await getChild({...child,measures:[],isExpected:true,isPremature:true,autoChild:true},[]);
   expect(restored).toMatchObject({isExpected:'true',isPremature:'true',autoChild:'true'});
+});
+
+test('failed backup conversion preserves the error for recovery without logging private file paths', async () => {
+  const failure = new Error('Cannot read /children/private-child-photo.jpg for Synthetic Child');
+  jest.mocked(RNFS.exists).mockRejectedValueOnce(failure);
+  const logged = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+  try {
+    await expect(getChild({...child, measures: []}, [])).rejects.toBe(failure);
+    expect(logged).toHaveBeenCalledTimes(1);
+    const detail = logged.mock.calls[0][1] as Error;
+    expect(detail.message).toBe('Application operation failed');
+    expect(detail.stack).not.toMatch(/private-child-photo|Synthetic Child|\/children\//);
+  } finally { logged.mockRestore(); }
 });

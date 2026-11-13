@@ -36,13 +36,21 @@ test('a failed insert rolls back the whole downloaded article batch', async () =
     const before = JSON.parse(JSON.stringify(rows));
     try {return work();} catch (error) {rows = before; throw error;}
   };
+  const failure = new Error('Invalid record for /private/caregiver-name.realm');
+  const logged = jest.spyOn(console, 'error').mockImplementation(() => undefined);
   const create = realm.create;
   realm.create = (schema: string, row: any) => {
-    if (row.id === 3) throw new Error('Invalid article');
+    if (row.id === 3) throw failure;
     return create(schema, row);
   };
-  await expect(dataRealmCommon.createArticles(ArticleEntitySchema, [{id: 2, title: 'Valid'}, {id: 3, title: 'Bad'}], '')).resolves.toBe('fail');
-  expect(rows).toEqual([{id: 1, title: 'Old content', isarticle_pinned: ''}]);
+  try {
+    await expect(dataRealmCommon.createArticles(ArticleEntitySchema, [{id: 2, title: 'Valid'}, {id: 3, title: 'Bad'}], '')).resolves.toBe('fail');
+    expect(rows).toEqual([{id: 1, title: 'Old content', isarticle_pinned: ''}]);
+    expect(logged).toHaveBeenCalledTimes(1);
+    const detail = logged.mock.calls[0][1] as Error;
+    expect(detail.message).toBe('Application operation failed');
+    expect(detail.stack).not.toContain('/private/caregiver-name.realm');
+  } finally { logged.mockRestore(); }
 });
 
 test.each(['regular', 'reference', 'archive'])('%s cache confirms completion outside the Realm transaction callback', async kind => {

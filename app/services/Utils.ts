@@ -1,3 +1,4 @@
+import {diagnosticError} from './diagnostics';
 import {localisedDigits} from './localisedDigits';
 import { CHILDREN_PATH } from "@app-types/types";
 import { DateTime } from "luxon";
@@ -811,7 +812,7 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
       autoChild: autoChild,
     };
   } catch (error) {
-    console.error("Error in getChild:", error);
+    console.error("Error in getChild:", diagnosticError(error instanceof Error ? error : "Backup conversion failed"));
     throw error; // Re-throw the error for handling in the calling function
   }
 };

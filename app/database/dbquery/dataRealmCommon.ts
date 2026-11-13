@@ -1,3 +1,4 @@
+import {diagnosticError} from '../../services/diagnostics';
 import { appConfig } from '../../instances';
 import { deleteDataRealm, openDataRealm } from '../config/dataDbConfig';
 import { StandardDevHeightForAgeSchema } from '../schema/StandardDevHeightForAgeSchema';
@@ -102,7 +103,7 @@ class DataRealmCommon {
                     return result
                 }
             } catch (e) {
-                console.error("data insert err", e);
+                console.error("data insert err", diagnosticError(e instanceof Error ? e : "Cache operation failed"));
                 result="fail";
                 return result
             }
@@ -127,7 +128,7 @@ class DataRealmCommon {
             });
             return 'success';
         } catch (error) {
-            console.error('Article cache write failed', error);
+            console.error('Article cache write failed', diagnosticError(error instanceof Error ? error : 'Cache operation failed'));
             return 'fail';
         }
     }
@@ -160,7 +161,7 @@ class DataRealmCommon {
                         return result;
                 }
             } catch (e) {
-                console.error("data insert err", e);
+                console.error("data insert err", diagnosticError(e instanceof Error ? e : "Cache operation failed"));
                 result="fail";
                 return result;
             }
@@ -206,7 +207,7 @@ class DataRealmCommon {
                     return result
                 }
             } catch (e) {
-                console.error("data insert err", e);
+                console.error("data insert err", diagnosticError(e instanceof Error ? e : "Cache operation failed"));
                 result="fail";
                 return result
             }
