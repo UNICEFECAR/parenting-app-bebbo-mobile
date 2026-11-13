@@ -3,6 +3,9 @@ set -euo pipefail
 : "${ANDROID_APP_ID:?Missing CI application ID}"
 : "${RUNNER_TEMP:?Missing temporary directory}"
 if [[ "${CI:-}" != "true" ]]; then echo 'Unsigned fixture smoke checks require CI'; exit 1; fi
+for required in java keytool adb python3 grep; do
+  command -v "$required" >/dev/null || { echo "Missing smoke-test dependency: $required"; exit 1; }
+done
 report="$RUNNER_TEMP/native-smoke"
 mkdir -p "$report"
 : "${BUNDLETOOL_JAR:?Missing pinned bundletool}"
@@ -18,9 +21,9 @@ java -jar "$BUNDLETOOL_JAR" install-apks --apks="$RUNNER_TEMP/smoke.apks" --devi
 adb shell pm grant "$ANDROID_APP_ID" android.permission.POST_NOTIFICATIONS || true
 capture_state() {
   local stage="$1"
-  adb exec-out screencap -p > "$report/$stage.png"
   adb shell uiautomator dump /sdcard/bebbo-smoke.xml
   adb pull /sdcard/bebbo-smoke.xml "$report/$stage.xml"
+  adb exec-out screencap -p > "$report/$stage.png"
 }
 tap_label() {
   local tree="$1" label="$2" point x y
@@ -48,22 +51,31 @@ sleep 20
 capture_state startup
 # The deliberately invalid API fixture exercises the initial download failure.
 # Also exercise its existing cancel/confirmation path to the bundled fallback.
-if rg -qi 'not all content' "$report/startup.xml" && tap_label "$report/startup.xml" CANCEL; then
+if grep -Eqi 'not all content' "$report/startup.xml"; then
+  tap_label "$report/startup.xml" CANCEL || { echo 'Download cancellation button missing'; exit 1; }
   sleep 2
   capture_state cancel-confirmation
-  if tap_label "$report/cancel-confirmation.xml" OK; then
-    sleep 5
-    capture_state after-cancel
-  fi
+  tap_label "$report/cancel-confirmation.xml" OK || { echo 'Cancellation confirmation button missing'; exit 1; }
+  sleep 5
+  capture_state after-cancel
+  python3 - "$report/after-cancel.xml" "$ANDROID_APP_ID" <<'PYCODE'
+import sys, xml.etree.ElementTree as ET
+root = ET.parse(sys.argv[1]).getroot()
+labels = [node.get('text') or node.get('content-desc') for node in root.iter('node')
+          if node.get('package') == sys.argv[2] and (node.get('text') or node.get('content-desc'))]
+if not labels:
+    raise SystemExit('Download cancellation left a blank application screen')
+print('Visible application content after cancellation:', labels)
+PYCODE
 fi
 pid=$(adb shell pidof "$ANDROID_APP_ID" | tr -d '\r' || true)
 adb logcat -d > "$report/logcat.txt"
 if [[ -z "$pid" ]]; then echo 'App exited during startup or download cancellation'; exit 1; fi
 adb logcat -d --pid="$pid" > "$report/app-logcat.txt"
-if rg 'FATAL EXCEPTION|Fatal signal|ReactNativeJS.*(TypeError|ReferenceError|RangeError|Invariant Violation)|Unhandled JS Exception' "$report/app-logcat.txt"; then
+if grep -E 'FATAL EXCEPTION|Fatal signal|ReactNativeJS.*(TypeError|ReferenceError|RangeError|Invariant Violation)|Unhandled JS Exception' "$report/app-logcat.txt"; then
   echo 'App logged a fatal startup error'; exit 1
 fi
-if rg 'text="[^"]*(TypeError:|ReferenceError:|SyntaxError:|Invariant Violation)' "$report"/*.xml; then
+if grep -E 'text="[^"]*(TypeError:|ReferenceError:|RangeError:|SyntaxError:|Invariant Violation)' "$report"/*.xml; then
   echo 'App displayed a JavaScript error'; exit 1
 fi
 printf 'Startup smoke passed: %s (pid %s)\n' "$ANDROID_APP_ID" "$pid"

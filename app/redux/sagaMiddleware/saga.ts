@@ -112,7 +112,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
 }
 
-function* onApiError(payload: any, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[]): any {
+function* onApiError(payload: any, response: any[], prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[]): any {
   try {
     yield call(retryAlert);
     const failedApiObj = errorArr;
@@ -127,14 +127,16 @@ function* onApiError(payload: any, prevPage: string, dispatch: any, navigation: 
       onLoadApiArray = apiJsonData;
     }
     yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload));
-  } catch (e) {
-    //code of what to fo if user selected cancel.
+  } catch {
+    // Completing the fallback must also release startup's navigator gate.
+    // Keep requests in errorArr; only accepted responses may update cursors.
     try {
       yield call(cancelRetryAlert);
-      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
-    } catch (e) {
-      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
+    } catch {
+      // A dismissed confirmation must not strand the app on its loading screen.
     }
+    yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
+    yield put(receiveAPISuccess(response));
   }
 }
 export function* onFetchAPI(value: any): any {
@@ -151,11 +153,12 @@ export function* onFetchAPI(value: any): any {
   const downloadWeeklyData = value.downloadWeeklyData;
   const downloadMonthlyData = value.downloadMonthlyData;
   const enableImageDownload = value.enableImageDownload;
+  let response: any[] = [];
   try {
     // API Request
     yield put(fetchAPIStart());
 
-    let response: any[] = yield all(
+    response = yield all(
       payload.map((data: ApiJsonArray) =>
         call(apiCall, data, dispatch, errorArr)
       )
@@ -164,7 +167,7 @@ export function* onFetchAPI(value: any): any {
       return el != null;
     });
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-      yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
+      yield call(onApiError, payload, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
     }
     else {
       yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
@@ -173,10 +176,10 @@ export function* onFetchAPI(value: any): any {
   } catch (e) {
     console.log(value)
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-      yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
+      yield call(onApiError, payload, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
     }
     else {
-      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
+      yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
 
     }
   }

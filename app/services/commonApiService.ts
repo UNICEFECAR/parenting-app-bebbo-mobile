@@ -218,32 +218,16 @@ export const onCountryApiSuccess = async (
   languageCode: string,
   prevPage: string
 ): Promise<any> => {
-  if (
-    response &&
-    response[0] &&
-    response[0].apiEndpoint == appConfig.apiConfig.countryGroups
-  ) {
-    response = response[0];
-    if (response.data && response.data.status && response.data.status == 200) {
-      dispatch(setuserIsFirstTime(true));
-      dispatch(setCountriesStore(response.data?.data));
-      const allDatatoStore = await getAllDataToStore(
-        languageCode,
-        dispatch,
-        prevPage
-      );
-    }
-    else {
-      const allDatatoStore = await getAllDataOnRetryToStore(
-        appConfig.apiConfig.countryGroups,
-        languageCode,
-        dispatch,
-        prevPage,
-      );
-    }
+  const countriesResponse = response?.find(
+    (item: any) => item?.apiEndpoint == appConfig.apiConfig.countryGroups
+  );
+  if (countriesResponse?.status == 200 && countriesResponse.data?.status == 200) {
+    dispatch(setuserIsFirstTime(true));
+    dispatch(setCountriesStore(countriesResponse.data.data));
   }
-
-  // navigation.navigate('Walkthrough');
+  // Read the persisted response or fall back to the bundled country catalogue,
+  // including when every request failed or the retry batch omitted countries.
+  await getAllDataToStore(languageCode, dispatch, prevPage);
 };
 export const onOnLoadApiSuccess = async (
   _response: any,

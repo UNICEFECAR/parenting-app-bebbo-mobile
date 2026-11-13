@@ -46,7 +46,7 @@ test('failed persistence is retriable and cannot advance a cursor past missing o
   jest.mocked(addApiDataInRealm).mockResolvedValue('');
   await start().toPromise();
   expect(retryAlert).toHaveBeenCalledTimes(1);
-  expect(actions.some(action => action.type === 'success')).toBe(false);
+  expect(actions.find(action => action.type === 'success')?.payload).toEqual([]);
   for (const call of jest.mocked(updateIncrementalSyncDT).mock.calls) {
     expect(call[0]).not.toContain(response);
   }
@@ -83,4 +83,21 @@ test('overlapping downloads retain separate failure lists', async () => {
   cancel(new Error('Cancel first request')); await failed.toPromise();
   const failures = actions.filter(action => action.type === 'failure');
   expect(failures[failures.length-1].payload.errorArr).toEqual([request]);
+});
+
+
+test('cancelling a failed startup batch completes the navigator readiness signal', async () => {
+  jest.mocked(commonApiService).mockResolvedValue({...response, status: 503} as any);
+  await start({prevPage: ''}).toPromise();
+  expect(actions.find(action => action.type === 'success')?.payload).toEqual([]);
+  expect(updateIncrementalSyncDT).toHaveBeenCalledWith([], expect.anything(), undefined, undefined, '');
+});
+
+test('cancellation passes only accepted responses to cache consumers and cursors', async () => {
+  jest.mocked(commonApiService)
+    .mockResolvedValueOnce(response as any)
+    .mockResolvedValueOnce({...response, apiEndpoint: 'taxonomies', status: 503} as any);
+  await start({payload: [request, {...request, apiEndpoint: 'taxonomies'}]}).toPromise();
+  expect(actions.find(action => action.type === 'success')?.payload).toEqual([response]);
+  expect(updateIncrementalSyncDT).toHaveBeenCalledWith([response], expect.anything(), undefined, undefined, 'Home');
 });
