@@ -11,7 +11,7 @@ This follow-up is based on `RNSDKUpgrade` at
 | F1: production visual test controller | Removed the polling effect and its audit-only imports from navigation. Production bundles are checked for its command filenames and globals. |
 | F2: destructive local restore | Local documents, Drive and onboarding confirmation share validation/conversion and a single Realm write transaction. Selection and preview never clear or close the live Realm. Errors propagate to the UI. |
 | F3: missing branded resources | Generated the union of actual SVG dependencies for all eight flavours, including Rerai's green logos and Foleja/Merhaba/Babuni variants. Checked-in manifest verifies resource bytes and SVG source changes. Android preBuild and all ten iOS bundle phases run that verification. |
-| F4: obsolete workflows | Replaced Node 21/npm-install/old-Fontello-copy workflows with current lockfile installs and supported Node. Added automatic JS/test/security/type-regression checks and explicit manual unsigned native compile checks. |
+| F4: obsolete workflows | Replaced Node 21/npm-install/old-Fontello-copy workflows with current lockfile installs and supported Node. Added automatic JS/test/security/type-regression checks and automatic representative and manual per-flavour unsigned native compile checks. |
 | F5: About page RTL | Added HTML base direction and the shared RTL list-renderer properties. |
 | F6: incompatible TypeScript peer | Pinned TypeScript 5.9.3, satisfying the Expo require-utils peer brought in by notify-kit. |
 
@@ -78,7 +78,7 @@ release must use the real configuration and must not set `unsignedVerification`.
 CocoaPods runs through the pinned Gemfile. The later bug sweep committed the
 byte-identical `Gemfile.lock` and `ios/Podfile.lock` produced by successful Bebbo
 and Rerai macOS archives; CI now uses CocoaPods deployment mode and preserves
-the resolved locks as artifacts. See [bug sweep](bug-sweep.md) for current results.
+the resolved locks as artifacts. See [bug sweep](bug-sweep.md) for current results, the final 237-test suite and native/device evidence.
 
 See [dependency follow-up](dependency-follow-up.md) for the subsequent reviewed
 maintenance updates and the rename-tool candidate rejected after audit.
@@ -94,15 +94,16 @@ maintenance updates and the rename-tool candidate rejected after audit.
 | Reanimated 4.7.1 / Worklets 0.13.1 | Retain the compatible pair. |
 | Other selected native/UI packages | Keep the reviewed versions. Broad latest-version upgrades would invalidate the migration test scope. |
 
-The full npm audit at this follow-up reports 19 package entries: 8 moderate,
-11 low, no high or critical. This is a registry audit snapshot, not complete
+The dependency follow-up audit reported 19 entries locally (8 moderate, 11 low);
+the final GitHub CI audit reports 21 (10 moderate, 11 low). Both have no high or
+critical findings. These are npm/registry audit snapshots, not complete
 application security certification.
 
 ## Validation on the review host
 
 - Reproducible `npm ci --legacy-peer-deps`, with all three compatibility patches.
-- Initial review: 11 Jest suites / 161 tests. The later bug sweep passes 21
-  suites / 227 tests and 11 Node tooling tests.
+- Initial review: 11 Jest suites / 161 tests. The later bug sweep passes 23
+  suites / 237 tests and 11 Node tooling tests.
 - 117 modified application/test source files transformed for each of all eight
   flavours; FLAVOR substitution resolved in every case.
 - Production Metro bundles passed for Bebbo Android and Rerai iOS; both exclude
@@ -113,17 +114,19 @@ application security certification.
 - All workflow YAML passed actionlint 1.7.12.
 - Type regression gate now passes with 98 inherited diagnostics (141 in the
   original-head baseline under the same compiler).
-- npm audit: 19 entries, zero high/critical. Full dependency-tree inspection
+- npm audit: 19 locally / 21 in GitHub CI, zero high/critical. Full dependency-tree inspection
   retains only the two documented obsolete native-html type-peer warnings.
 
 ## Native and device acceptance still required
 
-The Linux review host cannot run Xcode, Android SDK builds or physical-device
-upgrade tests. Source checks, mocked Realm transactions and JS bundles do not
-prove installed-app data safety or visual correctness. Before release:
+Remote CI has compiled unsigned Android and iOS releases for Bebbo and Rerai,
+and installed generated Android AAB splits on API-35 x86_64 emulators. See the
+[bug sweep](bug-sweep.md) for exact commits, results and the failure-path defect
+found during screenshot inspection. This does not prove physical-device upgrade
+safety, live-service operation or visual acceptance across languages. Before release:
 
-- [ ] Run the native compile workflow for both platforms and every shipped
-  flavour; review the captured native dependency locks.
+- [ ] Extend the representative Bebbo/Rerai native compile results to every other
+  shipped flavour; review the captured native dependency locks.
 - [ ] Build signed releases with real Firebase/OAuth/environment configuration.
   Inspect the AAB/APK for every expected ABI, `libc++_shared.so`, 16 KB page
   alignment and manifest/library packaging behaviour. Install the generated

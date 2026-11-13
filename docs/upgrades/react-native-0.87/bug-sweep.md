@@ -3,6 +3,25 @@
 Fixes are on `RNSDKUpgrade-review-fixes`. These checks cover pre-existing defects
 as well as the React Native migration. The source PR branch is unchanged.
 
+The completed sweep passes 237 Jest tests in 23 suites, 11 Node tooling tests,
+18 packaging-guard tests and production bundles for all eight flavours on both
+platforms. Both representative Android/iOS native builds passed. The final device
+QA passed all four Bebbo/Rerai cases at normal and 1.3x system font scale, including
+actual AAB-split installation, failed-download cancellation and reachable actions.
+The remaining release checks are listed below; this is not a zero-bug certificate.
+
+## Priority
+
+The most consequential corrections are the startup blank screen after download
+cancellation, content synchronisation advancing its cursor before durable storage,
+unsafe/incomplete installed-data migration callbacks, incorrect growth-card
+interpretation and missing native flavour resources. These can prevent use,
+leave offline content stale or display misleading information.
+
+The other confirmed defects below are functional corrections. The remaining
+TypeScript backlog and cross-device backup-photo portability are follow-up work;
+physical-device migration, real-service and RTL acceptance remain release checks.
+
 ## Reproduced and corrected
 
 | Area | Defect and correction |
@@ -14,7 +33,10 @@ as well as the React Native migration. The source PR branch is unchanged.
 | Notifications | Generated IDs could collide with the same new batch or return undefined after a saved-ID collision. Use a bounded collision search over saved and new IDs. Sort copied age periods by days instead of assuming Drupal IDs are chronological; use the planned term date, not the taxonomy ID, for the existing premature-child anchor. Missing catalogues return an empty result. Existing clinical schedule intervals are unchanged. |
 | Videos | Missing/non-string video URLs could crash a card. A local-variable error flag reset on every render and did not reliably show the fallback. Guard metadata and retain the failure state until the source changes. |
 | Offline article cache | Pinning an existing article did not refresh its content; async callbacks inside a synchronous Realm write could detach errors. Perform the batch synchronously in one transaction, refresh content and preserve pins. Cache operations return their actual completion status and API persistence rejects unconfirmed writes. |
-| Download completion | The API saga dispatched a forked cache write and immediately advanced the delta cursor/read the cache. Wait for the actual transaction; failed persistence/application responses enter the retry list and cannot advance their cursor. Concurrent downloads now own separate failure lists. Seven saga tests cover the ordering and error paths. |
+| Download cancellation | A failed initial download followed by CANCEL/OK left both installed apps blank: the cancellation path never completed the Redux readiness signal. It also passed request descriptions as responses and the country handler skipped fallback when countries were absent. Complete the fallback, retain the failed-request list, pass only accepted responses to cursors/consumers and always load cached/bundled countries. Country responses are located by endpoint rather than array position. Six additional regression cases cover these paths. |
+| Status-bar lifecycle | The focus hook ran only for one Android inset shape. Changing insets could therefore trigger React’s more/fewer-hooks error, and unfocused screens in the other branch still mounted a native status bar. Call the focus hook on every render and gate native status-bar updates by focus while preserving layout padding. Four tests reproduced the prior failures and pass after the correction. |
+| Welcome-screen layout | The fixed flex allocation pushed the welcome heading behind the Android status bar on a short screen. Use top/bottom safe areas, natural content heights and scrolling; keep country/language rows and Continue reachable when text grows. Verify on installed Bebbo/Rerai at normal and 1.3x font scale. |
+| Download completion | The API saga dispatched a forked cache write and immediately advanced the delta cursor/read the cache. Wait for the actual transaction; failed persistence/application responses enter the retry list and cannot advance their cursor. Concurrent downloads now own separate failure lists. Saga tests cover the ordering and error paths. |
 | Article HTML tables | Replace a removed table-plugin export with the documented opaque `tableModel`; register that model beside the iframe model so table contents stay within the WebView renderer. Visual table acceptance still requires a device. |
 | Growth cards | Height-only records were treated as zero because parsing required a weight. Realm Date and exported millisecond dates were not handled consistently. Interpret the supplied height/date, tolerate loading metadata and leave missing measurements unclassified. Warning text now has a matching status flag; the exact lower height boundary no longer falls through. Other cut-offs and translated messages are unchanged. |
 | Article/activity search | The index was published before asynchronous construction completed and never rebuilt after data/language changes. Publish only completed indexes, cancel obsolete jobs, disable input while preparing and safely handle queries before readiness. Avoid reshuffling the activities array on every render. |
@@ -27,12 +49,18 @@ transaction rollback model; they do not replace installed-app migration tests.
 
 ## Automated verification
 
-- 227 tests passed in 21 Jest suites, including backup/restore, Drive authorisation,
+- 237 tests passed in 23 Jest suites, including backup/restore, Drive authorisation,
   notification migration, navigation and earlier review tests.
 - 11 Node tooling tests passed, including eight fixed D3 path comparisons against the
   previous d3-shape version.
+- RTL component checks cover direction/restart handling, leading/centred text,
+  shared typography, rulers, content lists, plus labels and native sheet/picker
+  dismissal ordering. They do not constitute Arabic/Dari screenshot approval.
 - Type regression gate: no new diagnostics; 98 inherited diagnostics remain
   (original-head baseline: 141). Raw `tsc --noEmit` is still not clean.
+- GitHub CI npm audit: 21 findings (10 moderate, 11 low), no high/critical. The
+  local npm audit snapshot reports 19 (8 moderate, 11 low); counts are not treated
+  as stable across npm/registry environments.
 - All 96 generated native resources verified; workflow syntax checked with
   actionlint and the Android launch script checked with `bash -n`.
 - 18 Python packaging guard tests cover 32/64-bit and big-endian ELF parsing,
@@ -54,26 +82,61 @@ emulator using generated APK splits. AGP’s overloaded signing setter uses an e
 artifacts when those steps run. Fake configuration and a temporary CI signing
 key are used; these builds are not distributable releases.
 
-Both Bebbo and Rerai unsigned iOS archives succeeded in
-[run 43412777599](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43412777599)
-on commit `9f2b707`, before the application fixes in this sweep. That run's Android
-jobs stopped at the SDK package installation, which is corrected in this sweep.
-The complete run must be checked again on the final application-fix commit.
+### Native evidence and test limitations
 
-[Run 43421017527](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43421017527)
-on `bbaa9fbb` passed all 17 regression jobs and both current iOS archives. Bebbo
-Android compiled and booted on API 35 x86_64; the AAB contained 62 libraries
-across arm64-v8a and x86_64, with one C++ runtime per ABI and no ELF alignment
-failures. Its startup screenshot showed the expected download retry dialog from
-the invalid API fixture, so this is startup/failure-path evidence, not successful
-live-service onboarding. The following smoke script also exercises cancellation
-and captures the bundled fallback separately. Rerai's missing source-set resources
-were exposed by this run and are corrected in the next revision.
+| Verification | Tested source | Result |
+| --- | --- | --- |
+| [Full build run 43438512801](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43438512801) | `4e3f993` | All 21 jobs green: regression checks, 16 production bundles, both unsigned iOS archives, both Android APK/AAB builds and packaging checks. |
+| [Final JS/device QA 43447219490](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43447219490) | `e9b5017` | All 21 jobs green: 237 Jest tests, tooling/type/security/packaging checks, 16 production bundles and four Android device cases. |
 
-The same Bebbo AAB was also verified with bundletool locally: its manifest targets
-SDK 37 and sets `extractNativeLibs=true`. Generating SDK-35 x86_64 device splits
-produced 31 compressed native libraries and exactly one C++ runtime. The final
-CI revision installs these generated splits on the emulator as well.
+Bebbo's bundle contains 124 native libraries across armeabi-v7a, arm64-v8a, x86
+and x86_64. Rerai's CI bundle contains 62 across arm64-v8a and x86_64. Both target
+SDK 37, set `extractNativeLibs=true`, contain one C++ runtime per ABI and pass
+the ELF checks. Generated x86_64 device splits each contain 31 compressed native
+libraries and one C++ runtime; installation, launch and the cancellation path
+pass on API 35.
+
+The final two UI fixes (welcome layout and status-bar lifecycle) are JavaScript-only.
+The final QA reuses the native AABs from `4e3f993`, regenerates release Hermes
+bytecode using the locked React Native compiler and verifies every other AAB entry
+is byte-identical. The source gate allows only those two components, their test,
+the install harness and the QA workflow to differ from the compiled commit.
+Per-case provenance files record the source commits and bytecode SHA-256. The
+same flavour's bytecode hash is identical across the two font-scale cases.
+
+The final fix-branch commit follows the tested QA commit and changes only review
+documentation/evidence and CI configuration. Application code and the smoke
+harness are unchanged from the passing QA source. Its `[skip ci]` marker avoids
+rebuilding those same application inputs. The QA-only workflow remains on
+`RNSDKUpgrade-onboarding-checks`; the normal native workflow remains on the fix branch.
+
+Screenshots were inspected in all four final cases. They confirm the blue Bebbo
+and green Rerai styling, a readable welcome heading below the status bar and a
+Continue button reachable by scrolling on the short screen. These are synthetic
+English first-run screens, not full-app or RTL visual sign-off.
+
+| App / system font scale | Welcome screen | Actions after scrolling | Source proof |
+| --- | --- | --- | --- |
+| Bebbo / 1.0 | [Image](evidence/bebbo-font-1.0-after-cancel.png) | [Image](evidence/bebbo-font-1.0-after-scroll.png) | [JSON](evidence/bebbo-font-1.0-provenance.json) |
+| Bebbo / 1.3 | [Image](evidence/bebbo-font-1.3-after-cancel.png) | [Image](evidence/bebbo-font-1.3-after-scroll.png) | [JSON](evidence/bebbo-font-1.3-provenance.json) |
+| Rerai / 1.0 | [Image](evidence/reraiUmntwana-font-1.0-after-cancel.png) | [Image](evidence/reraiUmntwana-font-1.0-after-scroll.png) | [JSON](evidence/reraiUmntwana-font-1.0-provenance.json) |
+| Rerai / 1.3 | [Image](evidence/reraiUmntwana-font-1.3-after-cancel.png) | [Image](evidence/reraiUmntwana-font-1.3-after-scroll.png) | [JSON](evidence/reraiUmntwana-font-1.3-provenance.json) |
+
+[Before: clipped Bebbo welcome heading](evidence/bebbo-before-welcome-clipped.png).
+
+Earlier green process-only checks were rejected after reviewing their evidence:
+Ubuntu lacked `rg`, so cancellation/error checks could be skipped; cancellation
+left the app blank; a later Rerai capture showed a Pixel Launcher ANR instead of
+app UI. The final harness requires the fixture retry dialog, explicit CANCEL/OK,
+actual in-app welcome content below the status bar and a reachable Continue action.
+It reads and launches the explicit activity from the captured AAB manifest and
+preserves logs even on failure. A failed implicit-launch QA attempt is superseded
+by the final passing run; none of those earlier captures are used as app acceptance.
+
+Fake API/Firebase configuration deliberately triggers the download failure path.
+Successful real-service onboarding, push delivery and Google authorisation are
+outside the evidence from these builds. Expected invalid-fixture Firebase/
+Facebook errors must not be mistaken for successful service integration.
 
 Bebbo and Rerai produced byte-identical `Gemfile.lock` and `ios/Podfile.lock`.
 The native vector-resource hook now resolves the typed React Gradle extension;
