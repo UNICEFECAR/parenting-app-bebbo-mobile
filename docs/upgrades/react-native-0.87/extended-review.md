@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-307 Jest tests / 33 suites; 22 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+313 Jest tests / 34 suites; 22 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
@@ -53,3 +53,6 @@ Realm 20.2.0/schema 4 and dotenv 3.4.12 are intentionally retained. Firebase 26.
 ## CI provenance
 
 First checkpoint: `d664ad0b67dd88d28c35caf17210aa5e68ac757a`, [run 43463202988](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43463202988). Its unit job and all 16 production JS bundle jobs passed. Native jobs were still running when the subsequent Gradle/privacy/archive corrections were prepared. Results from that checkpoint do not validate later source changes. Final checkpoint/run outcomes will be appended after verification.
+
+
+A final startup regression handles malformed persisted taxonomy JSON before PersistGate opens. It reads only matching-language Realm metadata or the existing bundled taxonomy, repairs only that Redux cache field, and shows the existing retry UI if neither source is valid. It does not delete profiles/settings. Six tests cover valid caches, truncated/scalar/array snapshots and missing recovery data.

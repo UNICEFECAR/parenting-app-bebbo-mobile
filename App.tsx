@@ -1,3 +1,4 @@
+import {recoverTaxonomySnapshot} from './app/services/taxonomyRecovery';
 /**
  * React Native App
  * https://github.com/facebook/react-native
@@ -37,7 +38,7 @@ import configureAppStore from "./app/redux/store";
 import { googleAuth } from "./app/services/googleAuth";
 import { EventProvider } from "react-native-outside-press";
 import RNRestart from "react-native-restart";
-import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
+import { setAllTaxonomyData, setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
 import { recordError } from "./app/services/firebaseAnalytics";
 import {applyLanguageDirection, configureLayoutDirection} from "./app/localization/layoutDirection";
 import { primaryColor } from "@styles/style";
@@ -132,11 +133,31 @@ const App = () => {
       setDirectionError(error instanceof Error ? error : new Error(String(error)));
       return;
     }
-    const taxonomyAllData = store.getState().utilsData.taxonomy.allTaxonomyData
-      ? JSON.parse(store.getState().utilsData.taxonomy.allTaxonomyData)
-      : [];
-    if (taxonomyAllData?.relationship_to_parent) {
-      store.dispatch(setTaxonomyIds(taxonomyAllData));
+    const snapshot = store.getState().utilsData.taxonomy.allTaxonomyData;
+    if (!snapshot) return;
+    try {
+      const languageCode = store.getState().selectedCountry.languageCode;
+      const restored = await recoverTaxonomySnapshot(snapshot, async () => {
+        // Redux's cached JSON can be truncated independently of Realm. Read only
+        // this language's metadata; never reset caregiver profiles/preferences.
+        const {dataRealmCommon} = await import('./app/database/dbquery/dataRealmCommon');
+        const realm = await dataRealmCommon.openRealm();
+        const cached = realm?.objects('Taxonomy').filtered('langCode == $0', languageCode)[0] as any;
+        if (cached?.allData) {
+          try {const parsed = JSON.parse(cached.allData); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) return parsed;} catch { /* Try the existing bundled content. */ }
+        }
+        const {taxonomydata} = await import('./app/instances');
+        return taxonomydata[languageCode]?.[0]?.allData;
+      });
+      if (restored.recovered) {
+        store.dispatch(setAllTaxonomyData([{langCode: languageCode, allData: restored.data}]));
+        void recordError('Recovered invalid persisted taxonomy cache');
+      }
+      if (restored.data.relationship_to_parent) store.dispatch(setTaxonomyIds(restored.data));
+    } catch (error) {
+      // PersistGate does not catch rejected async callbacks. Show the existing
+      // retry screen instead of leaving the app indefinitely behind its loader.
+      setDirectionError(error instanceof Error ? error : new Error('Taxonomy recovery failed'));
     }
   };
 
