@@ -1,0 +1,13 @@
+diff --git a/node_modules/realm/binding/android/build.gradle b/node_modules/realm/binding/android/build.gradle
+index 203737e..18d10e7 100644
+--- a/node_modules/realm/binding/android/build.gradle
++++ b/node_modules/realm/binding/android/build.gradle
+@@ -44,6 +44,8 @@ def reactNativeArchitectures() {
+ 
+ 
+ android {
++    // Match the application's pinned NDK instead of the Android plugin default.
++    ndkVersion rootProject.ext.ndkVersion
+     namespace 'io.realm.react'
+     compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : 28
+     buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : '28.0.3'

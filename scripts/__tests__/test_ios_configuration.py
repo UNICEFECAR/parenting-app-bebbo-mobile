@@ -1,9 +1,20 @@
-import pathlib, plistlib, subprocess, os, tempfile, unittest, xml.etree.ElementTree as ET
+import pathlib, plistlib, subprocess, os, tempfile, unittest, re, collections, xml.etree.ElementTree as ET
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 FLAGS = ['FirebaseAutomaticScreenReportingEnabled','GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED',
 'GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED','GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE',
 'GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA','GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS','FacebookAdvertiserIDCollectionEnabled']
 class IOSConfiguration(unittest.TestCase):
+    def test_resource_phases_do_not_copy_two_files_to_the_same_bundle_name(self):
+        project=(ROOT/'ios/ParentBuddyApp.xcodeproj/project.pbxproj').read_text()
+        section=project.split('/* Begin PBXResourcesBuildPhase section */')[1].split('/* End PBXResourcesBuildPhase section */')[0]
+        phases=re.findall(r'([A-F0-9]{24}) /\* Resources \*/ = \{(.*?)\n\t\t\};',section,re.S)
+        self.assertGreaterEqual(len(phases),10)
+        for identifier,body in phases:
+            names=re.findall(r'/\* (.*?) in Resources \*/',body)
+            # Asset catalogs and storyboards are compiled instead of copied.
+            copied=[name for name in names if not name.endswith(('.xcassets','.storyboard'))]
+            duplicates=[name for name,count in collections.Counter(copied).items() if count>1]
+            self.assertEqual(duplicates,[],f'{identifier}: colliding copied resources')
     def test_every_app_plist_disables_duplicate_auto_screens_and_advertising_collection(self):
         files=list((ROOT/'ios').glob('*-Info.plist'))+[ROOT/'ios/ParentBuddyApp/Info.plist']
         self.assertEqual(len(files),10)
