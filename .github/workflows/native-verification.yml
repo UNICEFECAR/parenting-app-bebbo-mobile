@@ -8,6 +8,9 @@ on:
       flavour:
         required: true
         type: string
+      configuration:
+        default: primary
+        type: string
       smoke:
         default: false
         type: boolean
@@ -21,6 +24,10 @@ on:
         type: choice
         options: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
         required: true
+      configuration:
+        default: primary
+        type: choice
+        options: [primary, development]
 permissions:
   contents: read
 jobs:
@@ -29,6 +36,7 @@ jobs:
     timeout-minutes: 90
     env:
       FLAVOR: ${{ inputs.flavour }}
+      NATIVE_CONFIGURATION: ${{ inputs.configuration || 'primary' }}
       CI: 'true'
       NATIVE_SMOKE: ${{ inputs.smoke || false }}
     steps:
@@ -101,7 +109,7 @@ jobs:
         if: inputs.platform == 'android' && always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: native-smoke-evidence-${{ inputs.flavour }}
+          name: native-smoke-evidence-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
           path: ${{ runner.temp }}/native-smoke
           if-no-files-found: warn
       - uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1
@@ -130,14 +138,14 @@ jobs:
         if: inputs.platform == 'ios' && always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: ios-configuration-${{ inputs.flavour }}
+          name: ios-configuration-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
           path: ${{ runner.temp }}/ios-configuration.json
           if-no-files-found: warn
       - name: Preserve resolved native dependency versions
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: dependency-locks-${{ inputs.platform }}-${{ inputs.flavour }}
+          name: dependency-locks-${{ inputs.platform }}-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
           path: |
             package-lock.json
             Gemfile.lock
@@ -149,6 +157,6 @@ jobs:
         if: inputs.platform == 'android' && success()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: unsigned-native-${{ inputs.flavour }}
+          name: unsigned-native-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
           path: android/app/build/outputs/bundle/**/*.aab
           if-no-files-found: error

@@ -68,3 +68,14 @@ jobs:
       flavour: ${{ matrix.flavour }}
       platform: ${{ matrix.platform }}
       smoke: ${{ matrix.flavour == 'bebbo' || matrix.flavour == 'reraiUmntwana' }}
+  auxiliary-native:
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [babuni, foleja]
+        platform: [android, ios]
+    uses: ./.github/workflows/native-verification.yml
+    with:
+      flavour: ${{ matrix.flavour }}
+      platform: ${{ matrix.platform }}
+      configuration: development

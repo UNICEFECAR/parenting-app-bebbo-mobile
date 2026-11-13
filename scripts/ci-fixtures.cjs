@@ -13,13 +13,25 @@ const flavours = {
   reraiUmntwana: ['reraiumntwana', 'ReraiUmntwana', 'ReraiUmntwana', 'org.unicef.zw.reraiumntwana'],
   bebboPacific: ['bebbopacific', 'BebboPacific', 'BebboPacific', 'org.unicef.pc.bebbopacific'],
 };
-const selected = flavours[process.env.FLAVOR || 'bebbo'];
-if (!selected) throw new Error('Unknown flavour');
+const flavour = process.env.FLAVOR || 'bebbo';
+if (!Object.hasOwn(flavours, flavour)) throw new Error('Unknown flavour');
+const developmentTargets = {
+  babuni: ['banglastaging', 'ParentBuddyAppBanglaDev', 'BanglaDevelopment', 'com.datamatics.bangla'],
+  foleja: ['xkstaging', 'ParentBuddyAppXkDev', 'XkDevelopment', 'com.datamatics.foleja'],
+};
+const configuration = process.env.NATIVE_CONFIGURATION || 'primary';
+if (!['primary', 'development'].includes(configuration)) throw new Error('Unknown native configuration');
+if (configuration === 'development' && !Object.hasOwn(developmentTargets, flavour)) {
+  throw new Error('No auxiliary development target for this flavour');
+}
+const selected = configuration === 'development' ? developmentTargets[flavour] : flavours[flavour];
 function write(file, data) {
   fs.mkdirSync(path.dirname(file), {recursive: true});
   fs.writeFileSync(file, data);
 }
-for (const [flavour, [variant, , group, bundleId]] of Object.entries(flavours)) {
+for (const [flavour, [variant, , group, bundleId]] of [
+  ...Object.entries(flavours), ...Object.entries(developmentTargets),
+]) {
   write(`env/.env.${flavour}`, [
     'apiUrlDevelop=https://example.invalid', 'facebookAppDisplayName=CI',
     'facebookAppId=000000000000000', 'facebookClientToken=ci-placeholder',
