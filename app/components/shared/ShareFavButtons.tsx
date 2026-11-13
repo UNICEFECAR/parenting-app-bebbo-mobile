@@ -10,7 +10,7 @@ import React, {useRef} from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Share, StyleSheet, View, Text } from "react-native";
 import styled from "styled-components/native";
-import { useAppDispatch, useAppSelector } from "../../../App";
+import { store, useAppDispatch, useAppSelector } from "../../../App";
 import {
   setFavouriteAdvices,
   setFavouriteGames,
@@ -39,8 +39,6 @@ const ShareFavButtons = React.memo((props: any) => {
   const netInfo = useNetInfoHook();
   const activeChilduuid = useAppSelector(selectActiveChildUuid);
   const bookmarkBusy = useRef(false);
-  const latestChild = useRef(activeChilduuid);
-  latestChild.current = activeChilduuid;
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
@@ -87,7 +85,7 @@ const ShareFavButtons = React.memo((props: any) => {
       const result = await toggleBookmark(childId, item?.id, Boolean(isAdvice));
       // A profile switch while the native write is pending must not replace the
       // newly selected child's visible bookmarks with the previous child's list.
-      if (latestChild.current === childId) {
+      if (selectActiveChildUuid(store.getState()) === childId) {
         dispatch(isAdvice ? setFavouriteAdvices(result.ids) : setFavouriteGames(result.ids));
       }
       const eventName = isAdvice

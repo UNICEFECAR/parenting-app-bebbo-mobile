@@ -3,7 +3,7 @@ import re, json, plistlib, pathlib, xml.etree.ElementTree as ET
 root = pathlib.Path(__file__).resolve().parent.parent
 flavours = {
 'bebbo': ('prod','ParentBuddyApp','Production','org.unicef.ecar.bebbo','ecaro-bebbo'),
-'bebboDev': ('prodstaging','ParentBuddyAppDev','Development','org.unicef.bebbodev','ecaro-bebbo'),
+'bebboDev': ('prodstaging','ParentBuddyAppDev','Development','org.unicef.bebbodev',None),
 'babuni': ('bangla','ParentBuddyAppBangla','Bangla','org.unicef.bangladesh.babuni','babuni-app'),
 'foleja': ('xk','ParentBuddyAppXk','Xk','org.unicef.kosovo.foleja','kosovo-foleja'),
 'merhabaBebek': ('merhababebek','MerhabaBebek','MerhabaBebek','org.unicef.ecar.merhababebek','merhaba-bebek-b7fd0'),
@@ -56,7 +56,8 @@ for flavour,(variant,target,group,bundle,project_id) in flavours.items():
     permissions=sorted(n.get(android_ns+'name') for n in source.findall('uses-permission'))
     phase_names = [name for key,(name,_) in phases.items() if key in body]
     row={'flavour':flavour,'android_variant':variant,'application_id':bundle,'ios_target':target,
-      'firebase_project_seen_in_console':project_id,'firebase_configuration_verified':False,
+      'firebase_project_candidate_from_console':project_id,'firebase_configuration_verified':False,
+      'firebase_association_status':'unverified without real release GoogleServices files; project existence is not flavour routing proof',
       'env_file':f'env/.env.{flavour}','endpoint_status':'production environment unavailable; local files are unsigned CI fixtures',
       'language_resources_registered':languages,'android_manifest':str(manifest.relative_to(root)),
       'android_manifest_permissions':permissions,'ios_configurations':ios_configs,

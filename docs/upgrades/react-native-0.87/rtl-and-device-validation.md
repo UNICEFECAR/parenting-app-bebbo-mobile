@@ -1,6 +1,6 @@
 # RTL, country configuration and device acceptance
 
-The generated [flavour matrix](flavour-matrix.json) checks eight primary app mappings, Android branded source manifests, both iOS Debug/Release bundle IDs/plist paths and shared schemes. It separately inventories two older country-development variants/targets. Regenerate with `python3 scripts/flavour-audit.py`; `--check` detects drift. This validates checked-in configuration relationships, not production environment files or actual Firebase delivery.
+The generated [flavour matrix](flavour-matrix.json) checks eight primary app mappings, Android branded source manifests, both iOS Debug/Release bundle IDs/plist paths and shared schemes. It separately inventories two older country-development variants/targets. Regenerate with `python3 scripts/flavour-audit.py`; `--check` detects drift. This validates checked-in configuration relationships, not production environment files or actual Firebase delivery. Console project names are candidates only: their association with each signed flavour is unverified, and no development-project association is assumed for BebboDev.
 
 | JS flavour | Android variant | iOS scheme | App identifier | Registered UI languages |
 | --- | --- | --- | --- | --- |
@@ -40,3 +40,6 @@ The new replacement-confirmation warning has an explicit English fallback and ne
 ## Configuration and service validation
 
 For each signed archive/APK, inspect the **built** application ID, app name/icon/assets, Firebase Google app/project IDs and production endpoint scheme; compare to the country release configuration. Verify Analytics/Crashlytics arrive in that project's console, with debug mode enabled only for test installations. Confirm iOS archive dSYMs and Android native symbols/mapping are associated with the same app/version; preserve Hermes source maps in private release storage. Test real Drive login/account changes, push/local reminders, deep-link association and country-specific features. The compile fixtures deliberately use a fake project and `example.invalid`, so no compile result can satisfy these service checks.
+
+
+Existing forms explicitly disable font scaling on several text inputs (child/parent names, search and measurement fields). The legacy `Text.defaultProps` assignment is also present, but modern React/RN behaviour must be judged from actual native rendering, not that assignment alone. These existing accessibility restrictions are not certified by synthetic heading tests. Removing all restrictions without checking the fixed-height forms could introduce clipped or unreachable controls; include them in the stated large-font/device acceptance rather than claiming complete accessibility conformance.

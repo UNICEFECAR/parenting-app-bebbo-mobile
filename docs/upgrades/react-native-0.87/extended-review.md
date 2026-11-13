@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-329 Jest tests / 36 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+333 Jest tests / 37 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
@@ -70,3 +70,6 @@ Data-preservation follow-up: the independent Redux Realm adapter used obsolete `
 
 
 Bookmark controls now check the actual native write and read back stored state before Redux/Analytics updates. Missing/deleted active profiles produce a recoverable message rather than `Object.values(undefined)`/property-access failures. Add/remove events reflect confirmed membership; repeated taps are guarded, and a profile switch cannot replace the new child's visible bookmarks with the previous child's list. The shared control uses the selected flavour's typography. Nine service regressions cover both content types, removal, missing/deleted profiles, failed writes and invalid input. Notification delivered/opened lifecycle coverage remains separately documented rather than inferred from push delivery.
+
+
+Four rendered bookmark-control regressions additionally verify confirmed removal, repeated taps, failed writes and a profile switch before React rerenders. The last scenario reproduced a stale-ref race; reading the current Redux store after native completion prevents the previous child's favourites being dispatched into the newly selected profile.
