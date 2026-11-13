@@ -373,7 +373,13 @@ class DataRealmCommon {
                 if (realm) {
                     realm?.write(() => {
                         console.log("write")
-                        realm.deleteAll();
+                        // This method is used only by country/language content resets.
+                        // Caregiver settings and unsent events are not content cache.
+                        for (const schema of realm.schema) {
+                            if (!schema.embedded && ![ConfigSettingsSchema.name, 'Event'].includes(schema.name)) {
+                                realm.delete(realm.objects(schema.name));
+                            }
+                        }
                       
                     });
                     result='success';

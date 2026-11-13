@@ -1,6 +1,8 @@
+jest.mock('../analyticsOutbox', () => ({saveAnalyticsRetry: jest.fn()}));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => 'app') }));
 jest.mock('@react-native-firebase/analytics', () => ({
   getAnalytics: jest.fn(() => 'analytics'),
+  getAppInstanceId: jest.fn().mockResolvedValue('permitted-instance'),
   logEvent: jest.fn(),
   setUserProperties: jest.fn(),
 }));
@@ -59,4 +61,23 @@ test('retry callers can distinguish SDK acceptance from rejected submissions', a
   await expect(tryLogAnalyticsEvent('accepted')).resolves.toBe(true);
   jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('native failure');});
   await expect(tryLogAnalyticsEvent('retry')).resolves.toBe(false);
+});
+
+
+test('does not bypass denied consent with the retry store', async () => {
+  jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('SDK failed');});
+  jest.mocked(analytics.getAppInstanceId).mockResolvedValueOnce(null);
+  await logAnalyticsEvent('safe_event');
+  expect(require('../analyticsOutbox').saveAnalyticsRetry).not.toHaveBeenCalled();
+});
+test('stores only sanitised retry parameters when native submission fails and storage is permitted', async () => {
+  jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('SDK failed');});
+  await logAnalyticsEvent('article_searched', {article_searched: 'private text'});
+  expect(require('../analyticsOutbox').saveAnalyticsRetry).toHaveBeenCalledWith({name: 'article_searched',
+    params: {query_length: 12, captured_at_ms: expect.any(Number)}});
+});
+test('initialisation failure is contained within the telemetry operation', async () => {
+  jest.mocked(require('@react-native-firebase/app').getApp).mockImplementationOnce(() => {throw new Error('missing configuration');});
+  const {tryLogAnalyticsEvent} = require('../firebaseAnalytics');
+  await expect(tryLogAnalyticsEvent('test_event')).resolves.toBe(false);
 });

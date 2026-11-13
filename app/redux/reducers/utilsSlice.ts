@@ -1,3 +1,4 @@
+import {categoryIds, taxonomyRows} from "../../services/taxonomyCollections";
 import { appConfig } from "../../instances";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -255,7 +256,7 @@ export const utilsSlice = createSlice({
       }
     },
     setTaxonomyIds: (state, action: PayloadAction<any>): any => {
-      action.payload?.relationship_to_parent?.map((x: any) => {
+      taxonomyRows(action.payload?.relationship_to_parent).forEach((x: any) => {
         if (
           x.unique_name == appConfig.relationshipUniqueName.relationShipMotherId
         ) {
@@ -271,12 +272,12 @@ export const utilsSlice = createSlice({
           state.taxonomyIds.relationShipOtherCaregiverId = x.unique_name;
         } else if (
           x.unique_name ==
-          appConfig.relationshipUniqueName.relationShipOtherCaregiverId
+          appConfig.relationshipUniqueName.relationShipServiceProviderId
         ) {
-          state.taxonomyIds.relationShipOtherCaregiverId = x.unique_name;
+          state.taxonomyIds.relationShipServiceProviderId = x.unique_name;
         }
       });
-      action.payload?.child_gender?.map((x: any) => {
+      taxonomyRows(action.payload?.child_gender).forEach((x: any) => {
         if (x.unique_name == appConfig.childGenderUniqueName.bothChildGender) {
           state.taxonomyIds.bothChildGender = x.unique_name;
         } else if (
@@ -289,7 +290,7 @@ export const utilsSlice = createSlice({
           state.taxonomyIds.boyChildGender = x.unique_name;
         }
       });
-      action.payload?.parent_gender?.map((x: any) => {
+      taxonomyRows(action.payload?.parent_gender).forEach((x: any) => {
         if (
           x.unique_name == appConfig.parentGenderUniqueName.bothParentGender
         ) {
@@ -305,30 +306,8 @@ export const utilsSlice = createSlice({
         }
       });
 
-      // Create a lookup object
-      const categoryLookup = action.payload?.category?.reduce(
-        (acc: any, category: any) => {
-          acc[category.unique_name] = category.id;
-          return acc;
-        },
-        {}
-      );
-      const activityCategoryLookup = action.payload?.activity_category?.reduce(
-        (acc: any, activity_category: any) => {
-          acc[activity_category.unique_name] = activity_category.id;
-          return acc;
-        },
-        {}
-      );
-
-      state.taxonomyIds.articleCategoryArray =
-        appConfig.articleCategoryArray.map(
-          (uniqueName) => categoryLookup[uniqueName]
-        );
-      state.taxonomyIds.activityCategoryArray =
-        appConfig.activityCategoryArray.map(
-          (uniqueName) => activityCategoryLookup[uniqueName]
-        );
+      state.taxonomyIds.articleCategoryArray = categoryIds(action.payload?.category, appConfig.articleCategoryArray);
+      state.taxonomyIds.activityCategoryArray = categoryIds(action.payload?.activity_category, appConfig.activityCategoryArray);
     },
     setAllTermsData: (state, action: PayloadAction<any>): any => {
       typeof action.payload == "string"

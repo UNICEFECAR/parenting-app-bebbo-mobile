@@ -1,3 +1,5 @@
+import {trackScreen} from '../services/screenAnalytics';
+import {clearLegacyProfileAnalytics} from '../services/firebaseAnalytics';
 import {I18nManager} from "react-native";
 import {setrestartOnLangChange, setAppLayoutDirectionParams} from "../redux/reducers/localizationSlice";
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
@@ -1104,24 +1106,12 @@ export default (): any => {
               dispatch(setAppLayoutDirectionParams({}));
             }
             LocalNotifications.flushPendingPress();
-            routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current);
+            void clearLegacyProfileAnalytics();
             // SplashScreen.hide();
           }}
           onStateChange={(): any => {
-            const previousRouteName = routeNameRef.current;
-            const currentRouteName =
-              navigationRef.current.getCurrentRoute().name;
-            console.log(`Previous route: ${previousRouteName}`);
-            console.log(`Current route: ${currentRouteName}`);
-            if (previousRouteName !== currentRouteName) {
-              logAnalyticsEvent('screen_view', {
-                screen_name: currentRouteName,
-                screen_class: currentRouteName,
-              }).catch(() => {});
-              const eventData = { name: currentRouteName + "_opened" };
-              logEvent(eventData, netInfo.isConnected);
-            }
-            routeNameRef.current = currentRouteName;
+            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current);
           }}
           theme={navTheme}
         >

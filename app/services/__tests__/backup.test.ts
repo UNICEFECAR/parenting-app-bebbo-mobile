@@ -1,3 +1,4 @@
+jest.mock('../firebaseAnalytics', () => ({logAnalyticsEvent: jest.fn().mockResolvedValue(undefined)}));
 import {Platform} from 'react-native';
 import Share from 'react-native-share';
 import {normaliseBackupCiphertext, parseBackupChildren} from '../backupFormat';
@@ -30,7 +31,7 @@ jest.mock('@react-native-documents/picker', () => ({
   types: { allFiles: '*/*' }, errorCodes: { OPERATION_CANCELED: 'OPERATION_CANCELED' },
   isErrorWithCode: (error: any) => error != null && typeof error === 'object' && 'code' in error,
 }));
-jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn() }));
+jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn(), randomKey: jest.fn().mockResolvedValue('1'.repeat(32)), hmac256: jest.fn().mockResolvedValue('2'.repeat(64)) }));
 jest.mock('../../database/dbquery/userRealmCommon', () => ({ userRealmCommon: { openRealm: jest.fn(), exportUserRealmDataToJson: jest.fn() } }));
 jest.mock('../../database/dbquery/dataRealmCommon', () => ({ dataRealmCommon: { getFilteredData: jest.fn().mockResolvedValue([]) } }));
 jest.mock('../childCRUD', () => ({ getAllChildren: jest.fn().mockResolvedValue([{ uuid: 'child' }]), setActiveChild: jest.fn() }));
@@ -206,7 +207,7 @@ test('exports the same complete child payload to encrypted JSON', async () => {
   await expect(backup.export()).resolves.toBe(true);
   expect(crypto.encrypt.mock.calls[0][0]).toBe(JSON.stringify([completeChild]));
   expect(crypto.encrypt.mock.calls[0][3]).toBe('aes-256-cbc');
-  expect(drive.createFileMultipart).toHaveBeenCalledWith(expect.objectContaining({ name: 'mybackup.json', content: 'encrypted', parentFolderId: 'folder' }));
+  expect(drive.createFileMultipart).toHaveBeenCalledWith(expect.objectContaining({ name: 'mybackup.json', content: expect.stringContaining('\"version\":2'), parentFolderId: 'folder' }));
 });
 
 test('retains expected children and nested data when reading an onboarding backup', async () => {
@@ -409,14 +410,14 @@ test('cancelled local selection does not open or replace the live database', asy
   expect(realm.deleteAll).not.toHaveBeenCalled();
 });
 
-test('iOS exports raw historical ciphertext and awaits the share operation before cleanup', async () => {
+test('iOS exports the authenticated envelope and awaits the share operation before cleanup', async () => {
   Object.defineProperty(Platform, 'OS', {value: 'ios', configurable: true});
   let finish!: (value: any) => void;
   jest.mocked(Share.open).mockImplementationOnce(() => new Promise(resolve => {finish = resolve;}));
   const result = backup.exportToFile();
   for (let index = 0; index < 30 && !finish; index++) await Promise.resolve();
   expect(finish).toBeDefined();
-  expect(RNFS.writeFile).toHaveBeenCalledWith(expect.any(String), 'encrypted', 'utf8');
+  expect(RNFS.writeFile).toHaveBeenCalledWith(expect.any(String), expect.stringContaining('\"version\":2'), 'utf8');
   expect(RNFS.unlink).not.toHaveBeenCalled();
   finish({success: true});
   await expect(result).resolves.toBe(true);
@@ -431,4 +432,19 @@ test('cancelled iOS share cleans its temporary export and releases the operation
   expect(RNFS.unlink).toHaveBeenCalledTimes(1);
   jest.mocked(Share.open).mockResolvedValueOnce({success: true, message: ''});
   await expect(backup.exportToFile()).resolves.toBe(true);
+});
+
+
+test('each completed restore reports imported records without reporting new profiles', async () => {
+  const log = require('../firebaseAnalytics').logAnalyticsEvent;
+  await backup.restoreChildren([child], []);
+  await backup.restoreChildren([child], []);
+  expect(log.mock.calls).toEqual([
+    ['backup_restore_completed', {restored_count: 1}], ['backup_restore_completed', {restored_count: 1}],
+  ]);
+});
+test('a failed restore never reports imported records', async () => {
+  realm.create.mockImplementationOnce(() => {throw new Error('disk full');});
+  await expect(backup.restoreChildren([child], [])).rejects.toThrow('disk full');
+  expect(require('../firebaseAnalytics').logAnalyticsEvent).not.toHaveBeenCalled();
 });

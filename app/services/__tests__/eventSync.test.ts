@@ -1,14 +1,14 @@
 import {logEvent, synchronizeEvents} from '../EventSyncService';
 import {tryLogAnalyticsEvent} from '../firebaseAnalytics';
 import {dataRealmCommon} from '../../database/dbquery/dataRealmCommon';
-import NetInfo from '@react-native-community/netinfo';
+import {logAnalyticsEvent} from '../firebaseAnalytics';
 
 jest.mock('../firebaseAnalytics', () => ({
   logAnalyticsEvent: jest.fn().mockResolvedValue(undefined),
   tryLogAnalyticsEvent: jest.fn(),
 }));
 jest.mock('../../database/dbquery/dataRealmCommon', () => ({dataRealmCommon: {openRealm: jest.fn()}}));
-jest.mock('@react-native-community/netinfo', () => ({fetch: jest.fn()}));
+
 let rows: any[];
 let realm: any;
 const submit = jest.mocked(tryLogAnalyticsEvent);
@@ -20,16 +20,16 @@ beforeEach(() => {
     for (let index = 0; index < rows.filter(row => !row.isSynchronized).length; index++)
       yield rows.filter(row => !row.isSynchronized)[index];
   }, get length() {return rows.filter(row => !row.isSynchronized).length;}};
-  realm = {write: jest.fn(fn => fn()), create: jest.fn((_type, row) => {rows.push(row); return row;}), objects: () => ({filtered: () => results})};
+  realm = {delete: jest.fn(target => {const deleting = typeof target[Symbol.iterator] === 'function' ? Array.from(target) : [target]; rows = rows.filter(row => !deleting.includes(row));}), write: jest.fn(fn => fn()), create: jest.fn((_type, row) => {rows.push(row); return row;}), objects: () => ({filtered: (query: string) => query.includes('true') ? rows.filter(row => row.isSynchronized) : results})};
   jest.mocked(dataRealmCommon.openRealm).mockResolvedValue(realm);
   submit.mockResolvedValue(true);
-  jest.mocked(NetInfo.fetch).mockResolvedValue({isConnected: false} as any);
+
 });
 
-test('failed online SDK submissions are saved for a later retry', async () => {
-  submit.mockResolvedValue(false);
-  await logEvent({name: 'child_added', params: {count: 2}}, true);
-  expect(rows).toEqual([{name: 'child_added', params: '{"count":2}', isSynchronized: false}]);
+test.each([true, false, undefined])('passes events directly to the durable native SDK regardless of connectivity (%s)', async connected => {
+  await logEvent({name: 'child_added', params: {count: 2}}, connected);
+  expect(logAnalyticsEvent).toHaveBeenCalledWith('child_added', {count: 2});
+  expect(rows).toHaveLength(0);
 });
 
 test('SDK failure does not mark an offline event as synchronized', async () => {
@@ -61,14 +61,13 @@ test('overlapping flush calls submit each queued record only once', async () => 
 });
 
 test('unknown connectivity and unavailable storage do not reject a caregiver action', async () => {
-  jest.mocked(NetInfo.fetch).mockRejectedValue(new Error('offline'));
   jest.mocked(dataRealmCommon.openRealm).mockResolvedValue(null);
   await expect(logEvent({name: 'offline'}, undefined as any)).resolves.toBeUndefined();
 });
 
 test('successful online events are not duplicated into the offline queue', async () => {
   await logEvent({name: 'online', params: {count: 1}}, true);
-  expect(submit).toHaveBeenCalledWith('online', {count: 1});
+  expect(logAnalyticsEvent).toHaveBeenCalledWith('online', {count: 1});
   expect(rows).toHaveLength(0);
 });
 
@@ -76,5 +75,5 @@ test('an individual failed event does not prevent a later valid event from synci
   rows.push({name: 'retry', params: '{}', isSynchronized: false}, {name: 'ok', params: '{}', isSynchronized: false});
   submit.mockResolvedValueOnce(false).mockResolvedValueOnce(true);
   await synchronizeEvents(true);
-  expect(rows.map(row => row.isSynchronized)).toEqual([false, true]);
+  expect(rows.map(row => row.name)).toEqual(['retry']);
 });

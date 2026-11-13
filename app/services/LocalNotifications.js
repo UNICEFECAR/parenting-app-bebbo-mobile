@@ -21,6 +21,7 @@ class LocalNotifications {
 
   // Existing callers schedule/cancel in loops without awaiting. Preserve their order.
   enqueue(work) {
+    this.scheduleGroup = null; // A read/cancellation is an ordering barrier.
     const result = this.queue.then(async () => {
       await this.initialize();
       return work();
@@ -144,11 +145,21 @@ class LocalNotifications {
       id: normalizeId(notiId), timestamp: date.getTime(),
       title: String(title ?? ''), body: String(message ?? ''), data: { notitype, uuid },
     };
-    return this.enqueue(async () => {
-      this.reminders[reminder.id] = reminder;
+    if (this.scheduleGroup && !this.scheduleGroup.started) {
+      this.scheduleGroup.items.push(reminder);
+      return this.scheduleGroup.promise;
+    }
+    const group = {items: [reminder], started: false};
+    group.promise = this.enqueue(async () => {
+      group.started = true;
+      for (const item of group.items) this.reminders[item.id] = item;
+      // Persist the whole desired set before touching native scheduling. Never
+      // coalesce across cancellation/read operations or an in-flight batch.
       await this.persist();
       await this.reconcile();
     });
+    this.scheduleGroup = group;
+    return group.promise;
   }
 
   cancelReminderLocalNotification(notiId) {

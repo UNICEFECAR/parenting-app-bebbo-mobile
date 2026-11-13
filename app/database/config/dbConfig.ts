@@ -14,7 +14,6 @@ export async function getUserRealmConfig(): Promise<{ Realm: typeof RealmType, c
     ],
     schemaVersion: 4,
     onMigration: (oldRealm, newRealm) => {
-      console.log(oldRealm,newRealm);
       //realm old version was 0 and new version is 1.
       // const oldObjects = oldRealm.objects('ChildEntity');
       // const newObjects = newRealm.objects('ChildEntity');

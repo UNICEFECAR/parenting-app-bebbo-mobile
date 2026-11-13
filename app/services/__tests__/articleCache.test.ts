@@ -58,3 +58,20 @@ test('unavailable storage is not reported as a successful cache update', async (
   dataRealmCommon.realm = undefined;
   await expect(dataRealmCommon.createArticles(ArticleEntitySchema, [{id: 1}], '')).resolves.toBe('fail');
 });
+
+test('changing content country/language preserves caregiver settings and pending analytics', async () => {
+  const groups: Record<string, any[]> = {
+    ConfigSettings: [{key: 'userName', value: 'Caregiver'}, {key: 'currentActiveChildId', value: 'saved'}],
+    Event: [{name: 'child_added', isSynchronized: false}],
+    Articles: [{id: 1}], Country: [{CountryID: 'old'}],
+  };
+  realm.schema = Object.keys(groups).map(name => ({name}));
+  realm.objects = (name: string) => groups[name];
+  realm.delete = (records: any[]) => {for (const key of Object.keys(groups)) if (groups[key] === records) groups[key] = [];};
+  realm.deleteAll = () => {for (const key of Object.keys(groups)) groups[key] = [];};
+  expect(await dataRealmCommon.deleteAllAtOnce()).toBe('success');
+  expect(groups.ConfigSettings).toHaveLength(2);
+  expect(groups.Event).toHaveLength(1);
+  expect(groups.Articles).toHaveLength(0);
+  expect(groups.Country).toHaveLength(0);
+});

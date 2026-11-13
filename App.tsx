@@ -92,11 +92,10 @@ const styles = StyleSheet.create({
 const { appTheme } = require(`./app/instances/${flavor}/styles/theme`);
 
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
-  recordError(props.error);
+  React.useEffect(() => { void recordError(props.error); }, [props.error]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t("generalError")}</Text>
-      <Text style={styles.message}>{props.error?.toString()}</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {

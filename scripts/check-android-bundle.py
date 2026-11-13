@@ -1,4 +1,5 @@
 """Check packaged C++ runtimes and 16 KB ELF alignment in an unsigned AAB."""
+from android_elf import identity
 import argparse
 import collections
 import json
@@ -39,9 +40,17 @@ def inspect(bundle, expected_abis=None, manifest=None, expected_target_sdk=37):
                 problems.append(f'{abi}: expected exactly one libc++_shared.so')
         for name in names:
             abi = name.split('/')[2]
-            alignments = load_alignments(archive.read(name))
+            data = archive.read(name)
+            try:
+                elf_identity = identity(data, abi)
+                alignments = load_alignments(data)
+            except (ValueError, struct.error, IndexError):
+                problems.append(f'{name}: malformed ELF library')
+                continue
+            if not elf_identity['matches_abi']:
+                problems.append(f'{name}: ELF class/machine does not match {abi}')
             valid = bool(alignments) and all(alignment >= 16384 and congruent for alignment, congruent in alignments)
-            libraries.append({'path': name, 'minimum_load_alignment': min((a for a, _ in alignments), default=0), 'supports_16kb': valid})
+            libraries.append({'path': name, **elf_identity, 'minimum_load_alignment': min((a for a, _ in alignments), default=0), 'supports_16kb': valid})
             if abi in ('arm64-v8a', 'x86_64') and not valid:
                 problems.append(f'{name}: incompatible 16 KB load segments')
     manifest_data = None

@@ -1,44 +1,24 @@
 import {dataRealmCommon} from '../database/dbquery/dataRealmCommon';
-import {tryLogAnalyticsEvent} from './firebaseAnalytics';
-import NetInfo from '@react-native-community/netinfo';
+import {logAnalyticsEvent, tryLogAnalyticsEvent} from './firebaseAnalytics';
+export {storeUnsyncedEvent} from './analyticsOutbox';
 
 export const markEventAsSynchronized = async (realm: any, event: any): Promise<void> => {
   if (realm.isClosed || (event.isValid && !event.isValid())) return;
   realm.write(() => {event.isSynchronized = true;});
 };
 
-export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<void> => {
-  if (!realm || realm.isClosed) throw new Error('Event storage is unavailable');
-  realm.write(() => {
-    realm.create('Event', {
-      name: eventData.name,
-      params: eventData.params ? JSON.stringify(eventData.params) : null,
-      isSynchronized: false,
-    });
-  });
-};
-
-export const logEvent = async (eventData: any, netInfo?: boolean | null): Promise<void> => {
-  if (!eventData?.name) return;
-  let connected = netInfo;
-  if (connected == null) {
-    try {connected = (await NetInfo.fetch()).isConnected;}
-    catch {connected = false;}
-  }
-  // An online flag does not guarantee that the SDK accepted the event.
-  if (connected === true && await tryLogAnalyticsEvent(eventData.name, eventData.params)) return;
-  try {
-    await storeUnsyncedEvent(await dataRealmCommon.openRealm(), eventData);
-  } catch (error) {
-    // Telemetry failure must not reject a caregiver's form/navigation action.
-    console.warn('Could not save the analytics retry', error);
-  }
+// The native SDK queues offline events with their original session/time and
+// persists them across restarts. NetInfo is not a delivery acknowledgement.
+export const logEvent = async (eventData: any, _netInfo?: boolean | null): Promise<void> => {
+  if (eventData?.name) await logAnalyticsEvent(eventData.name, eventData.params);
 };
 
 async function flushEvents(): Promise<void> {
   const realm = await dataRealmCommon.openRealm();
   if (!realm || realm.isClosed) return;
   // Realm filtered results are live. Snapshot before changing membership.
+  // Previous releases retained acknowledged records indefinitely.
+  realm.write(() => realm.delete(realm.objects('Event').filtered('isSynchronized = true')));
   const events = Array.from(realm.objects('Event').filtered('isSynchronized = false')) as any[];
   for (const event of events) {
     if (!event?.name || realm.isClosed || (event.isValid && !event.isValid())) continue;
@@ -49,10 +29,10 @@ async function flushEvents(): Promise<void> {
         if (decoded && typeof decoded === 'object' && !Array.isArray(decoded)) params = decoded;
       } catch { /* Historical malformed params must not block the rest of the queue. */ }
       if (await tryLogAnalyticsEvent(event.name, {...params, is_offline_event: true})) {
-        await markEventAsSynchronized(realm, event);
+        realm.write(() => realm.delete(event));
       }
     } catch (error) {
-      console.warn('Analytics retry remains pending', error);
+      console.warn('Analytics retry remains pending');
     }
   }
 }
@@ -63,7 +43,7 @@ let synchronization: Promise<void> = Promise.resolve();
 export const synchronizeEvents = (netInfo?: boolean | null): Promise<void> => {
   if (netInfo !== true) return Promise.resolve();
   synchronization = synchronization.then(flushEvents).catch(error => {
-    console.warn('Analytics queue sync failed', error);
+    console.warn('Analytics queue sync failed');
   });
   return synchronization;
 };

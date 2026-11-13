@@ -103,9 +103,8 @@ const Aboutus = (): any => {
                   //   }
                   // },
                 }}
-                WebView={() => (
-                  <WebView renderToHardwareTextureAndroid={true} />
-                )}
+                WebView={WebView}
+                defaultWebViewProps={{renderToHardwareTextureAndroid: true}}
                 renderersProps={{
                   ...htmlListRenderers,
                   iframe: { webViewProps: { allowsFullscreenVideo: true } },

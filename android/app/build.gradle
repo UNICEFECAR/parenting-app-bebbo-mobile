@@ -336,6 +336,23 @@ tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
     inputs.files(rootProject.fileTree('../patches') { include '*.patch' })
     inputs.property('appFlavor', providers.environmentVariable('FLAVOR').orElse('bebbo'))
     inputs.property('appEnvFile', providers.environmentVariable('ENVFILE').orElse(''))
+    doFirst {
+        def expectedFlavours = [prod: 'bebbo', prodstaging: 'bebboDev', xk: 'foleja',
+            xkstaging: 'foleja', bangla: 'babuni', banglastaging: 'babuni',
+            merhababebek: 'merhabaBebek', wawamor: 'wawamor',
+            reraiumntwana: 'reraiUmntwana', bebbopacific: 'bebboPacific']
+        def entry = expectedFlavours.find { variant, flavour ->
+            name.equalsIgnoreCase("createBundle${variant}ReleaseJsAndAssets")
+        }
+        def selected = System.getenv('FLAVOR') ?: 'bebbo'
+        if (entry && selected != entry.value) {
+            throw new GradleException("${name} requires FLAVOR=${entry.value}; received ${selected}. Refusing to bundle another country's app.")
+        }
+        def envFile = System.getenv('ENVFILE')
+        if (entry && envFile && new File(envFile).name != ".env.${entry.value}") {
+            throw new GradleException("ENVFILE must select .env.${entry.value} for ${name}")
+        }
+    }
 }
 
 // Compile-only CI runs have fake Firebase configuration and cannot be shipped.

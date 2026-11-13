@@ -1,3 +1,4 @@
+import {logAnalyticsEvent} from './firebaseAnalytics';
 import type {UpdateMode} from 'realm';
 import {googleAuth} from './googleAuth';
 import {googleDrive} from './googleDrive';
@@ -10,11 +11,11 @@ import {getAllChildren, setActiveChild} from './childCRUD';
 import {safeOpenRealm, safeDeleteRealm} from '../redux/reducers/realmSafe';
 import {ChildEntitySchema} from '../database/schema/ChildDataSchema';
 import {setInfoModalOpened} from '../redux/reducers/utilsSlice';
-import AesCrypto from 'react-native-aes-crypto';
+import {encryptBackup, decryptBackup} from './backupCipher';
 import {encryptionsIVKey, encryptionsKey} from 'react-native-dotenv';
 import {getChild} from './Utils';
 import {openBackupDocument, saveBackupDocument} from './backupDocuments';
-import {normaliseBackupCiphertext, parseBackupChildren, validateBackupChildren} from './backupFormat';
+import {parseBackupChildren, validateBackupChildren} from './backupFormat';
 
 // Preserve the IV normalisation used by historical local-file exports.
 const backupIV = encryptionsIVKey?.replace("//:completeSettings = none", "");
@@ -39,11 +40,11 @@ class Backup {
   }
 
   public encryptData = async (text: string, key: string): Promise<{cipher: string}> => ({
-    cipher: await AesCrypto.encrypt(text, key, backupIV, 'aes-256-cbc'),
+    cipher: await encryptBackup(text, key),
   });
 
   public decryptData = (text: string, key: string): Promise<string> =>
-    AesCrypto.decrypt(normaliseBackupCiphertext(text), key, backupIV, 'aes-256-cbc');
+    decryptBackup(text, key, backupIV);
 
   private async encryptedUserData(): Promise<string> {
     if (!(await userRealmCommon.openRealm())) throw new Error('Cannot open user data');
@@ -155,6 +156,7 @@ class Backup {
       realm.deleteAll();
       children.forEach(child => realm.create(ChildEntitySchema.name, child, 'modified' as UpdateMode));
     });
+    void logAnalyticsEvent('backup_restore_completed', {restored_count: children.length});
     return children;
   }
 

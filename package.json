@@ -18,22 +18,22 @@
     "run:bebbo:ios": "ENVFILE=env/.env.bebbo FLAVOR=bebbo react-native run-ios --scheme ParentBuddyApp --mode Release",
     "run:bebboDev:ios": "ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release",
     "run:wawamor:ios": "ENVFILE=env/.env.wawamor FLAVOR=wawamor react-native run-ios --scheme Wawamor --mode Release",
-    "run:babuni:ios": "ENVFILE=.env.babuni FLAVOR=babuni react-native run-ios --scheme ParentBuddyAppBangla --mode Release",
+    "run:babuni:ios": "ENVFILE=env/.env.babuni FLAVOR=babuni react-native run-ios --scheme ParentBuddyAppBangla --mode Release",
     "run:merhabaBebek:ios": "ENVFILE=env/.env.merhabaBebek FLAVOR=merhabaBebek react-native run-ios --scheme MerhabaBebek --mode Release",
     "run:foleja:ios": "ENVFILE=env/.env.foleja FLAVOR=foleja react-native run-ios --scheme ParentBuddyAppXk --mode Debug",
     "run:bebbo:android": "ENVFILE=env/.env.bebbo FLAVOR=bebbo react-native run-android --mode=prodRelease --appId org.unicef.ecar.bebbo",
-    "run:babuni:android": "ENVFILE=.env.babuni FLAVOR=babuni react-native run-android --mode=banglaDebug --appId org.unicef.bangladesh.babuni",
+    "run:babuni:android": "ENVFILE=env/.env.babuni FLAVOR=babuni react-native run-android --mode=banglaDebug --appId org.unicef.bangladesh.babuni",
     "run:merhabaBebek:android": "ENVFILE=env/.env.merhabaBebek FLAVOR=merhabaBebek react-native run-android --mode=merhababebekDebug --appId org.unicef.ecar.merhababebek",
     "run:wawamor:android": "ENVFILE=env/.env.wawamor  FLAVOR=wawamor react-native run-android --mode=wawamorDebug --appId org.unicef.ec.wawamor",
     "run:foleja:android": "ENVFILE=env/.env.foleja FLAVOR=foleja react-native run-android --mode=xkDebug --appId org.unicef.kosovo.foleja",
     "imageGenerate": "npm run assets:generate",
     "build:merhabaBebek:android": "cd android && FLAVOR=merhabaBebek ./gradlew assembleMerhababebekRelease",
-    "ios:babuni:archive": "ENVFILE=.env.babuni FLAVOR=babuni xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme ParentBuddyAppBangla -configuration Release -sdk iphoneos -archivePath ios/build/ParentBuddyAppBangla.xcarchive archive",
+    "ios:babuni:archive": "ENVFILE=env/.env.babuni FLAVOR=babuni xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme ParentBuddyAppBangla -configuration Release -sdk iphoneos -archivePath ios/build/ParentBuddyAppBangla.xcarchive archive",
     "ios:babuni:export": "xcodebuild -exportArchive -archivePath ios/build/ParentBuddyAppBangla.xcarchive -exportOptionsPlist ExportOptionsBabuni.plist -exportPath ios/build",
     "ios:merhabaBebek:archive": "FLAVOR=merhabaBebek xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme MerhabaBebek -configuration Release -sdk iphoneos -archivePath ios/build/MerhabaBebek.xcarchive archive",
     "ios:merhabaBebek:export": "xcodebuild -exportArchive -archivePath ios/build/MerhabaBebek.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ios/build",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'",
-    "GenerateBundleFile": "ENVFILE=.env.babuni FLAVOR=babuni react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
+    "GenerateBundleFile": "ENVFILE=env/.env.babuni FLAVOR=babuni react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "assets:generate": "node scripts/vector-assets.cjs --generate",
     "assets:check": "node scripts/vector-assets.cjs",
     "typecheck": "node scripts/check-types.cjs",
@@ -178,7 +178,11 @@
     },
     "@firebase/firestore": {
       "@grpc/grpc-js": "1.13.6"
-    }
+    },
+    "babel-plugin-module-resolver": {
+      "glob": "14.0.2"
+    },
+    "minimatch@>=7.0.0 <11.0.1": "11.0.1"
   },
   "codegenConfig": {
     "name": "BebboDriveAuthorizationSpec",

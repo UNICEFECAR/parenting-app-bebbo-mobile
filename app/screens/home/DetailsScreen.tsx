@@ -849,7 +849,8 @@ const renderHtmlImage = ({ tnode }: any): any => {
             br: { height: 0 },
             iframe: { maxWidth: "100%", height: 200 },
           }}
-          WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
+          WebView={WebView}
+          defaultWebViewProps={{renderToHardwareTextureAndroid: true}}
         />
       </View>
     );

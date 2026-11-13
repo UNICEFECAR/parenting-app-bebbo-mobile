@@ -1,4 +1,5 @@
 """Verify the native splits actually selected for the emulator from the AAB."""
+from android_elf import identity
 import io
 import json
 import sys
@@ -16,7 +17,14 @@ def inspect(apks):
                 for item in package.infolist():
                     if item.filename.startswith('lib/') and item.filename.endswith('.so'):
                         compressed = item.compress_type != zipfile.ZIP_STORED
-                        libraries.append({'apk': apk, 'path': item.filename, 'compressed': compressed})
+                        try:
+                            elf_identity = identity(package.read(item), item.filename.split('/')[1])
+                            if not elf_identity['matches_abi']:
+                                problems.append(f'{apk}:{item.filename}: ELF class/machine does not match ABI')
+                        except ValueError:
+                            elf_identity = {}
+                            problems.append(f'{apk}:{item.filename}: malformed ELF library')
+                        libraries.append({'apk': apk, 'path': item.filename, 'compressed': compressed, **elf_identity})
                         if not compressed:
                             problems.append(f'{apk}:{item.filename}: native library is not compressed')
     if not libraries:

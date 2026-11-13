@@ -806,6 +806,7 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
       plannedTermDate: child.plannedTermDate,
       birthDate: child.birthDate,
       babyRating: child.babyRating,
+      measurementPlace: child.measurementPlace,
       measures: childmeasures,
       comment: child.comment,
       checkedMilestones: child.checkedMilestones,

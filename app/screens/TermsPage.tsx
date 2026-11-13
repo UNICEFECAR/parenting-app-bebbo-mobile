@@ -131,9 +131,8 @@ const TermsPage = ({ navigation }: Props): any => {
                   //   }
                   // },
                 }}
-                WebView={() => (
-                  <WebView renderToHardwareTextureAndroid={true} />
-                )}
+                WebView={WebView}
+                defaultWebViewProps={{renderToHardwareTextureAndroid: true}}
                 renderersProps={{...htmlListRenderers,
                   iframe: { webViewProps: { allowsFullscreenVideo: true } },
                 }}

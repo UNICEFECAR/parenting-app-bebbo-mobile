@@ -191,7 +191,6 @@ const ChildImportSetup = (props: any): any => {
       const childList = await getAllChildren(dispatch, childAge, 1);
       dispatch(setInfoModalOpened({key: "generateNotifications", value: true}));
       dispatch(setAllLocalNotificationGenerateType({generateFlag: true, generateType: "add", childuuid: "all"}));
-      logEvent({name: ONBOARDING_CHILD_COUNT, params: {child_count: childList?.length}}, netInfo.isConnected);
       props.navigation.reset({index: 0, routes: [{name: "LoadingScreen", params: {
         apiJsonData: apiJsonDataGet("all"), prevPage: "ChildSetup",
       }}]});

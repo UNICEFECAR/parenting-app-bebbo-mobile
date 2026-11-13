@@ -2,12 +2,15 @@
 import importlib.util
 import io
 import struct
+import sys
 import tempfile
 import unittest
 import warnings
 import zipfile
 from pathlib import Path
 
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 def module(name, filename):
     spec = importlib.util.spec_from_file_location(name, Path(__file__).resolve().parents[1] / filename)
@@ -20,9 +23,10 @@ bundlecheck = module('bundlecheck', 'check-android-bundle.py')
 splitcheck = module('splitcheck', 'check-android-splits.py')
 
 
-def elf(bits=64, alignment=16384, offset=0, address=0, endian='<'):
+def elf(bits=64, alignment=16384, offset=0, address=0, endian='<', machine=None):
     data = bytearray(160)
     data[:6] = b'\x7fELF' + bytes([2 if bits == 64 else 1, 1 if endian == '<' else 2])
+    struct.pack_into(endian + 'H', data, 18, machine if machine is not None else (183 if bits == 64 else 40))
     if bits == 64:
         struct.pack_into(endian + 'Q', data, 32, 64)
         struct.pack_into(endian + 'HH', data, 54, 56, 1)
@@ -60,7 +64,7 @@ class AndroidPackaging(unittest.TestCase):
                 buffer = io.BytesIO()
                 with zipfile.ZipFile(buffer, 'w', compression=zipfile.ZIP_DEFLATED if compressed else zipfile.ZIP_STORED) as apk:
                     for name in names:
-                        apk.writestr(f'lib/x86_64/{name}', elf())
+                        apk.writestr(f'lib/x86_64/{name}', elf(machine=62))
                 archive.writestr(f'splits/part{index}.apk', buffer.getvalue())
         return target
 
@@ -85,6 +89,23 @@ class AndroidPackaging(unittest.TestCase):
 
     def test_duplicate_cpp_runtime(self):
         self.assertTrue(bundlecheck.inspect(self.bundle([('base/lib/arm64-v8a/libc++_shared.so', elf())] * 2))['problems'])
+
+    def test_wrong_64bit_machine_in_bundle_is_rejected(self):
+        bad = self.bundle([('base/lib/x86_64/libc++_shared.so', elf(machine=183))])
+        self.assertTrue(bundlecheck.inspect(bad)['problems'])
+
+    def test_wrong_elf_class_in_bundle_is_rejected(self):
+        bad = self.bundle([('base/lib/arm64-v8a/libc++_shared.so', elf(bits=32, machine=183))])
+        self.assertTrue(bundlecheck.inspect(bad)['problems'])
+
+    def test_wrong_machine_in_device_split_is_rejected(self):
+        target = self.folder / 'wrong.apks'
+        inner = io.BytesIO()
+        with zipfile.ZipFile(inner, 'w', compression=zipfile.ZIP_DEFLATED) as apk:
+            apk.writestr('lib/x86_64/libc++_shared.so', elf(machine=183))
+        with zipfile.ZipFile(target, 'w') as archive:
+            archive.writestr('splits/base-x86_64.apk', inner.getvalue())
+        self.assertTrue(splitcheck.inspect(target)['problems'])
 
     def test_empty_bundle(self):
         self.assertTrue(bundlecheck.inspect(self.bundle([]))['problems'])
