@@ -43,3 +43,10 @@ For each signed archive/APK, inspect the **built** application ID, app name/icon
 
 
 Existing forms explicitly disable font scaling on several text inputs (child/parent names, search and measurement fields). The legacy `Text.defaultProps` assignment is also present, but modern React/RN behaviour must be judged from actual native rendering, not that assignment alone. These existing accessibility restrictions are not certified by synthetic heading tests. Removing all restrictions without checking the fixed-height forms could introduce clipped or unreachable controls; include them in the stated large-font/device acceptance rather than claiming complete accessibility conformance.
+
+
+## Captured startup visuals
+
+Fresh production-JS Android checks pass for Bebbo and Rerai at font scales 1.0 and 1.3, including the failed-download cancellation and reachable Continue action. [Bebbo enlarged-text screenshot](evidence/verified-startup-bebbo-font-1.3-continued.png) and [Rerai enlarged-text screenshot](evidence/verified-startup-reraiUmntwana-font-1.3-continued.png) preserve the expected blue/green branding. Their JSON neighbours record exact sources, artifact hashes and native-bytecode equivalence. They show English fixture screens, not Arabic/Urdu approval.
+
+In Rerai's 1.3 post-dialog capture, the PNG viewport is further down than the preceding accessibility snapshot (whose Welcome heading has visible bounds). Those captures are not atomic. The heading remains in the scrollable content; the cause of the viewport change is unconfirmed. Check initial scroll/focus restoration after alerts on physical devices rather than treating the source/tree assertion as pixel-level proof that the heading stays visible.

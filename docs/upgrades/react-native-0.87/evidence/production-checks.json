@@ -1,0 +1,110 @@
+{
+  "application_source": "efe62468b945cd372243a8ef1618a7cc2d13a54c",
+  "workflow_source": "58a7f8e9c9f14b9ff35d8d48269a0a7caa475fca",
+  "run": 43491847432,
+  "tests": {
+    "jest": 348,
+    "jest_suites": 39,
+    "node_tooling": 23,
+    "python_packaging_configuration": 29,
+    "typescript": "regression gate passes; 96 inherited diagnostics remain",
+    "assets": 96,
+    "npm_audit": {
+      "low": 11,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "jobs": [
+    {
+      "id": 132114774074,
+      "name": "unit",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774139,
+      "name": "bundles (reraiUmntwana, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774276,
+      "name": "bundles (foleja, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774297,
+      "name": "bundles (bebbo, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774385,
+      "name": "bundles (babuni, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774446,
+      "name": "bundles (bebboPacific, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774449,
+      "name": "bundles (merhabaBebek, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774456,
+      "name": "bundles (babuni, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774499,
+      "name": "bundles (bebboDev, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774560,
+      "name": "bundles (bebbo, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774580,
+      "name": "bundles (wawamor, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774582,
+      "name": "bundles (wawamor, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774607,
+      "name": "bundles (bebboDev, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774643,
+      "name": "bundles (foleja, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114774742,
+      "name": "bundles (bebboPacific, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114775005,
+      "name": "bundles (merhabaBebek, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132114775015,
+      "name": "bundles (reraiUmntwana, android)",
+      "conclusion": "success"
+    }
+  ],
+  "limits": [
+    "Unit doubles are not service delivery proof",
+    "All eight flavours bundle for both platforms; physical devices and real language/content/service configurations remain acceptance"
+  ]
+}

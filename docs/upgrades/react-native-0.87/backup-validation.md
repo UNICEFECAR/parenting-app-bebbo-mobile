@@ -54,7 +54,7 @@ Before release, review the app-wide extractable encryption key and lack of user-
 The user Realm retains schema 4. The separate Redux Realm retains schema 1 but now registers its existing schema-0 migration through `onMigration` and writes migrated fragments to the new Realm, not the old one. Large non-Latin strings are fragmented within native UTF-8 limits without breaking surrogate pairs. Country/language setup no longer deletes non-imported child profiles based on a missing onboarding flag; imported status does not identify disposable records. Five migration/fragment regressions and a localisation source guard pass. These tests do not substitute for installing an actual historical production database.
 
 
-## Captured native evidence
+## First captured native evidence (14-scenario checkpoint)
 
 Bebbo and Rerai each pass 14 checks on Android API-35 x86_64 emulators and Release iPhone simulators: native random IV/AES/HMAC/tamper rejection; legacy ciphertext and record conversion; three-profile child/pregnancy/nested ownership; repeat replacement; actual failed-insert transaction rollback; synthetic user-Realm schema 3→4 and Redux-Realm schema 0→1 migrations; approximately 18 MB of Unicode cache text; settings preservation; app restarts; real startup taxonomy-cache recovery; and interrupted 5,000-profile replacement. Every interruption run observed `writing` and recovered the old complete three-profile dataset. This does not establish physical-device power-loss behaviour or a complete cross-store restore journal.
 
@@ -65,3 +65,6 @@ The actual legacy converter also has five regressions for empty/null or height-o
 
 
 Explicit expected-child flags are now preserved even when a pregnancy due date has passed. A date is not proof of birth; only files without an explicit flag use legacy date inference. Legacy boolean premature/default-child flags are normalised to the current string representation. Three actual-converter regressions verify these cases; native schema handling of current pregnancy/flag strings is covered by the captured runs, but these specific overdue/boolean edge cases have unit-only evidence and require real historical-device acceptance.
+
+
+Restored Reminder records and their owner are verified separately from actual OS delivery. Test simultaneous reminders for different children, identifier/coalescing behaviour, very large pending queues, exact-alarm denial and OEM limits on installed legacy upgrades. The repository tests do not certify every restored record as a separately delivered notification.

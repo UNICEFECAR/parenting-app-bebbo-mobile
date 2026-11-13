@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-348 Jest tests / 39 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+348 Jest tests / 39 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. The latest production-source CI verifies these checks at efe62468; full run/source provenance and native results are recorded below.
 
 ## Evidence boundaries and remaining work
 
@@ -48,6 +48,7 @@ Realm 20.2.0/schema 4 and dotenv 3.4.12 are intentionally retained. Firebase 26.
 - [Analytics coverage, event semantics and offline reconciliation](analytics-coverage.md); [complete source event/route/screen inventory](analytics-source-inventory.json).
 - [Backup scope, regression scenarios and device procedure](backup-validation.md).
 - [Security severity, evidence, native dependency decisions and remaining risks](security-assessment.md); [available crash history and root-cause boundaries](crash-history.md).
+- [Validation results and remaining release gates](validation-results.md).
 - [RTL/design findings and device acceptance matrix](rtl-and-device-validation.md); [per-flavour native IDs/languages/configuration matrix](flavour-matrix.json).
 
 ## CI provenance
@@ -58,7 +59,7 @@ First checkpoint: `d664ad0b67dd88d28c35caf17210aa5e68ac757a`, [run 43463202988](
 A final startup regression handles malformed persisted taxonomy JSON before PersistGate opens. It reads only matching-language Realm metadata or the existing bundled taxonomy, repairs only that Redux cache field, and shows the existing retry UI if neither source is valid. It does not delete profiles/settings. Six tests cover valid caches, truncated/scalar/array snapshots and missing recovery data.
 
 
-Gradle compatibility follow-up: all eight Android jobs at `bdfdcc4` failed before app compilation because RN 0.87.1's build-plugin compiler 2.2.0 could not read Gradle 9.8.1's embedded Kotlin 2.4 metadata. A scoped patch compiles only RN's Gradle plugins with Kotlin 2.4.21 while retaining their KGP implementation dependency and the application's KGP 2.2.10. [Focused run 43472919633](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43472919633) passed `help buildEnvironment :react-native-webview:compileReleaseKotlin` on Gradle 9.8.1/JDK 21. Its resolved build graph confirms KGP 2.2.10; host-side Kotlin stdlib resolves to 2.4.21. No metadata-version checks are disabled. Full application builds still need final-run results; a successful preflight is not a substitute for them.
+Gradle compatibility follow-up: all eight Android jobs at `bdfdcc4` failed before app compilation because RN 0.87.1's build-plugin compiler 2.2.0 could not read Gradle 9.8.1's embedded Kotlin 2.4 metadata. A scoped patch compiles only RN's Gradle plugins with Kotlin 2.4.21 while retaining their KGP implementation dependency and the application's KGP 2.2.10. [Focused run 43472919633](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43472919633) passed `help buildEnvironment :react-native-webview:compileReleaseKotlin` on Gradle 9.8.1/JDK 21. Its resolved build graph confirms KGP 2.2.10; host-side Kotlin stdlib resolves to 2.4.21. No metadata-version checks are disabled. Full Android application builds subsequently passed for all eight primary flavours; see the native build matrix for exact sources/ABI coverage. The preflight alone was not used as their substitute.
 
 Category telemetry also handles multiple public category IDs and malformed historical suffixes without generating invalid/high-cardinality event names; it never uploads an unrecognised suffix as text.
 

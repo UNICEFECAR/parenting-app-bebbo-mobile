@@ -1,0 +1,81 @@
+{
+  "workflow_run": 43490604453,
+  "artifact_id": 14069733069,
+  "artifact_sha256": "09d22ebe17d715b2bdb001f08f8e0b4d31ba79c8b3ec2b7eaae308c7409c4ea4",
+  "qa_source": "deedf00f7289c94d78f03b106773b1d2b8b4ab8d",
+  "production_data_source": "f077fa4d9ffc22b5411557bc9f2a37105d8ac316",
+  "provenance": {
+    "compiled_source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+    "compiled_run": "43477593213",
+    "check_source": "deedf00f7289c94d78f03b106773b1d2b8b4ab8d",
+    "changed_paths": [
+      ".github/workflows/native-data-evidence.yml",
+      "app/components/shared/ShareFavButtons.tsx",
+      "app/redux/reducers/realmPersistor.js",
+      "app/screens/AddExpectingChildProfile.tsx",
+      "app/screens/ChildSetupList.tsx",
+      "app/screens/home/EditChildProfile.tsx",
+      "app/screens/localization/CountrySelection.tsx",
+      "app/screens/localization/LanguageSelection.tsx",
+      "app/services/Utils.ts",
+      "app/services/__tests__/bookmarkControls.test.tsx",
+      "app/services/__tests__/bookmarks.test.ts",
+      "app/services/__tests__/legacyBackupConversion.test.ts",
+      "app/services/__tests__/profileDeletion.test.ts",
+      "app/services/__tests__/realmPersistence.test.ts",
+      "app/services/bookmarks.ts",
+      "app/services/childCRUD.ts",
+      "app/services/profileDeletion.ts",
+      "docs/upgrades/react-native-0.87/analytics-coverage.md",
+      "docs/upgrades/react-native-0.87/analytics-source-inventory.json",
+      "docs/upgrades/react-native-0.87/backup-validation.md",
+      "docs/upgrades/react-native-0.87/crash-history.md",
+      "docs/upgrades/react-native-0.87/evidence/native-data-bebbo-android.json",
+      "docs/upgrades/react-native-0.87/evidence/native-data-bebbo-ios.json",
+      "docs/upgrades/react-native-0.87/evidence/native-data-rerai-android.json",
+      "docs/upgrades/react-native-0.87/evidence/native-data-rerai-ios.json",
+      "docs/upgrades/react-native-0.87/extended-review.md",
+      "docs/upgrades/react-native-0.87/flavour-matrix.json",
+      "docs/upgrades/react-native-0.87/rtl-and-device-validation.md",
+      "docs/upgrades/react-native-0.87/security-assessment.md",
+      "index.js",
+      "qa/nativeDataQA.ts",
+      "qa/run-native-data.py",
+      "scripts/__tests__/release-guards.test.cjs",
+      "scripts/android-startup-smoke.sh",
+      "scripts/flavour-audit.py"
+    ],
+    "replaced_bundle_entries": [
+      "base/assets/index.android.bundle"
+    ],
+    "hermes_bytecode_sha256": "d498abccbdf928228bd7a6eb36fcfad22654ac1b89cd3aa895fa8ddb0adf66c4"
+  },
+  "observed_before_kill": "writing",
+  "result": {
+    "phase": "passed",
+    "passed": [
+      "native_random_iv_hmac_aes_unicode_roundtrips",
+      "native_tamper_rejection",
+      "native_legacy_cipher_compatibility",
+      "native_nested_records_and_profile_ownership",
+      "native_repeated_replacement",
+      "native_atomic_rollback",
+      "native_legacy_record_conversion",
+      "native_legacy_vaccination_without_growth_values",
+      "native_schema3_to4_fixture_migration",
+      "native_redux_schema0_to1_fixture_migration",
+      "native_large_unicode_cache_fragment_roundtrip",
+      "native_content_reset_preserves_settings",
+      "native_restart_profile_persistence",
+      "actual_startup_taxonomy_recovery",
+      "native_process_interruption_atomic_outcome"
+    ],
+    "interruptionOutcome": "rolled_back",
+    "profiles": 3
+  },
+  "limits": [
+    "Synthetic fixtures; not historical installed databases or physical devices",
+    "No live Drive/file-provider/Firebase delivery acceptance",
+    "Later overdue/boolean profile-flag edge cases have actual-converter unit evidence; this native checkpoint does not exercise them"
+  ]
+}
