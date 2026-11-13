@@ -1,4 +1,6 @@
-# Validation results — 13 November 2026
+# Earlier validation checkpoint — 13 November 2026
+
+**For the current application source, updated checks and unresolved acceptance work, see [remaining-task-follow-up.md](remaining-task-follow-up.md). The results below are the earlier checkpoint, not a certification of the later follow-up.**
 
 The implemented fixes and repository checks are reviewable on `RNSDKUpgrade-review-fixes`. Production release acceptance remains incomplete. The original PR branch remains `b1286358cbcc1187d07cdb277c13f4395edbe9f1`.
 

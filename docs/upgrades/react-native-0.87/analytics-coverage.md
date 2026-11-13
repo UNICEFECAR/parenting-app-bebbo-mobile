@@ -1,6 +1,6 @@
 # Analytics coverage and delivery validation
 
-The [source inventory](analytics-source-inventory.json) lists every registered route found (43 declarations), all screen files (46), and every telemetry call (77 at generation). Regenerate with `node scripts/analytics-inventory.cjs`; `--check` detects drift. This is source coverage, not runtime delivery evidence. Shared code applies to all eight flavours; country feature availability still depends on its CMS configuration.
+The [source inventory](analytics-source-inventory.json) lists every registered route found (43 declarations), all screen files (46), and every telemetry call (78 at generation). Regenerate with `node scripts/analytics-inventory.cjs`; `--check` detects drift. This is source coverage, not runtime delivery evidence. Shared code applies to all eight flavours; country feature availability still depends on its CMS configuration.
 
 | Journey/action | Observable events | Parameters/trigger and remaining limitations |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ The [source inventory](analytics-source-inventory.json) lists every registered r
 | Growth/health/vaccines | Existing `child_measurement_entered`, `child_health_checkup_entered`, `child_vaccine_entered` and reminder events | Action-level measurement only. No weight, height, vaccine selections, doctor comments or selected-child attributes leave through these wrappers. Editing can be recorded as another action by legacy screens; do not treat events as unique medical records. |
 | Notifications/settings | Existing on/off/reminder events; screen views | Delivery is not an open. Local cold-start tap routing is buffered/deduplicated by the existing service. Dedicated delivered/opened canonical Analytics events are not fully implemented for every remote/local provider; Firebase automatic push metrics are separate. |
 | FAQ support bot | `chatbot_*_selected` | Public FAQ identifiers where allowed; no dialogue text. This branch contains a scripted FAQ feature, not the separate RAG/AI pilot. |
-| Feedback/survey/email/donation | `feedback_link_opened`, `survey_link_opened`, `email_composer_opened`, `donate_opened` | Emit only after successful native URL handoff. Reject script/file/intent/control-character URLs. Cannot verify external form submission, email delivery or payment; misleading submitted/sent event names are retired. |
+| Feedback/survey/email/donation | `feedback_link_opened`, `survey_link_opened`, `email_composer_opened`, `donate_opened` | Emit only after successful native URL handoff, including notification survey links. Reject script/file/intent/control-character URLs. Cannot verify external form submission, email delivery or payment; misleading submitted/sent event names are retired. |
 | Backup export | `backup_export_completed` | Confirmed local file save or Drive replacement only; source local_file/drive. Cancellation is not completion. |
 | Other UI activity | Screen views plus inventoried existing calls | Not every tap/scroll is instrumented. Avoid collecting private form contents or inventing noisy events without a reporting purpose. Detailed notification lifecycle events remain an explicit gap. |
 

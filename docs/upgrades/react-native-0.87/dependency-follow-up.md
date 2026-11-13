@@ -1,3 +1,5 @@
+> Historical dependency checkpoint: current audit/check totals and the deepmerge advisory status are recorded in [remaining-task-follow-up.md](remaining-task-follow-up.md).
+
 # Dependency follow-up — 13 November 2026
 
 This follow-up starts from review-fixes commit

@@ -1,16 +1,14 @@
 # React Native 0.87 migration
 
-See [review fixes and release acceptance gates](review-fixes.md) for the follow-up to PR #1115.
+See the [current follow-up and remaining acceptance gates](remaining-task-follow-up.md), then the [original review fixes](review-fixes.md) for PR #1115.
 
 This branch targets React Native 0.87.1 with React 19.2.3, AGP 9.2.1,
-Gradle 9.4.1, Kotlin 2.2.10, and Android compile/target SDK 37.
-RN 0.88 is also a stable release; 0.87 was selected to reduce the jump to
-the newest release while migrating the app's older native dependencies.
+Gradle 9.8.1, Kotlin 2.2.10, and Android compile/target SDK 37.
+The framework/renderer versions are kept together while reviewing native compatibility and preserving existing data.
 
 ## Local tools
 
-Use Node 22 (minimum 22.13) and JDK 17. The previous Node 21 installation
-does not meet RN's requirements. With nvm installed:
+Use the Node version selected by `.nvmrc` (22, minimum 22.13) and the tested CI JDK 21. The older Node 21 installation does not meet the framework requirements. With nvm installed:
 
 ```sh
 nvm install
