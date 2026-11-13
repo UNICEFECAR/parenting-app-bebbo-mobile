@@ -1,8 +1,9 @@
+import HorizontalContentList from "@components/shared/HorizontalContentList";
 import React, { useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, FlatList, Dimensions, Modal } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Platform, Alert, ActivityIndicator, Dimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import VectorImage from 'react-native-vector-image';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { backup } from '../../services/backup';
@@ -32,7 +33,7 @@ const QuickLinksRow = () => {
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isDriveBackupRunning, setIsDriveBackupRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
-  const actionSheetRef = useRef<any>(null);
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
   const netInfo = useNetInfoHook();
   const data = [
     { id: "1", title: t("favScreenHeader"), icon: require("@images/ic_favorites_link.svg"), route: "Favourites" },
@@ -51,7 +52,7 @@ const QuickLinksRow = () => {
         android_ripple={{ color: "#D9EAF6", borderless: false }}
         onPress={() => {
           if (item.id == "3") {
-            SheetManager.show("export_action_sheet")
+            actionSheetRef.current?.show()
           } else {
             navigation.navigate(item.route as never)
           }
@@ -79,7 +80,7 @@ const QuickLinksRow = () => {
       driveExportRunning.current = false;
       setIsExportRunning(false);
       setIsDriveBackupRunning(false);
-      actionSheetRef.current?.setModalVisible(false);
+      actionSheetRef.current?.hide();
     }
   };
 
@@ -194,7 +195,7 @@ const QuickLinksRow = () => {
   };
   return (
     <View style={styles.container}>
-      <FlatList
+      <HorizontalContentList
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Card item={item} />}
@@ -202,7 +203,7 @@ const QuickLinksRow = () => {
         contentContainerStyle={styles.listContainer}
         showsHorizontalScrollIndicator={false}
       />
-      <ActionSheet id="export_action_sheet" ref={actionSheetRef}>
+      <ActionSheet ref={actionSheetRef}>
         <BannerContainer>
           <SettingHeading>
             <Heading1>{t("settingScreenexportOptionHeader")}</Heading1>
@@ -211,23 +212,12 @@ const QuickLinksRow = () => {
             <FDirRow>
               <SettingOptions>
                 <Pressable
-                  onPress={async (): Promise<any> => {
-                    console.log("icon clicked");
+                  onPress={async (): Promise<void> => {
+                    if (!(await actionSheetRef.current?.hideAndWait())) return;
                     try {
-                      if (Platform.OS === "android") {
-                        console.log("1233");
-
-                        console.log("You can write");
-                        actionSheetRef.current?.setModalVisible(false);
-                        exportFile();
-                      } else {
-                        actionSheetRef.current?.setModalVisible(false);
-                        setTimeout(() => {
-                          exportFile();
-                        }, 350);
-                      }
-                    } catch (err) {
-                      console.warn(err);
+                      await exportFile();
+                    } catch (error) {
+                      console.warn(error);
                     }
                   }}
                 >
@@ -241,14 +231,10 @@ const QuickLinksRow = () => {
               </SettingOptions>
               <SettingOptions>
                 <Pressable
-                  onPress={(): any => {
-                    actionSheetRef.current?.setModalVisible(false);
-                    if (netInfo && netInfo.isConnected == true) {
-                      Platform.OS == "ios"
-                        ? setTimeout(() => {
-                          setExportAlertVisible(true);
-                        }, 350)
-                        : setExportAlertVisible(true);
+                  onPress={async (): Promise<void> => {
+                    if (!(await actionSheetRef.current?.hideAndWait())) return;
+                    if (netInfo && netInfo.isConnected === true) {
+                      setExportAlertVisible(true);
                     } else {
                       Alert.alert("", t("noInternet"));
                     }

@@ -21,7 +21,7 @@ import Icon from "@components/shared/Icon";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import ToggleRadios from "@components/ToggleRadios";
 import { CommonActions, useFocusEffect } from "@react-navigation/native";
-import React, { createRef, useContext, useEffect, useState } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Pressable,
@@ -31,7 +31,7 @@ import {
   BackHandler,
   StyleSheet,
 } from "react-native";
-import ActionSheet from "react-native-actions-sheet";
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
@@ -96,7 +96,7 @@ const ChildImportSetup = (props: any): any => {
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState("");
   const [name, setName] = React.useState("");
-  const actionSheetRef = createRef<any>();
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
   const themeContext = useContext(ThemeContext);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
@@ -218,7 +218,7 @@ const ChildImportSetup = (props: any): any => {
                   <ShiftFromTop20>
                     <FormInputGroup
                       onPress={(): any => {
-                        actionSheetRef.current?.setModalVisible(true);
+                        actionSheetRef.current?.show();
                       }}
                     >
                       <LabelText>
@@ -310,7 +310,7 @@ const ChildImportSetup = (props: any): any => {
                       }
                       console.log("relationship name", item.name);
                       setRelationshipName(item.name);
-                      actionSheetRef.current?.setModalVisible(false);
+                      actionSheetRef.current?.hide();
                     }}
                   >
                     <Heading3>

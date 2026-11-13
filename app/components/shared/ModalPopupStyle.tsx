@@ -49,7 +49,7 @@ export const PopupCloseVideo = styled(PopupClose)`
 export const PopupCloseContainerCD = styled.View`
   position: absolute;
   top: 0;
-  right: 0;
+  end: 0px;
   padding: 16px;
   zIndex: 999; 
   elevation: 999;

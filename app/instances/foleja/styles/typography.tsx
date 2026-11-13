@@ -9,7 +9,7 @@ export const Heading1 = styled.Text`
   line-height: 32px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
-  text-align:left;
+  text-align: start;
 `;
 export const Heading1w = styled(Heading1)`
   color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
@@ -40,7 +40,7 @@ export const Heading2 = styled.Text`
   line-height: 26px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
-  text-align:left;
+  text-align: start;
   `;
 
 export const Heading2w = styled(Heading2)`
@@ -71,7 +71,7 @@ export const Heading3 = styled.Text`
   line-height: 20px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
-  text-align:left;
+  text-align: start;
 `
 export const Heading3w = styled(Heading3)`
 color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
@@ -111,6 +111,7 @@ color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 
 
 export const Heading4 = styled.Text`
+  text-align: start;
   font-size: 14px;
   line-height: 18px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
@@ -162,7 +163,7 @@ export const Heading5 = styled.Text`
   line-height: 16px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-regular';
-  text-align:left;
+  text-align: start;
 `;
 export const Heading5w = styled(Heading5)`
   color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -186,7 +187,7 @@ export const Heading6 = styled.Text`
   line-height: 14px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-regular';
-  text-align:left;
+  text-align: start;
 `;
 export const Heading6w = styled(Heading6)`
   color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -206,6 +207,7 @@ export const Heading6Padding0 = styled(Heading6Bold)`
 
 
 export const Paragraph = styled.Text`
+  text-align: start;
   font-size: 14px;
   line-height: 18px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
@@ -222,6 +224,7 @@ export const Paragraphw = styled(Paragraph)`
 
 
 export const HeadingRegular = styled.Text`
+  text-align: start;
 fontFamily: 'roboto-regular';
 `
 

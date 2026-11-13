@@ -39,6 +39,7 @@ import { EventProvider } from "react-native-outside-press";
 import RNRestart from "react-native-restart";
 import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
 import { recordError } from "./app/services/firebaseAnalytics";
+import {applyLanguageDirection, configureLayoutDirection} from "./app/localization/layoutDirection";
 import { primaryColor } from "@styles/style";
 const flavor = process.env.FLAVOR || "bebbo";
 export const store = configureAppStore();
@@ -111,15 +112,27 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
 
 const App = () => {
   const [persistor, setPersistor] = React.useState<any>(null);
+  const [directionError, setDirectionError] = React.useState<Error | null>(null);
   React.useEffect(() => {
     const p = persistStore(store);
+    configureLayoutDirection({dispatch: store.dispatch, flush: () => p.flush()});
     setPersistor(p);
     Orientation.lockToPortrait();
     // SplashScreen.hide();
     googleAuth.configure();
   },[]);
+  if (directionError) return <CustomFallback error={directionError} resetError={() => setDirectionError(null)} />;
   if (!persistor) return <ActivityIndicator size="large" color="#0000ff" />;
-  const onBeforeLift = () => {
+  const onBeforeLift = async () => {
+    try {
+      if (await applyLanguageDirection(store.getState().selectedCountry)) {
+        // Keep the old-direction navigator off screen while the native restart runs.
+        await new Promise<void>(() => {});
+      }
+    } catch (error) {
+      setDirectionError(error instanceof Error ? error : new Error(String(error)));
+      return;
+    }
     const taxonomyAllData = store.getState().utilsData.taxonomy.allTaxonomyData
       ? JSON.parse(store.getState().utilsData.taxonomy.allTaxonomyData)
       : [];

@@ -42,7 +42,7 @@ import {
   ShiftFromTop20,
 } from "@styles/typography";
 import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@types/types";
-import React, { createRef, useContext, useState } from "react";
+import React, { useRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -53,7 +53,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import ActionSheet from "react-native-actions-sheet";
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import { copyFile, exists, mkdir, unlink } from "@dr.pogodin/react-native-fs";
 import { Image as ImageObject } from "react-native-image-crop-picker";
 import { ThemeContext } from "styled-components/native";
@@ -170,7 +170,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     { id: 1, iconName: "ic_camera", name: t("cameraOption2") },
     { id: 2, iconName: "ic_gallery", name: t("cameraOption3") },
   ];
-  const actionSheetRef = createRef<any>();
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
   const [capturedPhoto, setCapturedImage] = React.useState("");
   const [photoUri, setphotoUri] = React.useState("");
   const [photoDeleted, setPhotoDeleted] = React.useState(false);
@@ -521,7 +521,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 >
                   <ProfileEditView
                     onPress={(): any => {
-                      actionSheetRef.current?.setModalVisible(true);
+                      actionSheetRef.current?.show();
                     }}
                   >
                     <Icon name="ic_edit" size={16} color="#000" />
@@ -537,7 +537,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   },
                 ]}
                 onPress={(): any => {
-                  actionSheetRef.current?.setModalVisible(true);
+                  actionSheetRef.current?.show();
                 }}
               >
                 <VectorImage source={cameraProfileImage} />
@@ -689,10 +689,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                       <View key={index} style={styles.innerImageView}>
                         <Pressable
                           style={styles.alignItemsCenter}
-                          onPress={(): any => {
-                            console.log("Obn image click");
-                            //  actionSheetRef.current?.hide();
-                            actionSheetRef.current?.setModalVisible(false);
+                          onPress={async (): Promise<void> => {
+                            if (!(await actionSheetRef.current?.hideAndWait())) return;
                             handleImageOptionClick(item, index);
                           }}
                         >

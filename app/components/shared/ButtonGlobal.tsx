@@ -1,3 +1,5 @@
+import React from 'react';
+import {type StyleProp, type TextStyle} from 'react-native';
 import { menuDrawerTextColor } from '@styles/style';
 import styled from 'styled-components/native';
 
@@ -114,11 +116,11 @@ export const ButtonTextMdLine = styled(ButtonTextLine)`
   font-size:14px;
   `;
 export const ButtonTextMdLineL = styled(ButtonTextMdLine)`
-  text-align:left;
+  text-align: start;
 `;
 
 export const ButtonTextSmLineL = styled(ButtonTextSmLine)`
-  text-align:left;
+  text-align: start;
 `;
 
 export const ButtonTextLinew = styled.Text`
@@ -291,3 +293,22 @@ min-width:150px;
 export const ModalViewCustom = styled.View`
 padding-top:5px;padding-bottom:5px;
 `;
+const LeadingPlusRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6px;
+  flex-shrink: 1;
+`;
+
+export const ButtonLeadingPlusLabel = ({label, style}: {
+  label: string;
+  style?: StyleProp<TextStyle>;
+}): React.JSX.Element => (
+  <LeadingPlusRow>
+    <ButtonTextLg accessible={false} style={style}>+</ButtonTextLg>
+    <ButtonTextLg style={[{flexShrink: 1}, style]}>
+      {label.replace(/^\s*[+＋]\s*|\s*[+＋]\s*$/g, '')}
+    </ButtonTextLg>
+  </LeadingPlusRow>
+);

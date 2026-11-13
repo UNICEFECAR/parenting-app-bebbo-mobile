@@ -43,7 +43,7 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
-import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
@@ -143,7 +143,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [name, setName] = React.useState("");
   const [loading, setLoading] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
-  const actionSheetRefImport = useRef<ActionSheetRef>(null);
+  const actionSheetRefImport = useRef<AppActionSheetRef>(null);
   const netInfo = useNetInfoHook();
   let relationshipData =
     useAppSelector(selectParentGender) || [];
@@ -162,7 +162,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const childAge = useAppSelector(selectChildAge);
-  const actionSheetRef = useRef<ActionSheetRef>(null);
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
   const sendData = (data: any): any => {
@@ -539,7 +539,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                       "actionsheet visiblity",
                       actionSheetRef.current
                     );
-                    actionSheetRef.current?.setModalVisible(true);
+                    actionSheetRef.current?.show();
                   }}
                 >
                   <LabelText>{t("childSetuprelationSelectTitle")}</LabelText>
@@ -642,7 +642,7 @@ const ChildSetup = ({ navigation }: Props): any => {
               <Pressable
                 onPress={(e: any): any => {
                   e.stopPropagation();
-                  actionSheetRefImport.current?.setModalVisible(true);
+                  actionSheetRefImport.current?.show();
                 }}
               >
                 <Heading3BoldCenterrw style={styles.uploadTextStyle}>
@@ -706,7 +706,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                       console.log("relationship name", item.name);
                       setRelationshipName(item.name);
                       setRelationshipUniqueName(item.unique_name);
-                      actionSheetRef.current?.setModalVisible(false);
+                      actionSheetRef.current?.hide();
                     }}
                   >
                     <Heading3>
@@ -728,25 +728,18 @@ const ChildSetup = ({ navigation }: Props): any => {
               <FDirRow>
                 <SettingOptions>
                   <Pressable
-                    onPress={(): any => {
-                      actionSheetRefImport.current?.setModalVisible(false);
-                      setTimeout(async () => {
-                        try {
-                          //import
-                          if (Platform.OS === "android") {
-                            console.log("1233");
-                            importFromFile();
-                          } else {
-                            importFromFile();
-                          }
-                        } catch (err) {
-                          if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
-                            // User cancelled the picker, exit any dialogs or menus and move on
-                          } else {
-                            throw err;
-                          }
+                    onPress={async (): Promise<void> => {
+                      if (!(await actionSheetRefImport.current?.hideAndWait())) return;
+                      try {
+                        await importFromFile();
+                      } catch (error) {
+                        if (
+                          !(isErrorWithCode(error) && error.code === errorCodes.OPERATION_CANCELED)
+                        ) {
+                          console.error(error);
+                          Alert.alert("", t("generalError"));
                         }
-                      }, 350);
+                      }
                     }}
                   >
                     <VectorImage source={require("@images/ic_file.svg")} />
@@ -757,16 +750,10 @@ const ChildSetup = ({ navigation }: Props): any => {
                 </SettingOptions>
                 <SettingOptions>
                   <Pressable
-                    onPress={(): any => {
-                      actionSheetRefImport.current?.setModalVisible(false);
-                      if (netInfo && netInfo.isConnected == true) {
-                        if (Platform.OS == "ios") {
-                          setTimeout(() => {
-                            setImportAlertVisible(true);
-                          }, 350);
-                        } else {
-                          setImportAlertVisible(true);
-                        }
+                    onPress={async (): Promise<void> => {
+                      if (!(await actionSheetRefImport.current?.hideAndWait())) return;
+                      if (netInfo && netInfo.isConnected === true) {
+                        setImportAlertVisible(true);
                       } else {
                         Alert.alert("", t("noInternet"));
                       }

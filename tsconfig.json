@@ -1,6 +1,7 @@
 {
   "extends": "@react-native/typescript-config",
   "compilerOptions": {
+    "types": ["jest", "node"],
     // "target": "esnext",
     // "module": "commonjs",
     // "lib": ["es2017"],

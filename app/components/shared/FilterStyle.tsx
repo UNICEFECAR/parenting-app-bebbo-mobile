@@ -24,15 +24,25 @@ export const FilterBox = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 2px 5px 2px 0;
+  padding: 2px 6px;
+  column-gap: 6px;
   flex: 1;
 `;
 
+// Keep spacing on the row, outside the LTR-isolated icon glyph.
+export const FilterIconSlot = styled.View`
+  width: 24px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const FilterText = styled.Text`
+  min-width: 0;
   font-size: 10px;
   flex: 1;
   font-weight: bold;
   color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   flex-shrink: 1;
-  text-align: left;
+  text-align: start;
 `;

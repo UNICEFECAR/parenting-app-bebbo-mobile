@@ -34,7 +34,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackHandler, Pressable, StyleSheet, Text, View } from "react-native";
-import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
@@ -88,7 +88,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     .filter(function (e: any) {
       return e.unique_name != taxonomyIds?.bothParentGender;
     });
-  const actionSheetRef = useRef<ActionSheetRef>(null);
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -225,7 +225,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
         <MainManageProfileContainer>
           <FormInputGroup
             onPress={(): any => {
-              actionSheetRef.current?.setModalVisible(true);
+              actionSheetRef.current?.show();
             }}
           >
             <LabelText>{t("childSetuprelationSelectTitle")}</LabelText>
@@ -312,7 +312,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                           }
                         }
                         setRelationshipName(item.name);
-                        actionSheetRef.current?.setModalVisible(false);
+                        actionSheetRef.current?.hide();
                       }}
                     >
                       <Heading3>{item.name}</Heading3>

@@ -9,6 +9,7 @@ declare module 'react-native-dotenv' {
   export const iosId: string;
   export const BebboDistributionChannel: string;
   export const BebboDistributionCountry: string;
+  export const BebboForceRTLForTesting: string | undefined;
 }
 declare module '@robinbobin/react-native-google-drive-api-wrapper';
 declare module 'react-native-image-progress';

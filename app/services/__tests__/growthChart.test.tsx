@@ -1,4 +1,5 @@
 import React from 'react';
+import {I18nManager, StyleSheet} from 'react-native';
 import TestRenderer, {act} from 'react-test-renderer';
 import {
   clampTooltipPosition,
@@ -47,13 +48,27 @@ jest.mock('d3-shape', () => ({
 jest.mock('victory-native', () => {
   const ReactRuntime = require('react');
   const View = require('react-native').View;
-  const xScale = Object.assign((x: number) => 50 + x * 10, {
-    ticks: () => [0, 10],
-  });
+  const makeXScale = (initialRange = [50, 150]): any => {
+    let range = initialRange.slice();
+    const scale = Object.assign(
+      (x: number) => range[0] + (x * (range[1] - range[0])) / 10,
+      {
+        ticks: () => [0, 10],
+        copy: () => makeXScale(range),
+        domain: () => scale,
+        range: (next?: number[]) => {
+          if (!next) return range.slice();
+          range = next.slice();
+          return scale;
+        },
+      },
+    );
+    return scale;
+  };
+  const xScale = makeXScale();
   const yScale = Object.assign((y: number) => 250 - y * 2, {
     ticks: () => [0, 100],
   });
-  Object.assign(xScale, {copy: () => xScale, domain: () => xScale});
   Object.assign(yScale, {copy: () => yScale, domain: () => yScale});
   return {
     Line: View,
@@ -335,3 +350,47 @@ test('seam-free outer fill retains both exterior boundaries without mutating ref
     getOuterReferenceBand({...reference, bottomArea: [{x: 9, y: 5, y0: 2}]}),
   ).toBeNull();
 });
+
+test.each([false, true])(
+  'chart mirrors geometry and touch targets, not its labels, for RTL=%p',
+  rtl => {
+    const original = I18nManager.isRTL;
+    I18nManager.isRTL = rtl;
+    try {
+      act(() => {
+        renderer = TestRenderer.create(
+          <GrowthChart
+            activeChild={child}
+            chartType={chartTypes.HeightForAge}
+            bgObj={reference}
+            windowWidth={400}
+            windowHeight={800}
+          />,
+        );
+      });
+      const first = renderer.root.findAll(
+        node =>
+          node.props.testID === 'growth-measurement-0' &&
+          typeof node.props.onPress === 'function',
+      )[0];
+      const second = renderer.root.findAll(
+        node =>
+          node.props.testID === 'growth-measurement-1' &&
+          typeof node.props.onPress === 'function',
+      )[0];
+      const x1 = StyleSheet.flatten(first.props.style).left;
+      const x2 = StyleSheet.flatten(second.props.style).left;
+      expect(rtl ? x1 > x2 : x1 < x2).toBe(true);
+      act(() => first.props.onPress());
+      expect(
+        renderer.root.findAll(
+          node =>
+            typeof node.props.children === 'string' &&
+            node.props.children.includes('3 month'),
+        ).length,
+      ).toBeGreaterThan(0);
+    } finally {
+      I18nManager.isRTL = original;
+    }
+  },
+);

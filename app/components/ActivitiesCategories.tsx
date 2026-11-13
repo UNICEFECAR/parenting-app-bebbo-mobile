@@ -1,10 +1,10 @@
 // import { activityCategoryobj, activityCategoryUniqueNameObj } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../instances";
 import React from "react";
-import Icon, { OuterIconLeft, OuterIconRow } from "@components/shared/Icon";
+import Icon from "@components/shared/Icon";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useAppSelector } from "../../App";
-import { ActivityFilter, FilterBox, FilterText } from "./shared/FilterStyle";
+import { ActivityFilter, FilterBox, FilterIconSlot, FilterText } from "./shared/FilterStyle";
 import { FlexDirRow } from "./shared/FlexBoxStyle";
 import { GAME_CATEGORY_SELECTED } from "@assets/data/firebaseEvents";
 import {
@@ -28,9 +28,6 @@ const styles = StyleSheet.create({
   },
   filterBoxbg2: {
     backgroundColor: bgcolorWhite2,
-  },
-  iconStyle: {
-    marginLeft: 10,
   },
   innerView: {
     flex: 1,
@@ -103,20 +100,17 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
                               : styles.filterBoxbg2
                           }
                         >
-                          <OuterIconRow>
-                            <OuterIconLeft>
-                              <Icon
-                                style={styles.iconStyle}
-                                name={item.image}
-                                size={20}
-                                color={
-                                  props.filterArray.includes(item.id)
-                                    ? props.iconColor
-                                    : "#000"
-                                }
-                              />
-                            </OuterIconLeft>
-                          </OuterIconRow>
+                          <FilterIconSlot>
+                            <Icon
+                              name={item.image}
+                              size={20}
+                              color={
+                                props.filterArray.includes(item.id)
+                                  ? props.iconColor
+                                  : "#000"
+                              }
+                            />
+                          </FilterIconSlot>
 
                           <FilterText
                             numberOfLines={2}

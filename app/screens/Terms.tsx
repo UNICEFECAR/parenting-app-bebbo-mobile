@@ -25,7 +25,6 @@ import { setAcceptTerms, setAppVersion, setTaxonomyIds } from "../redux/reducers
 import {
   Heading2Centerw,
   ShiftFromTop15,
-  SideRightSpacing20,
   SideSpacing10,
 } from "@styles/typography";
 import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
@@ -72,13 +71,14 @@ const styles = StyleSheet.create({
     backgroundColor: bgcolorWhite2,
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: "center",
+    alignSelf: "stretch",
+    width: "100%",
     padding: 25,
-    flex: 1,
+    flexGrow: 1,
   },
   containerView2: {
     marginVertical: 25,
-    paddingHorizontal: 25,
+    alignSelf: "stretch",
   },
   privacyText: {
     color: secondaryBtnColor,
@@ -263,7 +263,8 @@ const Terms = ({ navigation }: Props): any => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         alwaysBounceHorizontal={false}
-        contentContainerStyle={{ flex: 1 }}
+        style={{flex: 1, backgroundColor: bgcolorWhite2}}
+        contentContainerStyle={{flexGrow: 1, width: "100%"}}
       >
         <View style={styles.containerView}>
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
@@ -293,7 +294,7 @@ const Terms = ({ navigation }: Props): any => {
               iconname={item.activity}
             />
           </View>
-          <View>
+          <View style={{width: "100%"}}>
             <SideSpacing10>
               <ButtonTermsRow>
                 <FormOuterTermsCheckbox
@@ -312,7 +313,7 @@ const Terms = ({ navigation }: Props): any => {
                       )}
                     </View>
                   </CheckboxItem>
-                  <SideRightSpacing20>
+                  <View style={{flex: 1}}>
                     <LabelTextTerms>
                       {t("tNccheckbox2")}{" "}
                       <LabelTextTerms
@@ -330,7 +331,7 @@ const Terms = ({ navigation }: Props): any => {
                       </LabelTextTerms>
                       .
                     </LabelTextTerms>
-                  </SideRightSpacing20>
+                  </View>
                 </FormOuterTermsCheckbox>
                 <ButtonPrimary
                   disabled={isButtonDisabled}

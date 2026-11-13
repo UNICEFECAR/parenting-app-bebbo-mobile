@@ -1,7 +1,7 @@
 import {chartInnerViewBg, outerViewbg} from '@styles/style';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {I18nManager, Pressable, StyleSheet, Text, View} from 'react-native';
 import {Circle, Path, Skia} from 'react-native-skia';
 import {area, curveNatural} from 'd3-shape';
 import {
@@ -231,6 +231,7 @@ const GrowthChart = ({
   windowHeight,
 }: Props): React.JSX.Element => {
   const {t} = useTranslation();
+  const rtl = I18nManager.isRTL;
   const {convertDigits} = useDigitConverter();
   const portrait = windowWidth < windowHeight;
   const width = Math.max(120, windowWidth - (portrait ? 30 : 60));
@@ -266,11 +267,18 @@ const GrowthChart = ({
     () =>
       rawScales
         ? {
-            xScale: rawScales.xScale.copy().domain(domain.x),
+            xScale: rawScales.xScale
+              .copy()
+              .domain(domain.x)
+              .range(
+                rtl
+                  ? rawScales.xScale.range().slice().reverse()
+                  : rawScales.xScale.range(),
+              ),
             yScale: rawScales.yScale.copy().domain([domain.y[1], domain.y[0]]),
           }
         : null,
-    [rawScales, domain],
+    [rawScales, domain, rtl],
   );
   const [selected, setSelected] = useState<number[]>([]);
   const onScaleChange = useCallback(
@@ -374,13 +382,22 @@ const GrowthChart = ({
               ))}
               {scales.yScale.ticks(5).map(value => (
                 <React.Fragment key={value}>
-                  <View style={[styles.tickY, {top: scales.yScale(value)}]} />
+                  <View
+                    style={[
+                      styles.tickY,
+                      {left: rtl ? width - 50 : 45, top: scales.yScale(value)},
+                    ]}
+                  />
                   <Text
                     key={value}
                     style={[
                       styles.axisText,
                       styles.yTick,
-                      {top: scales.yScale(value) - 8},
+                      {
+                        top: scales.yScale(value) - 8,
+                        left: rtl ? width - 42 : 0,
+                        textAlign: rtl ? 'left' : 'right',
+                      },
                     ]}>
                     {convertDigits(value)}
                   </Text>
@@ -391,13 +408,29 @@ const GrowthChart = ({
                   styles.axisText,
                   styles.unitX,
                   {
-                    left:
-                      (portrait ? windowWidth - 180 : windowHeight - 30) - 60,
+                    left: rtl
+                      ? Math.max(
+                          0,
+                          width -
+                            ((portrait
+                              ? windowWidth - 180
+                              : windowHeight - 30) -
+                              60) -
+                            120,
+                        )
+                      : (portrait ? windowWidth - 180 : windowHeight - 30) - 60,
                   },
                 ]}>
                 {labelX}
               </Text>
-              <Text style={[styles.axisText, styles.unitY]}>{labelY}</Text>
+              <Text
+                style={[
+                  styles.axisText,
+                  styles.unitY,
+                  {left: rtl ? width - 74 : 4},
+                ]}>
+                {labelY}
+              </Text>
             </View>
             {measurements.map((point, index) => (
               <Pressable

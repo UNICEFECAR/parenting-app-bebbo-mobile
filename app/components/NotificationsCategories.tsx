@@ -1,4 +1,6 @@
+import {appTextAlign} from "../localization/layoutDirection";
 import Icon from "@components/shared/Icon";
+import { FilterIconSlot } from "./shared/FilterStyle";
 import { bgcolorWhite2 } from "../instances/bebbo/styles/style";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,11 +16,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
   },
-  iconStyle: {
-    flex: 1,
-    marginLeft: 10,
-    textAlign: "left",
-  },
   item: {
     alignItems: "center",
     borderRadius: 5,
@@ -26,14 +23,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     margin: 5,
+    paddingHorizontal: 6,
+    columnGap: 6,
   },
   title: {
-    flex: 4,
+    flex: 1,
+    minWidth: 0,
+    flexShrink: 1,
     fontSize: 10,
     fontWeight: "bold",
     justifyContent: "flex-start",
     margin: 0,
-    textAlign: "left",
+    textAlign: appTextAlign(),
   },
 });
 const ButtonItem = (props: any): any => {
@@ -51,12 +52,9 @@ const ButtonItem = (props: any): any => {
         },
       ]}
     >
-      <Icon
-        style={styles.iconStyle}
-        name={props.data.iconName}
-        size={20}
-        color="#000"
-      />
+      <FilterIconSlot>
+        <Icon name={props.data.iconName} size={20} color="#000" />
+      </FilterIconSlot>
       <Text style={styles.title}>{props.data.displayName}</Text>
     </Pressable>
   );

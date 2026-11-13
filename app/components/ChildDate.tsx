@@ -10,7 +10,7 @@ import { dobMin, maxDue, minDue } from "@types/types";
 import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Modal, Platform, Pressable, StyleSheet, View } from "react-native";
 import { formatStringDate, getDatePickerLocale } from "../services/Utils";
 import Checkbox, { CheckboxActive, CheckboxItem } from "./shared/CheckboxStyle";
 import {
@@ -186,16 +186,10 @@ const ChildDate = (props: any): any => {
                 {prevScreen == "EditScreen"
                   ? t("addAnotherChildSetupDobLabel")
                   : t("childSetupdobLabel")}
-               <Text>{"    "}</Text>
-                <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
-                  <Icon
-                    name="ic_info"
-                    size={15}
-                    color="#070707"
-                    onPress={(): any => setDobModalVisible(true)}
-                  />
-                </FormInfoPressPremature>
               </LabelChildText>
+              <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
+                <Icon name="ic_info" size={15} color="#070707" />
+              </FormInfoPressPremature>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <FormInputBox>
@@ -238,16 +232,10 @@ const ChildDate = (props: any): any => {
                 {prevScreen == "EditScreen"
                   ? t("addAnotherChildSetupDobLabel")
                   : t("childSetupdobLabel")}
-              <Text>{"    "}</Text>
-                <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
-                  <Icon
-                    name="ic_info"
-                    size={15}
-                    color="#070707"
-                    onPress={(): any => setDobModalVisible(true)}
-                  />
-                </FormInfoPressPremature>
               </LabelChildText>
+              <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
+                <Icon name="ic_info" size={15} color="#070707" />
+              </FormInfoPressPremature>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <View style={{ marginTop: -10 }}>
@@ -290,7 +278,7 @@ const ChildDate = (props: any): any => {
       {disablePrematureCheck ? null : 
         <FormPrematureContainer>
           <Pressable
-            style={{ flexDirection: "row", alignItems: "center" }}
+            style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
             onPress={prematureHandlePress}>
             <CheckboxItem>
               <View>
@@ -310,11 +298,15 @@ const ChildDate = (props: any): any => {
             <LabelRow>
               <LabelChildText numberOfLines={0}>
                 {t("childSetupprematureLabel")}
-                <Text>{"    "}</Text>
-                <FormInfoPressPremature onPress={(): any => setModalVisible(true)}>
-                  <Icon name="ic_info" size={15} color="#070707" />
-                </FormInfoPressPremature>
               </LabelChildText>
+              <FormInfoPressPremature
+                onPress={(event): void => {
+                  event.stopPropagation();
+                  setModalVisible(true);
+                }}
+              >
+                <Icon name="ic_info" size={15} color="#070707" />
+              </FormInfoPressPremature>
             </LabelRow>
           </Pressable>
         </FormPrematureContainer>

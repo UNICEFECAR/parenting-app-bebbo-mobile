@@ -2,11 +2,17 @@ import fontelloConfig from '@assets/iconConfig/config.json';
 import createIconSetFromFontello from '@react-native-vector-icons/fontello';
 import styled from 'styled-components/native';
 
-const Icon = createIconSetFromFontello(fontelloConfig);
 const FontelloIcon = createIconSetFromFontello(fontelloConfig);
-export const IconML = styled(FontelloIcon)`
-transform: ${(props:any):any => props.theme.isRTL ? 'scaleX(-1)' : 'scaleX(1)'}
+// Mirror navigation arrows only. Logos, checks and other pictograms keep their shape.
+const Icon = styled(FontelloIcon)`
+  /* Icon glyphs are not prose. Isolate them from RTL paragraph alignment. */
+  direction: ltr;
+  writing-direction: ltr;
+  text-align: center;
+  flex-shrink: 0;
+transform: ${(props: any): string => props.theme.isRTL && ['ic_back', 'ic_angle_left', 'ic_angle_right'].includes(props.name) ? 'scaleX(-1)' : 'scaleX(1)'};
 `;
+export const IconML = Icon;
 export const OuterIconRow = styled.View`
   flex-direction: row;
   margin-right: 5px;

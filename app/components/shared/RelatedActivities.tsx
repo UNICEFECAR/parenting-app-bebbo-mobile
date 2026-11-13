@@ -1,3 +1,4 @@
+import HorizontalContentList from "@components/shared/HorizontalContentList";
 import { appConfig } from "../../instances";
 import {
   Heading2,
@@ -7,7 +8,7 @@ import {
 } from "../../instances/bebbo/styles/typography";
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import FastImage from "@d11/react-native-fast-image";
 import styled from "styled-components/native";
 import { useAppSelector } from "../../../App";
@@ -193,7 +194,7 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
             <Heading2>{t("developScreenrelatedAct")}</Heading2>
           </ArticleHeading>
           <View style={styles.listParentView}>
-            <FlatList
+            <HorizontalContentList
               data={relatedArticleData}
               horizontal
               removeClippedSubviews={true} // Unmount components when outside of window

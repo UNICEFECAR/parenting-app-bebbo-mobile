@@ -1,3 +1,4 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
 import { returnToScreen } from "../../navigation/returnToScreen";
 import ActivitiesCategories from "@components/ActivitiesCategories";
 import ArticleCategories from "@components/ArticleCategories";
@@ -833,18 +834,18 @@ const renderHtmlImage = ({ tnode }: any): any => {
           contentWidth={width}
           source={{ html: addSpaceToHtml(highlightData) }}
           key={detailDataToUse.id}
-          baseStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
+          baseStyle={{...(isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
           tagsStyles={{
             img: { maxWidth: Dimensions.get("window").width },
-            p: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h1: { marginBottom: 0, marginTop: 10, textAlign: "left" },
-            h2: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h3: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h4: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h5: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            h6: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            span: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-            li: { textAlign: "left" },
+            p: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h1: { marginBottom: 0, marginTop: 10, textAlign: htmlTextAlign() },
+            h2: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h3: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h4: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h5: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            h6: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            span: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+            li: { textAlign: htmlTextAlign() },
             br: { height: 0 },
             iframe: { maxWidth: "100%", height: 200 },
           }}
@@ -971,19 +972,19 @@ const renderHtmlImage = ({ tnode }: any): any => {
                         : addSpaceToHtml(detailDataToUse?.body),
                   }}
                   key={detailDataToUse.id}
-                  baseStyle={styles.htmlCode}
+                  baseStyle={{...(styles.htmlCode), direction: appLayoutDirection()}}
                   ignoredStyles={["color", "fontSize", "fontFamily"]}
                   tagsStyles={{
                     img: { maxWidth: Dimensions.get("window").width - 30 },
-                    p: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h1: { marginBottom: 0, marginTop: 10, textAlign: "left" },
-                    h2: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h3: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h4: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h5: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    h6: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    span: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                    li: { textAlign: "left" },
+                    p: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h1: { marginBottom: 0, marginTop: 10, textAlign: htmlTextAlign() },
+                    h2: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h3: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h4: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h5: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    h6: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    span: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                    li: { textAlign: htmlTextAlign() },
                     br: { height: 0 },
                     iframe: { maxWidth: "100%", height: 200 },
                   }}
@@ -1002,7 +1003,7 @@ const renderHtmlImage = ({ tnode }: any): any => {
                   }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}
-                  renderersProps={{
+                  renderersProps={{...htmlListRenderers,
                     table: {
                       cssRules,
                       // Put the table config here (previously,

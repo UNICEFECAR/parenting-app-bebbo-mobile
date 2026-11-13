@@ -1,8 +1,8 @@
+import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
 import { scheduleIdleTask } from "../../services/scheduleIdleTask";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonLinkPress,
-  ButtonTextLg,
   ButtonWithBorder,
 } from "@components/shared/ButtonGlobal";
 import { AreaContainer } from "@components/shared/Container";
@@ -605,11 +605,10 @@ const ChildProfile = ({ navigation }: Props): any => {
                       });
                     }}
                   >
-                    <OuterIconRow>
-                      <ButtonTextLg style={styles.plusBtnColor}>
-                        {t("childSetupListaddSiblingBtn")}
-                      </ButtonTextLg>
-                    </OuterIconRow>
+                    <ButtonLeadingPlusLabel
+                      label={t("childSetupListaddSiblingBtn")}
+                      style={styles.plusBtnColor}
+                    />
                   </ButtonWithBorder>
 
                   <ButtonWithBorder
@@ -619,11 +618,10 @@ const ChildProfile = ({ navigation }: Props): any => {
                       });
                     }}
                   >
-                    <OuterIconRow>
-                      <ButtonTextLg style={styles.plusBtnColor}>
-                        {t("expectChildAddTxt")}
-                      </ButtonTextLg>
-                    </OuterIconRow>
+                    <ButtonLeadingPlusLabel
+                      label={t("expectChildAddTxt")}
+                      style={styles.plusBtnColor}
+                    />
                   </ButtonWithBorder>
                 </ShiftFromTop30>
               </View>

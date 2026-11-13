@@ -1,3 +1,4 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../../localization/layoutDirection";
 import { returnToScreen } from "../../../navigation/returnToScreen";
 import AgeBrackets from "@components/AgeBrackets";
 import VideoPlayer from "@components/VideoPlayer";
@@ -429,18 +430,18 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                       source={{
                         html: addSpaceToHtml(selectedChildDevData?.milestone),
                       }}
-                      baseStyle={styles.font14}
+                      baseStyle={{...(styles.font14), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
                       ignoredStyles={["color", "fontSize", "fontFamily"]}
                       tagsStyles={{
-                        p: { textAlign: "left", marginBottom: 15 },
-                        h1: { textAlign: "left" },
-                        h2: { textAlign: "left" },
-                        h3: { textAlign: "left" },
-                        h4: { textAlign: "left" },
-                        h5: { textAlign: "left" },
-                        h6: { textAlign: "left" },
-                        span: { textAlign: "left" },
-                        li: { textAlign: "left" },
+                        p: { textAlign: htmlTextAlign(), marginBottom: 15 },
+                        h1: { textAlign: htmlTextAlign() },
+                        h2: { textAlign: htmlTextAlign() },
+                        h3: { textAlign: htmlTextAlign() },
+                        h4: { textAlign: htmlTextAlign() },
+                        h5: { textAlign: htmlTextAlign() },
+                        h6: { textAlign: htmlTextAlign() },
+                        span: { textAlign: htmlTextAlign() },
+                        li: { textAlign: htmlTextAlign() },
                       }}
                     />
                   ) : null}

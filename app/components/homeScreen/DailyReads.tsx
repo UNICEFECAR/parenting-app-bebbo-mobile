@@ -1,3 +1,4 @@
+import HorizontalContentList from "@components/shared/HorizontalContentList";
 import { appConfig } from "../../instances";
 import { MainContainer } from "@components/shared/Container";
 import {
@@ -16,7 +17,7 @@ import {
 import { DateTime } from "luxon";
 import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import FastImage from "@d11/react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
 import { ThemeContext } from "styled-components/native";
@@ -567,7 +568,7 @@ const DailyReads = (): any => {
         </ShiftFromTopBottom10>
         {orderedLists.map(({ key, data, isAdvice }) => (
           <View key={key} style={styles.flatlistOuterView}>
-            <FlatList
+            <HorizontalContentList
               data={data}
               horizontal
               renderItem={({ item, index }: any): any =>

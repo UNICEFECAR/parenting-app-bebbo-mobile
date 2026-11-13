@@ -70,7 +70,6 @@ import {
 } from "@styles/typography";
 import { DateTime } from "luxon";
 import React, {
-  createRef,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -88,7 +87,7 @@ import {
   Switch,
   View,
 } from "react-native";
-import ActionSheet from "react-native-actions-sheet";
+import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
 import { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import * as RNFS from "@dr.pogodin/react-native-fs";
 import VectorImage from "react-native-vector-image";
@@ -199,8 +198,8 @@ const SettingScreen = (props: any): any => {
   const [country, setCountry] = useState<any>("");
   const [language, setlanguage] = useState<any>("");
   const navigation = useNavigation<any>();
-  const actionSheetRef = createRef<any>();
-  const actionSheetRefImport = createRef<any>();
+  const actionSheetRef = useRef<AppActionSheetRef>(null);
+  const actionSheetRefImport = useRef<AppActionSheetRef>(null);
 
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(selectLanguageCode);
@@ -234,7 +233,7 @@ const SettingScreen = (props: any): any => {
     } finally {
       driveOperationRunning.current = false;
       setIsImportRunning(false);
-      actionSheetRefImport.current?.setModalVisible(false);
+      actionSheetRefImport.current?.hide();
     }
   };
 
@@ -372,7 +371,7 @@ const SettingScreen = (props: any): any => {
     } finally {
       driveOperationRunning.current = false;
       setIsExportRunning(false);
-      actionSheetRef.current?.setModalVisible(false);
+      actionSheetRef.current?.hide();
     }
   };
 
@@ -385,7 +384,7 @@ const SettingScreen = (props: any): any => {
     importAllData();
   };
   const exportAllData = async (): Promise<any> => {
-    actionSheetRef.current?.setModalVisible(true);
+    actionSheetRef.current?.show();
   };
   const toggleSwitch = (): any => {
     if (
@@ -985,7 +984,7 @@ const SettingScreen = (props: any): any => {
           }
         }
         setIsImportRunning(false);
-        actionSheetRefImport.current?.setModalVisible(false);
+        actionSheetRefImport.current?.hide();
       }
     } catch (error) {
       console.error("Backup import failed", error);
@@ -1084,7 +1083,7 @@ const SettingScreen = (props: any): any => {
             }
           }
           setIsImportRunning(false);
-          actionSheetRefImport.current?.setModalVisible(false);
+          actionSheetRefImport.current?.hide();
         }
       })
       .catch(handleError);
@@ -1433,7 +1432,7 @@ const SettingScreen = (props: any): any => {
               <ButtonPrimary
                 disabled={isExportRunning || isImportRunning}
                 onPress={(): any => {
-                  actionSheetRefImport.current?.setModalVisible(true);
+                  actionSheetRefImport.current?.show();
                 }}
               >
                 <ButtonText numberOfLines={2}>
@@ -1455,23 +1454,12 @@ const SettingScreen = (props: any): any => {
                 <FDirRow>
                   <SettingOptions>
                     <Pressable
-                      onPress={async (): Promise<any> => {
-                        console.log("icon clicked");
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRef.current?.hideAndWait())) return;
                         try {
-                          if (Platform.OS === "android") {
-                            console.log("1233");
-
-                            console.log("You can write");
-                            actionSheetRef.current?.setModalVisible(false);
-                            exportFile();
-                          } else {
-                            actionSheetRef.current?.setModalVisible(false);
-                            setTimeout(() => {
-                              exportFile();
-                            }, 350);
-                          }
-                        } catch (err) {
-                          console.warn(err);
+                          await exportFile();
+                        } catch (error) {
+                          console.warn(error);
                         }
                       }}
                     >
@@ -1485,14 +1473,10 @@ const SettingScreen = (props: any): any => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable
-                      onPress={(): any => {
-                        actionSheetRef.current?.setModalVisible(false);
-                        if (netInfo && netInfo.isConnected == true) {
-                          Platform.OS == "ios"
-                            ? setTimeout(() => {
-                                setExportAlertVisible(true);
-                              }, 350)
-                            : setExportAlertVisible(true);
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRef.current?.hideAndWait())) return;
+                        if (netInfo && netInfo.isConnected === true) {
+                          setExportAlertVisible(true);
                         } else {
                           Alert.alert("", t("noInternet"));
                         }
@@ -1519,26 +1503,18 @@ const SettingScreen = (props: any): any => {
                 <FDirRow>
                   <SettingOptions>
                     <Pressable
-                      onPress={(): any => {
-                        console.log("icon clicked");
-                        actionSheetRefImport.current?.setModalVisible(false);
-                        setTimeout(async () => {
-                          try {
-                            //import
-                            if (Platform.OS === "android") {
-                              console.log("1233");
-                              importFromSettingsFile();
-                            } else {
-                              importFromSettingsFile();
-                            }
-                          } catch (err) {
-                            if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
-                              // User cancelled the picker, exit any dialogs or menus and move on
-                            } else {
-                              throw err;
-                            }
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRefImport.current?.hideAndWait())) return;
+                        try {
+                          await importFromSettingsFile();
+                        } catch (error) {
+                          if (
+                            !(isErrorWithCode(error) && error.code === errorCodes.OPERATION_CANCELED)
+                          ) {
+                            console.error(error);
+                            Alert.alert("", t("generalError"));
                           }
-                        }, 350);
+                        }
                       }}
                     >
                       <VectorImage source={require("@images/ic_file.svg")} />
@@ -1549,14 +1525,10 @@ const SettingScreen = (props: any): any => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable
-                      onPress={(): any => {
-                        actionSheetRefImport.current?.setModalVisible(false);
-                        if (netInfo && netInfo.isConnected == true) {
-                          Platform.OS == "ios"
-                            ? setTimeout(() => {
-                                setImportAlertVisible(true);
-                              }, 350)
-                            : setImportAlertVisible(true);
+                      onPress={async (): Promise<void> => {
+                        if (!(await actionSheetRefImport.current?.hideAndWait())) return;
+                        if (netInfo && netInfo.isConnected === true) {
+                          setImportAlertVisible(true);
                         } else {
                           Alert.alert("", t("noInternet"));
                         }

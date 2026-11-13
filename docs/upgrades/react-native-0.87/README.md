@@ -1005,3 +1005,220 @@ selection, pointer spacing and flyout flipping near the top edge.
 The reference fill uses the exterior upper/lower curves as one base plus the middle range, avoiding thin antialiasing seams between three adjacent fills. If reference rows do not align, the renderer retains the original separate-band fallback. Source rows and duplicate X values are preserved.
 
 Final visual-correction verification: Android prodRelease and iOS Release simulator builds pass. Installed both; Android was visually checked using the existing 4 kg / 44 cm and 10 kg / 70 cm measurements, with both compact pointed tooltips open together. The plotted values were not edited. iOS startup passes; the updated tooltip appearance still needs a manual iOS visual check. All 112 service tests pass with no additional TypeScript diagnostics.
+
+## Design batch 1: action sheets and styled components
+
+Upgrade `react-native-actions-sheet` from 0.9.x to 11.0.0 and
+`styled-components` from 6.1.x to 6.6.0. Follow the upstream
+[sheet migration guide](https://rnas.vercel.app/guides/migrate) and retain
+the existing Reanimated/Worklets dependencies. No new native dependency,
+translation key, font family, font size or theme colour is introduced.
+
+Add `app/components/shared/AppActionSheet.tsx` and migrate all six consumers:
+`QuickLinksRow`, `SettingScreen`, `ChildSetup`, `ChildImportSetup`,
+`EditParentDetails` and `EditChildProfile`. Use stable refs and the current
+show/hide methods. Home's backup shortcut opens its own sheet through a ref.
+Use the library's ScrollView with a viewport-relative height limit so longer
+option lists remain accessible. Existing content and destination choices remain.
+
+File/photo pickers and Drive confirmation dialogs wait for the sheet's close
+callback instead of fixed 350 ms delays. Version 11 reports iOS closure after
+native Modal dismissal. The wrapper prevents a second presentation during
+closing and cancels pending follow-up actions when its screen unmounts.
+Native backdrop dismissal participates in the same guard. File picker errors
+reuse the existing general-error translation and cancellation remains quiet.
+
+Remove the conflicting styled-components v5 type packages and extend both
+root/native DefaultTheme declarations using the same existing theme shape.
+Declare the previously transitive Node types explicitly and retain Jest/Node
+globals in tsconfig. Remove the obsolete styled-components PostCSS override:
+the new release no longer uses that dependency. Other security overrides remain.
+
+Verification: all 118 service tests pass across 11 suites. One consolidated
+`designComponents.test.tsx` suite covers delayed dismissal, duplicate taps,
+unmount cancellation, backdrop dismissal, reopening and shared typography.
+No new TypeScript diagnostics relative to the preceding batch; existing
+project errors remain. Changed components compile for all eight flavours.
+Android prodRelease and iOS Release simulator builds pass and both apps launch.
+Android visual checks cover Home backup and Settings backup/import sheet layout and icons,
+Drive confirmation after dismissal, returning from file selection without a
+hung loader, and relationship selection without saving the profile. iOS has
+startup verification; its sheet/picker interactions still need manual checking.
+npm audit remains at 21 findings (11 low, 10 moderate, zero high/critical).
+
+Manual follow-up: test relationship selection during onboarding and profile
+editing, Home/Settings file and Drive backup, cancelling import, and child photo
+camera/gallery options on both platforms. Include smaller screens, landscape,
+large accessibility text and long translated option labels. Full RTL switching,
+directional styles/icons and the screen-by-screen visual audit are the next
+design pass; this batch does not enable or change language direction.
+
+## Design batch 2: RTL foundation
+
+Add `app/localization/layoutDirection.ts` to determine direction using real
+language metadata (`luxonLocale` before the CMS language/resource IDs), with
+compatibility for the existing GRarb/GRda IDs. Script subtags remain meaningful:
+az-Arab is RTL and az-Latn is LTR. Do not infer direction from the phone alone.
+
+`App.tsx` configures persistence and checks native direction after rehydration,
+before mounting navigation. Direction changes flush the saved language and
+resume route before the existing native restart mechanism runs. Restart in both
+directions; unchanged direction does not restart. A persistence failure prevents
+restart, and startup failures use the existing translated retry/error screen.
+`AppNavigation.tsx` restores the saved loading parameters, consumes the resume
+flag, and explicitly supplies navigator direction. `HomeDrawerNavigator.tsx`
+places the drawer on the leading side.
+
+Replace the duplicated locale checks/timers in CountryLanguageConfirmation,
+LanguageSelection and the single-language LoadingScreen path. Onboarding and
+country/language changes resume the same content-loading destination. A locale
+or country change no longer counts as unchanged merely because two CMS entries
+share a backend language code. Initial single-language downloads wait for the
+language/direction setup. Existing content APIs and translations remain.
+
+Use logical `text-align: start` for leading-aligned shared text across all eight
+flavours and shared form/button/filter/radio/checkbox labels. Preserve centred
+text, font families/sizes, colours and numeric values. Fabric in RN 0.87 mirrors
+physical left/right text alignment; selecting right again in RTL can invert it
+twice. The older HTML CSS parser does not accept `start`, so its text styles use
+the compatible leading-edge value through `appTextAlign`, with an explicit HTML
+direction and the renderer's RTL list support. Keep existing table/iframe props.
+Native TextInputs retain their existing separate direction-aware alignment.
+
+Mirror the Fontello navigation arrows (`ic_back`, `ic_angle_left`,
+`ic_angle_right`) through the common Icon component. Keep other pictograms and
+logos unchanged. Retain the growth chart's existing LTR plotting container;
+there is no chart geometry or measurement calculation change in this batch.
+
+Files changed for this RTL batch:
+
+- `App.tsx`, `app/localization/layoutDirection.ts`.
+- `app/navigation/AppNavigation.tsx`, `app/navigation/HomeDrawerNavigator.tsx`.
+- `app/screens/localization/CountryLanguageConfirmation.tsx`,
+  `app/screens/localization/LanguageSelection.tsx`, `app/screens/LoadingScreen.tsx`.
+- `app/instances/{babuni,bebbo,bebboDev,bebboPacific,foleja,merhabaBebek,reraiUmntwana,wawamor}/styles/typography.tsx`.
+- `app/components/shared/{ButtonGlobal,CheckboxStyle,ChildSetupStyle,FilterStyle,Icon,radio}.tsx`.
+- `app/components/ChildDevelopmentCollapsibleItem.tsx`,
+  `app/components/NotificationsCategories.tsx`.
+- `app/screens/{PrivacyPolicy,TermsPage}.tsx`,
+  `app/screens/home/{Aboutus,ChatBot,DetailsScreen}.tsx`,
+  `app/screens/home/bottomTabs/ChildDevelopment.tsx`.
+- `app/services/__tests__/designComponents.test.tsx` and this document.
+
+Verification: all 133 service tests pass in the existing 11 suites. Coverage
+includes Arabic/Dari and other language/script detection, both native direction
+transitions, persistence before restart, resume parameters, duplicate restart
+protection, failed flush and logical/centred typography. No new TypeScript
+diagnostics relative to the preceding design batch; existing project errors
+remain. Changed components compile for all eight flavours. Android prodRelease
+and iOS Release simulator builds pass.
+
+An isolated temporary Arabic preview, using the actual shared components and
+existing GRarb translations, was installed on both platforms in native RTL
+mode. It verified leading-aligned headings/labels, centred buttons, mirrored
+arrows, unmirrored favourite icons, Arabic TextInput and HTML paragraphs/lists.
+The Android relationship sheet was opened and visually checked. This caught and
+corrected the Fabric alignment inversion on both platforms. The preview never
+mounted the app store/persistence or saved profile/content data. It was removed
+and the original entry point restored before rebuilding the normal apps.
+Installed those normal builds on both devices: startup detected native RTL test
+mode, restarted into the saved English/LTR layout, and showed Home with the
+existing child profiles. No Arabic test language or fixture remains enabled.
+
+The production language list and CMS language definitions remain unchanged;
+Arabic/Dari are still commented out. This is shared RTL groundwork, not a claim
+that every application screen has been visually audited in Arabic. Remaining
+audit: full onboarding/profile save/back flows, Home/Daily Reads, tabs/drawer
+gestures, search/filter menus, long translated content, health/growth/vaccination
+forms and date pickers, media/tables, backup/restore sheets, landscape and large
+text. Use approved Arabic taxonomy/content to verify the complete user flows
+before enabling the language for release. Mixed-script numeric values and dates
+need review in their actual translated sentences as part of that audit.
+
+### Temporary RTL testing with English content
+
+`env/.env.bebboDev` enables `BebboForceRTLForTesting=true`. The override in
+`getLanguageDirection` requires both this exact flag value and
+`FLAVOR=bebboDev`; other flavours keep normal language-based direction. It works
+in Bebbo Dev Debug and Release builds, retains the selected translations and
+CMS content, and uses the existing startup restart when native direction differs.
+Build using both `ENVFILE=env/.env.bebboDev` and `FLAVOR=bebboDev`.
+For Debug, restart Metro with the same flavour and `--reset-cache` after changing
+the flag. To disable the override, set it to `false` and rebuild/relaunch; the
+startup direction check returns an English app to LTR automatically. No storage
+reset or reinstall is needed. Remove/disable the flag after the visual audit.
+English RTL testing checks layout and navigation; it does not replace Arabic
+text wrapping, font, mixed-script or translated-content checks.
+
+### RTL UI follow-up: icons, popup controls, charts and rulers
+
+The requested chart behaviour now supersedes the earlier decision to retain
+LTR plotting: in RTL the X scale's pixel range reverses, minimum values and
+earlier measurements start on the right, and the Y labels/unit move to the
+right. Reference areas, measurement lines/dots, press targets and tooltips all
+use that same scale. Text stays upright; source measurements, units, date/age
+conversion and interpretation do not change. LTR keeps its existing scale.
+
+`Ruler.tsx` isolates native scroll offsets in an LTR container and mirrors the
+scroll viewport in RTL. Numeric text is mirrored back individually. Initial
+position is applied after content layout without the old timer/animation;
+selection is bounded to the ruler range, end spacing matches the declared
+content width, and snapping subtracts the minimum instead of adding it. This
+keeps the pointer, displayed selection and returned value consistent, including
+rulers with a nonzero minimum.
+
+`Icon.tsx` isolates font glyphs from RTL paragraph direction, centres them and
+prevents flex shrinking. The existing directional-arrow transform remains;
+other pictograms are unchanged. `ModalPopupStyle.tsx` keeps shared close
+controls at the physical top-right in either layout, including the absolute
+development-video close control. This is a consistent application design
+choice; top-left close controls would also be valid in a mirrored RTL design.
+
+Files: `app/components/Ruler.tsx`, `app/components/growth/GrowthChart.tsx`,
+`app/components/shared/Icon.tsx`, `app/components/shared/ModalPopupStyle.tsx`,
+the existing consolidated `designComponents.test.tsx` and `growthChart.test.tsx`
+suites, and this document. No chat layout change was made after confirmation
+that its layout was working. No dependency, translation or native picker change.
+
+Verification: all 137 service tests pass. New coverage checks reversed chart
+touch targets/tooltip values and ruler initial selection, offsets, snapping and
+limits in both directions. No new TypeScript diagnostics compared with staged
+code; existing project errors remain. Android and iOS Release preview builds
+pass. An isolated in-memory RTL preview confirmed full icon glyphs, chart
+direction/labels and ruler alignment on both platforms. Android interaction
+verified ruler scrolling, the right-side measurement's correct tooltip, and a
+top-right popup close control. It did not save profile measurements. The preview
+was removed and the original entry point restored for final normal builds.
+Both final normal Release builds pass; installed and launched both, confirming
+the existing Home screen and profiles render in the enabled Bebbo Dev RTL mode.
+
+Native date/time dialogs have their own localization. On Android the picker
+follows the system/app locale; the JS-only English-as-RTL flag does not change
+that locale. iOS also supports the existing picker `locale` prop, currently
+derived from the selected language, so forcing English layout to RTL still
+leaves an English picker. Verify native dialogs with a real Arabic system/app
+locale when auditing their localization. See the
+[picker localization notes](https://github.com/react-native-datetimepicker/datetimepicker#localization-note).
+
+### RTL category icon spacing
+
+- `app/components/shared/FilterStyle.tsx`: use symmetric tile padding and a row gap, with a fixed, non-shrinking 24-point icon slot. Keep labels flexible and preserve their existing font size.
+- `app/components/ArticleCategories.tsx` and `app/components/ActivitiesCategories.tsx`: replace nested one-sided icon margins with the shared slot. Icon sizes, category order, filter selection and analytics are unchanged.
+- `app/components/NotificationsCategories.tsx`: use the same slot and row spacing instead of putting flex and a one-sided margin on the glyph itself.
+- Check Advice and Games category filters and Notification filters in LTR and RTL, including selected categories and long translated labels. This is a targeted layout fix; a complete screen-by-screen visual audit remains separate.
+
+### RTL onboarding follow-up
+
+- `FeaturesTCView.tsx` and `Terms.tsx`: constrain feature text to its available column, align it to the leading edge on both platforms, and let the consent text wrap beside its checkbox.
+- `ButtonGlobal.tsx`, `ChildSetupList.tsx` and `home/ChildProfile.tsx`: render the add-child plus as a separate leading element. Reuse existing translations, removing a legacy plus prefix/suffix at render time to avoid duplicate symbols.
+- `ModalPopupStyle.tsx`: close controls now follow the trailing edge (right in LTR, left in RTL), including development-video popups. This supersedes the earlier physical-top-right assumption.
+- `ChildDate.tsx` and `FormPrematureContainer.tsx`: move info buttons out of nested text into separate, non-shrinking touch areas. Opening premature-child information does not toggle its checkbox.
+- Regression coverage remains in `designComponents.test.tsx`; no additional test file or translation key is required.
+- Validation: 140 tests pass; no new TypeScript diagnostics versus the staged baseline; normal Android Release and iOS simulator Release builds pass. Temporary component previews confirmed Android RTL and iOS LTR layout. The iOS RTL onboarding flow still needs a visual check. Preview files were removed and the original app entry point restored.
+
+### Full Terms screen width and scrolling
+
+- `app/screens/Terms.tsx`: stretch the page to the available width, explicitly constrain the feature and consent sections to that width, and use growing scroll content instead of a fixed-height flex container. This prevents the narrow-column layout and overlapping content seen on iOS.
+- Verified the actual Terms screen, with the normal app providers and navigator, on the Android emulator and iPhone 17 simulator in RTL. Feature descriptions wrap within their column; the consent checkbox, links and Continue button remain separate. This supersedes the prior note that iOS RTL onboarding verification was pending for this screen.
+- The temporary Terms-only start route used for verification was removed. No onboarding acceptance or child data was saved.
+- Also verified scrolling on a shortened Android display (1080 × 1600), then restored the original display size. All 140 tests pass, with no new TypeScript diagnostics.

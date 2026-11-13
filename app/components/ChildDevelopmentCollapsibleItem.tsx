@@ -1,3 +1,4 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../localization/layoutDirection";
 import { useNavigation } from "@react-navigation/native";
 import {
   Heading4,
@@ -254,18 +255,18 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                         <HTML
                           contentWidth={width}
                           source={{ html: addSpaceToHtml(item.body) }}
-                          baseStyle={styles.htmlFontSize}
+                          baseStyle={{...(styles.htmlFontSize), direction: appLayoutDirection()}} renderersProps={htmlListRenderers}
                           ignoredStyles={["color", "fontSize", "fontFamily"]}
                           tagsStyles={{
-                            p: { textAlign: "left", marginTop: 0 },
-                            h1: { textAlign: "left" },
-                            h2: { textAlign: "left" },
-                            h3: { textAlign: "left" },
-                            h4: { textAlign: "left" },
-                            h5: { textAlign: "left" },
-                            h6: { textAlign: "left" },
-                            span: { textAlign: "left" },
-                            li: { textAlign: "left" },
+                            p: { textAlign: htmlTextAlign(), marginTop: 0 },
+                            h1: { textAlign: htmlTextAlign() },
+                            h2: { textAlign: htmlTextAlign() },
+                            h3: { textAlign: htmlTextAlign() },
+                            h4: { textAlign: htmlTextAlign() },
+                            h5: { textAlign: htmlTextAlign() },
+                            h6: { textAlign: htmlTextAlign() },
+                            span: { textAlign: htmlTextAlign() },
+                            li: { textAlign: htmlTextAlign() },
                           }}
                         />
                       ) : null}

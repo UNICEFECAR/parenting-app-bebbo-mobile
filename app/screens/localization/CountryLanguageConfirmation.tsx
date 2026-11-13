@@ -1,3 +1,4 @@
+import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonPrimary,
@@ -42,7 +43,6 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  I18nManager,
   Platform,
   BackHandler,
   Text,
@@ -58,7 +58,6 @@ import {
   setSponsorStore,
 } from "../../redux/reducers/localizationSlice";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
-import RNRestart from "react-native-restart";
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor, secondaryColor } from "@styles/style";
 import moment from "moment";
@@ -115,9 +114,6 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const countrySelectedId = useAppSelector(
     (state: any) => state.selectedCountry.countrySelectedId
   );
-  const AppLayoutDirection = useAppSelector(
-    (state: any) => state.selectedCountry.AppLayoutDirection
-  );
   const locale = useAppSelector((state: any) => state.selectedCountry.locale);
   const selectedLocale = useAppSelector(
     (state: any) => state.selectedCountry.selectedLocale
@@ -143,9 +139,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     (state: any) => state.selectedCountry.sponsors
   );
   const allCountries = useAppSelector(selectAllCountries);
-  
+
   const { t, i18n } = useTranslation();
-  console.log(I18nManager.isRTL, "---is rtl val");
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split("-");
     return languageCode;
@@ -200,32 +195,32 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const getDeviceLocaleTag = (): string => {
     return RNLocalize.getLocales()?.[0]?.languageTag || "en-US";
   };
-  
+
   const getDeviceLanguageCode = (): string => {
     return RNLocalize.getLocales()?.[0]?.languageCode || "en";
   };
-  
+
   const getFirstAvailableSelection = () => {
     const firstCountry = allCountries?.[0] || null;
     const firstLanguage = firstCountry?.languages?.[0] || null;
-  
+
     return {
       country: firstCountry,
       language: firstLanguage,
     };
   };
-  
+
   const getCountryByDeviceCountryCode = (deviceCountryCode: string) => {
     if (!allCountries?.length) return null;
-  
+
     const normalizedCode = deviceCountryCode?.toLowerCase();
-  
+
     return (
       allCountries.find((countryItem: any) =>
         countryItem?.languages?.some((lang: any) => {
           const luxonLocale = lang?.luxonLocale?.toLowerCase() || "";
           const languageCodeVal = lang?.languageCode?.toLowerCase() || "";
-  
+
           return (
             luxonLocale.endsWith(`-${normalizedCode}`) ||
             languageCodeVal.startsWith(`${normalizedCode}-`) ||
@@ -235,38 +230,38 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       ) || null
     );
   };
-  
+
   const getMatchingLanguageFromCountry = (countryObj: any) => {
     if (!countryObj?.languages?.length) return null;
-  
+
     const deviceLocaleTag = getDeviceLocaleTag();
     const deviceLanguageCode = getDeviceLanguageCode();
-  
+
     const exactLocaleMatch = countryObj.languages.find(
       (lang: any) => lang?.luxonLocale === deviceLocaleTag
     );
     if (exactLocaleMatch) return exactLocaleMatch;
-  
+
     const sameLanguageMatch = countryObj.languages.find((lang: any) => {
       const luxonLang = lang?.luxonLocale?.split("-")[0]?.toLowerCase();
       return luxonLang === deviceLanguageCode?.toLowerCase();
     });
     if (sameLanguageMatch) return sameLanguageMatch;
-  
+
     return countryObj.languages[0] || null;
   };
-  
+
   const getSavedSelection = () => {
     if (!allCountries?.length) return null;
     if (!countryId) return null;
-  
+
     const savedCountry = allCountries.find(
       (countryItem: any) =>
         String(countryItem?.CountryID ?? countryItem?.countryId) === String(countryId)
     );
-  
+
     if (!savedCountry) return null;
-  
+
     const savedLanguage =
       savedCountry.languages?.find(
         (lang: any) =>
@@ -274,22 +269,22 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           lang?.locale === locale ||
           lang?.languageCode === languageCode
       ) || savedCountry.languages?.[0];
-  
+
     if (!savedLanguage) return null;
-  
+
     return {
       country: savedCountry,
       language: savedLanguage,
     };
   };
-  
+
   const getInitialSelection = () => {
     // 1. previously selected
     const savedSelection = getSavedSelection();
     if (savedSelection) {
       return savedSelection;
     }
-  
+
     // 2. route params if available
     if (route?.params?.country && route?.params?.language) {
       return {
@@ -297,36 +292,36 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         language: route.params.language,
       };
     }
-  
+
     // 3. device-based detection
     const detectedCountry =
       allCountries?.length === 1
         ? allCountries[0]
         : getCountryByDeviceCountryCode(RNLocalize.getCountry());
-  
+
     if (detectedCountry) {
       return {
         country: detectedCountry,
         language: getMatchingLanguageFromCountry(detectedCountry),
       };
     }
-  
+
     // 4. fallback first item
     return getFirstAvailableSelection();
   };
-  
+
   useEffect(() => {
     if (!isVisible) return;
     if (!allCountries?.length) return;
-  
+
     const selectedLanguageTag = getDeviceLocaleTag();
     const selectedLanguageCode = getDeviceLanguageCode();
-  
+
     setLuxonLanLocale(selectedLanguageTag);
     setDeviceLangCode(selectedLanguageCode);
-  
+
     const initialSelection = getInitialSelection();
-  
+
     setCountryData(initialSelection.country);
     setNewLanguage(initialSelection.language);
     setSponsorsData(initialSelection.country);
@@ -362,99 +357,87 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   );
 
   const rtlConditions = async (language: any): Promise<any> => {
-    console.log(language, "[language]");
-    i18n.changeLanguage(language.locale).then(() => {
-      if (language?.locale == "GRarb" || language?.locale == "GRda") {
-        if (AppLayoutDirection == "ltr") {
-          //remove rtl on backhandler
-          Platform.OS == "ios"
-            ? setTimeout(() => {
-                I18nManager.forceRTL(true);
-                RNRestart.Restart();
-              }, 100)
-            : setTimeout(() => {
-                I18nManager.forceRTL(true);
-                RNRestart.Restart();
-              }, 0);
+    try {
+      console.log(language, "[language]");
+      await i18n.changeLanguage(language?.locale || "en");
+      console.log(getLanguageCode(newLanguage?.languageCode));
+      const sLng = getLanguageCode(newLanguage?.languageCode);
+      moment.locale(sLng);
+      if (
+        userIsOnboarded === true &&
+        language.locale === locale &&
+        (countryData?.CountryID ?? countryData?.countryId) === countryId
+      ) {
+        if (await applyLanguageDirection(language, { screen: "HomeDrawerNavigator" }))
+          return;
+        navigation.reset({
+          index: 0,
+          routes: [
+            {
+              name: "HomeDrawerNavigator",
+            },
+          ],
+        });
+      } else {
+        if (route?.params && Object.keys(route.params).length !== 0) {
+          dispatch(onLocalizationSelect(route.params));
+          dispatch(setInfoModalOpened({ key: "dailyMessageNotification", value: "" }));
+          try {
+            await setUserProperties({
+              country: route.params?.country?.name,
+              language: newLanguage?.displayName,
+            });
+          } catch (error) {
+            console.error("Error setting user properties:", error);
+          }
         } else {
-          I18nManager.forceRTL(true);
+          console.log("countyData is", countryData);
+          console.log("newLanguage is", newLanguage);
+          const languageSelected = selectedLocale !== "" ? selectedLocale : locale;
+          const filteredLan = countryData?.languages?.filter(
+            (lang: any) => lang?.locale == newLanguage?.locale
+          );
+          console.log("filteredLan is", filteredLan);
+          dispatch(
+            onLocalizationSelect({
+              country: countryData,
+              language: newLanguage,
+              languages: filteredLan,
+              countryId: countryData?.CountryID ?? countryData?.countryId,
+            })
+          );
+          // dispatch(onLocalizationSelect(countryData));
+          dispatch(setInfoModalOpened({ key: "dailyMessageNotification", value: "" }));
+          try {
+            await setUserProperties({
+              country: countryData?.name,
+              language: newLanguage?.displayName,
+            });
+          } catch (error) {
+            console.error("Error setting user properties:", error);
+          }
         }
-      } else {
-        I18nManager.forceRTL(false);
-      }
-    });
-    console.log(getLanguageCode(newLanguage?.languageCode));
-    const sLng = getLanguageCode(newLanguage?.languageCode);
-    moment.locale(sLng);
-    if (userIsOnboarded == true && newLanguage.languageCode == languageCode) {
-      navigation.reset({
-        index: 0,
-        routes: [
-          {
-            name: "HomeDrawerNavigator",
-          },
-        ],
-      });
-    } else {
-      if (route?.params && Object.keys(route.params).length !== 0) {
-        dispatch(onLocalizationSelect(route.params));
-        dispatch(
-          setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
-        );
-        try {
-          await setUserProperties({
-            country: route.params?.country?.name,
-            language: newLanguage?.displayName,
-          });
-        } catch (error) {
-          console.error('Error setting user properties:', error);
-        }
-      } else {
-        console.log("countyData is", countryData);
-        console.log("newLanguage is", newLanguage);
-        const languageSelected =
-          selectedLocale !== "" ? selectedLocale : locale;
-        const filteredLan = countryData?.languages?.filter(
-          (lang: any) => lang?.locale == newLanguage?.locale
-        );
-        console.log("filteredLan is", filteredLan);
-        dispatch(
-          onLocalizationSelect({
-            country: countryData,
-            language: newLanguage,
-            languages: filteredLan,
-            countryId: countryData?.CountryID ?? countryData?.countryId,
-          })
-        );
-        // dispatch(onLocalizationSelect(countryData));
-        dispatch(
-          setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
-        );
-        try {
-          await setUserProperties({
-            country: countryData?.name,
-            language: newLanguage?.displayName,
-          });
-        } catch (error) {
-          console.error('Error setting user properties:', error);
-        }
-      }
 
-      // if (userIsOnboarded == true) {
-      //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
-      // }
+        // if (userIsOnboarded == true) {
+        //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+        // }
 
-      dispatch(setSponsorStore(sponsorsData || allCountries[0]));
-      navigation.navigate("LoadingScreen", {
-        apiJsonData:
-          userIsOnboarded == true
-            ? appConfig.allApisObject(false, incrementalSyncDT)
-            : apiJsonData,
-        prevPage:
-          userIsOnboarded == true
-            ? "CountryLangChange"
-            : "CountryLanguageSelection",
-      });
+        dispatch(setSponsorStore(sponsorsData || allCountries[0]));
+        const params = {
+          apiJsonData:
+            userIsOnboarded == true
+              ? appConfig.allApisObject(false, incrementalSyncDT)
+              : apiJsonData,
+          prevPage:
+            userIsOnboarded == true ? "CountryLangChange" : "CountryLanguageSelection",
+        };
+        if (await applyLanguageDirection(language, { screen: "LoadingScreen", params }))
+          return;
+        navigation.navigate("LoadingScreen", params);
+      }
+    } catch (error) {
+      console.error("Unable to apply selected language", error);
+      Alert.alert("", t("generalError"));
     }
   };
   const saveSelection = (): void => {

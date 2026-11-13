@@ -1,3 +1,4 @@
+import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import TabScreenHeader from "@components/TabScreenHeader";
@@ -66,14 +67,14 @@ const Aboutus = (): any => {
                 ignoredStyles={["color", "fontSize", "fontFamily"]}
                 tagsStyles={{
                   img: { maxWidth: Dimensions.get("window").width - 30 },
-                  p: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h1: { marginBottom: 0, marginTop: 10, textAlign: "left" },
-                  h2: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h3: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h4: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h5: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  h6: { marginBottom: 15, marginTop: 0, textAlign: "left" },
-                  span: { marginBottom: 15, marginTop: 0, textAlign: "left" },
+                  p: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h1: { marginBottom: 0, marginTop: 10, textAlign: htmlTextAlign() },
+                  h2: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h3: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h4: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h5: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  h6: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
+                  span: { marginBottom: 15, marginTop: 0, textAlign: htmlTextAlign() },
                   br: { height: 0 },
                   iframe: { maxWidth: "100%", height: 200 },
                 }}

@@ -8,7 +8,7 @@ import SettingScreen from '@screens/home/SettingScreen';
 import SupportChat from '@screens/home/SupportChat';
 import UserGuide from '@screens/home/UserGuide';
 import React from 'react';
-import { Platform, useWindowDimensions } from 'react-native';
+import { I18nManager, Platform, useWindowDimensions } from 'react-native';
 import DashboardTabNavigator from './DashboardTabNavigator';
 import { HomeDrawerNavigatorStackParamList } from './types';
 const HomeDrawerNavigator =
@@ -26,6 +26,7 @@ export default (): any => {
     <HomeDrawerNavigator.Navigator
       screenOptions={{
         headerShown: false,
+        drawerPosition: I18nManager.isRTL ? 'right' : 'left',
         drawerStyle: { width: drawerWidth },
       }}
       screenLayout={({ children }) => <UnmountInactiveScreen>{children}</UnmountInactiveScreen>}

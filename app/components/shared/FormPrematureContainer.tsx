@@ -14,8 +14,12 @@ export const FormInfoLabel = styled.View`
 export const FormInfoPress = styled.Pressable`
   padding: 10px 10px;
 `;
-export const FormInfoPressPremature = styled.Text`
-  margin-left: 4px;
+export const FormInfoPressPremature = styled.Pressable`
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const FormInfoButtonPress = styled.Pressable`
