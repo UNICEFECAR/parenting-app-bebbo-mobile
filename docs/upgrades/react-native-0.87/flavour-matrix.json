@@ -585,6 +585,13 @@
   "additional_country_development_targets": [
     {
       "ios_target": "ParentBuddyAppXkDev",
+      "android_variant": "xkstaging",
+      "flavour": "foleja",
+      "android_application_id": "com.datamatics.foleja",
+      "ios_application_id": "com.datamatics.foleja",
+      "env_file": "env/.env.foleja",
+      "google_service_plist_group": "XkDevelopment",
+      "firebase_configuration_verified": false,
       "configurations": [
         {
           "name": "Debug",
@@ -597,10 +604,17 @@
           "info_plist": "ParentBuddyAppXkDev-Info.plist"
         }
       ],
-      "native_build_status": "not included in primary eight-flavour build matrix"
+      "native_build_status": "covered by auxiliary-native CI jobs; consult run evidence for results"
     },
     {
       "ios_target": "ParentBuddyAppBanglaDev",
+      "android_variant": "banglastaging",
+      "flavour": "babuni",
+      "android_application_id": "com.datamatics.bangla",
+      "ios_application_id": "com.datamatics.babuni",
+      "env_file": "env/.env.babuni",
+      "google_service_plist_group": "BanglaDevelopment",
+      "firebase_configuration_verified": false,
       "configurations": [
         {
           "name": "Debug",
@@ -613,7 +627,7 @@
           "info_plist": "ParentBuddyAppBanglaDev-Info.plist"
         }
       ],
-      "native_build_status": "not included in primary eight-flavour build matrix"
+      "native_build_status": "covered by auxiliary-native CI jobs; consult run evidence for results"
     }
   ],
   "additional_android_variants": {

@@ -66,12 +66,29 @@ for flavour,(variant,target,group,bundle,project_id) in flavours.items():
       'feature_status':'shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified'}
     rows.append(row)
 aux=[]
+auxiliary_mappings = {
+ 'ParentBuddyAppXkDev': ('xkstaging', 'foleja', 'com.datamatics.foleja', 'com.datamatics.foleja', 'XkDevelopment'),
+ 'ParentBuddyAppBanglaDev': ('banglastaging', 'babuni', 'com.datamatics.bangla', 'com.datamatics.babuni', 'BanglaDevelopment'),
+}
 for key,(name,body) in targets.items():
-    if name in ['ParentBuddyAppXkDev','ParentBuddyAppBanglaDev']:
+    if name in auxiliary_mappings:
+        variant, flavour, bundle, ios_bundle, group = auxiliary_mappings[name]
+        native = re.search(r'\b'+variant+r' \{\s*applicationId [\'\"]([^\'\"]+)',gradle)
+        assert native and native[1] == bundle, f'{name}: Android application ID mismatch'
+        assert (root/f'ios/ParentBuddyApp.xcodeproj/xcshareddata/xcschemes/{name}.xcscheme').exists()
         config_list=lists[field(body,'buildConfigurationList').split()[0]][1]
-        aux.append({'ios_target':name,'configurations':[{'name':configs[c][0],
+        for config_id in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list):
+            config_name, conf = configs[config_id]
+            assert field(conf,'PRODUCT_BUNDLE_IDENTIFIER') == ios_bundle, f'{name}/{config_name}: iOS bundle mismatch'
+            info = field(conf,'INFOPLIST_FILE')
+            assert info and (root/'ios'/info).exists(), f'{name}: missing plist'
+            assert field(conf,'IPHONEOS_DEPLOYMENT_TARGET') == '15.1', f'{name}: supported iOS minimum changed'
+        aux.append({'ios_target':name,'android_variant':variant,'flavour':flavour,
+          'android_application_id':bundle,'ios_application_id':ios_bundle,'env_file':f'env/.env.{flavour}',
+          'google_service_plist_group':group,'firebase_configuration_verified':False,
+          'configurations':[{'name':configs[c][0],
           'bundle_id':field(configs[c][1],'PRODUCT_BUNDLE_IDENTIFIER'),'info_plist':field(configs[c][1],'INFOPLIST_FILE')}
-          for c in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list)],'native_build_status':'not included in primary eight-flavour build matrix'})
+          for c in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list)],'native_build_status':'covered by auxiliary-native CI jobs; consult run evidence for results'})
 report={'evidence':'static source inspection; identifiers validated against explicit project mappings',
  'limitations':'Firebase projects observed read-only where available; installed release routing is not confirmed. Languages are registered UI resource keys, not translation-quality approval.',
  'flavours':rows,'additional_country_development_targets':aux,
@@ -82,4 +99,4 @@ import sys
 if '--check' in sys.argv:
     assert file.read_text()==text, 'Flavour matrix is stale; regenerate'
 else:file.write_text(text)
-print(f'{len(rows)} primary flavours: native IDs, schemes, source manifests, plist paths checked; {len(aux)} additional iOS development targets inventoried')
+print(f'{len(rows)} primary flavours: native IDs, schemes, source manifests, plist paths checked; {len(aux)} additional Android/iOS development mappings checked')

@@ -132,7 +132,7 @@ jobs:
         if: inputs.platform == 'ios'
         run: |
           python3 scripts/check-ios-archive.py "$RUNNER_TEMP/verification.xcarchive" \
-            --application-id "$ANDROID_APP_ID" --firebase-project bebbo-compile-check \
+            --application-id "$IOS_APP_ID" --firebase-project bebbo-compile-check \
             --report "$RUNNER_TEMP/ios-configuration.json"
       - name: Preserve iOS configuration evidence
         if: inputs.platform == 'ios' && always()

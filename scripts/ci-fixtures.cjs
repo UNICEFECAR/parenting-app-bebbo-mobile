@@ -16,7 +16,7 @@ const flavours = {
 const flavour = process.env.FLAVOR || 'bebbo';
 if (!Object.hasOwn(flavours, flavour)) throw new Error('Unknown flavour');
 const developmentTargets = {
-  babuni: ['banglastaging', 'ParentBuddyAppBanglaDev', 'BanglaDevelopment', 'com.datamatics.bangla'],
+  babuni: ['banglastaging', 'ParentBuddyAppBanglaDev', 'BanglaDevelopment', 'com.datamatics.bangla', 'com.datamatics.babuni'],
   foleja: ['xkstaging', 'ParentBuddyAppXkDev', 'XkDevelopment', 'com.datamatics.foleja'],
 };
 const configuration = process.env.NATIVE_CONFIGURATION || 'primary';
@@ -29,7 +29,7 @@ function write(file, data) {
   fs.mkdirSync(path.dirname(file), {recursive: true});
   fs.writeFileSync(file, data);
 }
-for (const [flavour, [variant, , group, bundleId]] of [
+for (const [flavour, [variant, , group, bundleId, iosBundleId = bundleId]] of [
   ...Object.entries(flavours), ...Object.entries(developmentTargets),
 ]) {
   write(`env/.env.${flavour}`, [
@@ -45,7 +45,7 @@ for (const [flavour, [variant, , group, bundleId]] of [
     configuration_version: '1',
   }));
   const values = {GOOGLE_APP_ID: '1:123456789012:ios:0000000000000000000000', GCM_SENDER_ID: '123456789012',
-    API_KEY: 'AIza' + '0'.repeat(35), BUNDLE_ID: bundleId, PROJECT_ID: 'bebbo-compile-check',
+    API_KEY: 'AIza' + '0'.repeat(35), BUNDLE_ID: iosBundleId, PROJECT_ID: 'bebbo-compile-check',
     CLIENT_ID: 'ci-placeholder.apps.googleusercontent.com', REVERSED_CLIENT_ID: 'com.googleusercontent.apps.ci-placeholder', PLIST_VERSION: '1'};
   write(`ios/GoogleServices/${group}/GoogleService-Info.plist`, '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0"><dict>' +
     Object.entries(values).map(([key, value]) => `<key>${key}</key><string>${value}</string>`).join('') + '</dict></plist>\n');
@@ -53,5 +53,5 @@ for (const [flavour, [variant, , group, bundleId]] of [
 if (process.env.GITHUB_ENV) fs.appendFileSync(process.env.GITHUB_ENV, [
   `ANDROID_VARIANT=${selected[0][0].toUpperCase() + selected[0].slice(1)}`,
   `ANDROID_APP_ID=${selected[3]}`,
-  `IOS_SCHEME=${selected[1]}`, `ENVFILE=${path.resolve('env/.env.' + (process.env.FLAVOR || 'bebbo'))}`,
+  `IOS_APP_ID=${selected[4] || selected[3]}`, `IOS_SCHEME=${selected[1]}`, `ENVFILE=${path.resolve('env/.env.' + (process.env.FLAVOR || 'bebbo'))}`,
 ].join('\n') + '\n');

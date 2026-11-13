@@ -15,8 +15,8 @@ function runFixture(t, flavour, configuration = 'primary', ci = 'true') {
   return {cwd, result, variables: fs.existsSync(envFile) ? fs.readFileSync(envFile, 'utf8') : ''};
 }
 
-for (const [flavour, variant, scheme, group, applicationId] of [
-  ['babuni', 'banglastaging', 'ParentBuddyAppBanglaDev', 'BanglaDevelopment', 'com.datamatics.bangla'],
+for (const [flavour, variant, scheme, group, applicationId, iosId = applicationId] of [
+  ['babuni', 'banglastaging', 'ParentBuddyAppBanglaDev', 'BanglaDevelopment', 'com.datamatics.bangla', 'com.datamatics.babuni'],
   ['foleja', 'xkstaging', 'ParentBuddyAppXkDev', 'XkDevelopment', 'com.datamatics.foleja'],
   ['bebbo', 'prod', 'ParentBuddyApp', 'Production', 'org.unicef.ecar.bebbo'],
   ['babuni', 'bangla', 'ParentBuddyAppBangla', 'Bangla', 'org.unicef.bangladesh.babuni'],
@@ -28,13 +28,14 @@ for (const [flavour, variant, scheme, group, applicationId] of [
     assert.equal(result.status, 0, result.stderr);
     assert.ok(variables.includes(`ANDROID_APP_ID=${applicationId}\n`));
     assert.ok(variables.includes(`ANDROID_VARIANT=${variant[0].toUpperCase() + variant.slice(1)}\n`));
+    assert.ok(variables.includes(`IOS_APP_ID=${iosId}\n`));
     assert.ok(variables.includes(`IOS_SCHEME=${scheme}\n`));
     assert.ok(variables.includes(`ENVFILE=${path.join(cwd, 'env/.env.' + flavour)}\n`));
     const google = JSON.parse(fs.readFileSync(path.join(cwd, `android/app/src/${variant}/google-services.json`)));
     assert.equal(google.client[0].client_info.android_client_info.package_name, applicationId);
     assert.equal(google.project_info.project_id, 'bebbo-compile-check');
     const plist = fs.readFileSync(path.join(cwd, `ios/GoogleServices/${group}/GoogleService-Info.plist`), 'utf8');
-    assert.ok(plist.includes(`<key>BUNDLE_ID</key><string>${applicationId}</string>`));
+    assert.ok(plist.includes(`<key>BUNDLE_ID</key><string>${iosId}</string>`));
     assert.ok(plist.includes('<key>PROJECT_ID</key><string>bebbo-compile-check</string>'));
   });
 }
