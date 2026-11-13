@@ -40,5 +40,6 @@ for (const [flavour, [variant, , group, bundleId]] of Object.entries(flavours)) 
 }
 if (process.env.GITHUB_ENV) fs.appendFileSync(process.env.GITHUB_ENV, [
   `ANDROID_VARIANT=${selected[0][0].toUpperCase() + selected[0].slice(1)}`,
+  `ANDROID_APP_ID=${selected[3]}`,
   `IOS_SCHEME=${selected[1]}`, `ENVFILE=${path.resolve('env/.env.' + (process.env.FLAVOR || 'bebbo'))}`,
 ].join('\n') + '\n');

@@ -1,103 +1,69 @@
-import { dataRealmCommon } from './../database/dbquery/dataRealmCommon';
-import { logAnalyticsEvent } from './firebaseAnalytics';
-import NetInfo from "@react-native-community/netinfo";
+import {dataRealmCommon} from '../database/dbquery/dataRealmCommon';
+import {tryLogAnalyticsEvent} from './firebaseAnalytics';
+import NetInfo from '@react-native-community/netinfo';
 
-// A method mark event as synchronized after sync with firebase
 export const markEventAsSynchronized = async (realm: any, event: any): Promise<void> => {
-  realm.write(() => {
-    event.isSynchronized = true;
-  });
+  if (realm.isClosed || (event.isValid && !event.isValid())) return;
+  realm.write(() => {event.isSynchronized = true;});
+};
 
-}
-//A method storing unsynchronized events in a local database Realm
-export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<any> => {
-  console.log(eventData,"eventData--", JSON.stringify(eventData));
+export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<void> => {
+  if (!realm || realm.isClosed) throw new Error('Event storage is unavailable');
   realm.write(() => {
-    const unsyncedEvent = realm.create('Event', {
+    realm.create('Event', {
       name: eventData.name,
       params: eventData.params ? JSON.stringify(eventData.params) : null,
       isSynchronized: false,
     });
   });
-}
+};
 
-//A method to log events to Firebase analytics or realm database.
-export const logEvent = async (eventData: any, netInfo: boolean): Promise<any> => {
-  let resolvedIsConnected : any = netInfo;
-  // If hook value is not ready yet, ask NetInfo directly once
-  if (resolvedIsConnected == null) {
+export const logEvent = async (eventData: any, netInfo?: boolean | null): Promise<void> => {
+  if (!eventData?.name) return;
+  let connected = netInfo;
+  if (connected == null) {
+    try {connected = (await NetInfo.fetch()).isConnected;}
+    catch {connected = false;}
+  }
+  // An online flag does not guarantee that the SDK accepted the event.
+  if (connected === true && await tryLogAnalyticsEvent(eventData.name, eventData.params)) return;
+  try {
+    await storeUnsyncedEvent(await dataRealmCommon.openRealm(), eventData);
+  } catch (error) {
+    // Telemetry failure must not reject a caregiver's form/navigation action.
+    console.warn('Could not save the analytics retry', error);
+  }
+};
+
+async function flushEvents(): Promise<void> {
+  const realm = await dataRealmCommon.openRealm();
+  if (!realm || realm.isClosed) return;
+  // Realm filtered results are live. Snapshot before changing membership.
+  const events = Array.from(realm.objects('Event').filtered('isSynchronized = false')) as any[];
+  for (const event of events) {
+    if (!event?.name || realm.isClosed || (event.isValid && !event.isValid())) continue;
     try {
-      const latestNetState = await NetInfo.fetch();
-      resolvedIsConnected = latestNetState.isConnected;
-      console.log(
-        "NetInfo was null, fetched latest state =>",
-        resolvedIsConnected
-      );
-    } catch (e) {
-      console.warn("Failed to fetch latest network state", e);
-    }
-  }
-
-  console.log(resolvedIsConnected, "logevent called--", eventData);
-  const realm = await dataRealmCommon.openRealm();
-
-  if (resolvedIsConnected === true) {
-    await logAnalyticsEvent(eventData.name, eventData.params);
-  } else if (resolvedIsConnected === false) {
-    await storeUnsyncedEvent(realm, eventData);
-  } else {
-    // Still unknown after fetch; safest fallback is store offline
-    console.log("Network state still unknown, storing event offline");
-    await storeUnsyncedEvent(realm, eventData);
-  }
-}
-//A method synchronizing events when the device is online.
-export const synchronizeEvents = async (netInfo: boolean): Promise<any> => {
-  const realm = await dataRealmCommon.openRealm();
-
-  if (realm != null) {
-    const unsynchronizedEvents = realm.objects('Event').filtered('isSynchronized = false');
-    console.log('unsynchronizedEvents events', unsynchronizedEvents)
-    console.log('unsynchronizedEvents length', unsynchronizedEvents.length)
-    if (!unsynchronizedEvents.length) {
-      return;
-    }
-
-    if (netInfo == true) {
-      // const analyticsInstance = analytics();
-
-      // unsynchronizedEvents.forEach(async (event: any) => {
-      //   if (typeof event !== 'undefined' && event !== null) {
-      //     // logEventToFirebase(analyticsInstance, event);
-      //     const paramsWithOfflineFlag = {
-      //       ...(event.params || {}),
-      //       is_offline_event: true,
-      //     };
-      //     await logAnalyticsEvent(event.name, paramsWithOfflineFlag); 
-      //     markEventAsSynchronized(realm, event);
-      //   }
-      // });
-
-      for (const event of unsynchronizedEvents as any) {
-        console.log("event is--",event)
-        if (!event?.name) continue;
-      
-        let parsedParams = {};
-        try {
-          parsedParams = event.params ? JSON.parse(event.params) : {};
-        } catch (e) {
-          console.warn('Failed to parse event params:', e);
-        }
-        const paramsWithOfflineFlag = {
-          ...parsedParams,
-          is_offline_event: true,
-        };
-        console.log(event.name,"paramsWithOfflineFlag--",paramsWithOfflineFlag)
-        await logAnalyticsEvent(event.name, paramsWithOfflineFlag);
+      let params: Record<string, any> = {};
+      try {
+        const decoded = event.params ? JSON.parse(event.params) : {};
+        if (decoded && typeof decoded === 'object' && !Array.isArray(decoded)) params = decoded;
+      } catch { /* Historical malformed params must not block the rest of the queue. */ }
+      if (await tryLogAnalyticsEvent(event.name, {...params, is_offline_event: true})) {
         await markEventAsSynchronized(realm, event);
       }
-    } else {
-      console.log('Device is offline. Events not synced.');
+    } catch (error) {
+      console.warn('Analytics retry remains pending', error);
     }
   }
 }
+
+// Serialise flushes: startup, reconnect and foreground callbacks can overlap.
+// A later request still gets a pass, including events queued during the first.
+let synchronization: Promise<void> = Promise.resolve();
+export const synchronizeEvents = (netInfo?: boolean | null): Promise<void> => {
+  if (netInfo !== true) return Promise.resolve();
+  synchronization = synchronization.then(flushEvents).catch(error => {
+    console.warn('Analytics queue sync failed', error);
+  });
+  return synchronization;
+};

@@ -8,7 +8,7 @@ const getVariableEntity = (variable: ConfigSettingsEntity):any => {
     updatedAt: new Date(),
   };
 } 
-export const migrateuserRealm = async (oldRealm: any, newRealm: any):Promise<any> => {
+export const migrateuserRealm = (oldRealm: any, newRealm: any):void => {
   const oldObjects = oldRealm.objects('ChildEntity');
   console.log(newRealm);
   const oldChildrenData = oldObjects;
@@ -20,7 +20,7 @@ export const migrateuserRealm = async (oldRealm: any, newRealm: any):Promise<any
   }
 }
 
-export const migrateConfigSettings = async (oldRealm: any, newRealm: any):Promise<any> => {
+export const migrateConfigSettings = (oldRealm: any, newRealm: any):void => {
   const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='currentActiveChildId' OR key=='userParentalRole' OR key=='userName'  OR key=='userEnteredChildData'");
   const oldChildrenData = oldObjects;
   if (oldChildrenData?.length > 0) {

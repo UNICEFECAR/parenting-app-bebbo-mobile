@@ -57,6 +57,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
     // console.log('SortedNoti',sortednoti)
     return sortednoti;
   }
+  return [];
 }
 export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods: any, child: any): any => {
   const noti: any[] = [];
@@ -99,7 +100,7 @@ export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, a
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
-  const childAgeObj = childAge.sort(
+  const childAgeObj = [...(childAge ?? [])].sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
   const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
@@ -312,7 +313,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const childAgeInDaysForCD = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(childBirthDatePlanned)).toMillis(),
   );
-  const childAgeObj = childAge.sort(
+  const childAgeObj = [...(childAge ?? [])].sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
   const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId || child?.taxonomyData?.id;
@@ -682,28 +683,32 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   }
   return vc;
 }
-const generatenotiId = (localNotifications: any, allNotis: any): any => {
-  const rand = Math.floor(10000000 + Math.random() * 90000000);
-  const commonArr = localNotifications?.find((x: any) => x.data.some((item: any) => item.notiid == String(rand)));
-  const commonArr2 = allNotis?.data?.find((item: any) => item.notiid == String(rand));
-  if (commonArr != null && commonArr != {} && commonArr != undefined) {
-    generatenotiId(localNotifications, allNotis);
-  } else if (commonArr2 != null && commonArr2 != {} && commonArr2 != undefined) {
-    generatenotiId(localNotifications, allNotis);
-  } else {
-    return rand;
+const generatenotiId = (localNotifications: any, allNotis: any[]): number => {
+  const existing = Array.from(localNotifications ?? []).flatMap((group: any) => group?.data ?? []);
+  const used = new Set([...existing, ...allNotis].map((item: any) => String(item?.notiid)));
+  const first = Math.floor(10000000 + Math.random() * 90000000);
+  let candidate = first;
+  while (used.has(String(candidate))) {
+    candidate = candidate === 99999999 ? 10000000 : candidate + 1;
+    if (candidate === first) throw new Error('Notification identifier space is exhausted');
   }
-}
+  return candidate;
+};
+
 export const createAllLocalNotificatoins = (child: any, childAge: any, developmentEnabledFlag: boolean, growthEnabledFlag: boolean, vchcEnabledFlag: boolean, t: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any, allVaccineData: any, localNotifications: any): any => {
   const allNotis: any[] = [];
 
-  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId ?? child.plannedTermDate;
-  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId ?? child?.taxonomyData.id;
+  const correctedTaxonomyId = child?.taxonomyData?.prematureTaxonomyId;
+  const childBirthDatePlanned = correctedTaxonomyId != null
+    ? child.plannedTermDate ?? child.birthDate
+    : child.birthDate ?? child.plannedTermDate;
+  const activityTaxonomyId = correctedTaxonomyId ?? child?.taxonomyData?.id;
 
-  const childAgeObj = childAge.sort(
+  const childAgeObj = [...(childAge ?? [])].sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
-  const filteredchildAgeObj = childAgeObj.filter((x: any) => x.id >= activityTaxonomyId);
+  const currentAgeIndex = childAgeObj.findIndex((age: any) => String(age.id) === String(activityTaxonomyId));
+  const filteredchildAgeObj = currentAgeIndex < 0 ? [] : childAgeObj.slice(currentAgeIndex);
   // for CD 1st day of period and 5 days before period end
   filteredchildAgeObj.map((agebracket: any) => {
 

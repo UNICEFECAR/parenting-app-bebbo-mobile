@@ -56,7 +56,8 @@ import {
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { HistoryEntity } from "../../../database/schema/SearchHistorySchema";
 import VectorImage from "react-native-vector-image";
-import MiniSearch from "minisearch";
+import type MiniSearch from "minisearch";
+import {prepareSearchIndex, searchReadyIndex} from "../../../services/searchIndex";
 import {
   ADVICE_AGEGROUP_SELECTED,
   ARTICLE_SEARCHED,
@@ -129,7 +130,8 @@ const Articles = ({ route, navigation }: any): any => {
   );
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState("");
-  let searchIndex = useRef(null);
+  const searchIndex = useRef<MiniSearch<any> | null>(null);
+  const [searchReady, setSearchReady] = useState(false);
   const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
@@ -262,7 +264,7 @@ const Articles = ({ route, navigation }: any): any => {
   const activeChild = useAppSelector(selectActiveChild);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId ??
-    activeChild?.taxonomyData.id;
+    activeChild?.taxonomyData?.id;
   const articleDataall = useAppSelector(selectArticleDataAll);
   const articleDataOld = articleDataall.filter((x: any) =>
     taxonomyIds.articleCategoryArray.includes(x.category)
@@ -271,7 +273,7 @@ const Articles = ({ route, navigation }: any): any => {
   const videoarticleData = VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&
-      x.child_age.includes(activeChild.taxonomyData.id) &&
+      x.child_age.includes(activeChild?.taxonomyData?.id) &&
       taxonomyIds?.articleCategoryArray?.includes(x.category)
   );
 
@@ -443,7 +445,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -481,7 +483,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -538,7 +540,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -572,7 +574,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -701,41 +703,27 @@ const Articles = ({ route, navigation }: any): any => {
   );
 
   useEffect(() => {
-    async function initializeSearchIndex() {
-      let videoArticleDataAllCategory: any;
-      try {
-        if (
-          activeChild != null &&
-          activeChild.taxonomyData != null &&
-          activeChild?.gender != null
-        ) {
-          videoArticleDataAllCategory = VideoArticlesDataall.filter(
-            (x: any) => x.mandatory == appConfig.videoArticleMandatory
-          );
-        }
-        const combineDartArr = mergearr(
-          articleDataall,
-          videoArticleDataAllCategory,
-          false
-        );
-        articleData = [...combineDartArr];
-        const processedArticles = combineDartArr;
-        const searchIndexData = new MiniSearch(miniSearchConfig);
-        // setSearchIndex(searchIndexData);
-        searchIndexData.addAllAsync(processedArticles);
-        searchIndex.current = searchIndexData;
-        setTimeout(() => {
-          setLoadingSection(false)
-        }, 1000)
-      } catch (error) {
-        console.log("Error: Retrieve minisearch data", error);
-      }
-    }
-    // const task = InteractionManager.runAfterInteractions(() => {
-    initializeSearchIndex();
-    // });
-    // return () => task.cancel();
-  }, []);
+    searchIndex.current = null;
+    setSearchReady(false);
+    setLoadingSection(true);
+    const videos = activeChild?.taxonomyData && activeChild?.gender != null
+      ? VideoArticlesDataall.filter((item: any) => item.mandatory == appConfig.videoArticleMandatory)
+      : [];
+    const job = prepareSearchIndex(
+      [...articleDataall, ...videos],
+      miniSearchConfig,
+      index => {
+        searchIndex.current = index;
+        setSearchReady(true);
+        setLoadingSection(false);
+      },
+      error => {
+        console.warn("Error: Retrieve minisearch data", error);
+        setLoadingSection(false);
+      },
+    );
+    return job.cancel;
+  }, [articleDataall, VideoArticlesDataall, languageCode, activeChild?.taxonomyData, activeChild?.gender]);
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
   };
@@ -791,7 +779,7 @@ const Articles = ({ route, navigation }: any): any => {
         //   return results;
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -826,7 +814,7 @@ const Articles = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -958,6 +946,7 @@ const Articles = ({ route, navigation }: any): any => {
                   <OuterIconRow>
                     <Pressable
                       style={styles.pressablePadding}
+                      disabled={!searchReady}
                       onPress={async (e): Promise<any> => {
                         e.preventDefault();
                         Keyboard.dismiss();
@@ -969,6 +958,7 @@ const Articles = ({ route, navigation }: any): any => {
                     </Pressable>
                   </OuterIconRow>
                   <SearchInput
+                    editable={searchReady}
                     autoCapitalize="none"
                     autoCorrect={false}
                     clearButtonMode="always"

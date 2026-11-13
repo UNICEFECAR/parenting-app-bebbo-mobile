@@ -21,15 +21,26 @@ export const logCrashlyticsMessage = (message: string): void => {
 /**
  * Logs a Firebase analytics event with optional parameters
  */
+/** Returns true only after the native SDK accepts the event. */
+export const tryLogAnalyticsEvent = async (
+    eventName: string,
+    params?: Record<string, any>
+): Promise<boolean> => {
+    try {
+        await firebaseLogEvent(analytics, eventName, params);
+        return true;
+    } catch (error) {
+        console.warn('logEvent error:', error);
+        return false;
+    }
+};
+
+// Preserve the non-throwing void API used by UI callers.
 export const logAnalyticsEvent = async (
     eventName: string,
     params?: Record<string, any>
 ): Promise<void> => {
-    try {
-        await firebaseLogEvent(analytics, eventName, params);
-    } catch (error) {
-        console.warn('logEvent error:', error);
-    }
+    await tryLogAnalyticsEvent(eventName, params);
 };
 
 export const setUserProperties = async (

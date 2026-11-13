@@ -6,6 +6,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSe
 
 // ONLY use for TypeScript types:
 import type RealmInstance from 'realm';
+import type {UpdateMode} from 'realm';
 const deleteRealmFilesBeforeOpen = false;
 
 class DataRealmCommon {
@@ -88,12 +89,13 @@ class DataRealmCommon {
                     realm.write(() => {
                         if (records?.length > 0) {
                             records.forEach(record => {
-                                realm?.create<Entity>(entitySchema.name, record, "modified");
+                                realm?.create<Entity>(entitySchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         result="success";
                         return result
                     });
+                    return result;
                 }
                 else {
                     result="fail";
@@ -106,49 +108,28 @@ class DataRealmCommon {
             }
         // });
     }
-    public async createArticles<Entity>(entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string): Promise<any> {
-        // return new Promise(async (resolve, reject) => {
-            let result: any='';
-            try {
-                const realm = await this.openRealm();
-                if (realm) {
-                    realm.write(() => {
-                        if (records?.length > 0) {
-                            records.forEach(async record => {
-                                const obj = realm?.objects<Entity>(entitySchema.name).filtered('id == "' + record.id + '"');
-                                if (obj.length > 0) {
-                                    if (articleRelation == appConfig.isArticlePinned && obj[0].isarticle_pinned != "1") {
-                                        obj[0].isarticle_pinned = articleRelation;
-                                    }
-                                    else {
-                                        if (obj[0].isarticle_pinned != "1") {
-                                            record.isarticle_pinned = articleRelation;
-                                        }
-                                        else {
-                                            record.isarticle_pinned = appConfig.isArticlePinned;
-                                        }
-                                        realm?.create<Entity>(entitySchema.name, record, "modified");
-                                    }
-                                } else {
-                                    record.isarticle_pinned = articleRelation;
-                                    realm?.create<Entity>(entitySchema.name, record, "modified");
-                                }
-                            })
-                        }
-                        result="success";
-                        return result
-                    });
+    public async createArticles<Entity extends {id: number; isarticle_pinned?: string}>(
+        entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string
+    ): Promise<'success' | 'fail'> {
+        try {
+            const realm = await this.openRealm();
+            if (!realm || !Array.isArray(records)) return 'fail';
+            realm.write(() => {
+                for (const record of records) {
+                    const existing = realm.objectForPrimaryKey<{id: number; isarticle_pinned?: string}>(entitySchema.name, record.id);
+                    const pinned = existing?.isarticle_pinned == appConfig.isArticlePinned || articleRelation == appConfig.isArticlePinned;
+                    // Refresh content even when the existing record is becoming pinned.
+                    realm.create<Entity>(entitySchema.name, {
+                        ...record,
+                        isarticle_pinned: pinned ? appConfig.isArticlePinned : articleRelation,
+                    }, 'modified' as UpdateMode);
                 }
-                else {
-                    result="fail";
-                    return result
-                }
-            } catch (e) {
-                console.error("data insert err", e);
-                result="fail";
-                return result
-            }
-        // });
+            });
+            return 'success';
+        } catch (error) {
+            console.error('Article cache write failed', error);
+            return 'fail';
+        }
     }
     public async createStandardDev<Entity>(records: Entity[]): Promise<any> {
         // return new Promise(async (resolve, reject) => {
@@ -161,17 +142,18 @@ class DataRealmCommon {
                         const heightforAge = records['height_for_age'];
                         if (weightforheight?.length > 0) {
                             weightforheight.forEach((record: any) => {
-                                realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified");
+                                realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         if (heightforAge?.length > 0) {
                             heightforAge.forEach((record: any) => {
-                                realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record, "modified");
+                                realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         result="success";
                         return result;
                     });
+                    return result;
                 }
                 else {
                     result="fail";
@@ -211,7 +193,7 @@ class DataRealmCommon {
                                 value: value,
                                 createdAt: new Date(),
                                 updatedAt: new Date(),
-                            }, "modified");
+                            }, "modified" as UpdateMode);
                             result="success";
                             return result
                         });
@@ -341,6 +323,7 @@ class DataRealmCommon {
                         result='success';
                         return result;
                     });
+                    return result;
                 }
                 else {
                     result='error';

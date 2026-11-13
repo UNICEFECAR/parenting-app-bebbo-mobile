@@ -52,3 +52,11 @@ test('telemetry failures do not interrupt the user operation', async () => {
   expect(() => logCrashlyticsMessage('test')).not.toThrow();
   await expect(recordError('test')).resolves.toBeUndefined();
 });
+
+test('retry callers can distinguish SDK acceptance from rejected submissions', async () => {
+  const {tryLogAnalyticsEvent} = require('../firebaseAnalytics');
+  jest.mocked(analytics.logEvent).mockImplementationOnce(() => undefined);
+  await expect(tryLogAnalyticsEvent('accepted')).resolves.toBe(true);
+  jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('native failure');});
+  await expect(tryLogAnalyticsEvent('retry')).resolves.toBe(false);
+});

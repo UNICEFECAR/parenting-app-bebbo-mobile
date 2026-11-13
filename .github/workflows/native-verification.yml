@@ -25,7 +25,7 @@ permissions:
   contents: read
 jobs:
   compile:
-    runs-on: ${{ inputs.platform == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
+    runs-on: ${{ inputs.platform == 'ios' && 'macos-latest' || 'ubuntu-24.04' }}
     timeout-minutes: 90
     env:
       FLAVOR: ${{ inputs.flavour }}
@@ -50,15 +50,42 @@ jobs:
         if: inputs.platform == 'android'
       - name: Install pinned Android tools
         if: inputs.platform == 'android'
-        run: sdkmanager 'platforms;android-37' 'build-tools;37.0.0' 'ndk;27.1.12297006'
+        run: sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;27.1.12297006'
       - name: Compile unsigned Android release
         if: inputs.platform == 'android'
         working-directory: android
         shell: bash
         run: |
-          args=(":app:bundle${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2)
-          if [[ "$NATIVE_SMOKE" == "true" ]]; then args+=(-PreactNativeArchitectures=arm64-v8a); fi
+          args=(":app:bundle${ANDROID_VARIANT}Release" ":app:assemble${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2)
+          if [[ "$NATIVE_SMOKE" == "true" ]]; then args+=(-PreactNativeArchitectures=arm64-v8a,x86_64); fi
           ./gradlew "${args[@]}"
+      - name: Check Android native library packaging
+        if: inputs.platform == 'android'
+        shell: bash
+        run: |
+          bundle=$(python3 -c 'from pathlib import Path; files=list(Path("android/app/build/outputs/bundle").glob("**/*.aab")); assert len(files)==1, files; print(files[0])')
+          python3 scripts/check-android-bundle.py "$bundle" --report "$RUNNER_TEMP/native-smoke/packaging.json"
+      - name: Enable emulator acceleration
+        if: inputs.platform == 'android' && inputs.smoke
+        run: sudo chmod 666 /dev/kvm
+      - name: Launch Android release on an emulator
+        if: inputs.platform == 'android' && inputs.smoke
+        uses: reactivecircus/android-emulator-runner@v2.38.0
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          ram-size: 2048M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          script: bash scripts/android-startup-smoke.sh
+      - name: Preserve Android startup evidence
+        if: inputs.platform == 'android' && always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: native-smoke-evidence-${{ inputs.flavour }}
+          path: ${{ runner.temp }}/native-smoke
+          if-no-files-found: warn
       - uses: ruby/setup-ruby@v1
         if: inputs.platform == 'ios'
         with:

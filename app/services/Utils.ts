@@ -177,11 +177,12 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
   }
   if (EntitySchema == ArticleEntitySchema) {
     try {
-      await dataRealmCommon.createArticles<typeof Entity>(
+      const saved = await dataRealmCommon.createArticles<typeof Entity>(
         EntitySchema,
         insertData,
         pinnedArticle
       );
+      if (saved !== "success") throw new Error("Article cache write was not confirmed");
       return "successinsert";
     } catch (e) {
       const errorArr = [];
@@ -195,13 +196,14 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     response.payload.apiEndpoint == appConfig.apiConfig.archive
   ) {
     try {
-      await dataRealmCommon.deleteDeltaData(
+      const saved = await dataRealmCommon.deleteDeltaData(
         EntitySchema.name,
         EntitySchema2.name,
         EntitySchema3.name,
         EntitySchema4.name,
         insertData
       );
+      if (saved !== "success") throw new Error("Archive cache update was not confirmed");
       return "successinsert";
     } catch (e) {
       const errorArr = [];
@@ -212,7 +214,8 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     }
   } else if (EntitySchema == StandardDevWeightForHeightSchema) {
     try {
-      await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
+      const saved = await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
+      if (saved !== "success") throw new Error("Chart reference cache write was not confirmed");
       return "successinsert";
     } catch (e) {
       const errorArr = [];
@@ -223,7 +226,8 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     }
   } else {
     try {
-      await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+      const saved = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+      if (saved !== "success") throw new Error("Content cache write was not confirmed");
       return "successinsert";
     } catch (e) {
       const errorArr = [];
@@ -948,7 +952,7 @@ export const miniSearchConfig = {
       console.log("tokens 2 is--",[...words, ...bigrams])
       return [...words, ...bigrams];
     },
-    combineWith: "OR",
+    combineWith: "OR" as const,
     fuzzy: true,
     // prefix true means it will contain "foo" then search for "foobar"
     prefix: true,

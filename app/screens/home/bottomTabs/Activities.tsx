@@ -85,7 +85,8 @@ import {
   synchronizeEvents,
 } from "../../../services/EventSyncService";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
-import MiniSearch from "minisearch";
+import type MiniSearch from "minisearch";
+import {prepareSearchIndex, searchReadyIndex} from "../../../services/searchIndex";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
@@ -173,7 +174,8 @@ const Activities = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   let sectionListRef: any;
-  let searchIndex = useRef(null);
+  const searchIndex = useRef<MiniSearch<any> | null>(null);
+  const [searchReady, setSearchReady] = useState(false);
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
@@ -190,7 +192,7 @@ const Activities = ({ route, navigation }: any): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
-  const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
+  const ActivitiesData = useMemo(() => randomArrayShuffle(ActivitiesDataold), [ActivitiesDataold]);
   const activityCategoryData = useAppSelector(selectActivityCategoryArray);
   const MileStonesData = useAppSelector(selectMileStonesData);
   const activityTaxonomyId =
@@ -198,7 +200,7 @@ const Activities = ({ route, navigation }: any): any => {
       activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
       activeChild?.taxonomyData?.prematureTaxonomyId != ""
       ? activeChild?.taxonomyData?.prematureTaxonomyId
-      : activeChild?.taxonomyData.id;
+      : activeChild?.taxonomyData?.id;
   const favoritegames = useAppSelector(
     (state: any) => state.childData.childDataSet.favoritegames
   );
@@ -279,7 +281,7 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -317,7 +319,7 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -377,7 +379,7 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -411,7 +413,7 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -834,21 +836,14 @@ const Activities = ({ route, navigation }: any): any => {
   // console.log()
   //add minisearch on active child article data
   useEffect(() => {
-    async function initializeSearchIndex() {
-      try {
-        const processedActivities = ActivitiesData;
-        const searchActivittiesData = new MiniSearch(miniSearchConfigActivity);
-        searchActivittiesData.addAllAsync(processedActivities);
-        searchIndex.current = searchActivittiesData;
-      } catch (error) {
-        console.log("Error: Retrieve minisearch data", error);
-      }
-    }
-    // const task = InteractionManager.runAfterInteractions(() => {
-    initializeSearchIndex();
-    // });
-    // return () => task.cancel();
-  }, []);
+    searchIndex.current = null;
+    setSearchReady(false);
+    const job = prepareSearchIndex(ActivitiesData, miniSearchConfigActivity, index => {
+      searchIndex.current = index;
+      setSearchReady(true);
+    });
+    return job.cancel;
+  }, [ActivitiesData, languageCode]);
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
@@ -876,7 +871,7 @@ const Activities = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -912,7 +907,7 @@ const Activities = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -1036,6 +1031,7 @@ const Activities = ({ route, navigation }: any): any => {
                   <OuterIconRow>
                     <Pressable
                       style={styles.pressablePadding}
+                      disabled={!searchReady}
                       onPress={async (e): Promise<any> => {
                         e.preventDefault();
                         Keyboard.dismiss();
@@ -1047,6 +1043,7 @@ const Activities = ({ route, navigation }: any): any => {
                     </Pressable>
                   </OuterIconRow>
                   <SearchInput
+                    editable={searchReady}
                     autoCapitalize="none"
                     autoCorrect={false}
                     clearButtonMode="always"

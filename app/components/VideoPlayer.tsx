@@ -1,6 +1,6 @@
 // import { videoTypeImage, videoTypeVimeo, videoTypeYoutube } from "@assets/translations/appOfflineData/apiConstants";
 import { appConfig } from "../instances";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
@@ -58,7 +58,8 @@ const VideoPlayer = (props: any): any => {
   const route = useRoute();
   const currentScreenName = route.name;
   const screenNameRelatedVideo = props.screenName ?? '';
-  let videoId: string;
+  let videoId = "";
+  const [mediaFailed, setMediaFailed] = useState(false);
   let videoUrl = '';
   let videoType = appConfig.videoTypeImage;
   const onReady = useCallback(() => {
@@ -66,7 +67,7 @@ const VideoPlayer = (props: any): any => {
   }, []);
   const onError = useCallback(() => {
     setLoading(false);
-    videoType = appConfig.videoTypeImage;
+    setMediaFailed(true);
   }, []);
   const windowWidth = Dimensions.get("window").width;
   const displaySpinner = (): any => {
@@ -76,14 +77,12 @@ const VideoPlayer = (props: any): any => {
       </View>
     );
   };
-  const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+  const baseUrl = (apiUrlDevelop ?? "").replace(/\/api\/?$/, "");
   const netInfo = useNetInfoHook();
-  if (
-    props.selectedPinnedArticleData &&
-    props.selectedPinnedArticleData != {}
-  ) {
-    const videoRelativeUrl = props.selectedPinnedArticleData?.cover_video?.url;
-    if (videoRelativeUrl.startsWith("/sites")) {
+  const coverVideo = props.selectedPinnedArticleData?.cover_video;
+  if (typeof coverVideo?.url === "string" && coverVideo.url.trim()) {
+    const videoRelativeUrl = coverVideo.url.trim();
+    if (videoRelativeUrl.startsWith("/")) {
       videoUrl = baseUrl + videoRelativeUrl;
     } else {
       videoUrl = videoRelativeUrl;
@@ -114,6 +113,11 @@ const VideoPlayer = (props: any): any => {
   } else if (videoType == appConfig.videoTypeYoutube) {
     videoId = getYoutubeId(props.selectedPinnedArticleData?.cover_video?.url);
   }
+  useEffect(() => {
+    setMediaFailed(false);
+    setLoading(true);
+    setPlaying(false);
+  }, [videoUrl, videoType]);
   const getVimeoHtml = (): any => {
     return `
         <!DOCTYPE html>
@@ -173,7 +177,7 @@ const VideoPlayer = (props: any): any => {
   };
   return (
     <>
-      {videoType == appConfig.videoTypeImage || netInfo.isConnected == false ? (
+      {mediaFailed || videoType == appConfig.videoTypeImage || netInfo.isConnected == false ? (
         <View style={styles.typeImageView}>
           <Image
             source={require("@assets/trash/defaultArticleImage.png")}
