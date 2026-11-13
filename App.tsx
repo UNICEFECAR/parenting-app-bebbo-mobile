@@ -1,3 +1,4 @@
+import {cleanupAbandonedBackupFiles} from './app/services/backupCacheCleanup';
 import {recoverTaxonomySnapshot} from './app/services/taxonomyRecovery';
 /**
  * React Native App
@@ -124,6 +125,14 @@ const App = () => {
   if (directionError) return <CustomFallback error={directionError} resetError={() => setDirectionError(null)} />;
   if (!persistor) return <ActivityIndicator size="large" color="#0000ff" />;
   const onBeforeLift = async () => {
+    try {
+      const cleanup = await cleanupAbandonedBackupFiles();
+      if (cleanup.failed) void recordError('Temporary backup cleanup incomplete');
+    } catch {
+      // Do not prevent caregivers reaching their committed data if cache storage
+      // is temporarily unavailable. Retry cleanup on the next cold launch.
+      void recordError('Temporary backup cache unavailable');
+    }
     try {
       if (await applyLanguageDirection(store.getState().selectedCountry)) {
         // Keep the old-direction navigator off screen while the native restart runs.
