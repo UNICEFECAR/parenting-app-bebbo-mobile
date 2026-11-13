@@ -7,7 +7,7 @@ jest.mock('../../database/dbquery/dataRealmCommon',()=>({dataRealmCommon:{}}));
 jest.mock('../../redux/sagaMiddleware/sagaSlice',()=>({receiveAPIFailure:jest.fn()}));
 jest.mock('../childCRUD',()=>({isFutureDate:jest.fn(()=>false)}));
 jest.mock('../LocalNotifications',()=>({__esModule:true,default:{}}));
-jest.mock('@types/types',()=>({CHILDREN_PATH:'/children/'}));
+jest.mock('@app-types/types',()=>({CHILDREN_PATH:'/children/'}));
 import {getChild} from '../Utils';
 import {isFutureDate} from '../childCRUD';
 const child={uuid:'one',childName:'Synthetic',gender:40,birthDate:'2024-01-01T00:00:00Z',reminders:[],favoriteadvices:[],favoritegames:[]};

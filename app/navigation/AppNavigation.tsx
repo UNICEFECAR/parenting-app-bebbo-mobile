@@ -1,3 +1,4 @@
+import {openNotificationLink} from '../services/notificationLink';
 import {trackScreen} from '../services/screenAnalytics';
 import {clearLegacyProfileAnalytics} from '../services/firebaseAnalytics';
 import {I18nManager} from "react-native";
@@ -28,7 +29,7 @@ import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, Linking, NativeModules, Platform } from "react-native";
+import { Alert, AppState, BackHandler, NativeModules, Platform } from "react-native";
 import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
@@ -753,7 +754,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          Linking.openURL(trimWhiteSpacePayload(remoteMessage.data.URL));
+          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL), "survey");
         } else {
           if (Platform.OS == "ios") {
             setTimeout(() => {
@@ -761,7 +762,7 @@ export default (): any => {
                 (item: any) => item.type == "survey"
               );
               if (surveyItem && surveyItem.survey_feedback_link) {
-                Linking.openURL(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
+                void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link), "survey");
               }
             }, 100);
           } else {
@@ -769,7 +770,7 @@ export default (): any => {
               (item: any) => item.type == "survey"
             );
             if (surveyItem && surveyItem.survey_feedback_link) {
-              Linking.openURL(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
+              void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link), "survey");
             }
           }
         }
@@ -787,7 +788,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          Linking.openURL(trimWhiteSpacePayload(remoteMessage.data.URL));
+          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL), "hyperlink");
         }
       }
     } else {

@@ -38,7 +38,7 @@ import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { addChild, deleteChild, getNewChild } from "../services/childCRUD";
 import { DateTime } from "luxon";
-import { dobMax } from "@types/types";
+import { dobMax } from "@app-types/types";
 import {
   HeaderActionView,
   HeaderIconPress,

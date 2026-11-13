@@ -1,3 +1,4 @@
+import {openExternalLink} from '../services/externalLink';
 import {openMeasuredLink} from "../services/measuredLink";
 import {
   APP_SHARE,
@@ -57,13 +58,12 @@ import {
   Heading4Center,
   Heading5,
 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
-  Linking,
   Modal,
   Platform,
   Pressable,
@@ -633,8 +633,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             userGuideItem?.survey_feedback_link != "" &&
             userGuideItem?.survey_feedback_link != null ? (
             <DrawerLinkView
-              onPress={(): any => {
-                Linking.openURL(userGuideItem?.survey_feedback_link);
+              onPress={async (): Promise<void> => {
+                if (!(await openExternalLink(userGuideItem?.survey_feedback_link))) Alert.alert("", t("generalError"));
                 // navigation.navigate('UserGuide')
               }}
             >
@@ -719,9 +719,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 </Heading4>
               </DrawerLinkView>
               <DrawerLinkView
-                onPress={(): any => {
-                  console.log(appConfig.reviewURL);
-                  Linking.openURL(appConfig.reviewURL);
+                onPress={async (): Promise<void> => {
+                  if (!(await openExternalLink(appConfig.reviewURL, {allowAppStore: true}))) Alert.alert("", t("generalError"));
                 }}
               >
                 <OuterIconRow>

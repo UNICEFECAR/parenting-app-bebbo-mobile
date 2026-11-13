@@ -48,7 +48,7 @@ import {
   Heading5,
   ShiftFromTop30,
 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {

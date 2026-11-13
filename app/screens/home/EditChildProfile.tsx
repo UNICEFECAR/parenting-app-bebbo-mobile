@@ -41,7 +41,7 @@ import {
   ShiftFromTop15,
   ShiftFromTop20,
 } from "@styles/typography";
-import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@types/types";
+import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@app-types/types";
 import React, { useRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {

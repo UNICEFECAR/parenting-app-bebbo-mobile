@@ -5,175 +5,175 @@
   "routes": [
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1073,
+      "line": 1074,
       "route": "\"Localization\"",
       "component": "{LocalizationNavigation}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1078,
+      "line": 1079,
       "route": "\"Terms\"",
       "component": "{Terms}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1083,
+      "line": 1084,
       "route": "\"TermsPage\"",
       "component": "{TermsPage}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1088,
+      "line": 1089,
       "route": "\"PrivacyPolicy\"",
       "component": "{PrivacyPolicy}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1093,
+      "line": 1094,
       "route": "\"ChildSetup\"",
       "component": "{ChildSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1098,
+      "line": 1099,
       "route": "\"AddChildSetup\"",
       "component": "{AddChildSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1103,
+      "line": 1104,
       "route": "\"ChildImportSetup\"",
       "component": "{ChildImportSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1108,
+      "line": 1109,
       "route": "\"ChildSetupList\"",
       "component": "{ChildSetupList}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1113,
+      "line": 1114,
       "route": "\"ServiceProviderInfoSetup\"",
       "component": "{ServiceProviderInfoSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1118,
+      "line": 1119,
       "route": "\"AddSiblingDataScreen\"",
       "component": "{AddSiblingData}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1123,
+      "line": 1124,
       "route": "\"LoadingScreen\"",
       "component": "{LoadingScreen}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1135,
+      "line": 1136,
       "route": "\"HomeDrawerNavigator\"",
       "component": "{HomeDrawerNavigator}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1140,
+      "line": 1141,
       "route": "\"EditChildProfile\"",
       "component": "{EditChildProfile}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1145,
+      "line": 1146,
       "route": "\"AddExpectingChildProfile\"",
       "component": "{AddExpectingChildProfile}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1150,
+      "line": 1151,
       "route": "\"EditParentDetails\"",
       "component": "{EditParentDetails}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1155,
+      "line": 1156,
       "route": "\"AddNewChildgrowth\"",
       "component": "{AddNewChildgrowth}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1160,
+      "line": 1161,
       "route": "\"AddNewChildWeight\"",
       "component": "{AddNewChildWeight}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1165,
+      "line": 1166,
       "route": "\"AddNewChildHeight\"",
       "component": "{AddNewChildHeight}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1170,
+      "line": 1171,
       "route": "\"AllChildgrowthMeasures\"",
       "component": "{AllChildgrowthMeasures}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1175,
+      "line": 1176,
       "route": "\"ChartFullScreen\"",
       "component": "{ChartFullScreen}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1180,
+      "line": 1181,
       "route": "\"DetailsScreen\"",
       "component": "{DetailsScreen}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1185,
+      "line": 1186,
       "route": "\"ChildProfileScreen\"",
       "component": "{ChildProfile}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1190,
+      "line": 1191,
       "route": "\"AddChildVaccination\"",
       "component": "{AddChildVaccination}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1195,
+      "line": 1196,
       "route": "\"AddReminder\"",
       "component": "{AddReminder}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1200,
+      "line": 1201,
       "route": "\"AddChildHealthCheckup\"",
       "component": "{AddChildHealthCheckup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
@@ -819,9 +819,16 @@
     },
     {
       "file": "app/services/measuredLink.ts",
-      "line": 8,
+      "line": 7,
       "api": "logAnalyticsEvent",
       "event": "event",
+      "parameters": null
+    },
+    {
+      "file": "app/services/notificationLink.ts",
+      "line": 8,
+      "api": "logAnalyticsEvent",
+      "event": "SURVEY_SUBMIT",
       "parameters": null
     },
     {

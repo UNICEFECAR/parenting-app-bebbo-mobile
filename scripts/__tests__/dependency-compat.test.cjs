@@ -16,3 +16,13 @@ test('the patched resolver resolves globbed roots with the maintained glob API',
   });
   assert.match(result.code, /\.\/packages\/alpha\/shared/);
 });
+
+test('application type/value imports avoid TypeScript reserved declaration-package namespace', () => {
+  const result = babel.transformSync("import {CHILDREN_PATH} from '@app-types/types'; console.log(CHILDREN_PATH);", {
+    filename: path.resolve('app/alias-check.ts'), envName: 'test',
+  });
+  assert.match(result.code, /(?:\.\.\/)?app\/types\/types|\.\/types\/types/);
+  const config = fs.readFileSync('tsconfig.json', 'utf8');
+  assert.match(config, /"@app-types\/\*"/);
+  assert.doesNotMatch(config, /"@types\/\*"/);
+});

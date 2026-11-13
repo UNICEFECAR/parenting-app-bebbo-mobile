@@ -30,7 +30,7 @@
       "@screens/*": [
         "./app/screens/*"
       ],
-      "@types/*": [
+      "@app-types/*": [
         "./app/types/*"
       ],
       "@styles/*": [

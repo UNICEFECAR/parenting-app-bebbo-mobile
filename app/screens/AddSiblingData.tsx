@@ -23,7 +23,7 @@ import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { bgcolorWhite2, primaryColor } from "../instances/bebbo/styles/style";
-import { dobMax } from "@types/types";
+import { dobMax } from "@app-types/types";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, StyleSheet, View } from "react-native";

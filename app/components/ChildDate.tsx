@@ -6,7 +6,7 @@ import {
   ShiftFromTop10,
   ShiftFromTop15,
 } from "@styles/typography";
-import { dobMin, maxDue, minDue } from "@types/types";
+import { dobMin, maxDue, minDue } from "@app-types/types";
 import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";

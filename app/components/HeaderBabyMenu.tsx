@@ -1,3 +1,4 @@
+import {activeChildFirst} from '../services/activeChildOrder';
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import Icon, {
   OuterIconLeft,
@@ -8,7 +9,7 @@ import Icon, {
 import { ImageIcon } from "@components/shared/Image";
 import { useNavigation } from "@react-navigation/native";
 import { Heading3, Heading5, ShiftFromBottom10 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -136,15 +137,13 @@ const HeaderBabyMenu = (props: any): any => {
   const { t } = useTranslation();
   const childList = useAppSelector(selectParsedChildList);
   const activeChild = useAppSelector(selectActiveChild);
-  const currentActiveChild = activeChild.uuid;
+  const currentActiveChild = activeChild?.uuid;
   const childAge = useAppSelector(selectChildAge);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
   const taxonomyIds = useAppSelector(selectTaxonomyIds);
-  const SortedchildList = [...childList].sort((a: any) => {
-    if (a.uuid == currentActiveChild) return -1;
-  });
+  const SortedchildList = activeChildFirst(childList, currentActiveChild);
   useEffect(() => {
     const task = scheduleIdleTask(() => {
       const gender = genders.find((g: any) => g.id === activeChild?.gender);

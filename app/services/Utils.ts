@@ -1,5 +1,5 @@
 import {localisedDigits} from './localisedDigits';
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import { DateTime } from "luxon";
 import { Platform } from "react-native";
 import { store } from "../../App";

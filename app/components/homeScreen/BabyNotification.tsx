@@ -11,7 +11,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from "@components/shared/Icon";
 import { ImageIcon } from "@components/shared/Image";
 import { useNavigation } from "@react-navigation/native";
 import { Heading3, Heading5 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableHighlight, View } from "react-native";
