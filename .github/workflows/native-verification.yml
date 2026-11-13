@@ -45,7 +45,9 @@ jobs:
         if: inputs.platform == 'android'
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: '21'
+      - uses: android-actions/setup-android@v4.0.4
+        if: inputs.platform == 'android'
       - name: Install pinned Android tools
         if: inputs.platform == 'android'
         run: sdkmanager 'platforms;android-37' 'build-tools;37.0.0' 'ndk;27.1.12297006'
