@@ -8,6 +8,9 @@ on:
       flavour:
         required: true
         type: string
+      smoke:
+        default: false
+        type: boolean
   workflow_dispatch:
     inputs:
       platform:
@@ -27,6 +30,7 @@ jobs:
     env:
       FLAVOR: ${{ inputs.flavour }}
       CI: 'true'
+      NATIVE_SMOKE: ${{ inputs.smoke || false }}
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.1.0
@@ -48,7 +52,11 @@ jobs:
       - name: Compile unsigned Android release
         if: inputs.platform == 'android'
         working-directory: android
-        run: ./gradlew ":app:bundle${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon
+        shell: bash
+        run: |
+          args=(":app:bundle${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2)
+          if [[ "$NATIVE_SMOKE" == "true" ]]; then args+=(-PreactNativeArchitectures=arm64-v8a); fi
+          ./gradlew "${args[@]}"
       - uses: ruby/setup-ruby@v1
         if: inputs.platform == 'ios'
         with:
@@ -77,3 +85,10 @@ jobs:
           if-no-files-found: error
 # Fake Firebase/environment configuration and disabled signing make these
 # compile checks unsuitable for distribution. Signed device QA is separate.
+      - name: Preserve unsigned Android bundle for packaging checks
+        if: inputs.platform == 'android' && success()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: unsigned-native-${{ inputs.flavour }}
+          path: android/app/build/outputs/bundle/**/*.aab
+          if-no-files-found: error

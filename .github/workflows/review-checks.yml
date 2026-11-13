@@ -54,3 +54,14 @@ jobs:
           node scripts/check-production-bundle.cjs /tmp/bebbo-bundle/app.bundle
       - name: Verify referenced native vector resources
         run: node scripts/collect-vector-assets.cjs --check
+  native-smoke:
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [bebbo, reraiUmntwana]
+        platform: [android, ios]
+    uses: ./.github/workflows/native-verification.yml
+    with:
+      flavour: ${{ matrix.flavour }}
+      platform: ${{ matrix.platform }}
+      smoke: true
