@@ -3,9 +3,7 @@ import {toDateTime, type DateInput} from './dateUtils';
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: DateInput, pluralShow: boolean): any => {
   const date1 = DateTime.local().startOf('day');
-  const date2 = (typeof birthDate === 'string'
-    ? toDateTime(birthDate.split('T')[0])
-    : toDateTime(birthDate)).startOf('day');
+  const date2 = toDateTime(birthDate).toLocal().startOf('day');
   if (!date2.isValid) return '';
   const diff: any = date1.diff(date2, ["years", "months", "days"])
   let ageStr = "";
@@ -42,9 +40,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: DateInput, pluralS
 
 export const getNotificationDateInString = (t: any, birthDate: DateInput, pluralShow: boolean): any => {
   const date1 = DateTime.local().startOf('day');
-  const date2 = (typeof birthDate === 'string'
-    ? toDateTime(birthDate.split('T')[0])
-    : toDateTime(birthDate)).startOf('day');
+  const date2 = toDateTime(birthDate).toLocal().startOf('day');
   if (!date2.isValid) return '';
   const diff: any = date1.diff(date2, ["years", "months", "days"])
   let ageStr = "";

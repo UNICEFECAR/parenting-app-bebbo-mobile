@@ -710,7 +710,7 @@ const Articles = ({ route, navigation }: any): any => {
       ? VideoArticlesDataall.filter((item: any) => item.mandatory == appConfig.videoArticleMandatory)
       : [];
     const job = prepareSearchIndex(
-      [...articleDataall, ...videos],
+      mergearr(articleDataall, videos, false),
       miniSearchConfig,
       index => {
         searchIndex.current = index;

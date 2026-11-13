@@ -25,3 +25,17 @@ test('existing days and years/months pluralisation is preserved', () => {
   expect(getCurrentChildAgeInMonths(t, '2025-12-20', true)).toBe('21 daytag');
   expect(getCurrentChildAgeInMonths(t, '2024-11-10', false)).toBe('1 yeartag childInfoAndText 2 monthstag');
 });
+
+test.each([
+  ['Africa/Nairobi', '2026-01-09T21:00:00.000Z', 'noday'],
+  ['America/New_York', '2026-01-10T01:00:00.000Z', '1 daytag'],
+])('ISO exports and Realm dates retain the same calendar age in %s', (zone, instant, label) => {
+  const {Settings, DateTime} = require('luxon');
+  const original = Settings.defaultZone;
+  try {
+    Settings.defaultZone = zone;
+    for (const value of [instant, new Date(instant), Date.parse(instant), DateTime.fromISO(instant, {zone: 'utc'})]) {
+      expect(getCurrentChildAgeInMonths(t, value, false)).toBe(label);
+    }
+  } finally {Settings.defaultZone = original;}
+});

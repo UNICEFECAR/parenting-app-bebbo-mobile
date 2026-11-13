@@ -328,8 +328,14 @@ tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
 // Compile-only CI runs have fake Firebase configuration and cannot be shipped.
 // Normal local/release builds retain their existing per-flavour signing keys.
 if (providers.gradleProperty("unsignedVerification").getOrElse("false").toBoolean()) {
-    android.productFlavors.configureEach { signingConfig = (com.android.build.api.dsl.ApkSigningConfig) null }
-    android.buildTypes.release.signingConfig = (com.android.build.api.dsl.ApkSigningConfig) null
+    // Property assignment erases a typed null before Groovy resolves AGP's
+    // three legacy/new-DSL overloads. Select the public setter explicitly.
+    def clearSigningConfig = { variant ->
+        variant.getClass().getMethod("setSigningConfig", com.android.build.api.dsl.ApkSigningConfig)
+            .invoke(variant, [null] as Object[])
+    }
+    android.productFlavors.configureEach { clearSigningConfig(it) }
+    clearSigningConfig(android.buildTypes.release)
 }
 
 def verifyVectorAssets = tasks.register("verifyVectorAssets", Exec) {

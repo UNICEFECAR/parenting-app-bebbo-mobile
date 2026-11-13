@@ -17,7 +17,7 @@ as well as the React Native migration. The source PR branch is unchanged.
 | Growth cards | Height-only records were treated as zero because parsing required a weight. Realm Date and exported millisecond dates were not handled consistently. Interpret the supplied height/date, tolerate loading metadata and leave missing measurements unclassified. Warning text now has a matching status flag; the exact lower height boundary no longer falls through. Other cut-offs and translated messages are unchanged. |
 | Article/activity search | The index was published before asynchronous construction completed and never rebuilt after data/language changes. Publish only completed indexes, cancel obsolete jobs, disable input while preparing and safely handle queries before readiness. Avoid reshuffling the activities array on every render. |
 | Deep links | Invalid percent escapes could throw; a late initial-URL response could replay an older link over a foreground link or reset. Decode defensively, handle lookup failure, invalidate stale responses and remove listeners on unmount. |
-| Age/date labels | The future-date test required negative years, months and days simultaneously. Near-future due dates could therefore appear newborn/today. Compare calendar dates directly; accept Date, milliseconds and ISO dates and preserve existing translation/plural rules. Invalid dates do not become “today”. |
+| Age/date labels | The future-date test required negative years, months and days simultaneously. Near-future due dates could therefore appear newborn/today. Compare calendar dates directly; accept Date, milliseconds and ISO dates in the same local calendar, including UTC offset crossings, and preserve existing translation/plural rules. Invalid dates do not become “today”. |
 
 Tests exercise real MiniSearch indexing and Luxon date calculations. Native SDKs
 and Realm writes in Jest use doubles, including a live-results iterator and a
@@ -25,7 +25,7 @@ transaction rollback model; they do not replace installed-app migration tests.
 
 ## Automated verification
 
-- 225 tests passed in 21 Jest suites, including backup/restore, Drive authorisation,
+- 227 tests passed in 21 Jest suites, including backup/restore, Drive authorisation,
   notification migration, navigation and earlier review tests.
 - 11 Node tooling tests passed, including eight fixed D3 path comparisons against the
   previous d3-shape version.
@@ -42,7 +42,7 @@ Two representative flavours (Bebbo and Rerai) also run unsigned native builds.
 The native workflow now installs the actual SDK repository package
 `platforms;android-37.0`, explicitly sets up SDK tooling and JDK 21, assembles an
 APK as well as an AAB, checks native packaging and launches Android on an API-35
-emulator. AGP’s overloaded signing setter uses a typed null for unsigned checks. Screenshots, UI hierarchy, logs and packaging results are preserved as
+emulator. AGP’s overloaded signing setter uses an explicitly selected public setter for unsigned checks. Screenshots, UI hierarchy, logs and packaging results are preserved as
 artifacts when those steps run. Fake configuration and a temporary CI signing
 key are used; these builds are not distributable releases.
 
