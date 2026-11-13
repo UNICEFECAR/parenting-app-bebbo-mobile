@@ -1,0 +1,1804 @@
+{
+  "source": "0a5ddab2f20dbb963bc0d64cf06ca8ed5cc164e8",
+  "inventory_run": 43523394586,
+  "runtime_variants": [
+    "prod",
+    "prodstaging",
+    "bangla",
+    "xk",
+    "merhababebek",
+    "wawamor",
+    "reraiumntwana",
+    "bebbopacific",
+    "banglastaging",
+    "xkstaging"
+  ],
+  "buildscript_projects": 42,
+  "unique_package_versions": 926,
+  "limitations": "Resolved Maven component versions only; not vendored C/C++ binaries, CocoaPods, OS libraries, backend configuration or a reachability proof.",
+  "inventory_sha256": "82dbe261a47c9767a2e21bcb394dad10099b2e8795c4d09e80aae83cfe6807c4",
+  "scope_sets": [
+    [
+      "runtime:bangla",
+      "runtime:banglastaging",
+      "runtime:bebbopacific",
+      "runtime:merhababebek",
+      "runtime:prod",
+      "runtime:prodstaging",
+      "runtime:reraiumntwana",
+      "runtime:wawamor",
+      "runtime:xk",
+      "runtime:xkstaging"
+    ],
+    [
+      "buildscript::",
+      "buildscript::react-native-localize",
+      "buildscript::react-native-permissions",
+      "buildscript::react-native-safe-area-context"
+    ],
+    [
+      "buildscript::",
+      "buildscript::react-native-safe-area-context"
+    ],
+    [
+      "buildscript::",
+      "buildscript::dr.pogodin_react-native-fs",
+      "buildscript::react-native-async-storage_async-storage",
+      "buildscript::react-native-get-random-values",
+      "buildscript::react-native-localize",
+      "buildscript::react-native-permissions",
+      "buildscript::react-native-safe-area-context",
+      "buildscript::sayem314_react-native-keep-awake"
+    ],
+    [
+      "buildscript::",
+      "buildscript::dr.pogodin_react-native-fs",
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-async-storage_async-storage",
+      "buildscript::react-native-config",
+      "buildscript::react-native-get-random-values",
+      "buildscript::react-native-keyboard-controller",
+      "buildscript::react-native-localize",
+      "buildscript::react-native-permissions",
+      "buildscript::react-native-safe-area-context",
+      "buildscript::react-native-webview",
+      "buildscript::realm",
+      "buildscript::sayem314_react-native-keep-awake"
+    ],
+    [
+      "buildscript::",
+      "buildscript::dr.pogodin_react-native-fs",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-async-storage_async-storage",
+      "buildscript::react-native-documents_picker",
+      "buildscript::react-native-keyboard-controller",
+      "buildscript::react-native-localize",
+      "buildscript::react-native-permissions",
+      "buildscript::react-native-safe-area-context",
+      "buildscript::react-native-video",
+      "buildscript::react-native-webview"
+    ],
+    [
+      "buildscript::dr.pogodin_react-native-fs",
+      "buildscript::react-native-async-storage_async-storage",
+      "buildscript::react-native-get-random-values",
+      "buildscript::sayem314_react-native-keep-awake"
+    ],
+    [
+      "buildscript::dr.pogodin_react-native-fs",
+      "buildscript::react-native-async-storage_async-storage",
+      "buildscript::react-native-get-random-values",
+      "buildscript::react-native-localize",
+      "buildscript::react-native-permissions",
+      "buildscript::sayem314_react-native-keep-awake"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::realm"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-config",
+      "buildscript::react-native-keyboard-controller",
+      "buildscript::react-native-webview",
+      "buildscript::realm"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-webview",
+      "buildscript::realm"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-config",
+      "buildscript::react-native-keyboard-controller",
+      "buildscript::react-native-webview"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-webview"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::realm"
+    ],
+    [
+      "buildscript::klarna_react-native-vector-drawable",
+      "buildscript::lottie-react-native",
+      "buildscript::react-native-keyboard-controller",
+      "buildscript::react-native-webview",
+      "buildscript::realm"
+    ],
+    [
+      "buildscript::react-native-config"
+    ],
+    [
+      "buildscript::react-native-config",
+      "buildscript::react-native-keyboard-controller"
+    ],
+    [
+      "buildscript::react-native-config",
+      "buildscript::react-native-keyboard-controller",
+      "buildscript::react-native-webview"
+    ],
+    [
+      "buildscript::react-native-keyboard-controller"
+    ],
+    [
+      "buildscript::react-native-localize",
+      "buildscript::react-native-permissions"
+    ],
+    [
+      "buildscript::react-native-webview"
+    ],
+    [
+      "buildscript::realm"
+    ]
+  ],
+  "findings": [
+    {
+      "package": "com.google.code.gson:gson",
+      "version": "2.8.8",
+      "scope_set": 0,
+      "advisories": [
+        {
+          "id": "GHSA-4jrv-ppp4-jm57",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.google.guava:guava",
+      "version": "33.5.0-android",
+      "scope_set": 0,
+      "advisories": [
+        {
+          "id": "GHSA-xxph-c9ww-hj94",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.google.guava:guava",
+      "version": "33.3.1-jre",
+      "scope_set": 1,
+      "advisories": [
+        {
+          "id": "GHSA-xxph-c9ww-hj94",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.apache.commons:commons-lang3",
+      "version": "3.16.0",
+      "scope_set": 2,
+      "advisories": [
+        {
+          "id": "GHSA-j288-q9x7-2f5v",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bitbucket.b_c:jose4j",
+      "version": "0.9.5",
+      "scope_set": 3,
+      "advisories": [
+        {
+          "id": "GHSA-3677-xxcr-wjqv",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcpkix-jdk18on",
+      "version": "1.79",
+      "scope_set": 1,
+      "advisories": [
+        {
+          "id": "GHSA-wg6q-6289-32hp",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcprov-jdk18on",
+      "version": "1.79",
+      "scope_set": 1,
+      "advisories": [
+        {
+          "id": "GHSA-574f-3g2m-x479",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-9pwp-9qqc-pr26",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-c3fc-8qff-9hwx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-p93r-85wp-75v3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-qp49-qgx5-5m26",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.jdom:jdom2",
+      "version": "2.0.6",
+      "scope_set": 4,
+      "advisories": [
+        {
+          "id": "GHSA-2363-cqg2-863c",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.jetbrains.kotlin:kotlin-gradle-plugin",
+      "version": "2.2.10",
+      "scope_set": 5,
+      "advisories": [
+        {
+          "id": "GHSA-r937-wjx7-w2jp",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.google.guava:guava",
+      "version": "32.0.1-jre",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-xxph-c9ww-hj94",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.google.protobuf:protobuf-java",
+      "version": "3.22.3",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-735f-pc8j-v9w8",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "commons-io:commons-io",
+      "version": "2.13.0",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-78wr-2p64-hpwj",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec",
+      "version": "4.1.93.Final",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-3p8m-j85q-pgmj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-558v-64gr-wgg4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-mj4r-2hfc-f8p6",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.93.Final",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-38f8-5428-x5cv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-4mp9-239f-g9hg",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-57rv-r2g8-2cj3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-5jpm-x58v-624v",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6cqp-g7gg-8hr5",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6jqx-86gh-f27w",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-84h7-rjj3-6jx4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8c42-7qj2-3j46",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fghv-69vj-qj49",
+          "severity": "LOW"
+        },
+        {
+          "id": "GHSA-gcjf-9mgh-3p7g",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hvcg-qmg6-jm4c",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-jppx-w49h-x2qq",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-m4cv-j2px-7723",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-mvh2-crg5-v77c",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-pwqr-wmgm-9rr8",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-q4f6-jm68-57ww",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-v8h7-rr48-vmmv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xxqh-mfjm-7mv9",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http2",
+      "version": "4.1.93.Final",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-563q-j3cm-6jxm",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5x3r-wrvg-rp6q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-93wv-jw9v-4972",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-c2gf-v879-257j",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c69g-56f8-xwqj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-prj3-ccx8-p6x4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-w9fj-cfpg-grvv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-xpw8-rcwv-8f8p",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-common",
+      "version": "4.1.93.Final",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-389x-839f-4rhx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xq3w-v528-46rv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler",
+      "version": "4.1.93.Final",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-3qp7-7mw8-wx86",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-4g8c-wm8x-jfhw",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-6mjq-h674-j845",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c4c3-7fpv-j4q5",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-c653-97m9-rcg9",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fccg-mwvh-qqg4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-x4gw-5cx5-pgmh",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler-proxy",
+      "version": "4.1.93.Final",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-45q3-82m4-75jr",
+          "severity": "LOW"
+        }
+      ]
+    },
+    {
+      "package": "org.apache.commons:commons-compress",
+      "version": "1.21",
+      "scope_set": 7,
+      "advisories": [
+        {
+          "id": "GHSA-4265-ccf5-phj5",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-4g9r-vxhx-9pgx",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcpkix-jdk18on",
+      "version": "1.77",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-4cx2-fc23-5wg6",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wg6q-6289-32hp",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcprov-jdk18on",
+      "version": "1.77",
+      "scope_set": 6,
+      "advisories": [
+        {
+          "id": "GHSA-4h8f-2wvx-gg5w",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-574f-3g2m-x479",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-67mf-3cr5-8w23",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8xfc-gm6g-vgpv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-9pwp-9qqc-pr26",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-c3fc-8qff-9hwx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-m44j-cfrm-g8qc",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-p93r-85wp-75v3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-qp49-qgx5-5m26",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-v435-xc8x-wvr9",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.fasterxml.jackson.core:jackson-core",
+      "version": "2.11.1",
+      "scope_set": 8,
+      "advisories": [
+        {
+          "id": "GHSA-7hhh-6rmp-j9qf",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-h46c-h94j-95f3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-r7wm-3cxj-wff9",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-wf8f-6423-gfxg",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.11.1",
+      "scope_set": 8,
+      "advisories": [
+        {
+          "id": "GHSA-3wrr-7qpf-2prh",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-3x8x-79m2-3w2w",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-57j2-w4cx-62h2",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-5gvw-p9qm-jgwh",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5jmj-h7xm-6q6v",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-cxp5-3px4-pw24",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-gx83-3vf8-gh7j",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hgj6-7826-r7m5",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-j3rv-43j4-c7qm",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-jjjh-jjxp-wpff",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-rgv9-q543-rqg4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-rmj7-2vxq-3g9f",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-vvgp-rfg2-7rr6",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wjgm-6hv5-3cvf",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wv8q-qhhj-9h54",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.fasterxml.woodstox:woodstox-core",
+      "version": "6.2.1",
+      "scope_set": 8,
+      "advisories": [
+        {
+          "id": "GHSA-3f7h-mf4q-vrm4",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.google.code.gson:gson",
+      "version": "2.8.6",
+      "scope_set": 9,
+      "advisories": [
+        {
+          "id": "GHSA-4jrv-ppp4-jm57",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.google.crypto.tink:tink",
+      "version": "1.3.0-rc2",
+      "scope_set": 10,
+      "advisories": [
+        {
+          "id": "GHSA-g5vf-v6wf-7w2r",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.google.guava:guava",
+      "version": "30.1-jre",
+      "scope_set": 11,
+      "advisories": [
+        {
+          "id": "GHSA-5mg8-w23w-74h3",
+          "severity": "LOW"
+        },
+        {
+          "id": "GHSA-7g45-4rm6-3mm3",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xxph-c9ww-hj94",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.google.protobuf:protobuf-java",
+      "version": "3.10.0",
+      "scope_set": 12,
+      "advisories": [
+        {
+          "id": "GHSA-4gg5-vx3j-xwc7",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-735f-pc8j-v9w8",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-g5ww-5jh7-63cx",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-h4h5-3hr4-j3g2",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wrvw-hg22-4m67",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "commons-io:commons-io",
+      "version": "2.4",
+      "scope_set": 10,
+      "advisories": [
+        {
+          "id": "GHSA-78wr-2p64-hpwj",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-gwrp-pvrq-jmwv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec",
+      "version": "4.1.34.Final",
+      "scope_set": 13,
+      "advisories": [
+        {
+          "id": "GHSA-3p8m-j85q-pgmj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-558v-64gr-wgg4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-9vjp-v76f-g363",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-grg4-wf29-r9vv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-mj4r-2hfc-f8p6",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.34.Final",
+      "scope_set": 13,
+      "advisories": [
+        {
+          "id": "GHSA-269q-hmxg-m83q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-38f8-5428-x5cv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-4mp9-239f-g9hg",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-57rv-r2g8-2cj3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-5jpm-x58v-624v",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5mcr-gq6c-3hq2",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6cqp-g7gg-8hr5",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6jqx-86gh-f27w",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-84h7-rjj3-6jx4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8c42-7qj2-3j46",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-cqqj-4p63-rrmm",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fghv-69vj-qj49",
+          "severity": "LOW"
+        },
+        {
+          "id": "GHSA-gcjf-9mgh-3p7g",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hvcg-qmg6-jm4c",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-jppx-w49h-x2qq",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-m4cv-j2px-7723",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-mvh2-crg5-v77c",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-pwqr-wmgm-9rr8",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-q4f6-jm68-57ww",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-v8h7-rr48-vmmv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wx5j-54mm-rqqq",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xxqh-mfjm-7mv9",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http2",
+      "version": "4.1.34.Final",
+      "scope_set": 13,
+      "advisories": [
+        {
+          "id": "GHSA-563q-j3cm-6jxm",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5x3r-wrvg-rp6q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-93wv-jw9v-4972",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-c2gf-v879-257j",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c69g-56f8-xwqj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f256-j965-7f32",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-prj3-ccx8-p6x4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-w9fj-cfpg-grvv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-wm47-8v5p-wjpj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xpw8-rcwv-8f8p",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-common",
+      "version": "4.1.34.Final",
+      "scope_set": 13,
+      "advisories": [
+        {
+          "id": "GHSA-389x-839f-4rhx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xq3w-v528-46rv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler",
+      "version": "4.1.34.Final",
+      "scope_set": 13,
+      "advisories": [
+        {
+          "id": "GHSA-3qp7-7mw8-wx86",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-6mjq-h674-j845",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c4c3-7fpv-j4q5",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-c653-97m9-rcg9",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fccg-mwvh-qqg4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-mm9x-g8pc-w292",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-p2v9-g2qv-p635",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-x4gw-5cx5-pgmh",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler-proxy",
+      "version": "4.1.34.Final",
+      "scope_set": 13,
+      "advisories": [
+        {
+          "id": "GHSA-45q3-82m4-75jr",
+          "severity": "LOW"
+        }
+      ]
+    },
+    {
+      "package": "org.apache.commons:commons-compress",
+      "version": "1.20",
+      "scope_set": 11,
+      "advisories": [
+        {
+          "id": "GHSA-4g9r-vxhx-9pgx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-7hfm-57qf-j43q",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-crv7-7245-f45f",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-mc84-pj99-q6hh",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-xqfj-vm6h-2x34",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.apache.httpcomponents:httpclient",
+      "version": "4.5.9",
+      "scope_set": 8,
+      "advisories": [
+        {
+          "id": "GHSA-7r82-7xv7-xcpj",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bitbucket.b_c:jose4j",
+      "version": "0.7.0",
+      "scope_set": 14,
+      "advisories": [
+        {
+          "id": "GHSA-3677-xxcr-wjqv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-6qvw-249j-h44c",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-7g24-qg88-p43q",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-jgvc-jfgh-rjvv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcpkix-jdk15on",
+      "version": "1.56",
+      "scope_set": 12,
+      "advisories": [
+        {
+          "id": "GHSA-4cx2-fc23-5wg6",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wg6q-6289-32hp",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcprov-jdk15on",
+      "version": "1.56",
+      "scope_set": 12,
+      "advisories": [
+        {
+          "id": "GHSA-6xx3-rg99-gc3p",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-72m5-fvvv-55m6",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8xfc-gm6g-vgpv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hr8g-6v94-x4m9",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-v435-xc8x-wvr9",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wjxj-5m7g-mg7q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xqj7-j8j5-f2xr",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.jetbrains.kotlin:kotlin-stdlib",
+      "version": "1.5.31",
+      "scope_set": 9,
+      "advisories": [
+        {
+          "id": "GHSA-2qp4-g3q3-f92w",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.json:json",
+      "version": "20180813",
+      "scope_set": 10,
+      "advisories": [
+        {
+          "id": "GHSA-3vqj-43w4-2q58",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-4jq9-2xhw-jpx7",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-ghc9-756g-vrcv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.jsoup:jsoup",
+      "version": "1.13.1",
+      "scope_set": 8,
+      "advisories": [
+        {
+          "id": "GHSA-65r4-943x-97jj",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-gp7f-rwcx-9369",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-m72m-mhq2-9p6c",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "xerces:xercesImpl",
+      "version": "2.12.0",
+      "scope_set": 15,
+      "advisories": [
+        {
+          "id": "GHSA-h65f-jvqw-m9fj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-w4jq-qh47-hvjq",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.google.code.gson:gson",
+      "version": "2.8.5",
+      "scope_set": 16,
+      "advisories": [
+        {
+          "id": "GHSA-4jrv-ppp4-jm57",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "com.google.guava:guava",
+      "version": "28.1-jre",
+      "scope_set": 17,
+      "advisories": [
+        {
+          "id": "GHSA-5mg8-w23w-74h3",
+          "severity": "LOW"
+        },
+        {
+          "id": "GHSA-7g45-4rm6-3mm3",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xxph-c9ww-hj94",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.apache.commons:commons-compress",
+      "version": "1.12",
+      "scope_set": 17,
+      "advisories": [
+        {
+          "id": "GHSA-4g9r-vxhx-9pgx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-7hfm-57qf-j43q",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-crv7-7245-f45f",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-h436-432x-8fvx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hrmr-f5m6-m9pq",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-mc84-pj99-q6hh",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-xqfj-vm6h-2x34",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "org.apache.httpcomponents:httpclient",
+      "version": "4.5.6",
+      "scope_set": 18,
+      "advisories": [
+        {
+          "id": "GHSA-7r82-7xv7-xcpj",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.jetbrains.kotlin:kotlin-stdlib",
+      "version": "1.3.72",
+      "scope_set": 16,
+      "advisories": [
+        {
+          "id": "GHSA-2qp4-g3q3-f92w",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-cqj8-47ch-rvvq",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.jetbrains.kotlin:kotlin-stdlib",
+      "version": "1.4.31",
+      "scope_set": 19,
+      "advisories": [
+        {
+          "id": "GHSA-2qp4-g3q3-f92w",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec",
+      "version": "4.1.110.Final",
+      "scope_set": 20,
+      "advisories": [
+        {
+          "id": "GHSA-3p8m-j85q-pgmj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-558v-64gr-wgg4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-mj4r-2hfc-f8p6",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.110.Final",
+      "scope_set": 20,
+      "advisories": [
+        {
+          "id": "GHSA-38f8-5428-x5cv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-4mp9-239f-g9hg",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-57rv-r2g8-2cj3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-6cqp-g7gg-8hr5",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6jqx-86gh-f27w",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-84h7-rjj3-6jx4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8c42-7qj2-3j46",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fghv-69vj-qj49",
+          "severity": "LOW"
+        },
+        {
+          "id": "GHSA-gcjf-9mgh-3p7g",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hvcg-qmg6-jm4c",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-jppx-w49h-x2qq",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-m4cv-j2px-7723",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-mvh2-crg5-v77c",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-pwqr-wmgm-9rr8",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-q4f6-jm68-57ww",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-v8h7-rr48-vmmv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xxqh-mfjm-7mv9",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http2",
+      "version": "4.1.110.Final",
+      "scope_set": 20,
+      "advisories": [
+        {
+          "id": "GHSA-563q-j3cm-6jxm",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5x3r-wrvg-rp6q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-93wv-jw9v-4972",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-c2gf-v879-257j",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c69g-56f8-xwqj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-prj3-ccx8-p6x4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-w9fj-cfpg-grvv",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-common",
+      "version": "4.1.110.Final",
+      "scope_set": 20,
+      "advisories": [
+        {
+          "id": "GHSA-389x-839f-4rhx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xq3w-v528-46rv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler",
+      "version": "4.1.110.Final",
+      "scope_set": 20,
+      "advisories": [
+        {
+          "id": "GHSA-3qp7-7mw8-wx86",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-4g8c-wm8x-jfhw",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-c4c3-7fpv-j4q5",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-c653-97m9-rcg9",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fccg-mwvh-qqg4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-x4gw-5cx5-pgmh",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler-proxy",
+      "version": "4.1.110.Final",
+      "scope_set": 20,
+      "advisories": [
+        {
+          "id": "GHSA-45q3-82m4-75jr",
+          "severity": "LOW"
+        }
+      ]
+    },
+    {
+      "package": "org.jetbrains.kotlin:kotlin-stdlib",
+      "version": "1.4.32",
+      "scope_set": 21,
+      "advisories": [
+        {
+          "id": "GHSA-2qp4-g3q3-f92w",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "com.google.protobuf:protobuf-java",
+      "version": "3.17.2",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-4gg5-vx3j-xwc7",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-735f-pc8j-v9w8",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-g5ww-5jh7-63cx",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-h4h5-3hr4-j3g2",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec",
+      "version": "4.1.52.Final",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-3p8m-j85q-pgmj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-558v-64gr-wgg4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-9vjp-v76f-g363",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-grg4-wf29-r9vv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-mj4r-2hfc-f8p6",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.52.Final",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-269q-hmxg-m83q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-38f8-5428-x5cv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-4mp9-239f-g9hg",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-57rv-r2g8-2cj3",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-5jpm-x58v-624v",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5mcr-gq6c-3hq2",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6cqp-g7gg-8hr5",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-6jqx-86gh-f27w",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-84h7-rjj3-6jx4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8c42-7qj2-3j46",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fghv-69vj-qj49",
+          "severity": "LOW"
+        },
+        {
+          "id": "GHSA-gcjf-9mgh-3p7g",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hvcg-qmg6-jm4c",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-jppx-w49h-x2qq",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-m4cv-j2px-7723",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-mvh2-crg5-v77c",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-pwqr-wmgm-9rr8",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-q4f6-jm68-57ww",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-v8h7-rr48-vmmv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wx5j-54mm-rqqq",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xxqh-mfjm-7mv9",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-codec-http2",
+      "version": "4.1.52.Final",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-563q-j3cm-6jxm",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-5x3r-wrvg-rp6q",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-93wv-jw9v-4972",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-c2gf-v879-257j",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c69g-56f8-xwqj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f256-j965-7f32",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-f6hv-jmp6-3vwv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-prj3-ccx8-p6x4",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-w9fj-cfpg-grvv",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-wm47-8v5p-wjpj",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xpw8-rcwv-8f8p",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-common",
+      "version": "4.1.52.Final",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-389x-839f-4rhx",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-xq3w-v528-46rv",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler",
+      "version": "4.1.52.Final",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-3qp7-7mw8-wx86",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-6mjq-h674-j845",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-c4c3-7fpv-j4q5",
+          "severity": "CRITICAL"
+        },
+        {
+          "id": "GHSA-c653-97m9-rcg9",
+          "severity": "HIGH"
+        },
+        {
+          "id": "GHSA-fccg-mwvh-qqg4",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-x4gw-5cx5-pgmh",
+          "severity": "HIGH"
+        }
+      ]
+    },
+    {
+      "package": "io.netty:netty-handler-proxy",
+      "version": "4.1.52.Final",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-45q3-82m4-75jr",
+          "severity": "LOW"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcpkix-jdk15on",
+      "version": "1.67",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-4cx2-fc23-5wg6",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wg6q-6289-32hp",
+          "severity": "MODERATE"
+        }
+      ]
+    },
+    {
+      "package": "org.bouncycastle:bcprov-jdk15on",
+      "version": "1.67",
+      "scope_set": 22,
+      "advisories": [
+        {
+          "id": "GHSA-4h8f-2wvx-gg5w",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-8xfc-gm6g-vgpv",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-hr8g-6v94-x4m9",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-v435-xc8x-wvr9",
+          "severity": "MODERATE"
+        },
+        {
+          "id": "GHSA-wjxj-5m7g-mg7q",
+          "severity": "MODERATE"
+        }
+      ]
+    }
+  ]
+}

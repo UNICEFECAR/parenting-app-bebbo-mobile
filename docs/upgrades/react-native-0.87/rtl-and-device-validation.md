@@ -13,7 +13,7 @@ The generated [flavour matrix](flavour-matrix.json) checks eight primary app map
 | reraiUmntwana | reraiumntwana | ReraiUmntwana | org.unicef.zw.reraiumntwana | Zimbabwe English, Shona, Ndebele |
 | bebboPacific | bebbopacific | BebboPacific | org.unicef.pc.bebbopacific | Fiji English, iTaukei, Samoa English, Samoan |
 
-`xkstaging`/ParentBuddyAppXkDev and `banglastaging`/ParentBuddyAppBanglaDev retain their com.datamatics application identifiers and existing signing/GoogleServices groups. They are source-checked and included in shared iOS flag/scheme tests; they are not included in the primary eight-flavour native compile matrix. No new application IDs, countries, production endpoints or translation packs are invented. The old tvOS scheme is unchanged and untested.
+`xkstaging`/ParentBuddyAppXkDev and `banglastaging`/ParentBuddyAppBanglaDev retain their com.datamatics application identifiers and existing signing/GoogleServices groups. They are source-checked and included in shared iOS flag/scheme tests; they now have four auxiliary native compile jobs in addition to the primary eight-flavour matrix; see remaining-task-follow-up.md for source-specific results. No new application IDs, countries, production endpoints or translation packs are invented. The old tvOS scheme is unchanged and untested.
 
 ## Confirmed design discrepancies and fixes
 

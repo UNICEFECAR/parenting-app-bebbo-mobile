@@ -1,0 +1,51 @@
+{
+  "source": "7760562e59a2f23d65344955f06948bedbfbb1ac",
+  "inventory_run": 43525862764,
+  "checked_utc": "2026-11-13",
+  "inventory_sha256": "42727120dc99aefe86a25450c5987bb6ed4340d1a0f7eab68aab9fbcb4ac25b8",
+  "runtime_variants": {
+    "prod": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "prodstaging": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "bangla": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "xk": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "merhababebek": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "wawamor": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "reraiumntwana": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "bebbopacific": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "banglastaging": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    },
+    "xkstaging": {
+      "com.google.code.gson:gson": "2.13.2",
+      "com.google.guava:guava": "33.7.2-android"
+    }
+  },
+  "unique_runtime_package_versions": 266,
+  "runtime_osv_findings": [],
+  "limitations": "Exact resolved Maven runtime versions only; not buildscript classpaths, vendored C/C++ binaries, Apple frameworks, OS libraries, backend configuration or a reachability proof. This run passed resolution; its later compile-driver task name failed and was corrected separately."
+}

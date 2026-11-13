@@ -1,0 +1,22 @@
+{
+  "source": "7760562e59a2f23d65344955f06948bedbfbb1ac",
+  "packages": 45,
+  "findings": [
+    {
+      "package": {
+        "ecosystem": "RubyGems",
+        "name": "activesupport"
+      },
+      "version": "7.2.4",
+      "advisories": [
+        {
+          "id": "GHSA-8474-xrp6-wh69",
+          "modified": "2026-11-10T21:45:04.323273Z"
+        }
+      ]
+    }
+  ],
+  "validation_run": 43523202286,
+  "native_inputs_checked": 928,
+  "limitations": "Ruby tooling only; not native SDKs, binary code or a proof of runtime reachability."
+}
