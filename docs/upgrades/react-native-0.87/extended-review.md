@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-313 Jest tests / 34 suites; 22 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+314 Jest tests / 34 suites; 22 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
@@ -56,3 +56,8 @@ First checkpoint: `d664ad0b67dd88d28c35caf17210aa5e68ac757a`, [run 43463202988](
 
 
 A final startup regression handles malformed persisted taxonomy JSON before PersistGate opens. It reads only matching-language Realm metadata or the existing bundled taxonomy, repairs only that Redux cache field, and shows the existing retry UI if neither source is valid. It does not delete profiles/settings. Six tests cover valid caches, truncated/scalar/array snapshots and missing recovery data.
+
+
+Gradle compatibility follow-up: all eight Android jobs at `bdfdcc4` failed before app compilation because RN 0.87.1's build-plugin compiler 2.2.0 could not read Gradle 9.8.1's embedded Kotlin 2.4 metadata. A scoped patch compiles only RN's Gradle plugins with Kotlin 2.4.21 while retaining their KGP implementation dependency and the application's KGP 2.2.10. [Focused run 43472919633](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43472919633) passed `help buildEnvironment :react-native-webview:compileReleaseKotlin` on Gradle 9.8.1/JDK 21. Its resolved build graph confirms KGP 2.2.10; host-side Kotlin stdlib resolves to 2.4.21. No metadata-version checks are disabled. Full application builds still need final-run results; a successful preflight is not a substitute for them.
+
+Category telemetry also handles multiple public category IDs and malformed historical suffixes without generating invalid/high-cardinality event names; it never uploads an unrecognised suffix as text.

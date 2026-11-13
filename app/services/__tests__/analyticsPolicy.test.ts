@@ -28,3 +28,14 @@ test('records the first screen and a new instance, but not duplicate navigation 
   expect(jest.mocked(logAnalyticsEvent).mock.calls.filter(call => call[0] === 'screen_view')).toHaveLength(2);
   expect(trackScreen(undefined, 'second')).toBe('second');
 });
+
+
+test('multi-category and malformed historical suffixes cannot create invalid/high-cardinality event names', () => {
+  expect(prepareAnalyticsEvent('advice_category_selected_4, 55', {advise_id: 12})).toEqual({
+    name: 'advice_category_viewed', params: {category_ids: '4,55', advise_id: 12},
+  });
+  expect(prepareAnalyticsEvent('game_category_selected_' + '9'.repeat(400))).toEqual({name: 'game_category_viewed', params: undefined});
+  expect(prepareAnalyticsEvent('game_category_selected_undefined', {game_id: 13})).toEqual({
+    name: 'game_category_viewed', params: {game_id: 13},
+  });
+});
