@@ -8,7 +8,10 @@ The review-fixes branch resolves styled-components 6.6.0 and TypeScript 5.9.3.
 A fresh full-tree `npm audit --json` reports **19 entries: 8 moderate, 11 low,
 0 high and 0 critical**. The original 38-to-21 table and package paths below
 record the earlier snapshot; they do not describe the final dependency tree.
-See [review fixes](review-fixes.md) for validation limits and retained versions.
+See [review fixes](review-fixes.md) for validation limits and retained versions,
+and [dependency follow-up](dependency-follow-up.md) for the subsequent Babel/D3/typings
+updates. The rename-tool candidate was reverted after its audit regression;
+the follow-up retains the same 19-entry audit snapshot.
 
 ## Original result
 

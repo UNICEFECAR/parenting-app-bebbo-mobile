@@ -80,6 +80,9 @@ CocoaPods runs through the pinned Gemfile. CI preserves its resolved
 committed from the accepted macOS native build. They cannot be fabricated on the
 Linux review host.
 
+See [dependency follow-up](dependency-follow-up.md) for the subsequent reviewed
+maintenance updates and the rename-tool candidate rejected after audit.
+
 ## Dependency decisions
 
 | Dependency | Decision |
