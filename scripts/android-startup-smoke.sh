@@ -8,6 +8,13 @@ for required in java keytool adb python3 grep; do
 done
 report="$RUNNER_TEMP/native-smoke"
 mkdir -p "$report"
+collect_logs() {
+  adb logcat -d > "$report/logcat.txt" || true
+  local app_pid
+  app_pid=$(adb shell pidof "$ANDROID_APP_ID" | tr -d '\r' || true)
+  if [[ -n "$app_pid" ]]; then adb logcat -d --pid="$app_pid" > "$report/app-logcat.txt" || true; fi
+}
+trap collect_logs EXIT
 : "${BUNDLETOOL_JAR:?Missing pinned bundletool}"
 bundle=$(python3 -c 'from pathlib import Path; files=list(Path("android/app/build/outputs/bundle").glob("**/*.aab")); assert len(files)==1, files; print(files[0])')
 serial=$(adb get-serialno | tr -d '\r')
@@ -45,12 +52,18 @@ PYCODE
   fi
   return 1
 }
+adb shell settings put system font_scale "${SMOKE_FONT_SCALE:-1.0}"
 adb logcat -c
-adb shell monkey -p "$ANDROID_APP_ID" -c android.intent.category.LAUNCHER 1
+# Start the activity directly so a launcher stall cannot masquerade as app UI.
+adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p "$ANDROID_APP_ID"
 sleep 20
 capture_state startup
 # The deliberately invalid API fixture exercises the initial download failure.
 # Also exercise its existing cancel/confirmation path to the bundled fallback.
+if ! grep -Eqi 'not all content' "$report/startup.xml"; then
+  echo 'Expected fixture download retry dialog was not displayed (check screenshot for system dialogs)'
+  exit 1
+fi
 if grep -Eqi 'not all content' "$report/startup.xml"; then
   tap_label "$report/startup.xml" CANCEL || { echo 'Download cancellation button missing'; exit 1; }
   sleep 2
@@ -65,7 +78,23 @@ labels = [node.get('text') or node.get('content-desc') for node in root.iter('no
           if node.get('package') == sys.argv[2] and (node.get('text') or node.get('content-desc'))]
 if not labels:
     raise SystemExit('Download cancellation left a blank application screen')
+import re
+welcome = next((n for n in root.iter('node') if n.get('text') == 'Welcome!'), None)
+if welcome is None:
+    raise SystemExit('Welcome heading is missing after cancellation')
+x1, y1, x2, y2 = map(int, re.findall(r'\d+', welcome.get('bounds', '')))
+if y1 < 20 or y2 - y1 < 20:
+    raise SystemExit('Welcome heading is clipped or behind the status bar: ' + welcome.get('bounds', ''))
 print('Visible application content after cancellation:', labels)
+PYCODE
+  adb shell input swipe 160 540 160 180 500
+  sleep 1
+  capture_state after-scroll
+  python3 - "$report/after-scroll.xml" <<'PYCODE'
+import sys, xml.etree.ElementTree as ET
+root = ET.parse(sys.argv[1]).getroot()
+if not any((n.get('text') or n.get('content-desc')) == 'CONTINUE' and n.get('clickable') == 'true' for n in root.iter('node')):
+    raise SystemExit('Continue action is not reachable after scrolling the welcome screen')
 PYCODE
 fi
 pid=$(adb shell pidof "$ANDROID_APP_ID" | tr -d '\r' || true)

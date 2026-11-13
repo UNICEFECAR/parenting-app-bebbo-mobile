@@ -1,0 +1,177 @@
+name: Verify onboarding layout and actual app startup
+on:
+  push:
+    branches: [RNSDKUpgrade-onboarding-checks]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: install-evidence-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npm test -- --runInBand
+      - run: npm run test:tooling
+      - run: python3 -m unittest discover -s scripts/__tests__ -p 'test_*.py' -v
+      - run: npm run typecheck
+      - run: npm run assets:check
+      - run: npm audit --audit-level=high
+  bundles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
+        platform: [android, ios]
+    env:
+      FLAVOR: ${{ matrix.flavour }}
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - name: Create test-only environment
+        run: node scripts/ci-fixtures.cjs
+      - name: Bundle release JavaScript
+        env:
+          BUNDLE_PLATFORM: ${{ matrix.platform }}
+        run: |
+          mkdir -p /tmp/bebbo-bundle
+          npx react-native bundle --entry-file index.js --platform "$BUNDLE_PLATFORM" --dev false \
+            --bundle-output /tmp/bebbo-bundle/app.bundle --sourcemap-output /tmp/bebbo-bundle/app.bundle.map
+          node scripts/check-production-bundle.cjs /tmp/bebbo-bundle/app.bundle
+      - name: Verify referenced native vector resources
+        run: node scripts/collect-vector-assets.cjs --check
+  install:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [bebbo, reraiUmntwana]
+        font_scale: ['1.0', '1.3']
+    env:
+      CI: 'true'
+      FLAVOR: ${{ matrix.flavour }}
+      SMOKE_FONT_SCALE: ${{ matrix.font_scale }}
+      SOURCE_SHA: 4e3f9931c92a5abca437c5730864a5b21ddae28b
+      SOURCE_RUN: '43438512801'
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 2
+      - name: Prove application inputs match the compiled commit
+        shell: bash
+        run: |
+          git fetch --no-tags --depth=1 origin "$SOURCE_SHA"
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          changed = subprocess.check_output(['git', 'diff', '--name-only', '-z', os.environ['SOURCE_SHA'], 'HEAD']).decode().split('\0')
+          changed = [p for p in changed if p]
+          allowed = {'scripts/android-startup-smoke.sh', '.github/workflows/onboarding-evidence.yml', 'app/screens/localization/CountryLanguageConfirmation.tsx'}
+          unexpected = set(changed) - allowed
+          if unexpected:
+              raise SystemExit('Refusing stale native artifacts; application inputs changed: ' + repr(sorted(unexpected)))
+          report = Path(os.environ['RUNNER_TEMP']) / 'native-smoke'
+          report.mkdir(parents=True, exist_ok=True)
+          (report / 'provenance.json').write_text(json.dumps({'compiled_source': os.environ['SOURCE_SHA'], 'compiled_run': os.environ['SOURCE_RUN'], 'check_source': os.environ['GITHUB_SHA'], 'changed_paths': changed}, indent=2))
+          print('Verified matching native inputs; only the JS welcome layout and install harness differ')
+          PY
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --legacy-peer-deps
+      - run: node scripts/ci-fixtures.cjs
+      - uses: actions/setup-java@v6.2.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v4.0.4
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: unsigned-native-${{ matrix.flavour }}
+          path: android/app/build/outputs/bundle/reused
+          run-id: ${{ env.SOURCE_RUN }}
+          github-token: ${{ github.token }}
+      - name: Generate release bytecode for the JavaScript-only layout change
+        shell: bash
+        run: |
+          output="$RUNNER_TEMP/release-js"
+          mkdir -p "$output"
+          npx react-native bundle --entry-file index.js --platform android --dev false --minify false --reset-cache \
+            --bundle-output "$output/app.js" --assets-dest "$output/resources"
+          node scripts/check-production-bundle.cjs "$output/app.js"
+          node_modules/hermes-compiler/hermesc/linux64-bin/hermesc -w -emit-binary -max-diagnostic-width=80 \
+            -out "$output/app.hbc" "$output/app.js" -O
+          python3 - <<'PYCODE'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          bundles = list(Path('android/app/build/outputs/bundle').glob('**/*.aab'))
+          assert len(bundles) == 1, bundles
+          bundle = bundles[0]
+          bytecode = (Path(os.environ['RUNNER_TEMP']) / 'release-js/app.hbc').read_bytes()
+          original = bundle.with_suffix('.original')
+          bundle.rename(original)
+          target = 'base/assets/index.android.bundle'
+          with zipfile.ZipFile(original) as source, zipfile.ZipFile(bundle, 'w') as output:
+              assert source.read(target)[:12] == bytecode[:12], 'Hermes bytecode version mismatch'
+              for entry in source.infolist():
+                  output.writestr(entry, bytecode if entry.filename == target else source.read(entry))
+          with zipfile.ZipFile(original) as before, zipfile.ZipFile(bundle) as after:
+              assert before.namelist() == after.namelist(), 'AAB entry list changed'
+              changed = [n for n in before.namelist() if before.read(n) != after.read(n)]
+              assert changed == [target], changed
+          original.unlink()
+          report = Path(os.environ['RUNNER_TEMP']) / 'native-smoke/provenance.json'
+          metadata = json.loads(report.read_text())
+          metadata.update({'replaced_bundle_entries': changed, 'hermes_bytecode_sha256': hashlib.sha256(bytecode).hexdigest()})
+          report.write_text(json.dumps(metadata, indent=2))
+          print('Verified all AAB entries unchanged except regenerated Hermes release bytecode')
+          PYCODE
+      - name: Validate the captured AAB
+        shell: bash
+        run: |
+          jar="$RUNNER_TEMP/bundletool.jar"
+          curl --fail --location --silent --show-error 'https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar' -o "$jar"
+          printf '%s  %s\n' 'a099cfa1543f55593bc2ed16a70a7c67fe54b1747bb7301f37fdfd6d91028e29' "$jar" | sha256sum --check
+          echo "BUNDLETOOL_JAR=$jar" >> "$GITHUB_ENV"
+          bundle=$(python3 -c 'from pathlib import Path; files=list(Path("android/app/build/outputs/bundle").glob("**/*.aab")); assert len(files)==1, files; print(files[0])')
+          report="$RUNNER_TEMP/native-smoke"
+          java -jar "$jar" dump manifest --bundle="$bundle" --module=base > "$report/manifest.xml"
+          abis=arm64-v8a,x86_64
+          if [[ "$FLAVOR" == "bebbo" ]]; then abis=armeabi-v7a,arm64-v8a,x86,x86_64; fi
+          python3 scripts/check-android-bundle.py "$bundle" --expected-abis "$abis" --manifest "$report/manifest.xml" --report "$report/packaging.json"
+          python3 -m unittest discover -s scripts/__tests__ -p 'test_*.py' -v
+      - name: Enable emulator acceleration
+        run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2.38.0
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          ram-size: 3072M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          script: bash scripts/android-startup-smoke.sh
+      - name: Preserve corrected install evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: onboarding-${{ matrix.flavour }}-font-${{ matrix.font_scale }}
+          path: ${{ runner.temp }}/native-smoke
+          if-no-files-found: error
+# QA reuses verified native code and regenerates only Hermes JavaScript bytecode.

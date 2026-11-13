@@ -12,8 +12,7 @@ import Icon, {
   OuterIconLeft,
   OuterIconRow,
 } from "@components/shared/Icon";
-import OnboardingContainer, {
-  LocalizationAction,
+import {
   LocalizationCol,
   LocalizationWithoutBorderCol,
   LocalizationContainer,
@@ -49,7 +48,9 @@ import {
   StyleSheet,
   View,
   Alert,
+  ScrollView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { appConfig, localization } from "../../instances";
@@ -83,6 +84,18 @@ type Props = {
   route: any;
 };
 const styles = StyleSheet.create({
+  page: { flex: 1 },
+  content: {
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingHorizontal: 25,
+    paddingVertical: 24,
+  },
+  naturalBlock: { flex: 0, flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
+  header: { marginTop: 0 },
+  countryRow: { minHeight: 0 },
+  countryCell: { minHeight: 64, paddingVertical: 16, marginTop: 0 },
+  continueAction: { marginTop: 16 },
   welcomeText: {
     fontSize: 20,
     fontFamily: "roboto-bold",
@@ -521,92 +534,95 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             <Heading3Centerr>{t("noInternet")}</Heading3Centerr>
           </OfflineBar>
         ) : null}
-        <OnboardingContainer>
-          <OnboardingConfirmationHead>
-            <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
-            <Icon name="ic_country" size={100} color={secondaryColor} />
-            <OnboardingShiftHead>
-              <Heading2Centerw>{t("countryLangSelection")}</Heading2Centerw>
-            </OnboardingShiftHead>
-            <Heading4Centerr>{t("checkonce")}</Heading4Centerr>
-          </OnboardingConfirmationHead>
-          <CountryAppBanner countryId={countryData?.CountryID ?? countryData?.countryId} />
-          <LocalizationContainer>
-            <LocalizationRow>
-              <LocalizationCol
-                disabled={allCountries.length === 0}
-                onPress={(): any =>
-                  navigation.navigate("CountrySelection", {
-                    country: countryData,
-                    language: newLanguage,
-                  })
-                }
-              >
-                <LocalizationContentHead>
-                  <Heading3Regular>{t("country")}</Heading3Regular>
-                </LocalizationContentHead>
-                <LocalizationContentResult>
-                  <Heading3>{countryData?.name}</Heading3>
-                </LocalizationContentResult>
-              </LocalizationCol>
+        <SafeAreaView style={[styles.page, { backgroundColor: headerColor }]} edges={["top", "bottom"]}>
+          <ScrollView style={styles.page} contentContainerStyle={styles.content} bounces={false}>
+            <OnboardingConfirmationHead style={[styles.naturalBlock, styles.header]}>
+              <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
+              <Icon name="ic_country" size={100} color={secondaryColor} />
+              <OnboardingShiftHead>
+                <Heading2Centerw>{t("countryLangSelection")}</Heading2Centerw>
+              </OnboardingShiftHead>
+              <Heading4Centerr>{t("checkonce")}</Heading4Centerr>
+            </OnboardingConfirmationHead>
+            <CountryAppBanner countryId={countryData?.CountryID ?? countryData?.countryId} />
+            <LocalizationContainer style={styles.naturalBlock}>
+              <LocalizationRow style={[styles.naturalBlock, styles.countryRow]}>
+                <LocalizationCol
+                  style={[styles.naturalBlock, styles.countryCell]}
+                  disabled={allCountries.length === 0}
+                  onPress={(): any =>
+                    navigation.navigate("CountrySelection", {
+                      country: countryData,
+                      language: newLanguage,
+                    })
+                  }
+                >
+                  <LocalizationContentHead>
+                    <Heading3Regular>{t("country")}</Heading3Regular>
+                  </LocalizationContentHead>
+                  <LocalizationContentResult>
+                    <Heading3>{countryData?.name}</Heading3>
+                  </LocalizationContentResult>
+                </LocalizationCol>
 
-              <LocalizationWithoutBorderCol
-                disabled={allCountries.length === 0}
-                onPress={() =>
-                  popAndPush(navigation, "LanguageSelection", {
-                    country: countryData,
-                    language: newLanguage,
-                    luxonLocale: luxonLanLocale ?? null,
-                    deviceLanCode: deviceLanCode ?? null,
-                    isFromCountry: true,
-                    isDirect: true,
-                  })
-                }
-              >
-                <LocalizationContentHead>
-                  <Heading3Regular>{t("language")}</Heading3Regular>
-                </LocalizationContentHead>
-                <LocalizationContentResult>
-                  <Heading3>
-                    {Array.isArray(route?.params?.language)
-                      ? language?.[0]?.displayName
-                      : newLanguage?.displayName}
-                  </Heading3>
-                </LocalizationContentResult>
-              </LocalizationWithoutBorderCol>
+                <LocalizationWithoutBorderCol
+                  style={[styles.naturalBlock, styles.countryCell]}
+                  disabled={allCountries.length === 0}
+                  onPress={() =>
+                    popAndPush(navigation, "LanguageSelection", {
+                      country: countryData,
+                      language: newLanguage,
+                      luxonLocale: luxonLanLocale ?? null,
+                      deviceLanCode: deviceLanCode ?? null,
+                      isFromCountry: true,
+                      isDirect: true,
+                    })
+                  }
+                >
+                  <LocalizationContentHead>
+                    <Heading3Regular>{t("language")}</Heading3Regular>
+                  </LocalizationContentHead>
+                  <LocalizationContentResult>
+                    <Heading3>
+                      {Array.isArray(route?.params?.language)
+                        ? language?.[0]?.displayName
+                        : newLanguage?.displayName}
+                    </Heading3>
+                  </LocalizationContentResult>
+                </LocalizationWithoutBorderCol>
 
-              <LocalizationAction></LocalizationAction>
-            </LocalizationRow>
-            <ShiftFromTop25>
-              <ButtonWithBorder
-                disabled={allCountries.length === 0}
-                onPress={onEditLang}
-              >
-                <OuterIconRow>
-                  <OuterIconLeft>
-                    <IconML
-                      name="ic_edit"
-                      size={16}
-                      color={secondaryBtnColor}
-                    />
-                  </OuterIconLeft>
-                  <ButtonTextLg>{t("editCountryLang")}</ButtonTextLg>
-                </OuterIconRow>
-              </ButtonWithBorder>
-            </ShiftFromTop25>
+              </LocalizationRow>
+              <ShiftFromTop25>
+                <ButtonWithBorder
+                  disabled={allCountries.length === 0}
+                  onPress={onEditLang}
+                >
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <IconML
+                        name="ic_edit"
+                        size={16}
+                        color={secondaryBtnColor}
+                      />
+                    </OuterIconLeft>
+                    <ButtonTextLg>{t("editCountryLang")}</ButtonTextLg>
+                  </OuterIconRow>
+                </ButtonWithBorder>
+              </ShiftFromTop25>
 
-            <Flex1>
-              <ButtonPrimary
-                disabled={allCountries.length === 0}
-                onPress={(): any => saveSelection()}
-              >
-                <ButtonUpperCaseText numberOfLines={2}>
-                  {t("continueCountryLang")}
-                </ButtonUpperCaseText>
-              </ButtonPrimary>
-            </Flex1>
-          </LocalizationContainer>
-        </OnboardingContainer>
+              <Flex1 style={[styles.naturalBlock, styles.continueAction]}>
+                <ButtonPrimary
+                  disabled={allCountries.length === 0}
+                  onPress={(): any => saveSelection()}
+                >
+                  <ButtonUpperCaseText numberOfLines={2}>
+                    {t("continueCountryLang")}
+                  </ButtonUpperCaseText>
+                </ButtonPrimary>
+              </Flex1>
+            </LocalizationContainer>
+          </ScrollView>
+        </SafeAreaView>
       </>
     </>
   );
