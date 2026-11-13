@@ -328,8 +328,8 @@ tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
 // Compile-only CI runs have fake Firebase configuration and cannot be shipped.
 // Normal local/release builds retain their existing per-flavour signing keys.
 if (providers.gradleProperty("unsignedVerification").getOrElse("false").toBoolean()) {
-    android.productFlavors.configureEach { signingConfig = null }
-    android.buildTypes.release.signingConfig = null
+    android.productFlavors.configureEach { signingConfig = (com.android.build.api.dsl.ApkSigningConfig) null }
+    android.buildTypes.release.signingConfig = (com.android.build.api.dsl.ApkSigningConfig) null
 }
 
 def verifyVectorAssets = tasks.register("verifyVectorAssets", Exec) {

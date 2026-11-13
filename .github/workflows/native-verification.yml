@@ -94,7 +94,7 @@ jobs:
       - name: Resolve pinned CocoaPods tooling
         if: inputs.platform == 'ios'
         working-directory: ios
-        run: bundle exec pod install
+        run: bundle exec pod install --deployment
       - name: Compile unsigned iOS archive
         if: inputs.platform == 'ios'
         run: |

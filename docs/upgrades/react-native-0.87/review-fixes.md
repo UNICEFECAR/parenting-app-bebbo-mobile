@@ -75,10 +75,10 @@ upload to stores or create a distributable release. Existing local release
 commands and per-flavour signing configurations remain available. A signed
 release must use the real configuration and must not set `unsignedVerification`.
 
-CocoaPods runs through the pinned Gemfile. CI preserves its resolved
-`Gemfile.lock` and `Podfile.lock` as artifacts; they still need to be reviewed and
-committed from the accepted macOS native build. They cannot be fabricated on the
-Linux review host.
+CocoaPods runs through the pinned Gemfile. The later bug sweep committed the
+byte-identical `Gemfile.lock` and `ios/Podfile.lock` produced by successful Bebbo
+and Rerai macOS archives; CI now uses CocoaPods deployment mode and preserves
+the resolved locks as artifacts. See [bug sweep](bug-sweep.md) for current results.
 
 See [dependency follow-up](dependency-follow-up.md) for the subsequent reviewed
 maintenance updates and the rename-tool candidate rejected after audit.

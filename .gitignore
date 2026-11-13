@@ -33,6 +33,8 @@ ios/DerivedData
 
 # lock files (package-lock.json, yarn.lock etc.)
 *.lock
+!Gemfile.lock
+!ios/Podfile.lock
 
 # Environment files
 .env*

@@ -12,6 +12,8 @@ as well as the React Native migration. The source PR branch is unchanged.
 | Notifications | Generated IDs could collide with the same new batch or return undefined after a saved-ID collision. Use a bounded collision search over saved and new IDs. Sort copied age periods by days instead of assuming Drupal IDs are chronological; use the planned term date, not the taxonomy ID, for the existing premature-child anchor. Missing catalogues return an empty result. Existing clinical schedule intervals are unchanged. |
 | Videos | Missing/non-string video URLs could crash a card. A local-variable error flag reset on every render and did not reliably show the fallback. Guard metadata and retain the failure state until the source changes. |
 | Offline article cache | Pinning an existing article did not refresh its content; async callbacks inside a synchronous Realm write could detach errors. Perform the batch synchronously in one transaction, refresh content and preserve pins. Cache operations return their actual completion status and API persistence rejects unconfirmed writes. |
+| Download completion | The API saga dispatched a forked cache write and immediately advanced the delta cursor/read the cache. Wait for the actual transaction; failed persistence/application responses enter the retry list and cannot advance their cursor. Concurrent downloads now own separate failure lists. Seven saga tests cover the ordering and error paths. |
+| Article HTML tables | Replace a removed table-plugin export with the documented opaque `tableModel`; register that model beside the iframe model so table contents stay within the WebView renderer. Visual table acceptance still requires a device. |
 | Growth cards | Height-only records were treated as zero because parsing required a weight. Realm Date and exported millisecond dates were not handled consistently. Interpret the supplied height/date, tolerate loading metadata and leave missing measurements unclassified. Warning text now has a matching status flag; the exact lower height boundary no longer falls through. Other cut-offs and translated messages are unchanged. |
 | Article/activity search | The index was published before asynchronous construction completed and never rebuilt after data/language changes. Publish only completed indexes, cancel obsolete jobs, disable input while preparing and safely handle queries before readiness. Avoid reshuffling the activities array on every render. |
 | Deep links | Invalid percent escapes could throw; a late initial-URL response could replay an older link over a foreground link or reset. Decode defensively, handle lookup failure, invalidate stale responses and remove listeners on unmount. |
@@ -23,11 +25,11 @@ transaction rollback model; they do not replace installed-app migration tests.
 
 ## Automated verification
 
-- 218 tests passed in 20 Jest suites, including backup/restore, Drive authorisation,
+- 225 tests passed in 21 Jest suites, including backup/restore, Drive authorisation,
   notification migration, navigation and earlier review tests.
 - 11 Node tooling tests passed, including eight fixed D3 path comparisons against the
   previous d3-shape version.
-- Type regression gate: no new diagnostics; 100 inherited diagnostics remain
+- Type regression gate: no new diagnostics; 98 inherited diagnostics remain
   (original-head baseline: 141). Raw `tsc --noEmit` is still not clean.
 - All 96 generated native resources verified; workflow syntax checked with
   actionlint and the Android launch script checked with `bash -n`.
@@ -40,7 +42,7 @@ Two representative flavours (Bebbo and Rerai) also run unsigned native builds.
 The native workflow now installs the actual SDK repository package
 `platforms;android-37.0`, explicitly sets up SDK tooling and JDK 21, assembles an
 APK as well as an AAB, checks native packaging and launches Android on an API-35
-emulator. Screenshots, UI hierarchy, logs and packaging results are preserved as
+emulator. AGP’s overloaded signing setter uses a typed null for unsigned checks. Screenshots, UI hierarchy, logs and packaging results are preserved as
 artifacts when those steps run. Fake configuration and a temporary CI signing
 key are used; these builds are not distributable releases.
 
@@ -49,6 +51,10 @@ Both Bebbo and Rerai unsigned iOS archives succeeded in
 on commit `9f2b707`, before the application fixes in this sweep. That run's Android
 jobs stopped at the SDK package installation, which is corrected in this sweep.
 The complete run must be checked again on the final application-fix commit.
+
+Bebbo and Rerai produced byte-identical `Gemfile.lock` and `ios/Podfile.lock`.
+The reviewed locks are now committed, and CocoaPods CI uses `--deployment` to
+reject unreviewed dependency resolution changes.
 
 ## Acceptance that still needs a real app/device
 

@@ -49,7 +49,7 @@ import {
 } from "../../database/schema/ArticleSchema";
 import RelatedActivities from "@components/shared/RelatedActivities";
 import table, {
-  IGNORED_TAGS,
+  tableModel,
   cssRulesFromSpecs,
   defaultTableStylesSpecs,
 } from "@native-html/table-plugin";
@@ -850,7 +850,6 @@ const renderHtmlImage = ({ tnode }: any): any => {
             iframe: { maxWidth: "100%", height: 200 },
           }}
           WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
-          ignoredDomTags={IGNORED_TAGS}
         />
       </View>
     );
@@ -999,10 +998,10 @@ const renderHtmlImage = ({ tnode }: any): any => {
                         img: renderHtmlImage,
                       }}
                   customHTMLElementModels={{
+                    table: tableModel,
                     iframe: iframeModel,
                   }}
                   WebView={WebView}
-                  ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{...htmlListRenderers,
                     table: {
                       cssRules,

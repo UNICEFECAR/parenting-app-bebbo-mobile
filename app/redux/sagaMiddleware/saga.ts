@@ -1,39 +1,33 @@
 import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, onSponsorApiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
-import { AxiosResponse } from 'axios';
-import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess, retryAlert } from '../../services/commonApiService';
 import { ApiJsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
+import {addApiDataInRealm} from '../../services/Utils';
 import { fetchAPIStart, receiveAPIFailure, receiveAPISuccess } from './sagaSlice';
-let errorArr: any[] = [];
-type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
-function* apiCall(data: ApiJsonArray, dispatch: any): any {
-  console.log("in api call", data);
+function* apiCall(data: ApiJsonArray, dispatch: any, errors: ApiJsonArray[]): any {
   try {
-
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
-    console.log("response is",JSON.stringify(response))
-    if (response.status != 200) {
-      errorArr.push(data);
-    } else {
-      if (response.data.status == 200) {
-        try {
-          if (data.saveinDB == true) {
-            yield put(insertInDB(response, dispatch));
-          }
-        }
-        catch (e) {
-          // console.log("errorArr after insert---",errorArr)
-        }
+    if (response?.status != 200 || (data.saveinDB && response?.data?.status != 200)) {
+      errors.push(data);
+      return null;
+    }
+    if (data.saveinDB) {
+      // A dispatched/forked write does not finish before the success handler.
+      // Await persistence before exposing the response or advancing its cursor.
+      const saved = yield call(addApiDataInRealm, insertInDB(response, dispatch));
+      if (saved !== 'successinsert') {
+        errors.push(data);
+        return null;
       }
     }
     return response;
-  } catch (e) {
-    errorArr.push(data);
+  } catch {
+    errors.push(data);
     return null;
   }
 }
-function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): any {
+function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[]): any {
 
   try {
     const payload = { errorArr: errorArr, fromPage: prevPage }
@@ -118,7 +112,7 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   }
 }
 
-function* onApiError(payload: any, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): any {
+function* onApiError(payload: any, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[]): any {
   try {
     yield call(retryAlert);
     const failedApiObj = errorArr;
@@ -132,19 +126,19 @@ function* onApiError(payload: any, prevPage: string, dispatch: any, navigation: 
     } else {
       onLoadApiArray = apiJsonData;
     }
-    errorArr = [];
     yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload));
   } catch (e) {
     //code of what to fo if user selected cancel.
     try {
       yield call(cancelRetryAlert);
-      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
     } catch (e) {
-      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
     }
   }
 }
-function* onFetchAPI(value: any): any {
+export function* onFetchAPI(value: any): any {
+  const errorArr: ApiJsonArray[] = [];
   const payload = value.payload;
   const prevPage = value.prevPage;
   const dispatch = value.dispatch;
@@ -157,33 +151,32 @@ function* onFetchAPI(value: any): any {
   const downloadWeeklyData = value.downloadWeeklyData;
   const downloadMonthlyData = value.downloadMonthlyData;
   const enableImageDownload = value.enableImageDownload;
-  errorArr = [];
   try {
     // API Request
     yield put(fetchAPIStart());
 
-    let response: commonApiServiceResponse = yield all(
+    let response: any[] = yield all(
       payload.map((data: ApiJsonArray) =>
-        call(apiCall, data, dispatch)
+        call(apiCall, data, dispatch, errorArr)
       )
     )
     response = response?.filter((el: any) => {
       return el != null;
     });
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-      yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
     }
     else {
-      yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
       yield put(receiveAPISuccess(response));
     }
   } catch (e) {
     console.log(value)
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-      yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
     }
     else {
-      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
 
     }
   }
