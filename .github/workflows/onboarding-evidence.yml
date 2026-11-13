@@ -82,14 +82,14 @@ jobs:
           from pathlib import Path
           changed = subprocess.check_output(['git', 'diff', '--name-only', '-z', os.environ['SOURCE_SHA'], 'HEAD']).decode().split('\0')
           changed = [p for p in changed if p]
-          allowed = {'scripts/android-startup-smoke.sh', '.github/workflows/onboarding-evidence.yml', 'app/screens/localization/CountryLanguageConfirmation.tsx'}
+          allowed = {'scripts/android-startup-smoke.sh', '.github/workflows/onboarding-evidence.yml', 'app/screens/localization/CountryLanguageConfirmation.tsx', 'app/components/FocusAwareStatusBar.tsx', 'app/services/__tests__/focusAwareStatusBar.test.tsx'}
           unexpected = set(changed) - allowed
           if unexpected:
               raise SystemExit('Refusing stale native artifacts; application inputs changed: ' + repr(sorted(unexpected)))
           report = Path(os.environ['RUNNER_TEMP']) / 'native-smoke'
           report.mkdir(parents=True, exist_ok=True)
           (report / 'provenance.json').write_text(json.dumps({'compiled_source': os.environ['SOURCE_SHA'], 'compiled_run': os.environ['SOURCE_RUN'], 'check_source': os.environ['GITHUB_SHA'], 'changed_paths': changed}, indent=2))
-          print('Verified matching native inputs; only the JS welcome layout and install harness differ')
+          print('Verified matching native inputs; only the JS welcome/status-bar fixes, their tests and install harness differ')
           PY
       - uses: actions/setup-node@v7.1.0
         with:

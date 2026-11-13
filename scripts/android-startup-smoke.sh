@@ -55,7 +55,21 @@ PYCODE
 adb shell settings put system font_scale "${SMOKE_FONT_SCALE:-1.0}"
 adb logcat -c
 # Start the activity directly so a launcher stall cannot masquerade as app UI.
-adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p "$ANDROID_APP_ID"
+component=$(python3 - "$report/manifest.xml" "$ANDROID_APP_ID" <<'PYCODE'
+import sys, xml.etree.ElementTree as ET
+root = ET.parse(sys.argv[1]).getroot()
+ns = '{http://schemas.android.com/apk/res/android}'
+for activity in root.findall('application/activity'):
+    for intent in activity.findall('intent-filter'):
+        if any(a.get(ns + 'name') == 'android.intent.action.MAIN' for a in intent.findall('action')) and any(c.get(ns + 'name') == 'android.intent.category.LAUNCHER' for c in intent.findall('category')):
+            name = activity.get(ns + 'name')
+            if name.startswith('.'): name = root.get('package') + name
+            print(sys.argv[2] + '/' + name)
+            raise SystemExit(0)
+raise SystemExit('No launch activity in the captured manifest')
+PYCODE
+)
+adb shell am start -W -n "$component"
 sleep 20
 capture_state startup
 # The deliberately invalid API fixture exercises the initial download failure.
