@@ -17,6 +17,19 @@ import {saveAnalyticsRetry} from './analyticsOutbox';
 const analytics = () => getAnalytics(getApp());
 const crashlytics = () => getCrashlytics();
 
+let legacyClearPromise: Promise<void> | undefined;
+async function preparedAnalytics() {
+    const instance = analytics();
+    if (!legacyClearPromise) {
+        legacyClearPromise = (async () => {
+            await firebaseSetUserProperties(instance,
+                Object.fromEntries(legacyProfileProperties.map(key => [key, null])));
+        })().catch(error => {legacyClearPromise = undefined; throw error;});
+    }
+    await legacyClearPromise;
+    return instance;
+}
+
 export const logCrashlyticsMessage = (message: string): void => {
     try {
         firebaseLog(crashlytics(), diagnosticBreadcrumb(message));
@@ -35,7 +48,7 @@ export const tryLogAnalyticsEvent = async (
     const event = prepareAnalyticsEvent(eventName, params);
     if (!event) return true; // Invalid legacy data is terminal, not a permanent retry.
     try {
-        await firebaseLogEvent(analytics(), event.name, event.params);
+        await firebaseLogEvent(await preparedAnalytics(), event.name, event.params);
         return true;
     } catch (error) {
         console.warn('Analytics SDK submission failed');
@@ -86,5 +99,7 @@ export const recordError = async (
   };
 
 /** Clear attributes written by older releases; selecting a child is not a census. */
-export const clearLegacyProfileAnalytics = (): Promise<void> =>
-    setUserProperties(Object.fromEntries(legacyProfileProperties.map(key => [key, null])));
+export const clearLegacyProfileAnalytics = async (): Promise<void> => {
+    try { await preparedAnalytics(); }
+    catch { console.warn('Legacy analytics property cleanup failed'); }
+};

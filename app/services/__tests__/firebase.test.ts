@@ -81,3 +81,21 @@ test('initialisation failure is contained within the telemetry operation', async
   const {tryLogAnalyticsEvent} = require('../firebaseAnalytics');
   await expect(tryLogAnalyticsEvent('test_event')).resolves.toBe(false);
 });
+
+
+test('the first custom event waits for removal of legacy child attributes', async () => {
+  jest.resetModules();
+  const sdk = require('@react-native-firebase/analytics');
+  let finish!: () => void;
+  sdk.setUserProperties.mockImplementationOnce(() => new Promise<void>(resolve => {finish = resolve;}));
+  const transport = require('../firebaseAnalytics');
+  const sending = transport.logAnalyticsEvent('screen_view', {screen_name: 'Welcome'});
+  expect(finish).toBeDefined();
+  expect(sdk.setUserProperties).toHaveBeenCalledWith('analytics', expect.objectContaining({ageid: null, is_premature: null, child_gender: null}));
+  expect(sdk.logEvent).not.toHaveBeenCalled();
+  finish();
+  await sending;
+  expect(sdk.logEvent).toHaveBeenCalledTimes(1);
+  await transport.logAnalyticsEvent('second_screen');
+  expect(sdk.setUserProperties).toHaveBeenCalledTimes(1);
+});

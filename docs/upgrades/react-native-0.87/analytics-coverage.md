@@ -24,6 +24,8 @@ The [source inventory](analytics-source-inventory.json) lists every registered r
 
 ## Offline behaviour and consent
 
+The first custom event awaits one shared cleanup of legacy child user properties; concurrent event callers cannot race ahead of it. Native automatic startup events may already have occurred before JavaScript runs, so this is not proof that an upgraded installation emits no historical attributes. Inspect upgrade payloads in DebugView.
+
 Both the historical `EventSyncService.logEvent` callers and direct `logAnalyticsEvent` calls submit immediately to Firebase's native SDK. The SDK owns normal offline capture, native session/time and durable uploading after connectivity returns. JavaScript connectivity flags are not acknowledgements. An SDK promise resolving means request acceptance, not confirmed ingestion.
 
 Only SDK rejections use the app's sanitised retry store, and only if `getAppInstanceId` indicates analytics storage is permitted. A null/failed consent check does not start a second collection channel. Legacy Realm retries are snapshotted, serialised, sanitised on replay and removed only after acceptance; old acknowledged records are pruned. The content-country/language reset retains the queue. Capture timing, original session and historical country/user-property context for old queued records cannot be recovered. Exclude unattributable legacy retries from exact country/profile totals. Clearing old client properties does not erase historical server-side data; retention/deletion policy needs separate authorised administration. New fallback retries include captured_at_ms for custom analysis, but GA4 still dates them at SDK ingestion; this is not a supported event backdating API.
