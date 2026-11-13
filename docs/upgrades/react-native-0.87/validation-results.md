@@ -24,7 +24,7 @@ Production Android defaults retain armeabi-v7a, arm64-v8a, x86 and x86_64; the R
 | Unit/tool/config/security/assets + all 16 production bundles | `efe62468`, [43491847432](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43491847432) | 17/17 jobs pass |
 | Eight Android + seven iOS release builds | `0da745ba`, [43477593213](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43477593213) | 15/16 native jobs pass; original BebboDev iOS failed downloading the CocoaPods CDN before compilation |
 | BebboDev iOS retry | Production checkout `529784d8`, [43484429818](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43484429818) | Pass, including archived app ID/Firebase fixture/privacy flags/minimum OS/app dSYM |
-| Native data + actual production startup/font checks | Data/startup source `f077fa4d`, QA controller `deedf00f`, [43490604453](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43490604453) | 24/25 jobs pass; Bebbo extended iOS simulator job is still in its boot/build step at this checkpoint |
+| Native data + actual production startup/font checks | Data/startup source `f077fa4d`, QA controller `deedf00f`, [43490604453](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43490604453) | 25/25 jobs pass |
 
 The final source passes **348 Jest tests / 39 suites**, **23 Node tooling tests**, **29 Python packaging/configuration tests**, and verification of **96 native resources**. The TypeScript regression gate passes with **96 inherited diagnostics**; raw tsc is not clean. The final CI npm audit reports **11 low, zero moderate/high/critical**. This is not a complete native-transitive or infrastructure vulnerability scan.
 
@@ -32,7 +32,7 @@ The final source passes **348 Jest tests / 39 suites**, **23 Node tooling tests*
 
 ## Native data and UI evidence
 
-Bebbo and Rerai each exercise native AES/HMAC/legacy ciphertext, tamper rejection, profile/nested-record ownership, repeated replacement, failed-insert rollback, synthetic user-Realm schema 3→4 and Redux-Realm schema 0→1 migration, large Unicode persistence, settings preservation, restarts, startup taxonomy recovery, legacy vaccination-only records and process-interrupted 5,000-profile replacement. Latest per-platform results and exact interruption outcomes are recorded in the `final-native-data-*.json` files in [evidence](evidence/).
+Bebbo and Rerai each exercise native AES/HMAC/legacy ciphertext, tamper rejection, profile/nested-record ownership, repeated replacement, failed-insert rollback, synthetic user-Realm schema 3→4 and Redux-Realm schema 0→1 migration, large Unicode persistence, settings preservation, restarts, startup taxonomy recovery, legacy vaccination-only records and process-interrupted 5,000-profile replacement. All four configurations pass 15 scenarios each. Android runs recovered the original three profiles; the latest iOS runs observed complete committed 5,000-profile datasets after restart. No partial/mixed records were accepted. Latest per-platform results and exact interruption outcomes are recorded in the `final-native-data-*.json` files in [evidence](evidence/).
 
 A kill after a writing marker can occur before or after commit. A complete original or committed dataset is valid; partial/mixed data is not. Do not describe a committed result as proof of a mid-transaction rollback. The overdue-pregnancy and legacy boolean-flag cases added after this native checkpoint have actual-converter unit verification; their real historical-device fixtures remain acceptance.
 
@@ -54,3 +54,6 @@ The first Android data-harness attempt failed before app launch because shell va
 Realm 20.2.0 and schema versions remain to avoid combining a database upgrade with the framework migration. dotenv 3.4.12 retains the tested flavour behaviour; major 5 requires isolated FLAVOR/environment regression proof. Firebase 26.4.1 retains the tested CocoaPods path and Apple security backport; the Firebase 27/SPM migration needs coordinated work across all targets. Low build-tool advisories without a compatible published fix, legacy callback consumers, ESLint configuration migration and the inherited typing backlog are recorded follow-ups. They have not been hidden by forced major upgrades or suppression rules.
 
 For full procedures and findings, see [backup validation](backup-validation.md), [analytics coverage](analytics-coverage.md), [security assessment](security-assessment.md), [crash history](crash-history.md) and [RTL/flavour validation](rtl-and-device-validation.md).
+
+
+The [completed native-data/startup job manifest](evidence/native-data-and-startup-checks.json) records all 25 successful jobs. The separate final-source production manifest records 348 tests and 16 bundles; the earlier f077fa4 checkpoint in the native workflow has its own unit count. Test counts from different source checkpoints are not combined into a fabricated single run.

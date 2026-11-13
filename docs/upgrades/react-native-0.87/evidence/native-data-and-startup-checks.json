@@ -1,0 +1,139 @@
+{
+  "application_source": "efe62468b945cd372243a8ef1618a7cc2d13a54c",
+  "native_data_and_startup_source": "f077fa4d9ffc22b5411557bc9f2a37105d8ac316",
+  "qa_workflow_source": "deedf00f7289c94d78f03b106773b1d2b8b4ab8d",
+  "run": 43490604453,
+  "jobs": [
+    {
+      "id": 132110468465,
+      "name": "ios-data (reraiUmntwana)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110468940,
+      "name": "startup (reraiUmntwana, 1.3)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110468967,
+      "name": "install (reraiUmntwana)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469002,
+      "name": "unit",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469011,
+      "name": "startup (bebbo, 1.0)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469022,
+      "name": "bundles (bebboDev, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469035,
+      "name": "startup (reraiUmntwana, 1.0)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469044,
+      "name": "startup (bebbo, 1.3)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469092,
+      "name": "ios-data (bebbo)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469093,
+      "name": "install (bebbo)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469204,
+      "name": "bundles (babuni, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469322,
+      "name": "bundles (foleja, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469331,
+      "name": "bundles (foleja, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469370,
+      "name": "bundles (babuni, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469376,
+      "name": "bundles (bebboDev, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469406,
+      "name": "bundles (merhabaBebek, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469410,
+      "name": "bundles (bebbo, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469413,
+      "name": "bundles (bebbo, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469429,
+      "name": "bundles (reraiUmntwana, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469431,
+      "name": "bundles (bebboPacific, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469555,
+      "name": "bundles (merhabaBebek, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469650,
+      "name": "bundles (wawamor, ios)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469761,
+      "name": "bundles (bebboPacific, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110469821,
+      "name": "bundles (wawamor, android)",
+      "conclusion": "success"
+    },
+    {
+      "id": 132110470236,
+      "name": "bundles (reraiUmntwana, ios)",
+      "conclusion": "success"
+    }
+  ],
+  "scope": "15 native scenarios each for Bebbo/Rerai on Android/iOS, plus four actual production-startup/font checks and checkpoint production JS/unit checks.",
+  "limits": [
+    "Final three overdue/boolean flag cases are actual-converter unit tests at efe62468, not exercised by the f077fa4 native checkpoint",
+    "Native interruption may finish before the process is stopped: complete original or committed data is accepted; partial/mixed data fails",
+    "Fixtures and simulators do not replace physical-device, signed-configuration, historical-data or live-service acceptance"
+  ]
+}

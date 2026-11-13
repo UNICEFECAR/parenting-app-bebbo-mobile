@@ -85,3 +85,13 @@ One final startup check was blocked by the app's existing poor-connection/data-s
 
 
 The field-by-field legacy comparison also reproduced past-due pregnancy profiles being reclassified as born children on restore. Preserve an explicit stored expected-child flag and infer from dates only when an old file has none; normalise legacy boolean premature/placeholder flags to the existing string schema without losing true values. Three actual-converter regressions fail before the change and pass afterwards. These flag edge cases have unit verification; installed historical pregnancy fixtures still require device acceptance. No schema version or stored-data rewrite is introduced.
+
+
+## Completed verification
+
+- Final application source `efe62468`: [run 43491847432](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43491847432), 17/17 jobs successful: 348 Jest tests/39 suites, 23 Node tests, 29 Python tests, the type-regression gate (96 inherited diagnostics), 96 native resources and all 16 production flavour/platform bundles. CI npm audit: 11 low, zero moderate/high/critical.
+- Native builds: all eight primary Android releases and iOS archives pass across [run 43477593213](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43477593213) and the successful [BebboDev CDN retry 43484429818](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43484429818). Exact source/ABI coverage is retained in the native-build matrix; two auxiliary development targets/tvOS remain uncompiled.
+- Data/startup source `f077fa4d`: [run 43490604453](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43490604453), 25/25 jobs successful, including 15 native data scenarios each on Bebbo/Rerai Android/iOS and four actual production startup checks at font scales 1.0/1.3. Latest iOS interruption results are fully committed datasets; Android results are rollback. Neither partial nor mixed data is accepted.
+- The later three profile-flag cases have actual-converter unit evidence at efe62468. They are not represented as native historical-data tests. Native input equivalence, result hashes, source IDs and screenshots are saved in evidence.
+
+See [validation results and remaining release gates](validation-results.md). These results do not establish live Firebase/Drive delivery, real historical installed-database compatibility, all-screen Arabic/Urdu approval, or physical-device coverage. Reports/evidence commits after efe62468 do not change application behaviour. The source PR branch remains unchanged.

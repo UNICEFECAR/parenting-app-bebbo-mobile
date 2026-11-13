@@ -38,7 +38,7 @@ A full device backup with photographs and preferences needs a versioned data/att
 | Drive denied/cancelled authorisation, listing/download/upload errors | Mocked service tests; failed upload keeps previous copy, deletion only follows confirmed replacement. No live Drive account round trip. |
 | Overlapping/repeated taps | Singleton operation lock and onboarding ref guard; operations fail/return neutral rather than overlap. |
 | Arabic/Urdu text | Unicode synthetic names round-trip through JSON/crypto; not Arabic/Urdu screen approval or translated file-provider QA. |
-| Restart/interrupted import | Preparation leaves current Realm untouched; single write uses Realm transaction semantics. All four native runs observed the writing marker during a 5,000-profile replacement, killed the process, and recovered the original three profiles without partial data. Post-commit settings failure and physical-device kill/storage conditions remain acceptance. |
+| Restart/interrupted import | Preparation leaves current Realm untouched; single write uses Realm transaction semantics. The captured native runs stop/restart a 5,000-profile replacement and accept only the complete original or committed dataset. The latest Android runs recover the original three profiles; latest iOS runs recover all 5,000 committed profiles. No partial/mixed records are accepted. Post-commit settings failure and physical-device kill/storage conditions remain acceptance. |
 
 ## Device acceptance procedure
 
@@ -68,3 +68,10 @@ Explicit expected-child flags are now preserved even when a pregnancy due date h
 
 
 Restored Reminder records and their owner are verified separately from actual OS delivery. Test simultaneous reminders for different children, identifier/coalescing behaviour, very large pending queues, exact-alarm denial and OEM limits on installed legacy upgrades. The repository tests do not certify every restored record as a separately delivered notification.
+
+
+## Completed extended native checkpoint (15 scenarios)
+
+[Run 43490604453](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43490604453) passes all 25 jobs, including 15 scenarios for each Bebbo/Rerai Android/iOS configuration. The added legacy vaccination-only case restores blank height/weight as empty strings while retaining vaccines and ownership. Latest status/provenance files are the `final-native-data-*.json` files in evidence. Android interruption runs roll back to the original three profiles; latest iOS runs observe fully committed 5,000-profile datasets after restart. A writing marker does not establish that the process stopped before commit, so those iOS outcomes are not labelled mid-transaction rollbacks. Actual failed-insert rollback is tested independently on every platform.
+
+Native data source is f077fa4d. The subsequent overdue/boolean flag preservation at efe62468 has actual-converter unit verification and all-flavour production bundle verification; its specific historical pregnancy edge cases remain device acceptance. No native/schema interface changed between those checkpoints.
