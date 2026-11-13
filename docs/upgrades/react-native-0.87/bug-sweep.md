@@ -53,6 +53,10 @@ jobs stopped at the SDK package installation, which is corrected in this sweep.
 The complete run must be checked again on the final application-fix commit.
 
 Bebbo and Rerai produced byte-identical `Gemfile.lock` and `ios/Podfile.lock`.
+The native vector-resource hook now resolves the typed React Gradle extension;
+React Native also creates an empty legacy `ext.react` map, which shadowed the
+previous property lookup and blocked `preBuild`.
+
 The reviewed locks are now committed, and CocoaPods CI uses `--deployment` to
 reject unreviewed dependency resolution changes.
 

@@ -52,8 +52,8 @@ npm audit --audit-level=high
 
 `npm run typecheck` is a **regression gate**, not a claim of a clean TypeScript
 build. Its checked-in baseline was collected at the original PR head using
-TypeScript 5.9.3 (141 diagnostics). The follow-up currently has 136 diagnostics;
-raw `tsc --noEmit` still fails on that inherited backlog. New diagnostic types,
+TypeScript 5.9.3 (141 diagnostics). The initial review had 136 diagnostics; the later bug sweep reduced this to 98.
+Raw `tsc --noEmit` still fails on that inherited backlog. New diagnostic types,
 files or increased counts fail the gate. No errors are hidden with `ts-ignore`.
 
 The baseline does not replace fixing the remaining typing backlog in a separate
@@ -101,7 +101,8 @@ application security certification.
 ## Validation on the review host
 
 - Reproducible `npm ci --legacy-peer-deps`, with all three compatibility patches.
-- 11 Jest suites / 161 tests passed, plus 3 Node tooling tests.
+- Initial review: 11 Jest suites / 161 tests. The later bug sweep passes 21
+  suites / 227 tests and 11 Node tooling tests.
 - 117 modified application/test source files transformed for each of all eight
   flavours; FLAVOR substitution resolved in every case.
 - Production Metro bundles passed for Bebbo Android and Rerai iOS; both exclude
@@ -110,7 +111,7 @@ application security certification.
 - All 96 generated native resources verified; rendered Bebbo and Rerai native
   logo PDFs were inspected for the expected blue/green branding.
 - All workflow YAML passed actionlint 1.7.12.
-- Type regression gate passed with 136 inherited diagnostics (141 in the
+- Type regression gate now passes with 98 inherited diagnostics (141 in the
   original-head baseline under the same compiler).
 - npm audit: 19 entries, zero high/critical. Full dependency-tree inspection
   retains only the two documented obsolete native-html type-peer warnings.

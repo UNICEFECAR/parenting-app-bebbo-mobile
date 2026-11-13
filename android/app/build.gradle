@@ -338,9 +338,12 @@ if (providers.gradleProperty("unsignedVerification").getOrElse("false").toBoolea
     clearSigningConfig(android.buildTypes.release)
 }
 
+// RN also creates an empty legacy ext.react map. Resolve the typed extension
+// explicitly so that map cannot shadow the Node executable configuration.
+def vectorAssetNode = project.extensions.getByType(com.facebook.react.ReactExtension).nodeExecutableAndArgs
 def verifyVectorAssets = tasks.register("verifyVectorAssets", Exec) {
     workingDir rootProject.projectDir.parentFile
-    commandLine(react.nodeExecutableAndArgs.get() + ["scripts/vector-assets.cjs"])
+    commandLine(vectorAssetNode.get() + ["scripts/vector-assets.cjs"])
 }
 tasks.configureEach { task ->
     if (task.name == "preBuild") task.dependsOn(verifyVectorAssets)
