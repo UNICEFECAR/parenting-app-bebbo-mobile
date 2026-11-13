@@ -291,6 +291,19 @@ android {
             signingConfig signingConfigs.bebbopacific
         }
     }
+
+    // Flavour names are lower case, while these checked-in folders use camel
+    // case. Explicit paths keep branding and deep links intact on Linux too.
+    sourceSets {
+        reraiumntwana {
+            res.srcDirs = ["src/reraiUmntwana/res"]
+            manifest.srcFile "src/reraiUmntwana/AndroidManifest.xml"
+        }
+        bebbopacific {
+            res.srcDirs = ["src/bebboPacific/res"]
+            manifest.srcFile "src/bebboPacific/AndroidManifest.xml"
+        }
+    }
 }
 
 dependencies {

@@ -8,6 +8,8 @@ as well as the React Native migration. The source PR branch is unchanged.
 | Area | Defect and correction |
 | --- | --- |
 | Offline analytics | SDK failures were swallowed, so events could be marked sent without being accepted. Iterating a live filtered Realm result skipped records; overlapping reconnect callbacks could send duplicates. Persist failed submissions, snapshot pending records, serialise flushes and mark only accepted events. SDK acceptance does not mean server delivery, and this is not exactly-once delivery across a process crash. |
+| Native flavour resources | Rerai and Pacific product flavours use lower-case names while their native resource/manifest folders use camel case. Linux therefore ignored their layouts, icons, app names and link declarations. Explicit source mappings restore the existing branded resources and resolve the missing splash ID/notification-icon errors. |
+| Android splash dismissal | Lottie SplashScreen 3 ignores `hide()` unless manual dismissal is enabled. Enable that documented mode, matching iOS and the existing JS readiness timer, retain the native two-second fallback handover, and let the library control animation playback instead of XML autoplay/restarting it. |
 | Installed-data migration | The schema-4 migration checked the new version instead of the old one, so older profiles could retain an empty `autoChild` flag. Use the old version and preserve explicit flags; make Realm migration callbacks synchronous so failures propagate into the migration transaction. Realm 20.2.0 and schema version 4 are retained. |
 | Notifications | Generated IDs could collide with the same new batch or return undefined after a saved-ID collision. Use a bounded collision search over saved and new IDs. Sort copied age periods by days instead of assuming Drupal IDs are chronological; use the planned term date, not the taxonomy ID, for the existing premature-child anchor. Missing catalogues return an empty result. Existing clinical schedule intervals are unchanged. |
 | Videos | Missing/non-string video URLs could crash a card. A local-variable error flag reset on every render and did not reliably show the fallback. Guard metadata and retain the failure state until the source changes. |
@@ -51,6 +53,16 @@ Both Bebbo and Rerai unsigned iOS archives succeeded in
 on commit `9f2b707`, before the application fixes in this sweep. That run's Android
 jobs stopped at the SDK package installation, which is corrected in this sweep.
 The complete run must be checked again on the final application-fix commit.
+
+[Run 43421017527](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43421017527)
+on `bbaa9fbb` passed all 17 regression jobs and both current iOS archives. Bebbo
+Android compiled and booted on API 35 x86_64; the AAB contained 62 libraries
+across arm64-v8a and x86_64, with one C++ runtime per ABI and no ELF alignment
+failures. Its startup screenshot showed the expected download retry dialog from
+the invalid API fixture, so this is startup/failure-path evidence, not successful
+live-service onboarding. The following smoke script also exercises cancellation
+and captures the bundled fallback separately. Rerai's missing source-set resources
+were exposed by this run and are corrected in the next revision.
 
 Bebbo and Rerai produced byte-identical `Gemfile.lock` and `ios/Podfile.lock`.
 The native vector-resource hook now resolves the typed React Gradle extension;
