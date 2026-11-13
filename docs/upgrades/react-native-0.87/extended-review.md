@@ -20,7 +20,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-315 Jest tests / 34 suites; 22 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+320 Jest tests / 35 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
@@ -64,3 +64,6 @@ Category telemetry also handles multiple public category IDs and malformed histo
 
 
 The first custom Analytics event now waits for legacy child-property cleanup, shared across concurrent callers. A delayed-native-cleanup regression verifies that no custom event is submitted early and that cleanup runs only once. Native automatic startup events can precede JavaScript; upgrade DebugView inspection and historical data retention/deletion remain separate privacy acceptance work.
+
+
+Data-preservation follow-up: the independent Redux Realm adapter used obsolete `migration` instead of `onMigration`, and its callback mistakenly selected destination objects from the old Realm. Correct both while retaining schema version 1. Five regressions cover schema-0 Unicode/empty cache preservation and current-schema behaviour. Bound fragments by worst-case UTF-8 size and avoid splitting surrogate pairs, preventing oversized native strings and text corruption. Localisation no longer deletes `isMigrated == false` child records when the Redux onboarding flag is false: ordinary caregiver-created profiles also have that value, so the flag is not a safe draft discriminator. Explicit caregiver profile deletion remains available. A source safety guard covers both localisation entry points. Real native migration/restart/interruption checks are being run on an isolated QA branch; no production test controller is included here.

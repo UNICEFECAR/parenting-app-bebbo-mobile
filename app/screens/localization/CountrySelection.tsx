@@ -11,8 +11,6 @@ import { Alert, FlatList, Linking, Platform, Pressable, StyleProp, ViewStyle } f
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
-import { ChildEntitySchema } from "../../database/schema/ChildDataSchema";
 import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
 import * as RNLocalize from "react-native-localize";
 import {
@@ -133,10 +131,8 @@ const CountrySelection = (props: any): any => {
 
       const fetchData = async (): Promise<any> => {
         if (userIsOnboarded == false) {
-          await userRealmCommon.deleteBy(
-            ChildEntitySchema,
-            "isMigrated == false"
-          );
+          // A lost onboarding flag must never delete caregiver-created profiles.
+          // isMigrated identifies imported records, not disposable setup data.
           const data = await dataRealmCommon.deleteAllAtOnce();
           console.log(data, "..newdata..");
           // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));

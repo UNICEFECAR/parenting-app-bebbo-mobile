@@ -38,3 +38,13 @@ test('type regression checks tolerate moved existing diagnostics but reject new 
   assert.equal(additions(extra, before).length, 1);
   assert.equal(additions(diagnostics('app/b.ts(1,2): error TS2304: Missing name.'), before).length, 1);
 });
+
+// A reset onboarding flag is recoverable cache state, not authority to delete
+// local caregiver records. Keep this boundary across both localisation paths.
+test('country/language setup never automatically deletes child profiles', () => {
+  for (const screen of ['CountrySelection', 'LanguageSelection']) {
+    const source = fs.readFileSync(path.join(__dirname, '../../app/screens/localization', screen + '.tsx'), 'utf8');
+    assert.doesNotMatch(source, /userRealmCommon\.(deleteBy|deleteAllAtOnce|deleteAll|deleteChild)/);
+    assert.doesNotMatch(source, /isMigrated\s*==\s*false/);
+  }
+});

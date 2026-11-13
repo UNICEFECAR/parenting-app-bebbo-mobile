@@ -8,9 +8,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { SelectionViewLang } from "@styles/style";
 import { useContext, useEffect, useState } from "react";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
 import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
-import { ChildEntitySchema } from "../../database/schema/ChildDataSchema";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -155,10 +153,8 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       }
       const fetchData = async (): Promise<any> => {
         if (userIsOnboarded == false && route.params?.isDirect) {
-          await userRealmCommon.deleteBy(
-            ChildEntitySchema,
-            "isMigrated == false"
-          );
+          // A lost onboarding flag must never delete caregiver-created profiles.
+          // isMigrated identifies imported records, not disposable setup data.
           const data = await dataRealmCommon.deleteAllAtOnce();
           console.log(data, "..newdata..");
           // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
