@@ -1,0 +1,265 @@
+{
+  "bundle": "android/app/build/outputs/bundle/wawamorRelease/app-wawamor-release.aab",
+  "abis": [
+    "armeabi-v7a"
+  ],
+  "expected_abis": [
+    "armeabi-v7a"
+  ],
+  "manifest": {
+    "package": "org.unicef.ec.wawamor",
+    "extract_native_libs": "true",
+    "target_sdk": "37"
+  },
+  "libraries": [
+    {
+      "path": "base/lib/armeabi-v7a/libanimation-decoder-gif.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libappmodules.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libavif_android.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libc++_shared.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libcrashlytics-common.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libcrashlytics-handler.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libcrashlytics-trampoline.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libcrashlytics.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libdatastore_shared_counter.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libfbjni.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libgesturehandler.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libgifimage.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libglide-webp.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libhermestooling.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libhermesvm.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libimagepipeline.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libjsi.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libnative-filters.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libnative-imagetranscoder.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libreact_codegen_RNKC.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libreact_codegen_rnscreens.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libreact_codegen_rnsvg.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libreact_codegen_safeareacontext.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libreactnative.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/librealm.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libreanimated.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/librnscreens.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/armeabi-v7a/librnskia.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libsqliteJni.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libucrop.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/armeabi-v7a/libworklets.so",
+      "elf_class": 32,
+      "elf_machine": 40,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    }
+  ],
+  "problems": []
+}

@@ -1,0 +1,327 @@
+{
+  "application_source": "1e449290e00fd7cad3c7f37bec34ed4605c336fd",
+  "native_dependency_source": "7760562e59a2f23d65344955f06948bedbfbb1ac",
+  "native_data_application_source": "0a5ddab2f20dbb963bc0d64cf06ca8ed5cc164e8",
+  "source_checks": {
+    "run": 43528902894,
+    "jobs": [
+      {
+        "id": 132241415288,
+        "name": "unit",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415546,
+        "name": "bundles (bebboDev, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415689,
+        "name": "bundles (wawamor, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415744,
+        "name": "bundles (foleja, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415756,
+        "name": "bundles (bebboPacific, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415775,
+        "name": "bundles (merhabaBebek, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415779,
+        "name": "bundles (bebbo, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415782,
+        "name": "bundles (merhabaBebek, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415818,
+        "name": "bundles (bebboDev, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415819,
+        "name": "bundles (wawamor, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415829,
+        "name": "bundles (babuni, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415854,
+        "name": "bundles (bebbo, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415856,
+        "name": "bundles (bebboPacific, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415871,
+        "name": "bundles (foleja, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415894,
+        "name": "bundles (reraiUmntwana, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415937,
+        "name": "bundles (babuni, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132241415986,
+        "name": "bundles (reraiUmntwana, ios)",
+        "conclusion": "success"
+      }
+    ],
+    "jest_tests": 390,
+    "jest_suites": 44,
+    "node_tests": 34,
+    "python_tests": 30,
+    "native_resources": 96,
+    "inherited_typescript_diagnostics": 86,
+    "production_bundles": 16,
+    "npm_audit": {
+      "low": 11,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "wawamor_per_abi_release": {
+    "run": 43527569988,
+    "jobs": [
+      {
+        "id": 132237032151,
+        "name": "android (arm64-v8a) / compile",
+        "conclusion": "success"
+      },
+      {
+        "id": 132237032471,
+        "name": "android (armeabi-v7a) / compile",
+        "conclusion": "success"
+      },
+      {
+        "id": 132237032594,
+        "name": "android (x86) / compile",
+        "conclusion": "success"
+      },
+      {
+        "id": 132237032603,
+        "name": "android (x86_64) / compile",
+        "conclusion": "success"
+      }
+    ],
+    "packaging_artifacts": [
+      {
+        "id": 14086931358,
+        "name": "native-smoke-evidence-wawamor-primary-x86",
+        "digest": "sha256:99e9fcd44d223b5c81da0fe169738bbdcc4a07860b642faec594cccbc46b737e"
+      },
+      {
+        "id": 14086532465,
+        "name": "native-smoke-evidence-wawamor-primary-arm64-v8a",
+        "digest": "sha256:3eff5bdcd8bf06eb1999735d03091cb7f32c2018d6d02380a988716262d88208"
+      },
+      {
+        "id": 14085919689,
+        "name": "native-smoke-evidence-wawamor-primary-x86_64",
+        "digest": "sha256:b6fd391f86ff44583149da8e38d270cca83cda91ac3a30c3f912d383084bd202"
+      },
+      {
+        "id": 14085783921,
+        "name": "native-smoke-evidence-wawamor-primary-armeabi-v7a",
+        "digest": "sha256:b5119247530992a0a79124550c004465bfb19e2172995524344e57c7fd14141e"
+      }
+    ],
+    "combined_four_abi_bundle_rebuilt": false
+  },
+  "native_data": {
+    "run": 43515051858,
+    "jobs": [
+      {
+        "id": 132194781635,
+        "name": "install (bebbo)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132194781984,
+        "name": "ios-data (reraiUmntwana)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132194782178,
+        "name": "ios-data (bebbo)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132194782207,
+        "name": "install (reraiUmntwana)",
+        "conclusion": "success"
+      }
+    ],
+    "distinct_scenarios": 18,
+    "executions": 72,
+    "android_interruption": "rolled_back",
+    "ios_interruption": "fully_committed",
+    "physical_devices": false
+  },
+  "limitations": [
+    "Unsigned native builds use fake Firebase projects and endpoints.",
+    "Maven runtime OSV results exclude buildscript and vendored native/Apple binaries.",
+    "Latest native data runs predate Java library constraints and the later error-log-only source fix.",
+    "Historical signed installs, live Firebase/Drive, Arabic/Urdu approved content and physical-device acceptance remain unverified.",
+    "Shared-key backup protection, portable photo attachments and complete preference snapshots remain unimplemented."
+  ],
+  "java_compilation": {
+    "run": 43527932788,
+    "source": "7760562e59a2f23d65344955f06948bedbfbb1ac",
+    "jobs": [
+      {
+        "id": 132238202087,
+        "name": "java (babuni, development)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202306,
+        "name": "java (bebbo, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202329,
+        "name": "java (merhabaBebek, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202348,
+        "name": "java (wawamor, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202354,
+        "name": "java (reraiUmntwana, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202360,
+        "name": "java (foleja, development)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202406,
+        "name": "java (bebboPacific, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202495,
+        "name": "java (babuni, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202512,
+        "name": "java (foleja, primary)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132238202621,
+        "name": "java (bebboDev, primary)",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "ios_archives": [
+    {
+      "id": 132162511292,
+      "name": "native-smoke (babuni, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132162511482,
+      "name": "native-smoke (bebboPacific, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132162511587,
+      "name": "native-smoke (foleja, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132162511602,
+      "name": "native-smoke (bebboDev, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132162511764,
+      "name": "native-smoke (merhabaBebek, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132162511872,
+      "name": "native-smoke (bebbo, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132162512293,
+      "name": "native-smoke (reraiUmntwana, ios) / compile",
+      "conclusion": "success",
+      "run": 43505650999,
+      "native_source": "3ca070fd379dbd62259b348a95b38d29abdbbe7e"
+    },
+    {
+      "id": 132181220374,
+      "name": "auxiliary-native (foleja, ios) / compile",
+      "conclusion": "success",
+      "run": 43511087818,
+      "native_source": "efd66b6009bef66574aeda4eb79df8673091d701"
+    },
+    {
+      "id": 132181220416,
+      "name": "auxiliary-native (babuni, ios) / compile",
+      "conclusion": "success",
+      "run": 43511087818,
+      "native_source": "efd66b6009bef66574aeda4eb79df8673091d701"
+    },
+    {
+      "id": 132181220632,
+      "name": "wawamor-ios / compile",
+      "conclusion": "success",
+      "run": 43511087818,
+      "native_source": "efd66b6009bef66574aeda4eb79df8673091d701"
+    }
+  ],
+  "combined_bebbo_release": {
+    "run": 43527932788,
+    "job": 132238202442,
+    "status": "in_progress",
+    "source": "7760562e59a2f23d65344955f06948bedbfbb1ac"
+  }
+}
