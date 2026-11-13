@@ -182,7 +182,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
         {
           text: t("growthScreendelText"),
           onPress: async (): Promise<any> => {
-            await deleteChild(
+            const deleted = await deleteChild(
               navigation,
               languageCode,
               index,
@@ -196,7 +196,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
               t,
               childList
             );
-            getAllChildren(dispatch, childAge, 0);
+            if (deleted) await getAllChildren(dispatch, childAge, 0);
           },
         },
       ]);

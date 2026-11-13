@@ -6,7 +6,7 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 | Priority | Evidence | Change and verification |
 | --- | --- | --- |
-| High: backup confidentiality/integrity | Historical JSON exports use a fixed IV and unauthenticated AES-CBC | New v2 exports use a native random 16-byte IV and AES-256-CBC with encrypt-then-HMAC-SHA256, domain-separated MAC key; authenticate the version/context, IV and ciphertext before decryption. Retain legacy raw/quoted ciphertext and binary Realm readers. Round-trip, tampering, wrong key and format rejection tests pass using Node crypto. Actual native crypto cross-platform round trips remain device acceptance. The app-wide key remains extractable; this does **not** provide user-held-key security. Older app versions cannot read v2 exports. |
+| High: backup confidentiality/integrity | Historical JSON exports use a fixed IV and unauthenticated AES-CBC | New v2 exports use a native random 16-byte IV and AES-256-CBC with encrypt-then-HMAC-SHA256, domain-separated MAC key; authenticate the version/context, IV and ciphertext before decryption. Retain legacy raw/quoted ciphertext and binary Realm readers. Round-trip, tampering, wrong key and format rejection tests pass using Node crypto. Native AES/HMAC/legacy round trips and tamper rejection pass on Bebbo/Rerai Android emulators and iOS simulators; actual transferred-file interoperability remains acceptance. The app-wide key remains extractable; this does **not** provide user-held-key security. Older app versions cannot read v2 exports. |
 | High: crashes/incorrect native packages | Historical Bebbo Android reports include AArch64 code inside an x86_64 library directory | Packaging guards now verify ELF machine, class and endianness for every AAB/device-split native library, in addition to existing ABI presence, compression, C++ runtime and alignment checks. Three regressions failed before the guard and pass afterwards. |
 | Medium: startup taxonomy crash | Historical Rerai `setTaxonomyIds` undefined-object crash; reproduced with missing groups | Accept array/keyed taxonomy collections, ignore malformed rows, safely resolve configured categories in country order, and fix service-provider relationship mapping. Seven reducer regressions pass. |
 | Medium: offline telemetry/preferences loss | Country/language selection calls content reset, which deleted every DataRealm table | Reset downloaded content while retaining ConfigSettings and Event. Regression proves caregiver settings and queued events survive. No Realm schema change. |
@@ -20,13 +20,13 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-333 Jest tests / 37 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+340 Jest tests / 38 suites; 23 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
 Production historical Crashlytics was reviewed read-only for Bebbo Android/iOS, Rerai Android, Pacific Android, Babuni Android and Wawamor Android/iOS. Pacific/Babuni iOS showed “app detected; waiting for a crash”, not delivery verification. Wawamor iOS had no open crash issues in the selected 90-day view. Rerai iOS did not finish loading. Browser access ended before Türkiye, Kosovo, development apps or DebugView could be checked. Do not infer crash-free operation from these views or attribute old-release issues to the new branch without reproduction.
 
-Real signed Firebase configurations, live DebugView event reconciliation, native offline/restart/reconnect delivery, Drive account scenarios, push, installed historical Realm migrations, real Arabic/Urdu translations, large-font screenshots, actual low-end/16 KB hardware and iOS simulator/device execution remain acceptance checks. Compile-only Firebase fixtures cannot confirm project routing. Detailed matrices and procedures are linked below.
+Real signed Firebase configurations, live DebugView event reconciliation, native offline/restart/reconnect Analytics delivery, Drive account scenarios, push, installed historical Realm migrations, real Arabic/Urdu translations, full-screen large-font screenshots, actual low-end/16 KB hardware and physical iOS device execution remain acceptance checks. Compile-only Firebase fixtures cannot confirm project routing. Detailed matrices and procedures are linked below.
 
 Realm 20.2.0/schema 4 and dotenv 3.4.12 are intentionally retained. Firebase 26.4.1 remains on the tested CocoaPods path; 27's native integration migration is separate. No framework/native runtime major is upgraded merely to clear an outdated list. Remaining low build-tool advisories with no compatible published fix are not resolved by forced downgrades.
 
@@ -47,7 +47,7 @@ Realm 20.2.0/schema 4 and dotenv 3.4.12 are intentionally retained. Firebase 26.
 
 - [Analytics coverage, event semantics and offline reconciliation](analytics-coverage.md); [complete source event/route/screen inventory](analytics-source-inventory.json).
 - [Backup scope, regression scenarios and device procedure](backup-validation.md).
-- [Security severity, evidence, native dependency decisions and remaining risks](security-assessment.md).
+- [Security severity, evidence, native dependency decisions and remaining risks](security-assessment.md); [available crash history and root-cause boundaries](crash-history.md).
 - [RTL/design findings and device acceptance matrix](rtl-and-device-validation.md); [per-flavour native IDs/languages/configuration matrix](flavour-matrix.json).
 
 ## CI provenance
@@ -73,3 +73,6 @@ Bookmark controls now check the actual native write and read back stored state b
 
 
 Four rendered bookmark-control regressions additionally verify confirmed removal, repeated taps, failed writes and a profile switch before React rerenders. The last scenario reproduced a stale-ref race; reading the current Redux store after native completion prevents the previous child's favourites being dispatched into the newly selected profile.
+
+
+Profile deletion now handles missing records safely, detaches embedded reminders before deleting their owner, cancels them only after confirmed deletion, prevents overlapping requests and emits one confirmed `profile_deleted` event with placeholder/caregiver distinction. All three caller screens retain current selection/navigation on failed deletion. Post-commit cancellation failure produces a generic nonfatal diagnostic rather than falsely reporting that the profile was restored. Seven regressions cover these service outcomes. Native UI deletion/permission reconciliation still needs the device journey check.

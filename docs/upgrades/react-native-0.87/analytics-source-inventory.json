@@ -784,35 +784,35 @@
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 388,
+      "line": 389,
       "api": "logEvent",
       "event": "{name: 'profile_updated', params: {source: 'manage_profile'}}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 398,
+      "line": 399,
       "api": "logEvent",
       "event": "{name: EXPECTED_CHILD_ENTERED}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 399,
+      "line": 400,
       "api": "logEvent",
       "event": "{name: 'profile_created', params: {source: param === 2 ? 'manage_profile' : 'onboarding', profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 406,
+      "line": 407,
       "api": "logEvent",
       "event": "{ name: CHILD_ADDED_FROM_MANAGE_PROFILE }",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 422,
+      "line": 423,
       "api": "logEvent",
       "event": "{ 'name': ONBOARDING_SKIPPED }",
       "parameters": "netInfo?.isConnected"
@@ -823,6 +823,13 @@
       "api": "logAnalyticsEvent",
       "event": "event",
       "parameters": null
+    },
+    {
+      "file": "app/services/profileDeletion.ts",
+      "line": 25,
+      "api": "logAnalyticsEvent",
+      "event": "'profile_deleted'",
+      "parameters": "{ source: 'manage_profile', profile_type: placeholder ? 'placeholder' : 'caregiver_entered', }"
     },
     {
       "file": "app/services/screenAnalytics.ts",

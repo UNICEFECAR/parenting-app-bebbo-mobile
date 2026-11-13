@@ -27,18 +27,18 @@ A full device backup with photographs and preferences needs a versioned data/att
 
 | Scenario | Verified scope |
 | --- | --- |
-| Android quoted/iOS raw JSON, BOM/outer controls | Unit format tests; new envelope cryptographic round trips with Node AES/HMAC implementations matching native signatures. Actual native AES cross-platform bytes still need device validation. |
+| Android quoted/iOS raw JSON, BOM/outer controls | Unit format tests; new envelope cryptographic round trips with Node AES/HMAC implementations matching native signatures. Native AES/HMAC raw/quoted and legacy round trips pass on Android emulators and iOS simulators for Bebbo/Rerai. Actual encrypted-file exchange between platforms remains acceptance. |
 | Current and legacy JSON/binary Realm | Reader, private-copy, close/cleanup and legacy-converter invocation tests. Not a real old installed Realm file migration or all historical export versions. |
-| Multiple/expected profiles, nested growth/vaccines/reminders/milestones/bookmarks | Complete synthetic payload pass-through, correct root transaction and 500-profile repeated-import test; conversion is doubled in orchestration tests, not proof of all native Realm field semantics. |
+| Multiple/expected profiles, nested growth/vaccines/reminders/milestones/bookmarks | Complete synthetic payload pass-through, correct root transaction and 500-profile repeated-import test; orchestration uses doubles, complemented by actual three-profile child/pregnancy/nested ownership and legacy-converter checks on all four native runs. |
 | Repeated replacement | No appended child UUIDs in transaction model; restored analytics never new-profile events. |
 | Invalid/empty/missing/duplicate child data | Rejected before live opening/writes. Unsafe UUID query syntax, malformed nested collections, duplicate nested identifiers and invalid saved IDs rejected. |
 | Corrupt/unknown encrypted files | MAC/IV/cipher modification, wrong key, truncated envelope and unsupported version fail before decryption/live mutation. Invalid control bytes inside JSON are rejected rather than silently deleted from caregiver text. |
-| Failure on second insertion | Transaction rollback model preserves all previous children and first insertion; native Realm crash consistency needs device kill tests. |
+| Failure on second insertion | Transaction rollback model preserves all previous children and first insertion; native failed-second-insertion rollback also passes in all four emulator/simulator runs. |
 | Picker/read/provider copy errors, cancellation, disk/write failure | Unit simulated failures, awaited copy/share and temporary cleanup; no success navigation/count on failed restore. Physical insufficient-storage and provider process interruption remain device tests. |
 | Drive denied/cancelled authorisation, listing/download/upload errors | Mocked service tests; failed upload keeps previous copy, deletion only follows confirmed replacement. No live Drive account round trip. |
 | Overlapping/repeated taps | Singleton operation lock and onboarding ref guard; operations fail/return neutral rather than overlap. |
 | Arabic/Urdu text | Unicode synthetic names round-trip through JSON/crypto; not Arabic/Urdu screen approval or translated file-provider QA. |
-| Restart/interrupted import | Preparation leaves current Realm untouched; single write uses Realm transaction semantics. Kill before/during/after native commit and post-commit settings recovery not executed on devices. |
+| Restart/interrupted import | Preparation leaves current Realm untouched; single write uses Realm transaction semantics. All four native runs observed the writing marker during a 5,000-profile replacement, killed the process, and recovered the original three profiles without partial data. Post-commit settings failure and physical-device kill/storage conditions remain acceptance. |
 
 ## Device acceptance procedure
 
@@ -52,3 +52,10 @@ Before release, review the app-wide extractable encryption key and lack of user-
 ## Additional upgrade-preservation safeguards
 
 The user Realm retains schema 4. The separate Redux Realm retains schema 1 but now registers its existing schema-0 migration through `onMigration` and writes migrated fragments to the new Realm, not the old one. Large non-Latin strings are fragmented within native UTF-8 limits without breaking surrogate pairs. Country/language setup no longer deletes non-imported child profiles based on a missing onboarding flag; imported status does not identify disposable records. Five migration/fragment regressions and a localisation source guard pass. These tests do not substitute for installing an actual historical production database.
+
+
+## Captured native evidence
+
+Bebbo and Rerai each pass 14 checks on Android API-35 x86_64 emulators and Release iPhone simulators: native random IV/AES/HMAC/tamper rejection; legacy ciphertext and record conversion; three-profile child/pregnancy/nested ownership; repeat replacement; actual failed-insert transaction rollback; synthetic user-Realm schema 3→4 and Redux-Realm schema 0→1 migrations; approximately 18 MB of Unicode cache text; settings preservation; app restarts; real startup taxonomy-cache recovery; and interrupted 5,000-profile replacement. Every interruption run observed `writing` and recovered the old complete three-profile dataset. This does not establish physical-device power-loss behaviour or a complete cross-store restore journal.
+
+The status-only result/provenance files are in [evidence](evidence/). Android [run 43483023359](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43483023359) reuses native binaries from `0da745b` and verifies that only release Hermes bytecode changed. iOS data jobs in [run 43482015050](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43482015050) compile the same data-test source for simulators. The first Android harness attempt failed before app launch because of shell-variable scope; the corrected run passes both flavours. Test controllers remain only on the isolated QA branch and are rejected by production bundle guards. Data-path source is `1943dc16`; subsequent bookmark/profile-delete changes do not alter backup, crypto, persistence or migration code.

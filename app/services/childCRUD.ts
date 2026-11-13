@@ -20,6 +20,7 @@ import LocalNotifications from './LocalNotifications';
 import { logEvent } from './EventSyncService';
 import {isPregnancy} from "../services/Utils"
 import { setUserProperties } from './firebaseAnalytics';
+import {deleteProfileRecord} from './profileDeletion';
 export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
@@ -642,21 +643,9 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 }
 
 
-export const deleteChild = async (navigation: any, languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any, childList: any): Promise<any> => {
-  const currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-  let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterCondition);
-  if (oldChild?.length > 0) {
-    oldChild = oldChild.map((item: any) => item)[0];
-  }
-  oldChild.reminders.map((x: any) => {
-    let previousDTDefined;
-    const onlyDateDefined = new Date(x.reminderDateDefined);
-    previousDTDefined = onlyDateDefined.setHours(new Date(x.reminderTimeDefined).getHours());
-    previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(x.reminderTimeDefined).getMinutes()));
-    LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
-  })
-  const createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
-  if (createresult == 'success') {
+export const deleteChild = async (navigation: any, languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, _reject: any, childAge: any, t: any, childList: any): Promise<boolean> => {
+  const deleted = await deleteProfileRecord(schemaName, recordId, filterCondition);
+  if (deleted) {
     if (Platform.OS === 'android') {
       ToastAndroidLocal.showWithGravityAndOffset(
         t('deleteSuccess'),
@@ -670,6 +659,7 @@ export const deleteChild = async (navigation: any, languageCode: any, _index: nu
       Alert.alert(t('deleteSuccess'))
     }
     resolve("success");
+    return true;
   }
   else {
     if (Platform.OS === 'android') {
@@ -684,6 +674,7 @@ export const deleteChild = async (navigation: any, languageCode: any, _index: nu
     else {
       Alert.alert(t('deleteError'));
     }
-    reject("error");
+    resolve("error");
+    return false;
   }
 }

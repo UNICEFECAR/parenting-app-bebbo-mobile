@@ -234,14 +234,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         {
           text: t("removeOption2"),
           onPress: async (): Promise<any> => {
-            if (index == 0) {
-              const filterList = childList.filter(
-                (item: any) => item.uuid != uuid
-              );
-              const selectedUuid = filterList[0];
-              dispatch(setActiveChildData(selectedUuid));
-            }
-            await deleteChild(
+            const deleted = await deleteChild(
               navigation,
               languageCode,
               index,
@@ -255,6 +248,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
+            if (!deleted) return;
+            if (index == 0) {
+              const filterList = childList.filter(
+                (item: any) => item.uuid != uuid
+              );
+              const selectedUuid = filterList[0];
+              dispatch(setActiveChildData(selectedUuid));
+            }
             returnToScreen(navigation, "ChildProfileScreen");
           },
         },
