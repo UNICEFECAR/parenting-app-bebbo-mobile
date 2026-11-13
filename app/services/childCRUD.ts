@@ -380,7 +380,12 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       oldChild = oldChild.map((item: any) => item)[0];
       oldBirthDate = oldChild.birthDate;
     }
-    await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
+    const updated = await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
+    if (!Array.isArray(updated) || !updated.length) {
+      Alert.alert('', i18n.t('generalError'));
+      return;
+    }
+    logEvent({name: 'profile_updated', params: {source: 'manage_profile'}}, netInfo?.isConnected);
   }
   else {
     try {

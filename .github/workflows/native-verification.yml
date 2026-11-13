@@ -120,6 +120,19 @@ jobs:
           xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme "$IOS_SCHEME" \
             -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/verification.xcarchive" CODE_SIGNING_ALLOWED=NO archive
+      - name: Verify built iOS Firebase/privacy settings and app symbols
+        if: inputs.platform == 'ios'
+        run: |
+          python3 scripts/check-ios-archive.py "$RUNNER_TEMP/verification.xcarchive" \
+            --application-id "$ANDROID_APP_ID" --firebase-project bebbo-compile-check \
+            --report "$RUNNER_TEMP/ios-configuration.json"
+      - name: Preserve iOS configuration evidence
+        if: inputs.platform == 'ios' && always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-configuration-${{ inputs.flavour }}
+          path: ${{ runner.temp }}/ios-configuration.json
+          if-no-files-found: warn
       - name: Preserve resolved native dependency versions
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

@@ -1,3 +1,4 @@
+import {openMeasuredLink} from "../../../services/measuredLink";
 import { scheduleIdleTask } from "../../../services/scheduleIdleTask";
 import { SURVEY_SUBMIT } from "@assets/data/firebaseEvents";
 import { appConfig } from "../../../instances";
@@ -884,11 +885,9 @@ const Home = ({ route, navigation }: any): any => {
                   </ModalPopupContent>
                   <FDirRow>
                     <ButtonModal
-                      onPress={(): any => {
+                      onPress={async (): Promise<void> => {
                         setModalVisible(false);
-                        logEvent({ name: SURVEY_SUBMIT }, netInfo.isConnected);
-
-                        Linking.openURL(surveyItem?.survey_feedback_link);
+                        if (!(await openMeasuredLink(surveyItem?.survey_feedback_link, SURVEY_SUBMIT))) Alert.alert("", t("generalError"));
                       }}
                     >
                       <ButtonTextTheme numberOfLines={2}>

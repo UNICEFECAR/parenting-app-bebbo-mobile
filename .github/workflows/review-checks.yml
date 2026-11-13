@@ -24,6 +24,8 @@ jobs:
       - run: python3 -m unittest discover -s scripts/__tests__ -p 'test_*.py' -v
       - run: npm run typecheck
       - run: npm run assets:check
+      - run: node scripts/analytics-inventory.cjs --check
+      - run: python3 scripts/flavour-audit.py --check
       - run: npm audit --audit-level=high
   bundles:
     runs-on: ubuntu-latest

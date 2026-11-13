@@ -56,7 +56,11 @@ class Backup {
   }
 
   public async exportToFile(): Promise<boolean> {
-    return this.exclusive(async () => saveBackupDocument(await this.encryptedUserData()));
+    return this.exclusive(async () => {
+      const saved = await saveBackupDocument(await this.encryptedUserData());
+      if (saved) void logAnalyticsEvent('backup_export_completed', {source: 'local_file'});
+      return saved;
+    });
   }
 
   public async export(): Promise<boolean> {
@@ -83,6 +87,7 @@ class Backup {
           if (deleted instanceof Error) throw deleted;
         } catch (error) { console.warn('Previous Drive backup could not be removed', error); }
       }
+      void logAnalyticsEvent('backup_export_completed', {source: 'drive'});
       return true;
     });
   }

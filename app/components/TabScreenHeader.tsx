@@ -1,4 +1,4 @@
-import { Heading2w } from "../instances/bebbo/styles/typography";
+import { Heading2w } from "@styles/typography";
 import React from "react";
 import HeaderBabyMenu from "./HeaderBabyMenu";
 import HeaderNotiIcon from "./HeaderNotiIcon";
@@ -17,12 +17,12 @@ const TabScreenHeader = (props: any): any => {
       <HeaderRowView
         style={{
           backgroundColor: headerColor,
-          maxHeight: headerHeight,
+          minHeight: headerHeight,
         }}
       >
         <BurgerIcon color={textColor} />
         <HomeHeaderTitleView>
-          <Heading2w numberOfLines={1} ellipsizeMode="tail" style={{ color: textColor }}> {props.title}</Heading2w>
+          <Heading2w numberOfLines={2} ellipsizeMode="tail" style={{ color: textColor }}> {props.title}</Heading2w>
         </HomeHeaderTitleView>
         <HeaderNotiIcon color={textColor} isVisibleIcon={true} />
         <HeaderBabyMenu

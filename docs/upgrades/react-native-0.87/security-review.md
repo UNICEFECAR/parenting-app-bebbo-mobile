@@ -1,5 +1,7 @@
 # Dependency security review — 11 November 2026
 
+Historical snapshot: see [extended review](extended-review.md) for the subsequent audit, fixes and verification status.
+
 This historical review covers the npm dependency tree at the initial security-fix stage. Audit counts describe vulnerable-package entries, including parent packages affected through dependencies; they are not counts of independently exploitable app vulnerabilities. This is not a complete application security assessment.
 
 ## Follow-up snapshot — 13 November 2026

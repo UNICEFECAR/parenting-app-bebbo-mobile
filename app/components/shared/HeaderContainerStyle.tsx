@@ -47,7 +47,7 @@ export const HeaderTitleExpectedView = styled.View`
 `;
 export const HomeHeaderTitleView = styled.View`
   flex: 4;
-  padding-verticle: 10px;
+  padding-vertical: 10px;
   justify-content: center;
 `;
 export const HeaderActionView = styled.View`

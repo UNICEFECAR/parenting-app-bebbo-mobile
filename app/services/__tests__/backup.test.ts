@@ -448,3 +448,37 @@ test('a failed restore never reports imported records', async () => {
   await expect(backup.restoreChildren([child], [])).rejects.toThrow('disk full');
   expect(require('../firebaseAnalytics').logAnalyticsEvent).not.toHaveBeenCalled();
 });
+
+
+test.each([
+  {...child, uuid: "child' OR TRUEPREDICATE"},
+  {...child, measures: {bad: true}},
+  {...child, reminders: 'not JSON'},
+  {...child, reminders: [{uuid: 'same'}, {uuid: 'same'}]},
+  {...child, favoritegames: ['12']},
+])('rejects malformed nested records or unsafe profile identifiers before live writes', async value => {
+  await expect(backup.restoreChildren([value], [])).rejects.toThrow();
+  expect(userData.openRealm).not.toHaveBeenCalled();
+});
+test('invalid control bytes inside text are rejected rather than silently changing records', () => {
+  const invalid = JSON.stringify([{...child, childName: 'A B'}]).replace('A B', 'A' + String.fromCharCode(1) + 'B');
+  expect(() => parseBackupChildren(invalid)).toThrow();
+  expect(parseBackupChildren(JSON.stringify([{...child, comment: 'line 1\nline 2'}]))[0].comment).toBe('line 1\nline 2');
+});
+test('a large multilingual multi-profile import retains all nested records and is repeatable without duplicates', async () => {
+  const data = Array.from({length: 500}, (_, index) => ({...completeChild, uuid: `child-${index}`,
+    childName: index % 2 ? 'عائشَہ' : 'فاطِمة', isExpected: index % 2 ? 'true' : 'false'}));
+  let saved: any[] = [];
+  realm.deleteAll.mockImplementation(() => {saved = [];});
+  realm.create.mockImplementation((_schema: string, value: any) => saved.push(JSON.parse(JSON.stringify(value))));
+  for (let repeat = 0; repeat < 2; repeat++) {
+    await backup.restoreChildren(data, []);
+    expect(saved).toHaveLength(500);
+    expect(new Set(saved.map(value => value.uuid)).size).toBe(500);
+    expect(saved[42].measures).toEqual(data[42].measures);
+    expect(saved[43].reminders).toEqual(data[43].reminders);
+    expect(saved[43].childName).toBe('عائشَہ');
+    expect(saved[43].checkedMilestones).toEqual(data[43].checkedMilestones);
+    expect(saved[43].favoriteadvices).toEqual(data[43].favoriteadvices);
+  }
+});

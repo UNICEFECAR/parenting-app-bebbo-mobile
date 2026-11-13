@@ -1,5 +1,7 @@
 # PR #1115 review fixes
 
+Historical snapshot: see [extended review](extended-review.md) for the subsequent audit, fixes and verification status.
+
 This follow-up is based on `RNSDKUpgrade` at
 `b1286358cbcc1187d07cdb277c13f4395edbe9f1`. The fixes are isolated on
 `RNSDKUpgrade-review-fixes`; the source PR branch is unchanged.

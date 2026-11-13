@@ -39,7 +39,7 @@ test('records Crashlytics breadcrumbs and nonfatal errors through modular functi
   logCrashlyticsMessage('test breadcrumb');
   await recordError(error);
   expect(crashlytics.log).toHaveBeenCalledWith('crashlytics', 'test breadcrumb');
-  expect(crashlytics.recordError).toHaveBeenCalledWith('crashlytics', error);
+  expect(crashlytics.recordError).toHaveBeenCalledWith('crashlytics', expect.objectContaining({message: 'Application operation failed'}));
   await recordError('test string error');
   expect(crashlytics.recordError).toHaveBeenLastCalledWith('crashlytics', expect.any(Error));
 });

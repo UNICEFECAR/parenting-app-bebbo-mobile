@@ -1,0 +1,22 @@
+import React from 'react';
+import TestRenderer, {act} from 'react-test-renderer';
+import {StyleSheet, Text} from 'react-native';
+import {ThemeProvider} from 'styled-components/native';
+import {appTheme} from '../../instances/bebbo/styles/theme';
+import TabScreenHeader from '../../components/TabScreenHeader';
+import {HeaderRowView} from '../../components/shared/HeaderContainerStyle';
+jest.mock('../../components/HeaderBabyMenu', () => () => null);
+jest.mock('../../components/HeaderNotiIcon', () => () => null);
+jest.mock('../../components/shared/BurgerIcon', () => () => null);
+test('long RTL headings can wrap and the shared header does not cap scaled text height', async () => {
+  const title = 'نمو الطفل والصحة والتغذية عائشَہ '.repeat(4);
+  let view!: TestRenderer.ReactTestRenderer;
+  await act(async () => {view = TestRenderer.create(<ThemeProvider theme={{...appTheme, isRTL: true}}><TabScreenHeader title={title}/></ThemeProvider>);});
+  const style = StyleSheet.flatten(view.root.findByType(HeaderRowView).props.style);
+  expect(style.maxHeight).toBeUndefined();
+  expect(style.minHeight).toBe(50);
+  const heading = view.root.findByType(Text);
+  expect(heading.props.numberOfLines).toBe(2);
+  expect(heading.props.children.join('')).toContain(title);
+  await act(async () => view.unmount());
+});

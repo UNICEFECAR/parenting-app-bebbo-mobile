@@ -1,3 +1,5 @@
+import {recordError} from "../services/firebaseAnalytics";
+import {confirmBackupReplacement} from "../services/confirmBackupReplacement";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import { backup } from "../services/backup";
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
@@ -171,6 +173,7 @@ const ChildImportSetup = (props: any): any => {
     restoreRunning.current = true;
     setRestoring(true);
     try {
+      if (!(await confirmBackupReplacement(t))) return;
       const data = typeof importResponse === "string" ? JSON.parse(importResponse) : importResponse;
       const children = await backup.restoreChildren(data, genders);
       for (const [key, value] of [
@@ -195,7 +198,7 @@ const ChildImportSetup = (props: any): any => {
         apiJsonData: apiJsonDataGet("all"), prevPage: "ChildSetup",
       }}]});
     } catch (error) {
-      console.error("Backup restore failed", error);
+      void recordError(error instanceof Error ? error : 'Backup operation failed');
       Alert.alert("", t("generalError"));
     } finally {
       restoreRunning.current = false;

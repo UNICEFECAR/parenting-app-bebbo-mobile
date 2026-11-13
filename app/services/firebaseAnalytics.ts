@@ -1,3 +1,4 @@
+import {diagnosticError, diagnosticBreadcrumb} from './diagnostics';
 // firebaseAnalytics.ts
 import { getApp } from '@react-native-firebase/app';
 import {
@@ -18,9 +19,9 @@ const crashlytics = () => getCrashlytics();
 
 export const logCrashlyticsMessage = (message: string): void => {
     try {
-        firebaseLog(crashlytics(), message);
+        firebaseLog(crashlytics(), diagnosticBreadcrumb(message));
     } catch (error) {
-        console.warn('Crashlytics log failed:', error);
+        console.warn('Crashlytics breadcrumb submission failed');
     }
 };
 /**
@@ -64,7 +65,7 @@ export const setUserProperties = async (
         const definedProperties: Record<string, string | null> = {};
         for (const [key, value] of Object.entries(properties)) {
             if (legacyProfileProperties.includes(key)) definedProperties[key] = null;
-            else if (value !== undefined && ['country', 'language', 'relationship'].includes(key)) definedProperties[key] = value == null ? null : value.slice(0, 36);
+            else if (value !== undefined && (['country', 'language'].includes(key) || (key === 'relationship' && value === null))) definedProperties[key] = value == null ? null : value.slice(0, 36);
         }
         await firebaseSetUserProperties(analytics(), definedProperties);
     } catch (error) {
@@ -77,10 +78,10 @@ export const recordError = async (
     error: Error | string
   ): Promise<void> => {
     try {
-      const err = typeof error === 'string' ? new Error(error) : error;
+      const err = diagnosticError(error);
       await firebaseRecordError(crashlytics(), err);
     } catch (e) {
-      console.warn('recordError failed:', e);
+      console.warn('Crashlytics nonfatal submission failed');
     }
   };
 

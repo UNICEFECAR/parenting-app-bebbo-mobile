@@ -1,0 +1,615 @@
+{
+  "evidence": "static source inspection; identifiers validated against explicit project mappings",
+  "limitations": "Firebase projects observed read-only where available; installed release routing is not confirmed. Languages are registered UI resource keys, not translation-quality approval.",
+  "flavours": [
+    {
+      "flavour": "bebbo",
+      "android_variant": "prod",
+      "application_id": "org.unicef.ecar.bebbo",
+      "ios_target": "ParentBuddyApp",
+      "firebase_project_seen_in_console": "ecaro-bebbo",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.bebbo",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "en",
+        "ru",
+        "RSsr",
+        "MEcnr",
+        "ALsq",
+        "BGbg",
+        "GRel",
+        "KGky",
+        "KGru",
+        "MKmk",
+        "MKsq",
+        "TJru",
+        "TJtg",
+        "uk",
+        "UZru",
+        "UZuz",
+        "UZkaa",
+        "RSen",
+        "BYbe",
+        "BYru",
+        "MDro",
+        "ROro",
+        "sk"
+      ],
+      "android_manifest": "android/app/src/prod/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.ecar.bebbo",
+          "info_plist": "ParentBuddyApp/Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.ecar.bebbo",
+          "info_plist": "ParentBuddyApp/Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "Bundle React Native code and images",
+        "[CP-User] [RNFB] Crashlytics Configuration",
+        "[CP] Embed Pods Frameworks",
+        "[CP] Copy Pods Resources",
+        "[CP] Check Pods Manifest.lock",
+        "[CP-User] [RNFB] Core Configuration"
+      ],
+      "google_service_plist_group": "Production",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "bebboDev",
+      "android_variant": "prodstaging",
+      "application_id": "org.unicef.bebbodev",
+      "ios_target": "ParentBuddyAppDev",
+      "firebase_project_seen_in_console": "ecaro-bebbo",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.bebboDev",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "en",
+        "ru",
+        "RSsr",
+        "MEcnr",
+        "ALsq",
+        "BGbg",
+        "GRel",
+        "KGky",
+        "KGru",
+        "MKmk",
+        "MKsq",
+        "TJru",
+        "TJtg",
+        "uk",
+        "UZru",
+        "UZuz",
+        "UZkaa",
+        "RSen",
+        "BYbe",
+        "BYru",
+        "MDro",
+        "ROro",
+        "sk"
+      ],
+      "android_manifest": "android/app/src/prodstaging/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.bebbodev",
+          "info_plist": "ParentBuddyAppDev-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.bebbodev",
+          "info_plist": "ParentBuddyAppDev-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Copy Pods Resources",
+        "[CP] Check Pods Manifest.lock",
+        "Bundle React Native code and images",
+        "[CP] Embed Pods Frameworks"
+      ],
+      "google_service_plist_group": "Development",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "babuni",
+      "android_variant": "bangla",
+      "application_id": "org.unicef.bangladesh.babuni",
+      "ios_target": "ParentBuddyAppBangla",
+      "firebase_project_seen_in_console": "babuni-app",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.babuni",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "bn"
+      ],
+      "android_manifest": "android/app/src/bangla/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.bangladesh.babuni",
+          "info_plist": "ParentBuddyAppBangla-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.bangladesh.babuni",
+          "info_plist": "ParentBuddyAppBangla-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Check Pods Manifest.lock",
+        "[CP] Embed Pods Frameworks",
+        "Bundle React Native code and images",
+        "[CP] Copy Pods Resources"
+      ],
+      "google_service_plist_group": "Bangla",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "foleja",
+      "android_variant": "xk",
+      "application_id": "org.unicef.kosovo.foleja",
+      "ios_target": "ParentBuddyAppXk",
+      "firebase_project_seen_in_console": "kosovo-foleja",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.foleja",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "XKsq",
+        "XKrs"
+      ],
+      "android_manifest": "android/app/src/xk/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.kosovo.foleja",
+          "info_plist": "ParentBuddyAppXk-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.kosovo.foleja",
+          "info_plist": "ParentBuddyAppXk-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Embed Pods Frameworks",
+        "[CP] Check Pods Manifest.lock",
+        "[CP] Copy Pods Resources",
+        "Bundle React Native code and images"
+      ],
+      "google_service_plist_group": "Xk",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "merhabaBebek",
+      "android_variant": "merhababebek",
+      "application_id": "org.unicef.ecar.merhababebek",
+      "ios_target": "MerhabaBebek",
+      "firebase_project_seen_in_console": "merhaba-bebek-b7fd0",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.merhabaBebek",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "tr"
+      ],
+      "android_manifest": "android/app/src/merhababebek/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.ecar.merhababebek",
+          "info_plist": "MerhabaBebek-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSLocationWhenInUseUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.ecar.merhababebek",
+          "info_plist": "MerhabaBebek-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSLocationWhenInUseUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Copy Pods Resources",
+        "[CP] Check Pods Manifest.lock",
+        "[CP] Embed Pods Frameworks",
+        "Bundle React Native code and images"
+      ],
+      "google_service_plist_group": "MerhabaBebek",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "wawamor",
+      "android_variant": "wawamor",
+      "application_id": "org.unicef.ec.wawamor",
+      "ios_target": "Wawamor",
+      "firebase_project_seen_in_console": "wawamor-19d69",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.wawamor",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "ESec",
+        "en"
+      ],
+      "android_manifest": "android/app/src/wawamor/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.ec.wawamor",
+          "info_plist": "Wawamor-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSLocationWhenInUseUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.ec.wawamor",
+          "info_plist": "Wawamor-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSLocationWhenInUseUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Copy Pods Resources",
+        "Bundle React Native code and images",
+        "[CP] Check Pods Manifest.lock",
+        "[CP] Embed Pods Frameworks"
+      ],
+      "google_service_plist_group": "Wawamor",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "reraiUmntwana",
+      "android_variant": "reraiumntwana",
+      "application_id": "org.unicef.zw.reraiumntwana",
+      "ios_target": "ReraiUmntwana",
+      "firebase_project_seen_in_console": "rerai-umntwana",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.reraiUmntwana",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "ZWen",
+        "ZWsn",
+        "ZWnd"
+      ],
+      "android_manifest": "android/app/src/reraiUmntwana/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.zw.reraiumntwana",
+          "info_plist": "ReraiUmntwana-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSLocationWhenInUseUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.zw.reraiumntwana",
+          "info_plist": "ReraiUmntwana-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSLocationWhenInUseUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Copy Pods Resources",
+        "[CP] Embed Pods Frameworks",
+        "[CP] Check Pods Manifest.lock",
+        "Bundle React Native code and images"
+      ],
+      "google_service_plist_group": "ReraiUmntwana",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    },
+    {
+      "flavour": "bebboPacific",
+      "android_variant": "bebbopacific",
+      "application_id": "org.unicef.pc.bebbopacific",
+      "ios_target": "BebboPacific",
+      "firebase_project_seen_in_console": "bebbo-pacific",
+      "firebase_configuration_verified": false,
+      "env_file": "env/.env.bebboPacific",
+      "endpoint_status": "production environment unavailable; local files are unsigned CI fixtures",
+      "language_resources_registered": [
+        "FJen",
+        "FJfj",
+        "WSen",
+        "WSsm"
+      ],
+      "android_manifest": "android/app/src/bebboPacific/AndroidManifest.xml",
+      "android_manifest_permissions": [
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.VIBRATE"
+      ],
+      "ios_configurations": [
+        {
+          "configuration": "Debug",
+          "bundle_id": "org.unicef.pc.bebbopacific",
+          "info_plist": "BebboPacific-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        },
+        {
+          "configuration": "Release",
+          "bundle_id": "org.unicef.pc.bebbopacific",
+          "info_plist": "BebboPacific-Info.plist",
+          "minimum_os": "15.1",
+          "ats_arbitrary_loads": true,
+          "firebase_screen_reporting_disabled": true,
+          "meta_advertising_id_default_disabled": true,
+          "privacy_usage_keys": [
+            "NSCameraUsageDescription",
+            "NSPhotoLibraryAddUsageDescription",
+            "NSPhotoLibraryUsageDescription",
+            "NSUserTrackingUsageDescription"
+          ]
+        }
+      ],
+      "ios_checked_in_script_phases": [
+        "[CP] Check Pods Manifest.lock",
+        "Bundle React Native code and images",
+        "[CP] Embed Pods Frameworks",
+        "[CP] Copy Pods Resources"
+      ],
+      "google_service_plist_group": "BebboPacific",
+      "assets_status": "96 generated native resources verified separately",
+      "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
+    }
+  ],
+  "additional_country_development_targets": [
+    {
+      "ios_target": "ParentBuddyAppXkDev",
+      "configurations": [
+        {
+          "name": "Debug",
+          "bundle_id": "com.datamatics.foleja",
+          "info_plist": "ParentBuddyAppXkDev-Info.plist"
+        },
+        {
+          "name": "Release",
+          "bundle_id": "com.datamatics.foleja",
+          "info_plist": "ParentBuddyAppXkDev-Info.plist"
+        }
+      ],
+      "native_build_status": "not included in primary eight-flavour build matrix"
+    },
+    {
+      "ios_target": "ParentBuddyAppBanglaDev",
+      "configurations": [
+        {
+          "name": "Debug",
+          "bundle_id": "com.datamatics.babuni",
+          "info_plist": "ParentBuddyAppBanglaDev-Info.plist"
+        },
+        {
+          "name": "Release",
+          "bundle_id": "com.datamatics.babuni",
+          "info_plist": "ParentBuddyAppBanglaDev-Info.plist"
+        }
+      ],
+      "native_build_status": "not included in primary eight-flavour build matrix"
+    }
+  ],
+  "additional_android_variants": {
+    "xkstaging": "com.datamatics.foleja",
+    "banglastaging": "com.datamatics.bangla"
+  }
+}

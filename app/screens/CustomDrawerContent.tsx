@@ -1,3 +1,4 @@
+import {openMeasuredLink} from "../services/measuredLink";
 import {
   APP_SHARE,
   DONATE_OPENED,
@@ -694,11 +695,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 </Heading4>
               </DrawerLinkView>
               <DrawerLinkView
-                onPress={(): any => {
-                  const eventData = { name: EMAIL_SENT };
-                  logEvent(eventData, netInfo.isConnected);
-                  console.log("Country email is", countryEmail);
-                  Linking.openURL(`mailto:${countryEmail}`);
+                onPress={async (): Promise<void> => {
+                  if (!(await openMeasuredLink(`mailto:${countryEmail}`, EMAIL_SENT))) Alert.alert("", t("generalError"));
                 }}
               >
                 <OuterIconRow>
@@ -776,8 +774,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             donateItem?.survey_feedback_link != null ? (
             <DrawerLinkView
               onPress={async (): Promise<any> => {
-                await logAnalyticsEvent(DONATE_OPENED);
-                Linking.openURL(donateItem?.survey_feedback_link);
+                if (!(await openMeasuredLink(donateItem?.survey_feedback_link, DONATE_OPENED))) Alert.alert("", t("generalError"));
               }}
             >
               <OuterIconRow>
@@ -836,8 +833,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     <ButtonModal
                       onPress={async (): Promise<any> => {
                         setModalVisible(false);
-                        await logAnalyticsEvent(FEEDBACK_SUBMIT);
-                        Linking.openURL(feedbackItem?.survey_feedback_link);
+                        if (!(await openMeasuredLink(feedbackItem?.survey_feedback_link, FEEDBACK_SUBMIT))) Alert.alert("", t("generalError"));
                       }}
                     >
                       <ButtonTextTheme numberOfLines={2}>

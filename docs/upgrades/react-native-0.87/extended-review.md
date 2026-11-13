@@ -20,12 +20,36 @@ Branch: `RNSDKUpgrade-review-fixes`. This extends the earlier [bug sweep](bug-sw
 
 ## Current local checks
 
-269 Jest tests / 26 suites; 20 Node tests; 21 Python packaging tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
+307 Jest tests / 33 suites; 22 Node tests; 29 Python packaging/configuration tests pass. Type regression gate passes with 96 inherited diagnostics (raw tsc remains non-zero). Local npm audit: 11 low, zero moderate/high/critical. Registry/npm versions can change totals. Fresh CI/native results will be recorded below after completion.
 
 ## Evidence boundaries and remaining work
 
 Production historical Crashlytics was reviewed read-only for Bebbo Android/iOS, Rerai Android, Pacific Android, Babuni Android and Wawamor Android/iOS. Pacific/Babuni iOS showed “app detected; waiting for a crash”, not delivery verification. Wawamor iOS had no open crash issues in the selected 90-day view. Rerai iOS did not finish loading. Browser access ended before Türkiye, Kosovo, development apps or DebugView could be checked. Do not infer crash-free operation from these views or attribute old-release issues to the new branch without reproduction.
 
-Real signed Firebase configurations, live DebugView event reconciliation, native offline/restart/reconnect delivery, Drive account scenarios, push, installed historical Realm migrations, real Arabic/Urdu translations, large-font screenshots, actual low-end/16 KB hardware and iOS simulator/device execution remain acceptance checks. Compile-only Firebase fixtures cannot confirm project routing. More detailed matrices and procedures are being completed alongside CI.
+Real signed Firebase configurations, live DebugView event reconciliation, native offline/restart/reconnect delivery, Drive account scenarios, push, installed historical Realm migrations, real Arabic/Urdu translations, large-font screenshots, actual low-end/16 KB hardware and iOS simulator/device execution remain acceptance checks. Compile-only Firebase fixtures cannot confirm project routing. Detailed matrices and procedures are linked below.
 
 Realm 20.2.0/schema 4 and dotenv 3.4.12 are intentionally retained. Firebase 26.4.1 remains on the tested CocoaPods path; 27's native integration migration is separate. No framework/native runtime major is upgraded merely to clear an outdated list. Remaining low build-tool advisories with no compatible published fix are not resolved by forced downgrades.
+
+
+## Additional confirmed fixes after the first checkpoint
+
+- Gradle 9.4.1 is affected by high-severity first-party advisories outside npm audit. Pin the patched 9.8.1 distribution/checksum; fresh native compilation is required before calling this compatible.
+- Fix ATT denial being overridden by Facebook tracking initialisation. All ten Android branded manifests and ten iOS app plists default advertising ID collection off. Five consent regressions verify denied/blocked/unavailable/granted/revoked decisions.
+- Explicit iOS privacy/screen flags cover every app target even where checked-in RNFB script phases are absent. Ten archive schemes upload symbols using their own archived app configuration; unsigned/fixture builds never upload. Source tests cover all ten, and the native workflow checks built bundle ID/Firebase project/flags/minimum OS/app dSYM.
+- Retain private composed iOS Hermes maps and select the right JS flavour for all ten Xcode targets; Android guards the corresponding variant/FLAVOR pairing. Supported Android API 24/iOS 15.1 and existing country identifiers are retained.
+- Content verification was adding synthetic game ID 1234 and removing user bookmarks based on incomplete cached content. Stop treating the cache as authoritative user data; a regression reproduces the old mutation and verifies all saved IDs remain.
+- Confirm profile edit writes before navigation/analytics; return the actual update result from the database helper. Add explicit replacement confirmation to all three restore UI entry points, validate nested backup records and reject corrupt inner control characters without rewriting user text. The new warning needs approved country translations.
+- Replace misleading feedback/survey submitted and email sent events with observed link-opening events, only after successful native handoff. Handle unsupported/malformed link schemes and native errors. Count confirmed backup exports separately.
+- Manual Crashlytics reports remove payload text while retaining error class/frames; backup UI uses that path. Keep raw error details out of caregiver fallback screens.
+- Long shared headers use selected-country typography and can grow/wrap; Arabic/Urdu locale aliases now select the intended digit set. Real native visual acceptance remains separate.
+
+## Review deliverables
+
+- [Analytics coverage, event semantics and offline reconciliation](analytics-coverage.md); [complete source event/route/screen inventory](analytics-source-inventory.json).
+- [Backup scope, regression scenarios and device procedure](backup-validation.md).
+- [Security severity, evidence, native dependency decisions and remaining risks](security-assessment.md).
+- [RTL/design findings and device acceptance matrix](rtl-and-device-validation.md); [per-flavour native IDs/languages/configuration matrix](flavour-matrix.json).
+
+## CI provenance
+
+First checkpoint: `d664ad0b67dd88d28c35caf17210aa5e68ac757a`, [run 43463202988](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43463202988). Its unit job and all 16 production JS bundle jobs passed. Native jobs were still running when the subsequent Gradle/privacy/archive corrections were prepared. Results from that checkpoint do not validate later source changes. Final checkpoint/run outcomes will be appended after verification.

@@ -1,5 +1,7 @@
 # Application bug sweep — 13 November 2026
 
+Historical snapshot: see [extended review](extended-review.md) for the subsequent audit, fixes and verification status.
+
 Fixes are on `RNSDKUpgrade-review-fixes`. These checks cover pre-existing defects
 as well as the React Native migration. The source PR branch is unchanged.
 

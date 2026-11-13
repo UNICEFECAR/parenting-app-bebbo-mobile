@@ -46,8 +46,7 @@ import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
 import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp } from "@react-native-firebase/messaging";
-import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
-import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
+import {configureAdvertisingConsent} from "../services/advertisingConsent";
 import LocalNotifications from "../services/LocalNotifications";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
 import { trimWhiteSpacePayload } from "../services/Utils";
@@ -104,7 +103,6 @@ export default (): any => {
   );
   const surveyData = useAppSelector(selectSurveyData);
   const allCountries = useAppSelector(selectAllCountries);
-  const hasLoggedEvent = useRef(false);
   let currentCount = 0;
   const messaging = React.useMemo(() => getMessaging(getApp()), []);
   // messaging.getToken().then(token => {
@@ -266,70 +264,12 @@ export default (): any => {
   }, [linkedURL, resetURL, userIsOnboarded]);
 
   useEffect(() => {
-    const logFacebookEvent = (): void => {
-      if (!hasLoggedEvent.current) {
-        AppEventsLogger.logEvent('fb_sdk_initialized'); // Custom event
-        hasLoggedEvent.current = true;
-      }
-    };
-    const initPixel = async (): Promise<any> => {
-      if (Platform.OS === "ios") {
-        const ATT_CHECK = await check(
-          PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
-        );
-        console.log(ATT_CHECK, "..ATT_CHECK..");
-        if (ATT_CHECK === RESULTS.DENIED) {
-          try {
-            const ATT = await request(
-              PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
-            );
-            if (ATT === RESULTS.GRANTED) {
-              console.log(ATT, "..ATT..");
-              Settings.setAdvertiserTrackingEnabled(true).then(() => {
-                Settings.initializeSDK();
-                logFacebookEvent();
-              });
-            }
-          } catch (error) {
-            console.log(error, "error");
-            throw error;
-          } finally {
-            Settings.initializeSDK();
-            logFacebookEvent();
-          }
-          Settings.initializeSDK();
-          logFacebookEvent();
-          Settings.setAdvertiserTrackingEnabled(true);
-        }
-      } else {
-        Settings.initializeSDK();
-        logFacebookEvent();
-        Settings.setAdvertiserTrackingEnabled(true);
-      }
-    };
-    const updateTrackingStatus = (status: any): any => {
-      console.log(status, "..status");
-      if (status === "active") {
-        initPixel();
-      }
-    };
-
-    // Ready to check the permission now
-    if (AppState.currentState === "active") {
-      updateTrackingStatus(AppState.currentState);
-    } else {
-      // Need to wait until the app is ready before checking the permission
-      const eventListener = AppState.addEventListener(
-        "change",
-        updateTrackingStatus
-      );
-
-      return (): any => {
-        eventListener.remove();
-        // AppState.removeEventListener('change', updateTrackingStatus)
-      };
-    }
-  }, [AppState.currentState]);
+    if (AppState.currentState === 'active') void configureAdvertisingConsent();
+    const listener = AppState.addEventListener('change', state => {
+      if (state === 'active') void configureAdvertisingConsent();
+    });
+    return () => listener.remove();
+  }, []);
   const getSearchParamFromURL = (urlNew: any, paramNew: any): any => {
     const url = new URL(urlNew);
     const params = new URLSearchParams(url.search);

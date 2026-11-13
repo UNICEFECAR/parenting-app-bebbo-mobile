@@ -1,3 +1,5 @@
+import {recordError} from "../../services/firebaseAnalytics";
+import {confirmBackupReplacement} from "../../services/confirmBackupReplacement";
 import {
   DEVELOPMENT_NOTIFICATION_OFF,
   DEVELOPMENT_NOTIFICATION_ON,
@@ -212,6 +214,7 @@ const SettingScreen = (props: any): any => {
     driveOperationRunning.current = true;
     setIsImportRunning(true);
     try {
+      if (!(await confirmBackupReplacement(t))) return;
       const result = await backup.import(
         props.navigation, languageCode, dispatch, childAge, genders, taxonomyIds
       );
@@ -219,7 +222,7 @@ const SettingScreen = (props: any): any => {
       if (result !== "Imported") throw new Error("Backup restore was not confirmed");
     } catch (error) {
       if (!(error instanceof Error && error.message === "loginCanceled")) {
-        console.error("Drive restore failed", error);
+        void recordError(error instanceof Error ? error : 'Backup operation failed');
         Alert.alert("", t("generalError"));
       }
     } finally {
@@ -236,7 +239,7 @@ const SettingScreen = (props: any): any => {
     try {
       if (await backup.exportToFile()) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
-      console.error("Backup export failed", error);
+      void recordError(error instanceof Error ? error : 'Backup operation failed');
       Alert.alert("", t("settingExportError"));
     } finally {
       driveOperationRunning.current = false;
@@ -257,7 +260,7 @@ const SettingScreen = (props: any): any => {
       const success = await backup.export();
       if (success) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
-      console.error("Drive backup failed", error);
+      void recordError(error instanceof Error ? error : 'Backup operation failed');
       Alert.alert("", t("generalError"));
     } finally {
       driveOperationRunning.current = false;
@@ -781,14 +784,14 @@ const SettingScreen = (props: any): any => {
     setIsImportRunning(true);
     try {
       const data = await backup.readLocalBackup();
-      if (data === null) return;
+      if (data === null || !(await confirmBackupReplacement(t))) return;
       const result = await backup.importFromFile(
         data, props.navigation, genders, dispatch, childAge, languageCode, taxonomyIds
       );
       if (result instanceof Error) throw result;
       if (result !== "Imported") throw new Error("Backup restore was not confirmed");
     } catch (error) {
-      console.error("Backup restore failed", error);
+      void recordError(error instanceof Error ? error : 'Backup operation failed');
       Alert.alert("", t("generalError"));
     } finally {
       driveOperationRunning.current = false;

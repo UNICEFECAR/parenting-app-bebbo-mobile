@@ -296,6 +296,7 @@ class UserRealmCommon extends Component {
                     result = records;
                     return result;
                 });
+                return result;
             }
             else {
                 result = [];
@@ -393,49 +394,12 @@ class UserRealmCommon extends Component {
         }
         // });
     }
-    public async verifyFavorites(): Promise<any> {
-        // return new Promise(async (resolve, reject) => {
-        let result: any = '';
-        try {
-            const realm = await this.openRealm();
-            const realmdata = await dataRealmCommon.openRealm();
-            if (realm && realmdata) {
-                const obj: any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
-                realm?.write(() => {
-                    console.log("write")
-                    if (obj.length > 0) {
-                        obj.map((child: any) => {
-                            const favoriteadvices = child.favoriteadvices;
-                            let favoritegames = child.favoritegames;
-                            favoritegames = [...favoritegames, 1234];
-                            if (favoriteadvices.length > 0) {
-                                const filterQuery = favoriteadvices?.map((x: any) => `id = '${x}'`).join(' OR ');
-                                const artobj: any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
-                                const finaladvicesobj = favoriteadvices.filter((i: any) => artobj.find((f: any) => f.id === i));
-                                child.favoriteadvices = finaladvicesobj;
-                            }
-                            if (favoritegames.length > 0) {
-                                const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
-                                const actobj: any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
-                                const finalgamesobj = favoritegames.filter((i: any) => actobj.find((f: any) => f.id === i))
-                                child.favoritegames = finalgamesobj
-                            }
-
-                        })
-                    }
-                });
-                result = 'success';
-                return result;
-            }
-            else {
-                result = 'else';
-                return result;
-            }
-        } catch (e) {
-            result = 'catch';
-            return result;
-        }
-        // });
+    public async verifyFavorites(): Promise<string> {
+        // Bookmarks are user data. A filtered/partial offline content response
+        // cannot establish that an absent CMS ID was deleted. Keep saved IDs;
+        // listing screens resolve the currently available content separately.
+        // Retain this API for the existing synchronisation caller.
+        return 'success';
     }
     public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
         // return new Promise(async (resolve, reject) => {

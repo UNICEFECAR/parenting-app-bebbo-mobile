@@ -1,3 +1,4 @@
+import {openMeasuredLink} from "../../services/measuredLink";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { FDirRow, FlexCol } from "@components/shared/FlexBoxStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
@@ -17,6 +18,7 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  Alert,
   Dimensions,
   FlatList,
   ImageBackground,
@@ -830,11 +832,9 @@ const SupportChat = ({ navigation }: Props): any => {
                 </ModalPopupContent>
                 <FDirRow>
                   <ButtonModal
-                    onPress={(): any => {
+                    onPress={async (): Promise<void> => {
                       setModalVisible(false);
-                      const eventData = { name: FEEDBACK_SUBMIT };
-                      logEvent(eventData, netInfo.isConnected);
-                      Linking.openURL(feedbackItem?.survey_feedback_link);
+                      if (!(await openMeasuredLink(feedbackItem?.survey_feedback_link, FEEDBACK_SUBMIT))) Alert.alert("", t("generalError"));
                     }}
                   >
                     <ButtonTextTheme numberOfLines={2}>
