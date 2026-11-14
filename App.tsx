@@ -1,3 +1,10 @@
+import {onNetworkStateChange} from './app/redux/reducers/bandwidthSlice';
+import BackupPasswordPrompt from './app/components/BackupPasswordPrompt';
+import BackupRecoveryScreen from './app/components/BackupRecoveryScreen';
+import {installBackupRuntime} from './app/services/backupRuntime';
+import {recoverPendingBackup} from './app/services/backupRecovery';
+import {backupFlavor} from './app/instances';
+import {toggleNotificationFlags} from './app/redux/reducers/notificationSlice';
 import {cleanupAbandonedBackupFiles} from './app/services/backupCacheCleanup';
 import {recoverTaxonomySnapshot} from './app/services/taxonomyRecovery';
 /**
@@ -113,18 +120,28 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
 
 const App = () => {
   const [persistor, setPersistor] = React.useState<any>(null);
+  const [backupRecoveryRequired, setBackupRecoveryRequired] = React.useState(false);
   const [directionError, setDirectionError] = React.useState<Error | null>(null);
   React.useEffect(() => {
     const p = persistStore(store);
     configureLayoutDirection({dispatch: store.dispatch, flush: () => p.flush()});
+    const releaseBackupRuntime = installBackupRuntime({
+      context: () => ({flavour: backupFlavor, country: String(store.getState().selectedCountry.countryId), language: store.getState().selectedCountry.languageCode}),
+      flags: () => {const n = store.getState().notificationData; return {growthEnabled:n.growthEnabled,developmentEnabled:n.developmentEnabled,vchcEnabled:n.vchcEnabled,lowbandWidth:store.getState().bandWidthData.lowbandWidth};},
+      applyFlags: async flags => {for (const [key,value] of Object.entries(flags)) {if(key==='lowbandWidth')store.dispatch(onNetworkStateChange(value));else store.dispatch(toggleNotificationFlags({key,value}));} await p.flush();},
+      recoveryRequired: () => setBackupRecoveryRequired(true),
+    });
     setPersistor(p);
     Orientation.lockToPortrait();
     // SplashScreen.hide();
     googleAuth.configure();
+    return releaseBackupRuntime;
   },[]);
+  if (backupRecoveryRequired) return <BackupRecoveryScreen onComplete={() => {setBackupRecoveryRequired(false); RNRestart.Restart();}} />;
   if (directionError) return <CustomFallback error={directionError} resetError={() => setDirectionError(null)} />;
   if (!persistor) return <ActivityIndicator size="large" color="#0000ff" />;
   const onBeforeLift = async () => {
+    try {await recoverPendingBackup();} catch {setBackupRecoveryRequired(true); return;}
     try {
       const cleanup = await cleanupAbandonedBackupFiles();
       if (cleanup.failed) void recordError('Temporary backup cleanup incomplete');
@@ -188,6 +205,7 @@ const App = () => {
                 <SafeAreaProvider style={styles.flex1}>
                   <KeyboardProvider preload={false}>
                     <AppNavigation />
+                    <BackupPasswordPrompt />
                   </KeyboardProvider>
                 </SafeAreaProvider>
               </PersistGate>

@@ -1,3 +1,4 @@
+import {backupErrorMessage} from '../../services/backupErrorMessage';
 import {recordError} from "../../services/firebaseAnalytics";
 import {confirmBackupReplacement} from "../../services/confirmBackupReplacement";
 import {
@@ -223,7 +224,7 @@ const SettingScreen = (props: any): any => {
     } catch (error) {
       if (!(error instanceof Error && error.message === "loginCanceled")) {
         void recordError(error instanceof Error ? error : 'Backup operation failed');
-        Alert.alert("", t("generalError"));
+        Alert.alert("", backupErrorMessage(error, t));
       }
     } finally {
       driveOperationRunning.current = false;
@@ -240,7 +241,7 @@ const SettingScreen = (props: any): any => {
       if (await backup.exportToFile()) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
       void recordError(error instanceof Error ? error : 'Backup operation failed');
-      Alert.alert("", t("settingExportError"));
+      Alert.alert("", backupErrorMessage(error, t));
     } finally {
       driveOperationRunning.current = false;
       setIsExportRunning(false);
@@ -261,7 +262,7 @@ const SettingScreen = (props: any): any => {
       if (success) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
       void recordError(error instanceof Error ? error : 'Backup operation failed');
-      Alert.alert("", t("generalError"));
+      Alert.alert("", backupErrorMessage(error, t));
     } finally {
       driveOperationRunning.current = false;
       setIsExportRunning(false);
@@ -792,7 +793,7 @@ const SettingScreen = (props: any): any => {
       if (result !== "Imported") throw new Error("Backup restore was not confirmed");
     } catch (error) {
       void recordError(error instanceof Error ? error : 'Backup operation failed');
-      Alert.alert("", t("generalError"));
+      Alert.alert("", backupErrorMessage(error, t));
     } finally {
       driveOperationRunning.current = false;
       setIsImportRunning(false);

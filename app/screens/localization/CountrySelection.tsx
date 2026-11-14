@@ -300,7 +300,7 @@ const handleContinueCountry = async () => {
                 windowSize={20}
                 keyExtractor={(item): any => item.CountryID}
                 contentContainerStyle={contentContainer}
-                ListFooterComponent={allCountries.length <= 12 && renderHeader}
+                ListFooterComponent={allCountries.length <= 12 ? renderHeader : undefined}
               />
             ) : (
               <FlatList
@@ -311,7 +311,7 @@ const handleContinueCountry = async () => {
                 initialNumToRender={20}
                 windowSize={20}
                 keyExtractor={(item): any => item.CountryID}
-                ListHeaderComponent={allCountries.length <= 12 && renderHeader}
+                ListHeaderComponent={allCountries.length <= 12 ? renderHeader : undefined}
               />
             )}
           </SelectionView>

@@ -1,3 +1,5 @@
+jest.mock('../backupPassword',()=>({requestBackupPassword:jest.fn().mockResolvedValue('a long backup passphrase'),setBackupOperationBusy:jest.fn()}));
+jest.mock('../backupRuntime',()=>({backupRuntime:()=>({context:()=>({flavour:'bebbo',country:'1',language:'en'}),flags:()=>({growthEnabled:true,developmentEnabled:true,vchcEnabled:true})})}));
 jest.mock('../firebaseAnalytics', () => ({logAnalyticsEvent: jest.fn().mockResolvedValue(undefined)}));
 import {Platform} from 'react-native';
 import Share from 'react-native-share';
@@ -24,16 +26,16 @@ jest.mock('../googleDrive', () => ({ googleDrive: {
 jest.mock('../../instances', () => ({ appConfig: { backupGDriveFolderName: 'ParentBuddy', backupGDriveFileName: 'mybackup.json' } }));
 jest.mock('@dr.pogodin/react-native-fs', () => ({
   DocumentDirectoryPath: '/documents', CachesDirectoryPath: '/cache',
-  readFile: jest.fn(), writeFile: jest.fn(), unlink: jest.fn(),
+  readFile: jest.fn(), writeFile: jest.fn(), unlink: jest.fn(), stat:jest.fn().mockResolvedValue({size:68,isFile:()=>true}), mkdir:jest.fn(), exists:jest.fn(), readDir:jest.fn().mockResolvedValue([]),
 }));
 jest.mock('@react-native-documents/picker', () => ({
   pick: jest.fn(), keepLocalCopy: jest.fn(), saveDocuments: jest.fn(),
   types: { allFiles: '*/*' }, errorCodes: { OPERATION_CANCELED: 'OPERATION_CANCELED' },
   isErrorWithCode: (error: any) => error != null && typeof error === 'object' && 'code' in error,
 }));
-jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn(), randomKey: jest.fn().mockResolvedValue('1'.repeat(32)), hmac256: jest.fn().mockResolvedValue('2'.repeat(64)) }));
+jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn(), randomKey: jest.fn().mockImplementation(async (length: number) => '1'.repeat(length*2)), hmac256: jest.fn().mockResolvedValue('2'.repeat(64)), pbkdf2:jest.fn().mockResolvedValue('ab'.repeat(32)) }));
 jest.mock('../../database/dbquery/userRealmCommon', () => ({ userRealmCommon: { openRealm: jest.fn(), exportUserRealmDataToJson: jest.fn() } }));
-jest.mock('../../database/dbquery/dataRealmCommon', () => ({ dataRealmCommon: { getFilteredData: jest.fn().mockResolvedValue([]) } }));
+jest.mock('../../database/dbquery/dataRealmCommon', () => ({ dataRealmCommon: { getFilteredData: jest.fn().mockResolvedValue([]), openRealm:jest.fn().mockResolvedValue({objects:()=>({filtered:()=>[]})}) } }));
 jest.mock('../childCRUD', () => ({ getAllChildren: jest.fn().mockResolvedValue([{ uuid: 'child' }]), setActiveChild: jest.fn() }));
 jest.mock('../../redux/reducers/realmSafe', () => ({ safeOpenRealm: jest.fn(), safeDeleteRealm: jest.fn() }));
 jest.mock('../Utils', () => ({ getChild: jest.fn() }));
@@ -63,7 +65,7 @@ beforeEach(() => {
   drive.createFileMultipart.mockResolvedValue('new');
   drive.deleteFile.mockResolvedValue(true);
   drive.downloadAndReadFile.mockResolvedValue({ statusCode: 200 });
-  jest.mocked(RNFS.readFile).mockResolvedValue('encrypted');
+  jest.mocked(RNFS.readFile).mockImplementation(async (_path,encoding) => encoding==='base64' ? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9ioAAAAASUVORK5CYII=' : 'encrypted');
   jest.mocked(getChild).mockImplementation(async item => ({ ...item }));
 });
 
@@ -205,9 +207,12 @@ const completeChild = {
 test('exports the same complete child payload to encrypted JSON', async () => {
   userData.exportUserRealmDataToJson.mockResolvedValueOnce([completeChild]);
   await expect(backup.export()).resolves.toBe(true);
-  expect(crypto.encrypt.mock.calls[0][0]).toBe(JSON.stringify([completeChild]));
+  const snapshot=JSON.parse(crypto.encrypt.mock.calls[0][0]);
+  expect(snapshot.children).toEqual([{...completeChild,photoUri:'attached'}]);
+  expect(snapshot.context).toEqual({flavour:'bebbo',country:'1',language:'en'});
+  expect(snapshot.photos.child).toEqual(expect.any(String));
   expect(crypto.encrypt.mock.calls[0][3]).toBe('aes-256-cbc');
-  expect(drive.createFileMultipart).toHaveBeenCalledWith(expect.objectContaining({ name: 'mybackup.json', content: expect.stringContaining('\"version\":2'), parentFolderId: 'folder' }));
+  expect(drive.createFileMultipart).toHaveBeenCalledWith(expect.objectContaining({ name: 'mybackup.json', content: expect.stringContaining('\"version\":3'), parentFolderId: 'folder' }));
 });
 
 test('retains expected children and nested data when reading an onboarding backup', async () => {
@@ -417,7 +422,7 @@ test('iOS exports the authenticated envelope and awaits the share operation befo
   const result = backup.exportToFile();
   for (let index = 0; index < 30 && !finish; index++) await Promise.resolve();
   expect(finish).toBeDefined();
-  expect(RNFS.writeFile).toHaveBeenCalledWith(expect.any(String), expect.stringContaining('\"version\":2'), 'utf8');
+  expect(RNFS.writeFile).toHaveBeenCalledWith(expect.any(String), expect.stringContaining('\"version\":3'), 'utf8');
   expect(RNFS.unlink).not.toHaveBeenCalled();
   finish({success: true});
   await expect(result).resolves.toBe(true);

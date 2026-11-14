@@ -1,3 +1,5 @@
+import {getBackupPreview, clearBackupPreviews} from '../services/backupPreview';
+import {backupErrorMessage} from '../services/backupErrorMessage';
 import {recordError} from "../services/firebaseAnalytics";
 import {confirmBackupReplacement} from "../services/confirmBackupReplacement";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
 });
 const ChildImportSetup = (props: any): any => {
   const netInfo = useNetInfoHook();
-  const { importResponse } = props.route.params;
+  const { importResponse, importPreviewId } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [relationship, setRelationship] = useState("");
@@ -174,8 +176,9 @@ const ChildImportSetup = (props: any): any => {
     setRestoring(true);
     try {
       if (!(await confirmBackupReplacement(t))) return;
-      const data = typeof importResponse === "string" ? JSON.parse(importResponse) : importResponse;
+      const data = importPreviewId ? getBackupPreview(importPreviewId) : typeof importResponse === "string" ? JSON.parse(importResponse) : importResponse;
       const children = await backup.restoreChildren(data, genders);
+      clearBackupPreviews();
       for (const [key, value] of [
         ["userParentalRole", relationship],
         ["userRelationToParent", String(userRelationToParent)],
@@ -199,7 +202,7 @@ const ChildImportSetup = (props: any): any => {
       }}]});
     } catch (error) {
       void recordError(error instanceof Error ? error : 'Backup operation failed');
-      Alert.alert("", t("generalError"));
+      Alert.alert("", backupErrorMessage(error, t));
     } finally {
       restoreRunning.current = false;
       setRestoring(false);

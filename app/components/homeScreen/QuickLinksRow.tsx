@@ -1,6 +1,8 @@
+import {diagnosticError} from '../../services/diagnostics';
+import {backupErrorMessage} from '../../services/backupErrorMessage';
 import HorizontalContentList from "@components/shared/HorizontalContentList";
 import React, { useRef, useState } from 'react';
-import { View, Pressable, StyleSheet, Alert, Dimensions, Modal } from 'react-native';
+import { View, Pressable, StyleSheet, Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import ActionSheet, {type AppActionSheetRef} from "@components/shared/AppActionSheet";
@@ -11,7 +13,6 @@ import { BannerContainer } from '@components/shared/Container';
 import { SettingHeading, SettingOptions, SettingShareData } from '@components/shared/SettingsStyle';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import AlertModal from '@components/AlertModal';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 
 
@@ -22,7 +23,6 @@ const QuickLinksRow = () => {
   const { t } = useTranslation();
   const driveExportRunning = useRef(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
-  const [isDriveBackupRunning, setIsDriveBackupRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
   const actionSheetRef = useRef<AppActionSheetRef>(null);
   const netInfo = useNetInfoHook();
@@ -60,17 +60,15 @@ const QuickLinksRow = () => {
     if (driveExportRunning.current) return;
     driveExportRunning.current = true;
     setIsExportRunning(true);
-    setIsDriveBackupRunning(true);
     try {
       const success = await backup.export();
       if (success) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
-      console.error("Drive backup failed", error);
-      Alert.alert("", t("generalError"));
+      console.error("Drive backup failed", diagnosticError(error instanceof Error ? error : "Backup operation failed"));
+      Alert.alert("", backupErrorMessage(error, t));
     } finally {
       driveExportRunning.current = false;
       setIsExportRunning(false);
-      setIsDriveBackupRunning(false);
       actionSheetRef.current?.hide();
     }
   };
@@ -79,16 +77,14 @@ const QuickLinksRow = () => {
     if (driveExportRunning.current) return;
     driveExportRunning.current = true;
     setIsExportRunning(true);
-    setIsDriveBackupRunning(true);
     try {
       if (await backup.exportToFile()) Alert.alert("", t("settingExportSuccess"));
     } catch (error) {
-      console.error("Backup export failed", error);
-      Alert.alert("", t("settingExportError"));
+      console.error("Backup export failed", diagnosticError(error instanceof Error ? error : "Backup operation failed"));
+      Alert.alert("", backupErrorMessage(error, t));
     } finally {
       driveExportRunning.current = false;
       setIsExportRunning(false);
-      setIsDriveBackupRunning(false);
     }
   };
   const handleExportAlertConfirm = (): any => {
@@ -166,14 +162,7 @@ const QuickLinksRow = () => {
         onConfirm={handleExportAlertConfirm}
         onCancel={onExportCancel}
       ></AlertModal>
-      <Modal
-        transparent
-        visible={isDriveBackupRunning}
-        animationType="none"
-        onRequestClose={() => {}}
-      >
-        <OverlayLoadingComponent loading={isDriveBackupRunning} />
-      </Modal>
+
     </View>
   );
 };

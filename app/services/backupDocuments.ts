@@ -21,6 +21,8 @@ export async function openBackupDocument(): Promise<{ name: string; data: string
     });
     if (copy.status !== 'success') throw new Error(copy.copyError);
     localUri = copy.localUri;
+    const info = await RNFS.stat(localUri);
+    if (!info.isFile() || Number(info.size) > 128*1024*1024) throw new Error('Backup exceeds the supported size');
     const data = await RNFS.readFile(localUri, isJson ? 'utf8' : 'base64');
     return { name: document.name, data };
   } catch (error) {

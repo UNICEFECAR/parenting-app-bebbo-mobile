@@ -1,3 +1,6 @@
+import {holdBackupPreview} from '../services/backupPreview';
+import {diagnosticError} from '../services/diagnostics';
+import {backupErrorMessage} from '../services/backupErrorMessage';
 import { appConfig } from "../instances";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -229,7 +232,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       if (data instanceof Error) throw data;
       if (data === null) return;
       navigation.navigate("ChildImportSetup", {
-        importResponse: JSON.stringify(data),
+        importPreviewId: holdBackupPreview(data),
         parentName,
         relationData: relationship,
         relationshipNameData: relationshipName,
@@ -237,8 +240,8 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       });
     } catch (error) {
       if (!(error instanceof Error && error.message === "loginCanceled")) {
-        console.error("Backup import failed", error);
-        Alert.alert("", t("generalError"));
+        console.error("Backup import failed", diagnosticError(error instanceof Error ? error : "Backup operation failed"));
+        Alert.alert("", backupErrorMessage(error, t));
       }
     } finally {
       importRunning.current = false;

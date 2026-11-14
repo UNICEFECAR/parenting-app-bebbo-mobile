@@ -1,3 +1,8 @@
+import {requestBackupPassword, setBackupOperationBusy} from './backupPassword';
+import {encryptProtectedBackup, decryptProtectedBackup, isProtectedBackup} from './protectedBackupCipher';
+import {backupRuntime} from './backupRuntime';
+import {createSnapshot, validateSnapshot, stagePhotos, PortableSnapshot} from './backupSnapshot';
+import {commitPortableRestore, readPortableSettings, cleanupUnjournaledBackupPhotos} from './backupRecovery';
 import {logAnalyticsEvent} from './firebaseAnalytics';
 import type {UpdateMode} from 'realm';
 import {googleAuth} from './googleAuth';
@@ -35,8 +40,9 @@ class Backup {
   private async exclusive<T>(work: () => Promise<T>): Promise<T> {
     if (this.operationRunning) throw new Error('Backup operation is already running');
     this.operationRunning = true;
+    setBackupOperationBusy(true);
     try { return await work(); }
-    finally { this.operationRunning = false; }
+    finally { this.operationRunning = false; setBackupOperationBusy(false); }
   }
 
   public encryptData = async (text: string, key: string): Promise<{cipher: string}> => ({
@@ -46,18 +52,30 @@ class Backup {
   public decryptData = (text: string, key: string): Promise<string> =>
     decryptBackup(text, key, backupIV);
 
-  private async encryptedUserData(): Promise<string> {
+  private async encryptedUserData(): Promise<string | null> {
+    const password = await requestBackupPassword('create');
+    if (password == null) return null;
     if (!(await userRealmCommon.openRealm())) throw new Error('Cannot open user data');
-    const data = await userRealmCommon.exportUserRealmDataToJson();
-    validateBackupChildren(data);
-    const {cipher} = await this.encryptData(JSON.stringify(data), encryptionsKey);
-    if (!cipher) throw new Error('Backup encryption failed');
-    return cipher;
+    const data = await dataRealmCommon.openRealm();
+    if (!data) throw new Error('Cannot open preferences');
+    const snapshot = await createSnapshot(await userRealmCommon.exportUserRealmDataToJson(), readPortableSettings(data), backupRuntime().flags(), backupRuntime().context());
+    return encryptProtectedBackup(JSON.stringify(snapshot), password);
+  }
+
+  private async decodeJson(text: string): Promise<any> {
+    if (isProtectedBackup(text)) {
+      const password = await requestBackupPassword('unlock');
+      if (password == null) throw new Error('loginCanceled');
+      return validateSnapshot(JSON.parse(await decryptProtectedBackup(text, password)), backupRuntime().context());
+    }
+    return parseBackupChildren(await this.decryptData(text, encryptionsKey));
   }
 
   public async exportToFile(): Promise<boolean> {
     return this.exclusive(async () => {
-      const saved = await saveBackupDocument(await this.encryptedUserData());
+      const cipher = await this.encryptedUserData();
+      if (cipher == null) return false;
+      const saved = await saveBackupDocument(cipher);
       if (saved) void logAnalyticsEvent('backup_export_completed', {source: 'local_file'});
       return saved;
     });
@@ -68,6 +86,7 @@ class Backup {
     return this.exclusive(async () => {
       if (!(await googleAuth.ensureSignedIn())) return false;
       const cipher = await this.encryptedUserData();
+      if (cipher == null) return false;
       const previousFiles = await googleDrive.findBackupFiles();
       if (previousFiles instanceof Error) throw previousFiles;
       const folder = previousFiles[0]?.parents?.[0] || await googleDrive.safeCreateFolder({
@@ -94,8 +113,7 @@ class Backup {
 
   private async readBackupFile(path: string, name: string): Promise<any[]> {
     if (name.toLowerCase().endsWith('.json')) {
-      const decrypted = await this.decryptData(await RNFS.readFile(path, 'utf8'), encryptionsKey);
-      return parseBackupChildren(decrypted);
+      return this.decodeJson(await RNFS.readFile(path, 'utf8'));
     }
     // Open only a private copy: file-format upgrades cannot alter the original.
     const temporaryRealm = await safeOpenRealm({path});
@@ -106,12 +124,13 @@ class Backup {
   }
 
   /** Select and detach data; onboarding must not erase anything on preview. */
-  public async readLocalBackup(): Promise<any[] | null> {
+  public async readLocalBackup(): Promise<any[] | PortableSnapshot | null> {
     return this.exclusive(async () => {
       const document = await openBackupDocument();
       if (!document) return null;
       if (document.name.toLowerCase().endsWith('.json')) {
-        return parseBackupChildren(await this.decryptData(document.data, encryptionsKey));
+        try { return await this.decodeJson(document.data); }
+        catch (error) { if (error instanceof Error && error.message === 'loginCanceled') return null; throw error; }
       }
       const path = RNFS.CachesDirectoryPath + '/bebbo-import-' + Date.now() + '-' + ++nextImport + '.realm';
       try {
@@ -134,15 +153,18 @@ class Backup {
     } finally { await safeDeleteRealm({path}); }
   }
 
-  public async import1(_navigation: any, _langCode: any, _dispatch: any, _childAge: any, _genders: any): Promise<any[] | Error> {
+  public async import1(_navigation: any, _langCode: any, _dispatch: any, _childAge: any, _genders: any): Promise<any[] | PortableSnapshot | Error | null> {
     try { return await this.exclusive(() => this.readDriveBackup()); }
-    catch (error) { return asError(error); }
+    catch (error) { return error instanceof Error && error.message === 'loginCanceled' ? null : asError(error); }
   }
 
   private async replaceChildren(data: unknown, genders: any): Promise<any[]> {
     // Detach before the legacy converter mutates records. Convert every child
     // before the transaction; a conversion failure cannot affect live data.
-    const detached = JSON.parse(JSON.stringify(validateBackupChildren(data)));
+    const snapshot = !Array.isArray(data) ? validateSnapshot(data, backupRuntime().context()) : undefined;
+    const staged = snapshot ? await stagePhotos(snapshot) : undefined;
+    try {
+    const detached = JSON.parse(JSON.stringify(validateBackupChildren(staged?.children ?? data)));
     const children = await Promise.all(detached.map((child: any) => getChild({
       ...child, measures: child.measures ?? [], reminders: child.reminders ?? [],
     }, genders)));
@@ -157,12 +179,14 @@ class Backup {
     const realm = await userRealmCommon.openRealm();
     if (!realm) throw new Error('Cannot open user data');
     // A bad nested record rolls back the deletion and preceding insertions.
-    realm.write(() => {
+    if (snapshot) await commitPortableRestore(children, snapshot.settings, snapshot.preferences);
+    else realm.write(() => {
       realm.deleteAll();
       children.forEach(child => realm.create(ChildEntitySchema.name, child, 'modified' as UpdateMode));
     });
     void logAnalyticsEvent('backup_restore_completed', {restored_count: children.length});
     return children;
+    } finally { if (staged) await cleanupUnjournaledBackupPhotos().catch(() => {}); }
   }
 
   /** Atomic replacement shared by onboarding, local documents and Drive. */
