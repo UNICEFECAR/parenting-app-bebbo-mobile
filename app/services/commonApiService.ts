@@ -423,15 +423,7 @@ export const downloadArticleImages = async (): Promise<any> => {
     }
   });
 
-  FastImage.preload(
-    imageArray,
-    () => {
-      console.log("images preloaded");
-    },
-    () => {
-      return "complete";
-    }
-  );
+  FastImage.preload(imageArray);
   // });
 };
 export const onHomeapiSuccess = async (
@@ -508,9 +500,9 @@ export const onHomeapiSuccess = async (
     const artresp = response.find(
       (x: any) => x.apiEndpoint == "articles" && x.status == 200
     );
-    if (artresp && artresp != {}) {
+    if (artresp) {
       const artobj = oldErrorObj.find((x: any) => x.apiEndpoint == "articles");
-      if (artobj && artobj != {}) {
+      if (artobj) {
         try {
           const storedata = store.getState();
           const childagearray = storedata.utilsData?.taxonomy?.allTaxonomyData

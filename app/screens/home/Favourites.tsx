@@ -3,7 +3,7 @@ import FavArticles from "@components/FavArticles";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import TabScreenHeader from "@components/TabScreenHeader";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 import {
   Heading4Center,
   ShiftFromBottom5,
@@ -18,7 +18,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import { secondaryColor } from "@styles/style";
 type NotificationsNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+  DrawerNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: NotificationsNavigationProp;

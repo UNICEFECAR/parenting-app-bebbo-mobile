@@ -343,21 +343,14 @@
     },
     {
       "file": "app/screens/AddChildInfoSetup.tsx",
-      "line": 271,
+      "line": 274,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_SKIPPED }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/AddChildInfoSetup.tsx",
-      "line": 274,
-      "api": "logEvent",
-      "event": "{ name: EXPECTED_CHILD_ENTERED }",
-      "parameters": "netInfo.isConnected"
-    },
-    {
-      "file": "app/screens/AddChildSetup.tsx",
-      "line": 284,
+      "line": 277,
       "api": "logEvent",
       "event": "{ name: EXPECTED_CHILD_ENTERED }",
       "parameters": "netInfo.isConnected"
@@ -365,6 +358,13 @@
     {
       "file": "app/screens/AddChildSetup.tsx",
       "line": 287,
+      "api": "logEvent",
+      "event": "{ name: EXPECTED_CHILD_ENTERED }",
+      "parameters": "netInfo.isConnected"
+    },
+    {
+      "file": "app/screens/AddChildSetup.tsx",
+      "line": 290,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_SKIPPED }",
       "parameters": "netInfo.isConnected"
@@ -595,119 +595,119 @@
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 668,
-      "api": "logEvent",
-      "event": "{ name: GROWTH_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
-    },
-    {
-      "file": "app/screens/home/SettingScreen.tsx",
       "line": 669,
       "api": "logEvent",
-      "event": "{ name: DEVELOPMENT_NOTIFICATION_OFF }",
+      "event": "{ name: GROWTH_NOTIFICATION_OFF }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 670,
       "api": "logEvent",
-      "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }",
+      "event": "{ name: DEVELOPMENT_NOTIFICATION_OFF }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 682,
+      "line": 671,
       "api": "logEvent",
-      "event": "{ name: GROWTH_NOTIFICATION_ON }",
+      "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 683,
       "api": "logEvent",
-      "event": "{ name: DEVELOPMENT_NOTIFICATION_ON }",
+      "event": "{ name: GROWTH_NOTIFICATION_ON }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 684,
       "api": "logEvent",
+      "event": "{ name: DEVELOPMENT_NOTIFICATION_ON }",
+      "parameters": "netInfo.isConnected"
+    },
+    {
+      "file": "app/screens/home/SettingScreen.tsx",
+      "line": 685,
+      "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_ON }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 862,
+      "line": 863,
       "api": "logEvent",
       "event": "{ name: GROWTH_NOTIFICATION_ON }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 867,
+      "line": 868,
       "api": "logEvent",
       "event": "{ name: GROWTH_NOTIFICATION_OFF }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 916,
+      "line": 917,
       "api": "logEvent",
       "event": "{ name: DEVELOPMENT_NOTIFICATION_ON }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 921,
+      "line": 922,
       "api": "logEvent",
       "event": "{ name: DEVELOPMENT_NOTIFICATION_OFF }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 970,
+      "line": 971,
       "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_ON }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
-      "line": 975,
+      "line": 976,
       "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
-      "line": 193,
+      "line": 180,
       "api": "logEvent",
       "event": "{ name: CHATBOT_CATEGORY_SELECTED + \"_\" + localsteps[stepIndex].options[optionIndex].value, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
-      "line": 216,
+      "line": 203,
       "api": "logEvent",
       "event": "{ name: CHATBOT_SUBCATEGORY_SELECTED + \"_\" + localsteps[stepIndex].options[optionIndex].value, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
-      "line": 267,
+      "line": 254,
       "api": "logEvent",
       "event": "{ name: CHATBOT_FAQ_SELECTED, params: { faq_Id: localsteps[index].textToShow.id, faq_Subcategory_Id: localsteps[indexForText2].answer.value, }, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/Activities.tsx",
-      "line": 547,
+      "line": 548,
       "api": "logEvent",
       "event": "{ name: GAME_AGEGROUP_SELECTED, params: { age_id: item.id }, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/Activities.tsx",
-      "line": 951,
+      "line": 952,
       "api": "logEvent",
       "event": "{ name: ACTIVITY_SEARCHED, params: { activity_searched: queryText }, }",
       "parameters": "netInfo.isConnected"
@@ -763,21 +763,21 @@
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 61,
+      "line": 79,
       "api": "logAnalyticsEvent",
       "event": "'backup_export_completed'",
       "parameters": "{source: 'local_file'}"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 90,
+      "line": 109,
       "api": "logAnalyticsEvent",
       "event": "'backup_export_completed'",
       "parameters": "{source: 'drive'}"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 164,
+      "line": 187,
       "api": "logAnalyticsEvent",
       "event": "'backup_restore_completed'",
       "parameters": "{restored_count: children.length}"

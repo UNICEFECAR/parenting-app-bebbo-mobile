@@ -1,9 +1,11 @@
+import {CommonActions} from "@react-navigation/native";
 import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import LanguageItem from "@components/LanguageItem";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingStyle from "@components/shared/OnboardingStyle";
-import { LocalizationStackParamList } from "@navigation/types";
+import { LocalizationStackParamList, RootStackParamList } from "@navigation/types";
+import type { CompositeNavigationProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { SelectionViewLang } from "@styles/style";
 import { useContext, useEffect, useState } from "react";
@@ -40,9 +42,9 @@ import "moment/locale/tr";
 import { getLanguageCode } from "../../services/Utils";
 import { recordError, setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
-type LanguageSelectionNavigationProp = StackNavigationProp<
-  LocalizationStackParamList,
-  "CountryLanguageConfirmation"
+type LanguageSelectionNavigationProp = CompositeNavigationProp<
+  StackNavigationProp<LocalizationStackParamList, "LanguageSelection">,
+  StackNavigationProp<RootStackParamList>
 >;
 type Props = {
   navigation: LanguageSelectionNavigationProp;
@@ -200,14 +202,14 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       ) {
         if (await applyLanguageDirection(language, { screen: "HomeDrawerNavigator" }))
           return;
-        navigation.reset({
+        navigation.dispatch(CommonActions.reset({
           index: 0,
           routes: [
             {
               name: "HomeDrawerNavigator",
             },
           ],
-        });
+        }));
       } else {
         console.log(language, "..newLanguage");
         if (Object.keys(route.params ?? {}).length !== 0) {

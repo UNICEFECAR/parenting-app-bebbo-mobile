@@ -34,6 +34,7 @@ import {
   SideSpacing10,
 } from "@styles/typography";
 import React, { useContext, useMemo, useState, useEffect, useRef } from "react";
+import type {ActivitiesEntity} from "../../../database/schema/ActivitiesSchema";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -192,7 +193,7 @@ const Activities = ({ route, navigation }: any): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
-  const ActivitiesData = useMemo(() => randomArrayShuffle(ActivitiesDataold), [ActivitiesDataold]);
+  const ActivitiesData = useMemo(() => randomArrayShuffle<ActivitiesEntity>(ActivitiesDataold), [ActivitiesDataold]);
   const activityCategoryData = useAppSelector(selectActivityCategoryArray);
   const MileStonesData = useAppSelector(selectMileStonesData);
   const activityTaxonomyId =
@@ -217,7 +218,7 @@ const Activities = ({ route, navigation }: any): any => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
-    useState([]);
+    useState<ActivitiesEntity[]>([]);
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);

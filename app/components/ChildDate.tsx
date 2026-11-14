@@ -1,3 +1,4 @@
+import {calendarDateOffset} from "../services/calendarDate";
 import Icon from "@components/shared/Icon";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFocusEffect } from "@react-navigation/native";
@@ -334,18 +335,10 @@ const ChildDate = (props: any): any => {
                             mode={"date"}
                             display="spinner"
                             minimumDate={
-                              new Date(
-                                DateTime.fromJSDate(doborExpectedDate as Date)
-                                  .plus({ weeks: minDue })
-                                  .toISODate()
-                              )
+                              calendarDateOffset(doborExpectedDate as Date, { weeks: minDue })
                             }
                             maximumDate={
-                              new Date(
-                                DateTime.fromJSDate(doborExpectedDate as Date)
-                                  .plus({ months: maxDue })
-                                  .toISODate()
-                              )
+                              calendarDateOffset(doborExpectedDate as Date, { months: maxDue })
                             }
                             locale={locale}
                             // minimumDate={{}}
@@ -379,30 +372,18 @@ const ChildDate = (props: any): any => {
                           date={
                             dueDate != null
                               ? dueDate
-                              : new Date(
-                                  DateTime.fromJSDate(doborExpectedDate as Date)
-                                    .plus({ weeks: minDue })
-                                    .toISODate()
-                                )
+                              : calendarDateOffset(doborExpectedDate as Date, { weeks: minDue })
                           }
                           onConfirm={handleDueConfirm}
                           onCancel={(): any => {
                             setDueDatePickerVisibility(false);
                           }}
                           minimumDate={
-                            new Date(
-                              DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({ weeks: minDue })
-                                .toISODate()
-                            )
+                            calendarDateOffset(doborExpectedDate as Date, { weeks: minDue })
                           }
                           locale={locale}
                           maximumDate={
-                            new Date(
-                              DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({ months: maxDue })
-                                .toISODate()
-                            )
+                            calendarDateOffset(doborExpectedDate as Date, { months: maxDue })
                           }
                         />
                       )}

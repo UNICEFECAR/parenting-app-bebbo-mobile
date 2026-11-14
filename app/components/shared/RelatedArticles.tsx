@@ -240,7 +240,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              keyExtractor={(item): any => item.id}
+              keyExtractor={(item: {id: number}): string => String(item.id)}
             />
           </View>
         </ContainerView>

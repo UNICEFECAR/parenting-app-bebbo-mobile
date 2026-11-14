@@ -36,7 +36,7 @@
     "GenerateBundleFile": "ENVFILE=env/.env.babuni FLAVOR=babuni react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "assets:generate": "node scripts/vector-assets.cjs --generate",
     "assets:check": "node scripts/vector-assets.cjs",
-    "typecheck": "node scripts/check-types.cjs",
+    "typecheck": "tsc --noEmit",
     "test:tooling": "node --test scripts/__tests__/*.test.cjs"
   },
   "dependencies": {

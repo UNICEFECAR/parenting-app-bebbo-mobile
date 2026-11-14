@@ -22,7 +22,7 @@ const CountryItem = ({ item, currentItem, setCountry }: any): any => {
               <Radio></Radio>
             )}
           </View>
-          <RadioItemText isActive={isActive}>{item.name}</RadioItemText>
+          <RadioItemText $isActive={isActive}>{item.name}</RadioItemText>
         </RadioCountryItem>
       </Pressable>
     </>

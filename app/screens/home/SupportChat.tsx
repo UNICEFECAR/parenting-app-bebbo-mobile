@@ -1,9 +1,11 @@
+import {CommonActions} from "@react-navigation/native";
 import {openMeasuredLink} from "../../services/measuredLink";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { FDirRow, FlexCol } from "@components/shared/FlexBoxStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import type { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import {
   Heading1Centerr,
   Heading4Center,
@@ -59,7 +61,7 @@ import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurve
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { imageBg } from "@styles/style";
 
-type SupportChatNavigationProp = StackNavigationProp<any>;
+type SupportChatNavigationProp = DrawerNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
 };
@@ -97,21 +99,6 @@ const SupportChat = ({ navigation }: Props): any => {
     navigation.closeDrawer();
   }, []);
 
-  function parseWithFunctions(obj: any): any {
-    return JSON.parse(obj, (k, v) => {
-      if (typeof v === "string" && k == "nextStepFunc") {
-        return eval(v);
-      }
-      return v;
-    });
-  }
-  const chatBotData = useAppSelector((state: any) => {
-    console.log("ChildData is", state.childData.childDataSet.chatBotData);
-    console.log("all texonomy data", state.utilsData.taxonomy?.allTaxonomyData);
-    state.childData.childDataSet.chatBotData != ""
-      ? parseWithFunctions(state.childData.childDataSet.chatBotData)
-      : state.childData.childDataSet.chatBotData;
-  });
   const [profileLoading, setProfileLoading] = React.useState(false);
   const surveryData = useAppSelector(selectSurveyData);
   const feedbackItem = surveryData.find((item: any) => item.type == "feedback");
@@ -343,14 +330,14 @@ const SupportChat = ({ navigation }: Props): any => {
     localstepsjson[0].showNextStep = true;
     const updatedsteps = [...localsteps, ...localstepsjson];
     dispatch(setchatBotData(updatedsteps));
-    navigation.reset({
+    navigation.dispatch(CommonActions.reset({
       index: 0,
       routes: [
         {
           name: "HomeDrawerNavigator",
         },
       ],
-    });
+    }));
   };
   const showFeedbackLink = (
     stepIndex: any,
@@ -645,53 +632,16 @@ const SupportChat = ({ navigation }: Props): any => {
   //   }, delayOfConcurrentSteps);
   // }, [steps]);
 
-  const setOnloadChatBotData = (chatBotData: any, stepsjson: any): any => {
-    console.log("ChatbotData", chatBotData);
-    console.log("stepsjson", stepsjson);
-    if (chatBotData && chatBotData.length > 0) {
-      setsteps(chatBotData);
-    } else {
-      console.log("In else condition");
-      setsteps(stepsjson);
-      setTimeout(() => {
-        const localstepsjson = [...stepsjson];
-        localstepsjson[1].showNextStep = true;
-        setsteps(localstepsjson);
-        console.log("setsteps is 1", steps);
-      }, delayOfConcurrentSteps);
-    }
-  };
-
-  // useEffect(()=>{
-  //   console.log('stepsjson123',stepsjson)
-  //   async function fetchData(): Promise<any> {
-  //     setOnloadChatBotData(chatBotData, stepsjson);
-
-  //   }
-  //   fetchData()
-  //  })
-  const fetchData = async () => {
-    try {
-      // Fetch necessary data (using Redux or other methods)
-      // Update the steps state with the fetched chat steps
-      console.log("chatBotData", chatBotData);
-      console.log("stepsjson", stepsjson);
-      setOnloadChatBotData(chatBotData, stepsjson);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      // Handle errors, set default steps, show error message, etc.
-    }
-  };
-
-  // useEffect(() => {
-  //   fetchData(); // Fetch data on component mount
-  // }, []);// Add stepsjson to the dependency array
-
   useEffect(() => {
-    async function fetchData(): Promise<any> {
-      setOnloadChatBotData(chatBotData, stepsjson);
-    }
-    fetchData();
+    // FAQ sessions already start afresh on this screen. Persisted function strings
+    // must never be evaluated as JavaScript to reconstruct callbacks.
+    setsteps(stepsjson);
+    const timer = setTimeout(() => {
+      const initialSteps = [...stepsjson];
+      initialSteps[1].showNextStep = true;
+      setsteps(initialSteps);
+    }, delayOfConcurrentSteps);
+    return () => clearTimeout(timer);
   }, []);
   const scrollToIndexFailed = (error: any): any => {
     console.log("Scrolled failed while initial", error);

@@ -65,9 +65,9 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
     Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
       arr.slice(i * size, i * size + size)
     );
-  const categoryIds = taxonomyIds?.activityCategoryArray;
+  const categoryIds = taxonomyIds?.activityCategoryArray ?? [];
 
-  appConfig.activityCategoryUniqueNameObj.forEach((item, index) => {
+  appConfig.activityCategoryUniqueNameObj.forEach((item: {id: number}, index: number) => {
     if (categoryIds[index] !== undefined) {
       item.id = categoryIds[index];
     }

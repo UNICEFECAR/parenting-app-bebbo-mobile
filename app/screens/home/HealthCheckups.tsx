@@ -62,7 +62,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext?.colors.HEALTHCHECKUP_TINTCOLOR;
-  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const headerTextColor = themeContext?.colors.HEALTHCHECKUP_TEXTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
@@ -99,9 +99,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   let hcReminder: any;
   if (healthCheckupReminder) {
     const today = DateTime.fromJSDate(new Date());
-    const reminderDate = new Date(
-      DateTime.fromMillis(healthCheckupReminder?.reminderDate)
-    );
+    const reminderDate = (DateTime.fromMillis(healthCheckupReminder?.reminderDate)).toJSDate();
     const hours = new Date(healthCheckupReminder?.reminderTime).getHours();
     const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes();
     reminderDate.setHours(hours);

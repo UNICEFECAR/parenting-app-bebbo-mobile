@@ -162,7 +162,7 @@ const LastChildMeasure = (): any => {
         <ShiftFromTop20>
           <FlexDirRowSpace>
             <Flex2>
-              <FlexDirRowSpace alignItems="flex-start">
+              <FlexDirRowSpace style={{alignItems: "flex-start"}}>
                 <FlexDirColStart>
                   <Heading4Regular>{t("growthScreenwText")}</Heading4Regular>
                   <Heading2>

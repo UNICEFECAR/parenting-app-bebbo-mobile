@@ -171,7 +171,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
   const deleteVaccination = async (): Promise<any> => {
     if (editVCDate) {
       const existingMeasure = getMeasuresForDate(
-        DateTime.fromJSDate(new Date(editVCDate)),
+        DateTime.fromJSDate((editVCDate).toJSDate()),
         activeChild
       );
       //delete measure obj
@@ -464,7 +464,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
     } else {
       if (editVCDate) {
         const existingMeasure = getMeasuresForDate(
-          DateTime.fromJSDate(new Date(editVCDate)),
+          DateTime.fromJSDate((editVCDate).toJSDate()),
           activeChild
         );
         const growthValues = {

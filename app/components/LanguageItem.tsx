@@ -23,7 +23,7 @@ const LanguageItem = ({ item, currentItem, setLanguage }: any): any => {
           <View>
             {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#fff" /></RadioActive> : <Radio></Radio>}
           </View>
-          <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
+          <RadioItemText $isActive={isActive}>{item.displayName}</RadioItemText>
         </RadioCountryItem>
       </Pressable>
     </>

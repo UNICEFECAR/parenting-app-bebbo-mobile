@@ -253,7 +253,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               const combinedNotis = currentChildallnoti
                 .sort(
                   (a: any, b: any) =>
-                    new Date(a.notificationDate) - new Date(b.notificationDate)
+                    new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime()
                 )
                 .filter((item: any) => {
                   return (
@@ -627,7 +627,6 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </Heading4>
           </DrawerLinkView>
           {userGuideItem &&
-            userGuideItem != {} &&
             userGuideItem != "" &&
             userGuideItem?.survey_feedback_link &&
             userGuideItem?.survey_feedback_link != "" &&
@@ -766,7 +765,6 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </>
           ) : null}
           {donateItem &&
-            donateItem != {} &&
             donateItem != "" &&
             donateItem?.survey_feedback_link &&
             donateItem?.survey_feedback_link != "" &&

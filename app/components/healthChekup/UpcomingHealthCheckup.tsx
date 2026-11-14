@@ -76,9 +76,7 @@ const UpcomingHealthCheckup = (props: any): any => {
   if (healthCheckupReminders.length > 0) {
     healthCheckupReminders.forEach((healthCheckupReminder: any) => {
       const today = DateTime.fromJSDate(new Date());
-      const reminderDate = new Date(
-        DateTime.fromMillis(healthCheckupReminder?.reminderDate)
-      );
+      const reminderDate = (DateTime.fromMillis(healthCheckupReminder?.reminderDate)).toJSDate();
       const hours = new Date(healthCheckupReminder?.reminderTime).getHours();
       const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes();
       reminderDate.setHours(hours);

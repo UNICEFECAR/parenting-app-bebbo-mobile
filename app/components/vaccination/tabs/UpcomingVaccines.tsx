@@ -60,9 +60,7 @@ const UpcomingVaccines = (props: any): any => {
   if (vaccineReminders.length > 0) {
     vaccineReminders.forEach((vaccineReminder: any) => {
       const today = DateTime.fromJSDate(new Date());
-      const reminderDate = new Date(
-        DateTime.fromMillis(vaccineReminder?.reminderDate)
-      );
+      const reminderDate = (DateTime.fromMillis(vaccineReminder?.reminderDate)).toJSDate();
       const hours = new Date(vaccineReminder?.reminderTime).getHours();
       const mins = new Date(vaccineReminder?.reminderTime).getMinutes();
       reminderDate.setHours(hours);

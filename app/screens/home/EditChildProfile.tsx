@@ -517,7 +517,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               photoDeleted == false ? (
               <View style={styles.container}>
                 <ImageBackground
-                  source={capturedPhoto != "" ? { uri: capturedPhoto } : null}
+                  source={capturedPhoto != "" ? { uri: capturedPhoto } : undefined}
                   style={styles.image}
                 >
                   <ProfileEditView

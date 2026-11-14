@@ -18,7 +18,7 @@ const AgeBrackets = ({
 
   let filteredAge = isActivity
     ? childAge.filter(
-        (item: { name: string }) => item.id != appConfig.pregnancyId
+        (item: { id: number; name: string }) => item.id != appConfig.pregnancyId
       )
     : [...childAge].sort((a, b) =>
         a.name === "Pregnancy" ? -1 : b.name === "Pregnancy" ? 1 : 0

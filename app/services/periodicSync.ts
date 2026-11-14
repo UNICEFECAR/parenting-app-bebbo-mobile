@@ -108,7 +108,7 @@ export const getAllPeriodicSyncData = (): any => {
   else {
     if (childList.length > 0) {
       childList.map((child: any) => {
-        const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
+        const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').days;
         if (childAgedays >= child.taxonomyData?.days_to - child.taxonomyData?.buffers_days) {
           const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
           

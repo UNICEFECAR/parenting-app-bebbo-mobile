@@ -25,7 +25,7 @@ import AppIntroSlider from "react-native-app-intro-slider";
 import LinearGradient from "react-native-linear-gradient";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
-import { bebboLogoShape } from "@dynamicImportsClass/dynamicImports";
+import { bebboLogoShape } from "../instances";
 import { bgcolorWhite2, childListBgColor, secondaryColor } from "../instances/bebbo/styles/style";
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 
 const Walkthrough = ({ navigation }: Props): any => {
   const { t } = useTranslation();
-  let slider = useRef<any>(null);
+  const slider = useRef<AppIntroSlider<any> | null>(null);
   const data = [
     {
       title: t("walkthroughTextstitle0"),
@@ -86,21 +86,21 @@ const Walkthrough = ({ navigation }: Props): any => {
     },
     {
       title: t("walkthroughTextstitle1"),
-      image: require("@assets/svg/ic_activity_color.svg"),
+      image: require("@images/ic_activity_color.svg"),
       colors: ["#0FD87E", "#CFF7E5"],
       textcolor: "#000",
       subtitle: t("walkthroughTextssubtitle1"),
     },
     {
       title: t("walkthroughTextstitle2"),
-      image: require("@assets/svg/ic_tools_color.svg"),
+      image: require("@images/ic_tools_color.svg"),
       colors: ["#00AEEF", "#50C7F3", "#97DEF8", childListBgColor],
       textcolor: "#000",
       subtitle: t("walkthroughTextssubtitle2"),
     },
     {
       title: t("walkthroughTextstitle3"),
-      image: require("@assets/svg/ic_article_color.svg"),
+      image: require("@images/ic_article_color.svg"),
       colors: ["#FF8D6B", "#FFD2C4"],
       textcolor: "#000",
       subtitle: t("walkthroughTextssubtitle3"),
@@ -209,7 +209,7 @@ const Walkthrough = ({ navigation }: Props): any => {
     navigation.navigate("Terms");
   };
   const goBackSlide = (): any => {
-    slider?.goToSlide(2, true);
+    slider.current?.goToSlide(2, true);
   };
   const _renderPagination = (activeIndex: number): any => {
     return (
@@ -227,7 +227,7 @@ const Walkthrough = ({ navigation }: Props): any => {
                         ? getDotStyle("black")
                         : getDotStyle("white"),
                     ]}
-                    onPress={(): any => slider?.goToSlide(i, true)}
+                    onPress={(): any => slider.current?.goToSlide(i, true)}
                   />
                 ))}
             </View>
@@ -275,7 +275,7 @@ const Walkthrough = ({ navigation }: Props): any => {
         onDone={onDone}
         onSlideChange={onSlideChange}
         renderPagination={_renderPagination}
-        ref={(ref): any => (slider = ref!)}
+        ref={slider}
       />
     </>
   );

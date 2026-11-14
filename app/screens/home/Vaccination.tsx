@@ -68,7 +68,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
   const { convertDigits } = useDigitConverter();
   const headerColor = themeContext?.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
-  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const headerTextColor = themeContext?.colors.VACCINATION_TEXTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();

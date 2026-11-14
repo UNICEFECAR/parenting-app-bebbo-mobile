@@ -132,15 +132,15 @@ class DataRealmCommon {
             return 'fail';
         }
     }
-    public async createStandardDev<Entity>(records: Entity[]): Promise<any> {
+    public async createStandardDev<Entity>(records: {weight_for_height?: Entity[]; height_for_age?: Entity[]}): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     realm.write(() => {
-                        const weightforheight = records['weight_for_height'];
-                        const heightforAge = records['height_for_age'];
+                        const weightforheight = records.weight_for_height ?? [];
+                        const heightforAge = records.height_for_age ?? [];
                         if (weightforheight?.length > 0) {
                             weightforheight.forEach((record: any) => {
                                 realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified" as UpdateMode);

@@ -15,7 +15,7 @@ const InfiniteScrollList = (props : any):any => {
     const [serverData, serverDataLoaded] = useState([]);
     const [refresh, setRefresh] = useState(false);
     let onEndReachedCalledDuringMomentum = true;
-    const flatListRef = useRef(null);
+    const flatListRef = useRef<FlatList<unknown> | null>(null);
     const requestData = async (thePage: number):Promise<any> => {
         if(totalDataCount > 0)
         {

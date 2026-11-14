@@ -196,7 +196,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const [showNoData, setshowNoData] = useState(false);
   const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
-  const flatListRef = useRef<any>();
+  const flatListRef = useRef<any>(null);
   const activityTaxonomyId =
     activeChild?.taxonomyData.prematureTaxonomyId != null &&
       activeChild?.taxonomyData.prematureTaxonomyId != undefined &&

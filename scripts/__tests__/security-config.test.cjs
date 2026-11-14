@@ -13,3 +13,14 @@ test('every external workflow action is pinned to an immutable commit', () => {
     for(const [,action] of text.matchAll(/\buses:\s*([^\s#]+)/g))if(!action.startsWith('./'))assert.match(action,/@[a-f0-9]{40}$/i,`${file}: ${action}`);
   }
 });
+
+test('the scripted FAQ screen cannot evaluate persisted callback source', () => {
+  const parser = require('@babel/parser');
+  const traverse = require('@babel/traverse').default;
+  const source = fs.readFileSync('app/screens/home/SupportChat.tsx', 'utf8');
+  const ast = parser.parse(source, {sourceType: 'module', plugins: ['typescript', 'jsx']});
+  traverse(ast, {
+    CallExpression(p) { assert.notEqual(p.node.callee.name, 'eval'); assert.notEqual(p.node.callee.name, 'Function'); },
+    NewExpression(p) { assert.notEqual(p.node.callee.name, 'Function'); },
+  });
+});

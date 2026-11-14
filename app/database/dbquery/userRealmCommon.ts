@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 
 import { Component } from 'react';
 import type RealmType from 'realm';
-import type { ObjectSchema } from 'realm';
+import type { ObjectSchema, UpdateMode } from 'realm';
 import { getDiffinDays } from '../../services/childCRUD';
 import { deleteUserRealm, openUserRealm } from '../config/dbConfig';
 
@@ -114,7 +114,7 @@ class UserRealmCommon extends Component {
             if (realm) {
                 realm?.write(() => {
                     records.forEach(record => {
-                        realm?.create<Entity>(entitySchema.name, record, "modified");
+                        realm?.create<Entity>(entitySchema.name, record, "modified" as UpdateMode);
                     })
                     result = records;
                 });
@@ -291,7 +291,7 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     records.forEach((record: any) => {
                         record.updatedAt = new Date();
-                        realm?.create<Entity>(entitySchema.name, record, "modified");
+                        realm?.create<Entity>(entitySchema.name, record, "modified" as UpdateMode);
                     })
                     result = records;
                     return result;

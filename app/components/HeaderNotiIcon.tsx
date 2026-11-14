@@ -197,7 +197,7 @@ const HeaderNotiIcon = (props: any): any => {
                     notiExist.reminderNotis,
                     vchcEnabledFlag
                   );
-                  reminderNotis.reverse().forEach((item) => {
+                  reminderNotis.reverse().forEach((item: unknown) => {
                     allreminderNotis.push(item);
                   });
                   allchildNotis.push({
@@ -322,7 +322,7 @@ const HeaderNotiIcon = (props: any): any => {
               const combinedNotis = currentChildallnoti
                 .sort(
                   (a: any, b: any) =>
-                    new Date(a.notificationDate) - new Date(b.notificationDate)
+                    new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime()
                 )
                 .filter((item: any) => {
                   return (
@@ -411,7 +411,7 @@ const HeaderNotiIcon = (props: any): any => {
                 const newchild = childList.find(
                   (z: any) => z.uuid == localNotificationGenerateType.childuuid
                 );
-                if (newchild && newchild != {}) {
+                if (newchild) {
                   const newchildnoti = await createAllLocalNotificatoins(
                     newchild,
                     childAge,
@@ -484,7 +484,7 @@ const HeaderNotiIcon = (props: any): any => {
         });
       });
       const sortedallnotiobj: any = allnotiobj.sort(
-        (a: any, b: any) => new Date(a.notiDate) - new Date(b.notiDate)
+        (a: any, b: any) => new Date(a.notiDate).getTime() - new Date(b.notiDate).getTime()
       );
       const filteredschedulednoti = scheduledlocalNotifications.filter(
         (x: any) => isFutureDateTime(new Date(x.notiDate)) == true

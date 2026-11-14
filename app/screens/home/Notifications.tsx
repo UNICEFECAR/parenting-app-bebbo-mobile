@@ -154,7 +154,7 @@ const Notifications = (): any => {
       const combinedNotis = currentChildallnoti
         .sort(
           (a: any, b: any) =>
-            new Date(a.notificationDate) - new Date(b.notificationDate)
+            new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime()
         )
         .reverse()
         .filter((item: any) => {
@@ -176,7 +176,7 @@ const Notifications = (): any => {
   const handleAppStateChange = (nextAppState: any): any => {
     if (appState != nextAppState) {
       if (
-        appState.current.match(/inactive|background/) &&
+        appState.current?.match(/inactive|background/) &&
         nextAppState === "active"
       ) {
         if (allChildnotification.length > 0) {

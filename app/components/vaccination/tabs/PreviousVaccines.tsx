@@ -48,6 +48,7 @@ export type PreviousRootStackParamList = {
         headerColor: any;
         backgroundColor: any;
         detailData: any;
+        netInfo?: ReturnType<typeof useNetInfoHook>;
       }
     | undefined;
 };
