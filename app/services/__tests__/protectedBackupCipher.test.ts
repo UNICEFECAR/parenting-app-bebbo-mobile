@@ -31,3 +31,18 @@ test('Unicode-equivalent passphrases work across keyboard normalisation',async()
  const encrypted=await encryptProtectedBackup(text,'cafe\u0301 is a long phrase');
  await expect(decryptProtectedBackup(encrypted,'café is a long phrase')).resolves.toBe(text);
 });
+test('creation counts characters after NFC normalisation',async()=>{
+ const decomposed='e\u0301'.repeat(6);
+ expect(validBackupPassword(decomposed)).toBe(false);
+ await expect(encryptProtectedBackup(text,decomposed)).rejects.toThrow('at least 12');
+});
+test('existing v3 backups with a shorter normalised passphrase remain unlockable',async()=>{
+ const legacyPassword='é'.repeat(6),salt='ab'.repeat(32),iv='cd'.repeat(16);
+ const key=await Aes.pbkdf2(legacyPassword,salt,600000,256,'sha256');
+ const cipher=await Aes.encrypt(text,key,iv,'aes-256-cbc');
+ const authentication=await Aes.hmac256('bebbo-backup:3:authentication-key',key);
+ const mac=await Aes.hmac256(`bebbo-backup:3:pbkdf2-sha256:600000:${salt}:${iv}:${cipher}`,authentication);
+ const envelope=JSON.stringify({format:'bebbo-backup',version:3,kdf:'pbkdf2-sha256',iterations:600000,salt,iv,cipher,mac});
+ await expect(decryptProtectedBackup(envelope,legacyPassword)).resolves.toBe(text);
+ await expect(decryptProtectedBackup(envelope,'e\u0301'.repeat(6))).resolves.toBe(text);
+});

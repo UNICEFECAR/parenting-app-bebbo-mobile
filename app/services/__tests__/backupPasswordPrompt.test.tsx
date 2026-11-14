@@ -20,3 +20,11 @@ test('backgrounding cancels the prompt and clears secrets',async()=>{
  let result:Promise<string|null>;act(()=>{result=requestBackupPassword('unlock');});act(()=>view.root.findByType(TextInput).props.onChangeText('private test passphrase'));act(()=>change('background'));act(()=>view.root.findByType(Modal).props.onDismiss());await expect(result!).resolves.toBeNull();expect(view.root.findByType(Modal).props.visible).toBe(false);
 });
 test('text inputs retain system font scaling',()=>{act(()=>{void requestBackupPassword('create');});for(const input of view.root.findAllByType(TextInput))expect(input.props.allowFontScaling).not.toBe(false);});
+test('unlock permits an existing short normalised passphrase without weakening creation',()=>{
+ act(()=>{void requestBackupPassword('unlock');});
+ act(()=>view.root.findByType(TextInput).props.onChangeText('é'.repeat(6)));
+ expect(view.root.findAllByProps({testID:'backup-passphrase-continue'})[0].props.disabled).toBe(false);
+ act(()=>{void requestBackupPassword('create');});
+ act(()=>{for(const input of view.root.findAllByType(TextInput))input.props.onChangeText('e\u0301'.repeat(6));});
+ expect(view.root.findAllByProps({testID:'backup-passphrase-continue'})[0].props.disabled).toBe(true);
+});

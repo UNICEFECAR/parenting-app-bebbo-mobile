@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {AppState, Modal, View, Text, TextInput, Pressable, ScrollView, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {BackupPasswordMode, installBackupPasswordHandler, subscribeBackupBusy} from '../services/backupPassword';
-import {validBackupPassword} from '../services/protectedBackupCipher';
+import {validBackupPassword, validBackupUnlockPassword} from '../services/protectedBackupCipher';
 export default function BackupPasswordPrompt() {
   const {t} = useTranslation();
   const [busy, setBusy] = useState(false);
@@ -27,7 +27,7 @@ export default function BackupPasswordPrompt() {
     return () => {uninstall(); state.remove(); resolver.current?.(null); resolver.current = null; dismissed.current?.(); dismissed.current = null;};
   }, []);
   const label = (key: string, fallback: string) => String(t(key, {defaultValue: fallback}));
-  const ready = validBackupPassword(password) && (mode !== 'create' || password === repeat);
+  const ready = mode === 'create' ? validBackupPassword(password) && password === repeat : validBackupUnlockPassword(password);
   return <>{busy && <View style={[StyleSheet.absoluteFill, {backgroundColor:'#fff9',zIndex:99999,alignItems:'center',justifyContent:'center'}]}><ActivityIndicator size="large"/></View>}<Modal visible={mode !== null} transparent animationType="none" onDismiss={() => {const done=dismissed.current;dismissed.current=null;done?.();}} onRequestClose={() => finish(null)}>
     <KeyboardAvoidingView style={styles.overlay} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">

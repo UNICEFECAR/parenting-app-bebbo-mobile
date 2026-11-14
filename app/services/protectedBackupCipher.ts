@@ -15,7 +15,12 @@ export function backupUtf8Bytes(text: string): number {
 }
 const hex = (value: unknown, length: number): value is string => typeof value === 'string' && new RegExp(`^[a-f0-9]{${length}}$`, 'i').test(value);
 export function validBackupPassword(value: string): boolean {
-  return Array.from(value).length >= 12 && value.length <= 1024 && !/^[\s\u0000]*$/.test(value);
+  return validBackupUnlockPassword(value) && Array.from(value.normalize('NFC')).length >= 12;
+}
+// Opening an existing file must not apply a newer creation-strength policy.
+// Early v3 writers counted combining characters before normalisation.
+export function validBackupUnlockPassword(value: string): boolean {
+  return value.length > 0 && value.length <= 1024 && !/^[\s\u0000]*$/.test(value);
 }
 export function isProtectedBackup(input: string): boolean {
   const text = normaliseBackupCiphertext(input);
@@ -23,7 +28,7 @@ export function isProtectedBackup(input: string): boolean {
   return JSON.parse(text).version === 3;
 }
 async function keys(password: string, salt: string) {
-  if (!validBackupPassword(password)) throw new Error('A backup passphrase must contain at least 12 characters');
+  if (!validBackupUnlockPassword(password)) throw new Error('Invalid backup passphrase');
   const key = await Aes.pbkdf2(password.normalize('NFC'), salt, ITERATIONS, 256, 'sha256');
   if (!hex(key, 64)) throw new Error('Backup key derivation failed');
   return {key, authentication: await Aes.hmac256('bebbo-backup:3:authentication-key', key)};
@@ -31,6 +36,7 @@ async function keys(password: string, salt: string) {
 const signedText = (salt: string, iv: string, cipher: string) =>
   `bebbo-backup:3:pbkdf2-sha256:${ITERATIONS}:${salt}:${iv}:${cipher}`;
 export async function encryptProtectedBackup(text: string, password: string): Promise<string> {
+  if (!validBackupPassword(password)) throw new Error('A backup passphrase must contain at least 12 characters');
   if (backupUtf8Bytes(text) > MAX_BACKUP_TEXT) throw new Error('Backup exceeds the supported size');
   const salt = await Aes.randomKey(32), iv = await Aes.randomKey(16);
   if (!hex(salt, 64) || !hex(iv, 32)) throw new Error('Backup random generation failed');

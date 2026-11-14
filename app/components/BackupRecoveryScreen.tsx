@@ -1,10 +1,17 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {View, Text, Pressable, ActivityIndicator, ScrollView} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {recoverPendingBackup} from '../services/backupRecovery';
 export default function BackupRecoveryScreen({onComplete}: {onComplete: () => void}) {
   const {t} = useTranslation(), [busy,setBusy] = useState(false);
-  const run = async (rollback: boolean) => {setBusy(true); try {await recoverPendingBackup(rollback);onComplete();} catch {setBusy(false);}};
+  const inFlight = useRef(false);
+  const run = async (rollback: boolean) => {
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setBusy(true);
+    try {await recoverPendingBackup(rollback);onComplete();}
+    catch {inFlight.current = false;setBusy(false);}
+  };
   return <ScrollView contentContainerStyle={{flexGrow:1,padding:24,backgroundColor:'white',justifyContent:'center'}}>
     <Text allowFontScaling style={{fontSize:22,color:'#111'}}>{String(t('backupRecoveryTitle',{defaultValue:'Finish interrupted restore'}))}</Text>
     <Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('backupRecoveryHelp',{defaultValue:'The restore did not finish. Free some storage if necessary, then retry. You can also keep the data that was on this device before the restore. The app will remain here until recovery finishes.'}))}</Text>

@@ -6,7 +6,8 @@ export function holdBackupPreview(data: unknown): string {
   preview = {id,data,expires:Date.now()+30*60*1000}; return id;
 }
 export function getBackupPreview(id: string): unknown {
-  if(!preview || preview.id!==id || Date.now()>preview.expires) {preview=undefined;throw new Error('Backup preview expired. Select the backup again');}
+  if(preview && Date.now()>preview.expires) preview=undefined;
+  if(!preview || preview.id!==id) throw new Error('Backup preview expired. Select the backup again');
   return preview.data;
 }
 export function clearBackupPreviews() {preview=undefined;}
