@@ -90,7 +90,7 @@ for key,(name,body) in targets.items():
           'bundle_id':field(configs[c][1],'PRODUCT_BUNDLE_IDENTIFIER'),'info_plist':field(configs[c][1],'INFOPLIST_FILE')}
           for c in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list)],'native_build_status':'covered by auxiliary-native CI jobs; consult run evidence for results'})
 report={'evidence':'static source inspection; identifiers validated against explicit project mappings',
- 'limitations':'Firebase projects observed read-only where available; installed release routing is not confirmed. Languages are registered UI resource keys, not translation-quality approval.',
+ 'limitations':'Previously recorded Firebase project candidates do not establish current service access or installed release routing. Languages are registered UI resource keys, not translation-quality approval.',
  'flavours':rows,'additional_country_development_targets':aux,
  'additional_android_variants':{'xkstaging':'com.datamatics.foleja','banglastaging':'com.datamatics.bangla'}}
 file=root/'docs/upgrades/react-native-0.87/flavour-matrix.json'

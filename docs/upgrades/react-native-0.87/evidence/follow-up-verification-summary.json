@@ -321,7 +321,13 @@
   "combined_bebbo_release": {
     "run": 43527932788,
     "job": 132238202442,
-    "status": "in_progress",
-    "source": "7760562e59a2f23d65344955f06948bedbfbb1ac"
-  }
+    "status": "completed",
+    "source": "7760562e59a2f23d65344955f06948bedbfbb1ac",
+    "conclusion": "success",
+    "packaging_artifact": {
+      "id": 14088295358,
+      "digest": "sha256:321747d07fc723d31fb45b937b0d6876e2f601b7fedd74debc88cd0ffed1c3b9"
+    }
+  },
+  "recorded_utc": "2026-11-14T00:09:05.827895+00:00"
 }

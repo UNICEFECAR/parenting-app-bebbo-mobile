@@ -19,8 +19,8 @@ npm ci --legacy-peer-deps
 Run `npm run assets:generate` after changing SVG sources; `npm run assets:check` verifies all flavours.
 
 Install Android SDK Platform 37, Build Tools 37.0.0, and NDK
-27.1.12297006 through Android Studio. Some dependencies may also request
-AGP's default NDK 28.2.13676358.
+27.1.12297006 through Android Studio. The Realm compatibility patch now
+uses this root NDK pin rather than implicitly downloading AGP's default NDK.
 
 For Android Bebbo compilation, from the repository root:
 
@@ -40,7 +40,9 @@ For iOS, run `bundle install` from the repository root after npm install, then
 The CLI also invokes CocoaPods through Bundler. Gemfile pins CocoaPods 1.16.2
 and xcodeproj 1.27.0 so it can read synchronized Xcode groups; a newer global
 `pod` executable alone does not update the CLI's bundled version. The `nkf` gem
-provides `kconv`, required by CFPropertyList under Ruby 3.4.
+provides `kconv`, required by CFPropertyList under Ruby 3.4. The compatible
+concurrent-ruby 1.3.8 security update is pinned and verified against unchanged
+generated native inputs.
 If migrating an existing Pods lock that pins Lottie 4.4.1, first run
 `FLAVOR=bebbo bundle exec pod update lottie-ios --no-repo-update` in `ios`.
 The checked-in `ios/.xcode.env` selects Homebrew Node 22 on Apple Silicon or
