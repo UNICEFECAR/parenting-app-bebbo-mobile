@@ -20,6 +20,16 @@ test('rejects missing attachments, unknown owners and injected settings',async()
 test('rejects a decompression-sized image header before native decoding',async()=>{
  const s=await createSnapshot([child],{},flags,context),bytes=Buffer.from(png,'base64');bytes.writeUInt32BE(90000,16);expect(()=>validateSnapshot({...s,photos:{one:bytes.toString('base64')}},context)).toThrow('4096');
 });
+test('enforces the same exact 8 MiB decoded-photo bound on import as export',async()=>{
+ const s=await createSnapshot([child],{},flags,context);
+ const bytes=Buffer.alloc(8*1024*1024+1);Buffer.from(png,'base64').copy(bytes);
+ const accepted=bytes.subarray(0,8*1024*1024).toString('base64'), rejected=bytes.toString('base64');
+ // Padding changes the decoded byte count even when encoded lengths are equal.
+ expect(accepted.length).toBe(rejected.length);
+ expect(()=>validateSnapshot({...s,photos:{one:accepted}},context)).not.toThrow();
+ expect(()=>validateSnapshot({...s,photos:{one:rejected}},context)).toThrow('oversized');
+ expect(FS.writeFile).not.toHaveBeenCalled();
+});
 test('failed photo staging cleans only newly created files and leaves original photos alone',async()=>{
  const s=await createSnapshot([child],{},flags,context);jest.mocked(FS.writeFile).mockRejectedValueOnce(new Error('disk full'));await expect(stagePhotos(s)).rejects.toThrow('disk full');expect(FS.unlink).toHaveBeenCalledTimes(1);expect(FS.unlink).not.toHaveBeenCalledWith('/documents/children/original.jpg');
 });

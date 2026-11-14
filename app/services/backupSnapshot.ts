@@ -5,6 +5,7 @@ import {DocumentDirectoryPath} from '@dr.pogodin/react-native-fs';
 import {validateBackupChildren} from './backupFormat';
 import type {BackupContext, BackupPreferences} from './backupRuntime';
 export const PHOTO_DIRECTORY = `${DocumentDirectoryPath}/children`;
+const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
 export const preferenceKeys = ['userName', 'userParentalRole', 'userRelationToParent', 'userEnteredChildData', 'currentActiveChildId'] as const;
 export type PortableSnapshot = {format: 'bebbo-snapshot'; version: 1; context: BackupContext; children: any[]; settings: Record<string, string>; preferences: BackupPreferences; photos: Record<string, string>};
 export function validatePreferences(settings: any, flags: any): void {
@@ -24,7 +25,9 @@ export function validateSnapshot(value: any, current: BackupContext): PortableSn
   const ids = new Set(value.children.map((c: any) => c.uuid));
   let total = 0;
   for (const [id, data] of Object.entries(value.photos)) {
-    if (!ids.has(id) || typeof data !== 'string' || (!/^[A-Za-z0-9+/]*={0,2}$/.test(data) || data.length % 4 !== 0) || !data.length || data.length > 12*1024*1024) throw new Error('Invalid or oversized backup photo');
+    if (!ids.has(id) || typeof data !== 'string' || !data.length || data.length > Math.ceil(MAX_PHOTO_BYTES / 3) * 4 || data.length % 4 !== 0 || !/^[A-Za-z0-9+/]*={0,2}$/.test(data)) throw new Error('Invalid or oversized backup photo');
+    const decodedBytes = data.length / 4 * 3 - (data.endsWith('==') ? 2 : data.endsWith('=') ? 1 : 0);
+    if (decodedBytes > MAX_PHOTO_BYTES) throw new Error('Invalid or oversized backup photo');
     validateBackupPhoto(data);
     total += data.length;
   }
@@ -43,7 +46,7 @@ export async function createSnapshot(children: any[], settings: Record<string,st
     if (child.photoUri) {
       const path = photoPath(child.photoUri);
       const info = await RNFS.stat(path);
-      if (!info.isFile() || !Number.isFinite(Number(info.size)) || Number(info.size) > 8*1024*1024) throw new Error('A profile photo is missing or exceeds 8 MB');
+      if (!info.isFile() || !Number.isFinite(Number(info.size)) || Number(info.size) > MAX_PHOTO_BYTES) throw new Error('A profile photo is missing or exceeds 8 MB');
       totalPhotoSize += Math.ceil(Number(info.size)/3)*4;
       if(totalPhotoSize>24*1024*1024) throw new Error('Backup photos exceed the supported size');
       Object.defineProperty(photos, child.uuid, {value: await RNFS.readFile(path, 'base64'), enumerable:true, configurable:true});
