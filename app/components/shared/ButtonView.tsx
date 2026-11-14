@@ -1,3 +1,4 @@
+import {buttonAccessibility} from './buttonAccessibility';
 import styled from 'styled-components/native';
 export const ButtonviewNext = styled.View`
   width: 50px;
@@ -16,7 +17,7 @@ export const ButtonviewPrevious = styled(ButtonviewNext)`
 
 
 
-export const ButtonviewClick = styled.Pressable`
+export const ButtonviewClick = styled.Pressable.attrs(buttonAccessibility)`
  
   justify-content: center;
   height: 50px;

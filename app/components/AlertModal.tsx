@@ -28,14 +28,12 @@ const AlertModal = (props: any): any => {
       transparent={true}
       animationType={"none"}
       visible={loading}
-      onRequestClose={(): any => {
-        console.log("on request closed");
-      }}
+      onRequestClose={onCancel}
     >
       <PopupOverlay>
         <ModalPopupContainer>
           <PopupCloseContainer>
-            <PopupClose onPress={onCancel}>
+            <PopupClose onPress={onCancel} accessibilityRole="button" accessibilityLabel={t("close")}>
               <Icon name="ic_close" size={16} color="#000" />
             </PopupClose>
           </PopupCloseContainer>
@@ -52,6 +50,7 @@ const AlertModal = (props: any): any => {
               <Pressable
                 accessibilityRole="button"
                 disabled={isDisabled}
+                accessibilityState={{disabled: !!isDisabled}}
                 onPress={onConfirm}
                 style={({ pressed }) => ({
                   minHeight: 48, minWidth: 230, maxWidth: '100%', paddingHorizontal: 16,

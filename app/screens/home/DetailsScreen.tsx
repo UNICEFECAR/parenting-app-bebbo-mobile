@@ -120,6 +120,7 @@ export type RelatedArticlesProps = {
 };
 const DetailsScreen = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
+  const themeContext = useContext(ThemeContext);
   const {
     fromCd,
     headerColor,
@@ -144,7 +145,6 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     newHeaderColor = headerColor;
     newBackgroundColor = backgroundColor;
   } else {
-    const themeContext = useContext(ThemeContext);
     newHeaderColor = themeContext?.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   }

@@ -8,7 +8,7 @@ test.each(['https://example.test/survey?q=1', 'http://example.test/legacy', 'htt
   await expect(openExternalLink(url)).resolves.toBe(true);
   expect(open).toHaveBeenCalledWith(url);
 });
-test.each(['intent://launch', 'javascript:alert(1)', 'file:///private/child.realm', 'content://profiles', 'tel:123', 'mailto:x@example.test', 'itms-apps://itunes.apple.com/app/id1', 'https:///missing-host', 'https://example.test\nunsafe', 'https://example.test\u007f', {}, null])('blocks remote schemes and malformed payloads: %s', async url => {
+test.each(['intent://launch', 'javascript:alert(1)', 'file:///private/child.realm', 'content://profiles', 'tel:123', 'mailto:x@example.test', 'itms-apps://itunes.apple.com/app/id1', 'https:///missing-host', 'https://example.test\nunsafe', 'https://example.test\u007f', 'https://example.test\u0085', 'https://example.test:invalid', 'https://[bad-ipv6]/', 'https://user:password@example.test/', 'https://user@example.test/', 'https://example.test\\@other.test/', {}, null])('blocks remote schemes and malformed payloads: %s', async url => {
   const open = jest.spyOn(Linking, 'openURL');
   await expect(openExternalLink(url)).resolves.toBe(false);
   expect(open).not.toHaveBeenCalled();

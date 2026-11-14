@@ -79,7 +79,7 @@ import {
 import { fetchAPI } from "../../../redux/sagaMiddleware/sagaActions";
 import { apiJsonDataGet } from "../../../services/childCRUD";
 import commonApiService from "../../../services/commonApiService";
-import { getAllPeriodicSyncData } from "../../../services/periodicSync";
+import { useAllPeriodicSyncData } from "../../../services/periodicSync";
 import { addSpaceToHtml } from "../../../services/Utils";
 import VersionInfo from "react-native-version-info";
 import {
@@ -169,7 +169,7 @@ const Home = ({ route, navigation }: any): any => {
     apiJsonData,
     downloadBufferData,
     ageBrackets,
-  } = getAllPeriodicSyncData();
+  } = useAllPeriodicSyncData();
   const onBackPress = (): any => {
     if (currentCount === 0) {
       currentCount++;

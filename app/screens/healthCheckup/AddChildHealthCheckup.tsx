@@ -1,3 +1,4 @@
+import {readVaccineIds} from '../../services/healthInput';
 import {
   GROWTH_MEASUREMENT_ADDED,
   HEALTH_CHECKUP_ENTERED,
@@ -91,7 +92,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues,
 } from "../../services/growthService";
-import { getAllHealthCheckupPeriods } from "../../services/healthCheckupService";
+import { useAllHealthCheckupPeriods } from "../../services/healthCheckupService";
 import {
   getMeasuresForDate,
   isGrowthMeasureExistForDate,
@@ -231,7 +232,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
           existingMeasure?.vaccineIds != "" &&
           existingMeasure?.vaccineIds != null
           ? checkIfMeasuredVaccineExistsForLocale(
-              JSON.parse(existingMeasure?.vaccineIds)
+              readVaccineIds(existingMeasure?.vaccineIds)
             )
           : []
       );
@@ -344,7 +345,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                     existingMeasure?.vaccineIds != "" &&
                     existingMeasure?.vaccineIds != null
                       ? checkIfMeasuredVaccineExistsForLocale(
-                          JSON.parse(existingMeasure?.vaccineIds)
+                          readVaccineIds(existingMeasure?.vaccineIds)
                         )
                       : [];
                   if (existingMeasuredVaccines?.length > 0) {
@@ -669,7 +670,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       return false;
     }
   };
-  const { previousPeriods } = getAllHealthCheckupPeriods();
+  const { previousPeriods } = useAllHealthCheckupPeriods();
   const isAllVaccinesMeasured = (): any => {
     // previousPeriods.shift();
     //remove first period which is the current period

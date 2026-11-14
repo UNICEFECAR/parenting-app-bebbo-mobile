@@ -22,7 +22,7 @@ const getBaseUrl = (): string => {
 };
 
 const normalizeUrl = (url?: string | null): string => {
-  if (!url) {
+  if (typeof url !== 'string' || !url) {
     return "";
   }
 
@@ -142,7 +142,7 @@ export const getHtmlOfflineImageSource = (
   src?: string,
   offlineImageMap?: Record<string, any>
 ): any => {
-  if (!src || !offlineImageMap) {
+  if (typeof src !== 'string' || !src || !offlineImageMap) {
     return null;
   }
 
@@ -152,7 +152,7 @@ export const getHtmlOfflineImageSource = (
   cleanSrc = cleanSrc.split("?")[0];
 
   // Decode URL encoded characters
-  cleanSrc = decodeURIComponent(cleanSrc);
+  cleanSrc = safeDecode(cleanSrc);
 
   // Normalize slashes
   cleanSrc = cleanSrc.replace(/\\/g, "/");

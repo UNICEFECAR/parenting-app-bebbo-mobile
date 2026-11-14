@@ -2,12 +2,13 @@ import { useAppSelector } from './../../App';
 import { MeasurementEntity } from './../database/schema/measurementDataSchema';
 import { DateTime } from 'luxon';
 import {toDateTime} from './dateUtils';
+import {readJsonArray} from './healthInput';
 export interface InterpretationText {
     text: string;
     name: string;
     articleID: number[];
 }
-export const getInterpretationWeightForHeight = (standardDeviation: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity): any => {
+export const useInterpretationWeightForHeight = (standardDeviation: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity): any => {
     let childAgeId: any;
     if (childTaxonomyData?.prematureTaxonomyId) {
         childAgeId = childTaxonomyData?.prematureTaxonomyId;
@@ -24,16 +25,16 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
     let goodMeasure: boolean | undefined = false;
     let weight: any = 0.0;
     let height: any = 0.0;
-    if (lastMeasurements !== undefined && lastMeasurements.weight) {
+    if (lastMeasurements?.weight) {
         weight = Number(lastMeasurements.weight).toFixed(1);
         height = (Number(lastMeasurements.height) % 1 !== 0) ? Number(lastMeasurements.height).toFixed(1) : Number(lastMeasurements.height);
     }
     const allinterpretationData = useAppSelector(
         (state: any) =>
-            JSON.parse(state.utilsData.weight_for_height),
+            readJsonArray(state.utilsData.weight_for_height),
     );
-    const filteredDataForHeight = standardDeviation.find((data: any) => data.name == height);
-    const interpretationData = allinterpretationData?.find((item: any) => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
+    const filteredDataForHeight = (Array.isArray(standardDeviation) ? standardDeviation : []).find((data: any) => data.name == height);
+    const interpretationData = allinterpretationData?.find((item: any) => Array.isArray(item?.child_age) && item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
     if (filteredDataForHeight) {
         if (weight >= filteredDataForHeight?.sd2neg && weight <= filteredDataForHeight.sd2) {
             interpretationText = interpretationData?.goodText;
@@ -61,7 +62,7 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
         }
     }
 
-    if (interpretationText && interpretationText.name === "") {
+    if (!interpretationText || interpretationText.name === "") {
         goodMeasure = undefined
     }
 
@@ -70,7 +71,7 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
         goodMeasure: goodMeasure,
     };
 }
-export const getInterpretationHeightForAge = (standardDeviation: any, childBirthDate: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity): any => {
+export const useInterpretationHeightForAge = (standardDeviation: any, childBirthDate: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity): any => {
     let childAgeId: any;
     if (childTaxonomyData?.prematureTaxonomyId) {
         childAgeId = childTaxonomyData?.prematureTaxonomyId;
@@ -84,7 +85,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
         articleID: []
     };
     let goodMeasure: boolean | undefined = false;
-    const chartData: any = standardDeviation;
+    const chartData: any[] = Array.isArray(standardDeviation) ? standardDeviation : [];
     let length = Number.NaN;
     if (lastMeasurements?.height) {
         length = parseFloat(lastMeasurements.height);
@@ -99,9 +100,9 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
         : undefined;
     const allinterpretationData = useAppSelector(
         (state: any) =>
-            JSON.parse(state.utilsData.height_for_age),
+            readJsonArray(state.utilsData.height_for_age),
     );
-    const interpretationData = allinterpretationData?.find((item: any) => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
+    const interpretationData = allinterpretationData?.find((item: any) => Array.isArray(item?.child_age) && item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
     if (filteredData !== undefined) {
         if (length >= filteredData.sd2neg && length <= filteredData.sd3) {
             interpretationText = interpretationData?.goodText;
@@ -121,7 +122,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
             goodMeasure = false;
         }
     }
-    if (interpretationText && interpretationText.name === "") {
+    if (!interpretationText || interpretationText.name === "") {
         goodMeasure = undefined
     }
 

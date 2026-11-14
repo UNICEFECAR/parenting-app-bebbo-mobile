@@ -23,7 +23,7 @@ import {
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../../App";
 import { formatHeightData } from "../../services/growthService";
-import { getInterpretationHeightForAge } from "../../services/interpretationService";
+import { useInterpretationHeightForAge } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
 import { standardDevDataForChart } from "../../instances/index";
 import { selectActiveChild } from "../../services/selectors";
@@ -80,26 +80,26 @@ const ChartHeightForAge = (props: any): any => {
     //girl
     const genderGirlData = standardDevData?.filter(
       (item: any) =>
-        (item.growth_type == appConfig.heightForAge &&
-          item.child_gender == taxonomyIds?.girlChildGender) ||
-        item.child_gender == appConfig.girlChildGender
+        item.growth_type == appConfig.heightForAge &&
+        (item.child_gender == taxonomyIds?.girlChildGender ||
+          item.child_gender == appConfig.girlChildGender)
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData, "height");
   }
   return { obj, standardDeviation };
 }, [activeChild?.gender, taxonomyIds]);
-  const childBirthDate = activeChild.birthDate;
-  const childTaxonomyData = activeChild.taxonomyData;
-  const sortedMeasurements = activeChild.measures.sort(
+  const childBirthDate = activeChild?.birthDate;
+  const childTaxonomyData = activeChild?.taxonomyData;
+  const sortedMeasurements = [...(Array.isArray(activeChild?.measures) ? activeChild.measures : [])].sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate
   );
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
-  const item: any = getInterpretationHeightForAge(
+  const item: any = useInterpretationHeightForAge(
     standardDeviation,
-    activeChild?.taxonomyData.prematureTaxonomyId != null &&
-      activeChild?.taxonomyData.prematureTaxonomyId != "" &&
-      activeChild?.taxonomyData.prematureTaxonomyId != undefined
+    activeChild?.taxonomyData?.prematureTaxonomyId != null &&
+      activeChild?.taxonomyData?.prematureTaxonomyId != "" &&
+      activeChild?.taxonomyData?.prematureTaxonomyId != undefined
       ? activeChild.plannedTermDate
       : childBirthDate,
     childTaxonomyData,
@@ -108,9 +108,10 @@ const ChartHeightForAge = (props: any): any => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setIsChartVisible(true);
       }, 2000);
+      return () => clearTimeout(timer);
     }, [])
   );
 
@@ -161,7 +162,7 @@ const ChartHeightForAge = (props: any): any => {
         )}
 
         <ShiftFromTopBottom15>
-          {item && props.days >= activeChild.taxonomyData.days_from ? (
+          {item && props.days >= activeChild?.taxonomyData?.days_from ? (
             <>
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
@@ -173,7 +174,7 @@ const ChartHeightForAge = (props: any): any => {
           ) : null}
         </ShiftFromTopBottom15>
       </FlexCol>
-      {props.days >= activeChild.taxonomyData.days_from ? (
+      {props.days >= activeChild?.taxonomyData?.days_from ? (
         <FlexColChart>
           <RelatedArticles
             fromScreen={"ChildgrowthTab"}

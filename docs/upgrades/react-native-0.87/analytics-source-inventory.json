@@ -406,21 +406,21 @@
     },
     {
       "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
-      "line": 635,
+      "line": 636,
       "api": "logEvent",
       "event": "{ name: GROWTH_MEASUREMENT_ADDED, params: { age_id: activeChild?.taxonomyData?.id, measured_at: \"doctor\", }, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
-      "line": 645,
+      "line": 646,
       "api": "logEvent",
       "event": "{ name: VACCINE_ADDED, params: { age_id: activeChild?.taxonomyData?.id, vaccine_id: allVaccines, }, }",
       "parameters": "netInfo.isConnected"
     },
     {
       "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
-      "line": 651,
+      "line": 652,
       "api": "logEvent",
       "event": "{ name: HEALTH_CHECKUP_ENTERED, params: { age_id: activeChild?.taxonomyData?.id }, }",
       "parameters": "netInfo.isConnected"
@@ -742,7 +742,7 @@
     },
     {
       "file": "app/screens/vaccination/AddChildVaccination.tsx",
-      "line": 580,
+      "line": 581,
       "api": "logEvent",
       "event": "{ name: VACCINE_ADDED, params: { age_id: activeChild?.taxonomyData?.id, measured_at: \"doctor\", }, }",
       "parameters": "netInfo.isConnected"

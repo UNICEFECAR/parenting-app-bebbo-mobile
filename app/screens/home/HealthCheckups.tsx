@@ -35,7 +35,7 @@ import {
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
-import { getAllHealthCheckupPeriods } from "../../services/healthCheckupService";
+import { useAllHealthCheckupPeriods } from "../../services/healthCheckupService";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -67,7 +67,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
   const { upcomingPeriods, previousPeriods, childAgeIndays, currentPeriod } =
-    getAllHealthCheckupPeriods();
+    useAllHealthCheckupPeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{ title: t("vcTab1") }, { title: t("vcTab2") }];
   const [modalVisible, setModalVisible] = React.useState(true);

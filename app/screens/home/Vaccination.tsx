@@ -34,7 +34,7 @@ import {
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
-import { getAllVaccinePeriods } from "../../services/vacccineService";
+import { useAllVaccinePeriods } from "../../services/vacccineService";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -122,7 +122,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
     currentPeriod,
     overDuePreviousVCcount,
     doneVCcount,
-  } = getAllVaccinePeriods();
+  } = useAllVaccinePeriods();
   const upcomingPeriodsData = (): any => {
     const noVaccinesinAgePeriodInUpcoming = upcomingPeriods.every((el: any) => {
       const noVaccinesinAgePeriod = el.vaccines.every((v: any) => {

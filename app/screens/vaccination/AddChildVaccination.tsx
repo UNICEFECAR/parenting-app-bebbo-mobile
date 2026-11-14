@@ -1,3 +1,4 @@
+import {readVaccineIds} from '../../services/healthInput';
 import { VACCINE_ADDED } from "@assets/data/firebaseEvents";
 // import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
@@ -220,7 +221,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
           existingMeasure?.vaccineIds != "" &&
           existingMeasure?.vaccineIds != null
           ? checkIfMeasuredVaccineExistsForLocale(
-              JSON.parse(existingMeasure?.vaccineIds)
+              readVaccineIds(existingMeasure?.vaccineIds)
             )
           : []
       );
@@ -323,7 +324,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                     existingMeasure?.vaccineIds != "" &&
                     existingMeasure?.vaccineIds != null
                       ? checkIfMeasuredVaccineExistsForLocale(
-                          JSON.parse(existingMeasure?.vaccineIds)
+                          readVaccineIds(existingMeasure?.vaccineIds)
                         )
                       : [];
                   if (existingMeasuredVaccines?.length > 0) {

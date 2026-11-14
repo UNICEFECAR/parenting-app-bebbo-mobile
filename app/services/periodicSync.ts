@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 import { selectChildAge, selectChildList } from "./selectors";
 
-export const getAllPeriodicSyncData = (): any => {
+export const useAllPeriodicSyncData = (): any => {
   const childList = useAppSelector(selectChildList);
   const bufferAgeBracket = useAppSelector((state: any) =>
     state.childData.childDataSet.bufferAgeBracket

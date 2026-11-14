@@ -2,7 +2,7 @@ import { BgContainer } from "@components/shared/Container";
 import { Heading4 } from "../../instances/bebbo/styles/typography";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getAllVaccinePeriods } from "../../services/vacccineService";
+import { useAllVaccinePeriods } from "../../services/vacccineService";
 import VaccineItem from "./VaccineItem";
 type VaccineItemProps = {
   uuid: string;
@@ -16,7 +16,7 @@ const PrevPlannedVaccines = (props: any): any => {
     fromScreen,
     backgroundActiveColor,
   } = props;
-  const { previousPeriods } = getAllVaccinePeriods();
+  const { previousPeriods } = useAllVaccinePeriods();
   //remove first period which is the current period
   let allPreviousPendingVaccines: any[] = [];
   previousPeriods.forEach((period: any) => {

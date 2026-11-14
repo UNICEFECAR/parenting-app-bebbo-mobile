@@ -1,8 +1,9 @@
-import {getInterpretationHeightForAge, getInterpretationWeightForHeight} from '../interpretationService';
-jest.mock('../../../App', () => ({useAppSelector: (select: any) => select({utilsData: {
+import {useInterpretationHeightForAge as getInterpretationHeightForAge, useInterpretationWeightForHeight as getInterpretationWeightForHeight} from '../interpretationService';
+import {useAppSelector} from '../../../App';
+jest.mock('../../../App', () => ({useAppSelector: jest.fn((select: any) => select({utilsData: {
   height_for_age: JSON.stringify([{child_age: [1], goodText: {name: 'good'}, warrningSmallLengthText: {name: 'short'}, emergencySmallLengthText: {name: 'very-short'}, warrningBigLengthText: {name: 'tall'}}]),
   weight_for_height: JSON.stringify([{child_age: [1], goodText: {name: 'good'}, warrningSmallHeightText: {name: 'small'}, emergencySmallHeightText: {name: 'very-small'}, warrningBigHeightText: {name: 'big'}, emergencyBigHeightText: {name: 'very-big'}}]),
-}})}));
+}}))}));
 const reference = [{name: 10, sd2neg: 50, sd3neg: 40, sd2: 75, sd3: 80}];
 const measured = {height: '60', weight: '', measurementDate: Date.parse('2024-01-11T00:00:00Z')};
 
@@ -37,4 +38,16 @@ test('the exact lower height boundary has an interpretation', () => {
   const result = getInterpretationHeightForAge(reference, '2024-01-01T00:00:00Z', {id: 1}, {...measured, height: '40'} as any);
   expect(result.interpretationText.name).toBe('short');
   expect(result.goodMeasure).toBe(false);
+});
+
+test.each([undefined, '', '{bad', 'null', '{}', '[null,{"child_age":null}]'])('invalid interpretation payload is unavailable rather than healthy: %s', payload => {
+  jest.mocked(useAppSelector).mockImplementationOnce((select: any) => select({utilsData: {height_for_age: payload}}));
+  expect(getInterpretationHeightForAge(reference, '2024-01-01T00:00:00Z', {id: 1}, measured as any).goodMeasure).toBeUndefined();
+  jest.mocked(useAppSelector).mockImplementationOnce((select: any) => select({utilsData: {weight_for_height: payload}}));
+  expect(getInterpretationWeightForHeight([{name: 60, sd2neg: 10, sd3neg: 8, sd2: 20, sd3: 25}], {id: 1}, {weight: '15', height: '60'} as any).goodMeasure).toBeUndefined();
+});
+test('reference data not yet loaded produces no growth classification', () => {
+  expect(getInterpretationHeightForAge(null, '2024-01-01', {id: 1}, measured as any).goodMeasure).toBeUndefined();
+  expect(getInterpretationWeightForHeight(undefined, {id: 1}, measured as any).goodMeasure).toBeUndefined();
+  expect(getInterpretationWeightForHeight(reference, {id: 1}, null as any).goodMeasure).toBeUndefined();
 });
