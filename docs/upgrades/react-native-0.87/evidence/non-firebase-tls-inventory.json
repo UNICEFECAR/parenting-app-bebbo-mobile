@@ -1,0 +1,107 @@
+{
+  "http_hosts": {
+    "www.marchofdimes.org": 2,
+    "americanpregnancy.org": 1,
+    "trudnocaizdravlje.rs": 1,
+    "rerai.umntwana.app": 586,
+    "www.halobeba.rs": 4,
+    "med.uz": 6,
+    "www.spid.uz": 3
+  },
+  "examples": {
+    "www.marchofdimes.org": "http://www.marchofdimes.org/complications/pregnancy-complications.aspx",
+    "americanpregnancy.org": "http://americanpregnancy.org/labor-and-birth/patterned-breathing/",
+    "trudnocaizdravlje.rs": "http://trudnocaizdravlje.rs/nespusteni-i-setajuci-testis-kod-beba-i-dece-sta-je-uzrok-i-kako-se-leci-trudnoca-i-zdravlje/",
+    "rerai.umntwana.app": "http://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2026-04/breastfeedingcradlehold.webp?itok=8tLodfMy",
+    "www.halobeba.rs": "http://www.halobeba.rs",
+    "med.uz": "http://med.uz/spid/info/",
+    "www.spid.uz": "http://www.spid.uz/"
+  },
+  "files": {
+    "www.marchofdimes.org": [
+      "app/instances/foleja/assets/offlinecontent/article.ts"
+    ],
+    "americanpregnancy.org": [
+      "app/instances/foleja/assets/offlinecontent/article.ts"
+    ],
+    "trudnocaizdravlje.rs": [
+      "app/instances/foleja/assets/offlinecontent/article.ts"
+    ],
+    "rerai.umntwana.app": [
+      "app/instances/reraiUmntwana/assets/offlinecontent/article.ts",
+      "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+    ],
+    "www.halobeba.rs": [
+      "app/instances/bebbo/assets/offlinecontent/basicPages.ts",
+      "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+    ],
+    "med.uz": [
+      "app/instances/bebbo/assets/offlinecontent/article.ts"
+    ],
+    "www.spid.uz": [
+      "app/instances/bebbo/assets/offlinecontent/article.ts"
+    ]
+  },
+  "https_sample": {
+    "scope": "Eight sampled owned URLs from bundled Rerai public content; not a complete country/CMS inventory",
+    "unique_owned_http_urls": 333,
+    "sample": [
+      {
+        "url": "https://rerai.umntwana.app/sites/default/files/2020-06/After%20a%20meal.jpg",
+        "status": 206,
+        "content_type": "image/jpeg",
+        "bytes_read": 25791,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/default/files/2020-06/Skin-on-skin.jpg",
+        "status": 206,
+        "content_type": "image/jpeg",
+        "bytes_read": 22813,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2022-08/house-of-support.webp?itok=mq3yoGcQ",
+        "status": 206,
+        "content_type": "image/webp",
+        "bytes_read": 36698,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2025-10/wk_9_revised.gif?itok=GR9Sl-fr",
+        "status": 206,
+        "content_type": "image/gif",
+        "bytes_read": 38963,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2026-04/brushing-childrens-teeth-2.gif?itok=YoAk368t",
+        "status": 206,
+        "content_type": "image/gif",
+        "bytes_read": 20733,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2026-04/healthy-eating-for-pregnancy-pip-4.webp?itok=e4VUn7XO",
+        "status": 206,
+        "content_type": "image/webp",
+        "bytes_read": 9274,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2026-04/pelvic-floor-care-pip-7.gif?itok=ID_pvdq5",
+        "status": 206,
+        "content_type": "image/gif",
+        "bytes_read": 19333,
+        "final_scheme": "https"
+      },
+      {
+        "url": "https://rerai.umntwana.app/sites/zimbabwe/files/styles/content_1200xh_/public/2026-04/safe-sleeping-1.gif?itok=KbZO2rJo",
+        "status": 206,
+        "content_type": "image/gif",
+        "bytes_read": 32194,
+        "final_scheme": "https"
+      }
+    ]
+  }
+}

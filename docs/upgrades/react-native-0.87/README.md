@@ -1,6 +1,8 @@
 # React Native 0.87 migration
 
-See the [current follow-up and remaining acceptance gates](remaining-task-follow-up.md), then the [original review fixes](review-fixes.md) for PR #1115.
+**14 November follow-up:** [Implemented non-Firebase fixes and current validation](non-firebase-follow-up.md), including passphrase-protected portable backups, journalled recovery and a clean strict TypeScript check. Older source-specific results below remain historical evidence.
+
+See the [current non-Firebase fixes and validation](non-firebase-follow-up.md), the [previous native/dependency follow-up](remaining-task-follow-up.md), and the [original review fixes](review-fixes.md) for PR #1115.
 
 This branch targets React Native 0.87.1 with React 19.2.3, AGP 9.2.1,
 Gradle 9.8.1, Kotlin 2.2.10, and Android compile/target SDK 37.

@@ -1,6 +1,6 @@
 # Non-Firebase follow-up: portable protected backups
 
-14 November 2026. Implementation checkpoint; native validation results will be appended when observed. Firebase console/delivery verification is deliberately outside this follow-up.
+14 November 2026. Implementation and source-specific validation; current results are in the [non-Firebase completion follow-up](non-firebase-follow-up.md). Firebase console/delivery verification is deliberately outside this follow-up.
 
 ## Implemented
 
@@ -18,11 +18,27 @@ Version 3 plaintext is bounded to 32 MiB of UTF-8, each photo to 8 MiB, total ph
 
 New files require the updated app and their passphrase on the receiving device. Existing files are unchanged and retain their old protection; keep known-good copies until the new backup is tested. There is no password-reset or backend escrow mechanism. Exact clinical/content taxonomy portability between countries is not invented. The existing onboarding form's explicit caregiver details can supersede restored caregiver preferences after import, preserving that flow's current behaviour.
 
-## Checks at implementation checkpoint
+## Validation
 
-- 425 Jest tests / 49 suites pass, including new native-signature-compatible crypto vectors, wrong-passphrase/tamper/KDF-bound cases, photo ownership/path/image-header checks, failed staging, transaction rollback, settings/Redux failure replay, durable rollback direction, repeated recovery, preview lifecycle and secure prompt tests.
-- TypeScript regression check passes with 84 inherited diagnostics, down from 86; two false-valued FlatList header/footer props now use undefined. Raw tsc is not yet clean.
-- Full native AES/Realm and restart tests are required before sign-off. Prior 18-case native runs predate this writer/journal and must not be presented as proof of version 3.
+- The initial v3 implementation passed 425 Jest tests / 49 suites. The final follow-up adds calendar/RTL/walkthrough and exact decoded-photo boundary coverage; its exact source, totals and complete flavour run are recorded in the [current report](non-firebase-follow-up.md).
+- Full strict TypeScript now passes with zero diagnostics. The inherited baseline is no longer used by `npm run typecheck`; RN 0.87-compatible native image declarations and targeted application typing fixes are included.
+- Fresh AES/PBKDF2/Realm/startup integration checks compile v3 Release apps, with 24 scenarios per Bebbo/Rerai platform combination. Only observed results and their exact source are listed in the [native evidence table](non-firebase-follow-up.md#fresh-native-protected-backup-checks); older 18-case native runs predate this writer/journal and do not prove v3.
+- The import/export per-photo limit is the same exact 8 MiB decoded-byte bound. Base64 padding is accounted for even when an 8 MiB photo and an 8 MiB + 1 byte photo have the same encoded length.
 - New user-facing keys have explicit English fallbacks and require approved country translations, including Arabic/Urdu. No language pack has been enabled by guesswork. Device font/keyboard, real providers/Drive, older real exports, physical low-storage/process-kill and signed in-place upgrade testing remain separate.
+
+## Completing device/provider acceptance
+
+Record flavour, real country/language, app ID, old/new signed version, device/OS/ABI, fixture hash, expected profile IDs/counts and observed results. Use authorised synthetic/anonymised child data, not a caregiver's unapproved production export.
+
+1. On the supported older signed app, prepare at least two children plus a pregnancy, distinct photos, growth/health/vaccination/reminder records, milestones and saved content. Record caregiver fields, active child, reminder switches and data-saver state. Keep a known-good historical export and an installation/database copy through approved device tooling.
+2. Install the updated signed app over it with the same application ID/signing identity, without clearing storage. Verify every original record and ownership before importing anything. Repeat for fresh installations and supported historical release versions; a schema fixture alone does not establish these results.
+3. Create a local v3 export with a new passphrase. Cancel entry and mismatch confirmation first; neither should create/replace a file. Verify secure entry, background cancellation, keyboard dismissal and readable large-font messages on Android/iOS. Repeat with an approved Arabic/Urdu test passphrase, including canonically equivalent Unicode input. Keep the passphrase securely: recovery/reset is unavailable.
+4. Unlock the export locally and transfer the actual file to the other platform using the same flavour/country. Select another supported UI language within that country. Import into an installation with different existing profiles, confirm explicit replacement, then verify profile IDs/dates/ownership, displayed photos, all nested records and allowlisted preferences. Repeat import: profile counts must not grow. Legacy readers must still open representative real older exports; legacy photo paths are not portable attachments.
+5. Exercise Drive with authorised accounts: denied/revoked access, account switching, cancelled prompts/provider dialogs, offline/online transitions, interrupted upload/download, quota and successful replacement. Confirm the previous known-good copy is retained when creating/uploading the new copy fails. These checks concern the app's OAuth/provider flow; success with a separate Drive API client does not prove it.
+6. With disposable fixtures, kill/relaunch during staged-photo writes and multiple restore phases. Use the isolated QA harness/fault injection to target journal creation, child commit, preference persistence and finalisation; QA code must stay out of a release. After launch, verify either the complete intended snapshot or the complete previous state after explicit rollback. A committed 5,000-profile result proves an atomic committed outcome, not a mid-write rollback. Inspect only privacy-safe diagnostics.
+7. Test insufficient storage/provider-copy failure and failure after child commit. The app must show a clear failure or blocking recovery screen, never false success or normal navigation into mixed stores. Free space, retry or choose previous data; verify preference values, original photo files and generated-file cleanup. Repeat on an actual low-memory device; current size bounds are not memory certification.
+8. Reject empty, incomplete, corrupted, wrong-passphrase, tampered, wrong-country/flavour, oversized and unsupported-image files before replacing profiles. Confirm no new-profile/activity counts are emitted for imported historical records. Verify notifications separately with real OS permissions/OEM behaviour; restoring reminder records does not establish notification delivery.
+
+Use the existing [detailed scenario matrix](backup-validation.md) for older-format, locale and provider combinations. Approved translations, representative historical files, signed installations and physical/provider access are acceptance inputs, not results inferred from the automated runs.
 
 Cryptographic work-factor reference: [OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html). Native PBKDF2 uses the existing AES library's UTF-8 password/salt and bit-length API on both platforms; no new native dependency is introduced.

@@ -1,0 +1,31 @@
+{
+  "phase": "passed",
+  "passed": [
+    "native_random_iv_hmac_aes_unicode_roundtrips",
+    "native_tamper_rejection",
+    "native_legacy_cipher_compatibility",
+    "native_pbkdf2_utf8_known_vector",
+    "native_password_backup_roundtrip",
+    "native_password_backup_wrong_passphrase",
+    "native_nested_records_and_profile_ownership",
+    "native_repeated_replacement",
+    "native_atomic_rollback",
+    "native_legacy_record_conversion",
+    "native_legacy_vaccination_without_growth_values",
+    "native_overdue_pregnancy_flag",
+    "native_boolean_profile_flags",
+    "native_schema3_to4_fixture_migration",
+    "native_redux_schema0_to1_fixture_migration",
+    "native_large_unicode_cache_fragment_roundtrip",
+    "native_content_reset_preserves_settings",
+    "native_portable_photos_and_preferences",
+    "native_portable_rollback",
+    "native_portable_journal_restart_recovery",
+    "actual_startup_abandoned_backup_cleanup",
+    "native_restart_profile_persistence",
+    "actual_startup_taxonomy_recovery",
+    "native_process_interruption_atomic_outcome"
+  ],
+  "interruptionOutcome": "fully_committed",
+  "profiles": 5000
+}

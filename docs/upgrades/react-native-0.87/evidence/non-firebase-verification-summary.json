@@ -1,0 +1,226 @@
+{
+  "date": "2026-11-14",
+  "scope": "Non-Firebase follow-up",
+  "application_source": "80b50ffc8a561afb9ad96c34d52646e11ba556f0",
+  "protected_backup_source": "e093124cf6b2488b39a9ea35a203dfc66458993a",
+  "source_validation": {
+    "run_id": 43548274786,
+    "controller": "6f9d3ec970d38203226d3d680bf6f508fe9da0fe",
+    "application_source": "80b50ffc8a561afb9ad96c34d52646e11ba556f0",
+    "jobs": [
+      {
+        "id": 132304566447,
+        "name": "unit",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566588,
+        "name": "bundles (merhabaBebek, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566655,
+        "name": "bundles (babuni, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566758,
+        "name": "bundles (bebbo, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566783,
+        "name": "bundles (bebboDev, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566803,
+        "name": "bundles (bebboDev, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566805,
+        "name": "bundles (bebbo, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566830,
+        "name": "bundles (merhabaBebek, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566844,
+        "name": "bundles (foleja, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566883,
+        "name": "bundles (bebboPacific, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566909,
+        "name": "bundles (wawamor, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566916,
+        "name": "bundles (babuni, android)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566928,
+        "name": "bundles (wawamor, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566957,
+        "name": "bundles (foleja, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566963,
+        "name": "bundles (reraiUmntwana, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304566965,
+        "name": "bundles (bebboPacific, ios)",
+        "conclusion": "success"
+      },
+      {
+        "id": 132304567217,
+        "name": "bundles (reraiUmntwana, android)",
+        "conclusion": "success"
+      }
+    ],
+    "jest": {
+      "tests": 434,
+      "suites": 52
+    },
+    "node_tests": 35,
+    "python_tests": 30,
+    "typescript_diagnostics": 0,
+    "vector_resources": 96,
+    "primary_flavours": 8,
+    "additional_development_mappings": 2,
+    "npm_audit": {
+      "low": 11,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "limitation": "Native/build/backend scopes are separate; see native-dependency-security.md"
+    }
+  },
+  "native_validation": {
+    "run_id": 43544601957,
+    "controller": "32c2aa7a0a265374b3b4e6ea607a9e86440cf8a4",
+    "application_source": "e093124cf6b2488b39a9ea35a203dfc66458993a",
+    "jobs": [
+      {
+        "id": 132292841018,
+        "name": "install (bebbo)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 132292841039,
+        "name": "ios-data (reraiUmntwana)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 132292841047,
+        "name": "ios-data (bebbo)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 132292841320,
+        "name": "install (reraiUmntwana)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "expected_scenarios_per_job": 24,
+    "observed_results": [
+      {
+        "platform": "android",
+        "flavour": "bebbo",
+        "scenarios_passed": 24,
+        "interruption_outcome": "rolled_back",
+        "result_file": "backup-v3-native-android-bebbo-result.json",
+        "sha256": "ddac14bc3ae0114793bc1cd2e0c380ccdd6a9cefa48752d1166b343cc7b14679"
+      },
+      {
+        "platform": "android",
+        "flavour": "reraiUmntwana",
+        "scenarios_passed": 24,
+        "interruption_outcome": "rolled_back",
+        "result_file": "backup-v3-native-android-rerai-result.json",
+        "sha256": "ddac14bc3ae0114793bc1cd2e0c380ccdd6a9cefa48752d1166b343cc7b14679"
+      },
+      {
+        "platform": "ios",
+        "flavour": "bebbo",
+        "scenarios_passed": 24,
+        "interruption_outcome": "fully_committed",
+        "result_file": "backup-v3-native-ios-bebbo-result.json",
+        "sha256": "48ba3f38372b355b718e7a8825047f260d7b1cf5ef2731c83ac256b7e2a486bc"
+      },
+      {
+        "platform": "ios",
+        "flavour": "reraiUmntwana",
+        "scenarios_passed": 24,
+        "interruption_outcome": "fully_committed",
+        "result_file": "backup-v3-native-ios-rerai-result.json",
+        "sha256": "48ba3f38372b355b718e7a8825047f260d7b1cf5ef2731c83ac256b7e2a486bc"
+      }
+    ],
+    "scenarios_passed": 96,
+    "artifacts": [
+      {
+        "id": 14095476011,
+        "name": "protected-backup-native-data-ios-bebbo",
+        "digest": "sha256:54e47479b6ea33cb04061c29d03d6cf11bf2640c267b803606ef781da5f06eaa"
+      },
+      {
+        "id": 14095038887,
+        "name": "protected-backup-native-data-ios-reraiUmntwana",
+        "digest": "sha256:cfb26a44c67b1fb6afb1f2c3700af932c3a0bff5027a131283c7bfa74625443f"
+      },
+      {
+        "id": 14094615493,
+        "name": "protected-backup-native-data-android-reraiUmntwana",
+        "digest": "sha256:c69371088e55823af9a3932b65d9b880006c2e904b8ff30acc84d13dc953764a"
+      },
+      {
+        "id": 14093469281,
+        "name": "protected-backup-native-data-android-bebbo",
+        "digest": "sha256:7a274954c1c87634f8508fb0c749875716131d1f01ac9f27bca35c3fe1e192f2"
+      }
+    ]
+  },
+  "limitations": [
+    "No live Firebase verification",
+    "Synthetic native fixtures do not prove real historical exports or signed in-place upgrades",
+    "Physical device, real Drive/provider and approved Arabic/Urdu acceptance required",
+    "TLS sample is not complete production endpoint inventory",
+    "No device performance gain claimed"
+  ],
+  "previous_source_checks": [
+    {
+      "application_source": "0145c3b541e7a7b7853b6f527a38b34f5d0cb021",
+      "run_id": 43547250197,
+      "jobs_passed": 17
+    },
+    {
+      "application_source": "e093124cf6b2488b39a9ea35a203dfc66458993a",
+      "run_id": 43544701451,
+      "bundles_passed": 16,
+      "jest_tests_passed": 425,
+      "unit_conclusion": "failure",
+      "reason": "Generated source inventory was stale; regenerated before final verification"
+    }
+  ]
+}
