@@ -721,7 +721,7 @@
     },
     {
       "file": "app/screens/home/bottomTabs/Articles.tsx",
-      "line": 856,
+      "line": 850,
       "api": "logEvent",
       "event": "{ name: ARTICLE_SEARCHED, params: { article_searched: queryText }, }",
       "parameters": "netInfo.isConnected"

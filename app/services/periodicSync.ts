@@ -19,7 +19,7 @@ export const useAllPeriodicSyncData = (): any => {
     (state: any) => state.utilsData.monthlyDownloadDate,
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
-    (state.utilsData.incrementalSyncDT),
+    (state.utilsData.incrementalSyncDT || {}),
   );
   const apiJsonDataFirstSync = [
     {

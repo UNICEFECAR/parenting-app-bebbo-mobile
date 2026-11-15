@@ -66,3 +66,12 @@ in this environment. Native build/device evidence already in this directory is
 historical evidence for its recorded source, not a fresh validation of this commit.
 The existing backup unit regressions pass; this is not a new expert cryptographic
 review or proof that every device/service scenario is defect-free.
+
+## Further follow-up on 15 November
+
+- GitHub run [43648690774](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43648690774) completed successfully for commit `74d1d71`: all 37 jobs, including 20 unsigned native compile jobs (16 primary and four auxiliary development), 16 JS bundles and unit checks. This supersedes the earlier lack of fresh native compilation evidence for that commit. It does not establish physical-device acceptance.
+- Restrict CMS image schemes to web/relative sources and reject malformed authorities, credentials and control bytes. The shared content loader is not the caregiver photo picker. Tests retain country-relative images and bundled/cache fallbacks.
+- Guard missing incremental-sync timestamps during hydration.
+- Remove two unreachable, empty cleanup returns in Articles. Real subscription/navigation cleanup remains intact. Regenerate the analytics source inventory for moved lines only.
+- Full suite: 507 tests across 59 suites; strict TypeScript passes. ESLint: 447 errors and 2,120 warnings; hook-rule violations remain zero. The two new warnings identify intentional control-byte rejection and a malicious-URL rejection fixture, not execution of scripts. The broader lint backlog is still open.
+- The new source changes require their own CI run. No production endpoint list, signed credentials, physical test devices or remote device-testing session is available here. Broad ATS narrowing, signed-store acceptance and complete VoiceOver/TalkBack/large-text/RTL device acceptance remain unverified. No full completion or badge compliance is asserted.

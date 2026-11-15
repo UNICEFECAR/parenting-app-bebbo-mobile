@@ -641,9 +641,6 @@ const Articles = ({ route, navigation }: any): any => {
       };
       // });
 
-      return () => {
-        // task.cancel();
-      };
     }, [])
   );
 
@@ -696,9 +693,6 @@ const Articles = ({ route, navigation }: any): any => {
       };
       // });
 
-      return () => {
-        // task.cancel();
-      };
     }, [activeChild?.uuid])
   );
 

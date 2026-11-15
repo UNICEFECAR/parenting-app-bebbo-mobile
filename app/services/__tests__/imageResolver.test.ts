@@ -15,3 +15,9 @@ test.each(['http', 'https'])('bundled image lookup is independent of the network
   expect(resolveImageSource({imageUrl: url, defaultImage: 7}).bundledSource).toBe(42);
   expect(getHtmlOfflineImageSource(url, {'2026-01/photo name.jpg': 42})).toBe(42);
 });
+test.each(['file:///private/child.jpg', 'content://private/profile', 'data:image/svg+xml,unsafe', 'javascript:alert(1)', 'ftp://example.test/photo.jpg', 'https://user:secret@example.test/photo.jpg', 'https://example.test:bad/photo.jpg', 'https://example.test/\nphoto.jpg'])('CMS content cannot request private resources or malformed authorities: %s', value => {
+  expect(resolveImageSource({imageUrl: value, defaultImage: 7})).toMatchObject({onlineSource: null, offlineCacheSource: null, defaultSource: 7});
+});
+test('relative CMS images continue to use the configured country origin', () => {
+  expect(resolveImageSource({imageUrl: '/sites/photo.jpg', defaultImage: 7}).onlineSource?.uri).toBe('https://cms.example.test/sites/photo.jpg');
+});

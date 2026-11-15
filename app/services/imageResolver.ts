@@ -31,10 +31,21 @@ const normalizeUrl = (url?: string | null): string => {
     return "";
   }
 
+  // These sources come from CMS content, not the caregiver photo picker.
+  if (/[\x00-\x1f\x7f-\x9f]/.test(trimmedUrl) ||
+      (/^[a-z][a-z\d+.-]*:/i.test(trimmedUrl) && !/^https?:\/\//i.test(trimmedUrl))) {
+    return "";
+  }
+
   if (
-    trimmedUrl.startsWith("http://") ||
-    trimmedUrl.startsWith("https://")
+    /^https?:\/\//i.test(trimmedUrl)
   ) {
+    try {
+      const parsed = new URL(trimmedUrl);
+      if (!parsed.hostname || parsed.username || parsed.password || trimmedUrl.includes('\\')) return "";
+    } catch {
+      return "";
+    }
     return trimmedUrl;
   }
 
