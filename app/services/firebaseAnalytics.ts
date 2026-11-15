@@ -33,7 +33,7 @@ async function preparedAnalytics() {
 export const logCrashlyticsMessage = (message: string): void => {
     try {
         firebaseLog(crashlytics(), diagnosticBreadcrumb(message));
-    } catch (error) {
+    } catch  {
         console.warn('Crashlytics breadcrumb submission failed');
     }
 };
@@ -50,7 +50,7 @@ export const tryLogAnalyticsEvent = async (
     try {
         await firebaseLogEvent(await preparedAnalytics(), event.name, event.params);
         return true;
-    } catch (error) {
+    } catch  {
         console.warn('Analytics SDK submission failed');
         return false;
     }
@@ -81,7 +81,7 @@ export const setUserProperties = async (
             else if (value !== undefined && (['country', 'language'].includes(key) || (key === 'relationship' && value === null))) definedProperties[key] = value == null ? null : value.slice(0, 36);
         }
         await firebaseSetUserProperties(analytics(), definedProperties);
-    } catch (error) {
+    } catch  {
         console.warn('Analytics user property update failed');
     }
 };
@@ -93,7 +93,7 @@ export const recordError = async (
     try {
       const err = diagnosticError(error);
       await firebaseRecordError(crashlytics(), err);
-    } catch (e) {
+    } catch  {
       console.warn('Crashlytics nonfatal submission failed');
     }
   };

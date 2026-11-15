@@ -5,9 +5,8 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonPrimary,
   ButtonRow,
-  ButtonText,
   ButtonUpperCaseText,
-} from "@components/shared/ButtonGlobal";
+} from '@components/shared/ButtonGlobal';
 import {
   ChildAddTop,
   FormContainer1,
@@ -22,7 +21,7 @@ import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { bgcolorWhite2, primaryColor } from "../instances/bebbo/styles/style";
+import {bgcolorWhite2} from '../instances/bebbo/styles/style';
 import { dobMax } from "@app-types/types";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -40,8 +39,7 @@ import {
   Heading1Centerw,
   ShiftFromTop20,
   ShiftFromTop5,
-  SideSpacing25,
-} from "../instances/bebbo/styles/typography";
+} from '../instances/bebbo/styles/typography';
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { selectChildAge, selectChildGenders } from "../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<

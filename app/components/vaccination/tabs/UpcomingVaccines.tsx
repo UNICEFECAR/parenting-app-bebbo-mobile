@@ -33,7 +33,7 @@ import {
   ButtonTextSmLineL,
   ButtonVaccination,
 } from "../../shared/ButtonGlobal";
-import Icon, { IconViewAlert, IconViewBg } from "../../shared/Icon";
+import Icon, {IconViewBg} from '../../shared/Icon';
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import { selectActiveChild } from "../../../services/selectors";
 import useDigitConverter from "../../../customHooks/useDigitConvert";

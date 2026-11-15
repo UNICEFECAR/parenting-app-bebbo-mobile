@@ -18,7 +18,7 @@ import {
   MainContainer,
   MainManageProfileContainer,
 } from "@components/shared/Container";
-import { FlexCol, FlexRow } from "@components/shared/FlexBoxStyle";
+import {FlexCol} from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderIconPress,
@@ -26,11 +26,11 @@ import {
   HeaderRowView,
   HeaderTitleView,
 } from "@components/shared/HeaderContainerStyle";
-import Icon, { IconBox, IconML } from "@components/shared/Icon";
+import Icon, {IconML} from '@components/shared/Icon';
 import { ProfileEditView } from "@components/shared/ProfileListingStyle";
 import ToggleRadios from "@components/ToggleRadios";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import {useFocusEffect} from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading2,
@@ -38,9 +38,7 @@ import {
   Heading4,
   Heading4Regular,
   ShiftFromTop10,
-  ShiftFromTop15,
-  ShiftFromTop20,
-} from "@styles/typography";
+} from '@styles/typography';
 import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@app-types/types";
 import React, { useRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -59,33 +57,14 @@ import { Image as ImageObject } from "react-native-image-crop-picker";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { deleteImageFile } from "../../downloadImages/ImageStorage";
-import {
-  addChild,
-  deleteChild,
-  getAllChildren,
-  getNewChild,
-  setActiveChild,
-} from "../../services/childCRUD";
+import {addChild, deleteChild, getNewChild} from '../../services/childCRUD';
 import MediaPicker from "../../services/MediaPicker";
 import { validateForm } from "../../services/Utils";
 import TextInputML from "@components/shared/TextInputML";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
-import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
-import {
-  ConfigSettingsEntity,
-  ConfigSettingsSchema,
-} from "../../database/schema/ConfigSettingsSchema";
 import { setActiveChildData } from "../../redux/reducers/childSlice";
-import {
-  bgcolorWhite,
-  childProfileBgColor,
-  secondaryBtnColor,
-} from "@styles/style";
-import Checkbox, {
-  CheckboxActive,
-  CheckboxItem,
-} from "@components/shared/CheckboxStyle";
+import {bgcolorWhite, childProfileBgColor} from '@styles/style';
 import VectorImage from "react-native-vector-image";
 import { cameraProfileImage } from "../../instances";
 import { selectChildAge, selectChildGenders, selectChildList } from "../../services/selectors";
@@ -139,7 +118,7 @@ const styles = StyleSheet.create({
 
 const EditChildProfile = ({ route, navigation }: Props): any => {
   const netInfo = useNetInfoHook();
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [_toggleCheckBox, _setToggleCheckBox] = useState(false);
   const childData = route.params.childData;
   const childList = useAppSelector(selectChildList);
   const editScreen = childData && childData.uuid != "" ? true : false;
@@ -147,7 +126,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
-  const SecondaryColor = themeContext?.colors.SECONDARY_COLOR;
+
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
@@ -184,7 +163,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const uuid = childData != null ? childData.uuid : "";
   const createdAt = childData != null ? childData.createdAt : null;
   const [isExpected, setIsExpected] = React.useState<string>("false");
-  const [destPath, setDestPath] = React.useState<string>("");
+  const [_destPath, setDestPath] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const childAge = useAppSelector(selectChildAge);
   const dobMax = uuid == "" ? new Date(new Date().setHours(23, 59, 59, 999)) : dobMaxFuture;

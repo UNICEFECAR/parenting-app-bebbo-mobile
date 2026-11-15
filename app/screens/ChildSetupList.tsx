@@ -99,7 +99,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [parentViewHeight, setParentViewHeight] = useState(0);
-  const [profileViewHeight, setProfileViewHeight] = useState(0);
+  const [profileViewHeight, _setProfileViewHeight] = useState(0);
   const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
   const windowHeight = Dimensions.get("window").height;

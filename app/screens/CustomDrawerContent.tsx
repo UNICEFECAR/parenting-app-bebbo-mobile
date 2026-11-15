@@ -14,7 +14,7 @@ import {
   BgHealth,
   BgVaccination,
 } from "@components/shared/BackgroundColors";
-import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
+import {ButtonModal, ButtonTextTheme} from '@components/shared/ButtonGlobal';
 import {
   FDirCol,
   FDirRow,
@@ -44,10 +44,9 @@ import {
   DrawerHeadContainer,
   DrawerLinkView,
   NavIconSpacing,
-  NavIconSpacingAbout,
   SubDrawerHead,
   SubDrawerLinkView,
-} from "@components/shared/NavigationDrawer";
+} from '@components/shared/NavigationDrawer';
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { useFocusEffect } from "@react-navigation/native";
 import { bgcolorWhite2, lightShadeColor, menuDrawerTextColor, secondaryColor } from "@styles/style";
@@ -79,7 +78,6 @@ import { useAppSelector } from "../../App";
 import { isFutureDate } from "../services/childCRUD";
 import { getVaccinesForPeriodCount } from "../services/notificationService";
 import { formatDate, addSpaceToHtml } from "../services/Utils";
-import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
   },
 });
 const CustomDrawerContent = ({ navigation }: any): any => {
-  const netInfo = useNetInfoHook();
+  useNetInfoHook();
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -294,7 +292,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       if (result.action === Share.sharedAction) {
         await logAnalyticsEvent(APP_SHARE);
       }
-    } catch (error: any) {
+    } catch  {
       Alert.alert(t("generalError"));
     }
   };

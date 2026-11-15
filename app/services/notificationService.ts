@@ -109,11 +109,9 @@ export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, a
   const lastvcperiod = vcNotis.findIndex((item: any) => item.growth_period == notiExist.lastvcperiodid)
   const currentvcperiod = vcNotis.findIndex((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
 
-
   const hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
   const lasthcperiod = hcNotis.findIndex((item: any) => item.growth_period == notiExist.lasthcperiodid)
   const currenthcperiod = hcNotis.findIndex((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
-
 
   if (childAgeObj.findIndex((item: any) => item.id == notiExist.lastgwperiodid) <
     childAgeObj.findIndex((item: any) => item.id == child.taxonomyData.id) || lastvcperiod < currentvcperiod || lasthcperiod < currenthcperiod) {
@@ -421,7 +419,6 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
       const hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
       let currenthcPeriodNoti = hcNotis.filter((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
 
-
       if (vchcEnabledFlag == false) {
         if (currentvcPeriodNoti.length > 0) {
           currentvcPeriodNoti = [...currentvcPeriodNoti].map((item: any) => {
@@ -434,7 +431,6 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
           })
         }
       }
-
 
       let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child, prematurechildgwperiod, childDaysTo, childDaysFrom, true)
       if (growthEnabledFlag == false) {
@@ -649,7 +645,7 @@ export const getVaccinesForPeriodCount = (allVaccineData: any, period: string): 
   const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
   let vc = ' ';
   const vcArray: any = [];
-  allvc.map((item: any, index: number) => {
+  allvc.map((item: any, _index: number) => {
     if (item.old_calendar != 1) {
       vcArray.push(item.title);
     }
@@ -668,7 +664,7 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
   let vc = ' ';
   const vcArray: any = [];
-  allvc.map((item: any, index: number) => {
+  allvc.map((item: any, _index: number) => {
     if (item.old_calendar != 1) {
       vcArray.push(item.title);
     }

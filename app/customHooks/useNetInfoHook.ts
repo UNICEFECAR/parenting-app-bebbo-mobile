@@ -1,5 +1,5 @@
 import { useNetInfo } from "@react-native-community/netinfo";
-import { useEffect, useState } from "react";
+
 
 const useNetInfoHook = ():any => {
     const netInfo = useNetInfo();

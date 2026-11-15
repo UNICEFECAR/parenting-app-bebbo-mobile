@@ -24,20 +24,17 @@ import {
   Dimensions,
   FlatList,
   ImageBackground,
-  Linking,
   Modal,
   Platform,
   StyleSheet,
-  Text,
   useWindowDimensions,
   View,
-} from "react-native";
+} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setchatBotData } from "../../redux/reducers/childSlice";
 import ChatBot from "./ChatBot";
 import ChatContainer from "@components/shared/SupportChatStyle";
-import { createSelector } from "reselect";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -47,7 +44,7 @@ import ModalPopupContainer, {
 import Icon from "@components/shared/Icon";
 import HTML from "react-native-render-html";
 import { addSpaceToHtml } from "../../services/Utils";
-import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
+import {ButtonModal, ButtonTextTheme} from '@components/shared/ButtonGlobal';
 import {
   CHATBOT_CATEGORY_SELECTED,
   CHATBOT_FAQ_SELECTED,
@@ -56,7 +53,6 @@ import {
 } from "@assets/data/firebaseEvents";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
-import { useFocusEffect } from "@react-navigation/native";
 import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurveyData } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { imageBg } from "@styles/style";
@@ -84,8 +80,8 @@ const SupportChat = ({ navigation }: Props): any => {
   const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const windowWidthstyle = Dimensions.get("window").width;
-  const windowHeightstyle = Dimensions.get("window").height;
+  Dimensions.get("window");
+  Dimensions.get("window");
   const { width } = useWindowDimensions();
   const allConfigData = useAppSelector(selectAllConfigData);
   const userNameData =
@@ -643,19 +639,6 @@ const SupportChat = ({ navigation }: Props): any => {
     }, delayOfConcurrentSteps);
     return () => clearTimeout(timer);
   }, []);
-  const scrollToIndexFailed = (error: any): any => {
-    console.log("Scrolled failed while initial", error);
-    // const offset = error.averageItemLength * error.index;
-    //flatListRef?.current?.scrollToOffset({ offset });
-    setTimeout(
-      () =>
-        flatListRef?.current?.scrollToIndex({
-          animated: true,
-          index: steps.length - 1,
-        }),
-      10
-    ); // You may choose to skip this line if the above typically works well because your average item height is accurate.
-  };
 
   return (
     <>
@@ -711,7 +694,7 @@ const SupportChat = ({ navigation }: Props): any => {
                       noDataStep={noDataStep}
                     />
                   )}
-                  keyExtractor={(item: any, index: any): any =>
+                  keyExtractor={(item: any, _index: any): any =>
                     `step-${item.id}`
                   }
                   onScrollToIndexFailed={(info: {

@@ -44,9 +44,9 @@ import {
   RadioOuter,
 } from "@components/shared/radio";
 import ToggleRadiosBgColor from "@components/ToggleRadiosBgColor";
-import { RootStackParamList } from "@navigation/types";
+
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { StackNavigationProp } from "@react-navigation/stack";
+
 import {
   Heading2,
   Heading3,
@@ -104,10 +104,6 @@ import { logEvent } from "../../services/EventSyncService";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import { selectActiveChild } from "../../services/selectors";
 
-type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
-type Props = {
-  navigation: ChildSetupNavigationProp;
-};
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   maxHeight: { maxHeight: 50 },

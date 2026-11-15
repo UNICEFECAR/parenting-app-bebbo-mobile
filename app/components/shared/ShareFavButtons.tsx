@@ -8,7 +8,7 @@ import { appConfig } from "../../instances";
 import { Heading4 } from "@styles/typography";
 import React, {useRef} from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Share, StyleSheet, View, Text } from "react-native";
+import {Alert, Share, StyleSheet, View} from 'react-native';
 import styled from "styled-components/native";
 import { store, useAppDispatch, useAppSelector } from "../../../App";
 import {
@@ -73,7 +73,7 @@ const ShareFavButtons = React.memo((props: any) => {
       } else if (result.action === Share.dismissedAction) {
         // dismissed
       }
-    } catch (error) {
+    } catch  {
       Alert.alert(t("generalError"));
     }
   };

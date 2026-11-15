@@ -12,9 +12,8 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
-  LabelDatePlaceHolderText,
   LabelText,
-} from "@components/shared/ChildSetupStyle";
+} from '@components/shared/ChildSetupStyle';
 import { MainManageProfileContainer } from "@components/shared/Container";
 import Icon, { IconML } from "@components/shared/Icon";
 import { RootStackParamList } from "@navigation/types";
@@ -44,9 +43,8 @@ import {
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
-  HeaderTitleExpectedView,
   HeaderTitleView,
-} from "@components/shared/HeaderContainerStyle";
+} from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { appConfig } from "../instances";
 import TextInputML from "@components/shared/TextInputML";

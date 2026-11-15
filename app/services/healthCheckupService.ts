@@ -96,7 +96,7 @@ export const useAllHealthCheckupPeriods = (): any => {
   const healthCheckupsData = useAppSelector(selectHealthCheckupsData);
   const allHealthCheckupsData = (Array.isArray(healthCheckupsData) ? healthCheckupsData : []).map((item: any) => ({...item}));
   const additionalMeasures: any[] = [];
-  const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number): any => {
+  const getMeasuresForHCPeriod = (hcItem: any, _currentIndex: number): any => {
     // console.log("currentIndex--",currentIndex)
     if (hcItem && hcItem.vaccination_opens !== undefined && hcItem.vaccination_ends !== undefined) {
       const measure = allMeasurements.filter((measure: any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))

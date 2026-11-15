@@ -4,7 +4,7 @@ import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { DateTime } from "luxon";
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState} from 'react';
 import { BackHandler } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import LoadingScreenComponent from "../components/LoadingScreenComponent";
@@ -69,8 +69,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     prevPage = null,
     downloadWeeklyData = null,
     downloadMonthlyData = null,
-    downloadBufferData = null,
-    ageBrackets = null,
     forceupdatetime = null,
     isFirst = false,
   } = route.params || {};
@@ -179,8 +177,8 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       prevPage == "DownloadAllData"
     ) {
       //when downloading all data replace agebrackets
-      const Ages = await getAgeWithAgeBrackets(prevPage);
-      const newAges = [...new Set([...Ages.alldataarr, ...Ages.deltadataarr])];
+      await getAgeWithAgeBrackets(prevPage);
+
       // let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
       // if (Ages.alldataarr?.length > 0 || Ages.deltadataarr?.length > 0) {
       //   if (prevPage == "DownloadAllData" && allDataDownloadFlag == true) {
@@ -282,7 +280,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       //   }
       // }
       // if (downloadWeeklyData == true) {
-      //   const Ages = await getAgeWithAgeBrackets(prevPage);
+      //   await getAgeWithAgeBrackets(prevPage);
       //   //check download all flag
       //   if (Ages.alldataarr?.length > 0) {
       //     allAgeBrackets = [...new Set([...allAgeBrackets, ...Ages.alldataarr])]

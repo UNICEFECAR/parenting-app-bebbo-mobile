@@ -1,6 +1,3 @@
-import {holdBackupPreview} from '../services/backupPreview';
-import {diagnosticError} from '../services/diagnostics';
-import {backupErrorMessage} from '../services/backupErrorMessage';
 import { appConfig } from "../instances";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -21,13 +18,7 @@ import {
 } from "@components/shared/ChildSetupStyle";
 import Icon from "@components/shared/Icon";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
-import {
-  FlexCol,
-  FlexRow,
-  Flex1,
-  Flex2,
-  FDirRow,
-} from "@components/shared/FlexBoxStyle";
+import {FlexCol, FlexRow, Flex2} from '@components/shared/FlexBoxStyle';
 import OnboardingHeading from "@components/shared/OnboardingHeading";
 import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
@@ -36,15 +27,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { dobMax } from "../types/types";
 import React, { useRef, createRef, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Pressable,
-  Text,
-  View,
-  ScrollView,
-  Alert,
-  StyleSheet,
-  ToastAndroid,
-} from "react-native";
+import {Pressable, View, ScrollView, StyleSheet} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
@@ -52,20 +35,16 @@ import {
   ChildEntity,
   ChildEntitySchema,
 } from "../database/schema/ChildDataSchema";
-import { backup } from "../services/backup";
 import {
   addChild,
   apiJsonDataGet,
-  getAge,
   getNewChild,
   isFutureDate,
   setActiveChild,
-} from "../services/childCRUD";
+} from '../services/childCRUD';
 import { notiPermissionUtil, validateForm } from "../services/Utils";
 import {
   Heading1Centerw,
-  Heading3,
-  Heading4Regularw,
   ShiftFromTop20,
   Heading3w,
   ShiftFromTop25,
@@ -73,11 +52,10 @@ import {
   Heading3BoldCenterrw,
   Heading4Centerrw,
   ShiftFromTopBottom20,
-} from "@styles/typography";
+} from '@styles/typography';
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2, primaryColor, secondaryBtnColor } from "@styles/style";
-import BackgroundColors from "@components/shared/BackgroundColors";
+import {bgcolorWhite2, secondaryBtnColor} from '@styles/style';
 import { logEvent } from "../services/EventSyncService";
 import {
   EXPECTED_CHILD_ENTERED,
@@ -140,15 +118,15 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const [parentName, setParentName] = useState("");
   const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
-  const [isImportRunning, setIsImportRunning] = useState(false);
+  const [_isImportRunning, _setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>("false");
   const [isExpected, setIsExpected] = useState<string>("false");
   const [name, setName] = React.useState("");
   const [loading, setLoading] = useState(false);
-  const [isImportAlertVisible, setImportAlertVisible] = useState(false);
-  const actionSheetRefImport = createRef<any>();
+  const [_isImportAlertVisible, _setImportAlertVisible] = useState(false);
+  createRef<any>();
   const netInfo = useNetInfoHook();
-  let relationshipData = useAppSelector(selectParentGender);
+  useAppSelector(selectParentGender);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -157,7 +135,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const childAge = useAppSelector(selectChildAge);
-  const actionSheetRef = createRef<any>();
+  createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
   const sendData = (data: any): any => {
@@ -175,14 +153,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     .filter(function (e: any) {
       return e.unique_name != taxonomyIds?.bothChildGender;
     });
-  relationshipData = relationshipData
-    .map((v: any) => ({ ...v, title: v.name }))
-    .filter(function (e: any) {
-      return e.unique_name != taxonomyIds?.bothParentGender;
-    });
-  const onImportCancel = (): any => {
-    setImportAlertVisible(false);
-  };
+
   useFocusEffect(
     React.useCallback(() => {
       console.log("taxonomyData is", relationshipToParent);
@@ -210,49 +181,9 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const getCheckedItem = (checkedItem: (typeof genders)[0]): any => {
     setGender(checkedItem.id);
   };
-  const getCheckedParentItem = (checkedItem: any): any => {
-    if (
-      typeof checkedItem.id === "string" ||
-      checkedItem.id instanceof String
-    ) {
-      setRelationship(checkedItem.id);
-    } else {
-      setRelationship(String(checkedItem.id));
-    }
-  };
-  const importRunning = useRef(false);
-  const runImport = async (read: () => Promise<any>): Promise<void> => {
-    if (importRunning.current) return;
-    importRunning.current = true;
-    setImportAlertVisible(false);
-    setLoading(true);
-    setIsImportRunning(true);
-    try {
-      const data = await read();
-      if (data instanceof Error) throw data;
-      if (data === null) return;
-      navigation.navigate("ChildImportSetup", {
-        importPreviewId: holdBackupPreview(data),
-        parentName,
-        relationData: relationship,
-        relationshipNameData: relationshipName,
-        userRelationToParentData: userRelationToParent,
-      });
-    } catch (error) {
-      if (!(error instanceof Error && error.message === "loginCanceled")) {
-        console.error("Backup import failed", diagnosticError(error instanceof Error ? error : "Backup operation failed"));
-        Alert.alert("", backupErrorMessage(error, t));
-      }
-    } finally {
-      importRunning.current = false;
-      setLoading(false);
-      setIsImportRunning(false);
-    }
-  };
-  const importFromFile = (): Promise<void> => runImport(() => backup.readLocalBackup());
-  const importAllData = (): Promise<void> => runImport(() =>
-    backup.import1(navigation, languageCode, dispatch, childAge, genders)
-  );
+
+  useRef(false);
+
   const AddChild = async (
     isDefaultChild: boolean,
     isDefaultName: boolean
@@ -374,7 +305,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
             <FlexRow>
               <ShiftFromTop25>
                 <Pressable
-                  onPress={(e: any): any => {
+                  onPress={(_e: any): any => {
                     navigation.navigate("ChildSetup");
                   }}
                 >

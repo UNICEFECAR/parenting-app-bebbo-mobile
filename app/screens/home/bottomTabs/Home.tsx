@@ -54,12 +54,11 @@ import { useTranslation } from "react-i18next";
 import {
   Alert,
   BackHandler,
-  Linking,
   Modal,
   Platform,
   ScrollView,
   StyleSheet,
-} from "react-native";
+} from 'react-native';
 import HTML from "react-native-render-html";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../../App";
@@ -89,10 +88,8 @@ import {
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { bgcolorWhite2 } from "@styles/style";
 import { ToastAndroidLocal } from "../../../android/sharedAndroid.android";
-import {
-  logEvent,
-  synchronizeEvents,
-} from "../../../services/EventSyncService";
+import {synchronizeEvents} from '../../../services/EventSyncService';
+
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -116,7 +113,7 @@ import {
 } from "../../../services/selectors";
 import QuickLinksRow from "@components/homeScreen/QuickLinksRow";
 import CountryAppBanner from "@components/shared/CountryAppBanner";
-const Home = ({ route, navigation }: any): any => {
+const Home = ({ route: _route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
@@ -156,13 +153,7 @@ const Home = ({ route, navigation }: any): any => {
 
   const netInfo = useNetInfoHook();
   let currentCount = 0;
-  const setIsModalOpened = async (varkey: any): Promise<any> => {
-    if (modalVisible == true) {
-      const obj = { key: varkey, value: false };
-      dispatch(setInfoModalOpened(obj));
-      setModalVisible(false);
-    }
-  };
+
   const {
     downloadWeeklyData,
     downloadMonthlyData,

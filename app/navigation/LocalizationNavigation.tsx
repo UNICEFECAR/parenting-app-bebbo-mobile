@@ -1,4 +1,4 @@
-import { localization } from "../instances";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import CountryLanguageConfirmation from "@screens/localization/CountryLanguageConfirmation";
 import CountrySelection from "@screens/localization/CountrySelection";
@@ -9,12 +9,12 @@ import { LocalizationStackParamList } from "./types";
 
 const LocalizationStack = createStackNavigator<LocalizationStackParamList>();
 export default (): any => {
-  const restartOnLangChange = useAppSelector(
-    (state: any) => state.selectedCountry.restartOnLangChange
-  );
-  const AppLayoutDirectionScreen = useAppSelector(
-    (state: any) => state.selectedCountry.AppLayoutDirectionScreen
-  );
+  useAppSelector((state:any)=>state.selectedCountry.restartOnLangChange);
+
+
+  useAppSelector((state:any)=>state.selectedCountry.AppLayoutDirectionScreen);
+
+
   const AppLayoutDirectionParams = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionParams
   );

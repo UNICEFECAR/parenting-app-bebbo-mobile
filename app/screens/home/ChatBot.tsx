@@ -1,6 +1,6 @@
 import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
 import React, { useEffect, useMemo, useState } from "react";
-import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import { useTranslation } from "react-i18next";
 import HTML from "react-native-render-html";
 import { addSpaceToHtml } from "../../services/Utils";

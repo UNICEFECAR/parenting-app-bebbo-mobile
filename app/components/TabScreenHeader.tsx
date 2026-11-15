@@ -5,9 +5,10 @@ import HeaderNotiIcon from "./HeaderNotiIcon";
 import BurgerIcon from "./shared/BurgerIcon";
 import {
   HeaderRowView,
-  HeaderTitleView,
   HomeHeaderTitleView,
-} from "./shared/HeaderContainerStyle";
+} from './shared/HeaderContainerStyle';
+
+
 const headerHeight = 50;
 const TabScreenHeader = (props: any): any => {
   const headerColor = props.headerColor;

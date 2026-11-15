@@ -31,7 +31,7 @@ async function flushEvents(): Promise<void> {
       if (await tryLogAnalyticsEvent(event.name, {...params, is_offline_event: true})) {
         realm.write(() => realm.delete(event));
       }
-    } catch (error) {
+    } catch  {
       console.warn('Analytics retry remains pending');
     }
   }
@@ -42,7 +42,7 @@ async function flushEvents(): Promise<void> {
 let synchronization: Promise<void> = Promise.resolve();
 export const synchronizeEvents = (netInfo?: boolean | null): Promise<void> => {
   if (netInfo !== true) return Promise.resolve();
-  synchronization = synchronization.then(flushEvents).catch(error => {
+  synchronization = synchronization.then(flushEvents).catch(_error => {
     console.warn('Analytics queue sync failed');
   });
   return synchronization;

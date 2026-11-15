@@ -4,7 +4,7 @@ import {recordError} from "../services/firebaseAnalytics";
 import {confirmBackupReplacement} from "../services/confirmBackupReplacement";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import { backup } from "../services/backup";
-import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
+
 import { appConfig } from "../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -66,7 +66,7 @@ import {
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
 import { bgcolorWhite } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import { logEvent } from "../services/EventSyncService";
+
 import TextInputML from "@components/shared/TextInputML";
 import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 const styles = StyleSheet.create({
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
 });
 const ChildImportSetup = (props: any): any => {
-  const netInfo = useNetInfoHook();
+  useNetInfoHook();
   const { importResponse, importPreviewId } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -194,7 +194,7 @@ const ChildImportSetup = (props: any): any => {
       await setActiveChild(languageCode,
         children.some((child: any) => child.uuid === previousId) ? previousId : "",
         dispatch, childAge, false, taxonomyIds?.boyChildGender);
-      const childList = await getAllChildren(dispatch, childAge, 1);
+      await getAllChildren(dispatch,childAge,1);
       dispatch(setInfoModalOpened({key: "generateNotifications", value: true}));
       dispatch(setAllLocalNotificationGenerateType({generateFlag: true, generateType: "add", childuuid: "all"}));
       props.navigation.reset({index: 0, routes: [{name: "LoadingScreen", params: {

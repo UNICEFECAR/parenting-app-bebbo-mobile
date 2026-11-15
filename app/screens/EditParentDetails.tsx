@@ -5,9 +5,8 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonMangeProfileContainer,
   ButtonPrimary,
-  ButtonText,
   ButtonUpperCaseText,
-} from "@components/shared/ButtonGlobal";
+} from '@components/shared/ButtonGlobal';
 import {
   ChildRelationList,
   FormContainer,

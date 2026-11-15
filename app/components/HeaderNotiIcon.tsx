@@ -547,7 +547,7 @@ const HeaderNotiIcon = (props: any): any => {
       fetchDataFav();
     });
     return () => task.cancel();
-  }, [activeChild.uuid]);
+  }, [activeChild.uuid, dispatch]);
   const navigation = useNavigation<any>();
   return (
     <>

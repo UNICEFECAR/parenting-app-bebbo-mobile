@@ -88,7 +88,7 @@ const ChartHeightForAge = (props: any): any => {
     obj = formatHeightData(genderGirlData, "height");
   }
   return { obj, standardDeviation };
-}, [activeChild?.gender, taxonomyIds]);
+}, [activeChild?.gender, taxonomyIds, standardDevData]);
   const childBirthDate = activeChild?.birthDate;
   const childTaxonomyData = activeChild?.taxonomyData;
   const sortedMeasurements = [...(Array.isArray(activeChild?.measures) ? activeChild.measures : [])].sort(

@@ -26,10 +26,9 @@ import OnboardingContainer from "@components/shared/OnboardingContainer";
 import {
   FlexCol,
   FlexRow,
-  Flex1,
   Flex2,
   FDirRow,
-} from "@components/shared/FlexBoxStyle";
+} from '@components/shared/FlexBoxStyle';
 import OnboardingHeading from "@components/shared/OnboardingHeading";
 import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
@@ -131,12 +130,12 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [relationship, setRelationship] = useState("");
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState("");
-  const [relationshipUniqueName, setRelationshipUniqueName] = useState("");
-  const [birthDate, setBirthDate] = useState<Date>(new Date());
-  const [plannedTermDate, setPlannedTermDate] = useState<Date>();
+  const [_relationshipUniqueName, setRelationshipUniqueName] = useState("");
+  const [birthDate, _setBirthDate] = useState<Date>(new Date());
+  const [plannedTermDate, _setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
-  const [isPremature, setIsPremature] = useState<string>("false");
-  const [isExpected, setIsExpected] = useState<string>("false");
+  const [isPremature, _setIsPremature] = useState<string>("false");
+  const [isExpected, _setIsExpected] = useState<string>("false");
   const [name, setName] = React.useState("");
   const [loading, setLoading] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
@@ -160,16 +159,9 @@ const ChildSetup = ({ navigation }: Props): any => {
   );
   const childAge = useAppSelector(selectChildAge);
   const actionSheetRef = useRef<AppActionSheetRef>(null);
-  const [gender, setGender] = React.useState(0);
+  const [gender, _setGender] = React.useState(0);
   const dispatch = useAppDispatch();
-  const sendData = (data: any): any => {
-    // the callback. Use a better name
-    setBirthDate(data.birthDate);
-    setPlannedTermDate(data.plannedTermDate);
-    const myString = String(data.isPremature);
-    setIsPremature(myString);
-    setIsExpected(String(data.isExpected));
-  };
+
   let genders = useAppSelector(selectChildGenders);
 
   genders = genders
@@ -202,9 +194,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       }, 500);
     }, [])
   );
-  const getCheckedItem = (checkedItem: (typeof genders)[0]): any => {
-    setGender(checkedItem.id);
-  };
+
   const getCheckedParentItem = (checkedItem: any): any => {
     if (
       typeof checkedItem.unique_name === "string" ||

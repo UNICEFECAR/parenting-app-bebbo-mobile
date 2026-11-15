@@ -29,12 +29,9 @@ import {
 } from "@styles/typography";
 import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import VectorImage from "react-native-vector-image";
-import {
-  activityLogo,
-  adviceLogo,
-  toolsLogo,
-  bebboLogoShapeNew,
-} from "../instances";
+import {activityLogo, adviceLogo, toolsLogo} from '../instances';
+
+
 const flavor = process.env.FLAVOR || "bebbo";
 const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
 const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);

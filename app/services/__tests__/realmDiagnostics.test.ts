@@ -12,6 +12,7 @@ const compiled = babel.transformSync(fs.readFileSync(filename, 'utf8'), {filenam
   }}})],
 }).code;
 const loaded = {exports: {}};
+// eslint-disable-next-line no-new-func -- Compile only the checked-in local Realm migration fixture, never remote input.
 new Function('require', 'module', 'exports', compiled)((name: string) => {
   if (name === 'realm') return {__esModule:true,default:Realm};
   if (name === '@dr.pogodin/react-native-fs') return RNFS;

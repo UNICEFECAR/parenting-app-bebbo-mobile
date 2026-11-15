@@ -5,10 +5,7 @@ import VideoPlayer from "@components/VideoPlayer";
 import ChildDevelopmentCollapsibleItem from "@components/ChildDevelopmentCollapsibleItem";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { ArticleHeading } from "@components/shared/ArticlesStyle";
-import Container, {
-  BannerContainer,
-  MainContainer,
-} from "@components/shared/Container";
+import {BannerContainer, MainContainer} from '@components/shared/Container';
 import {
   DevelopmentContent,
   DevelopmentStatus,
@@ -44,7 +41,6 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
 import {
   BackHandler,
   FlatList,
@@ -66,9 +62,7 @@ import {
   ChildEntitySchema,
 } from "../../../database/schema/ChildDataSchema";
 import ProgressCircle from "@components/shared/ProgressCircle";
-import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
-import FirstTimeModal from "@components/shared/FirstTimeModal";
-import { addSpaceToHtml, isPregnancy } from "../../../services/Utils";
+import {addSpaceToHtml} from '../../../services/Utils';
 import {
   CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
   CHILD_MILESTONE_TRACKED,
@@ -88,7 +82,12 @@ import {
 } from "../../../services/EventSyncService";
 import useDigitConverter from "../../../customHooks/useDigitConvert";
 import { appConfig } from "../../../instances";
-import { selectActiveChild, selectActivitiesDataAll, selectChildAge, selectChildDevData, selectMileStonesData, selectPinnedChildDevData } from "../../../services/selectors";
+import {
+  selectActiveChild,
+  selectActivitiesDataAll,
+  selectChildDevData,
+  selectPinnedChildDevData,
+} from '../../../services/selectors';
 import LoadableImage from "../../../services/LoadableImage";
 import FastImage from "@d11/react-native-fast-image";
 const styles = StyleSheet.create({
@@ -152,7 +151,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
-  const dispatch = useAppDispatch();
+  useAppDispatch();
   const { width } = useWindowDimensions();
   const [profileLoading, setProfileLoading] = React.useState(true);
   const headerColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
@@ -186,7 +185,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     childDevModalOpened
   );
   const isFocused = useIsFocused();
-  const [modalVisible, setModalVisible] = useState(false);
+  const [_modalVisible, setModalVisible] = useState(false);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildDevData, setSelectedChildDevData] = useState<any>();
   const [selectedChildMilestoneData, setselectedChildMilestoneData] =
@@ -204,13 +203,6 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       ? activeChild?.taxonomyData.prematureTaxonomyId
       : activeChild?.taxonomyData.id;
 
-  const setIsModalOpened = (varkey: any): any => {
-    if (modalVisible == true) {
-      const obj = { key: varkey, value: false };
-      dispatch(setInfoModalOpened(obj));
-      setModalVisible(false);
-    }
-  };
   useEffect(() => {
     if (isFocused) {
       if (netInfo.isConnected) {

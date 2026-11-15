@@ -41,15 +41,7 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Platform,
-  BackHandler,
-  Text,
-  StyleSheet,
-  View,
-  Alert,
-  ScrollView,
-} from "react-native";
+import {BackHandler, Text, StyleSheet, Alert, ScrollView} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
@@ -74,7 +66,7 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
 import CountryAppBanner from "@components/shared/CountryAppBanner";
-const flavor = process.env.FLAVOR || "bebbo";
+
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "Terms"
@@ -104,7 +96,7 @@ const styles = StyleSheet.create({
   },
 });
 const CountryLanguageConfirmation = ({ route }: Props): any => {
-  const country = route?.params?.country ?? null;
+
   const language = route?.params?.language ?? null;
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
@@ -124,9 +116,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId
   );
-  const countrySelectedId = useAppSelector(
-    (state: any) => state.selectedCountry.countrySelectedId
-  );
+  useAppSelector((state:any)=>state.selectedCountry.countrySelectedId);
+
+
   const locale = useAppSelector((state: any) => state.selectedCountry.locale);
   const selectedLocale = useAppSelector(
     (state: any) => state.selectedCountry.selectedLocale
@@ -148,44 +140,12 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       saveinDB: true,
     },
   ];
-  const sponsors = useAppSelector(
-    (state: any) => state.selectedCountry.sponsors
-  );
+  useAppSelector((state:any)=>state.selectedCountry.sponsors);
+
+
   const allCountries = useAppSelector(selectAllCountries);
 
   const { t, i18n } = useTranslation();
-  const extractLanguageCode = (languageTag: string): string => {
-    const [languageCode] = languageTag.split("-");
-    return languageCode;
-  };
-  const getCountryByCountryCode = (countryCode: any): any => {
-    const normalizedCountryCode = countryCode.toLowerCase(); // Normalize to lowercase for case-insensitive comparison
-
-    for (const country of allCountries) {
-      if (country?.languages) {
-        // Ensure country.languages is not null or undefined
-        for (const language of country?.languages) {
-          if (
-            !language?.languageCode?.toLowerCase().includes("-") &&
-            language?.languageCode?.toLowerCase().includes(normalizedCountryCode)
-          ) {
-            return country;
-          } else if (
-            language.languageCode
-              ?.toLowerCase()
-              ?.split("-")[0]
-              ?.includes(normalizedCountryCode)
-          ) {
-            return country;
-          }
-        }
-      }
-    }
-    const sortedCountries = [...allCountries].sort(
-      (a, b) => (a?.CountryID ?? 0) - (b?.CountryID ?? 0)
-    );
-    return flavor == "bebbo" ? null : sortedCountries[0]; // Return null if country not found
-  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -406,7 +366,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         } else {
           console.log("countyData is", countryData);
           console.log("newLanguage is", newLanguage);
-          const languageSelected = selectedLocale !== "" ? selectedLocale : locale;
+
           const filteredLan = countryData?.languages?.filter(
             (lang: any) => lang?.locale == newLanguage?.locale
           );

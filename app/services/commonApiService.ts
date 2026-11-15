@@ -515,7 +515,7 @@ export const onHomeapiSuccess = async (
               : artobj.postdata.childAge.split(",").map(Number);
           console.log(artarray, "---childagearray--", childagearray);
           dispatch(setDownloadedBufferAgeBracket(artarray));
-        } catch (err) {}
+        } catch  {}
       }
     }
   }

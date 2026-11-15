@@ -8,7 +8,7 @@ import Icon, {
 } from "@components/shared/Icon";
 import { ImageIcon } from "@components/shared/Image";
 import { useNavigation } from "@react-navigation/native";
-import { Heading3, Heading5, ShiftFromBottom10 } from "@styles/typography";
+import {Heading3, Heading5} from '@styles/typography';
 import { CHILDREN_PATH } from "@app-types/types";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -151,7 +151,7 @@ const HeaderBabyMenu = (props: any): any => {
     });
     
     return () => task.cancel();
-  }, [activeChild?.gender]);
+  }, [activeChild?.gender, genders]);
   const renderChildItem = (dispatch: any, data: any, index: number): any => {
     const genderLocal =
       genders?.length > 0 && data.gender != ""

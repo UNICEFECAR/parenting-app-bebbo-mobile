@@ -174,7 +174,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
       netInfo: netInfo,
     });
   };
-  const RenderRelatedArticleItem = ({ item, index }: any): any => {
+  const RenderRelatedArticleItem = ({ item, index: _index }: any): any => {
     return (
       <Pressable
         onPress={(): any => {

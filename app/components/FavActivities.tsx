@@ -17,14 +17,9 @@ import {
   ActivitiesEntitySchema,
 } from "../database/schema/ActivitiesSchema";
 import LoadableImage from "../services/LoadableImage";
-import {
-  ArticleListBox,
-  ArticleListContainer,
-  ArticleListContent,
-} from "./shared/ArticlesStyle";
+import {ArticleListBox, ArticleListContent} from './shared/ArticlesStyle';
 import { FlexCol } from "./shared/FlexBoxStyle";
 import ShareFavButtons from "./shared/ShareFavButtons";
-import BackgroundColors from "./shared/BackgroundColors";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray } from "../services/selectors";
 
 const ContainerView = styled.View`

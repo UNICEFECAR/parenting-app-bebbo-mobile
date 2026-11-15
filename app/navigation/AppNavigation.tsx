@@ -1,3 +1,4 @@
+import {useNetworkClassification} from "../customHooks/useNetworkClassification";
 import {openNotificationLink} from '../services/notificationLink';
 import {trackScreen} from '../services/screenAnalytics';
 import {clearLegacyProfileAnalytics} from '../services/firebaseAnalytics';
@@ -27,20 +28,19 @@ import PrivacyPolicy from "@screens/PrivacyPolicy";
 import Terms from "@screens/Terms";
 import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
-import React, { useContext, useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, NativeModules, Platform } from "react-native";
+import {Alert, AppState, BackHandler, Platform} from 'react-native';
 import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import { onNetworkStateChange } from "../redux/reducers/bandwidthSlice";
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 import { getAllChildren, setActiveChild } from "../services/childCRUD";
 import HomeDrawerNavigator from "./HomeDrawerNavigator";
 import LocalizationNavigation from "./LocalizationNavigation";
 import { RootStackParamList } from "./types";
-import { retryAlert1 } from "../services/commonApiService";
+import {useBandwidthPrompt} from "../customHooks/useBandwidthPrompt";
 import { setchatBotData } from "../redux/reducers/childSlice";
 import { appConfig, countryData } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
@@ -52,24 +52,28 @@ import LocalNotifications from "../services/LocalNotifications";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
 import { trimWhiteSpacePayload } from "../services/Utils";
 import TermsPage from "@screens/TermsPage";
-import { logEvent, synchronizeEvents } from "../services/EventSyncService";
+import {synchronizeEvents} from '../services/EventSyncService';
 import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
-import { logAnalyticsEvent, setUserProperties, logCrashlyticsMessage, recordError } from "../services/firebaseAnalytics";
+import {
+  setUserProperties,
+  logCrashlyticsMessage,
+  recordError,
+} from '../services/firebaseAnalytics';
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
 
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
-  const [profileLoading, setProfileLoading] = React.useState(false);
+  const [_profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded
   );
-  const userIsFirstTime = useAppSelector(
-    (state: any) => state.utilsData.userIsFirstTime
-  );
+  useAppSelector((state:any)=>state.utilsData.userIsFirstTime);
+
+
   const child_age = useAppSelector(selectChildAge);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
@@ -271,13 +275,6 @@ export default (): any => {
     });
     return () => listener.remove();
   }, []);
-  const getSearchParamFromURL = (urlNew: any, paramNew: any): any => {
-    const url = new URL(urlNew);
-    const params = new URLSearchParams(url.search);
-    const param = params.get(paramNew);
-    console.log(param, params);
-    return param;
-  };
 
   const redirectLocation = (notification: any): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
@@ -860,77 +857,7 @@ export default (): any => {
     };
   }, [userIsOnboarded]);
 
-  useMemo(() => {
-    async function fetchNetInfo(): Promise<any> {
-      if (netInfo && netInfo.isConnected != null) {
-        if (netInfo.isConnected == true) {
-          synchronizeEvents(netInfo.isConnected);
-          if (Platform.OS == "android") {
-            if (
-              netInfo.netValue.type == "unknown" ||
-              netInfo.netValue.type == "other" ||
-              netInfo.netValue.type == "bluetooth" ||
-              netInfo.netValue.type == "vpn"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "2g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "3g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "4g"
-            ) {
-              setNetState("Highbandwidth");
-            } else {
-              setNetState("Highbandwidth");
-            }
-          } else if (Platform.OS == "ios") {
-            if (
-              netInfo.netValue.type == "unknown" ||
-              netInfo.netValue.type == "other"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "2g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "3g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "4g"
-            ) {
-              setNetState("Highbandwidth");
-            } else {
-              setNetState("Highbandwidth");
-            }
-          }
-        } else {
-          setNetState("NoConnection");
-        }
-      }
-    }
-    const task = scheduleIdleTask(() => {
-      fetchNetInfo();
-    });
-
-    return () => task.cancel();
-  }, [
-    netInfo.isConnected,
-    netInfo.netType,
-    netInfo.netValue?.details?.cellularGeneration,
-  ]);
+  useNetworkClassification(netInfo, setNetState, synchronizeEvents);
   useEffect(() => {
     console.log("linkedURL3---", linkedURL);
   }, [linkedURL]);
@@ -973,26 +900,7 @@ export default (): any => {
 
     return () => clearTimeout(timeout);
   }, []);
-  useEffect(() => {
-    async function fetchNetInfoSet(): Promise<any> {
-      if (netState == "Highbandwidth" && toggleSwitchVal == true) {
-        const confirmation = await retryAlert1(0, 0);
-        if (confirmation == "yes" && toggleSwitchVal == true) {
-          dispatch(onNetworkStateChange(false));
-        }
-      } else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
-        const confirmation = await retryAlert1(1, 1);
-        if (confirmation == "yes" && toggleSwitchVal == false) {
-          dispatch(onNetworkStateChange(true));
-        }
-      }
-    }
-    const timeout = setTimeout(() => {
-      fetchNetInfoSet();
-    },1000);
-
-    return () => clearTimeout(timeout);
-  }, [netState]);
+  useBandwidthPrompt(userIsOnboarded, netState, toggleSwitchVal, dispatch);
   const routeNameRef = React.useRef<any>(null);
 
   const apiJsonDataLoading = [

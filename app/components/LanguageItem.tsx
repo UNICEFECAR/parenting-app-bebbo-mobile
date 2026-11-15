@@ -1,7 +1,11 @@
 import Icon from '@components/shared/Icon';
 import React, { useEffect, useState } from 'react';
 import { Pressable, View } from 'react-native';
-import Radio, { RadioActive, RadioCountryItem, RadioItem, RadioItemText } from './shared/radio';
+import Radio, {
+  RadioActive,
+  RadioCountryItem,
+  RadioItemText,
+} from './shared/radio';
 
 const LanguageItem = ({ item, currentItem, setLanguage }: any): any => {
   const [isActive, setIsActive] = useState(false);

@@ -23,7 +23,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import { RootStackParamList } from "@navigation/types";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import {useFocusEffect} from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading1Center,

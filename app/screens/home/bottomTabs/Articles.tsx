@@ -15,9 +15,9 @@ import Icon, { IconClearPress, OuterIconRow } from "@components/shared/Icon";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
 import VideoPlayer from "@components/VideoPlayer";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
+
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import {
   miniSearchConfig,
@@ -66,13 +66,7 @@ import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectArticleCategoryArray, selectArticleDataAll, selectChildAge, selectPinnedChildDevData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
-type ArticlesNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
-type Props = {
-  navigation: ArticlesNavigationProp;
-  route: any;
-};
 const styles = StyleSheet.create({
   ageBracketView: {
     backgroundColor: bgcolorWhite2,
@@ -216,14 +210,9 @@ const Articles = ({ route, navigation }: any): any => {
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     const Realm = await getRealmLib();
     realm.write(() => {
-      const storeKeyword = realm.create(
-        "SearchHistory",
-        {
-          keyword: keyword,
-          createdAt: new Date(),
-        },
-        Realm.UpdateMode.Modified
-      );
+      realm.create("SearchHistory",{keyword:keyword,createdAt:new Date()},Realm.UpdateMode.Modified);
+
+
     });
   };
 
@@ -681,7 +670,7 @@ const Articles = ({ route, navigation }: any): any => {
     React.useCallback(() => {
       // const task = InteractionManager.runAfterInteractions(() => {
       const fetchData = async (): Promise<void> => {
-        const filterQuery = `uuid == "${activeChild?.uuid}"`;
+
         // await callYourAPI(filterQuery); // if needed
       };
       fetchData();
@@ -969,7 +958,7 @@ const Articles = ({ route, navigation }: any): any => {
                       }
                     }}
                     value={queryText}
-                    onSubmitEditing={async (event: any): Promise<any> => {
+                    onSubmitEditing={async (_event: any): Promise<any> => {
                       setHistoryVisible(false);
                       Keyboard.dismiss();
                       setIsSearchedQueryText(true);
@@ -1044,7 +1033,7 @@ const Articles = ({ route, navigation }: any): any => {
                 ref={flatListRef}
                 data={optimizedFilteredData}
                 extraData={[filteredData, optimizedFilteredData]}
-                onScroll={(e): any => {
+                onScroll={(_e): any => {
                   if (keyboardStatus == true) {
                     Keyboard.dismiss();
                   }

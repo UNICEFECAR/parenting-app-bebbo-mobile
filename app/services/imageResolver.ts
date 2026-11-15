@@ -59,7 +59,7 @@ const normalizeUrl = (url?: string | null): string => {
 const safeDecode = (value: string): string => {
   try {
     return decodeURIComponent(value);
-  } catch (e) {
+  } catch  {
     return value;
   }
 };

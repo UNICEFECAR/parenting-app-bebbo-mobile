@@ -74,7 +74,7 @@ class DataRealmCommon {
                     result=0;
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result=0;
                 return result;
             }
@@ -167,6 +167,7 @@ class DataRealmCommon {
             }
         // });
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Retain the existing generic caller API for settings updates.
     public async updateSettings<Entity>(_entitySchema: RealmInstance.ObjectSchema, key: string, value: string): Promise<string> {
         let result: any='';
         // return new Promise(async (resolve, reject) => {
@@ -234,7 +235,7 @@ class DataRealmCommon {
                     result=[]
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result=[]
                 return result;
             }
@@ -256,7 +257,7 @@ class DataRealmCommon {
                     result=[]
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result=[]
             
                 return result;
@@ -330,7 +331,7 @@ class DataRealmCommon {
                     result='error';
                     return result;
                 }
-            } catch (e: any) {
+            } catch  {
                 result='error';
                 return result;
             }
@@ -360,7 +361,7 @@ class DataRealmCommon {
                     result='error'
                     return result;
                 }
-            } catch (e: any) {
+            } catch  {
                 result='error'
                 return result;
             }
@@ -391,7 +392,7 @@ class DataRealmCommon {
                     result='fail';
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result='error';
                 return result;
             }
@@ -418,7 +419,7 @@ class DataRealmCommon {
                     result='fail'
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result='fail'
                 return result;
             }

@@ -11,7 +11,6 @@ import {
 } from "@assets/data/firebaseEvents";
 // import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
-
 import AlertModal from "@components/AlertModal";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
@@ -49,14 +48,7 @@ import {
   ToggleLabelText1,
 } from "@components/shared/SettingsStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import {
-  DrawerActions,
-  useFocusEffect,
-  useIsFocused,
-  useNavigation,
-} from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {
   Heading1,
   Heading3,
@@ -132,22 +124,7 @@ import {
   selectWeeklyDownloadDate,
 } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-type SettingScreenNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  navigation: SettingScreenNavigationProp;
-};
-type localizationType = {
-  name: string;
-  displayName: string;
-  countryId: number;
-  languages: {
-    name: string;
-    displayName: string;
-    languageCode: string;
-    locale: string;
-  };
-};
+
 const styles = StyleSheet.create({
   bgColorWhite: { backgroundColor: bgcolorWhite2 },
   borderWidth1: { borderWidth: 1 },

@@ -6,7 +6,7 @@ import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStor
 import { DateTime } from 'luxon';
 import { Alert, Platform } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
-import { store, useAppSelector } from '../../App';
+import {store} from '../../App';
 import { ToastAndroidLocal } from '../android/sharedAndroid.android';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -155,7 +155,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
     }
   }
 }
-export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any, boyChildGender?: any): Promise<any> => {
+export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any, _boyChildGender?: any): Promise<any> => {
 
   const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
   let userRelationToParent = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userRelationToParent'");
@@ -190,7 +190,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       if (child && userParentalRole?.length > 0) {
         child.parent_gender = userParentalRole[0].value
       }
-      const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
+      await getAllDataToStore(languageCode,dispatch,"AddEditChild",child);
       dispatch(setActiveChildData(child));
       try {
         await setUserProperties({
@@ -236,9 +236,9 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child.parent_gender = userParentalRole[0].value
       }
       if (child) {
-        const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
+        await getAllDataToStore(languageCode,dispatch,"AddEditChild",child);
         dispatch(setActiveChildData(child));
-        const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
+        await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema,"key='autoChild'");
         try {
           await setUserProperties({
             ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData?.id),
@@ -284,8 +284,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       child.parent_gender = userParentalRole[0].value
     }
     if (child) {
-      const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-      const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
+      await getAllDataToStore(languageCode,dispatch,"AddEditChild",child);
+      await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema,"key='autoChild'");
       dispatch(setActiveChildData(child));
       try {
         await setUserProperties({
@@ -409,7 +409,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
             console.error('Error logging child creation event:', error);
           });
       }
-    } catch (error) {
+    } catch  {
       Alert.alert('', i18n.t('generalError'));
       return;
     }
@@ -530,7 +530,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 }
 
-export const updateActiveChild = async (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): Promise<any> => {
+export const updateActiveChild = async (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, _boyChildGender: any): Promise<any> => {
   child[key] = value;
   dispatch(setActiveChildData(child));
   try {
@@ -616,7 +616,7 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
               activeChild.parent_gender = userParentalRole[0].value
             }
             const storedata = store.getState();
-            const allDatatoStore = await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChild);
+            await getAllDataToStore(storedata.selectedCountry.languageCode,dispatch,"AddEditChild",activeChild);
             dispatch(setActiveChildData(activeChild));
           }
         }
@@ -643,7 +643,7 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 }
 
 
-export const deleteChild = async (navigation: any, languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, _reject: any, childAge: any, t: any, childList: any): Promise<boolean> => {
+export const deleteChild = async (navigation: any, languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, _reject: any, childAge: any, t: any, _childList: any): Promise<boolean> => {
   const deleted = await deleteProfileRecord(schemaName, recordId, filterCondition);
   if (deleted) {
     if (Platform.OS === 'android') {

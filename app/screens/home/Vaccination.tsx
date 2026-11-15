@@ -42,7 +42,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import Icon from "@components/shared/Icon";
-import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
+import {ButtonModal, ButtonTextTheme} from '@components/shared/ButtonGlobal';
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 type VaccinationNavigationProp =

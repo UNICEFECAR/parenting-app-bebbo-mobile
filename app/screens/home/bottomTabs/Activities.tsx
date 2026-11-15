@@ -18,9 +18,9 @@ import { Flex2, Flex4, FlexCol } from "@components/shared/FlexBoxStyle";
 import { PrematureTagActivity, PrematureTagDevelopment } from "@components/shared/PrematureTag";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
+
 import { useFocusEffect } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+
 import {
   Heading3,
   Heading4,
@@ -94,12 +94,6 @@ import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray, selectChildAge, selectMileStonesData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
 
-type ActivitiesNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  route: any;
-  navigation: ActivitiesNavigationProp;
-};
 const styles = StyleSheet.create({
   activityHeadingView: {
     flexDirection: "row",
@@ -272,8 +266,7 @@ const Activities = ({ route, navigation }: any): any => {
         let newArticleData: any = selectedChildActivitiesData.filter((x: any) =>
           itemId.includes(x.activity_category)
         );
-        let titleData = [];
-        let bodyData = [];
+
         if (queryText != "" && queryText != undefined && queryText != null) {
           const keywords = queryText
             .trim()
@@ -370,8 +363,7 @@ const Activities = ({ route, navigation }: any): any => {
           selectedChildActivitiesData.length > 0
             ? selectedChildActivitiesData
             : [];
-        let titleData = [];
-        let bodyData = [];
+
         if (queryText != "" && queryText != undefined && queryText != null) {
           const keywords = queryText
             .trim()
@@ -814,25 +806,6 @@ const Activities = ({ route, navigation }: any): any => {
       </ArticleHeading>
     );
   });
-  const suffixCache = new Map<string, string[]>();
-  const suffixes = (
-    term: string,
-    minLength: number,
-    maxSuffixes = 5
-  ): string[] => {
-    if (suffixCache.has(term)) return suffixCache.get(term)!;
-
-    const tokens: string[] = [];
-    const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
-
-    for (let i = 0; i <= maxStart; i++) {
-      tokens.push(term.slice(i));
-    }
-
-    suffixCache.set(term, tokens);
-    // console.log("--------", tokens);
-    return tokens;
-  };
 
   // console.log()
   //add minisearch on active child article data
@@ -850,14 +823,9 @@ const Activities = ({ route, navigation }: any): any => {
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     const Realm = await getRealmLib();
     realm.write(() => {
-      const storeKeyword = realm.create(
-        "ActivitySearchHistory",
-        {
-          keyword: keyword,
-          createdAt: new Date(),
-        },
-        Realm.UpdateMode.Modified
-      );
+      realm.create("ActivitySearchHistory",{keyword:keyword,createdAt:new Date()},Realm.UpdateMode.Modified);
+
+
     });
   };
   const searchList = async (queryText: any): Promise<any> => {
@@ -1061,7 +1029,7 @@ const Activities = ({ route, navigation }: any): any => {
                       }
                     }}
                     value={queryText}
-                    onSubmitEditing={async (event: any): Promise<any> => {
+                    onSubmitEditing={async (_event: any): Promise<any> => {
                       console.log("event-", queryText);
                       setHistoryVisible(false);
                       Keyboard.dismiss();
@@ -1146,7 +1114,7 @@ const Activities = ({ route, navigation }: any): any => {
                   }
                   contentContainerStyle={{ backgroundColor: backgroundColorList }}
                   stickySectionHeadersEnabled={false}
-                  onScroll={(e: any) => {
+                  onScroll={(_e: any) => {
                     if (keyboardStatus == true) {
                       Keyboard.dismiss();
                     }

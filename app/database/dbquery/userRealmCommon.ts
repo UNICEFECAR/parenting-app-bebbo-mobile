@@ -6,11 +6,7 @@ import type { ObjectSchema, UpdateMode } from 'realm';
 import { getDiffinDays } from '../../services/childCRUD';
 import { deleteUserRealm, openUserRealm } from '../config/dbConfig';
 
-import { ActivitiesEntity, ActivitiesEntitySchema } from '../schema/ActivitiesSchema';
-import { ArticleEntity, ArticleEntitySchema } from '../schema/ArticleSchema';
-import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
-import { dataRealmCommon } from './dataRealmCommon';
-import { Alert } from 'react-native';
+
 const deleteRealmFilesBeforeOpen = false;
 
 class UserRealmCommon extends Component {
@@ -99,7 +95,7 @@ class UserRealmCommon extends Component {
                 result = 0;
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 0;
             return result;
         }
@@ -124,7 +120,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -148,7 +144,7 @@ class UserRealmCommon extends Component {
                 result = 'Fail';
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 'Fail';
             return result;
         }
@@ -177,7 +173,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }
@@ -212,7 +208,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -241,7 +237,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }
@@ -276,7 +272,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }
@@ -302,7 +298,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -337,7 +333,7 @@ class UserRealmCommon extends Component {
                 result = 'else';
                 return result
             }
-        } catch (e) {
+        } catch  {
             result = 'catch';
             return result
         }
@@ -388,7 +384,7 @@ class UserRealmCommon extends Component {
                 result = 'else';
                 return result
             }
-        } catch (e) {
+        } catch  {
             result = 'catch';
             return result
         }
@@ -415,7 +411,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -435,7 +431,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -468,7 +464,7 @@ class UserRealmCommon extends Component {
                 result = 'error';
                 return result;
             }
-        } catch (e: any) {
+        } catch  {
             result = 'error';
             return result;
         }
@@ -493,7 +489,7 @@ class UserRealmCommon extends Component {
                 result = 'error';
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 'error';
             return result;
         }
@@ -518,7 +514,7 @@ class UserRealmCommon extends Component {
                 result = 'error';
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 'error';
             return result;
         }
@@ -534,8 +530,8 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].measures.length > 0) {
-                        obj[0].measures.map((itemnew: any) => {
-                            const updateItemIndex = obj[0]?.measures?.findIndex((item: any, index: any) => {
+                        obj[0].measures.map((_itemnew: any) => {
+                            const updateItemIndex = obj[0]?.measures?.findIndex((item: any, _index: any) => {
                                 const measuredays = getDiffinDays(param, item.measurementDate);
                                 return measuredays < 0;
                             });
@@ -553,7 +549,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -588,7 +584,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }

@@ -38,7 +38,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   if (prevPage == 'Terms') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
     } catch (error) {
       console.log('error2', error)
@@ -47,7 +47,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
 
   } else if (prevPage == 'AddEditChild') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
     } catch (error) {
       console.log('error3', error)
@@ -57,7 +57,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   else if (prevPage == 'CountryLanguageSelection') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
     } catch (error) {
       console.log('error4', error)
@@ -66,7 +66,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   else if (prevPage == '') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       console.log('prevPage ********',prevPage)
       yield call(onCountryApiSuccess, response, dispatch, navigation, 'en', prevPage)
     } catch (error) {
@@ -76,7 +76,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   else if (prevPage == 'ChildSetup') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onChildSetupApiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
     } catch (error) {
       console.log('error6', error)
@@ -85,7 +85,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'PeriodicSync' || prevPage == 'ImportScreen' || prevPage == 'DownloadUpdate' || prevPage == 'ForceUpdate' || prevPage == 'DownloadAllData') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload)
     } catch (error) {
       console.log('error7', error)
@@ -94,7 +94,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   else if (prevPage == 'Survey') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onHomeSurveyapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
     } catch (error) {
       console.log('error8', error)
@@ -103,7 +103,7 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
   else if (prevPage == 'VideoArticle' || prevPage == 'RelatedVideoArticle') {
     try {
-      const payload = { errorArr: errorArr, fromPage: prevPage }
+
       yield call(onHomeVideoartapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
     } catch (error) {
       console.log('error9', error)
@@ -173,7 +173,7 @@ export function* onFetchAPI(value: any): any {
       yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
       yield put(receiveAPISuccess(response));
     }
-  } catch (e) {
+  } catch  {
     console.log(value)
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
       yield call(onApiError, payload, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
@@ -191,7 +191,5 @@ export function* fetchAPISaga(): any {
 export default function* rootSaga(): any {
   yield all([fetchAPISaga(), InsertInDBSaga()]);
 }
-
-
 
 

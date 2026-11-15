@@ -31,7 +31,6 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import {
   selectArticleDataAll,
-  selectFilteredArticles,
   selectLowBandwidth,
   selectActiveChild,
   selectActivitiesDataAll,
@@ -40,7 +39,8 @@ import {
   selectShowedDailyDataCategoryAll,
   selectFavoriteAdvices,
   selectFavoriteGames,
-} from "../../services/selectors";
+} from '../../services/selectors';
+
 
 const ACTIVITIES_FIRST_AGE_MONTHS = 18;
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
 });
 const RenderDailyReadItem = React.memo(({ item,
-  index,
+  index: _index,
   isAdvice,
   isFavourite,
   t,
@@ -217,7 +217,6 @@ const DailyReads = (): any => {
     return () => setFetchAgain(false);
   }, []);
 
-  
   useEffect(() => {
     let ArticlesData = eligibleArticles;
     let dailyDataCategory: any, showedDailyDataCategory: any;

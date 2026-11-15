@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon';
+
 import {createAllLocalNotificatoins, getVCNotis} from '../notificationService';
 
 jest.mock('../../instances', () => ({appConfig: {oneMonthDays: 30, threeeMonthDays: 90, twoMonthDays: 60, afterDays: 1, beforeDays: 5, maxPeriodDays: 3650}}));

@@ -68,7 +68,7 @@ const CountrySelection = (props: any): any => {
     const getCountryByCountryCode = (countryCode: any): any => {
       for (const country of allCountries) {
         for (const language of country.languages) {
-          const [languageCodeFromLuxon, countryCodeFromLuxon] =
+          const [_languageCodeFromLuxon, countryCodeFromLuxon] =
             language.luxonLocale.split("-");
           if (countryCodeFromLuxon === countryCode) {
             return country;
@@ -84,7 +84,6 @@ const CountrySelection = (props: any): any => {
 
     if (isVisible) {
       let newCountryId: any;
-      let newCountryLocale: any;
       if (userIsOnboarded == true) {
         if (
           props.route.params.country &&
@@ -92,24 +91,19 @@ const CountrySelection = (props: any): any => {
           props.route.params.country != undefined
         ) {
           newCountryId = props.route.params.country.CountryID;
-          newCountryLocale = props.route.params.country.luxonLocale;
           setCountry(props.route.params.country);
         } else {
           newCountryId = countryId;
-          newCountryLocale = selectedDefaultCountry;
         }
       } else {
         if (props.route.params == undefined) {
-          newCountryLocale = selectedDefaultCountry;
           newCountryId = countryId;
         } else {
           //  setCountry(props.route.params.country)
           newCountryId = props.route.params.country.CountryID;
           console.log("wewewe country is", newCountryId);
           if (props.route.params.language != undefined) {
-            newCountryLocale = props.route.params.language.luxonLocale;
           } else {
-            newCountryLocale = selectedDefaultCountry;
           }
         }
       }
@@ -177,7 +171,7 @@ const CountrySelection = (props: any): any => {
   
     try {
       await Linking.openURL(storeUrl);
-    } catch (error) {
+    } catch  {
       Alert.alert(
         t("newAppStoreErrorTitle"),
         t("newAppStoreErrorMessage")
@@ -279,7 +273,7 @@ const handleContinueCountry = async () => {
 
         <OnboardingContainer>
           <Pressable
-            onPress={(e: any): any => {
+            onPress={(_e: any): any => {
               console.log("Back icon click");
               navigation.goBack();
             }}

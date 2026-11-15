@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { getDatePickerLocale } from '../services/Utils';
-const cache = new Map<string, any>();
 
-export function memoizedJsonParse(json: string, fallback: any = []) {
+
+export function memoizedJsonParse(json: string, _fallback: any = []) {
   // if (!json) return fallback;
 
   // if (cache.has(json)) return cache.get(json);

@@ -30,12 +30,6 @@ import { standardDevDataForChart } from "../../instances/index";
 import { selectActiveChild } from "../../services/selectors";
 export const standardDevDataLoad = standardDevDataForChart;
 
-const LANDSCAPE = "landscape";
-const PORTRAIT = "portrait";
-const BOYGENDER = "boy";
-const WINDOW = "window";
-const WEIGHT = "weight";
-
 const styles = StyleSheet.create({
   flexColChart: {
     marginLeft: -20,
@@ -96,7 +90,7 @@ const ChartWeightForHeight = (props: any): any => {
     obj = formatHeightData(genderGirlData, "weight");
   }
   return { obj, standardDeviation };
-}, [activeChild?.gender, taxonomyIds]);
+}, [activeChild?.gender, taxonomyIds, standardDevData]);
   const childTaxonomyData = activeChild?.taxonomyData;
   const sortedMeasurements = (Array.isArray(activeChild?.measures) ? activeChild.measures : [])
     .filter(

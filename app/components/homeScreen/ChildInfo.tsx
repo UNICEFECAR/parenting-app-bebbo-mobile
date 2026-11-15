@@ -1,9 +1,7 @@
 import {
   ButtonPrimary,
-  ButtonSpacing,
-  ButtonText,
   ButtonUpperCaseText,
-} from "@components/shared/ButtonGlobal";
+} from '@components/shared/ButtonGlobal';
 import { MainContainer } from "@components/shared/Container";
 import VideoPlayer from "@components/VideoPlayer";
 import { useNavigation } from "@react-navigation/native";
@@ -38,19 +36,11 @@ const ChildInfo = (props: any): any => {
   const netInfo = useNetInfoHook();
   const { headerColor, backgroundColor } = props;
   const activeChild = useAppSelector(selectActiveChild);
-  const allConfigData = useAppSelector(selectAllConfigData);
+  useAppSelector(selectAllConfigData);
   const ChildDevData = useAppSelector(selectChildDevData);
   const PinnedChildDevData = useAppSelector(selectPinnedChildDevData);
   const dispatch = useAppDispatch();
 
-  const userNameData =
-    allConfigData?.length > 0
-      ? allConfigData.filter((item: any) => item.key === "userName")
-      : [];
-  const userRelationToParent =
-    allConfigData?.length > 0
-      ? allConfigData.filter((item: any) => item.key === "userRelationToParent")
-      : [];
   const activeChildGender = activeChild.gender;
   const [selectedPinnedArticleData, setSelectedPinnedArticleData] =
     useState<any>();
@@ -59,7 +49,7 @@ const ChildInfo = (props: any): any => {
     activeChild?.taxonomyData?.id;
   useEffect(() => {
     getAllConfigData(dispatch);
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     let filteredData = ChildDevData.filter((x: any) =>
       x.child_age.includes(activityTaxonomyId)
@@ -94,19 +84,7 @@ const ChildInfo = (props: any): any => {
       setSelectedPinnedArticleData(filteredPinnedData);
     }
   }, [activeChild.uuid, activityTaxonomyId]);
-  const showAndParentText = (): any => {
-    if (
-      userRelationToParent?.length > 0 &&
-      (parseInt(userRelationToParent[0].value) ==
-        appConfig.relationShipOtherCaregiverId ||
-        parseInt(userRelationToParent[0].value) ==
-        appConfig.relationShipServiceProviderId)
-    ) {
-      return false;
-    } else {
-      return true;
-    }
-  };
+
   const goToVideoArticleDetails = (): any => {
     navigation.navigate("DetailsScreen", {
       fromScreen: "Home",

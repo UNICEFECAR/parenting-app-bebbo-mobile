@@ -49,7 +49,7 @@ const BabyNotification = (): any => {
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
     setActiveChildGenderData(gender);
-  }, [activeChild?.gender]);
+  }, [activeChild?.gender, genders]);
   return (
     <>
       <>

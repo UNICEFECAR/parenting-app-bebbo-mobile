@@ -3,17 +3,9 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
   ButtonPrimary,
-  ButtonText,
   ButtonUpperCaseText,
-} from "@components/shared/ButtonGlobal";
-import {
-  ChildCenterView,
-  ChildColArea1,
-  ChildColArea2,
-  ChildListAction,
-  ChildListingBox,
-  ChildListTitle,
-} from "@components/shared/ChildSetupStyle";
+} from '@components/shared/ButtonGlobal';
+import {ChildCenterView} from '@components/shared/ChildSetupStyle';
 import Icon from "@components/shared/Icon";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingHeading from "@components/shared/OnboardingHeading";
@@ -31,33 +23,20 @@ import {
 } from "../instances/bebbo/styles/style";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  BackHandler,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from "react-native";
+import {BackHandler, Dimensions, StyleSheet, View} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
-import { ChildEntity } from "../database/schema/ChildDataSchema";
 import {
   apiJsonDataGet,
-  deleteChild,
-  getAge,
   getAllChildren,
   getAllConfigData,
-  isFutureDate,
-} from "../services/childCRUD";
-import { formatDate, notiPermissionUtil } from "../services/Utils";
+} from '../services/childCRUD';
+import {notiPermissionUtil} from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3Centerw,
-  Heading5,
   ShiftFromTop30,
-} from "../instances/bebbo/styles/typography";
+} from '../instances/bebbo/styles/typography';
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
 import { FlexCol } from "@components/shared/FlexBoxStyle";
@@ -111,7 +90,7 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const [parentViewHeight, setParentViewheight] = useState(0);
+  const [_parentViewHeight, setParentViewheight] = useState(0);
   const isFocused = useIsFocused();
   const childAge = useAppSelector(selectChildAge);
   const themeContext = useContext(ThemeContext);

@@ -19,14 +19,7 @@ import RelatedArticles from "@components/shared/RelatedArticles";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TrackMilestoneView from "@components/shared/TrackMilestoneView";
 import VideoPlayer from "@components/VideoPlayer";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  Heading2,
-  Heading3Regular,
-  Heading6Bold,
-  ShiftFromBottom5,
-} from "@styles/typography";
+import {Heading2, Heading6Bold, ShiftFromBottom5} from '@styles/typography';
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -55,7 +48,6 @@ import table, {
 } from "@native-html/table-plugin";
 import WebView from "react-native-webview";
 import LoadableImage from "../../services/LoadableImage";
-import { DefaultImage } from "@components/shared/Image";
 import {
   ADVICE_CATEGORY_SELECTED,
   ADVICE_DETAILS_OPENED,
@@ -83,12 +75,7 @@ import { appConfig } from "../../instances";
 import { selectArticleCategoryArray } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getHtmlOfflineImageSource } from "../../services/imageResolver";
-type DetailsScreenNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
-type Props = {
-  navigation: DetailsScreenNavigationProp;
-};
 const styles = StyleSheet.create({
   defaultImage: { height: 200, width: "100%" },
   flex1: { flex: 1 },

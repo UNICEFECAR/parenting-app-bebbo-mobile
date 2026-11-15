@@ -1,6 +1,6 @@
 import React from 'react';
 import TestRenderer,{act} from 'react-test-renderer';
-import {AppState,TextInput,Pressable,Modal} from 'react-native';
+import {AppState, TextInput, Modal} from 'react-native';
 import BackupPasswordPrompt from '../../components/BackupPasswordPrompt';
 import {requestBackupPassword} from '../backupPassword';
 jest.mock('react-i18next',()=>({useTranslation:()=>({t:(_key:string,options:any)=>options?.defaultValue||_key})}));

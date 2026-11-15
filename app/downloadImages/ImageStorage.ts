@@ -15,7 +15,7 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
             rval = true;
         }else {
             // Download image: https://bit.ly/2S5CeEu
-            const { jobId,promise: downloadPromise } = RNFS.downloadFile({
+            const {promise:downloadPromise} = RNFS.downloadFile({
                 fromUrl: args.srcUrl,
                 toFile: args.destFolder + `/${args.destFilename}`,
                 connectionTimeout: 150 * 1000, // milliseconds
@@ -33,7 +33,7 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
                 }
             }
         }
-    } catch (rejectError) {
+    } catch  {
      console.log("rejected error")
       
     }
@@ -90,9 +90,9 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean; a
         const loopResponses = await Promise.all<boolean>(promises);
 
         // Set numberOfSuccess
-        const numberOfSuccess = loopResponses.reduce((acc: number, currentValue: boolean) => {
-            if (currentValue) return acc + 1; else return acc;
-        }, 0);
+        loopResponses.reduce((acc:number,currentValue:boolean)=>{if(currentValue)return acc+1;else return acc;},0);
+
+
         // Add responses to allResponses
         allResponses = allResponses.concat(
             loopResponses.map((value, index) => {
@@ -103,7 +103,6 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean; a
             })
         );
 
-       
 
         // Wait between batches
         await waitMilliseconds(downloadImagesIntervalBetweenBatches);
@@ -112,6 +111,5 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean; a
     return allResponses;
 }
 
- 
 
 export default downloadImages;

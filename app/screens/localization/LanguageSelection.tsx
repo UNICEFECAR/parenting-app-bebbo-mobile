@@ -12,12 +12,7 @@ import { useContext, useEffect, useState } from "react";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
 import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  FlatList,
-  Platform,
-  Pressable,
-} from "react-native";
+import {Alert, FlatList, Pressable} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import {
@@ -53,7 +48,7 @@ type Props = {
 const LanguageSelection = ({ route, navigation }: Props): any => {
   const [language, setLanguage] = useState<any>();
   const allCountries = useAppSelector(selectAllCountries);
-  let country: any, languagenew: any;
+  let country: any;
   if (
     appConfig.buildFor == appConfig.buildForFoleja &&
     (route.params == null ||
@@ -62,10 +57,8 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   ) {
     console.log("in if--");
     country = allCountries[allCountries.length - 1];
-    languagenew = null;
   } else {
     country = route?.params?.country;
-    languagenew = route?.params?.language;
   }
   const [sponsorsData, setSponsorsData] = useState<any>();
   const countryId = useAppSelector(
@@ -78,10 +71,10 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const isVisible = useIsFocused();
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode
-  );
-  const isFocused = useIsFocused();
+  useAppSelector((state:any)=>state.selectedCountry.languageCode);
+
+
+  useIsFocused();
   const incrementalSyncDT = useAppSelector(
     (state: any) => state.utilsData.incrementalSyncDT
   );
@@ -131,7 +124,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   useEffect(() => {
     if (isVisible) {
       let newCountryId: any;
-      let newCountryLocale: any;
+
       if (userIsOnboarded == true) {
         if (
           route.params.country &&
@@ -333,7 +326,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <OnboardingContainer>
           <Pressable
-            onPress={(e: any): any => {
+            onPress={(_e: any): any => {
               console.log("Back icon click");
               if (route?.params?.isSetting) {
                 navigation?.goBack();
