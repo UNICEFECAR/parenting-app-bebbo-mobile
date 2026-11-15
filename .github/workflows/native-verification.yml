@@ -81,6 +81,7 @@ jobs:
         run: |
           ./gradlew :react-native-notify-kit:testReleaseUnitTest \
             --tests io.invertase.notifee.RequestPermissionThreadTest \
+            -Pandroid.onlyEnableUnitTestForTheTestedBuildType=false \
             -PunsignedVerification=true --no-daemon --max-workers=2
       - name: Compile unsigned Android release
         if: inputs.platform == 'android'

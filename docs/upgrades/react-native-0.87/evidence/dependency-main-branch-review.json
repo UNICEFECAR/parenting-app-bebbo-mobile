@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-15T23:28:58.837477+00:00",
+  "checked_at": "2026-11-15T23:37:13.514118+00:00",
   "main_commit": "f2e1bd4428ab2f37b0dc975dc6508a3a9c01d89f",
   "review_base": "6a1e88e8a876293294642c1ecfa91e3322a51694",
   "review_branch": "RNSDKUpgrade-review-fixes",
@@ -1866,7 +1866,7 @@
       "id": "C110",
       "area": "Notification permission and delegate stability",
       "issue": "TurboModule permission requests may run on the native-modules thread while Android changes the UI hierarchy. Duplicate/cyclic iOS delegate chains can also recurse.",
-      "change": "Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.",
+      "change": "Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. AGP 9 only creates the default tested build type’s unit tasks; enable the release unit-test component for this invocation with the documented command-line property, without changing production Gradle defaults. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.",
       "files": [
         "package.json",
         "package-lock.json",

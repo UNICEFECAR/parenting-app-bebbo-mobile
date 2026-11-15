@@ -49,7 +49,7 @@ These are npm package/advisory entries, including transitive effects; not counts
 
 **2. Bug or issue:** TurboModule permission requests may run on the native-modules thread while Android changes the UI hierarchy. Duplicate/cyclic iOS delegate chains can also recurse.
 
-**3. Detailed change:** Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.
+**3. Detailed change:** Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. AGP 9 only creates the default tested build type’s unit tasks; enable the release unit-test component for this invocation with the documented command-line property, without changing production Gradle defaults. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.
 
 **4. Files impacted:** `package.json`, `package-lock.json`, `ios/Podfile.lock`, `.github/workflows/native-verification.yml`
 
@@ -334,6 +334,7 @@ Physical GPU/chart, RTL/large-text/accessibility, signed installed-app upgrades,
 - https://github.com/advisories/GHSA-r937-wjx7-w2jp
 - https://kotlinlang.org/docs/gradle-configure-project.html
 - https://developer.android.com/build/kotlin-support
+- https://developer.android.com/build/releases/agp-9-0-0-release-notes
 - https://kotlinlang.org/docs/ksp-overview.html
 - https://github.com/google/ksp/releases/tag/2.3.14
 - https://github.com/i18next/i18next/releases/tag/v27.1.2
