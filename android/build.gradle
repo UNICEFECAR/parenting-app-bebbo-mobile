@@ -6,6 +6,9 @@ buildscript {
         targetSdkVersion = 37
         ndkVersion = "27.1.12297006"
         kotlinVersion = "2.4.21"
+        // AsyncStorage's bundled lookup falls back to KSP 1 for Kotlin 2.4.
+        // Its supported override keeps legacy Room migration generation on KSP 2.
+        kspVersion = "2.3.14"
     }
     repositories {
         google()

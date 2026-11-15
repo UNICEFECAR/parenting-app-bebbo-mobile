@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-15T22:24:13.365193+00:00",
+  "checked_at": "2026-11-15T22:42:36.845474+00:00",
   "main_commit": "f2e1bd4428ab2f37b0dc975dc6508a3a9c01d89f",
   "review_base": "6a1e88e8a876293294642c1ecfa91e3322a51694",
   "review_branch": "RNSDKUpgrade-review-fixes",
@@ -1838,7 +1838,7 @@
       "id": "C108",
       "area": "Application Kotlin build-cache security",
       "issue": "The selected application KGP 2.2.10 falls below the KAPT unsafe-deserialisation fix. Merely compiling RN build plugins with 2.4.21 does not select the application plugin.",
-      "change": "Select stable Kotlin 2.4.21 and explicitly version the root buildscript plugin dependency. Keep AGP 9.2.1, Java 21, SDK/NDK and supported devices unchanged. Record and validate the actual resolved application KGP in CI; reject an older or unverified selection. The vendor fully-tested Gradle range ends at 9.7; later versions are allowed with possible warnings, so the security-required Gradle 9.9.1 combination is verified by the native matrix rather than described as vendor-certified.",
+      "change": "Select stable Kotlin 2.4.21 and explicitly version the root buildscript plugin dependency. Pin the supported AsyncStorage KSP override to 2.3.14: its bundled lookup otherwise falls back to KSP 1.0.28 and fails native task creation against Kotlin 2.4. Retain Room and its generated legacy-storage migration; do not bypass processing. The final native matrix recompiles the migration processor and app. KSP 2.3.14 also fixes the concurrent execution regression in 2.3.13. Keep AGP 9.2.1, Java 21, SDK/NDK and supported devices unchanged. Record and validate the actual resolved application KGP in CI; reject an older or unverified selection. The vendor fully-tested Gradle range ends at 9.7; later versions are allowed with possible warnings, so the security-required Gradle 9.9.1 combination is verified by the native matrix rather than described as vendor-certified.",
       "files": [
         "android/build.gradle",
         "scripts/__tests__/security-config.test.cjs",

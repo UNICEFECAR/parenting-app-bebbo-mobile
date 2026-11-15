@@ -29,7 +29,7 @@ These are npm package/advisory entries, including transitive effects; not counts
 
 **2. Bug or issue:** The selected application KGP 2.2.10 falls below the KAPT unsafe-deserialisation fix. Merely compiling RN build plugins with 2.4.21 does not select the application plugin.
 
-**3. Detailed change:** Select stable Kotlin 2.4.21 and explicitly version the root buildscript plugin dependency. Keep AGP 9.2.1, Java 21, SDK/NDK and supported devices unchanged. Record and validate the actual resolved application KGP in CI; reject an older or unverified selection. The vendor fully-tested Gradle range ends at 9.7; later versions are allowed with possible warnings, so the security-required Gradle 9.9.1 combination is verified by the native matrix rather than described as vendor-certified.
+**3. Detailed change:** Select stable Kotlin 2.4.21 and explicitly version the root buildscript plugin dependency. Pin the supported AsyncStorage KSP override to 2.3.14: its bundled lookup otherwise falls back to KSP 1.0.28 and fails native task creation against Kotlin 2.4. Retain Room and its generated legacy-storage migration; do not bypass processing. The final native matrix recompiles the migration processor and app. KSP 2.3.14 also fixes the concurrent execution regression in 2.3.13. Keep AGP 9.2.1, Java 21, SDK/NDK and supported devices unchanged. Record and validate the actual resolved application KGP in CI; reject an older or unverified selection. The vendor fully-tested Gradle range ends at 9.7; later versions are allowed with possible warnings, so the security-required Gradle 9.9.1 combination is verified by the native matrix rather than described as vendor-certified.
 
 **4. Files impacted:** `android/build.gradle`, `scripts/__tests__/security-config.test.cjs`, `scripts/android-dependency-inventory.gradle`, `scripts/audit-maven-dependencies.py`, `.github/workflows/native-verification.yml`
 
@@ -304,7 +304,7 @@ Versions below are actual top-level locked versions, not only manifest ranges. A
 | Input | Main / older reviewed input | Current decision |
 | --- | --- | --- |
 | Gradle | Main 8.12; review previously 9.8.1 | 9.9.1, official distribution SHA256 d8a18a7a841dd5df825d35a685fad6f2d7f12ac0c280e57b67c27b4a520ba228; wrapper JAR SHA256 621008afc4f5d59357fcf06ffa644dd5aade5e091bdc363742710445f73cdaf8 |
-| Application Kotlin | Main 2.0.21; original PR 2.2.10 | 2.4.21 with explicit root classpath selection and resolved-version CI gate |
+| Application Kotlin | Main 2.0.21; original PR 2.2.10 | 2.4.21 with explicit root classpath selection and resolved-version CI gate; AsyncStorage KSP override 2.3.14 preserves legacy Room processing |
 | Android platform / AGP / NDK | Main SDK 35 / implicit AGP / NDK 27.0 | Retain reviewed SDK 37, AGP 9.2.1 and NDK 27.1.12297006 |
 | Gson / Guava | Earlier Android runtime advisory matches | Retain reviewed constraints 2.13.2 / 33.7.2-android; refresh exact resolved runtime/selected-KGP checks in CI |
 | CocoaPods / xcodeproj | Main has no committed Gemfile.lock or Podfile.lock | Retain 1.16.2 / 1.27.0. New CocoaPods 1.17 still constrains Active Support below 8, so it does not fix the deferred advisory |
@@ -334,6 +334,8 @@ Physical GPU/chart, RTL/large-text/accessibility, signed installed-app upgrades,
 - https://github.com/advisories/GHSA-r937-wjx7-w2jp
 - https://kotlinlang.org/docs/gradle-configure-project.html
 - https://developer.android.com/build/kotlin-support
+- https://kotlinlang.org/docs/ksp-overview.html
+- https://github.com/google/ksp/releases/tag/2.3.14
 - https://github.com/i18next/i18next/releases/tag/v27.1.2
 - https://github.com/marcocrupi/react-native-notify-kit/releases/tag/v10.10.1
 - https://github.com/lottie-react-native/lottie-react-native/releases/tag/v7.5.1
