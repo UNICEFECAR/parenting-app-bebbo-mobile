@@ -20,7 +20,7 @@ jobs:
           cache: npm
       - run: npm ci --legacy-peer-deps
       - name: Install reviewed patch candidates
-        run: npm install --save-exact --legacy-peer-deps i18next@27.1.2 react-native-notify-kit@10.10.1 lottie-react-native@7.5.1
+        run: npm install --save-exact --legacy-peer-deps i18next@27.1.2 react-native-notify-kit@10.10.1 lottie-react-native@7.5.1 react-native-skia@2.15.5
       - run: node scripts/ci-fixtures.cjs
       - uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199
         with:
@@ -28,7 +28,7 @@ jobs:
           bundler-cache: true
       - name: Resolve only the two changed native pods
         working-directory: ios
-        run: bundle exec pod update RNNotifee lottie-react-native --no-repo-update
+        run: bundle exec pod update RNNotifee lottie-react-native RNSkia --no-repo-update
       - name: Verify deployment install preserves the new lock
         working-directory: ios
         run: |
@@ -41,7 +41,8 @@ jobs:
           cp ios/Podfile.lock /tmp/reviewed-native-lock/
           cp "ios/Pods/Local Podspecs/RNNotifee.podspec.json" /tmp/reviewed-native-lock/
           cp "ios/Pods/Local Podspecs/lottie-react-native.podspec.json" /tmp/reviewed-native-lock/
-          node -e 'const fs=require("fs"); const names=["i18next","react-native-notify-kit","lottie-react-native"]; const versions=Object.fromEntries(names.map(n=>[n,require(n+"/package.json").version])); fs.writeFileSync("/tmp/reviewed-native-lock/versions.json",JSON.stringify(versions,null,2));'
+          cp "ios/Pods/Local Podspecs/RNSkia.podspec.json" /tmp/reviewed-native-lock/
+          node -e 'const fs=require("fs"); const names=["i18next","react-native-notify-kit","lottie-react-native","react-native-skia"]; const versions=Object.fromEntries(names.map(n=>[n,require(n+"/package.json").version])); fs.writeFileSync("/tmp/reviewed-native-lock/versions.json",JSON.stringify(versions,null,2));'
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: reviewed-native-lock
