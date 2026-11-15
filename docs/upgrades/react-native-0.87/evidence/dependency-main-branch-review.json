@@ -1,0 +1,1954 @@
+{
+  "checked_at": "2026-11-15T22:24:13.365193+00:00",
+  "main_commit": "f2e1bd4428ab2f37b0dc975dc6508a3a9c01d89f",
+  "review_base": "6a1e88e8a876293294642c1ecfa91e3322a51694",
+  "review_branch": "RNSDKUpgrade-review-fixes",
+  "main_direct_dependencies": 115,
+  "selected_direct_dependencies": 112,
+  "family_queries": 39,
+  "main_npm_audit": {
+    "info": 0,
+    "low": 11,
+    "moderate": 17,
+    "high": 28,
+    "critical": 1,
+    "total": 57
+  },
+  "review_npm_audit": {
+    "info": 0,
+    "low": 11,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 11
+  },
+  "npm_signature_audit": {
+    "invalid": [],
+    "missing": []
+  },
+  "ruby_audit": {
+    "queries": [
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "CFPropertyList"
+        },
+        "version": "3.0.8"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "activesupport"
+        },
+        "version": "7.2.4"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "addressable"
+        },
+        "version": "2.9.2"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "algoliasearch"
+        },
+        "version": "1.27.5"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "atomos"
+        },
+        "version": "0.1.3"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "base64"
+        },
+        "version": "0.3.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "benchmark"
+        },
+        "version": "0.5.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "bigdecimal"
+        },
+        "version": "4.1.3"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "claide"
+        },
+        "version": "1.1.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods"
+        },
+        "version": "1.16.2"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-core"
+        },
+        "version": "1.16.2"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-deintegrate"
+        },
+        "version": "1.0.5"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-downloader"
+        },
+        "version": "2.1"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-plugins"
+        },
+        "version": "1.0.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-search"
+        },
+        "version": "1.0.1"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-trunk"
+        },
+        "version": "1.6.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "cocoapods-try"
+        },
+        "version": "1.2.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "colored2"
+        },
+        "version": "3.1.2"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "concurrent-ruby"
+        },
+        "version": "1.3.8"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "connection_pool"
+        },
+        "version": "2.5.5"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "drb"
+        },
+        "version": "2.2.3"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "escape"
+        },
+        "version": "0.0.4"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "ethon"
+        },
+        "version": "0.19.2"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "ffi"
+        },
+        "version": "1.17.4"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "fourflusher"
+        },
+        "version": "2.3.1"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "fuzzy_match"
+        },
+        "version": "2.0.4"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "gh_inspector"
+        },
+        "version": "1.1.3"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "httpclient"
+        },
+        "version": "2.10.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "i18n"
+        },
+        "version": "1.15.2"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "json"
+        },
+        "version": "3.1.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "logger"
+        },
+        "version": "1.7.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "minitest"
+        },
+        "version": "5.27.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "molinillo"
+        },
+        "version": "0.8.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "mutex_m"
+        },
+        "version": "0.3.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "nanaimo"
+        },
+        "version": "0.4.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "nap"
+        },
+        "version": "1.2.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "netrc"
+        },
+        "version": "0.11.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "nkf"
+        },
+        "version": "0.3.0"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "public_suffix"
+        },
+        "version": "4.0.7"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "rexml"
+        },
+        "version": "3.4.4"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "ruby-macho"
+        },
+        "version": "2.5.1"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "securerandom"
+        },
+        "version": "0.4.1"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "typhoeus"
+        },
+        "version": "1.7.1"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "tzinfo"
+        },
+        "version": "2.0.6"
+      },
+      {
+        "package": {
+          "ecosystem": "RubyGems",
+          "name": "xcodeproj"
+        },
+        "version": "1.27.0"
+      }
+    ],
+    "results": [
+      {},
+      {
+        "vulns": [
+          {
+            "id": "GHSA-8474-xrp6-wh69",
+            "modified": "2026-11-10T21:45:04.323273Z"
+          }
+        ]
+      },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "cocoapods_osv_limitation": {
+    "status": 400,
+    "body": "{\"code\":3,\"message\":\"error in query at index 0: rpc error: code = InvalidArgument desc = invalid ecosystem\"}",
+    "scope": "CocoaPods ecosystem query rejected; no clean Apple dependency audit established"
+  },
+  "gradle_catalog_regression": {
+    "scope": "Isolated version-catalog validation; not an exploit or app/device test",
+    "results": [
+      {
+        "case": "valid",
+        "exit_code": 0,
+        "result": "PASS"
+      },
+      {
+        "case": "invalid",
+        "exit_code": 1,
+        "result": "PASS"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "@attarchi/react-native-lottie-splash-screen",
+      "main_declared": "^2.0.4",
+      "main_resolved": "2.0.4",
+      "before_resolved": "3.0.0",
+      "selected_declared": "3.0.0",
+      "selected_resolved": "3.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@babel/core",
+      "main_declared": "^7.25.2",
+      "main_resolved": "7.28.3",
+      "before_resolved": "7.29.13",
+      "selected_declared": "^7.29.13",
+      "selected_resolved": "7.29.13",
+      "latest_tag": "8.1.2",
+      "compatible_family_latest": "7.29.13",
+      "decision": "Retain the maintained/tested Babel 7 line; the available family patch is already selected. Babel 8 requires a separate configuration/peer migration."
+    },
+    {
+      "name": "@babel/preset-env",
+      "main_declared": "^7.25.3",
+      "main_resolved": "7.28.3",
+      "before_resolved": "7.29.14",
+      "selected_declared": "7.29.14",
+      "selected_resolved": "7.29.14",
+      "latest_tag": "8.0.7",
+      "compatible_family_latest": "7.29.14",
+      "decision": "Retain the maintained/tested Babel 7 line; the available family patch is already selected. Babel 8 requires a separate configuration/peer migration."
+    },
+    {
+      "name": "@babel/runtime",
+      "main_declared": "^7.25.0",
+      "main_resolved": "7.28.3",
+      "before_resolved": "7.29.14",
+      "selected_declared": "7.29.14",
+      "selected_resolved": "7.29.14",
+      "latest_tag": "8.1.2",
+      "compatible_family_latest": "7.29.14",
+      "decision": "Retain the maintained/tested Babel 7 line; the available family patch is already selected. Babel 8 requires a separate configuration/peer migration."
+    },
+    {
+      "name": "@d11/react-native-fast-image",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "8.13.0",
+      "selected_declared": "8.13.0",
+      "selected_resolved": "8.13.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@dr.pogodin/react-native-fs",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "2.40.4",
+      "selected_declared": "2.40.4",
+      "selected_resolved": "2.40.4",
+      "latest_tag": "2.41.0",
+      "compatible_family_latest": "2.41.0",
+      "decision": "Retain 2.40.4: 2.41.0 changes the native binary data bridge and depends on RN 0.88 ArrayBuffer support; backup compatibility takes priority."
+    },
+    {
+      "name": "@klarna/react-native-vector-drawable",
+      "main_declared": "^0.5.1",
+      "main_resolved": "0.5.1",
+      "before_resolved": "0.5.1",
+      "selected_declared": "^0.5.1",
+      "selected_resolved": "0.5.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@native-html/iframe-plugin",
+      "main_declared": "^2.6.1",
+      "main_resolved": "2.6.1",
+      "before_resolved": "2.6.1",
+      "selected_declared": "^2.6.1",
+      "selected_resolved": "2.6.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@native-html/table-plugin",
+      "main_declared": "^5.3.1",
+      "main_resolved": "5.3.1",
+      "before_resolved": "5.3.1",
+      "selected_declared": "^5.3.1",
+      "selected_resolved": "5.3.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-async-storage/async-storage",
+      "main_declared": "^2.2.0",
+      "main_resolved": "2.2.0",
+      "before_resolved": "3.1.1",
+      "selected_declared": "3.1.1",
+      "selected_resolved": "3.1.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-camera-roll/camera-roll",
+      "main_declared": "^7.10.2",
+      "main_resolved": "7.10.2",
+      "before_resolved": "7.10.2",
+      "selected_declared": "^7.10.2",
+      "selected_resolved": "7.10.2",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-community/cli",
+      "main_declared": "15.0.1",
+      "main_resolved": "15.0.1",
+      "before_resolved": "20.2.0",
+      "selected_declared": "20.2.0",
+      "selected_resolved": "20.2.0",
+      "latest_tag": "21.0.0",
+      "compatible_family_latest": "20.2.0",
+      "decision": "Retain RN 0.87-compatible CLI 20.2.0; 21 belongs to the next framework/tooling line. Remaining npm low findings trace to deepmerge with no published fix."
+    },
+    {
+      "name": "@react-native-community/cli-platform-android",
+      "main_declared": "15.0.1",
+      "main_resolved": "15.0.1",
+      "before_resolved": "20.2.0",
+      "selected_declared": "20.2.0",
+      "selected_resolved": "20.2.0",
+      "latest_tag": "21.0.0",
+      "compatible_family_latest": "20.2.0",
+      "decision": "Retain RN 0.87-compatible CLI 20.2.0; 21 belongs to the next framework/tooling line. Remaining npm low findings trace to deepmerge with no published fix."
+    },
+    {
+      "name": "@react-native-community/cli-platform-ios",
+      "main_declared": "15.0.1",
+      "main_resolved": "15.0.1",
+      "before_resolved": "20.2.0",
+      "selected_declared": "20.2.0",
+      "selected_resolved": "20.2.0",
+      "latest_tag": "21.0.0",
+      "compatible_family_latest": "20.2.0",
+      "decision": "Retain RN 0.87-compatible CLI 20.2.0; 21 belongs to the next framework/tooling line. Remaining npm low findings trace to deepmerge with no published fix."
+    },
+    {
+      "name": "@react-native-community/datetimepicker",
+      "main_declared": "^8.4.2",
+      "main_resolved": "8.4.4",
+      "before_resolved": "9.3.0",
+      "selected_declared": "9.3.0",
+      "selected_resolved": "9.3.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-community/netinfo",
+      "main_declared": "^11.4.1",
+      "main_resolved": "11.4.1",
+      "before_resolved": "12.0.1",
+      "selected_declared": "12.0.1",
+      "selected_resolved": "12.0.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-community/push-notification-ios",
+      "main_declared": "^1.11.0",
+      "main_resolved": "1.11.0",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "@react-native-documents/picker",
+      "main_declared": "^10.1.3",
+      "main_resolved": "10.1.5",
+      "before_resolved": "12.0.3",
+      "selected_declared": "12.0.3",
+      "selected_resolved": "12.0.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-firebase/analytics",
+      "main_declared": "^22.3.0",
+      "main_resolved": "22.4.0",
+      "before_resolved": "26.4.1",
+      "selected_declared": "26.4.1",
+      "selected_resolved": "26.4.1",
+      "latest_tag": "27.1.1",
+      "compatible_family_latest": "26.4.2",
+      "decision": "Retain aligned 26.4.1. The 26.4.2 app patch changes the unused App Distribution Gradle plugin; major 27 changes Apple integration. Selected Apple SDK 12.19.3 already contains the reviewed trust-store fix."
+    },
+    {
+      "name": "@react-native-firebase/app",
+      "main_declared": "^22.3.0",
+      "main_resolved": "22.4.0",
+      "before_resolved": "26.4.1",
+      "selected_declared": "26.4.1",
+      "selected_resolved": "26.4.1",
+      "latest_tag": "27.1.1",
+      "compatible_family_latest": "26.4.2",
+      "decision": "Retain aligned 26.4.1. The 26.4.2 app patch changes the unused App Distribution Gradle plugin; major 27 changes Apple integration. Selected Apple SDK 12.19.3 already contains the reviewed trust-store fix."
+    },
+    {
+      "name": "@react-native-firebase/crashlytics",
+      "main_declared": "^22.3.0",
+      "main_resolved": "22.4.0",
+      "before_resolved": "26.4.1",
+      "selected_declared": "26.4.1",
+      "selected_resolved": "26.4.1",
+      "latest_tag": "27.1.1",
+      "compatible_family_latest": "26.4.2",
+      "decision": "Retain aligned 26.4.1. The 26.4.2 app patch changes the unused App Distribution Gradle plugin; major 27 changes Apple integration. Selected Apple SDK 12.19.3 already contains the reviewed trust-store fix."
+    },
+    {
+      "name": "@react-native-firebase/messaging",
+      "main_declared": "^22.3.0",
+      "main_resolved": "22.4.0",
+      "before_resolved": "26.4.1",
+      "selected_declared": "26.4.1",
+      "selected_resolved": "26.4.1",
+      "latest_tag": "27.1.1",
+      "compatible_family_latest": "26.4.2",
+      "decision": "Retain aligned 26.4.1. The 26.4.2 app patch changes the unused App Distribution Gradle plugin; major 27 changes Apple integration. Selected Apple SDK 12.19.3 already contains the reviewed trust-store fix."
+    },
+    {
+      "name": "@react-native-google-signin/google-signin",
+      "main_declared": "^15.0.0",
+      "main_resolved": "15.0.0",
+      "before_resolved": "17.0.0",
+      "selected_declared": "17.0.0",
+      "selected_resolved": "17.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native-vector-icons/fontello",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "14.0.0",
+      "selected_declared": "14.0.0",
+      "selected_resolved": "14.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@react-native/babel-preset",
+      "main_declared": "0.78.2",
+      "main_resolved": "0.78.2",
+      "before_resolved": "0.87.1",
+      "selected_declared": "0.87.1",
+      "selected_resolved": "0.87.1",
+      "latest_tag": "0.88.1",
+      "compatible_family_latest": "0.87.1",
+      "decision": "Retain the current 0.87.1 framework/configuration line; no newer 0.87 patch is published. Avoid a separate RN 0.88 migration without a specific required fix."
+    },
+    {
+      "name": "@react-native/eslint-config",
+      "main_declared": "0.78.2",
+      "main_resolved": "0.78.2",
+      "before_resolved": "0.87.1",
+      "selected_declared": "0.87.1",
+      "selected_resolved": "0.87.1",
+      "latest_tag": "0.88.1",
+      "compatible_family_latest": "0.87.1",
+      "decision": "Retain the current 0.87.1 framework/configuration line; no newer 0.87 patch is published. Avoid a separate RN 0.88 migration without a specific required fix."
+    },
+    {
+      "name": "@react-native/jest-preset",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "0.87.1",
+      "selected_declared": "0.87.1",
+      "selected_resolved": "0.87.1",
+      "latest_tag": "0.88.1",
+      "compatible_family_latest": "0.87.1",
+      "decision": "Retain the current 0.87.1 framework/configuration line; no newer 0.87 patch is published. Avoid a separate RN 0.88 migration without a specific required fix."
+    },
+    {
+      "name": "@react-native/metro-config",
+      "main_declared": "0.78.2",
+      "main_resolved": "0.78.2",
+      "before_resolved": "0.87.1",
+      "selected_declared": "0.87.1",
+      "selected_resolved": "0.87.1",
+      "latest_tag": "0.88.1",
+      "compatible_family_latest": "0.87.1",
+      "decision": "Retain the current 0.87.1 framework/configuration line; no newer 0.87 patch is published. Avoid a separate RN 0.88 migration without a specific required fix."
+    },
+    {
+      "name": "@react-native/typescript-config",
+      "main_declared": "0.78.2",
+      "main_resolved": "0.78.2",
+      "before_resolved": "0.87.1",
+      "selected_declared": "0.87.1",
+      "selected_resolved": "0.87.1",
+      "latest_tag": "0.88.1",
+      "compatible_family_latest": "0.87.1",
+      "decision": "Retain the current 0.87.1 framework/configuration line; no newer 0.87 patch is published. Avoid a separate RN 0.88 migration without a specific required fix."
+    },
+    {
+      "name": "@react-navigation/bottom-tabs",
+      "main_declared": "^6.6.1",
+      "main_resolved": "6.6.1",
+      "before_resolved": "7.21.0",
+      "selected_declared": "7.21.0",
+      "selected_resolved": "7.21.0",
+      "latest_tag": "7.22.0",
+      "compatible_family_latest": "7.22.0",
+      "decision": "New 7.x releases were inspected. Changes concern visual transitions, drawer placement and web/new tab options, not an identified security correction. Retain the tested navigation set pending focused gesture/modal/RTL device acceptance."
+    },
+    {
+      "name": "@react-navigation/drawer",
+      "main_declared": "^6.7.2",
+      "main_resolved": "6.7.2",
+      "before_resolved": "7.14.4",
+      "selected_declared": "7.14.4",
+      "selected_resolved": "7.14.4",
+      "latest_tag": "7.14.5",
+      "compatible_family_latest": "7.14.5",
+      "decision": "New 7.x releases were inspected. Changes concern visual transitions, drawer placement and web/new tab options, not an identified security correction. Retain the tested navigation set pending focused gesture/modal/RTL device acceptance."
+    },
+    {
+      "name": "@react-navigation/native",
+      "main_declared": "^6.1.18",
+      "main_resolved": "6.1.18",
+      "before_resolved": "7.5.1",
+      "selected_declared": "7.5.1",
+      "selected_resolved": "7.5.1",
+      "latest_tag": "7.5.2",
+      "compatible_family_latest": "7.5.2",
+      "decision": "New 7.x releases were inspected. Changes concern visual transitions, drawer placement and web/new tab options, not an identified security correction. Retain the tested navigation set pending focused gesture/modal/RTL device acceptance."
+    },
+    {
+      "name": "@react-navigation/stack",
+      "main_declared": "^6.4.1",
+      "main_resolved": "6.4.1",
+      "before_resolved": "7.12.1",
+      "selected_declared": "7.12.1",
+      "selected_resolved": "7.12.1",
+      "latest_tag": "7.12.2",
+      "compatible_family_latest": "7.12.2",
+      "decision": "New 7.x releases were inspected. Changes concern visual transitions, drawer placement and web/new tab options, not an identified security correction. Retain the tested navigation set pending focused gesture/modal/RTL device acceptance."
+    },
+    {
+      "name": "@reduxjs/toolkit",
+      "main_declared": "^2.8.2",
+      "main_resolved": "2.8.2",
+      "before_resolved": "2.14.0",
+      "selected_declared": "2.14.0",
+      "selected_resolved": "2.14.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@robinbobin/react-native-google-drive-api-wrapper",
+      "main_declared": "^2.2.3",
+      "main_resolved": "2.2.4",
+      "before_resolved": "2.2.6",
+      "selected_declared": "2.2.6",
+      "selected_resolved": "2.2.6",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@sayem314/react-native-keep-awake",
+      "main_declared": "^1.3.1",
+      "main_resolved": "1.3.1",
+      "before_resolved": "2.0.0",
+      "selected_declared": "2.0.0",
+      "selected_resolved": "2.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@shopify/react-native-skia",
+      "main_declared": "^2.1.1",
+      "main_resolved": "2.2.4",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "@types/d3-scale",
+      "main_declared": "—",
+      "main_resolved": "4.0.9",
+      "before_resolved": "4.0.9",
+      "selected_declared": "4.0.9",
+      "selected_resolved": "4.0.9",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/d3-shape",
+      "main_declared": "—",
+      "main_resolved": "3.1.7",
+      "before_resolved": "3.2.0",
+      "selected_declared": "3.2.0",
+      "selected_resolved": "3.2.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/flexsearch",
+      "main_declared": "^0.7.6",
+      "main_resolved": "0.7.6",
+      "before_resolved": "0.7.6",
+      "selected_declared": "^0.7.6",
+      "selected_resolved": "0.7.6",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/jest",
+      "main_declared": "^29.5.13",
+      "main_resolved": "29.5.14",
+      "before_resolved": "29.5.14",
+      "selected_declared": "^29.5.13",
+      "selected_resolved": "29.5.14",
+      "latest_tag": "30.0.0",
+      "compatible_family_latest": "29.5.14",
+      "decision": "Retain current tested toolchain line. New major configuration/type/transform migrations do not address an identified higher-severity finding in this branch."
+    },
+    {
+      "name": "@types/luxon",
+      "main_declared": "^3.6.2",
+      "main_resolved": "3.7.1",
+      "before_resolved": "3.7.6",
+      "selected_declared": "3.7.6",
+      "selected_resolved": "3.7.6",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/node",
+      "main_declared": "—",
+      "main_resolved": "24.3.0",
+      "before_resolved": "24.3.0",
+      "selected_declared": "24.3.0",
+      "selected_resolved": "24.3.0",
+      "latest_tag": "26.6.6",
+      "compatible_family_latest": "24.19.2",
+      "decision": "Retain tested 24.3.0 declarations; later declaration-only releases do not fix a runtime vulnerability here."
+    },
+    {
+      "name": "@types/react",
+      "main_declared": "^19.0.0",
+      "main_resolved": "19.1.11",
+      "before_resolved": "19.3.0",
+      "selected_declared": "^19.2.0",
+      "selected_resolved": "19.3.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/react-native-dotenv",
+      "main_declared": "^0.2.2",
+      "main_resolved": "0.2.2",
+      "before_resolved": "0.2.2",
+      "selected_declared": "^0.2.2",
+      "selected_resolved": "0.2.2",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/react-native-vector-icons",
+      "main_declared": "^6.4.18",
+      "main_resolved": "6.4.18",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "@types/react-redux",
+      "main_declared": "^7.1.34",
+      "main_resolved": "7.1.34",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "@types/react-test-renderer",
+      "main_declared": "^19.0.0",
+      "main_resolved": "19.1.0",
+      "before_resolved": "19.1.0",
+      "selected_declared": "^19.1.0",
+      "selected_resolved": "19.1.0",
+      "latest_tag": "19.3.1",
+      "compatible_family_latest": "19.3.1",
+      "decision": "Retain tested 19.1.0 declarations with the current renderer; no identified security correction in the newer typings."
+    },
+    {
+      "name": "@types/redux-logger",
+      "main_declared": "^3.0.13",
+      "main_resolved": "3.0.13",
+      "before_resolved": "3.0.13",
+      "selected_declared": "^3.0.13",
+      "selected_resolved": "3.0.13",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "@types/styled-components",
+      "main_declared": "^5.1.34",
+      "main_resolved": "5.1.34",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "@types/styled-components-react-native",
+      "main_declared": "^5.2.5",
+      "main_resolved": "5.2.5",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "@types/uuid",
+      "main_declared": "^10.0.0",
+      "main_resolved": "10.0.0",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "axios",
+      "main_declared": "^1.16.1",
+      "main_resolved": "1.18.1",
+      "before_resolved": "1.21.1",
+      "selected_declared": "1.21.1",
+      "selected_resolved": "1.21.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "babel-plugin-module-resolver",
+      "main_declared": "^5.0.2",
+      "main_resolved": "5.0.2",
+      "before_resolved": "5.0.3",
+      "selected_declared": "5.0.3",
+      "selected_resolved": "5.0.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "babel-plugin-transform-remove-console",
+      "main_declared": "^6.9.4",
+      "main_resolved": "6.9.4",
+      "before_resolved": "6.9.4",
+      "selected_declared": "^6.9.4",
+      "selected_resolved": "6.9.4",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "d3-shape",
+      "main_declared": "—",
+      "main_resolved": "3.2.0",
+      "before_resolved": "3.2.1",
+      "selected_declared": "3.2.1",
+      "selected_resolved": "3.2.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "deprecated-react-native-prop-types",
+      "main_declared": "^5.0.0",
+      "main_resolved": "5.0.0",
+      "before_resolved": "5.0.0",
+      "selected_declared": "^5.0.0",
+      "selected_resolved": "5.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "eslint",
+      "main_declared": "^8.19.0",
+      "main_resolved": "8.57.1",
+      "before_resolved": "8.57.1",
+      "selected_declared": "^8.19.0",
+      "selected_resolved": "8.57.1",
+      "latest_tag": "10.15.0",
+      "compatible_family_latest": "8.57.1",
+      "decision": "Retain current tested toolchain line. New major configuration/type/transform migrations do not address an identified higher-severity finding in this branch."
+    },
+    {
+      "name": "i18next",
+      "main_declared": "^25.3.2",
+      "main_resolved": "25.4.2",
+      "before_resolved": "27.1.1",
+      "selected_declared": "27.1.2",
+      "selected_resolved": "27.1.2",
+      "latest_tag": "27.1.2",
+      "compatible_family_latest": "27.1.2",
+      "decision": "Apply 27.1.2 cache-bound security hardening; preserve custom locale casing, offline resources, empty strings and configured fallbacks. The published issue primarily concerns server integrations; this app has no HTTP middleware."
+    },
+    {
+      "name": "intl",
+      "main_declared": "^1.2.5",
+      "main_resolved": "1.2.5",
+      "before_resolved": "1.2.5",
+      "selected_declared": "^1.2.5",
+      "selected_resolved": "1.2.5",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "intl-pluralrules",
+      "main_declared": "^2.0.1",
+      "main_resolved": "2.0.1",
+      "before_resolved": "2.0.1",
+      "selected_declared": "^2.0.1",
+      "selected_resolved": "2.0.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "jest",
+      "main_declared": "^29.6.3",
+      "main_resolved": "29.7.0",
+      "before_resolved": "29.7.0",
+      "selected_declared": "^29.6.3",
+      "selected_resolved": "29.7.0",
+      "latest_tag": "30.5.2",
+      "compatible_family_latest": "29.7.0",
+      "decision": "Retain current tested toolchain line. New major configuration/type/transform migrations do not address an identified higher-severity finding in this branch."
+    },
+    {
+      "name": "lottie-react-native",
+      "main_declared": "6.7.2",
+      "main_resolved": "6.7.2",
+      "before_resolved": "7.5.0",
+      "selected_declared": "7.5.1",
+      "selected_resolved": "7.5.1",
+      "latest_tag": "7.5.1",
+      "compatible_family_latest": "7.5.1",
+      "decision": "Apply 7.5.1: correct the iOS constantsToExport override type; animation API and lottie-ios 4.6.0 unchanged."
+    },
+    {
+      "name": "luxon",
+      "main_declared": "^3.6.1",
+      "main_resolved": "3.7.1",
+      "before_resolved": "3.7.2",
+      "selected_declared": "3.7.2",
+      "selected_resolved": "3.7.2",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "minisearch",
+      "main_declared": "^7.1.2",
+      "main_resolved": "7.1.2",
+      "before_resolved": "7.2.0",
+      "selected_declared": "7.2.0",
+      "selected_resolved": "7.2.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "moment",
+      "main_declared": "^2.30.1",
+      "main_resolved": "2.30.1",
+      "before_resolved": "2.31.0",
+      "selected_declared": "^2.31.0",
+      "selected_resolved": "2.31.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "patch-package",
+      "main_declared": "^8.0.1",
+      "main_resolved": "8.0.1",
+      "before_resolved": "8.0.1",
+      "selected_declared": "^8.0.1",
+      "selected_resolved": "8.0.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "prettier",
+      "main_declared": "2.8.8",
+      "main_resolved": "2.8.8",
+      "before_resolved": "2.8.8",
+      "selected_declared": "2.8.8",
+      "selected_resolved": "2.8.8",
+      "latest_tag": "3.10.1",
+      "compatible_family_latest": "2.8.8",
+      "decision": "Retain current tested toolchain line. New major configuration/type/transform migrations do not address an identified higher-severity finding in this branch."
+    },
+    {
+      "name": "react",
+      "main_declared": "19.0.0",
+      "main_resolved": "19.0.0",
+      "before_resolved": "19.2.3",
+      "selected_declared": "19.2.3",
+      "selected_resolved": "19.2.3",
+      "latest_tag": "19.3.1",
+      "compatible_family_latest": "19.3.1",
+      "decision": "Retain the tested RN 0.87 / React 19.2.3 renderer pairing. The 19.2.9 transport security fixes concern react-server-dom-* packages, absent from this lock."
+    },
+    {
+      "name": "react-i18next",
+      "main_declared": "^15.6.0",
+      "main_resolved": "15.7.2",
+      "before_resolved": "18.0.1",
+      "selected_declared": "18.0.1",
+      "selected_resolved": "18.0.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native",
+      "main_declared": "0.78.2",
+      "main_resolved": "0.78.2",
+      "before_resolved": "0.87.1",
+      "selected_declared": "0.87.1",
+      "selected_resolved": "0.87.1",
+      "latest_tag": "0.88.1",
+      "compatible_family_latest": "0.87.1",
+      "decision": "Retain the current 0.87.1 framework/configuration line; no newer 0.87 patch is published. Avoid a separate RN 0.88 migration without a specific required fix."
+    },
+    {
+      "name": "react-native-actions-sheet",
+      "main_declared": "^0.9.7",
+      "main_resolved": "0.9.7",
+      "before_resolved": "11.0.0",
+      "selected_declared": "11.0.0",
+      "selected_resolved": "11.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-aes-crypto",
+      "main_declared": "^3.2.1",
+      "main_resolved": "3.2.1",
+      "before_resolved": "3.3.0",
+      "selected_declared": "3.3.0",
+      "selected_resolved": "3.3.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-app-intro-slider",
+      "main_declared": "^4.0.4",
+      "main_resolved": "4.0.4",
+      "before_resolved": "4.0.4",
+      "selected_declared": "^4.0.4",
+      "selected_resolved": "4.0.4",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-config",
+      "main_declared": "1.5.5",
+      "main_resolved": "1.5.5",
+      "before_resolved": "1.7.2",
+      "selected_declared": "1.7.2",
+      "selected_resolved": "1.7.2",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-dotenv",
+      "main_declared": "^3.4.11",
+      "main_resolved": "3.4.11",
+      "before_resolved": "3.4.12",
+      "selected_declared": "3.4.12",
+      "selected_resolved": "3.4.12",
+      "latest_tag": "5.0.0",
+      "compatible_family_latest": "3.4.12",
+      "decision": "Retain 3.4.12: current 3.x patch is retained; major 5 changes require explicit multi-flavour environment regression proof."
+    },
+    {
+      "name": "react-native-error-boundary",
+      "main_declared": "^2.0.0",
+      "main_resolved": "2.0.0",
+      "before_resolved": "3.1.0",
+      "selected_declared": "3.1.0",
+      "selected_resolved": "3.1.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-fast-image",
+      "main_declared": "^8.6.3",
+      "main_resolved": "8.6.3",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-fbsdk-next",
+      "main_declared": "^13.4.1",
+      "main_resolved": "13.4.1",
+      "before_resolved": "13.4.3",
+      "selected_declared": "13.4.3",
+      "selected_resolved": "13.4.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-fs",
+      "main_declared": "^2.20.0",
+      "main_resolved": "2.20.0",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-gesture-handler",
+      "main_declared": "^2.27.1",
+      "main_resolved": "2.28.0",
+      "before_resolved": "2.33.1",
+      "selected_declared": "2.33.1",
+      "selected_resolved": "2.33.1",
+      "latest_tag": "3.5.0",
+      "compatible_family_latest": "2.33.1",
+      "decision": "Retain maintained/tested 2.33.1; major 3 changes gesture integration and has no identified app-specific security fix needed here."
+    },
+    {
+      "name": "react-native-get-random-values",
+      "main_declared": "^1.11.0",
+      "main_resolved": "1.11.0",
+      "before_resolved": "2.1.0",
+      "selected_declared": "2.1.0",
+      "selected_resolved": "2.1.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-image-crop-picker",
+      "main_declared": "^0.51.1",
+      "main_resolved": "0.51.1",
+      "before_resolved": "0.52.0",
+      "selected_declared": "0.52.0",
+      "selected_resolved": "0.52.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-keyboard-aware-scroll-view",
+      "main_declared": "^0.9.5",
+      "main_resolved": "0.9.5",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-keyboard-controller",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "1.23.0",
+      "selected_declared": "1.23.0",
+      "selected_resolved": "1.23.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-linear-gradient",
+      "main_declared": "^2.8.3",
+      "main_resolved": "2.8.3",
+      "before_resolved": "2.8.3",
+      "selected_declared": "^2.8.3",
+      "selected_resolved": "2.8.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-localize",
+      "main_declared": "^3.4.2",
+      "main_resolved": "3.5.2",
+      "before_resolved": "3.7.2",
+      "selected_declared": "3.7.2",
+      "selected_resolved": "3.7.2",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-modal-datetime-picker",
+      "main_declared": "^18.0.0",
+      "main_resolved": "18.0.0",
+      "before_resolved": "18.0.0",
+      "selected_declared": "^18.0.0",
+      "selected_resolved": "18.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-notify-kit",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "10.10.0",
+      "selected_declared": "10.10.1",
+      "selected_resolved": "10.10.1",
+      "latest_tag": "10.10.1",
+      "compatible_family_latest": "10.10.1",
+      "decision": "Apply 10.10.1: main-thread Android permission requests and guarded iOS notification-delegate forwarding; current API/minimum OS retained."
+    },
+    {
+      "name": "react-native-orientation-locker",
+      "main_declared": "^1.7.0",
+      "main_resolved": "1.7.0",
+      "before_resolved": "1.7.0",
+      "selected_declared": "^1.7.0",
+      "selected_resolved": "1.7.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-outside-press",
+      "main_declared": "^1.2.2",
+      "main_resolved": "1.2.2",
+      "before_resolved": "1.2.2",
+      "selected_declared": "^1.2.2",
+      "selected_resolved": "1.2.2",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-permissions",
+      "main_declared": "^5.4.1",
+      "main_resolved": "5.4.2",
+      "before_resolved": "5.6.3",
+      "selected_declared": "5.6.3",
+      "selected_resolved": "5.6.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-popup-menu",
+      "main_declared": "^0.18.0",
+      "main_resolved": "0.18.0",
+      "before_resolved": "0.19.0",
+      "selected_declared": "0.19.0",
+      "selected_resolved": "0.19.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-progress-circle",
+      "main_declared": "2.1.0",
+      "main_resolved": "2.1.0",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-push-notification",
+      "main_declared": "^8.1.1",
+      "main_resolved": "8.1.1",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-reanimated",
+      "main_declared": "^3.18.0",
+      "main_resolved": "3.19.1",
+      "before_resolved": "4.7.1",
+      "selected_declared": "4.7.1",
+      "selected_resolved": "4.7.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-rename",
+      "main_declared": "^3.2.17",
+      "main_resolved": "3.2.17",
+      "before_resolved": "3.2.17",
+      "selected_declared": "3.2.17",
+      "selected_resolved": "3.2.17",
+      "latest_tag": "3.3.2",
+      "compatible_family_latest": "3.3.2",
+      "decision": "Retain exact 3.2.17. The 3.3.2 trial introduced additional affected glob paths; no project rename is needed."
+    },
+    {
+      "name": "react-native-render-html",
+      "main_declared": "^6.3.4",
+      "main_resolved": "6.3.4",
+      "before_resolved": "6.3.4",
+      "selected_declared": "^6.3.4",
+      "selected_resolved": "6.3.4",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-restart",
+      "main_declared": "^0.0.27",
+      "main_resolved": "0.0.27",
+      "before_resolved": "0.0.29",
+      "selected_declared": "0.0.29",
+      "selected_resolved": "0.0.29",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-safe-area-context",
+      "main_declared": "^5.5.1",
+      "main_resolved": "5.6.1",
+      "before_resolved": "5.11.1",
+      "selected_declared": "5.11.1",
+      "selected_resolved": "5.11.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-scoped-storage",
+      "main_declared": "1.9.5",
+      "main_resolved": "1.9.5",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-screens",
+      "main_declared": "4.15.2",
+      "main_resolved": "4.15.2",
+      "before_resolved": "4.30.1",
+      "selected_declared": "4.30.1",
+      "selected_resolved": "4.30.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-share",
+      "main_declared": "^12.1.0",
+      "main_resolved": "12.2.0",
+      "before_resolved": "12.3.1",
+      "selected_declared": "12.3.1",
+      "selected_resolved": "12.3.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-skia",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "2.15.1",
+      "selected_declared": "2.15.5",
+      "selected_resolved": "2.15.5",
+      "latest_tag": "3.10.2",
+      "compatible_family_latest": "2.15.5",
+      "decision": "Apply maintained 2.15.5 backports: native view IDs, Metal device ownership, temporary paint lifetimes, stable Canvas refs, pixel sizing and Android retained buffers. Retain Skia 2 / Ganesh and older devices."
+    },
+    {
+      "name": "react-native-svg",
+      "main_declared": "^15.12.0",
+      "main_resolved": "15.12.1",
+      "before_resolved": "15.16.1",
+      "selected_declared": "15.16.1",
+      "selected_resolved": "15.16.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-svg-transformer",
+      "main_declared": "1.5.3",
+      "main_resolved": "1.5.3",
+      "before_resolved": "1.5.3",
+      "selected_declared": "1.5.3",
+      "selected_resolved": "1.5.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-timeline-flatlist",
+      "main_declared": "^0.8.0",
+      "main_resolved": "0.8.0",
+      "before_resolved": "1.0.1",
+      "selected_declared": "1.0.1",
+      "selected_resolved": "1.0.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-tracking-transparency",
+      "main_declared": "^0.1.2",
+      "main_resolved": "0.1.2",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-url-polyfill",
+      "main_declared": "^2.0.0",
+      "main_resolved": "2.0.0",
+      "before_resolved": "4.0.0",
+      "selected_declared": "4.0.0",
+      "selected_resolved": "4.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-vector-icons",
+      "main_declared": "^10.2.0",
+      "main_resolved": "10.3.0",
+      "before_resolved": "—",
+      "selected_declared": "—",
+      "selected_resolved": "—",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Removed or replaced by the original upgrade; retained neither as a second native module nor a stale direct dependency."
+    },
+    {
+      "name": "react-native-vector-image",
+      "main_declared": "^0.4.5",
+      "main_resolved": "0.4.5",
+      "before_resolved": "0.6.1",
+      "selected_declared": "0.6.1",
+      "selected_resolved": "0.6.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-version-info",
+      "main_declared": "^1.1.1",
+      "main_resolved": "1.1.1",
+      "before_resolved": "1.1.1",
+      "selected_declared": "^1.1.1",
+      "selected_resolved": "1.1.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-video",
+      "main_declared": "^6.19.0",
+      "main_resolved": "6.19.0",
+      "before_resolved": "6.19.3",
+      "selected_declared": "6.19.3",
+      "selected_resolved": "6.19.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-webview",
+      "main_declared": "^13.15.0",
+      "main_resolved": "13.15.0",
+      "before_resolved": "17.1.0",
+      "selected_declared": "17.1.0",
+      "selected_resolved": "17.1.0",
+      "latest_tag": "14.0.1",
+      "compatible_family_latest": "17.1.0",
+      "decision": "Retain 17.1.0: current upstream 17.x release is verified even though the npm latest tag points to 14.0.1. Do not downgrade by tag alone."
+    },
+    {
+      "name": "react-native-worklets",
+      "main_declared": "—",
+      "main_resolved": "—",
+      "before_resolved": "0.13.1",
+      "selected_declared": "0.13.1",
+      "selected_resolved": "0.13.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-native-youtube-iframe",
+      "main_declared": "^2.4.1",
+      "main_resolved": "2.4.1",
+      "before_resolved": "2.4.1",
+      "selected_declared": "^2.4.1",
+      "selected_resolved": "2.4.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-redux",
+      "main_declared": "^9.2.0",
+      "main_resolved": "9.2.0",
+      "before_resolved": "9.3.1",
+      "selected_declared": "9.3.1",
+      "selected_resolved": "9.3.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "react-test-renderer",
+      "main_declared": "19.0.0",
+      "main_resolved": "19.0.0",
+      "before_resolved": "19.2.3",
+      "selected_declared": "19.2.3",
+      "selected_resolved": "19.2.3",
+      "latest_tag": "19.3.1",
+      "compatible_family_latest": "19.3.1",
+      "decision": "Retain 19.2.3 with React; do not mix renderer minor versions merely because the registry publishes a newer line."
+    },
+    {
+      "name": "realm",
+      "main_declared": "^20.2.0",
+      "main_resolved": "20.2.0",
+      "before_resolved": "20.2.0",
+      "selected_declared": "20.2.0",
+      "selected_resolved": "20.2.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "redux-logger",
+      "main_declared": "^3.0.6",
+      "main_resolved": "3.0.6",
+      "before_resolved": "3.0.6",
+      "selected_declared": "^3.0.6",
+      "selected_resolved": "3.0.6",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "redux-persist",
+      "main_declared": "^6.0.0",
+      "main_resolved": "6.0.0",
+      "before_resolved": "6.0.0",
+      "selected_declared": "^6.0.0",
+      "selected_resolved": "6.0.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "redux-saga",
+      "main_declared": "^1.3.0",
+      "main_resolved": "1.3.0",
+      "before_resolved": "1.5.1",
+      "selected_declared": "1.5.1",
+      "selected_resolved": "1.5.1",
+      "latest_tag": "1.6.0",
+      "compatible_family_latest": "1.6.0",
+      "decision": "Retain 1.5.1: 1.6.0 adds a named middleware export; this app uses the working default export."
+    },
+    {
+      "name": "reselect",
+      "main_declared": "^5.1.1",
+      "main_resolved": "5.1.1",
+      "before_resolved": "5.3.0",
+      "selected_declared": "5.3.0",
+      "selected_resolved": "5.3.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "styled-components",
+      "main_declared": "^6.1.19",
+      "main_resolved": "6.1.19",
+      "before_resolved": "6.6.0",
+      "selected_declared": "6.6.0",
+      "selected_resolved": "6.6.0",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "typescript",
+      "main_declared": "5.0.4",
+      "main_resolved": "5.0.4",
+      "before_resolved": "5.9.3",
+      "selected_declared": "5.9.3",
+      "selected_resolved": "5.9.3",
+      "latest_tag": "7.0.2",
+      "compatible_family_latest": "5.9.3",
+      "decision": "Retain current tested toolchain line. New major configuration/type/transform migrations do not address an identified higher-severity finding in this branch."
+    },
+    {
+      "name": "uuid",
+      "main_declared": "^11.1.0",
+      "main_resolved": "11.1.0",
+      "before_resolved": "14.0.3",
+      "selected_declared": "14.0.3",
+      "selected_resolved": "14.0.3",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    },
+    {
+      "name": "victory-native",
+      "main_declared": "^36.8.1",
+      "main_resolved": "36.9.2",
+      "before_resolved": "43.0.1",
+      "selected_declared": "43.0.1",
+      "selected_resolved": "43.0.1",
+      "latest_tag": "No newer tag reported",
+      "compatible_family_latest": "No separate family query needed",
+      "decision": "Retain reviewed version; no additional security/stability update was identified by the current registry/audit comparison."
+    }
+  ],
+  "changes": [
+    {
+      "id": "C107",
+      "area": "Gradle build-host security",
+      "issue": "Gradle 9.8.1 remains affected by the November catalog code-generation and daemon-registry advisories, including one critical and two high findings. This was an omission in the earlier dependency review.",
+      "change": "Upgrade the complete wrapper to 9.9.1, regenerate the launch scripts/JAR with the official distribution, verify the distribution and wrapper JAR SHA256 values against first-party sources, retain URL validation and add an isolated valid/invalid catalog regression. The non-executable invalid value is accepted by 9.8.1 but rejected during validation by 9.9.1.",
+      "files": [
+        "android/gradle/wrapper/gradle-wrapper.properties",
+        "android/gradle/wrapper/gradle-wrapper.jar",
+        "android/gradlew",
+        "android/gradlew.bat",
+        "scripts/check-gradle-catalog-security.py",
+        "scripts/__tests__/security-config.test.cjs",
+        ".github/workflows/native-verification.yml"
+      ]
+    },
+    {
+      "id": "C108",
+      "area": "Application Kotlin build-cache security",
+      "issue": "The selected application KGP 2.2.10 falls below the KAPT unsafe-deserialisation fix. Merely compiling RN build plugins with 2.4.21 does not select the application plugin.",
+      "change": "Select stable Kotlin 2.4.21 and explicitly version the root buildscript plugin dependency. Keep AGP 9.2.1, Java 21, SDK/NDK and supported devices unchanged. Record and validate the actual resolved application KGP in CI; reject an older or unverified selection. The vendor fully-tested Gradle range ends at 9.7; later versions are allowed with possible warnings, so the security-required Gradle 9.9.1 combination is verified by the native matrix rather than described as vendor-certified.",
+      "files": [
+        "android/build.gradle",
+        "scripts/__tests__/security-config.test.cjs",
+        "scripts/android-dependency-inventory.gradle",
+        "scripts/audit-maven-dependencies.py",
+        ".github/workflows/native-verification.yml"
+      ]
+    },
+    {
+      "id": "C109",
+      "area": "i18next security hardening",
+      "issue": "Failed-load, language-hierarchy and plural-rule caches can grow with unlimited language/namespace input. Server middleware is the primary exposed upstream scenario; this app does not contain that middleware.",
+      "change": "Upgrade 27.1.1 to 27.1.2. Exercise over 1,000 failed loads and generated language codes against the actual installed library. Verify bounded caches and that offline translations, interpolation, empty strings and custom country locale IDs still work using the app’s cleanCode/fallback policies. The first test fails on 27.1.1 and both pass on 27.1.2.",
+      "files": [
+        "package.json",
+        "package-lock.json",
+        "scripts/__tests__/i18next-security.test.cjs"
+      ]
+    },
+    {
+      "id": "C110",
+      "area": "Notification permission and delegate stability",
+      "issue": "TurboModule permission requests may run on the native-modules thread while Android changes the UI hierarchy. Duplicate/cyclic iOS delegate chains can also recurse.",
+      "change": "Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.",
+      "files": [
+        "package.json",
+        "package-lock.json",
+        "ios/Podfile.lock",
+        ".github/workflows/native-verification.yml"
+      ]
+    },
+    {
+      "id": "C111",
+      "area": "iOS Lottie bridge compatibility",
+      "issue": "The native constantsToExport override had an implicitly unwrapped optional return type rather than the required non-optional dictionary.",
+      "change": "Upgrade Lottie RN 7.5.0 to 7.5.1. Keep the returned VERSION value, animation APIs, splash/manual-dismiss behaviour and lottie-ios 4.6.0. The native package changes only the override signature and package version.",
+      "files": [
+        "package.json",
+        "package-lock.json",
+        "ios/Podfile.lock"
+      ]
+    },
+    {
+      "id": "C112",
+      "area": "Maintained Skia 2 native fixes",
+      "issue": "The original 2.15.1 selection predates native view-ID, Metal ownership and temporary wrapper-lifetime backports, plus pixel-grid/retained-buffer corrections. The global latest tag obscures maintained 2.x patches.",
+      "change": "Upgrade to 2.15.5 within the supported Victory 43 / Skia 2 pairing, retaining Ganesh and older-device support. Do not introduce Skia 3/Graphite or raise the app minimum OS. The lock also updates CanvasKit WASM 0.41.0 to 0.41.1 for the package’s web path. Native rendering/physical GPU acceptance remains distinct from compilation.",
+      "files": [
+        "package.json",
+        "package-lock.json",
+        "ios/Podfile.lock"
+      ]
+    },
+    {
+      "id": "C113",
+      "area": "Java setup action security",
+      "issue": "setup-java 6.2.0 embeds an affected fast-xml-parser line.",
+      "change": "Pin setup-java 6.3.0 to verified immutable commit d1374f8ac74474200d16ef8ecee22c7ae7a51880. Its bundled parser is 5.12.0. Explicitly keep problem-matcher enabled because this release changes the default; compiler annotations and the Java 21 selection are retained.",
+      "files": [
+        ".github/workflows/native-verification.yml"
+      ]
+    },
+    {
+      "id": "C114",
+      "area": "Continuous resolved native dependency verification",
+      "issue": "An npm audit cannot verify Maven runtime packages or establish which Kotlin plugin Gradle actually selected. Partial scans can otherwise appear clean.",
+      "change": "Add a read-only inventory of all ten release runtime classpaths plus root buildscript coordinates. Reject incomplete resolution, empty/missing variants and unpatched selected KGP. Query exact runtime coordinates plus the selected KGP against OSV and fail on advisory matches, malformed/partial/paginated responses or request failures. Preserve the inventory/report as CI artifacts. Other buildscript, Apple/C++ and service coverage remains explicitly excluded.",
+      "files": [
+        "scripts/android-dependency-inventory.gradle",
+        "scripts/audit-maven-dependencies.py",
+        "scripts/__tests__/test_maven_audit.py",
+        ".github/workflows/native-verification.yml"
+      ]
+    },
+    {
+      "id": "C115",
+      "area": "Main-branch dependency comparison and acceptance follow-up",
+      "issue": "The prior comparison used PR #1115 rather than current main; some console inspections and actual access blockers were not recorded in the consolidated report.",
+      "change": "Compare all direct main/fixes selections and both locked npm graphs, inspect newer within-major candidates as well as latest tags, check immutable Actions and Ruby/native constraints, record fresh registry/signature/Ruby results, and document the new bounded Firebase observations. Keep production/device/governance acceptance separate from source fixes.",
+      "files": [
+        "docs/upgrades/react-native-0.87/dependency-main-branch-review.md",
+        "docs/upgrades/react-native-0.87/evidence/dependency-main-branch-review.json",
+        "docs/upgrades/react-native-0.87/crash-history.md",
+        "docs/upgrades/react-native-0.87/native-dependency-security.md",
+        "docs/upgrades/react-native-0.87/README.md"
+      ]
+    }
+  ],
+  "native_lock_resolution": {
+    "workflow_run": 43767457991,
+    "source_commit": "62e9a3723ab52116e10072fbc1d73dbe8121357e",
+    "artifact_id": 14182962915,
+    "deployment_reinstall": "PASS; generated lock unchanged",
+    "versions": {
+      "i18next": "27.1.2",
+      "react-native-notify-kit": "10.10.1",
+      "lottie-react-native": "7.5.1",
+      "react-native-skia": "2.15.5"
+    },
+    "lock_sha256": "c4b1237f510131d3eba47f83dbba25f1c1c3ce83ff29cdd26c5fd74c2aaf21a8"
+  },
+  "local_validation": {
+    "jest_tests": 562,
+    "jest_suites": 75,
+    "node_tooling_tests": 38,
+    "python_tests": 34,
+    "strict_typescript": "PASS",
+    "eslint_errors": 0,
+    "eslint_warnings": 2053,
+    "native_vectors": 96
+  },
+  "native_ci": "Required on the final published source. Consult the corresponding commit run and consolidated report; the lock-only run is not application acceptance."
+}

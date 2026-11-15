@@ -10,7 +10,6 @@ concurrency:
   cancel-in-progress: true
 jobs:
   unit:
-    if: ${{ !contains(github.event.head_commit.message, '[dependency lock]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -38,7 +37,6 @@ jobs:
       - run: python3 scripts/flavour-audit.py --check
       - run: npm audit --audit-level=high
   bundles:
-    if: ${{ !contains(github.event.head_commit.message, '[dependency lock]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -69,7 +67,6 @@ jobs:
       - name: Verify referenced native vector resources
         run: node scripts/collect-vector-assets.cjs --check
   native-smoke:
-    if: ${{ !contains(github.event.head_commit.message, '[dependency lock]') }}
     strategy:
       fail-fast: false
       matrix:
@@ -81,7 +78,6 @@ jobs:
       platform: ${{ matrix.platform }}
       smoke: ${{ matrix.flavour == 'bebbo' || matrix.flavour == 'reraiUmntwana' }}
   auxiliary-native:
-    if: ${{ !contains(github.event.head_commit.message, '[dependency lock]') }}
     strategy:
       fail-fast: false
       matrix:

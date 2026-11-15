@@ -1,5 +1,10 @@
 # Application security and resilience assessment
 
+**15 November dependency update:** [Main-branch comparison and security fixes](dependency-main-branch-review.md)
+supersedes the older Gradle/Kotlin selection below: Gradle 9.9.1 and the explicit
+application Kotlin plugin 2.4.21 are now selected, with new catalog/runtime audit
+gates and maintained library patches. Earlier source-specific results remain historical.
+
 **14 November follow-up:** [Implemented non-Firebase fixes and current validation](non-firebase-follow-up.md), including passphrase-protected portable backups, journalled recovery and a clean strict TypeScript check. Older source-specific results below remain historical evidence.
 
 This is a repository/source assessment with targeted tests and available read-only crash history. It is not a penetration-test certificate, a full Maven/Pods CVE scan or confirmation of production configuration. npm audit results do not cover Gradle, native binaries, signing systems or backend services.

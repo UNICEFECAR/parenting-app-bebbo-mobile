@@ -1,5 +1,13 @@
 # Native and build-tool security follow-up
 
+**15 November update:** the [main-branch dependency review](dependency-main-branch-review.md)
+selects Gradle 9.9.1 for the three November catalog/daemon advisories and explicitly
+selects the stable application Kotlin plugin 2.4.21 for the KAPT cache fix. The
+earlier Kotlin deferral below is historical. New CI records the selected plugin
+and exact runtime Maven graphs. Active Support remains constrained by CocoaPods;
+even current CocoaPods Core 1.17.0 requires Active Support below 8. Native binary,
+Apple and production-service coverage must not be inferred from an npm audit.
+
 Assessment date: 13 November 2026. The npm result does **not** describe all native or build-tool vulnerabilities.
 
 ## Implemented updates

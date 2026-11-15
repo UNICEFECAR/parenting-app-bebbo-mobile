@@ -1,11 +1,16 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-test('Android wrapper cannot regress below the patched Gradle 9.8.1 baseline', () => {
+test('Android wrapper cannot regress below the patched Gradle 9.9.1 baseline', () => {
   const text = fs.readFileSync('android/gradle/wrapper/gradle-wrapper.properties','utf8');
   const version = text.match(/gradle-(\d+)\.(\d+)\.(\d+)-bin.zip/).slice(1).map(Number);
-  assert.ok(version[0] > 9 || (version[0] === 9 && (version[1] > 8 || (version[1] === 8 && version[2] >= 1))));
+  assert.ok(version[0] > 9 || (version[0] === 9 && (version[1] > 9 || (version[1] === 9 && version[2] >= 1))));
   assert.match(text,/distributionSha256Sum=[a-f0-9]{64}\n/);
+});
+test('application Kotlin compiler includes the KAPT cache deserialisation fix', () => {
+  const text = fs.readFileSync('android/build.gradle', 'utf8');
+  const version = text.match(/kotlinVersion\s*=\s*"(\d+)\.(\d+)\.(\d+)"/).slice(1).map(Number);
+  assert.ok(version[0] > 2 || (version[0] === 2 && (version[1] > 4 || (version[1] === 4 && version[2] >= 20))));
 });
 test('every external workflow action is pinned to an immutable commit', () => {
   for(const file of fs.readdirSync('.github/workflows').filter(x=>/ya?ml$/.test(x))){

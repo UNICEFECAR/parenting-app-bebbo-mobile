@@ -49,16 +49,20 @@ jobs:
       - name: Prepare fake configuration for compile checks
         run: node scripts/ci-fixtures.cjs
       - run: npm run assets:check
-      - uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
         if: inputs.platform == 'android'
         with:
           distribution: temurin
           java-version: '21'
+          problem-matcher: true
       - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
         if: inputs.platform == 'android'
       - name: Install pinned Android tools
         if: inputs.platform == 'android'
         run: sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;27.1.12297006'
+      - name: Verify unsafe Gradle version catalog values are rejected
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        run: python3 scripts/check-gradle-catalog-security.py --report "$RUNNER_TEMP/native-smoke/gradle-catalog-security.json"
       - name: Compile unsigned Android release
         if: inputs.platform == 'android'
         working-directory: android
@@ -70,6 +74,22 @@ jobs:
             args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
           fi
           ./gradlew "${args[@]}"
+      - name: Audit resolved runtime dependencies and selected Kotlin compiler
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        working-directory: android
+        run: |
+          ./gradlew -I ../scripts/android-dependency-inventory.gradle :app:reviewDependencyInventory \
+            -PreviewDependencyInventoryFile="$RUNNER_TEMP/native-smoke/dependency-inventory.json" \
+            -PunsignedVerification=true --no-daemon --max-workers=2
+          python3 ../scripts/audit-maven-dependencies.py "$RUNNER_TEMP/native-smoke/dependency-inventory.json" \
+            --report "$RUNNER_TEMP/native-smoke/maven-advisories.json"
+      - name: Verify notification permission requests run on the UI thread
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        working-directory: android
+        run: |
+          ./gradlew :react-native-notify-kit:testReleaseUnitTest \
+            --tests io.invertase.notifee.RequestPermissionThreadTest \
+            -PunsignedVerification=true --no-daemon --max-workers=2
       - name: Install pinned bundletool
         if: inputs.platform == 'android'
         shell: bash
@@ -110,7 +130,9 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: native-smoke-evidence-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
-          path: ${{ runner.temp }}/native-smoke
+          path: |
+            ${{ runner.temp }}/native-smoke
+            node_modules/react-native-notify-kit/android/build/test-results/testReleaseUnitTest
           if-no-files-found: warn
       - uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1
         if: inputs.platform == 'ios'
