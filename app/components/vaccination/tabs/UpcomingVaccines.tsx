@@ -76,7 +76,7 @@ const UpcomingVaccines = (props: any): any => {
   useEffect(() => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
-  }, []);
+  }, [currentPeriodId, item?.periodID]);
   const gotoArticle = (pinnedArticleId: any): any => {
     if (pinnedArticleId != 0) {
       navigation.navigate("DetailsScreen", {

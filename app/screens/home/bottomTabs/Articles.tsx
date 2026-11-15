@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import { appConfig } from "../../../instances";
 import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -15,9 +16,7 @@ import Icon, { IconClearPress, OuterIconRow } from "@components/shared/Icon";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
 import VideoPlayer from "@components/VideoPlayer";
-
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
-
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import {
   miniSearchConfig,
@@ -66,7 +65,6 @@ import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectArticleCategoryArray, selectArticleDataAll, selectChildAge, selectPinnedChildDevData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
-
 const styles = StyleSheet.create({
   ageBracketView: {
     backgroundColor: bgcolorWhite2,
@@ -216,8 +214,12 @@ const Articles = ({ route, navigation }: any): any => {
     });
   };
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+
   useFocusEffect(
     React.useCallback(() => {
+
+
       // const task = InteractionManager.runAfterInteractions(() => {
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
@@ -394,17 +396,8 @@ const Articles = ({ route, navigation }: any): any => {
       </ArticleListBox>
     );
   };
-  const DATA = [
-    {
-      id: 1,
-      title: t("actScreensugacttxt"),
-      data: suggestedArticles,
-    },
-  ];
-  const memoizedValue = useMemo(
-    () => RenderArticleItem,
-    [RenderArticleItem, DATA]
-  );
+
+  const memoizedValue = RenderArticleItem;
   const toTop = (): any => {
     // use current
     if (flatListRef && flatListRef.current) {
@@ -630,27 +623,31 @@ const Articles = ({ route, navigation }: any): any => {
       };
       // });
 
-    }, [])
+    }, [navigation])
   );
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs2 = useCommittedRef(() => ({childAge, navigation, showSelectedBracketData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {childAge: inputChildAge, navigation: inputNavigation, showSelectedBracketData: inputShowSelectedBracketData, backClicked: inputBackClicked} = focusCommandInputs2.current();
+
       // const task = InteractionManager.runAfterInteractions(() => {
-      if (route.params?.backClicked !== "yes") {
+      if (inputBackClicked !== "yes") {
         setshowNoData(false);
 
         const selectedId = route.params?.currentSelectedChildId;
         const validId =
           selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
 
-        const firstChildDevData = childAge.find((x: any) => x.id === validId);
+        const firstChildDevData = inputChildAge.find((x: any) => x.id === validId);
         if (firstChildDevData) {
-          showSelectedBracketData(firstChildDevData);
+          inputShowSelectedBracketData(firstChildDevData);
         }
       } else {
         setLoadingArticle(false);
-        if (route.params?.backClicked === "yes") {
-          navigation.setParams({ backClicked: "no" });
+        if (inputBackClicked === "yes") {
+          inputNavigation.setParams({ backClicked: "no" });
         }
       }
       // });
@@ -658,12 +655,12 @@ const Articles = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       activeChild?.uuid,
       languageCode,
       route.params?.currentSelectedChildId,
-      activityTaxonomyId,
-    ])
+      activityTaxonomyId, focusCommandInputs2])
   );
 
   useFocusEffect(
@@ -682,7 +679,8 @@ const Articles = ({ route, navigation }: any): any => {
       };
       // });
 
-    }, [activeChild?.uuid])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- A child switch deliberately runs this focus cleanup to discard filters.
+    }, [activeChild?.uuid, navigation])
   );
 
   useEffect(() => {
@@ -711,33 +709,37 @@ const Articles = ({ route, navigation }: any): any => {
     setFilterArray(newFilterArray);
   };
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs3 = useCommittedRef(() => ({setFilteredArticleData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {setFilteredArticleData: inputSetFilteredArticleData, backClicked: inputBackClicked} = focusCommandInputs3.current();
+
       if (isSerachedQueryText || queryText == "") {
         //setLoadingArticle(true);
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
-            setFilteredArticleData(route.params?.categoryArray);
+            inputSetFilteredArticleData(route.params?.categoryArray);
           } else {
             setFilterArray([]);
-            setFilteredArticleData([]);
+            inputSetFilteredArticleData([]);
           }
         }
         setIsSearchedQueryText(false);
-        if (route.params?.backClicked != "yes") {
+        if (inputBackClicked != "yes") {
           fetchData();
         } else {
           setLoadingArticle(false);
         }
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
       languageCode,
       queryText,
-      isSerachedQueryText,
-    ])
+      isSerachedQueryText, focusCommandInputs3])
   );
 
   const searchList = async (queryText: any): Promise<any> => {

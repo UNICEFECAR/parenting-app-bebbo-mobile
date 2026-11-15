@@ -1,3 +1,5 @@
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
+import {useNavigationBackHandler} from "../../../customHooks/useNavigationBackHandler";
 import {openMeasuredLink} from "../../../services/measuredLink";
 import { scheduleIdleTask } from "../../../services/scheduleIdleTask";
 import { SURVEY_SUBMIT } from "@assets/data/firebaseEvents";
@@ -89,16 +91,6 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { bgcolorWhite2 } from "@styles/style";
 import { ToastAndroidLocal } from "../../../android/sharedAndroid.android";
 import {synchronizeEvents} from '../../../services/EventSyncService';
-
-
-const styles = StyleSheet.create({
-  flexShrink1: { flexShrink: 1 },
-  pressablePadding: {
-    paddingLeft: 15,
-    paddingVertical: 15,
-  },
-  scrollView: { backgroundColor: bgcolorWhite2, flex: 5 },
-});
 import {
   selectLocale,
   selectUserIsOnboarded,
@@ -113,6 +105,15 @@ import {
 } from "../../../services/selectors";
 import QuickLinksRow from "@components/homeScreen/QuickLinksRow";
 import CountryAppBanner from "@components/shared/CountryAppBanner";
+const styles = StyleSheet.create({
+  flexShrink1: { flexShrink: 1 },
+  pressablePadding: {
+    paddingLeft: 15,
+    paddingVertical: 15,
+  },
+  scrollView: { backgroundColor: bgcolorWhite2, flex: 5 },
+});
+
 const Home = ({ route: _route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -182,17 +183,7 @@ const Home = ({ route: _route, navigation }: any): any => {
       BackHandler.exitApp();
     }
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const [profileLoading, setProfileLoading] = React.useState(false);
 
   const forceUpdateApis = (forceupdatetime: any): any => {
@@ -295,24 +286,28 @@ const Home = ({ route: _route, navigation }: any): any => {
   const relfolejadev = "0.2.0";
   const relfolejaprod = "1.1.0";
 
+  // Run the mount-time version check once; state updates must not reopen its dialog.
+  const startupHomeInputs = useCommittedRef(() => ({countryId, dispatch, flavor, hcuModalOpened, updateContentOnAppVersionChange, vaccineModalOpened}));
   useEffect(() => {
-    const task = scheduleIdleTask(() => {
-      updateContentOnAppVersionChange();
+    const {countryId: inputCountryId, dispatch: inputDispatch, flavor: inputFlavor, hcuModalOpened: inputHcuModalOpened, updateContentOnAppVersionChange: inputUpdateContentOnAppVersionChange, vaccineModalOpened: inputVaccineModalOpened} = startupHomeInputs.current();
 
-      const firstModalVisible = flavor !== "bebbo" ? true : (countryId == appConfig.restOfTheWorldCountryId) ? true : false
+    const task = scheduleIdleTask(() => {
+      inputUpdateContentOnAppVersionChange();
+
+      const firstModalVisible = inputFlavor !== "bebbo" ? true : (inputCountryId == appConfig.restOfTheWorldCountryId) ? true : false
       console.log("home firstModalVisible--",firstModalVisible)
-      if(vaccineModalOpened == true && firstModalVisible == false) {
+      if(inputVaccineModalOpened == true && firstModalVisible == false) {
         const obj = { key: "IsVaccineModalOpened", value: false };
-        dispatch(setInfoModalOpened(obj));
+        inputDispatch(setInfoModalOpened(obj));
       }
-      if(hcuModalOpened == true && firstModalVisible == false) {
+      if(inputHcuModalOpened == true && firstModalVisible == false) {
         const obj = { key: "IsHCUModalOpened", value: false };
-        dispatch(setInfoModalOpened(obj));
+        inputDispatch(setInfoModalOpened(obj));
       }
     });
 
     return () => task.cancel();
-  }, []);
+  }, [startupHomeInputs]);
 
   const updateContentOnAppVersionChange = async () => {
     if (VersionInfo.appVersion > appVersion || appVersion === "") {
@@ -341,46 +336,46 @@ const Home = ({ route: _route, navigation }: any): any => {
     }
   };
 
-  useLayoutEffect(
-    React.useCallback(() => {
-      const task = scheduleIdleTask(() => {
-        if (netInfo.isConnected) {
-          synchronizeEvents(netInfo.isConnected);
-        }
-
-        // Expensive task
-      });
-
-      return () => task.cancel();
-    }, [])
-  );
+  const initialSyncConnection = useCommittedRef(() => netInfo.isConnected);
+  // AppNavigation handles reconnects; this is only the existing Home mount flush.
+  useLayoutEffect(() => {
+    const task = scheduleIdleTask(() => {
+      const connected = initialSyncConnection.current();
+      if (connected) synchronizeEvents(connected);
+    });
+    return () => task.cancel();
+  }, [initialSyncConnection]);
+  // Only existing refresh triggers start this check; profile/telemetry writes are not downloads.
+  const downloadInputs = useCommittedRef(() => ({activeChild, bufferAgeBracket, dispatch, forceUpdateApis, forceUpdateData, incrementalSyncDT, languageCode, navigation, onNoForceUpdate, showDownloadPopup, t, userIsOnboarded}));
   useEffect(() => {
+    const {activeChild: inputActiveChild, bufferAgeBracket: inputBufferAgeBracket, dispatch: inputDispatch, forceUpdateApis: inputForceUpdateApis, forceUpdateData: inputForceUpdateData, incrementalSyncDT: inputIncrementalSyncDT, languageCode: inputLanguageCode, navigation: inputNavigation, onNoForceUpdate: inputOnNoForceUpdate, showDownloadPopup: inputShowDownloadPopup, t: inputT, userIsOnboarded: inputUserIsOnboarded} = downloadInputs.current();
+
     // setModalVisible(false);
     async function fetchNetInfo(): Promise<any> {
-      console.log(bufferAgeBracket, "---userIsOnboarded----", userIsOnboarded);
+      console.log(inputBufferAgeBracket, "---userIsOnboarded----", inputUserIsOnboarded);
       console.log(
         VersionInfo.appVersion,
         "--appVersion",
         VersionInfo.buildVersion,
         VersionInfo.bundleIdentifier
       );
-      if (userIsOnboarded == false) {
+      if (inputUserIsOnboarded == false) {
         console.log("--in iffffff--");
-        dispatch(setuserIsOnboarded(true));
+        inputDispatch(setuserIsOnboarded(true));
         const currentDate = DateTime.now().toMillis();
-        dispatch(setSyncDate({ key: "userOnboardedDate", value: currentDate }));
-        dispatch(
+        inputDispatch(setSyncDate({ key: "userOnboardedDate", value: currentDate }));
+        inputDispatch(
           setSyncDate({ key: "weeklyDownloadDate", value: currentDate })
         );
-        dispatch(
+        inputDispatch(
           setSyncDate({ key: "monthlyDownloadDate", value: currentDate })
         );
         const obj = { key: "showDownloadPopup", value: false };
-        dispatch(setInfoModalOpened(obj));
+        inputDispatch(setInfoModalOpened(obj));
         const apiresponse = await commonApiService(
-          forceUpdateData[0].apiEndpoint,
-          forceUpdateData[0].method,
-          forceUpdateData[0].postdata
+          inputForceUpdateData[0].apiEndpoint,
+          inputForceUpdateData[0].method,
+          inputForceUpdateData[0].postdata
         );
         const forceUpdateTime =
           apiresponse && apiresponse.data && apiresponse.data.updated_at
@@ -394,7 +389,7 @@ const Home = ({ route: _route, navigation }: any): any => {
         const isRelatedVideoArticleUpdateReq = await AsyncStorage.getItem(
           "isRelatedVideoArticleUpdateReq"
         );
-        if (netInfo.isConnected && showDownloadPopup) {
+        if (netInfo.isConnected && inputShowDownloadPopup) {
           if (
             isVideoArticleUpdateReq == null ||
             isVideoArticleUpdateReq == undefined ||
@@ -416,14 +411,14 @@ const Home = ({ route: _route, navigation }: any): any => {
               VersionInfo.appVersion > bebbodev &&
               VersionInfo.bundleIdentifier == "com.datamatics.bebbo"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatavideoart,
                   "VideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatavideoart,
                   netInfo.isConnected
                 )
@@ -433,14 +428,14 @@ const Home = ({ route: _route, navigation }: any): any => {
               VersionInfo.appVersion > bebboprod &&
               VersionInfo.bundleIdentifier == "org.unicef.ecar.bebbo"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatavideoart,
                   "VideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatavideoart,
                   netInfo.isConnected
                 )
@@ -450,14 +445,14 @@ const Home = ({ route: _route, navigation }: any): any => {
               VersionInfo.appVersion > folejadev &&
               VersionInfo.bundleIdentifier == "com.datamatics.foleja"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatavideoart,
                   "VideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatavideoart,
                   netInfo.isConnected
                 )
@@ -467,14 +462,14 @@ const Home = ({ route: _route, navigation }: any): any => {
               VersionInfo.appVersion > folejaprod &&
               VersionInfo.bundleIdentifier == "org.unicef.kosovo.foleja"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatavideoart,
                   "VideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatavideoart,
                   netInfo.isConnected
                 )
@@ -503,82 +498,82 @@ const Home = ({ route: _route, navigation }: any): any => {
               VersionInfo.bundleIdentifier == "com.datamatics.bebbo"
             ) {
               console.log("in if");
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatarelatedvideoart,
                   "RelatedVideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatarelatedvideoart,
                   netInfo.isConnected
                 )
               );
               AsyncStorage.setItem("isRelatedVideoArticleUpdateReq", "false");
-              dispatch(setAllNotificationData([]));
+              inputDispatch(setAllNotificationData([]));
               const notiFlagObj = { key: "generateNotifications", value: true };
-              dispatch(setInfoModalOpened(notiFlagObj));
+              inputDispatch(setInfoModalOpened(notiFlagObj));
             } else if (
               VersionInfo.appVersion > relbebboprod &&
               VersionInfo.bundleIdentifier == "org.unicef.ecar.bebbo"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatarelatedvideoart,
                   "RelatedVideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatarelatedvideoart,
                   netInfo.isConnected
                 )
               );
               AsyncStorage.setItem("isRelatedVideoArticleUpdateReq", "false");
-              dispatch(setAllNotificationData([]));
+              inputDispatch(setAllNotificationData([]));
               const notiFlagObj = { key: "generateNotifications", value: true };
-              dispatch(setInfoModalOpened(notiFlagObj));
+              inputDispatch(setInfoModalOpened(notiFlagObj));
             } else if (
               VersionInfo.appVersion > relfolejadev &&
               VersionInfo.bundleIdentifier == "com.datamatics.foleja"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatarelatedvideoart,
                   "RelatedVideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatarelatedvideoart,
                   netInfo.isConnected
                 )
               );
               AsyncStorage.setItem("isRelatedVideoArticleUpdateReq", "false");
-              dispatch(setAllNotificationData([]));
+              inputDispatch(setAllNotificationData([]));
               const notiFlagObj = { key: "generateNotifications", value: true };
-              dispatch(setInfoModalOpened(notiFlagObj));
+              inputDispatch(setInfoModalOpened(notiFlagObj));
             } else if (
               VersionInfo.appVersion > relfolejaprod &&
               VersionInfo.bundleIdentifier == "org.unicef.kosovo.foleja"
             ) {
-              dispatch(
+              inputDispatch(
                 fetchAPI(
                   apiJsonDatarelatedvideoart,
                   "RelatedVideoArticle",
-                  dispatch,
-                  navigation,
-                  languageCode,
-                  activeChild,
+                  inputDispatch,
+                  inputNavigation,
+                  inputLanguageCode,
+                  inputActiveChild,
                   apiJsonDatarelatedvideoart,
                   netInfo.isConnected
                 )
               );
               AsyncStorage.setItem("isRelatedVideoArticleUpdateReq", "false");
-              dispatch(setAllNotificationData([]));
+              inputDispatch(setAllNotificationData([]));
               const notiFlagObj = { key: "generateNotifications", value: true };
-              dispatch(setInfoModalOpened(notiFlagObj));
+              inputDispatch(setInfoModalOpened(notiFlagObj));
             }
           }
         } else {
@@ -588,15 +583,15 @@ const Home = ({ route: _route, navigation }: any): any => {
             isVideoArticleUpdateReq
           );
           if (
-            showDownloadPopup &&
+            inputShowDownloadPopup &&
             (isVideoArticleUpdateReq == null ||
               isVideoArticleUpdateReq == undefined ||
               isVideoArticleUpdateReq == "true")
           ) {
             let Entity: any;
             await getDataToStore(
-              languageCode,
-              dispatch,
+              inputLanguageCode,
+              inputDispatch,
               VideoArticleEntitySchema,
               Entity as VideoArticleEntity,
               VideoArticleData,
@@ -604,20 +599,20 @@ const Home = ({ route: _route, navigation }: any): any => {
             );
           }
           if (
-            showDownloadPopup &&
+            inputShowDownloadPopup &&
             (isRelatedVideoArticleUpdateReq == null ||
               isRelatedVideoArticleUpdateReq == undefined ||
               isRelatedVideoArticleUpdateReq == "true")
           ) {
             let Entity: any;
             const currentChildData = {
-              gender: activeChild.gender,
-              parent_gender: activeChild.parent_gender,
-              taxonomyData: activeChild.taxonomyData,
+              gender: inputActiveChild.gender,
+              parent_gender: inputActiveChild.parent_gender,
+              taxonomyData: inputActiveChild.taxonomyData,
             };
             await getDataToStore(
-              languageCode,
-              dispatch,
+              inputLanguageCode,
+              inputDispatch,
               ArticleEntitySchema,
               Entity as ArticleEntity,
               articledata,
@@ -628,7 +623,7 @@ const Home = ({ route: _route, navigation }: any): any => {
           }
         }
 
-        if (netInfo.isConnected && showDownloadPopup) {
+        if (netInfo.isConnected && inputShowDownloadPopup) {
           const apiJsonDatasurvey = [
             {
               apiEndpoint: appConfig.apiConfig.surveys,
@@ -637,31 +632,31 @@ const Home = ({ route: _route, navigation }: any): any => {
               saveinDB: true,
             },
           ];
-          dispatch(
+          inputDispatch(
             fetchAPI(
               apiJsonDatasurvey,
               "Survey",
-              dispatch,
-              navigation,
-              languageCode,
-              activeChild,
+              inputDispatch,
+              inputNavigation,
+              inputLanguageCode,
+              inputActiveChild,
               apiJsonDatasurvey,
               netInfo.isConnected
             )
           );
           const forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
           if (forceUpdateTime == null || forceUpdateTime == undefined) {
-            dispatch(
+            inputDispatch(
               setInfoModalOpened({ key: "showDownloadPopup", value: false })
             );
-            Alert.alert(t("forceUpdatePopupTitle"), t("forceUpdatePopupText"), [
+            Alert.alert(inputT("forceUpdatePopupTitle"), inputT("forceUpdatePopupText"), [
               {
-                text: t("forceUpdateOkBtn"),
+                text: inputT("forceUpdateOkBtn"),
                 onPress: (): any => {
-                  navigation.navigate("LoadingScreen", {
+                  inputNavigation.navigate("LoadingScreen", {
                     apiJsonData: appConfig.allApisObject(
                       false,
-                      incrementalSyncDT
+                      inputIncrementalSyncDT
                     ),
                     prevPage: "CountryLangChange",
                   });
@@ -670,9 +665,9 @@ const Home = ({ route: _route, navigation }: any): any => {
             ]);
           } else {
             const apiresponse = await commonApiService(
-              forceUpdateData[0].apiEndpoint,
-              forceUpdateData[0].method,
-              forceUpdateData[0].postdata
+              inputForceUpdateData[0].apiEndpoint,
+              inputForceUpdateData[0].method,
+              inputForceUpdateData[0].postdata
             );
             let forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
             forceUpdateTime = forceUpdateTime ? forceUpdateTime : "0";
@@ -683,31 +678,31 @@ const Home = ({ route: _route, navigation }: any): any => {
                   parseInt(forceUpdateTime)
                 ) {
                   Alert.alert(
-                    t("forceUpdatePopupTitle"),
-                    t("forceUpdatePopupText"),
+                    inputT("forceUpdatePopupTitle"),
+                    inputT("forceUpdatePopupText"),
                     [
                       {
-                        text: t("forceUpdateOkBtn"),
+                        text: inputT("forceUpdateOkBtn"),
                         onPress: (): any => {
-                          dispatch(
+                          inputDispatch(
                             setInfoModalOpened({
                               key: "showDownloadPopup",
                               value: false,
                             })
                           );
-                          forceUpdateApis(apiresponse.data.updated_at);
+                          inputForceUpdateApis(apiresponse.data.updated_at);
                         },
                       },
                     ]
                   );
                 } else {
-                  onNoForceUpdate();
+                  inputOnNoForceUpdate();
                 }
               } else {
-                onNoForceUpdate();
+                inputOnNoForceUpdate();
               }
             } else {
-              onNoForceUpdate();
+              inputOnNoForceUpdate();
             }
           }
         }
@@ -724,7 +719,7 @@ const Home = ({ route: _route, navigation }: any): any => {
     });
 
     return () => task.cancel();
-  }, [netInfo.isConnected]);
+  }, [netInfo.isConnected, downloadInputs]);
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === "ios");
     setdate1(selectedDate);

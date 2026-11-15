@@ -30,11 +30,6 @@ import {
 import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import VectorImage from "react-native-vector-image";
 import {activityLogo, adviceLogo, toolsLogo} from '../instances';
-
-
-const flavor = process.env.FLAVOR || "bebbo";
-const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
-const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
 import FeatureTCView from "@components/shared/FeaturesTCView";
 import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
 import { logEvent } from "../services/EventSyncService";
@@ -42,6 +37,9 @@ import useNetInfoHook from "../customHooks/useNetInfoHook";
 import ReactNativeVersionInfo from "react-native-version-info";
 import { selectAllCountries, selectAllTaxonomyData } from "../services/selectors";
 import { setUserProperties } from "../services/firebaseAnalytics";
+const flavor = process.env.FLAVOR || "bebbo";
+const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
+const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -127,18 +125,19 @@ const Terms = ({ navigation }: Props): any => {
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Locale changes deliberately clear loading while this screen remains focused.
     }, [languageCode])
   );
   useEffect(() => {
     if (taxonomyAllData?.relationship_to_parent) {
       dispatch(setTaxonomyIds(taxonomyAllData));
     }
-  }, []);
+  }, [dispatch, taxonomyAllData]);
 
   console.log(flavor);
   useFocusEffect(
     React.useCallback(() => {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         navigation.dispatch((state: any) => {
           // Remove the home route from the stack
           const routes = state.routes.filter(
@@ -152,7 +151,8 @@ const Terms = ({ navigation }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+      return () => clearTimeout(timer);
+    }, [navigation])
   );
   const acceptTermsFlag = useAppSelector(
     (state: any) => state.utilsData.acceptTerms

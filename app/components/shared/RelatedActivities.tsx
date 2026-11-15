@@ -1,3 +1,4 @@
+import {relatedActivities} from '../../services/relatedContent';
 import HorizontalContentList from "@components/shared/HorizontalContentList";
 import { appConfig } from "../../instances";
 import {
@@ -6,7 +7,7 @@ import {
   Heading6Bold,
   ShiftFromTopBottom5,
 } from "../../instances/bebbo/styles/typography";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";
 import FastImage from "@d11/react-native-fast-image";
@@ -84,41 +85,11 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
 
-  const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
-  useEffect(() => {
-    setrelatedArticleData([]);
-    async function fetchData(): Promise<any> {
-      let actualselectedChildActivitiesData;
-      if (typeof selectedChildActivitiesData == "number") {
-        actualselectedChildActivitiesData = ActivitiesData.filter((x: any) =>
-          x.child_age.includes(selectedChildActivitiesData)
-        );
-      } else if (typeof selectedChildActivitiesData == "object") {
-        const selectedChildActivitiesDatanew = [...selectedChildActivitiesData];
-        actualselectedChildActivitiesData = randomArrayShuffle([
-          ...selectedChildActivitiesDatanew,
-        ]);
-      }
-      // Skip calculation for the growth screen
-      const catartlength = appConfig.maxRelatedArticleSize;
-      if (currentId && currentId != "" && actualselectedChildActivitiesData) {
-        const filteredArtData = actualselectedChildActivitiesData
-          .filter((x: any) => {
-            const i = relatedArticleData.findIndex(
-              (_item: any) => _item.id === x.id
-            );
-            return x.id !== currentId && i == -1;
-          })
-          .slice(0, catartlength);
-        // Update relatedArticleData by appending new filtered articles
-        setrelatedArticleData((relatedArticleData: any) => [
-          ...relatedArticleData,
-          ...filteredArtData,
-        ]);
-      }
-    }
-    fetchData();
-  }, [currentId]);
+  const relatedArticleData = useMemo(() => {
+    const selected = Array.isArray(selectedChildActivitiesData)
+      ? randomArrayShuffle(selectedChildActivitiesData) : selectedChildActivitiesData;
+    return relatedActivities(selected, ActivitiesData, currentId, appConfig.maxRelatedArticleSize);
+  }, [selectedChildActivitiesData, ActivitiesData, currentId]);
 
   const goToArticleDetail = (item: (typeof relatedArticleData)[0]): any => {
     navigation.push("DetailsScreen", {
@@ -161,7 +132,7 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
                   {
                     activityCategoryData.filter(
                       (x: any) => x.id == item.activity_category
-                    )[0].name
+                    )[0]?.name
                   }
                 </Heading6Bold>
               </ShiftFromTopBottom5>
@@ -182,10 +153,7 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
       </Pressable>
     );
   };
-  const memoizedValue = useMemo(
-      () => RenderActivityItem,
-      [RenderActivityItem, relatedArticleData]
-    );
+  const memoizedValue = RenderActivityItem;
   return (
     <>
       {relatedArticleData.length > 0 ? (

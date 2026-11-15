@@ -1,3 +1,5 @@
+import {milestoneProgress} from "../../../services/milestoneProgress";
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../../localization/layoutDirection";
 import { returnToScreen } from "../../../navigation/returnToScreen";
 import AgeBrackets from "@components/AgeBrackets";
@@ -203,14 +205,18 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       ? activeChild?.taxonomyData.prematureTaxonomyId
       : activeChild?.taxonomyData.id;
 
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const helpInputs = useCommittedRef(() => ({childDevModalOpened, netInfo}));
   useEffect(() => {
+    const {childDevModalOpened: inputChildDevModalOpened, netInfo: inputNetInfo} = helpInputs.current();
+
     if (isFocused) {
-      if (netInfo.isConnected) {
-        synchronizeEvents(netInfo.isConnected);
+      if (inputNetInfo.isConnected) {
+        synchronizeEvents(inputNetInfo.isConnected);
       }
-      setModalVisible(childDevModalOpened);
+      setModalVisible(inputChildDevModalOpened);
     }
-  }, [isFocused]);
+  }, [isFocused, helpInputs]);
 
   const onPressInfo = (): any => {
     navigation.navigate("DetailsScreen", {
@@ -320,38 +326,34 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   }, [isFocused, listLoading]);
 
   const calculateMileStone = (): any => {
-    const arrlength = selectedChildMilestoneData?.length;
-    let abc = 0;
-    if (arrlength > 0) {
-      abc = selectedChildMilestoneData.filter(
-        (x: any) => x.toggleCheck == true
-      ).length;
-    }
-    const percent = Math.round((abc / arrlength) * 100);
-    setMilestonePercent(percent);
+    setMilestonePercent(milestoneProgress(selectedChildMilestoneData));
   };
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const bracketInputs = useCommittedRef(() => ({childAge, showSelectedBracketData}));
   useEffect(() => {
+    const {childAge: inputChildAge, showSelectedBracketData: inputShowSelectedBracketData} = bracketInputs.current();
+
     console.log("USe effect chilkd 3");
     setshowNoData(false);
     if (
       route.params?.currentSelectedChildId &&
       route.params?.currentSelectedChildId != 0
     ) {
-      const firstChildDevData = childAge.filter(
+      const firstChildDevData = inputChildAge.filter(
         (x: any) => x.id == route.params?.currentSelectedChildId
       );
-      showSelectedBracketData(firstChildDevData[0]);
+      inputShowSelectedBracketData(firstChildDevData[0]);
     } else {
-      const firstChildDevData = childAge.filter(
+      const firstChildDevData = inputChildAge.filter(
         (x: any) => x.id == activityTaxonomyId
       );
-      showSelectedBracketData(firstChildDevData[0]);
+      inputShowSelectedBracketData(firstChildDevData[0]);
     }
   }, [
     activeChild?.uuid,
     route.params?.currentSelectedChildId,
     activityTaxonomyId,
-  ]);
+  , bracketInputs]);
   useEffect(() => {
     if (isFocused) {
       console.log("UseFouusEffect child development one");
@@ -374,13 +376,17 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
         setSelectedPinnedArticleData(filteredPinnedData);
       }
     }
-  }, [isFocused, selectedChildDevData]);
+  }, [isFocused, selectedChildDevData, PinnedChildDevData, activeChild?.gender]);
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const milestoneInputs = useCommittedRef(() => ({calculateMileStone}));
   useEffect(() => {
+    const {calculateMileStone: inputCalculateMileStone} = milestoneInputs.current();
+
     if (isFocused) {
       console.log("UseFouusEffect child development two");
-      calculateMileStone();
+      inputCalculateMileStone();
     }
-  }, [isFocused, selectedChildMilestoneData]);
+  }, [isFocused, selectedChildMilestoneData, milestoneInputs]);
 
   const sendMileStoneDatatoParent = (item: any, togglevalue: any): any => {
     if (togglevalue == true) {

@@ -1,8 +1,8 @@
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import {
   HEALTH_CHECKUP_REMINDER_SET,
   VACCINE_REMINDER_SET,
 } from "@assets/data/firebaseEvents";
-// import { fiveYearFromNow } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -40,17 +40,9 @@ import {
   ShiftFromTopBottom10,
 } from "../../instances/bebbo/styles/typography";
 import { DateTime } from "luxon";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  BackHandler,
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { Alert, Modal, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import { v4 as uuid } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../../App";
@@ -73,6 +65,8 @@ import { logEvent } from "../../services/EventSyncService";
 import { selectActiveChild } from "../../services/selectors";
 import DatePickerField from "./DatePickerField";
 import TimePickerField from "./TimePickerField";
+// import { fiveYearFromNow } from '@assets/translations/appOfflineData/apiConstants';
+
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -638,17 +632,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
     navigation.goBack();
     return true;
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const todayStart = React.useMemo(
     () => DateTime.local().startOf("day").toJSDate(),
     []

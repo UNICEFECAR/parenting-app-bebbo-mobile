@@ -126,7 +126,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
   createRef<any>();
   const netInfo = useNetInfoHook();
   useAppSelector(selectParentGender);
-  const relationshipToParent = useAppSelector(selectRelationshipToParent);
+  useAppSelector(selectRelationshipToParent);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
@@ -154,8 +154,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log("taxonomyData is", relationshipToParent);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         navigation.dispatch((state) => {
           // Remove the home route from the stack
           const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
@@ -167,7 +166,8 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+      return () => clearTimeout(timer);
+    }, [navigation])
   );
   useEffect(() => {
     setRelationship(route?.params.relationship ?? "");

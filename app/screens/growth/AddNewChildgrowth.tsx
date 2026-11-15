@@ -1,3 +1,5 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import { GROWTH_MEASUREMENT_ADDED } from "@assets/data/firebaseEvents";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -44,9 +46,7 @@ import {
   RadioOuter,
 } from "@components/shared/radio";
 import ToggleRadiosBgColor from "@components/ToggleRadiosBgColor";
-
 import DateTimePicker from "@react-native-community/datetimepicker";
-
 import {
   Heading2,
   Heading3,
@@ -57,25 +57,12 @@ import {
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  BackHandler,
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Alert, Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from "styled-components/native";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../../App";
-// import {
-//   maxCharForRemarks,
-//   measurementPlaces
-// } from '../../assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
 import {
@@ -103,6 +90,10 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import { selectActiveChild } from "../../services/selectors";
+// import {
+//   maxCharForRemarks,
+//   measurementPlaces
+// } from '../../assets/translations/appOfflineData/apiConstants';
 
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
@@ -244,22 +235,25 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
     setMeasureDatePickerVisibility(false);
   };
 
+  // Reinitialise when selecting an edit date, not during an in-progress edit.
+  const editInputs = useCommittedRef({activeChild, measurePlaces});
   useEffect(() => {
+    const {activeChild: inputActiveChild, measurePlaces: inputMeasurePlaces} = editInputs.current;
     // find growthmeasures for date, if exist show growthmeasures with delete enabled.
     if (editMeasurementDate) {
       setShowDelete(true);
       const existingMeasure = getMeasuresForDate(
         DateTime.fromJSDate(new Date(editMeasurementDate)),
-        activeChild
+        inputActiveChild
       );
       setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
       setWeightValue(existingMeasure?.weight);
       setHeightValue(existingMeasure?.height);
       handleDoctorRemark(existingMeasure?.doctorComment);
-      setDefaultMeasurePlace(measurePlaces[existingMeasure.measurementPlace]);
+      setDefaultMeasurePlace(inputMeasurePlaces[existingMeasure.measurementPlace]);
       setMeasurePlace(existingMeasure.measurementPlace);
     }
-  }, [editMeasurementDate]);
+  }, [editMeasurementDate, editInputs]);
 
   //set initvalue here for edit
   const isFormFilled = (): any => {
@@ -650,17 +644,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
     navigation.goBack();
     return true;
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   return (
     <>
       <View style={[styles.flex1, { backgroundColor: headerColor }]}>

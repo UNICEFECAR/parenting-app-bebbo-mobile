@@ -1,3 +1,4 @@
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import HeaderBabyMenu from "@components/HeaderBabyMenu";
 import HeaderNotiIcon from "@components/HeaderNotiIcon";
@@ -33,15 +34,7 @@ import {
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  ActivityIndicator,
-  AppState,
-  BackHandler,
-  FlatList,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
+import { ActivityIndicator, AppState, FlatList, Pressable, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setAllNotificationData } from "../../redux/reducers/notificationSlice";
@@ -51,7 +44,6 @@ import {
 } from "../../services/childCRUD";
 import { selectActiveChild } from "../../services/selectors";
 import useDigitConverter from "../../customHooks/useDigitConvert";
-
 const styles = StyleSheet.create({
   buttonContainerTwo: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -103,20 +95,9 @@ const Notifications = (): any => {
     }, [navigation])
   );
 
-  useEffect(() => {
-    // navigation.dispatch(DrawerActions.closeDrawer());
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const appState = useRef(AppState.currentState);
-  const calculateNotis = (currentChildNotis: any): any => {
+  const calculateNotis = React.useCallback((currentChildNotis: any): any => {
     if (currentChildNotis != undefined) {
       const currentChildallnoti: any = [];
       if (currentChildNotis.gwcdnotis) {
@@ -172,9 +153,9 @@ const Notifications = (): any => {
       setNotifications([]);
       setIsLoading(false);
     }
-  };
-  const handleAppStateChange = (nextAppState: any): any => {
-    if (appState != nextAppState) {
+  }, [activeChild.birthDate]);
+  const handleAppStateChange = React.useCallback((nextAppState: any): any => {
+    if (appState.current !== nextAppState) {
       if (
         appState.current?.match(/inactive|background/) &&
         nextAppState === "active"
@@ -188,7 +169,7 @@ const Notifications = (): any => {
       }
       appState.current = nextAppState;
     }
-  };
+  }, [activeChild.uuid, allChildnotification, calculateNotis]);
   useEffect(() => {
     // AppState.addEventListener('change', handleAppStateChange);
     // return ():any => {
@@ -203,7 +184,7 @@ const Notifications = (): any => {
       eventListener.remove();
       // AppState.removeEventListener('change', updateTrackingStatus)
     };
-  }, []);
+  }, [handleAppStateChange]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -215,7 +196,7 @@ const Notifications = (): any => {
         );
         calculateNotis(currentChildNotis);
       }
-    }, [activeChild.uuid, allnotis])
+    }, [activeChild.uuid, allnotis, calculateNotis])
   );
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis()

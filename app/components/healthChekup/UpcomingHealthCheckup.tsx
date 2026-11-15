@@ -108,7 +108,7 @@ const UpcomingHealthCheckup = (props: any): any => {
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
-  }, []);
+  }, [currentPeriodId, item?.id]);
   return (
     <>
       <ToolsListOuter>

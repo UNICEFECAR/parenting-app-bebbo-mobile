@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -55,8 +56,8 @@ import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor, secondaryColor } from "@styles/style";
 import moment from "moment";
 import "moment/min/locales";
-import "moment/locale/bn-bd"; // import for bangla language
-import "moment/locale/bn"; // import for bangla language
+import "moment/locale/bn-bd";
+import "moment/locale/bn";
 import "moment/locale/sq";
 import "moment/locale/sr";
 import "moment/locale/tr";
@@ -66,6 +67,8 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
 import CountryAppBanner from "@components/shared/CountryAppBanner";
+ // import for bangla language
+ // import for bangla language
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -163,7 +166,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+    }, [navigation])
   );
   const getDeviceLocaleTag = (): string => {
     return RNLocalize.getLocales()?.[0]?.languageTag || "en-US";
@@ -283,7 +286,11 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     return getFirstAvailableSelection();
   };
 
+  // Keep the selection helper current without resetting choices on every render.
+  const confirmationInputs = useCommittedRef(() => ({getInitialSelection}));
   useEffect(() => {
+    const {getInitialSelection: inputGetInitialSelection} = confirmationInputs.current();
+
     if (!isVisible) return;
     if (!allCountries?.length) return;
 
@@ -293,7 +300,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     setLuxonLanLocale(selectedLanguageTag);
     setDeviceLangCode(selectedLanguageCode);
 
-    const initialSelection = getInitialSelection();
+    const initialSelection = inputGetInitialSelection();
 
     setCountryData(initialSelection.country);
     setNewLanguage(initialSelection.language);
@@ -305,8 +312,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     selectedLocale,
     locale,
     languageCode,
-    route?.params,
-  ]);
+    route?.params, confirmationInputs]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -326,7 +332,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
       };
-    }, [])
+    }, [i18n, locale, navigation])
   );
 
   const rtlConditions = async (language: any): Promise<any> => {

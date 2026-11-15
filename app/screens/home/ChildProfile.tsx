@@ -154,7 +154,7 @@ const ChildProfile = ({ navigation }: Props): any => {
         clearTimeout(cleanupTimer);
         task.cancel();
       };
-    }, [])
+    }, [childAge, dispatch, navigation])
   );
 
   const childList = useAppSelector(selectChildList);

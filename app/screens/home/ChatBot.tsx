@@ -287,9 +287,7 @@ const ChatBot: React.FC<ChatBotData> = (props: any) => {
   // const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink, noDataStep } = props;
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
-    console.log("chatbot screen", props.steps);
-    console.log("showNextStep screen", props.item);
-    console.log("categorySelection screen", props.categorySelection);
+
     if (props.item.showNextStep) {
       setLoading(true);
   

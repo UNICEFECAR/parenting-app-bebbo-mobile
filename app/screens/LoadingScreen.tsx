@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import {applyLanguageDirection} from "../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { RootStackParamList } from "@navigation/types";
@@ -374,25 +375,24 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       );
     }
   };
+  // Only focus and readiness transitions start a download, not progress renders.
+  const startupInputs = useCommittedRef(() => ({callSagaApi, netflag, toggleSwitchVal}));
   useFocusEffect(
     React.useCallback(() => {
-      console.log(
-        incrementalSyncDT,
-        "incrementalSyncDT in useeffect laoding---",
-        netflag
-      );
-      if (languageReady && netInfo.isConnected != null && netflag == false) {
+    const {callSagaApi: inputCallSagaApi, netflag: inputNetflag, toggleSwitchVal: inputToggleSwitchVal} = startupInputs.current();
+
+      if (languageReady && netInfo.isConnected != null && inputNetflag == false) {
         let enableImageDownload = false;
-        if (toggleSwitchVal == false && netInfo.isConnected == true) {
+        if (inputToggleSwitchVal == false && netInfo.isConnected == true) {
           enableImageDownload = true;
         } else {
           enableImageDownload = false;
         }
         console.log("keep awake activated");
         setnetflag(true);
-        callSagaApi(enableImageDownload);
+        inputCallSagaApi(enableImageDownload);
       }
-    }, [netInfo.isConnected, languageReady])
+    }, [netInfo.isConnected, languageReady, startupInputs])
   );
   useEffect(() => {
     const backAction = (): any => {
@@ -408,25 +408,29 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     };
   }, []);
 
+  // Read the current navigation context when initial-language metadata changes.
+  const initialLocaleInputs = useCommittedRef(() => ({dispatch, route}));
   useEffect(() => {
+    const {dispatch: inputDispatch, route: inputRoute} = initialLocaleInputs.current();
+
     let active = true;
     const selectInitialLanguage = async (): Promise<void> => {
       if (isFirst && allCountries?.length === 1 && allCountries[0]?.languages?.length === 1) {
         const language = allCountries[0].languages[0];
         await i18next.changeLanguage(language.locale);
         moment.locale(getLanguageCode(language.languageCode));
-        dispatch(setSponsorStore(allCountries[0]));
-        dispatch(onLocalizationSelect({languages: allCountries[0].languages, countryId: allCountries[0].CountryID}));
+        inputDispatch(setSponsorStore(allCountries[0]));
+        inputDispatch(onLocalizationSelect({languages: allCountries[0].languages, countryId: allCountries[0].CountryID}));
         if (await applyLanguageDirection(language, {
           screen: "LoadingScreen",
-          params: {...route.params, isFirst: false},
+          params: {...inputRoute.params, isFirst: false},
         })) return;
       }
       if (active) setLanguageReady(true);
     };
     selectInitialLanguage().catch(error => console.error('Unable to apply initial language', error));
     return () => { active = false; };
-  }, [isFirst, allCountries]);
+  }, [isFirst, allCountries, initialLocaleInputs]);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import PreviousHealthCheckup from "@components/healthChekup/PreviousHealthCheckup";
 import UpcomingHealthCheckup from "@components/healthChekup/UpcomingHealthCheckup";
@@ -24,14 +25,7 @@ import {
 } from "../../instances/bebbo/styles/typography";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  BackHandler,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
@@ -180,17 +174,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
       return true;
     }
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
 
   console.log(upcomingPeriods);
   return (

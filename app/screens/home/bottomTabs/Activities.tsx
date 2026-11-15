@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import { scheduleIdleTask } from "../../../services/scheduleIdleTask";
 import ActivitiesCategories from "@components/ActivitiesCategories";
 import AgeBrackets from "@components/AgeBrackets";
@@ -18,9 +19,7 @@ import { Flex2, Flex4, FlexCol } from "@components/shared/FlexBoxStyle";
 import { PrematureTagActivity, PrematureTagDevelopment } from "@components/shared/PrematureTag";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
-
 import { useFocusEffect } from "@react-navigation/native";
-
 import {
   Heading3,
   Heading4,
@@ -36,7 +35,6 @@ import {
 import React, { useContext, useMemo, useState, useEffect, useRef } from "react";
 import type {ActivitiesEntity} from "../../../database/schema/ActivitiesSchema";
 import { useTranslation } from "react-i18next";
-
 import {
   FlatList,
   Keyboard,
@@ -78,7 +76,6 @@ import {
   randomArrayShuffle,
   miniSearchConfigActivity,
 } from "../../../services/Utils";
-
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
@@ -93,7 +90,6 @@ import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray, selectChildAge, selectMileStonesData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
-
 const styles = StyleSheet.create({
   activityHeadingView: {
     flexDirection: "row",
@@ -454,12 +450,16 @@ const Activities = ({ route, navigation }: any): any => {
     }
     toTop();
   };
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs1 = useCommittedRef(() => ({netInfo}));
   useFocusEffect(
     React.useCallback(() => {
+      const {netInfo: inputNetInfo} = focusCommandInputs1.current();
+
       const task = scheduleIdleTask(() => {
-        console.log("is child premature", activeChild.isPremature);
-        if (netInfo.isConnected) {
-          synchronizeEvents(netInfo.isConnected);
+
+        if (inputNetInfo.isConnected) {
+          synchronizeEvents(inputNetInfo.isConnected);
         }
         getSearchedKeywords();
         setModalVisible(activityModalOpened);
@@ -468,7 +468,7 @@ const Activities = ({ route, navigation }: any): any => {
       return () => {
         task.cancel();
       };
-    }, [activityModalOpened])
+    }, [activityModalOpened, focusCommandInputs1])
   );
 
   useFocusEffect(
@@ -491,27 +491,31 @@ const Activities = ({ route, navigation }: any): any => {
         hideSubscription?.remove();
         // task.cancel();
       };
-    }, [])
+    }, [navigation])
   );
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs2 = useCommittedRef(() => ({setFilteredActivityData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {setFilteredActivityData: inputSetFilteredActivityData, backClicked: inputBackClicked} = focusCommandInputs2.current();
+
       // const task = InteractionManager.runAfterInteractions(() => {
       if (isSerachedQueryText || queryText === "") {
         const fetchData = async (): Promise<void> => {
-          console.log("route category data", route.params?.categoryArray);
+
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
-            setFilteredActivityData(route.params?.categoryArray);
+            inputSetFilteredActivityData(route.params?.categoryArray);
           } else {
             console.log("route category data in else");
             setFilterArray([]);
-            setFilteredActivityData([]);
+            inputSetFilteredActivityData([]);
           }
         };
 
         setIsSearchedQueryText(false);
-        if (route.params?.backClicked !== "yes") {
+        if (inputBackClicked !== "yes") {
           fetchData();
         } else {
           setLoading(false);
@@ -522,13 +526,13 @@ const Activities = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
       languageCode,
       queryText,
-      isSerachedQueryText,
-    ])
+      isSerachedQueryText, focusCommandInputs2])
   );
 
   const showSelectedBracketData = (item: any): any => {
@@ -552,35 +556,35 @@ const Activities = ({ route, navigation }: any): any => {
     //   setCurrentChildSelected(true)
     // }
   };
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs3 = useCommittedRef(() => ({childAge, navigation, showSelectedBracketData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {childAge: inputChildAge, navigation: inputNavigation, showSelectedBracketData: inputShowSelectedBracketData, backClicked: inputBackClicked} = focusCommandInputs3.current();
+
       // const task = InteractionManager.runAfterInteractions(() => {
-      if (route.params?.backClicked !== "yes") {
+      if (inputBackClicked !== "yes") {
         setshowNoData(false);
         if (
           route.params?.currentSelectedChildId &&
           route.params?.currentSelectedChildId !== 0
         ) {
-          console.log("if route params 0", route.params);
-          const firstChildDevData = childAge.filter(
+
+          const firstChildDevData = inputChildAge.filter(
             (x: any) => x.id === route.params?.currentSelectedChildId
           );
-          showSelectedBracketData(firstChildDevData[0]);
+          inputShowSelectedBracketData(firstChildDevData[0]);
         } else {
-          console.log(
-            "else if route params 0",
-            route.params,
-            activityTaxonomyId
-          );
-          const firstChildDevData = childAge.filter(
+
+          const firstChildDevData = inputChildAge.filter(
             (x: any) => x.id === activityTaxonomyId
           );
-          showSelectedBracketData(firstChildDevData[0]);
+          inputShowSelectedBracketData(firstChildDevData[0]);
         }
       } else {
         setLoading(false);
-        if (route.params?.backClicked === "yes") {
-          navigation.setParams({ backClicked: "no" });
+        if (inputBackClicked === "yes") {
+          inputNavigation.setParams({ backClicked: "no" });
         }
       }
       // });
@@ -588,36 +592,37 @@ const Activities = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       activeChild?.uuid,
       languageCode,
       route.params?.currentSelectedChildId,
-      activityTaxonomyId,
-    ])
+      activityTaxonomyId, focusCommandInputs3])
   );
 
   useFocusEffect(
     React.useCallback(() => {
       // const task = InteractionManager.runAfterInteractions(() => {
+      let active = true;
       const fetchData = async (): Promise<void> => {
         const filterQuery = `uuid == "${activeChild?.uuid}"`;
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(
           ChildEntitySchema,
           filterQuery
         );
-        setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
+        if (active) setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
       };
       fetchData();
       // });
 
       return () => {
         // task.cancel();
-        console.log("unmount activity", route.params);
+        active = false;
         navigation.setParams({ backClicked: "no" });
         navigation.setParams({ currentSelectedChildId: 0 });
         navigation.setParams({ categoryArray: [] });
       };
-    }, [activeChild?.uuid])
+    }, [activeChild?.uuid, navigation])
   );
 
   useFocusEffect(
@@ -773,10 +778,7 @@ const Activities = ({ route, navigation }: any): any => {
       data: otherGames,
     },
   ];
-  const memoizedValue = useMemo(
-    () => SuggestedActivities,
-    [SuggestedActivities, DATA]
-  );
+  const memoizedValue = SuggestedActivities;
 
   const HeadingComponent = React.memo(({ section }: any) => {
     const maxWidthpercent =

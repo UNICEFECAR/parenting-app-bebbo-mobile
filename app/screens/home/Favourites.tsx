@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import FavActivities from "@components/FavActivities";
 import FavArticles from "@components/FavArticles";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -44,19 +45,23 @@ const Favourites = ({ navigation, route }: Props): any => {
   ];
   useLayoutEffect(() => {
     navigation.closeDrawer();
-  }, []);
+  }, [navigation]);
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs1 = useCommittedRef(() => ({navigation, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked != "yes") {
+      const {navigation: inputNavigation, backClicked: inputBackClicked} = focusCommandInputs1.current();
+
+      if (inputBackClicked != "yes") {
         setSelectedIndex(0);
       } else {
         setSelectedIndex(route.params?.tabIndex);
-        if (route.params?.backClicked == "yes") {
-          navigation.setParams({ backClicked: "no" });
+        if (inputBackClicked == "yes") {
+          inputNavigation.setParams({ backClicked: "no" });
         }
       }
-    }, [route.params?.tabIndex])
+    }, [route.params?.tabIndex, focusCommandInputs1])
   );
   const renderItem = (index: number): any => {
     if (index === 0) {

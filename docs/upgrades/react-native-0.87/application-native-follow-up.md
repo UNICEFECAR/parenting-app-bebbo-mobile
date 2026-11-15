@@ -117,3 +117,12 @@ API/media origins and redirects are still needed before narrowing ATS. Signed
 store acceptance, physical accessibility/RTL/large-text checks, live Drive and
 production analytics checks remain separate acceptance work; the existing unit
 and historical native evidence does not establish those scenarios for this patch.
+
+## Latest code finding closure
+
+The subsequent [application code closure review](application-code-closure.md)
+supersedes the 107-open-findings status above. Full project ESLint now has zero
+errors, with eight explicitly documented intentional focus-trigger dispositions.
+The review records new fixes, the complete source manifest, regression checks and
+specific production/network/device acceptance dependencies. No full badge or
+physical-device acceptance is asserted.

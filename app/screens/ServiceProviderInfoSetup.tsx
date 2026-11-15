@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
@@ -99,13 +100,18 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const onLayout = (event: any): any => {
     setParentViewheight(event.nativeEvent.layout.height);
   };
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const setupInputs = useCommittedRef(() => ({childAge, dispatch, navigation}));
   useEffect(() => {
+    let navigationTimer: ReturnType<typeof setTimeout> | undefined;
+    const {childAge: inputChildAge, dispatch: inputDispatch, navigation: inputNavigation} = setupInputs.current();
+
     if (isFocused) {
-      getAllChildren(dispatch, childAge, 0);
-      getAllConfigData(dispatch);
+      getAllChildren(inputDispatch, inputChildAge, 0);
+      getAllConfigData(inputDispatch);
       notiPermissionUtil();
-      setTimeout(() => {
-        navigation.dispatch((state) => {
+      navigationTimer = setTimeout(() => {
+        inputNavigation.dispatch((state) => {
           // Remove the home route from the stack
           const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
 
@@ -117,7 +123,9 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
         });
       }, 100);
     }
-  }, [isFocused]);
+
+    return () => {if (navigationTimer !== undefined) clearTimeout(navigationTimer);};
+  }, [isFocused, setupInputs]);
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {
@@ -132,7 +140,7 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
         navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
       };
-    }, [])
+    }, [navigation])
   );
 
   const childSetup = async (): Promise<any> => {

@@ -75,6 +75,7 @@ const FavActivities = (): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      let active = true;
       async function fetchData(): Promise<any> {
         setLoading(true);
         if (favoritegames.length > 0) {
@@ -90,14 +91,15 @@ const FavActivities = (): any => {
               (x: any) => favoritegames.findIndex((y: any) => y == x.id) > -1
             );
           }
-          setfavGamesToShow(favData);
+          if (active) setfavGamesToShow(favData);
         } else {
-          setfavGamesToShow([]);
+          if (active) setfavGamesToShow([]);
         }
-        setLoading(false);
+        if (active) setLoading(false);
       }
       fetchData();
-    }, [favoritegames])
+      return () => {active = false;};
+    }, [favoritegames, ActivitiesDataall])
   );
   const SuggestedActivities = React.memo(({ item, index }: any) => {
     return (

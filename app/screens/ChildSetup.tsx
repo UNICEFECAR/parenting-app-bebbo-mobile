@@ -179,8 +179,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      console.log("relationshipToParent is", relationshipToParent);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         navigation.dispatch((state) => {
           // Remove the home route from the stack
           const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
@@ -192,7 +191,8 @@ const ChildSetup = ({ navigation }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+      return () => clearTimeout(timer);
+    }, [navigation])
   );
 
   const getCheckedParentItem = (checkedItem: any): any => {

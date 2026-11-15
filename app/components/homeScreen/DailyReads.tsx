@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import HorizontalContentList from "@components/shared/HorizontalContentList";
 import { appConfig } from "../../instances";
 import { MainContainer } from "@components/shared/Container";
@@ -217,35 +218,39 @@ const DailyReads = (): any => {
     return () => setFetchAgain(false);
   }, []);
 
+  // Daily selection is a refresh command; caching its IDs must not retrigger selection.
+  const dailyReadInputs = useCommittedRef(() => ({ActivitiesData, activeChild, activityCategoryArray, dailyDataCategoryall, dispatch, eligibleArticles, showedDailyDataCategoryall}));
   useEffect(() => {
-    let ArticlesData = eligibleArticles;
+    const {ActivitiesData: inputActivitiesData, activeChild: inputActiveChild, activityCategoryArray: inputActivityCategoryArray, dailyDataCategoryall: inputDailyDataCategoryall, dispatch: inputDispatch, eligibleArticles: inputEligibleArticles, showedDailyDataCategoryall: inputShowedDailyDataCategoryall} = dailyReadInputs.current();
+
+    let ArticlesData = inputEligibleArticles;
     let dailyDataCategory: any, showedDailyDataCategory: any;
-    if (dailyDataCategoryall[activeChild.uuid] === undefined) {
+    if (inputDailyDataCategoryall[inputActiveChild.uuid] === undefined) {
       dailyDataCategory = {
         advice: 0,
         games: 0,
         currentadviceid: 0,
         currentgamesid: 0,
         currentDate: "",
-        taxonomyid: activeChild.taxonomyData.id,
+        taxonomyid: inputActiveChild.taxonomyData.id,
         prematureTaxonomyId: activityTaxonomyId,
       };
     } else {
-      let advid = dailyDataCategoryall[activeChild.uuid].advice;
+      let advid = inputDailyDataCategoryall[inputActiveChild.uuid].advice;
       let currentadviceid =
-        dailyDataCategoryall[activeChild.uuid].currentadviceid;
-      let gamid = dailyDataCategoryall[activeChild.uuid].games;
+        inputDailyDataCategoryall[inputActiveChild.uuid].currentadviceid;
+      let gamid = inputDailyDataCategoryall[inputActiveChild.uuid].games;
       let currentgamesid =
-        dailyDataCategoryall[activeChild.uuid].currentgamesid;
+        inputDailyDataCategoryall[inputActiveChild.uuid].currentgamesid;
       if (
-        dailyDataCategoryall[activeChild.uuid].taxonomyid !=
-        activeChild?.taxonomyData?.id
+        inputDailyDataCategoryall[inputActiveChild.uuid].taxonomyid !=
+        inputActiveChild?.taxonomyData?.id
       ) {
         advid = 0;
         currentadviceid = 0;
       }
       if (
-        dailyDataCategoryall[activeChild.uuid]?.prematureTaxonomyId !=
+        inputDailyDataCategoryall[inputActiveChild.uuid]?.prematureTaxonomyId !=
         activityTaxonomyId
       ) {
         gamid = 0;
@@ -254,30 +259,30 @@ const DailyReads = (): any => {
       const newcurrentdate =
         gamid == 0 || advid == 0
           ? ""
-          : dailyDataCategoryall[activeChild.uuid].currentDate;
+          : inputDailyDataCategoryall[inputActiveChild.uuid].currentDate;
       dailyDataCategory = {
         advice: advid,
         games: gamid,
         currentadviceid: currentadviceid,
         currentgamesid: currentgamesid,
         currentDate: newcurrentdate,
-        taxonomyid: activeChild.taxonomyData.id,
+        taxonomyid: inputActiveChild.taxonomyData.id,
         prematureTaxonomyId: activityTaxonomyId,
       };
     }
-    if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
+    if (inputShowedDailyDataCategoryall[inputActiveChild.uuid] === undefined) {
       showedDailyDataCategory = { advice: [], games: [] };
     } else {
-      let advicearr = showedDailyDataCategoryall[activeChild.uuid].advice;
-      let gamesarr = showedDailyDataCategoryall[activeChild.uuid].games;
+      let advicearr = inputShowedDailyDataCategoryall[inputActiveChild.uuid].advice;
+      let gamesarr = inputShowedDailyDataCategoryall[inputActiveChild.uuid].games;
       if (
-        dailyDataCategoryall[activeChild.uuid].taxonomyid !=
-        activeChild.taxonomyData.id
+        inputDailyDataCategoryall[inputActiveChild.uuid].taxonomyid !=
+        inputActiveChild.taxonomyData.id
       ) {
         advicearr = [];
       }
       if (
-        dailyDataCategoryall[activeChild.uuid]?.prematureTaxonomyId !=
+        inputDailyDataCategoryall[inputActiveChild.uuid]?.prematureTaxonomyId !=
         activityTaxonomyId
       ) {
         gamesarr = [];
@@ -293,7 +298,7 @@ const DailyReads = (): any => {
       let filteredArticles: string | any[] = [];
 
       // comment this code temporary due to premature taxonomy is not available in the data
-      if (activeChild.isPremature === "true") {
+      if (inputActiveChild.isPremature === "true") {
         filteredArticles = ArticlesData.filter(
           (article: any) =>
             article.premature === 1 &&
@@ -323,8 +328,8 @@ const DailyReads = (): any => {
       const articleCategoryArrayNew = appConfig.articleCategoryIdArray.filter(
         (i: any) => ArticlesData.find((f: any) => f.category === i)
       );
-      const activityCategoryArrayNew = activityCategoryArray.filter((i: any) =>
-        ActivitiesData.find((f: any) => f.activity_category === i.id)
+      const activityCategoryArrayNew = inputActivityCategoryArray.filter((i: any) =>
+        inputActivitiesData.find((f: any) => f.activity_category === i.id)
       );
       const currentIndex = articleCategoryArrayNew.findIndex(
         (_item: any) => _item === dailyDataCategory.advice[dailyDataCategory.advice.length - 1]
@@ -377,14 +382,14 @@ const DailyReads = (): any => {
       }
       
       let nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
-      let categoryActivityData = ActivitiesData.filter(
+      let categoryActivityData = inputActivitiesData.filter(
         (x: { activity_category: number }) =>
           new Set<number>(
             activityCategoryArrayNew.map((i: { id: number }) => i.id)
           ).has(x.activity_category)
       );
       if (categoryActivityData.length < 2) {
-        const additionalItems = ActivitiesData.filter(
+        const additionalItems = inputActivitiesData.filter(
           (x: { activity_category: number }) =>
             new Set<number>(
               activityCategoryArrayNew.map((i: { id: number }) => i.id)
@@ -428,9 +433,9 @@ const DailyReads = (): any => {
       }
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
-      const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
+      const dailyDataCategorytoDispatch: any = { ...inputDailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = {
-        ...showedDailyDataCategoryall,
+        ...inputShowedDailyDataCategoryall,
       };
       const selectedAdviceCategories = articleDataToShow?.map(
         (_article, index) => articleCategoryArrayNew[(nextIndex + index) % articleCategoryArrayNew.length] || 0
@@ -446,28 +451,28 @@ const DailyReads = (): any => {
       const selectedGameIds = activityDataToShow.map(
         (activity) => activity?.id || 0
       );
-      dailyDataCategorytoDispatch[activeChild.uuid] = {
+      dailyDataCategorytoDispatch[inputActiveChild.uuid] = {
         advice: selectedAdviceCategories,
         games: selectedGameCategories,
         currentadviceid: selectedAdviceIds,
         currentgamesid: selectedGameIds,
         currentDate: DateTime.now().toISODate(),
-        taxonomyid: activeChild?.taxonomyData?.id,
+        taxonomyid: inputActiveChild?.taxonomyData?.id,
         prematureTaxonomyId: activityTaxonomyId,
       };
-      showedDailyDataCategorytoDispatch[activeChild.uuid] = {
+      showedDailyDataCategorytoDispatch[inputActiveChild.uuid] = {
         advice: advicearray,
         games: gamesarray,
       };
-      dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
-      dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
+      inputDispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
+      inputDispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
     } else {
       const articleDataList: any = [];
       const activityDataList: any = [];
 
       const articleDataToShow: any = [];
       let filteredArticles: string | any[];
-      if (activeChild.isPremature === "true") {
+      if (inputActiveChild.isPremature === "true") {
         filteredArticles = ArticlesData.filter(
           (article: any) =>
             article.premature === 1
@@ -499,15 +504,15 @@ const DailyReads = (): any => {
 
       const activityDataToShow: any = [];
       dailyDataCategory?.currentgamesid?.forEach?.((id: any) => {
-        const filteredActivity = ActivitiesData.find((x: any) => x.id === id);
+        const filteredActivity = inputActivitiesData.find((x: any) => x.id === id);
         if (filteredActivity) {
           activityDataToShow.push(filteredActivity);
         }
       });
 
       if (articleDataToShow.length === 0 && activityDataToShow.length === 0) {
-        dispatch(setDailyArticleGamesCategory({}));
-        dispatch(setShowedDailyDataCategory({}));
+        inputDispatch(setDailyArticleGamesCategory({}));
+        inputDispatch(setShowedDailyDataCategory({}));
       }
 
       articleDataToShow.forEach((article: any) => {
@@ -520,7 +525,7 @@ const DailyReads = (): any => {
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList);
     }
-  }, [activeChild?.uuid, activityTaxonomyId, fetchAgain]);
+  }, [activeChild?.uuid, activityTaxonomyId, fetchAgain, dailyReadInputs]);
   const keyExtractor = useCallback((item: any) => String(item?.id), []);
 
   const renderItem = useCallback(

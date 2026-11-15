@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
@@ -128,18 +129,23 @@ const ChildSetupList = ({ navigation }: Props): any => {
     Platform.OS == "android" && checkExactAlarmPermission();
   }, []);
 
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const setupInputs = useCommittedRef(() => ({childAge, dispatch, navigation}));
   useEffect(() => {
+    let navigationTimer: ReturnType<typeof setTimeout> | undefined;
+    const {childAge: inputChildAge, dispatch: inputDispatch, navigation: inputNavigation} = setupInputs.current();
+
     let task: { cancel: () => void } | undefined;
     setLoading(true)
     if (isFocused) {
       task = scheduleIdleTask(() => {
-        getAllChildren(dispatch, childAge, 0);
-        getAllConfigData(dispatch);
+        getAllChildren(inputDispatch, inputChildAge, 0);
+        getAllConfigData(inputDispatch);
         setLoading(false)
       });
       notiPermissionUtil();
-      setTimeout(() => {
-        navigation.dispatch((state) => {
+      navigationTimer = setTimeout(() => {
+        inputNavigation.dispatch((state) => {
           // Remove the home route from the stack
           const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
 
@@ -153,8 +159,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
     }
     return () => {
       if (task) task.cancel();
+      if (navigationTimer !== undefined) clearTimeout(navigationTimer);
     };
-  }, [isFocused]);
+  }, [isFocused, setupInputs]);
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {
@@ -169,7 +176,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
         navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
       };
-    }, [])
+    }, [navigation])
   );
   const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
     return new Promise((resolve, reject) => {

@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import { returnToScreen } from "../../navigation/returnToScreen";
 import { appConfig } from "../../instances";
 import ChildDate from "@components/ChildDate";
@@ -193,49 +194,52 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       backHandler.remove();
     };
   }, [navigation]));
+  // Refresh from current inputs on focus; background metadata must not reset edits.
+  const focusInputs = useCommittedRef({childData, gender, genders, isExpected, taxonomyIds});
   useFocusEffect(
     React.useCallback(() => {
+      const {childData: inputChildData, gender: inputGender, genders: inputGenders, isExpected: inputIsExpected, taxonomyIds: inputTaxonomyIds} = focusInputs.current;
+
       if (
-        childData != undefined &&
-        childData != null &&
-        childData != "" &&
-        childData.uuid != ""
+        inputChildData != undefined &&
+        inputChildData != null &&
+        inputChildData != "" &&
+        inputChildData.uuid != ""
       ) {
-        setphotoUri(childData.photoUri);
+        setphotoUri(inputChildData.photoUri);
         if (
-          childData.photoUri != "" &&
-          childData.photoUri != null &&
-          childData.photoUri != undefined
+          inputChildData.photoUri != "" &&
+          inputChildData.photoUri != null &&
+          inputChildData.photoUri != undefined
         ) {
           setCapturedImage(
-            "file://" + `${CHILDREN_PATH}/${childData.photoUri}`
+            "file://" + `${CHILDREN_PATH}/${inputChildData.photoUri}`
           );
         }
-        sendData(childData);
+        sendData(inputChildData);
       }
       if (
-        childData != null &&
-        childData.uuid !== "" &&
-        childData?.gender === 0
+        inputChildData != null &&
+        inputChildData.uuid !== "" &&
+        inputChildData?.gender === 0
       ) {
         setDefaultGenderValue(
-          genders.find(
-            (item: any) => item.unique_name === taxonomyIds?.girlChildGender
+          inputGenders.find(
+            (item: any) => item.unique_name === inputTaxonomyIds?.girlChildGender
           )
         );
-        gender == 0 &&
-          isExpected &&
-          setGender(
-            genders.find(
-              (item: any) => item.unique_name === taxonomyIds?.girlChildGender
-            ).id
-          );
+        const defaultGender = inputGenders.find(
+          (item: any) => item.unique_name === inputTaxonomyIds?.girlChildGender
+        );
+        if (inputGender == 0 && inputIsExpected && defaultGender) {
+          setGender(defaultGender.id);
+        }
       } else {
         setDefaultGenderValue(
-          genders.find((item: any) => item.id === childData?.gender)
+          inputGenders.find((item: any) => item.id === inputChildData?.gender)
         );
       }
-    }, [])
+    }, [focusInputs])
   );
 
   const onChildPhotoChange = async (image: ImageObject): Promise<any> => {

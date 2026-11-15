@@ -1,3 +1,4 @@
+import {useLandscapeChart} from "../../customHooks/useLandscapeChart";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import GrowthChart, { chartTypes } from "@components/growth/GrowthChart";
 import { MainContainer } from "@components/shared/Container";
@@ -12,17 +13,8 @@ import {
 import { Heading2 } from "../../instances/bebbo/styles/typography";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  ActivityIndicator,
-  BackHandler,
-  Dimensions,
-  Platform,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
-import Orientation from "react-native-orientation-locker";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from "react-native";
+
 import { ThemeContext } from "styled-components/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -44,77 +36,13 @@ export const ChartFullScreen = ({ route, navigation }: Props): any => {
   const { activeChild, chartType, obj } = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
-  const [windowWidth, setWindowWidth] = React.useState(
-    Dimensions.get("window").width
-  );
-  const [windowHeight, setWindowHeight] = React.useState(
-    Dimensions.get("window").height
-  );
+  const {windowWidth, windowHeight, isChartVisible, closeFullScreen} = useLandscapeChart(navigation);
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const chartHeading =
     chartType == chartTypes.WeightForHeight
       ? { title: t("growthScreenweightForHeight") }
       : { title: t("growthScreenheightForAge") };
-  const [isChartVisible, setIsChartVisible] = React.useState(false);
-
-  const closeFullScreen = (): any => {
-    
-    Orientation.lockToPortrait();
-    setTimeout(
-      () => {
-        navigation.goBack();
-      },
-      Platform.OS == "ios" ? 200 : 0
-    );
-  };
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      // The screen is focused
-      // Call any action
-      Orientation.unlockAllOrientations();
-      Orientation.lockToLandscape();
-      setWindowHeight(Dimensions.get("window").width);
-      setWindowWidth(Dimensions.get("window").height);
-      setTimeout(() => {
-        setIsChartVisible(true);
-      }, 2000);
-      BackHandler.addEventListener("hardwareBackPress", function () {
-        closeFullScreen();
-        /**
-         * When true is returned the event will not be bubbled up
-         * & no other back action will execute
-         */
-        /**
-         * Returning false will let the event to bubble up & let other event listeners
-         * or the system's default back action to be executed.
-         */
-        return true;
-      });
-      navigation.addListener("gestureEnd", function () {
-        setTimeout(
-          () => {
-            // Orientation.unlockAllOrientations();
-            Orientation.lockToPortrait();
-          },
-          Platform.OS == "ios" ? 400 : 400
-        );
-
-        /**
-         * When true is returned the event will not be bubbled up
-         * & no other back action will execute
-         */
-        /**
-         * Returning false will let the event to bubble up & let other event listeners
-         * or the system's default back action to be executed.
-         */
-        return true;
-      });
-    });
-
-    // Return the function to unsubscribe from the event so it gets removed on unmount
-    return unsubscribe;
-  }, [navigation]);
 
   return (
     <>

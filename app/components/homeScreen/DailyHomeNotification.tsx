@@ -1,3 +1,5 @@
+import {dailyMessage} from "../../services/dailyMessage";
+import {useFocusEffect} from "@react-navigation/native";
 import { BgPrimary } from "@components/shared/BackgroundColors";
 import { MainContainer } from "@components/shared/Container";
 import { Flex1, FlexDirRowStart } from "@components/shared/FlexBoxStyle";
@@ -7,8 +9,8 @@ import {
   ShiftFromTopBottom10,
 } from "../../instances/bebbo/styles/typography";
 import { DateTime } from "luxon";
-import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { AppState, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
 import { selectDailyMessages } from "../../services/selectors";
@@ -16,100 +18,27 @@ const styles = StyleSheet.create({
   shiftFromBottom: { flex: 1, flexDirection: "column" },
 });
 const DailyHomeNotification = (): any => {
-  const [notification, setNotification] = useState<any>();
+  const [calendar, setCalendar] = useState(() => DateTime.local());
   const dispatch = useAppDispatch();
   const records = useAppSelector(selectDailyMessages);
   const currentNotification = useAppSelector(
     (state: any) => state.utilsData.dailyMessageNotification
   );
-  const setNotiInDB = async (noti: {
-    messageId: any;
-    messageText: any;
-    day: number;
-    month: number;
-    year: number;
-  }): Promise<any> => {
-    dispatch(
-      setInfoModalOpened({
-        key: "dailyMessageNotification",
-        value: JSON.stringify(noti),
-      })
-    );
-  };
-
+  useFocusEffect(useCallback(() => {setCalendar(DateTime.local());}, []));
   useEffect(() => {
-    const currentDate = DateTime.local();
-    //for testing next day noti change
-    if (
-      currentNotification != null &&
-      currentNotification != undefined &&
-      currentNotification != ""
-    ) {
-      const currentNotificationVal =
-        currentNotification != "" ? JSON.parse(currentNotification) : null;
-      // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
-      if (records.length > 0) {
-        if (
-          currentNotificationVal.day != currentDate.day ||
-          currentNotificationVal.month != currentDate.month ||
-          currentNotificationVal.year != currentDate.year
-        ) {
-          const currentMessageIndex = records.findIndex(
-            (item: any) => item.id === currentNotificationVal.messageId
-          );
-          // Set next daily message
-          if (currentMessageIndex > -1 && records[currentMessageIndex + 1]) {
-            const newNotification = {
-              messageId: records[currentMessageIndex + 1]?.id,
-              messageText: records[currentMessageIndex + 1]?.title,
-              day: currentDate.day,
-              month: currentDate.month,
-              year: currentDate.year,
-            };
-            setNotiInDB(newNotification);
-            setNotification(newNotification);
-          } else {
-            const firstNotification = {
-              messageId: records.length > 0 ? records[0]?.id : "",
-              messageText: records.length > 0 ? records[0]?.title : "",
-              day: currentDate.day,
-              month: currentDate.month,
-              year: currentDate.year,
-            };
-            // firstNotification
-            setNotiInDB(firstNotification);
-            setNotification(firstNotification);
-          }
-        } else {
-          //DAILY MESSAGE VARIABLE IS CurrentNotification
-          setNotification(currentNotificationVal);
-        }
-      } else {
-        //DAILY MESSAGE VARIABLE WAS NEVER SET
-        const firstNotification = {
-          messageId: records.length > 0 ? records[0]?.id : "",
-          messageText: records.length > 0 ? records[0]?.title : "",
-          day: currentDate.day,
-          month: currentDate.month,
-          year: currentDate.year,
-        };
-        setNotiInDB(firstNotification);
-        setNotification(firstNotification);
-      }
-    } else {
-      if (records.length > 0) {
-        const firstNotification = {
-          messageId: records ? records[0]?.id : "",
-          messageText: records ? records[0]?.title : "",
-          day: currentDate.day,
-          month: currentDate.month,
-          year: currentDate.year,
-        };
-        setNotiInDB(firstNotification);
-        setNotification(firstNotification);
-      }
-    }
-  }, [records.length]);
+    const subscription = AppState.addEventListener('change', state => {
+      if (state === 'active') setCalendar(DateTime.local());
+    });
+    return () => subscription.remove();
+  }, []);
+  const {day, month, year} = calendar;
+  const notification = useMemo(() => dailyMessage(records, currentNotification, {day, month, year}),
+    [records, currentNotification, day, month, year]);
+  useEffect(() => {
+    if (!notification) return;
+    const value = JSON.stringify(notification);
+    if (value !== currentNotification) dispatch(setInfoModalOpened({key: "dailyMessageNotification", value}));
+  }, [notification, currentNotification, dispatch]);
 
   return (
     <>

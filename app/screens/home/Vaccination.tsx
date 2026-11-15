@@ -1,3 +1,4 @@
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { MainContainer } from "@components/shared/Container";
 import { Flex1, FDirRow } from "@components/shared/FlexBoxStyle";
@@ -23,14 +24,7 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  BackHandler,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
@@ -90,17 +84,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
       return true;
     }
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const vaccineModalOpened = useAppSelector(
     (state: any) => state.utilsData.IsVaccineModalOpened
   );

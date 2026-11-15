@@ -56,7 +56,6 @@ import { logEvent } from "../../services/EventSyncService";
 import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurveyData } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { imageBg } from "@styles/style";
-
 type SupportChatNavigationProp = DrawerNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
@@ -93,7 +92,7 @@ const SupportChat = ({ navigation }: Props): any => {
 
   useLayoutEffect(() => {
     navigation.closeDrawer();
-  }, []);
+  }, [navigation]);
 
   const [profileLoading, setProfileLoading] = React.useState(false);
   const surveryData = useAppSelector(selectSurveyData);
@@ -106,9 +105,9 @@ const SupportChat = ({ navigation }: Props): any => {
   const forceScrollOnceRef = useRef(false);
   const prevStepsLengthRef = useRef(steps.length);
   const insets = useSafeAreaInsets();
-  const noDataStep = (): any => {
+  const noDataStep = useCallback((): any => {
     console.log("noDataStep");
-  };
+  }, []);
   
   const updateChatBotData = useCallback((updatedData: any) => {
     setsteps(updatedData);
@@ -117,7 +116,7 @@ const SupportChat = ({ navigation }: Props): any => {
       dispatch(setchatBotData(updatedData));
     }, 100);
   }, [dispatch]);
-  const showdynamicdelay = (stepobj: any[], index: number): any => {
+  const showdynamicdelay = useCallback((stepobj: any[], index: number): any => {
     setTimeout(() => {
       let localsteps = [...stepobj];
       localsteps = localsteps.map((item) => ({ ...item, delay: 0 }));
@@ -125,7 +124,7 @@ const SupportChat = ({ navigation }: Props): any => {
       localsteps[index + 1].showNextStep = true;
       updateChatBotData(localsteps);
     }, delayOfSteps);
-  };
+  }, [updateChatBotData]);
   const dynamicStepSelection = (
     stepIndex: any,
     optionIndex: any,
@@ -263,7 +262,6 @@ const SupportChat = ({ navigation }: Props): any => {
     faqsData,
     netInfo.isConnected,updateChatBotData,
     showdynamicdelay,
-    logEvent,
     t,
     noDataStep]);
 
@@ -628,17 +626,18 @@ const SupportChat = ({ navigation }: Props): any => {
   //   }, delayOfConcurrentSteps);
   // }, [steps]);
 
+  const [initialStepsSnapshot] = useState(() => stepsjson);
   useEffect(() => {
     // FAQ sessions already start afresh on this screen. Persisted function strings
     // must never be evaluated as JavaScript to reconstruct callbacks.
-    setsteps(stepsjson);
+    setsteps(initialStepsSnapshot);
     const timer = setTimeout(() => {
-      const initialSteps = [...stepsjson];
+      const initialSteps = [...initialStepsSnapshot];
       initialSteps[1].showNextStep = true;
       setsteps(initialSteps);
     }, delayOfConcurrentSteps);
     return () => clearTimeout(timer);
-  }, []);
+  }, [initialStepsSnapshot]);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 // import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../instances";
 import ChildDate from "@components/ChildDate";
@@ -104,18 +105,22 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
     );
   };
   const [name, setName] = React.useState("");
+  // Refresh from current inputs on focus; background metadata must not reset edits.
+  const focusInputs = useCommittedRef({childData, genders});
   useFocusEffect(
     React.useCallback(() => {
-      if (childData != null && childData.uuid != "") {
-        sendData(childData);
-        setName(childData.childName);
+      const {childData: inputChildData, genders: inputGenders} = focusInputs.current;
+
+      if (inputChildData != null && inputChildData.uuid != "") {
+        sendData(inputChildData);
+        setName(inputChildData.childName);
       }
       setDefaultGenderValue(
-        childData && childData.uuid
-          ? genders.find((item: any) => item.id == childData?.gender)
+        inputChildData && inputChildData.uuid
+          ? inputGenders.find((item: any) => item.id == inputChildData?.gender)
           : { title: "" }
       );
-    }, [])
+    }, [focusInputs])
   );
 
   const [gender, setGender] = React.useState(

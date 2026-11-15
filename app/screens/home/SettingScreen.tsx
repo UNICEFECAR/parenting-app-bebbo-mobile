@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {backupErrorMessage} from '../../services/backupErrorMessage';
 import {recordError} from "../../services/firebaseAnalytics";
 import {confirmBackupReplacement} from "../../services/confirmBackupReplacement";
@@ -9,7 +10,6 @@ import {
   VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF,
   VACCINE_HEALTHCHECKUP_NOTIFICATION_ON,
 } from "@assets/data/firebaseEvents";
-// import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import AlertModal from "@components/AlertModal";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -124,6 +124,7 @@ import {
   selectWeeklyDownloadDate,
 } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+// import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 
 const styles = StyleSheet.create({
   bgColorWhite: { backgroundColor: bgcolorWhite2 },
@@ -185,7 +186,7 @@ const SettingScreen = (props: any): any => {
 
   useLayoutEffect(() => {
     navigation.closeDrawer();
-  }, []);
+  }, [navigation]);
 
   const importAllData = async (): Promise<any> => {
     if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
@@ -258,7 +259,7 @@ const SettingScreen = (props: any): any => {
   const exportAllData = async (): Promise<any> => {
     actionSheetRef.current?.show();
   };
-  const toggleSwitch = (): any => {
+  const toggleSwitch = React.useCallback((): any => {
     if (
       vchcEnabledFlag == true ||
       growthEnabledFlag == true ||
@@ -268,7 +269,7 @@ const SettingScreen = (props: any): any => {
     } else {
       setIsEnabled(false);
     }
-  };
+  }, [vchcEnabledFlag, growthEnabledFlag, developmentEnabledFlag]);
 
   const toggleGrowthFutureNotiData = async (
     callCreateLocalNoti: boolean
@@ -612,7 +613,11 @@ const SettingScreen = (props: any): any => {
     }
   };
 
+  // Request the catalogue for this settings mount, not on child-profile edits.
+  const settingsBootstrapInputs = useCommittedRef(() => ({activeChild, languageCode, netInfo}));
   useEffect(() => {
+    const {activeChild: inputActiveChild, languageCode: inputLanguageCode, netInfo: inputNetInfo} = settingsBootstrapInputs.current();
+
     const apiJsonData = [
       {
         apiEndpoint: appConfig.apiConfig.countryGroups,
@@ -627,13 +632,13 @@ const SettingScreen = (props: any): any => {
         "",
         dispatch,
         navigation,
-        languageCode,
-        activeChild,
+        inputLanguageCode,
+        inputActiveChild,
         apiJsonData,
-        netInfo.isConnected
+        inputNetInfo.isConnected
       )
     );
-  }, [dispatch, navigation]);
+  }, [dispatch, navigation, settingsBootstrapInputs]);
   const toggleAllNotis = (): any => {
     if (isEnabled == true) {
       const obj = { key: "growthEnabled", value: false };
@@ -748,13 +753,13 @@ const SettingScreen = (props: any): any => {
       }
       toggleSwitch();
     }
-  }, [allCountries]);
+  }, [allCountries, country, countryId, language, languageCode, toggleSwitch]);
 
   useEffect(() => {
     if (isFocused) {
       toggleSwitch();
     }
-  }, [isFocused, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
+  }, [isFocused, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, toggleSwitch]);
 
   const importFromSettingsFile = async (): Promise<void> => {
     if (driveOperationRunning.current || isExportRunning || isImportRunning) return;

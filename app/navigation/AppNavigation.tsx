@@ -1,3 +1,5 @@
+import {useInitialCountrySetup} from "../customHooks/useInitialCountrySetup";
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import {useNetworkClassification} from "../customHooks/useNetworkClassification";
 import {openNotificationLink} from '../services/notificationLink';
 import {trackScreen} from '../services/screenAnalytics';
@@ -41,9 +43,9 @@ import HomeDrawerNavigator from "./HomeDrawerNavigator";
 import LocalizationNavigation from "./LocalizationNavigation";
 import { RootStackParamList } from "./types";
 import {useBandwidthPrompt} from "../customHooks/useBandwidthPrompt";
-import { setchatBotData } from "../redux/reducers/childSlice";
+
 import { appConfig, countryData } from "../instances";
-import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
+
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
 import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp } from "@react-native-firebase/messaging";
@@ -65,6 +67,53 @@ import {
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
 
+const getDistributionChannel = () => {
+    if (BebboDistributionChannel === 'direct_apk') {
+      return 'direct_apk';
+    }
+
+    return Platform.OS === 'android'
+      ? 'google_play'
+      : 'app_store';
+  };
+const setDistributionAnalytics = async () => {
+    try {
+      const platform =
+        Platform.OS === 'android' ? 'Android' : 'iOS';
+
+      const distributionChannel = getDistributionChannel();
+
+      await setUserProperties({
+        platform,
+        distribution_channel: distributionChannel,
+
+        ...(distributionChannel === 'direct_apk'
+          ? {
+              distribution_country: BebboDistributionCountry,
+            }
+          : {}),
+      });
+    } catch (error) {
+      console.log(
+        'Failed to set distribution analytics properties:',
+        error
+      );
+    }
+  };
+function bootstrapRequests() {return [
+    {
+      apiEndpoint: appConfig.apiConfig.countryGroups,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+  ];}
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [_profileLoading, setProfileLoading] = React.useState(false);
@@ -108,48 +157,16 @@ export default (): any => {
   );
   const surveyData = useAppSelector(selectSurveyData);
   const allCountries = useAppSelector(selectAllCountries);
-  let currentCount = 0;
+
   const messaging = React.useMemo(() => getMessaging(getApp()), []);
   // messaging.getToken().then(token => {
   //   console.log('FCM Token:', token);
   // });
-  const getDistributionChannel = () => {
-    if (BebboDistributionChannel === 'direct_apk') {
-      return 'direct_apk';
-    }
-  
-    return Platform.OS === 'android'
-      ? 'google_play'
-      : 'app_store';
-  };
-  const setDistributionAnalytics = async () => {
-    try {
-      const platform =
-        Platform.OS === 'android' ? 'Android' : 'iOS';
-  
-      const distributionChannel = getDistributionChannel();
-  
-      await setUserProperties({
-        platform,
-        distribution_channel: distributionChannel,
-  
-        ...(distributionChannel === 'direct_apk'
-          ? {
-              distribution_country: BebboDistributionCountry,
-            }
-          : {}),
-      });
-    } catch (error) {
-      console.log(
-        'Failed to set distribution analytics properties:',
-        error
-      );
-    }
-  };
+
   useEffect(() => {
     setDistributionAnalytics();
   }, []);
-  const callUrl = (url: any): any => {
+  const callUrl = React.useCallback((url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
       const initialUrlnew: any = url;
@@ -189,24 +206,12 @@ export default (): any => {
       }
       resetURL();
     }
-  };
-  const apiJsonData = [
-    {
-      apiEndpoint: appConfig.apiConfig.countryGroups,
-      method: "get",
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.apiConfig.taxonomies,
-      method: "get",
-      postdata: {},
-      saveinDB: true,
-    },
-  ];
+  }, [userIsOnboarded, headerColor, backgroundColor, resetURL]);
 
+  const bootstrapChild = useCommittedRef(activeChild);
   useEffect(() => {
     const timeout = setTimeout(() => {
+      const apiJsonData = bootstrapRequests();
         dispatch(
           fetchAPI(
             apiJsonData,
@@ -214,7 +219,7 @@ export default (): any => {
             dispatch,
             navigationRef.current,
             languageCode || 'en',
-            activeChild,
+            bootstrapChild.current,
             apiJsonData,
             netInfo.isConnected
           )
@@ -222,21 +227,24 @@ export default (): any => {
     },1000);
 
     return () => clearTimeout(timeout);
-  }, [dispatch,languageCode, netInfo.isConnected]);
+  }, [dispatch, languageCode, netInfo.isConnected, bootstrapChild]);
 
-  const onBackPress = (): any => {
+    useEffect(() => {
+      let currentCount = 0;
+      let resetTimer: ReturnType<typeof setTimeout> | undefined;
+      const onBackPress = (): any => {
     if (routesLength === 1 && userIsOnboarded == false) {
         if (currentCount === 0) {
           currentCount++;
           if (Platform.OS === "android") {
             ToastAndroidLocal.show(t("backPressText"), 6000);
-            setTimeout(() => {
+            resetTimer = setTimeout(() => {
               currentCount = 0;
             }, 2000);
             return true;
           } else {
             Alert.alert(t("backPressText"));
-            setTimeout(() => {
+            resetTimer = setTimeout(() => {
               currentCount = 0;
             }, 2000);
             return true;
@@ -247,17 +255,15 @@ export default (): any => {
         }
       }
     };
-    useEffect(() => {
-      const backHandler = BackHandler.addEventListener(
-        "hardwareBackPress",
-        onBackPress
-      );
-      navigationRef.current?.addListener("gestureEnd", onBackPress);
-      return (): any => {
-        navigationRef.current?.removeListener("gestureEnd", onBackPress);
-        backHandler.remove();
+      const navigation = navigationRef.current;
+      const hardware = BackHandler.addEventListener("hardwareBackPress", onBackPress);
+      const unsubscribe = navigation?.addListener("gestureEnd", onBackPress);
+      return () => {
+        if (resetTimer) clearTimeout(resetTimer);
+        unsubscribe?.();
+        hardware.remove();
       };
-    }, [routesLength,userIsOnboarded]);
+    }, [routesLength, userIsOnboarded, t]);
 
   useEffect(() => {
     const task = scheduleIdleTask(() => {
@@ -266,7 +272,7 @@ export default (): any => {
     });
     
     return () => task.cancel();
-  }, [linkedURL, resetURL, userIsOnboarded]);
+  }, [linkedURL, resetURL, userIsOnboarded, callUrl]);
 
   useEffect(() => {
     if (AppState.currentState === 'active') void configureAdvertisingConsent();
@@ -803,6 +809,7 @@ export default (): any => {
       }
     }
   };
+  const notificationInputs = useCommittedRef({redirectPayload, t});
   useEffect(() => {
     const splashTimer = setTimeout(() => SplashScreen.hide(), 2000);
     let active = true;
@@ -814,7 +821,7 @@ export default (): any => {
         redirects.delete(redirect);
         if (!active) return;
         logCrashlyticsMessage(message);
-        redirectPayload(remoteMessage);
+        notificationInputs.current.redirectPayload(remoteMessage);
       });
       redirects.add(redirect);
     };
@@ -841,7 +848,7 @@ export default (): any => {
           Alert.alert(
             remoteMessage.notification.title,
             remoteMessage.notification.body,
-            [{ text: t("forceUpdateOkBtn") }]
+            [{ text: notificationInputs.current.t("forceUpdateOkBtn") }]
           );
         }
       });
@@ -855,7 +862,7 @@ export default (): any => {
       redirects.forEach((redirect) => redirect.cancel());
       redirects.clear();
     };
-  }, [userIsOnboarded]);
+  }, [userIsOnboarded, messaging, notificationInputs]);
 
   useNetworkClassification(netInfo, setNetState, synchronizeEvents);
   useEffect(() => {
@@ -885,21 +892,8 @@ export default (): any => {
     },1000);
 
     return () => clearTimeout(timeout);
-  }, [userIsOnboarded]);
-  useEffect(() => {
-    if (!allCountries.length) return;
-    const timeout = setTimeout(() => {
-      dispatch(setchatBotData([]));
-      if (countryId == 1 && !allCountries.some((c: { CountryID: any; }) => Number(c.CountryID) === 1)) {
-        dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
-      }
-      const notiFlagObj = { key: "generateNotifications", value: true };
-      dispatch(setInfoModalOpened(notiFlagObj));
-      //add notification condition in else if required 1st time as well
-    },1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  }, [userIsOnboarded, child_age, dispatch]);
+  useInitialCountrySetup(allCountries, countryId, appConfig.restOfTheWorldCountryId, dispatch);
   useBandwidthPrompt(userIsOnboarded, netState, toggleSwitchVal, dispatch);
   const routeNameRef = React.useRef<any>(null);
 

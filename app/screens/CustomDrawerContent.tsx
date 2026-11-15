@@ -83,7 +83,6 @@ import useDigitConverter from "../customHooks/useDigitConvert";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
 import { selectActiveChild, selectAllCountries, selectChildGenders, selectSurveyData, selectVaccineData } from "../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor: secondaryColor,
@@ -178,6 +177,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         }
         setfavoritescount(favadvices + favgames);
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Selected-child identity deliberately restarts the focus count calculation.
     }, [isOpen, activeChild.uuid, favoriteadvices, favoritegames])
   );
   const languageCode = useAppSelector(
@@ -191,11 +191,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       (country: any) => country.CountryID === countryId.toString()
     );
     setCountryEmail(selectedCountry?.country_email);
-  }, []);
+  }, [allCountries, countryId]);
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
     setActiveChildGenderData(gender);
-  }, [activeChild?.gender]);
+  }, [activeChild?.gender, genders]);
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -276,7 +276,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           }
         }
       }
-    }, [isOpen, activeChild.uuid, allnotis])
+    }, [isOpen, activeChild.uuid, activeChild.birthDate, allnotis, allVaccineData])
   );
   const onShare = async (): Promise<any> => {
     const localeData =
@@ -300,6 +300,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Drawer, child and notification transitions deliberately dismiss this transient modal.
     }, [isOpen, activeChild.uuid, allnotis])
   );
 

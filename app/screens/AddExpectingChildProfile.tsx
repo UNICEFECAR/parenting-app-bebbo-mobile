@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import { returnToScreen } from "../navigation/returnToScreen";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -52,7 +53,6 @@ import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { setActiveChildData } from "../redux/reducers/childSlice";
 import { bgcolorWhite } from "@styles/style";
 import { selectChildAge, selectChildList } from "../services/selectors";
-
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildProfileScreen"
@@ -114,17 +114,20 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     ondobChange(event, date);
     setDobDatePickerVisibility(false);
   };
+  // Refresh from current inputs on focus; background metadata must not reset edits.
+  const focusInputs = useCommittedRef({childData});
   useFocusEffect(
     React.useCallback(() => {
-      console.log("childList", childList);
-      console.log("childData is", childData);
-      if (childData?.uuid != "") {
-        setName(childData?.childName ? childData?.childName : "");
+      const {childData: inputChildData} = focusInputs.current;
+
+
+      if (inputChildData?.uuid != "") {
+        setName(inputChildData?.childName ? inputChildData?.childName : "");
         setPlannedTermDate(
-          childData?.birthDate != null ? new Date(childData?.birthDate) : null
+          inputChildData?.birthDate != null ? new Date(inputChildData?.birthDate) : null
         );
       }
-    }, [])
+    }, [focusInputs])
   );
   useEffect(() => {
     const backAction = (): any => {
@@ -140,7 +143,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       navigation.removeListener("gestureEnd", backAction);
       backHandler.remove();
     };
-  }, []);
+  }, [navigation]);
   const AddChild = async (): Promise<any> => {
     let insertData: any;
     if (name == "" || name == null) {

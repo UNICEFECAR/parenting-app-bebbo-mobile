@@ -24,7 +24,6 @@ import HTML from "react-native-render-html";
 import WebView from "react-native-webview";
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
-
 import { addSpaceToHtml } from "../services/Utils";
 import { bgcolorWhite2, primaryColor } from "@styles/style";
 type PrivacyPolicyNavigationProp = StackNavigationProp<
@@ -70,7 +69,7 @@ const PrivacyPolicy = ({ navigation }: Props): any => {
         navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
       };
-    }, [])
+    }, [navigation])
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;

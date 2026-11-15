@@ -1,3 +1,5 @@
+import {initialLanguage} from "../../services/initialLanguage";
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {CommonActions} from "@react-navigation/native";
 import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -94,72 +96,56 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   ];
 
   const locale = useAppSelector((state: any) => state.selectedCountry.locale);
-  const extractLanguageCode = (languageTag: string): string => {
-    const [languageCode] = languageTag.split("-");
-    return languageCode;
-  };
-
+  // Re-read route defaults without resetting an explicit caregiver selection during editing.
+  const languageDefaults = useCommittedRef(() => ({languages, luxonLocale: route?.params?.luxonlocale, deviceCode: route?.params?.deviceLanCode}));
   useEffect(() => {
-    if (route?.params?.language != undefined) {
-      setLanguage(route?.params?.language);
-    } else {
-      console.log("languages for foleja is", languages);
-      if (appConfig.buildFor == String(appConfig.buildForFoleja)) {
-        setLanguage(languages[0]);
-      } else {
-        const languagesWithLuxonLocale = country?.languages?.filter(
-          (lang: any) =>
-            lang.luxonLocale === route.params.luxonlocale ||
-            extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode
-        );
-
-        if (languagesWithLuxonLocale?.length != 0) {
-          setLanguage(languagesWithLuxonLocale);
-        } else {
-          setLanguage(languages[0]);
-        }
-      }
-    }
-  }, [route?.params?.language]);
+    const inputs = languageDefaults.current();
+    setLanguage(initialLanguage(route?.params?.language, inputs.languages, inputs.luxonLocale, inputs.deviceCode,
+      String(appConfig.buildFor) === String(appConfig.buildForFoleja)));
+  }, [route?.params?.language, languageDefaults]);
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const languageChoiceInputs = useCommittedRef(() => ({allCountries, countryId, dispatch, route, userIsOnboarded}));
   useEffect(() => {
+    const {allCountries: inputAllCountries, countryId: inputCountryId, dispatch: inputDispatch, route: inputRoute, userIsOnboarded: inputUserIsOnboarded} = languageChoiceInputs.current();
+
     if (isVisible) {
       let newCountryId: any;
 
-      if (userIsOnboarded == true) {
+      if (inputUserIsOnboarded == true) {
         if (
-          route.params.country &&
-          route.params.country != null &&
-          route.params.country != undefined
+          inputRoute.params.country &&
+          inputRoute.params.country != null &&
+          inputRoute.params.country != undefined
         ) {
-          newCountryId = route.params.country?.countryId;
+          newCountryId = inputRoute.params.country?.countryId;
         } else {
-          newCountryId = countryId;
+          newCountryId = inputCountryId;
         }
       } else {
-        if (Object.keys(route.params ?? {}).length === 0) {
-          newCountryId = countryId;
+        if (Object.keys(inputRoute.params ?? {}).length === 0) {
+          newCountryId = inputCountryId;
         } else {
-          if (route.params != undefined) {
-            newCountryId = route.params?.country?.countryId;
+          if (inputRoute.params != undefined) {
+            newCountryId = inputRoute.params?.country?.countryId;
           } else {
-            newCountryId = countryId;
+            newCountryId = inputCountryId;
           }
         }
       }
       const fetchData = async (): Promise<any> => {
-        if (userIsOnboarded == false && route.params?.isDirect) {
+        if (inputUserIsOnboarded == false && inputRoute.params?.isDirect) {
           // A lost onboarding flag must never delete caregiver-created profiles.
           // isMigrated identifies imported records, not disposable setup data.
           const data = await dataRealmCommon.deleteAllAtOnce();
           console.log(data, "..newdata..");
           // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
           const payload = { errorArr: [], fromPage: "OnLoad" };
-          dispatch(receiveAPIFailure(payload));
+          inputDispatch(receiveAPIFailure(payload));
         }
       };
       fetchData();
 
-      const selectedCountry = allCountries.find(
+      const selectedCountry = inputAllCountries.find(
         (country: any) => country.CountryID == newCountryId
       );
 
@@ -167,9 +153,9 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       //   (country: any) => country.id === selectedCountry.CountryID,
       // )
       console.log("selectedCountry country is", selectedCountry);
-      setSponsorsData(route?.params?.country);
+      setSponsorsData(inputRoute?.params?.country);
     }
-  }, [isVisible]);
+  }, [isVisible, languageChoiceInputs]);
   const renderItem = ({ item, index }: any): any => (
     <LanguageItem
       item={item}

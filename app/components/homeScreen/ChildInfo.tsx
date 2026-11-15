@@ -83,7 +83,7 @@ const ChildInfo = (props: any): any => {
       )[0];
       setSelectedPinnedArticleData(filteredPinnedData);
     }
-  }, [activeChild.uuid, activityTaxonomyId]);
+  }, [activeChild, activityTaxonomyId, ChildDevData, PinnedChildDevData, activeChildGender]);
 
   const goToVideoArticleDetails = (): any => {
     navigation.navigate("DetailsScreen", {

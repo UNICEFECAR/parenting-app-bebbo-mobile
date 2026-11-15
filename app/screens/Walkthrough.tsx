@@ -165,7 +165,7 @@ const Walkthrough = ({ navigation }: Props): any => {
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
-  const [showPrevbtn, setShowPrevbtn] = useState(false);
+  const [_showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
   const [statubarColor, setstatubarColor] = useState(headerColor);
   const getDotStyle = (colorString: string): any => {
@@ -188,8 +188,7 @@ const Walkthrough = ({ navigation }: Props): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      console.log("showPrevbtn--", showPrevbtn);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         navigation.dispatch((state) => {
           // Remove the home route from the stack
           const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
@@ -201,7 +200,8 @@ const Walkthrough = ({ navigation }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+      return () => clearTimeout(timer);
+    }, [navigation])
   );
   const onDone = (): any => {
     // User finished the introduction. Show real app through
