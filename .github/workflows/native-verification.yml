@@ -70,7 +70,7 @@ jobs:
         if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
         working-directory: android
         run: |
-          ./gradlew -I ../scripts/android-dependency-inventory.gradle :app:reviewDependencyInventory \
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew -I ../scripts/android-dependency-inventory.gradle :app:reviewDependencyInventory \
             -PreviewDependencyInventoryFile="$RUNNER_TEMP/native-smoke/dependency-inventory.json" \
             -PunsignedVerification=true --no-daemon --max-workers=2
           python3 ../scripts/audit-maven-dependencies.py "$RUNNER_TEMP/native-smoke/dependency-inventory.json" \
@@ -79,7 +79,7 @@ jobs:
         if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
         working-directory: android
         run: |
-          ./gradlew :react-native-notify-kit:testReleaseUnitTest \
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew :react-native-notify-kit:testReleaseUnitTest \
             --tests io.invertase.notifee.RequestPermissionThreadTest \
             -Pandroid.onlyEnableUnitTestForTheTestedBuildType=false \
             -PunsignedVerification=true --no-daemon --max-workers=2
@@ -93,7 +93,7 @@ jobs:
           if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then
             args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
           fi
-          ./gradlew "${args[@]}"
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew "${args[@]}"
       - name: Install pinned bundletool
         if: inputs.platform == 'android'
         shell: bash
