@@ -79,7 +79,8 @@ jobs:
         if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
         working-directory: android
         run: |
-          python3 ../scripts/run-gradle-with-retry.py ./gradlew :react-native-notify-kit:testReleaseUnitTest \
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew -I ../scripts/notification-permission-tests.gradle \
+            :react-native-notify-kit:testReleaseUnitTest \
             --tests io.invertase.notifee.RequestPermissionThreadTest \
             -Pandroid.onlyEnableUnitTestForTheTestedBuildType=false \
             -PunsignedVerification=true --no-daemon --max-workers=2

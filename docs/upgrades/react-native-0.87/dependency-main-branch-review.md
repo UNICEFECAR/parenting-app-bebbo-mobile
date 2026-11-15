@@ -49,9 +49,9 @@ These are npm package/advisory entries, including transitive effects; not counts
 
 **2. Bug or issue:** TurboModule permission requests may run on the native-modules thread while Android changes the UI hierarchy. Duplicate/cyclic iOS delegate chains can also recurse.
 
-**3. Detailed change:** Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. AGP 9 only creates the default tested build type’s unit tasks; enable the release unit-test component for this invocation with the documented command-line property, without changing production Gradle defaults. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.
+**3. Detailed change:** Upgrade NotifyKit 10.10.0 to 10.10.1. Its Android POST_NOTIFICATIONS request moves onto the UI thread while preserving rejection behaviour. Its iOS callback forwarding contains synchronous delegate cycles. Run the package’s real Android main-thread/error-path regression on API 33 and 36 in CI. AGP 9 only creates the default tested build type’s unit tasks; enable the release unit-test component for this invocation with the documented command-line property, without changing production Gradle defaults. Compile only the requested upstream permission test source against this app’s RN 0.87 API; unrelated vendor tests contain an older ReactContext stub. The test init script changes only test source selection, fails if the requested source is absent, and leaves the real native implementation under test. CocoaPods inputs are regenerated on macOS; the legacy alarm reader and notification IDs are not rewritten.
 
-**4. Files impacted:** `package.json`, `package-lock.json`, `ios/Podfile.lock`, `.github/workflows/native-verification.yml`
+**4. Files impacted:** `package.json`, `package-lock.json`, `ios/Podfile.lock`, `scripts/notification-permission-tests.gradle`, `.github/workflows/native-verification.yml`
 
 ### C111 — iOS Lottie bridge compatibility
 
