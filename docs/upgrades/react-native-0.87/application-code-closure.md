@@ -39,7 +39,8 @@ independently confirmed runtime bugs. **2,053 legacy warnings remain**, down fro
 ## Validation and limits
 
 - 562 Jest tests across 75 suites pass; strict TypeScript passes.
-- Full project ESLint: zero errors and 2,053 warnings. The eight intentional
+- Full project ESLint: zero errors and 2,053 warnings. Regression CI now runs
+  `npm run lint` after TypeScript so new lint errors fail the unit job. The eight intentional
   focus-trigger dispositions are listed with exact files/lines/reasons in the
   evidence. There is no global hook-rule or unused-variable-rule disable.
 - 35 Node tooling tests, 30 Python tests, 96 vector resources, all eight primary

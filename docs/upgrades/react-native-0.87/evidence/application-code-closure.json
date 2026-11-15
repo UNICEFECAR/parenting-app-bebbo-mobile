@@ -107,7 +107,8 @@
       "baseline_errors": 107,
       "baseline_warnings": 2074,
       "global_rule_changes": false,
-      "note": "Eight narrow intentional focus-trigger dispositions are explicit, not unresolved runtime bugs. Remaining warnings are legacy style/compatibility findings, not silently declared fixed."
+      "note": "Eight narrow intentional focus-trigger dispositions are explicit, not unresolved runtime bugs. Remaining warnings are legacy style/compatibility findings, not silently declared fixed.",
+      "enforced_in_ci": true
     },
     "node_tooling_tests": 35,
     "python_tests": 30,
