@@ -63,17 +63,9 @@ jobs:
       - name: Verify unsafe Gradle version catalog values are rejected
         if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
         run: python3 scripts/check-gradle-catalog-security.py --report "$RUNNER_TEMP/native-smoke/gradle-catalog-security.json"
-      - name: Compile unsigned Android release
-        if: inputs.platform == 'android'
-        working-directory: android
-        shell: bash
-        run: |
-          args=(":app:bundle${ANDROID_VARIANT}Release" ":app:assemble${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2 --continue)
-          # Bebbo also verifies the production default, including 32-bit ABIs.
-          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then
-            args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
-          fi
-          ./gradlew "${args[@]}"
+      - name: Verify dependency inventory scopes composite builds correctly
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        run: python3 scripts/check-gradle-inventory-scope.py --report "$RUNNER_TEMP/native-smoke/inventory-scope.json"
       - name: Audit resolved runtime dependencies and selected Kotlin compiler
         if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
         working-directory: android
@@ -90,6 +82,17 @@ jobs:
           ./gradlew :react-native-notify-kit:testReleaseUnitTest \
             --tests io.invertase.notifee.RequestPermissionThreadTest \
             -PunsignedVerification=true --no-daemon --max-workers=2
+      - name: Compile unsigned Android release
+        if: inputs.platform == 'android'
+        working-directory: android
+        shell: bash
+        run: |
+          args=(":app:bundle${ANDROID_VARIANT}Release" ":app:assemble${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2 --continue)
+          # Bebbo also verifies the production default, including 32-bit ABIs.
+          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then
+            args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
+          fi
+          ./gradlew "${args[@]}"
       - name: Install pinned bundletool
         if: inputs.platform == 'android'
         shell: bash

@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-15T22:42:36.845474+00:00",
+  "checked_at": "2026-11-15T23:28:58.837477+00:00",
   "main_commit": "f2e1bd4428ab2f37b0dc975dc6508a3a9c01d89f",
   "review_base": "6a1e88e8a876293294642c1ecfa91e3322a51694",
   "review_branch": "RNSDKUpgrade-review-fixes",
@@ -418,6 +418,10 @@
         "result": "PASS"
       }
     ]
+  },
+  "gradle_inventory_scope_regression": {
+    "result": "PASS",
+    "scope": "Real Gradle init script registers the app task and safely configures an included build without an :app project. No Android SDK, network dependency or device is used."
   },
   "dependencies": [
     {
@@ -1905,9 +1909,10 @@
       "id": "C114",
       "area": "Continuous resolved native dependency verification",
       "issue": "An npm audit cannot verify Maven runtime packages or establish which Kotlin plugin Gradle actually selected. Partial scans can otherwise appear clean.",
-      "change": "Add a read-only inventory of all ten release runtime classpaths plus root buildscript coordinates. Reject incomplete resolution, empty/missing variants and unpatched selected KGP. Query exact runtime coordinates plus the selected KGP against OSV and fail on advisory matches, malformed/partial/paginated responses or request failures. Preserve the inventory/report as CI artifacts. Other buildscript, Apple/C++ and service coverage remains explicitly excluded.",
+      "change": "Add a read-only inventory of all ten release runtime classpaths plus root buildscript coordinates. Scope the init script to builds containing the app project: React Native’s included build has no :app. Exercise the real script on an isolated composite build; the regression fails before this guard and passes afterwards. Run the scope, resolved-dependency and permission checks before the expensive app compile so failures surface early. Reject incomplete resolution, empty/missing variants and unpatched selected KGP. Query exact runtime coordinates plus the selected KGP against OSV and fail on advisory matches, malformed/partial/paginated responses or request failures. Preserve the inventory/report as CI artifacts. Other buildscript, Apple/C++ and service coverage remains explicitly excluded.",
       "files": [
         "scripts/android-dependency-inventory.gradle",
+        "scripts/check-gradle-inventory-scope.py",
         "scripts/audit-maven-dependencies.py",
         "scripts/__tests__/test_maven_audit.py",
         ".github/workflows/native-verification.yml"
