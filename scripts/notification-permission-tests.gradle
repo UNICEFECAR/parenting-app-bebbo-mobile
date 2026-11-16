@@ -1,0 +1,20 @@
+// Validation-only source selection: compile the requested upstream regression
+// against this app's React Native version, without unrelated vendor test stubs.
+gradle.beforeProject { project ->
+    if (project.path != ':react-native-notify-kit') return
+    project.pluginManager.withPlugin('com.android.library') {
+        def source = project.file('src/test/java/io/invertase/notifee/RequestPermissionThreadTest.java')
+        if (!source.isFile()) throw new GradleException('Upstream permission regression is missing')
+        def isolated = project.layout.buildDirectory.dir('review-permission-tests').get().asFile
+        project.delete(isolated)
+        project.copy { from source; into isolated }
+        project.extensions.getByName('android').sourceSets.getByName('test').java.setSrcDirs([isolated])
+        project.pluginManager.withPlugin('org.jetbrains.kotlin.android') {
+            project.extensions.getByName('kotlin').sourceSets.matching {
+                it.name.startsWith('test')
+            }.configureEach {
+                kotlin.setSrcDirs([isolated])
+            }
+        }
+    }
+}

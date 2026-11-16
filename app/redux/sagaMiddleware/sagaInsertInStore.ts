@@ -6,7 +6,7 @@ function* onInsertInStore(response:any):any {
     try{
         yield call(getAllDataToStore, response.languageCode,response.dispatch,response.payload.apiEndpoint)
       }
-      catch(e) {
+      catch {
        // console.log("in onInsertInDB err ", e);
       }
 }

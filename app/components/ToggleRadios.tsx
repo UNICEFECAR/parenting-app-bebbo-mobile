@@ -1,16 +1,16 @@
 import { Heading4Centerr } from "../instances/bebbo/styles/typography";
 import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import Checkbox, { CheckboxActive, CheckboxItem } from "./shared/CheckboxStyle";
 import { FDirRow } from "./shared/FlexBoxStyle";
 import Icon from "./shared/Icon";
 import Radio, {
   RadioActive,
   RadioBoxContainer,
-  RadioInnerBox,
   RadioItem,
   RadioOuter,
-} from "./shared/radio";
+} from './shared/radio';
+
+
 const styles = StyleSheet.create({
   checkbox: { borderRadius: 50, borderWidth: 1 },
   checkboxItem: { borderRadius: 50 },
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 const ToggleRadios = (props: any): any => {
-  const { options, tickColor, tickbgColor, defaultValue } = props;
+  const {options,defaultValue} = props;
   const [checkedItem, setCheckedItem] = useState(
     defaultValue ? defaultValue : null
   );

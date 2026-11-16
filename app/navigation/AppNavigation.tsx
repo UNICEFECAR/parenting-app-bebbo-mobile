@@ -1,7 +1,9 @@
-import * as AuditFS from '@dr.pogodin/react-native-fs';
-import {store as auditStore} from '../../App';
-import {selectArticleDataAll, selectActivitiesDataAll, selectPinnedChildDevData} from '../services/selectors';
-import AuditRestart from 'react-native-restart';
+import {useInitialCountrySetup} from "../customHooks/useInitialCountrySetup";
+import {useCommittedRef} from "../customHooks/useCommittedRef";
+import {useNetworkClassification} from "../customHooks/useNetworkClassification";
+import {openNotificationLink} from '../services/notificationLink';
+import {trackScreen} from '../services/screenAnalytics';
+import {clearLegacyProfileAnalytics} from '../services/firebaseAnalytics';
 import {I18nManager} from "react-native";
 import {setrestartOnLangChange, setAppLayoutDirectionParams} from "../redux/reducers/localizationSlice";
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
@@ -28,50 +30,99 @@ import PrivacyPolicy from "@screens/PrivacyPolicy";
 import Terms from "@screens/Terms";
 import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
-import React, { useContext, useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, Linking, NativeModules, Platform } from "react-native";
+import {Alert, AppState, BackHandler, Platform} from 'react-native';
 import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import { onNetworkStateChange } from "../redux/reducers/bandwidthSlice";
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 import { getAllChildren, setActiveChild } from "../services/childCRUD";
 import HomeDrawerNavigator from "./HomeDrawerNavigator";
 import LocalizationNavigation from "./LocalizationNavigation";
 import { RootStackParamList } from "./types";
-import { retryAlert1 } from "../services/commonApiService";
-import { setchatBotData } from "../redux/reducers/childSlice";
+import {useBandwidthPrompt} from "../customHooks/useBandwidthPrompt";
+
 import { appConfig, countryData } from "../instances";
-import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
+
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
 import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp } from "@react-native-firebase/messaging";
-import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
-import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
+import {configureAdvertisingConsent} from "../services/advertisingConsent";
 import LocalNotifications from "../services/LocalNotifications";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
 import { trimWhiteSpacePayload } from "../services/Utils";
 import TermsPage from "@screens/TermsPage";
-import { logEvent, synchronizeEvents } from "../services/EventSyncService";
+import {synchronizeEvents} from '../services/EventSyncService';
 import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
-import { logAnalyticsEvent, setUserProperties, logCrashlyticsMessage, recordError } from "../services/firebaseAnalytics";
+import {
+  setUserProperties,
+  logCrashlyticsMessage,
+  recordError,
+} from '../services/firebaseAnalytics';
 import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 import { BebboDistributionChannel, BebboDistributionCountry } from "react-native-dotenv";
 
+const getDistributionChannel = () => {
+    if (BebboDistributionChannel === 'direct_apk') {
+      return 'direct_apk';
+    }
+
+    return Platform.OS === 'android'
+      ? 'google_play'
+      : 'app_store';
+  };
+const setDistributionAnalytics = async () => {
+    try {
+      const platform =
+        Platform.OS === 'android' ? 'Android' : 'iOS';
+
+      const distributionChannel = getDistributionChannel();
+
+      await setUserProperties({
+        platform,
+        distribution_channel: distributionChannel,
+
+        ...(distributionChannel === 'direct_apk'
+          ? {
+              distribution_country: BebboDistributionCountry,
+            }
+          : {}),
+      });
+    } catch (error) {
+      console.log(
+        'Failed to set distribution analytics properties:',
+        error
+      );
+    }
+  };
+function bootstrapRequests() {return [
+    {
+      apiEndpoint: appConfig.apiConfig.countryGroups,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+  ];}
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
-  const [profileLoading, setProfileLoading] = React.useState(false);
+  const [_profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded
   );
-  const userIsFirstTime = useAppSelector(
-    (state: any) => state.utilsData.userIsFirstTime
-  );
+  useAppSelector((state:any)=>state.utilsData.userIsFirstTime);
+
+
   const child_age = useAppSelector(selectChildAge);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
@@ -101,112 +152,21 @@ export default (): any => {
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>(null);
   const routesLength = navigationRef?.current?.getRootState()?.routes?.length;
-  useEffect(() => {
-    let last = '';
-    let busy = false;
-    const base = Platform.OS === 'android' ? AuditFS.ExternalDirectoryPath : AuditFS.DocumentDirectoryPath;
-    const timer = setInterval(async () => {
-      if (busy || !navigationRef.current?.isReady()) return;
-      busy = true;
-      try {
-        const cmd = JSON.parse(await AuditFS.readFile(base + '/visual-audit.json', 'utf8'));
-        if (cmd.id === last) return;
-        last = cmd.id;
-        if (cmd.direction) {
-          I18nManager.allowRTL(cmd.direction === 'rtl');
-          I18nManager.forceRTL(cmd.direction === 'rtl');
-          await AuditFS.writeFile(base + '/visual-audit-status.json', JSON.stringify({id:cmd.id,restarting:true}), 'utf8');
-          AuditRestart.Restart();
-          return;
-        }
-        if (cmd.scroll) {
-          const views = Array.from((globalThis as any).__auditScrolls.values()).filter((x:any)=>!x.props.horizontal && x.ref?.scrollToEnd) as any[];
-          const target=views[views.length-1];
-          if(cmd.scroll==='end') target?.ref.scrollToEnd({animated:false});
-          else target?.ref.scrollTo({y:0,animated:false});
-        } else if (cmd.text !== undefined) {
-          const inputs = Array.from((globalThis as any).__auditInputs.values()).filter((x:any)=>x.props.editable!==false && x.props.onChangeText) as any[];
-          const target=inputs[cmd.inputIndex || 0];
-          target?.ref?.focus();target?.props.onChangeText(cmd.text);
-        } else if (cmd.press) {
-          const controls = Array.from((globalThis as any).__auditControls.values()) as any[];
-          const match = controls.filter(x => x.label.toLowerCase().includes(cmd.press.toLowerCase()) && !x.disabled && typeof x.onPress === 'function')[cmd.match || 0];
-          if (match) match.onPress?.({stopPropagation(){},persist(){},nativeEvent:{}});
-          else throw new Error('No control: '+cmd.press);
-        } else {
-          let params = cmd.params || {};
-          if (cmd.detail) {
-            const state = auditStore.getState();
-            const pool = cmd.detail === 'activity' ? selectActivitiesDataAll(state) : cmd.detail === 'video' ? selectPinnedChildDevData(state) : selectArticleDataAll(state);
-            const data = cmd.idOfArticle ? pool.find((x:any)=>x.id===cmd.idOfArticle) : pool.find((x:any)=>x.body || x.summary || x.title);
-            params = {fromScreen:cmd.detail==='activity'?'Activities':'Articles', detailData:data, listCategoryArray:[], selectedChildActivitiesData:[], currentSelectedChildId:activeChild?.uuid, queryText:[],...params};
-          }
-          if (cmd.editChild) params = {...params,childData:activeChild};
-          let target:any = {name:cmd.route, params};
-          if (cmd.tab) target = {name:'HomeDrawerNavigator',params:{screen:'Home',params:{screen:cmd.tab}}};
-          if (cmd.drawer) target = {name:'HomeDrawerNavigator',params:{screen:cmd.drawer,params}};
-          if (cmd.localization) target = {name:'Localization',params:{screen:cmd.localization,params}};
-          navigationRef.current.resetRoot({index:target.name==='HomeDrawerNavigator'?0:1,routes:target.name==='HomeDrawerNavigator'?[target]:[{name:'HomeDrawerNavigator'},target]});
-        }
-        setTimeout(async () => {
-          const controls = Array.from((globalThis as any).__auditControls.values()).map((x:any)=>({label:x.label,disabled:x.disabled}));
-          await AuditFS.writeFile(base + '/visual-audit-status.json', JSON.stringify({id:cmd.id,route:navigationRef.current?.getCurrentRoute(),rtl:I18nManager.isRTL,controls}), 'utf8');
-        },1000);
-      } catch(e) {
-        if (last) await AuditFS.writeFile(base + '/visual-audit-error.json', String(e), 'utf8').catch(()=>{});
-      } finally {busy=false;}
-    },500);
-    return () => clearInterval(timer);
-  }, [activeChild]);
-
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
   );
   const surveyData = useAppSelector(selectSurveyData);
   const allCountries = useAppSelector(selectAllCountries);
-  const hasLoggedEvent = useRef(false);
-  let currentCount = 0;
+
   const messaging = React.useMemo(() => getMessaging(getApp()), []);
   // messaging.getToken().then(token => {
   //   console.log('FCM Token:', token);
   // });
-  const getDistributionChannel = () => {
-    if (BebboDistributionChannel === 'direct_apk') {
-      return 'direct_apk';
-    }
-  
-    return Platform.OS === 'android'
-      ? 'google_play'
-      : 'app_store';
-  };
-  const setDistributionAnalytics = async () => {
-    try {
-      const platform =
-        Platform.OS === 'android' ? 'Android' : 'iOS';
-  
-      const distributionChannel = getDistributionChannel();
-  
-      await setUserProperties({
-        platform,
-        distribution_channel: distributionChannel,
-  
-        ...(distributionChannel === 'direct_apk'
-          ? {
-              distribution_country: BebboDistributionCountry,
-            }
-          : {}),
-      });
-    } catch (error) {
-      console.log(
-        'Failed to set distribution analytics properties:',
-        error
-      );
-    }
-  };
+
   useEffect(() => {
     setDistributionAnalytics();
   }, []);
-  const callUrl = (url: any): any => {
+  const callUrl = React.useCallback((url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
       const initialUrlnew: any = url;
@@ -246,24 +206,12 @@ export default (): any => {
       }
       resetURL();
     }
-  };
-  const apiJsonData = [
-    {
-      apiEndpoint: appConfig.apiConfig.countryGroups,
-      method: "get",
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.apiConfig.taxonomies,
-      method: "get",
-      postdata: {},
-      saveinDB: true,
-    },
-  ];
+  }, [userIsOnboarded, headerColor, backgroundColor, resetURL]);
 
+  const bootstrapChild = useCommittedRef(activeChild);
   useEffect(() => {
     const timeout = setTimeout(() => {
+      const apiJsonData = bootstrapRequests();
         dispatch(
           fetchAPI(
             apiJsonData,
@@ -271,7 +219,7 @@ export default (): any => {
             dispatch,
             navigationRef.current,
             languageCode || 'en',
-            activeChild,
+            bootstrapChild.current,
             apiJsonData,
             netInfo.isConnected
           )
@@ -279,21 +227,24 @@ export default (): any => {
     },1000);
 
     return () => clearTimeout(timeout);
-  }, [dispatch,languageCode, netInfo.isConnected]);
+  }, [dispatch, languageCode, netInfo.isConnected, bootstrapChild]);
 
-  const onBackPress = (): any => {
+    useEffect(() => {
+      let currentCount = 0;
+      let resetTimer: ReturnType<typeof setTimeout> | undefined;
+      const onBackPress = (): any => {
     if (routesLength === 1 && userIsOnboarded == false) {
         if (currentCount === 0) {
           currentCount++;
           if (Platform.OS === "android") {
             ToastAndroidLocal.show(t("backPressText"), 6000);
-            setTimeout(() => {
+            resetTimer = setTimeout(() => {
               currentCount = 0;
             }, 2000);
             return true;
           } else {
             Alert.alert(t("backPressText"));
-            setTimeout(() => {
+            resetTimer = setTimeout(() => {
               currentCount = 0;
             }, 2000);
             return true;
@@ -304,17 +255,15 @@ export default (): any => {
         }
       }
     };
-    useEffect(() => {
-      const backHandler = BackHandler.addEventListener(
-        "hardwareBackPress",
-        onBackPress
-      );
-      navigationRef.current?.addListener("gestureEnd", onBackPress);
-      return (): any => {
-        navigationRef.current?.removeListener("gestureEnd", onBackPress);
-        backHandler.remove();
+      const navigation = navigationRef.current;
+      const hardware = BackHandler.addEventListener("hardwareBackPress", onBackPress);
+      const unsubscribe = navigation?.addListener("gestureEnd", onBackPress);
+      return () => {
+        if (resetTimer) clearTimeout(resetTimer);
+        unsubscribe?.();
+        hardware.remove();
       };
-    }, [routesLength,userIsOnboarded]);
+    }, [routesLength, userIsOnboarded, t]);
 
   useEffect(() => {
     const task = scheduleIdleTask(() => {
@@ -323,80 +272,15 @@ export default (): any => {
     });
     
     return () => task.cancel();
-  }, [linkedURL, resetURL, userIsOnboarded]);
+  }, [linkedURL, resetURL, userIsOnboarded, callUrl]);
 
   useEffect(() => {
-    const logFacebookEvent = (): void => {
-      if (!hasLoggedEvent.current) {
-        AppEventsLogger.logEvent('fb_sdk_initialized'); // Custom event
-        hasLoggedEvent.current = true;
-      }
-    };
-    const initPixel = async (): Promise<any> => {
-      if (Platform.OS === "ios") {
-        const ATT_CHECK = await check(
-          PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
-        );
-        console.log(ATT_CHECK, "..ATT_CHECK..");
-        if (ATT_CHECK === RESULTS.DENIED) {
-          try {
-            const ATT = await request(
-              PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
-            );
-            if (ATT === RESULTS.GRANTED) {
-              console.log(ATT, "..ATT..");
-              Settings.setAdvertiserTrackingEnabled(true).then(() => {
-                Settings.initializeSDK();
-                logFacebookEvent();
-              });
-            }
-          } catch (error) {
-            console.log(error, "error");
-            throw error;
-          } finally {
-            Settings.initializeSDK();
-            logFacebookEvent();
-          }
-          Settings.initializeSDK();
-          logFacebookEvent();
-          Settings.setAdvertiserTrackingEnabled(true);
-        }
-      } else {
-        Settings.initializeSDK();
-        logFacebookEvent();
-        Settings.setAdvertiserTrackingEnabled(true);
-      }
-    };
-    const updateTrackingStatus = (status: any): any => {
-      console.log(status, "..status");
-      if (status === "active") {
-        initPixel();
-      }
-    };
-
-    // Ready to check the permission now
-    if (AppState.currentState === "active") {
-      updateTrackingStatus(AppState.currentState);
-    } else {
-      // Need to wait until the app is ready before checking the permission
-      const eventListener = AppState.addEventListener(
-        "change",
-        updateTrackingStatus
-      );
-
-      return (): any => {
-        eventListener.remove();
-        // AppState.removeEventListener('change', updateTrackingStatus)
-      };
-    }
-  }, [AppState.currentState]);
-  const getSearchParamFromURL = (urlNew: any, paramNew: any): any => {
-    const url = new URL(urlNew);
-    const params = new URLSearchParams(url.search);
-    const param = params.get(paramNew);
-    console.log(param, params);
-    return param;
-  };
+    if (AppState.currentState === 'active') void configureAdvertisingConsent();
+    const listener = AppState.addEventListener('change', state => {
+      if (state === 'active') void configureAdvertisingConsent();
+    });
+    return () => listener.remove();
+  }, []);
 
   const redirectLocation = (notification: any): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
@@ -873,7 +757,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          Linking.openURL(trimWhiteSpacePayload(remoteMessage.data.URL));
+          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL), "survey");
         } else {
           if (Platform.OS == "ios") {
             setTimeout(() => {
@@ -881,7 +765,7 @@ export default (): any => {
                 (item: any) => item.type == "survey"
               );
               if (surveyItem && surveyItem.survey_feedback_link) {
-                Linking.openURL(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
+                void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link), "survey");
               }
             }, 100);
           } else {
@@ -889,7 +773,7 @@ export default (): any => {
               (item: any) => item.type == "survey"
             );
             if (surveyItem && surveyItem.survey_feedback_link) {
-              Linking.openURL(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
+              void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link), "survey");
             }
           }
         }
@@ -907,7 +791,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          Linking.openURL(trimWhiteSpacePayload(remoteMessage.data.URL));
+          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL), "hyperlink");
         }
       }
     } else {
@@ -925,6 +809,7 @@ export default (): any => {
       }
     }
   };
+  const notificationInputs = useCommittedRef({redirectPayload, t});
   useEffect(() => {
     const splashTimer = setTimeout(() => SplashScreen.hide(), 2000);
     let active = true;
@@ -936,7 +821,7 @@ export default (): any => {
         redirects.delete(redirect);
         if (!active) return;
         logCrashlyticsMessage(message);
-        redirectPayload(remoteMessage);
+        notificationInputs.current.redirectPayload(remoteMessage);
       });
       redirects.add(redirect);
     };
@@ -963,7 +848,7 @@ export default (): any => {
           Alert.alert(
             remoteMessage.notification.title,
             remoteMessage.notification.body,
-            [{ text: t("forceUpdateOkBtn") }]
+            [{ text: notificationInputs.current.t("forceUpdateOkBtn") }]
           );
         }
       });
@@ -977,79 +862,9 @@ export default (): any => {
       redirects.forEach((redirect) => redirect.cancel());
       redirects.clear();
     };
-  }, [userIsOnboarded]);
+  }, [userIsOnboarded, messaging, notificationInputs]);
 
-  useMemo(() => {
-    async function fetchNetInfo(): Promise<any> {
-      if (netInfo && netInfo.isConnected != null) {
-        if (netInfo.isConnected == true) {
-          synchronizeEvents(netInfo.isConnected);
-          if (Platform.OS == "android") {
-            if (
-              netInfo.netValue.type == "unknown" ||
-              netInfo.netValue.type == "other" ||
-              netInfo.netValue.type == "bluetooth" ||
-              netInfo.netValue.type == "vpn"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "2g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "3g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "4g"
-            ) {
-              setNetState("Highbandwidth");
-            } else {
-              setNetState("Highbandwidth");
-            }
-          } else if (Platform.OS == "ios") {
-            if (
-              netInfo.netValue.type == "unknown" ||
-              netInfo.netValue.type == "other"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "2g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "3g"
-            ) {
-              setNetState("Lowbandwidth");
-            } else if (
-              netInfo.netValue.type == "cellular" &&
-              netInfo.netValue.details.cellularGeneration == "4g"
-            ) {
-              setNetState("Highbandwidth");
-            } else {
-              setNetState("Highbandwidth");
-            }
-          }
-        } else {
-          setNetState("NoConnection");
-        }
-      }
-    }
-    const task = scheduleIdleTask(() => {
-      fetchNetInfo();
-    });
-
-    return () => task.cancel();
-  }, [
-    netInfo.isConnected,
-    netInfo.netType,
-    netInfo.netValue?.details?.cellularGeneration,
-  ]);
+  useNetworkClassification(netInfo, setNetState, synchronizeEvents);
   useEffect(() => {
     console.log("linkedURL3---", linkedURL);
   }, [linkedURL]);
@@ -1077,41 +892,9 @@ export default (): any => {
     },1000);
 
     return () => clearTimeout(timeout);
-  }, [userIsOnboarded]);
-  useEffect(() => {
-    if (!allCountries.length) return;
-    const timeout = setTimeout(() => {
-      dispatch(setchatBotData([]));
-      if (countryId == 1 && !allCountries.some((c: { CountryID: any; }) => Number(c.CountryID) === 1)) {
-        dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
-      }
-      const notiFlagObj = { key: "generateNotifications", value: true };
-      dispatch(setInfoModalOpened(notiFlagObj));
-      //add notification condition in else if required 1st time as well
-    },1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-  useEffect(() => {
-    async function fetchNetInfoSet(): Promise<any> {
-      if (netState == "Highbandwidth" && toggleSwitchVal == true) {
-        const confirmation = await retryAlert1(0, 0);
-        if (confirmation == "yes" && toggleSwitchVal == true) {
-          dispatch(onNetworkStateChange(false));
-        }
-      } else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
-        const confirmation = await retryAlert1(1, 1);
-        if (confirmation == "yes" && toggleSwitchVal == false) {
-          dispatch(onNetworkStateChange(true));
-        }
-      }
-    }
-    const timeout = setTimeout(() => {
-      fetchNetInfoSet();
-    },1000);
-
-    return () => clearTimeout(timeout);
-  }, [netState]);
+  }, [userIsOnboarded, child_age, dispatch]);
+  useInitialCountrySetup(allCountries, countryId, appConfig.restOfTheWorldCountryId, dispatch);
+  useBandwidthPrompt(userIsOnboarded, netState, toggleSwitchVal, dispatch);
   const routeNameRef = React.useRef<any>(null);
 
   const apiJsonDataLoading = [
@@ -1166,24 +949,12 @@ export default (): any => {
               dispatch(setAppLayoutDirectionParams({}));
             }
             LocalNotifications.flushPendingPress();
-            routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current);
+            void clearLegacyProfileAnalytics();
             // SplashScreen.hide();
           }}
           onStateChange={(): any => {
-            const previousRouteName = routeNameRef.current;
-            const currentRouteName =
-              navigationRef.current.getCurrentRoute().name;
-            console.log(`Previous route: ${previousRouteName}`);
-            console.log(`Current route: ${currentRouteName}`);
-            if (previousRouteName !== currentRouteName) {
-              logAnalyticsEvent('screen_view', {
-                screen_name: currentRouteName,
-                screen_class: currentRouteName,
-              }).catch(() => {});
-              const eventData = { name: currentRouteName + "_opened" };
-              logEvent(eventData, netInfo.isConnected);
-            }
-            routeNameRef.current = currentRouteName;
+            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current);
           }}
           theme={navTheme}
         >

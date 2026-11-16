@@ -1,4 +1,5 @@
 const flavor = process.env.FLAVOR || 'bebbo';
+export const backupFlavor = flavor;
 import 'intl';
 export const localization = require(`./${flavor}/assets/localization`).default;
 export const sponsors = require(`./${flavor}/assets/sponsors`).default;

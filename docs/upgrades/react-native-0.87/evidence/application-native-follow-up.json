@@ -1,0 +1,318 @@
+{
+  "base_commit": "775c4c06dbd22a1f8cb3da53515d880f06ae45a2",
+  "branch": "RNSDKUpgrade-review-fixes",
+  "observed_at": "2026-11-14T22:32:34.702644+00:00",
+  "scope": "Final application source. Existing installed dependencies, deliberately fake CI service fixtures and local Metro watchFolders for external node_modules. Not native binary/device/service acceptance.",
+  "jest": {
+    "suites_passed": 58,
+    "tests_passed": 495
+  },
+  "typecheck": "PASS: npm run typecheck",
+  "node_tooling_tests": {
+    "passed": 35
+  },
+  "python_tests": {
+    "passed": 30
+  },
+  "native_vectors": {
+    "checked": 96
+  },
+  "flavours": {
+    "primary": 8,
+    "auxiliary_development_mappings": 2,
+    "check": "PASS"
+  },
+  "analytics_inventory": {
+    "routes": 43,
+    "event_calls": 78,
+    "screen_files": 46,
+    "check": "PASS; only source line positions changed"
+  },
+  "eslint": {
+    "errors": 449,
+    "warnings": 2118,
+    "hook_rule_violations": 0,
+    "before": {
+      "errors": 470,
+      "warnings": 2122,
+      "hook_rule_violations": 18
+    },
+    "status": "Backlog remains; no full lint pass claimed"
+  },
+  "bundles": [
+    {
+      "flavour": "bebbo",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 5.59
+    },
+    {
+      "flavour": "bebbo",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 5.45
+    },
+    {
+      "flavour": "bebboDev",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 5.15
+    },
+    {
+      "flavour": "bebboDev",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 5.75
+    },
+    {
+      "flavour": "babuni",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 4.83
+    },
+    {
+      "flavour": "babuni",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 4.62
+    },
+    {
+      "flavour": "foleja",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 4.43
+    },
+    {
+      "flavour": "foleja",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 4.18
+    },
+    {
+      "flavour": "merhabaBebek",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 4.03
+    },
+    {
+      "flavour": "merhabaBebek",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 5.15
+    },
+    {
+      "flavour": "wawamor",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 3.98
+    },
+    {
+      "flavour": "wawamor",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 4.07
+    },
+    {
+      "flavour": "reraiUmntwana",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 71.31
+    },
+    {
+      "flavour": "reraiUmntwana",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 78.49
+    },
+    {
+      "flavour": "bebboPacific",
+      "platform": "android",
+      "result": "PASS",
+      "seconds": 65.11
+    },
+    {
+      "flavour": "bebboPacific",
+      "platform": "ios",
+      "result": "PASS",
+      "seconds": 60.15
+    }
+  ],
+  "native_configuration_observations": {
+    "mainAllowsBackup": "false",
+    "mainSupportsRtl": "true",
+    "debugCleartext": "true",
+    "ios": [
+      {
+        "path": "ios/BebboPacific-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/MerhabaBebek-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ParentBuddyAppBangla-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ParentBuddyAppBanglaDev-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ParentBuddyAppDev-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ParentBuddyAppXk-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ParentBuddyAppXkDev-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ReraiUmntwana-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/Wawamor-Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      },
+      {
+        "path": "ios/ParentBuddyApp/Info.plist",
+        "arbitraryLoads": true,
+        "fileSharing": false
+      }
+    ],
+    "releaseR8": true,
+    "nativeBuildsRerun": false
+  },
+  "network": "Decoded sample Rerai media URLs returned HTTPS image responses with certificate verification and TLS 1.2+ in this environment. No broad ATS or country HTTP change made. Full live country/device scope remains acceptance.",
+  "source_files": [
+    {
+      "path": "app/components/AlertModal.tsx",
+      "git_blob": "fa15eae821c5b2955196c8fcf8b089c2ae1aae6a"
+    },
+    {
+      "path": "app/components/growth/ChartHeightForAge.tsx",
+      "git_blob": "1a877ea935ef4d97a603ebccc593ccde9ec21d0c"
+    },
+    {
+      "path": "app/components/growth/ChartWeightForHeight.tsx",
+      "git_blob": "08b8f2c026663c85ba63e36a1aed6cd226c4c592"
+    },
+    {
+      "path": "app/components/shared/ButtonGlobal.tsx",
+      "git_blob": "d2449b17233f53ccc7f634066bd38c3275fe10c5"
+    },
+    {
+      "path": "app/components/shared/ButtonView.tsx",
+      "git_blob": "3b5710ffe677978d275621548ca5c5b61cc39319"
+    },
+    {
+      "path": "app/components/shared/buttonAccessibility.ts",
+      "git_blob": "ce703d1f418c94b8078f322d7be5d02af387651b"
+    },
+    {
+      "path": "app/components/vaccination/PrevPlannedVaccines.tsx",
+      "git_blob": "6028a4a58729c3156eab398fd7ba7eef47296682"
+    },
+    {
+      "path": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
+      "git_blob": "ae053f46f61ca7d89d715c7e4a432bd2a5da8d71"
+    },
+    {
+      "path": "app/screens/home/DetailsScreen.tsx",
+      "git_blob": "401b3572e193aa0424190ef090018e86564c2f6d"
+    },
+    {
+      "path": "app/screens/home/HealthCheckups.tsx",
+      "git_blob": "0696530a9831aeea318917f15f79e6375c2455eb"
+    },
+    {
+      "path": "app/screens/home/Vaccination.tsx",
+      "git_blob": "7cb4b7626ed4325315e1cf886718c11a5b1de699"
+    },
+    {
+      "path": "app/screens/home/bottomTabs/Home.tsx",
+      "git_blob": "c06729e6d9329cae1b08f8ffb67d5cbd252eed6e"
+    },
+    {
+      "path": "app/screens/vaccination/AddChildVaccination.tsx",
+      "git_blob": "db3559e0c8035bedc3edaa09843e81af0e9b5cb7"
+    },
+    {
+      "path": "app/services/__tests__/alertModalAccessibility.test.tsx",
+      "git_blob": "b22127387dc352433404e5bede7f706cb995c83c"
+    },
+    {
+      "path": "app/services/__tests__/buttonAccessibility.test.tsx",
+      "git_blob": "5e397d9f0ac092bfed6a1d0c16f6ab870a7eba2f"
+    },
+    {
+      "path": "app/services/__tests__/externalLink.test.ts",
+      "git_blob": "e72b316f92b14ab85e6b5a93a047afd921aeaafd"
+    },
+    {
+      "path": "app/services/__tests__/growthCards.test.tsx",
+      "git_blob": "17a09a1a7afdc7d1f9f40a46794d466417d8f012"
+    },
+    {
+      "path": "app/services/__tests__/growthInterpretation.test.ts",
+      "git_blob": "ddd68ea5eac297504c891ddc4a81d92a3b7e5e43"
+    },
+    {
+      "path": "app/services/__tests__/healthSchedule.test.tsx",
+      "git_blob": "9bcb65c7e58d02e9faeaffb6e32b0e820dac919e"
+    },
+    {
+      "path": "app/services/__tests__/imageResolver.test.ts",
+      "git_blob": "091f4c48d15e0b56f1fe4a7878311024d542c541"
+    },
+    {
+      "path": "app/services/externalLink.ts",
+      "git_blob": "dc843bdb2e6039970f27e9c29218b139440c52e2"
+    },
+    {
+      "path": "app/services/healthCheckupService.ts",
+      "git_blob": "f71273fa87f482b02d75a65d64dc2c810c62b983"
+    },
+    {
+      "path": "app/services/healthInput.ts",
+      "git_blob": "cf80b6c4369417da375e88a28ee4df58ca5925c3"
+    },
+    {
+      "path": "app/services/imageResolver.ts",
+      "git_blob": "3bb049a5b65fcbe9d0e3b32e30077872e4b7b154"
+    },
+    {
+      "path": "app/services/interpretationService.ts",
+      "git_blob": "94a1f989d0be5b3347bcc37fa8aa40eb0744f310"
+    },
+    {
+      "path": "app/services/periodicSync.ts",
+      "git_blob": "c5f992ca8665b514d0b8a3d749bdb958596328da"
+    },
+    {
+      "path": "app/services/vacccineService.ts",
+      "git_blob": "eb447a0a8170d3cbb406bfcba122efcc31fe088e"
+    },
+    {
+      "path": "docs/upgrades/react-native-0.87/analytics-source-inventory.json",
+      "git_blob": "655b6ed86a5161e9c27931b43269bd58eb9345a2"
+    },
+    {
+      "path": "docs/upgrades/react-native-0.87/application-native-follow-up.md",
+      "git_blob": "330ce70f8b296d7e5938ca990f30407ae1b87868"
+    }
+  ]
+}

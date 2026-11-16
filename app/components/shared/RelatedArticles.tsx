@@ -74,7 +74,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
   } = props;
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
-  let relartlength = relatedArticles ? relatedArticles.length : 0;
+
   const articleDataold = useAppSelector(selectArticleDataAll);
   const articleData = useMemo(
     () => randomArrayShuffle(articleDataold),
@@ -90,8 +90,11 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
+      let active = true;
       setrelatedArticleData([]);
+      const updateRelated = (data: any) => {if (active) setrelatedArticleData(data);};
       async function fetchData(): Promise<any> {
+        let relartlength = Array.isArray(relatedArticles) ? relatedArticles.length : 0;
         if (relartlength > 0) {
           let relatedData: any = [];
           console.log("From screen", fromScreen);
@@ -129,9 +132,9 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
                 return x.category == category && x.id !== currentId && i == -1;
               })
               .slice(0, catartlength);
-            setrelatedArticleData([...relatedData, ...filteredArtData]);
+            updateRelated([...relatedData, ...filteredArtData]);
           } else {
-            setrelatedArticleData(relatedData);
+            updateRelated(relatedData);
           }
         }
         // go not calclualte for growth screen
@@ -149,11 +152,12 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
               return x.category == category && x.id !== currentId && i == -1;
             })
             .slice(0, catartlength);
-          setrelatedArticleData([...filteredArtData]);
+          updateRelated([...filteredArtData]);
         }
       }
       fetchData();
-    }, [currentId, relatedArticles])
+      return () => {active = false;};
+    }, [currentId, relatedArticles, articleData, articleDataold.length, fromScreen, category])
   );
   const goToArticleDetail = (item: any): any => {
     navigation.push("DetailsScreen", {
@@ -174,7 +178,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
       netInfo: netInfo,
     });
   };
-  const RenderRelatedArticleItem = ({ item, index }: any): any => {
+  const RenderRelatedArticleItem = ({ item, index: _index }: any): any => {
     return (
       <Pressable
         onPress={(): any => {
@@ -218,11 +222,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
       </Pressable>
     );
   };
-  const memoizedValue = useMemo(
-    () => RenderRelatedArticleItem,
-    [RenderRelatedArticleItem, relatedArticleData]
-  );
-
+  const memoizedValue = RenderRelatedArticleItem;
   return (
     <>
       {relatedArticleData.length > 0 ? (
@@ -240,7 +240,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              keyExtractor={(item): any => item.id}
+              keyExtractor={(item: {id: number}): string => String(item.id)}
             />
           </View>
         </ContainerView>

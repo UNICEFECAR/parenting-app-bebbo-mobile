@@ -1,0 +1,90 @@
+name: Upgrade regression checks
+on:
+  pull_request:
+  push:
+    branches: [RNSDKUpgrade-review-fixes]
+permissions:
+  contents: read
+concurrency:
+  group: upgrade-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Scan newly introduced commits for secrets
+        env:
+          GITLEAKS_SELF_TEST: 'true'
+          GITLEAKS_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: bash scripts/scan-new-secrets.sh
+      - run: npm ci --legacy-peer-deps
+      - run: npm test -- --runInBand
+      - run: npm run test:tooling
+      - run: python3 -m unittest discover -s scripts/__tests__ -p 'test_*.py' -v
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run assets:check
+      - run: node scripts/analytics-inventory.cjs --check
+      - run: node scripts/network-source-inventory.cjs --check
+      - run: python3 scripts/flavour-audit.py --check
+      - run: npm audit --audit-level=high
+  bundles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
+        platform: [android, ios]
+    env:
+      FLAVOR: ${{ matrix.flavour }}
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - name: Create test-only environment
+        run: node scripts/ci-fixtures.cjs
+      - name: Bundle release JavaScript
+        env:
+          BUNDLE_PLATFORM: ${{ matrix.platform }}
+        run: |
+          mkdir -p /tmp/bebbo-bundle
+          npx react-native bundle --entry-file index.js --platform "$BUNDLE_PLATFORM" --dev false \
+            --bundle-output /tmp/bebbo-bundle/app.bundle --sourcemap-output /tmp/bebbo-bundle/app.bundle.map
+          node scripts/check-production-bundle.cjs /tmp/bebbo-bundle/app.bundle
+      - name: Verify referenced native vector resources
+        run: node scripts/collect-vector-assets.cjs --check
+  native-smoke:
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
+        platform: [android, ios]
+    uses: ./.github/workflows/native-verification.yml
+    with:
+      flavour: ${{ matrix.flavour }}
+      platform: ${{ matrix.platform }}
+      smoke: ${{ matrix.flavour == 'bebbo' || matrix.flavour == 'reraiUmntwana' }}
+  auxiliary-native:
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [babuni, foleja]
+        platform: [android, ios]
+    uses: ./.github/workflows/native-verification.yml
+    with:
+      flavour: ${{ matrix.flavour }}
+      platform: ${{ matrix.platform }}
+      configuration: development

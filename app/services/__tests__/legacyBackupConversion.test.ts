@@ -1,0 +1,55 @@
+import * as RNFS from '@dr.pogodin/react-native-fs';
+jest.mock('../../../App',()=>({store:{getState:jest.fn()}}));
+jest.mock('@dr.pogodin/react-native-fs',()=>({exists:jest.fn().mockResolvedValue(false)}));
+jest.mock('react-native-permissions',()=>({requestNotifications:jest.fn()}));
+jest.mock('uuid',()=>({v4:()=> 'converted-measure'}));
+jest.mock('../../instances',()=>({appConfig:{}}));
+jest.mock('../../database/dbquery/dataRealmCommon',()=>({dataRealmCommon:{}}));
+jest.mock('../../redux/sagaMiddleware/sagaSlice',()=>({receiveAPIFailure:jest.fn()}));
+jest.mock('../childCRUD',()=>({isFutureDate:jest.fn(()=>false)}));
+jest.mock('../LocalNotifications',()=>({__esModule:true,default:{}}));
+jest.mock('@app-types/types',()=>({CHILDREN_PATH:'/children/'}));
+import {getChild} from '../Utils';
+import {isFutureDate} from '../childCRUD';
+const child={uuid:'one',childName:'Synthetic',gender:40,birthDate:'2024-01-01T00:00:00Z',reminders:[],favoriteadvices:[],favoritegames:[]};
+test.each([
+  ['', '', '', ''],
+  [null, null, '', ''],
+  ['85', '', '85.00', ''],
+  ['', '12000', '', '12.00'],
+])('legacy vaccination/partial measurement remains restorable (%s / %s)',async(length,weight,height,expectedWeight)=>{
+  const restored=await getChild({...child,measures:JSON.stringify([{uuid:'old',length,weight,didChildGetVaccines:true,vaccineIds:[5],measurementPlace:'doctor',doctorComment:'Synthetic record'}])},[]);
+  const measure=restored.measures[0];
+  expect(measure.height).toBe(height);expect(measure.weight).toBe(expectedWeight);expect(measure.isChildMeasured).toBe(false);
+  expect(measure.vaccineIds).toBe('[{"uuid":5}]');expect(measure.doctorComment).toBe('Synthetic record');expect(measure.measurementPlace).toBe(0);
+  expect(measure).not.toHaveProperty('length');
+});
+test('current array-format measurements retain their stored units and fields',async()=>{
+  const measures=[{uuid:'current',weight:'12',height:'85',isChildMeasured:true,didChildGetVaccines:false,measurementPlace:0}];
+  const restored=await getChild({...child,measures},[]);expect(restored.measures).toEqual(measures);
+});
+
+test('a past-due pregnancy retains its explicitly stored expected-child flag',async()=>{
+  const restored=await getChild({...child,measures:[],isExpected:'true'},[]);expect(restored.isExpected).toBe('true');
+});
+test('an explicit born-child flag is not overwritten by a date-based guess',async()=>{
+  jest.mocked(isFutureDate).mockReturnValueOnce(true);
+  const restored=await getChild({...child,measures:[],isExpected:'false'},[]);expect(restored.isExpected).toBe('false');
+});
+test('legacy boolean profile flags are normalised without losing their meaning',async()=>{
+  const restored=await getChild({...child,measures:[],isExpected:true,isPremature:true,autoChild:true},[]);
+  expect(restored).toMatchObject({isExpected:'true',isPremature:'true',autoChild:'true'});
+});
+
+test('failed backup conversion preserves the error for recovery without logging private file paths', async () => {
+  const failure = new Error('Cannot read /children/private-child-photo.jpg for Synthetic Child');
+  jest.mocked(RNFS.exists).mockRejectedValueOnce(failure);
+  const logged = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+  try {
+    await expect(getChild({...child, measures: []}, [])).rejects.toBe(failure);
+    expect(logged).toHaveBeenCalledTimes(1);
+    const detail = logged.mock.calls[0][1] as Error;
+    expect(detail.message).toBe('Application operation failed');
+    expect(detail.stack).not.toMatch(/private-child-photo|Synthetic Child|\/children\//);
+  } finally { logged.mockRestore(); }
+});

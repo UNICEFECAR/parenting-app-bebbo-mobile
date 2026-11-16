@@ -1,3 +1,4 @@
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { MainContainer } from "@components/shared/Container";
 import { Flex1, FDirRow } from "@components/shared/FlexBoxStyle";
@@ -23,18 +24,11 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  BackHandler,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
-import { getAllVaccinePeriods } from "../../services/vacccineService";
+import { useAllVaccinePeriods } from "../../services/vacccineService";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -42,7 +36,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import Icon from "@components/shared/Icon";
-import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
+import {ButtonModal, ButtonTextTheme} from '@components/shared/ButtonGlobal';
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 type VaccinationNavigationProp =
@@ -68,7 +62,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
   const { convertDigits } = useDigitConverter();
   const headerColor = themeContext?.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
-  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const headerTextColor = themeContext?.colors.VACCINATION_TEXTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
@@ -90,17 +84,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
       return true;
     }
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const vaccineModalOpened = useAppSelector(
     (state: any) => state.utilsData.IsVaccineModalOpened
   );
@@ -122,7 +106,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
     currentPeriod,
     overDuePreviousVCcount,
     doneVCcount,
-  } = getAllVaccinePeriods();
+  } = useAllVaccinePeriods();
   const upcomingPeriodsData = (): any => {
     const noVaccinesinAgePeriodInUpcoming = upcomingPeriods.every((el: any) => {
       const noVaccinesinAgePeriod = el.vaccines.every((v: any) => {

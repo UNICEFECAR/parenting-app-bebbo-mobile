@@ -33,7 +33,7 @@ import {
   ButtonTextSmLineL,
   ButtonVaccination,
 } from "../../shared/ButtonGlobal";
-import Icon, { IconViewAlert, IconViewBg } from "../../shared/Icon";
+import Icon, {IconViewBg} from '../../shared/Icon';
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import { selectActiveChild } from "../../../services/selectors";
 import useDigitConverter from "../../../customHooks/useDigitConvert";
@@ -60,9 +60,7 @@ const UpcomingVaccines = (props: any): any => {
   if (vaccineReminders.length > 0) {
     vaccineReminders.forEach((vaccineReminder: any) => {
       const today = DateTime.fromJSDate(new Date());
-      const reminderDate = new Date(
-        DateTime.fromMillis(vaccineReminder?.reminderDate)
-      );
+      const reminderDate = (DateTime.fromMillis(vaccineReminder?.reminderDate)).toJSDate();
       const hours = new Date(vaccineReminder?.reminderTime).getHours();
       const mins = new Date(vaccineReminder?.reminderTime).getMinutes();
       reminderDate.setHours(hours);
@@ -78,7 +76,7 @@ const UpcomingVaccines = (props: any): any => {
   useEffect(() => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
-  }, []);
+  }, [currentPeriodId, item?.periodID]);
   const gotoArticle = (pinnedArticleId: any): any => {
     if (pinnedArticleId != 0) {
       navigation.navigate("DetailsScreen", {

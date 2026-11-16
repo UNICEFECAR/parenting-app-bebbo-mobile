@@ -1,0 +1,35 @@
+{
+  "workflow_run": 43490604453,
+  "artifact_id": 14072443709,
+  "artifact_sha256": "5af0d5a8db105c086fb884549d97ea342296fc8d0d5606273a76e6a55d88d3cb",
+  "qa_source": "deedf00f7289c94d78f03b106773b1d2b8b4ab8d",
+  "production_data_source": "f077fa4d9ffc22b5411557bc9f2a37105d8ac316",
+  "observed_before_kill": "writing",
+  "result": {
+    "phase": "passed",
+    "passed": [
+      "native_random_iv_hmac_aes_unicode_roundtrips",
+      "native_tamper_rejection",
+      "native_legacy_cipher_compatibility",
+      "native_nested_records_and_profile_ownership",
+      "native_repeated_replacement",
+      "native_atomic_rollback",
+      "native_legacy_record_conversion",
+      "native_legacy_vaccination_without_growth_values",
+      "native_schema3_to4_fixture_migration",
+      "native_redux_schema0_to1_fixture_migration",
+      "native_large_unicode_cache_fragment_roundtrip",
+      "native_content_reset_preserves_settings",
+      "native_restart_profile_persistence",
+      "actual_startup_taxonomy_recovery",
+      "native_process_interruption_atomic_outcome"
+    ],
+    "interruptionOutcome": "fully_committed",
+    "profiles": 5000
+  },
+  "limits": [
+    "Synthetic fixtures; not historical installed databases or physical devices",
+    "No live Drive/file-provider/Firebase delivery acceptance",
+    "Later overdue/boolean profile-flag edge cases have actual-converter unit evidence; this native checkpoint does not exercise them"
+  ]
+}

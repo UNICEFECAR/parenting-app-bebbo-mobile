@@ -1,0 +1,596 @@
+{
+  "base_commit": "f0e61b3c7cc9dd0aef9252e38c0f381e43d378ea",
+  "branch": "RNSDKUpgrade-review-fixes",
+  "checked_at": "2026-11-15T18:18:08.931583+03:00",
+  "scope": "Application code finding closure; deliberately fake local CI configuration. Not production-service, signed-store or physical-device acceptance.",
+  "prior_code_findings": 107,
+  "current_unresolved_lint_errors": 0,
+  "intentional_trigger_dispositions": [
+    {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "line": 181,
+      "message": "React Hook React.useCallback has an unnecessary dependency: 'activeChild.uuid'. Either exclude it or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Selected-child identity deliberately restarts the focus count calculation."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "line": 304,
+      "message": "React Hook React.useCallback has unnecessary dependencies: 'activeChild.uuid', 'allnotis', and 'isOpen'. Either exclude them or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Drawer, child and notification transitions deliberately dismiss this transient modal."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/Terms.tsx",
+      "line": 129,
+      "message": "React Hook React.useCallback has an unnecessary dependency: 'languageCode'. Either exclude it or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Locale changes deliberately clear loading while this screen remains focused."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Activities.tsx",
+      "line": 530,
+      "message": "React Hook React.useCallback has unnecessary dependencies: 'languageCode' and 'selectedChildActivitiesData'. Either exclude them or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Activities.tsx",
+      "line": 596,
+      "message": "React Hook React.useCallback has unnecessary dependencies: 'activeChild.uuid' and 'languageCode'. Either exclude them or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Articles.tsx",
+      "line": 659,
+      "message": "React Hook React.useCallback has unnecessary dependencies: 'activeChild.uuid' and 'languageCode'. Either exclude them or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Articles.tsx",
+      "line": 683,
+      "message": "React Hook React.useCallback has an unnecessary dependency: 'activeChild.uuid'. Either exclude it or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "A child switch deliberately runs this focus cleanup to discard filters."
+        }
+      ]
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Articles.tsx",
+      "line": 737,
+      "message": "React Hook React.useCallback has unnecessary dependencies: 'languageCode' and 'selectedChildActivitiesData'. Either exclude them or remove the dependency array.",
+      "justification": [
+        {
+          "kind": "directive",
+          "justification": "Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks."
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "jest": {
+      "tests_passed": 562,
+      "suites_passed": 75
+    },
+    "strict_typescript": "PASS",
+    "full_project_eslint": {
+      "errors": 0,
+      "warnings": 2053,
+      "baseline_errors": 107,
+      "baseline_warnings": 2074,
+      "global_rule_changes": false,
+      "note": "Eight narrow intentional focus-trigger dispositions are explicit, not unresolved runtime bugs. Remaining warnings are legacy style/compatibility findings, not silently declared fixed.",
+      "enforced_in_ci": true
+    },
+    "node_tooling_tests": 35,
+    "python_tests": 30,
+    "native_vector_resources": 96,
+    "primary_flavours": 8,
+    "auxiliary_mappings": 2,
+    "analytics_inventory": {
+      "routes": 43,
+      "event_calls": 78,
+      "screen_files": 46,
+      "check": "PASS; moved source locations only"
+    },
+    "network_inventory": "PASS; eight flavours, ten plists; not a runtime trust allowlist",
+    "release_js_bundles": [
+      {
+        "flavour": "bebbo",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "3a61e9384434dd068021b2dc030b2adc4ec47a0b9dcce47d58410f92f71603da"
+      },
+      {
+        "flavour": "bebbo",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "8ec9388f45315a00685f90547172b1cd8c497d6ae9023cb5c4f73f2b28350a6e"
+      },
+      {
+        "flavour": "bebboDev",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "a8b248f7755c653a58bdb629d77353a55ec94de7246d43f40679c9879f78156a"
+      },
+      {
+        "flavour": "bebboDev",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "844b7dbc1d2e852355f50ffd57914b3f4e809d6c03fb3509b2ccc7f8d5cc45b2"
+      },
+      {
+        "flavour": "babuni",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "989e228eadb51fb2415f402aac4083f5ef12be321636ed037ff606efb9ca73bc"
+      },
+      {
+        "flavour": "babuni",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "da8744c7d78614575dc4dece6c2ddec4d111ef9e89864cb03be02d6c830e0c7b"
+      },
+      {
+        "flavour": "foleja",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "38b913940b370a17a71fb309aa2a3960a59dcce132d4f61f1e6b1f378bf97f3f"
+      },
+      {
+        "flavour": "foleja",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "4f7d7a3095da6b477254da071be06f0d871d0f004801b6e6923d47c66e8b5b64"
+      },
+      {
+        "flavour": "merhabaBebek",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "ab8f178415b151c9880949ed60781b6ca7aeae9a9508501ff121a56e5ae2c525"
+      },
+      {
+        "flavour": "merhabaBebek",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "b4edd4ec5376f3530d9abf8f18609ee220d16788870ac0bae4856e16619e359d"
+      },
+      {
+        "flavour": "wawamor",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "1544f205ed59639adab280bcf27ec29a3d65aa1d430c33fe9a54c6f280f03298"
+      },
+      {
+        "flavour": "wawamor",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "0e0b2e91c4b3c31ffee608507a9a54fdaf04bac47b9ff9a1c6b0d90504ee7c64"
+      },
+      {
+        "flavour": "reraiUmntwana",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "b2ffa7371ba1df554d30037f66eb61d7b52d75d3f1b21f34b62b51cbb772fc2a"
+      },
+      {
+        "flavour": "reraiUmntwana",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "09dbb0bcd475a79c720739ea1f20aa349930d146cd9a8e297655f12d919b3550"
+      },
+      {
+        "flavour": "bebboPacific",
+        "platform": "android",
+        "result": "PASS",
+        "sha256": "a4616b42a8fa3560c478ca7146f2965fea72fdc55149333dc237ecf5391769c4"
+      },
+      {
+        "flavour": "bebboPacific",
+        "platform": "ios",
+        "result": "PASS",
+        "sha256": "4d4926c1cf28fe44e82a92bd8b82d82ccd34c4ef318c878ce76723138fa5e1ac"
+      }
+    ],
+    "dependency_audit": {
+      "info": 0,
+      "low": 11,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 11
+    }
+  },
+  "native_and_dependency_input_changes": [],
+  "backup_format_and_reader_changes": false,
+  "library_upgrades_in_this_pass": false,
+  "parent_ci": {
+    "run_id": 43681846402,
+    "url": "https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/43681846402",
+    "commit": "f0e61b3c7cc9dd0aef9252e38c0f381e43d378ea",
+    "latest_jobs_passed": 37,
+    "native_jobs": 20,
+    "js_bundle_jobs": 16,
+    "unit_jobs": 1,
+    "wawamor_android": "PASS after rerunning an attempt interrupted by runner shutdown",
+    "applies_to": "parent commit, not an assertion that new source native CI has already passed"
+  },
+  "new_source_ci": "Automatically triggered when the closure commit is published; consult branch Actions for that commit.",
+  "source_manifest": [
+    {
+      "file": "app/components/FavActivities.tsx",
+      "sha256": "d6e23b5cb90bae292f7452f5f6fdf70effe2cde2703a68f6992e6ade53d0d6d6"
+    },
+    {
+      "file": "app/components/FavArticles.tsx",
+      "sha256": "b59f1ddf8077f2971213a55a4ace4830a82ae9a38dcb79fb962085e38f245ca5"
+    },
+    {
+      "file": "app/components/HeaderNotiIcon.tsx",
+      "sha256": "96d5b80a555e7e02012e25b8a88b193ce84763dff69b34056ab4f3fa967bb72c"
+    },
+    {
+      "file": "app/components/growth/ActiveChildMeasureTimeline.tsx",
+      "sha256": "77bd851a92c47d19f8cf610164e837a4723165214a2e9e71373a844aafc38808"
+    },
+    {
+      "file": "app/components/healthChekup/UpcomingHealthCheckup.tsx",
+      "sha256": "314ca479c5a324028c997ec9c0d414b79e1d92f05a45e250923a43834f1ac8ad"
+    },
+    {
+      "file": "app/components/homeScreen/ChildInfo.tsx",
+      "sha256": "e9f21427ffb1dc3162593036dbd29a2e7c26f4c3eae55a024570bb1e935a5ce6"
+    },
+    {
+      "file": "app/components/homeScreen/DailyHomeNotification.tsx",
+      "sha256": "e2f90f1c260b98892ff2acadebda88276a07511a687f1323ae0983f133f20e24"
+    },
+    {
+      "file": "app/components/homeScreen/DailyReads.tsx",
+      "sha256": "80cc146cf252fbc09f078ec4d9a026d7cd263dc87232664b1788197e2513ced2"
+    },
+    {
+      "file": "app/components/shared/InfiniteScrollList.tsx",
+      "sha256": "dfe3f00e6a9d5a4391a47f99821838986cd9610f085f6e4f0f79a4fbe018fa53"
+    },
+    {
+      "file": "app/components/shared/RelatedActivities.tsx",
+      "sha256": "e0a9d53b734d2b81873c32763723195444e7be2d33dabf7466899b65bbee5af9"
+    },
+    {
+      "file": "app/components/shared/RelatedArticles.tsx",
+      "sha256": "23584e6ae480f5236872f5a87832c25c4e81f3e0cae2b1858906eaef38bc2340"
+    },
+    {
+      "file": "app/components/shared/RelatedVideoArticles.tsx",
+      "sha256": "3754db52c01d7889d5d6c944c55e815b90bf2525c1a2126607d46929c17f6551"
+    },
+    {
+      "file": "app/components/vaccination/tabs/UpcomingVaccines.tsx",
+      "sha256": "ce5fcddf3f80dc676ef31112800accec01d268c6807746dedaad375e89fdf440"
+    },
+    {
+      "file": "app/customHooks/useCommittedRef.ts",
+      "sha256": "15b6e3626571cff009737c825d5cab8da67df6fd477d7c02e6dae45d4fe51054"
+    },
+    {
+      "file": "app/customHooks/useInitialCountrySetup.ts",
+      "sha256": "428e3fd5525e9f8c92c0b4dba81952b449ab58157a7a6b103909f61d70f478df"
+    },
+    {
+      "file": "app/customHooks/useLandscapeChart.ts",
+      "sha256": "562b3fd66c4fc4f6c2405c09a37f215e894b933c11e069cb1a45081ad64d2290"
+    },
+    {
+      "file": "app/customHooks/useNavigationBackHandler.ts",
+      "sha256": "b5f572db6fa56a28744e6e80c2987a568b8fb356ff74241e74b617990b8c189a"
+    },
+    {
+      "file": "app/customHooks/usePendingLocalNotifications.ts",
+      "sha256": "0e98540b9eb1546e893824a2be6f3f5bcbe765fd0f69f2f70aca33bec2724fb1"
+    },
+    {
+      "file": "app/navigation/AppNavigation.tsx",
+      "sha256": "1bc34c80d251bd40d572b0c13f5e2092c421d91dfd71d132692af8e8cb4e6cf1"
+    },
+    {
+      "file": "app/screens/AddChildInfoSetup.tsx",
+      "sha256": "03f8adbbe2de68cde9d3effebc28a0cb1188eab302fe6deb5aa9a5159a667b2d"
+    },
+    {
+      "file": "app/screens/AddChildSetup.tsx",
+      "sha256": "6b3946dcdceaa6ee9484ed8981350a6ace993524dde822d9584cad9eab3fb847"
+    },
+    {
+      "file": "app/screens/AddExpectingChildProfile.tsx",
+      "sha256": "244c5d558f9e79bd0e6b292bccc6d3e8bde677f7bce40f76d28a65232b7b17a2"
+    },
+    {
+      "file": "app/screens/AddSiblingData.tsx",
+      "sha256": "28395b1bded246585b911e7a590236769c7d646570b369a149942517bb21d1a5"
+    },
+    {
+      "file": "app/screens/ChildSetup.tsx",
+      "sha256": "bc91a9a6e94ac91d0fe4c162ee698f8616099095acd1465bca4b905a14043c3b"
+    },
+    {
+      "file": "app/screens/ChildSetupList.tsx",
+      "sha256": "ea2c8d7cec26dfd642bef948738fc7cba9fc637dacce2e0bb31c62e72e43bb74"
+    },
+    {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "sha256": "c5191aab27cdd47debd4043bcf8bbd892d849107af213af4d5f0a86de31860f2"
+    },
+    {
+      "file": "app/screens/EditParentDetails.tsx",
+      "sha256": "d961689f7550d61beb8af8b66793558f8257cba0cb59d36098b7449c8c0bb0da"
+    },
+    {
+      "file": "app/screens/LoadingScreen.tsx",
+      "sha256": "645958910876e0c2e175f790145d73b2e742ba1789716c5f8976744dc1f5eb77"
+    },
+    {
+      "file": "app/screens/PrivacyPolicy.tsx",
+      "sha256": "def254b036f436ba26726438b94a7f2b0ce799969ddeddea676d7926eb23498c"
+    },
+    {
+      "file": "app/screens/ServiceProviderInfoSetup.tsx",
+      "sha256": "71fe08538ca94ab8a9fac2dc6eebaccb7a7ec632435834ef576d4769172d0948"
+    },
+    {
+      "file": "app/screens/Terms.tsx",
+      "sha256": "2373f231ffe542127b63ea660473440f34b72fb84671b7a632747587015dc486"
+    },
+    {
+      "file": "app/screens/TermsPage.tsx",
+      "sha256": "540e1876146b5eb826b34763446f0955d4e63778759ef70d540bd3458d155024"
+    },
+    {
+      "file": "app/screens/Walkthrough.tsx",
+      "sha256": "cc9a0803e8f6d6bc271a1ccd2d57c170460d31f7bdd84dea210a72ba836ef110"
+    },
+    {
+      "file": "app/screens/growth/AddNewChildgrowth.tsx",
+      "sha256": "85c35d0b48cdc6e95e89246ff5ead281df941ff12771922b7f7d66873dbd0f3b"
+    },
+    {
+      "file": "app/screens/growth/ChartFullScreen.tsx",
+      "sha256": "363310cec6139c41e161f46998edae034a1d2a3fcc829cdb545579529ce40222"
+    },
+    {
+      "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
+      "sha256": "7d40f5b770a8c6d94f857198e38b3ddd62cff509f76c59081337f16abb9c531d"
+    },
+    {
+      "file": "app/screens/home/ChatBot.tsx",
+      "sha256": "3c93a1c69eb170ac8ddca22eb020a14e435d87f53f29a5a77218d4b0b28053fc"
+    },
+    {
+      "file": "app/screens/home/ChildProfile.tsx",
+      "sha256": "cd73540124ecc03837f709622353bd336f35297b26a99753677f5576efd67369"
+    },
+    {
+      "file": "app/screens/home/DetailsScreen.tsx",
+      "sha256": "5e5c79d16abe2a1681f01f2188453d32980a644ec07e4d551d12d5330080bd4a"
+    },
+    {
+      "file": "app/screens/home/EditChildProfile.tsx",
+      "sha256": "70fa3a31b4f9c1bfaa13483bf15629c362f9934f5c97763abab27fdcc1b1359c"
+    },
+    {
+      "file": "app/screens/home/Favourites.tsx",
+      "sha256": "8e2aa3b5163062d7b292f61f0ad5ea40170b469e8a60c5e442e0f535f9b84c4d"
+    },
+    {
+      "file": "app/screens/home/HealthCheckups.tsx",
+      "sha256": "0fdc58b005cb1dc5fc74d7a3cd3728a09523542a3f50cc71971e400981e9ec77"
+    },
+    {
+      "file": "app/screens/home/Notifications.tsx",
+      "sha256": "d12dbf94270ef43250fe9ab5814fdb00cdd4d8942e42e8703a6dbec8f33efe11"
+    },
+    {
+      "file": "app/screens/home/SettingScreen.tsx",
+      "sha256": "d5482eece42d897fd0924323e278708629f2f8266b6bf42920b89c67ee8b6109"
+    },
+    {
+      "file": "app/screens/home/SupportChat.tsx",
+      "sha256": "4ebf729754ab67b224ab12ddec65ca7c818fa568c87aee498b9e56c42038781e"
+    },
+    {
+      "file": "app/screens/home/Vaccination.tsx",
+      "sha256": "3808d61dbeb35bbe8d0eebabbf4bb336ea8af570d7f8bedfbe4729bcdd53f81d"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Activities.tsx",
+      "sha256": "809303f90d11cc6c9d6f1c34961d805ef7f154a0d50900f3813a698d65df7941"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Articles.tsx",
+      "sha256": "8f1064c76ef6718ff6b2c151b6e9d14bf16fd7ab866a15bedea55534f0dc8bf0"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+      "sha256": "1c391c067be4764c5249d34884029198f027a57719076e43f9500421e6118865"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Home.tsx",
+      "sha256": "12dd3b4dcd6806e307f27306fd5066179e50f7e718835eb0adab290a4036547a"
+    },
+    {
+      "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+      "sha256": "bfa1897cd6b123c9e9464eafb5b87dbd1d2cd410d90156e1a5d469537c77103a"
+    },
+    {
+      "file": "app/screens/localization/CountrySelection.tsx",
+      "sha256": "604631eced42be19f647667068e0df60255e2bdffc8052f3c196c1ad890d1431"
+    },
+    {
+      "file": "app/screens/localization/LanguageSelection.tsx",
+      "sha256": "5344b6e176196889f21f73100bfcb67b72b72056bf7ab60179ca60f606809f4a"
+    },
+    {
+      "file": "app/screens/vaccination/AddChildVaccination.tsx",
+      "sha256": "45526db9dbfde90a5124f3ea35f4e5fdcf64cd562fbeb42e28e906777be69d4a"
+    },
+    {
+      "file": "app/screens/vaccination/AddReminder.tsx",
+      "sha256": "5c36e7be1ab63e66c6edba29b1ec7e60df99670d4b1fb85521e96bd3089c4d96"
+    },
+    {
+      "file": "app/services/__tests__/committedFocusInputs.test.tsx",
+      "sha256": "ab4eb25adeaac00127cedf39f78055a15ed3ac6cb3728085d1aeecb6855a775e"
+    },
+    {
+      "file": "app/services/__tests__/dailyMessage.test.ts",
+      "sha256": "b4c8612f8ba6ea64acaa1747b31a554ba31505ef3df6db957b846b0967d93866"
+    },
+    {
+      "file": "app/services/__tests__/favouritesReturn.test.tsx",
+      "sha256": "815dbe4a8eb77e519b471ae5972d25697ed20b98cf31da9cf7cadb2f9dcf0809"
+    },
+    {
+      "file": "app/services/__tests__/infiniteScrollList.test.tsx",
+      "sha256": "1f97a30c0598022a33568517f9e0bea92c7ee3851178d244506f131a2b8c28ac"
+    },
+    {
+      "file": "app/services/__tests__/initialCountrySetup.test.tsx",
+      "sha256": "e6030c71246496d5a842d0cb9bac0ed3258b135d760ada97a45f87b5c7060df2"
+    },
+    {
+      "file": "app/services/__tests__/initialLanguage.test.ts",
+      "sha256": "26c314e2e07fb144d27e5f95137dac9a77f2a52448bf9ba64956c00647836711"
+    },
+    {
+      "file": "app/services/__tests__/landscapeChart.test.tsx",
+      "sha256": "33f40577f4575eae0145bb0bb0f0d76d7a04056bdddccef6d2a155297ffa537a"
+    },
+    {
+      "file": "app/services/__tests__/milestoneProgress.test.ts",
+      "sha256": "4a086067acc826847b81745a74f448eb12e79ab6ecdd0c1f81e0c6360b1a22c1"
+    },
+    {
+      "file": "app/services/__tests__/navigationBackHandler.test.tsx",
+      "sha256": "19d84a42042c32f82a6da3d4dac598dec02a6ab04798d0b5d8ae44f518f17f5a"
+    },
+    {
+      "file": "app/services/__tests__/pendingLocalNotifications.test.tsx",
+      "sha256": "f6fdee9df98b8a85aa313e51fb3517c8f893c5e7103cac8682615858f4c4c056"
+    },
+    {
+      "file": "app/services/__tests__/relatedArticleRefresh.test.tsx",
+      "sha256": "676e10a4dd29c1e4631e5415bef5b68380dba647e6e7d70239cfc80b32f1bd53"
+    },
+    {
+      "file": "app/services/__tests__/relatedContent.test.ts",
+      "sha256": "26b93df1be4e40af5bf9554d0cd872507c8302a6c2673d6c76644cde54b618b1"
+    },
+    {
+      "file": "app/services/dailyMessage.ts",
+      "sha256": "ddc0c09a7d313d53ffabe9285f0874ae9f5dc5b2dd5fb62e1a330bb6d9ee9413"
+    },
+    {
+      "file": "app/services/initialLanguage.ts",
+      "sha256": "a7256b1ed7e3ecf27bf90f0797d2d96f1e25d452d52943bdd867354e664d3eec"
+    },
+    {
+      "file": "app/services/milestoneProgress.ts",
+      "sha256": "10a3efa28cff68939a840f6dbbfdf319aaaefbd9d0815ee3b3f1c5c5a06416d7"
+    },
+    {
+      "file": "app/services/relatedContent.ts",
+      "sha256": "19e16a2ed261ff33f41dad90df7f312143602a6a79b5cf70643b9551eb3732ff"
+    }
+  ],
+  "whitespace_verification": {
+    "method": "Whitespace/newline cleanup only when emitted development and production JavaScript are identical",
+    "files": [
+      "app/components/FavActivities.tsx",
+      "app/components/HeaderNotiIcon.tsx",
+      "app/components/growth/ActiveChildMeasureTimeline.tsx",
+      "app/components/healthChekup/UpcomingHealthCheckup.tsx",
+      "app/components/homeScreen/ChildInfo.tsx",
+      "app/components/homeScreen/DailyReads.tsx",
+      "app/components/vaccination/tabs/UpcomingVaccines.tsx",
+      "app/navigation/AppNavigation.tsx",
+      "app/screens/AddChildInfoSetup.tsx",
+      "app/screens/AddChildSetup.tsx",
+      "app/screens/AddExpectingChildProfile.tsx",
+      "app/screens/AddSiblingData.tsx",
+      "app/screens/ChildSetup.tsx",
+      "app/screens/ChildSetupList.tsx",
+      "app/screens/CustomDrawerContent.tsx",
+      "app/screens/EditParentDetails.tsx",
+      "app/screens/LoadingScreen.tsx",
+      "app/screens/PrivacyPolicy.tsx",
+      "app/screens/ServiceProviderInfoSetup.tsx",
+      "app/screens/Terms.tsx",
+      "app/screens/TermsPage.tsx",
+      "app/screens/Walkthrough.tsx",
+      "app/screens/growth/AddNewChildgrowth.tsx",
+      "app/screens/growth/ChartFullScreen.tsx",
+      "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
+      "app/screens/home/ChatBot.tsx",
+      "app/screens/home/DetailsScreen.tsx",
+      "app/screens/home/EditChildProfile.tsx",
+      "app/screens/home/Favourites.tsx",
+      "app/screens/home/Notifications.tsx",
+      "app/screens/home/SettingScreen.tsx",
+      "app/screens/home/SupportChat.tsx",
+      "app/screens/home/bottomTabs/Activities.tsx",
+      "app/screens/home/bottomTabs/Articles.tsx",
+      "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+      "app/screens/home/bottomTabs/Home.tsx",
+      "app/screens/localization/CountryLanguageConfirmation.tsx",
+      "app/screens/localization/CountrySelection.tsx",
+      "app/screens/localization/LanguageSelection.tsx",
+      "app/screens/vaccination/AddChildVaccination.tsx",
+      "app/screens/vaccination/AddReminder.tsx"
+    ]
+  },
+  "acceptance_dependencies": [
+    {
+      "area": "Country-specific ATS restrictions",
+      "status": "blocked on runtime origin inventory and country/device validation",
+      "required_input": "Production API and media/CDN origins per flavour, including relevant redirects; hostnames/schemes only. Current and original RNSDKUpgrade env/ paths are untracked. Fake CI and public static links do not establish the deployed runtime surface."
+    },
+    {
+      "area": "Live services and representative devices",
+      "status": "not established by source/unit/bundle/unsigned-CI checks",
+      "required_input": "An accessible service/device test session for real Drive authorisation/restore, signed-store and physical accessibility/RTL/large-text/supported-device acceptance. Production analytics remains unverified."
+    }
+  ],
+  "limitations": [
+    "No claim that passing tests proves absence of every bug or badge compliance.",
+    "Eleven low-severity audit findings remain; zero moderate/high/critical at this check. Dependency versions are unchanged.",
+    "Preserve existing defaults and valid caregiver data; source readers, encryption envelopes, Realm schemas, supported-device minimums and country build configurations are unchanged."
+  ]
+}

@@ -24,17 +24,11 @@ import {
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../../App";
 import { formatHeightData } from "../../services/growthService";
-import { getInterpretationWeightForHeight } from "../../services/interpretationService";
+import { useInterpretationWeightForHeight } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
 import { standardDevDataForChart } from "../../instances/index";
 import { selectActiveChild } from "../../services/selectors";
 export const standardDevDataLoad = standardDevDataForChart;
-
-const LANDSCAPE = "landscape";
-const PORTRAIT = "portrait";
-const BOYGENDER = "boy";
-const WINDOW = "window";
-const WEIGHT = "weight";
 
 const styles = StyleSheet.create({
   flexColChart: {
@@ -73,13 +67,14 @@ const ChartWeightForHeight = (props: any): any => {
   const { obj, standardDeviation } = React.useMemo(() => {
   let obj: any;
   let standardDeviation: any;
-  if (taxonomyIds?.boyChildGender == "boy" || activeChild?.gender == "") {
+  if (activeChild?.gender == taxonomyIds?.boyChildGender ||
+      activeChild?.gender == appConfig.boyChildGender || activeChild?.gender === "") {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
       (item: any) =>
-        (item.growth_type == appConfig.weightForHeight &&
-          item.child_gender == taxonomyIds?.boyChildGender) ||
-        item.child_gender == appConfig.boyChildGender
+        item.growth_type == appConfig.weightForHeight &&
+        (item.child_gender == taxonomyIds?.boyChildGender ||
+          item.child_gender == appConfig.boyChildGender)
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData, "weight");
@@ -87,24 +82,24 @@ const ChartWeightForHeight = (props: any): any => {
     //girl
     const genderGirlData = standardDevData?.filter(
       (item: any) =>
-        (item.growth_type == appConfig.weightForHeight &&
-          item.child_gender == taxonomyIds?.girlChildGender) ||
-        item.child_gender == appConfig.girlChildGender
+        item.growth_type == appConfig.weightForHeight &&
+        (item.child_gender == taxonomyIds?.girlChildGender ||
+          item.child_gender == appConfig.girlChildGender)
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData, "weight");
   }
   return { obj, standardDeviation };
-}, [activeChild?.gender, taxonomyIds]);
-  const childTaxonomyData = activeChild.taxonomyData;
-  const sortedMeasurements = activeChild.measures
+}, [activeChild?.gender, taxonomyIds, standardDevData]);
+  const childTaxonomyData = activeChild?.taxonomyData;
+  const sortedMeasurements = (Array.isArray(activeChild?.measures) ? activeChild.measures : [])
     .filter(
       (item: { isChildMeasured: boolean; weight: number; height: number }) =>
         item.isChildMeasured == true && item.weight > 0 && item.height > 0
     )
     .sort((a: any, b: any) => a.measurementDate - b.measurementDate);
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
-  const item: any = getInterpretationWeightForHeight(
+  const item: any = useInterpretationWeightForHeight(
     standardDeviation,
     childTaxonomyData,
     lastMeasurements
@@ -112,9 +107,10 @@ const ChartWeightForHeight = (props: any): any => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setIsChartVisible(true);
       }, 2000);
+      return () => clearTimeout(timer);
     }, [])
   );
   const windowWidth = Dimensions.get("window").width;
@@ -171,7 +167,7 @@ const ChartWeightForHeight = (props: any): any => {
           </View>
         )}
         <ShiftFromTopBottom15>
-          {item && props.days >= activeChild.taxonomyData.days_from && (
+          {item && props.days >= activeChild?.taxonomyData?.days_from && (
             <>
               <Heading4>{item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
@@ -185,7 +181,7 @@ const ChartWeightForHeight = (props: any): any => {
           )}
         </ShiftFromTopBottom15>
       </FlexCol>
-      {props.days < activeChild.taxonomyData.days_from ? null : (
+      {props.days < activeChild?.taxonomyData?.days_from ? null : (
         <FlexColChart
           style={[
             styles.flexColChart,

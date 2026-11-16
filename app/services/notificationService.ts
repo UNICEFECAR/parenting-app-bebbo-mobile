@@ -52,11 +52,12 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
       })
     });
     const sortednoti = noti.sort(
-      (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+      (a: any, b: any) => new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime(),
     );
     // console.log('SortedNoti',sortednoti)
     return sortednoti;
   }
+  return [];
 }
 export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods: any, child: any): any => {
   const noti: any[] = [];
@@ -99,20 +100,18 @@ export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, a
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
-  const childAgeObj = childAge.sort(
+  const childAgeObj = [...(childAge ?? [])].sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
   const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
-    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+    (a: any, b: any) => new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime(),
   );
   const lastvcperiod = vcNotis.findIndex((item: any) => item.growth_period == notiExist.lastvcperiodid)
   const currentvcperiod = vcNotis.findIndex((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
 
-
   const hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
   const lasthcperiod = hcNotis.findIndex((item: any) => item.growth_period == notiExist.lasthcperiodid)
   const currenthcperiod = hcNotis.findIndex((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
-
 
   if (childAgeObj.findIndex((item: any) => item.id == notiExist.lastgwperiodid) <
     childAgeObj.findIndex((item: any) => item.id == child.taxonomyData.id) || lastvcperiod < currentvcperiod || lasthcperiod < currenthcperiod) {
@@ -192,9 +191,9 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematu
       // check difference between today and notification date in days and if greater than or equal to appConfig.oneMonthDays then isDeleted=false
       let numOfDays: any;
       if (isFutureDateTime(notificationDate) == true) {
-        numOfDays = (DateTime.fromISO(notificationDate)).diff((DateTime.now()), 'days').toObject().days
+        numOfDays = (notificationDate).diff((DateTime.now()), 'days').toObject().days
       } else {
-        numOfDays = (DateTime.now()).diff((DateTime.fromISO(notificationDate)), 'days').toObject().days
+        numOfDays = (DateTime.now()).diff((notificationDate), 'days').toObject().days
       }
       noti.push(
         {
@@ -232,9 +231,9 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematu
       // check difference between today and notification date in days and if greater than or equal to appConfig.twoMonthDays then isDeleted=false
       let numOfDays: any;
       if (isFutureDateTime(notificationDate) == true) {
-        numOfDays = (DateTime.fromISO(notificationDate)).diff((DateTime.now()), 'days').toObject().days
+        numOfDays = (notificationDate).diff((DateTime.now()), 'days').toObject().days
       } else {
-        numOfDays = (DateTime.now()).diff((DateTime.fromISO(notificationDate)), 'days').toObject().days
+        numOfDays = (DateTime.now()).diff((notificationDate), 'days').toObject().days
       }
       noti.push(
         {
@@ -262,9 +261,9 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematu
       if (!isGrowthDataExist) {
         let numOfDays2: any;
         if (isFutureDateTime(notificationDate) == true) {
-          numOfDays2 = (DateTime.fromISO(notificationDate)).diff((DateTime.now()), 'days').toObject().days
+          numOfDays2 = (notificationDate).diff((DateTime.now()), 'days').toObject().days
         } else {
-          numOfDays2 = (DateTime.now()).diff((DateTime.fromISO(notificationDate)), 'days').toObject().days
+          numOfDays2 = (DateTime.now()).diff((notificationDate), 'days').toObject().days
         }
         noti.push(
           {
@@ -312,7 +311,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const childAgeInDaysForCD = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(childBirthDatePlanned)).toMillis(),
   );
-  const childAgeObj = childAge.sort(
+  const childAgeObj = [...(childAge ?? [])].sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
   const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId || child?.taxonomyData?.id;
@@ -341,7 +340,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   ///perform computation for hc,vc
   // get all notis between last period id to current running period
   const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
-    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+    (a: any, b: any) => new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime(),
   );
   const lastvcperiod = vcNotis.findIndex((item: any) => item.growth_period == vcperiodid)
   const currentvcperiod = vcNotis.findIndex((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
@@ -420,7 +419,6 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
       const hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
       let currenthcPeriodNoti = hcNotis.filter((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
 
-
       if (vchcEnabledFlag == false) {
         if (currentvcPeriodNoti.length > 0) {
           currentvcPeriodNoti = [...currentvcPeriodNoti].map((item: any) => {
@@ -433,7 +431,6 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
           })
         }
       }
-
 
       let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child, prematurechildgwperiod, childDaysTo, childDaysFrom, true)
       if (growthEnabledFlag == false) {
@@ -639,7 +636,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
     });
   }
   const sortednoti = noti.sort(
-    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+    (a: any, b: any) => new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime(),
   );
   return sortednoti;
 }
@@ -648,7 +645,7 @@ export const getVaccinesForPeriodCount = (allVaccineData: any, period: string): 
   const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
   let vc = ' ';
   const vcArray: any = [];
-  allvc.map((item: any, index: number) => {
+  allvc.map((item: any, _index: number) => {
     if (item.old_calendar != 1) {
       vcArray.push(item.title);
     }
@@ -667,7 +664,7 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
   let vc = ' ';
   const vcArray: any = [];
-  allvc.map((item: any, index: number) => {
+  allvc.map((item: any, _index: number) => {
     if (item.old_calendar != 1) {
       vcArray.push(item.title);
     }
@@ -682,35 +679,39 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   }
   return vc;
 }
-const generatenotiId = (localNotifications: any, allNotis: any): any => {
-  const rand = Math.floor(10000000 + Math.random() * 90000000);
-  const commonArr = localNotifications?.find((x: any) => x.data.some((item: any) => item.notiid == String(rand)));
-  const commonArr2 = allNotis?.data?.find((item: any) => item.notiid == String(rand));
-  if (commonArr != null && commonArr != {} && commonArr != undefined) {
-    generatenotiId(localNotifications, allNotis);
-  } else if (commonArr2 != null && commonArr2 != {} && commonArr2 != undefined) {
-    generatenotiId(localNotifications, allNotis);
-  } else {
-    return rand;
+const generatenotiId = (localNotifications: any, allNotis: any[]): number => {
+  const existing = Array.from(localNotifications ?? []).flatMap((group: any) => group?.data ?? []);
+  const used = new Set([...existing, ...allNotis].map((item: any) => String(item?.notiid)));
+  const first = Math.floor(10000000 + Math.random() * 90000000);
+  let candidate = first;
+  while (used.has(String(candidate))) {
+    candidate = candidate === 99999999 ? 10000000 : candidate + 1;
+    if (candidate === first) throw new Error('Notification identifier space is exhausted');
   }
-}
+  return candidate;
+};
+
 export const createAllLocalNotificatoins = (child: any, childAge: any, developmentEnabledFlag: boolean, growthEnabledFlag: boolean, vchcEnabledFlag: boolean, t: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any, allVaccineData: any, localNotifications: any): any => {
   const allNotis: any[] = [];
 
-  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId ?? child.plannedTermDate;
-  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId ?? child?.taxonomyData.id;
+  const correctedTaxonomyId = child?.taxonomyData?.prematureTaxonomyId;
+  const childBirthDatePlanned = correctedTaxonomyId != null
+    ? child.plannedTermDate ?? child.birthDate
+    : child.birthDate ?? child.plannedTermDate;
+  const activityTaxonomyId = correctedTaxonomyId ?? child?.taxonomyData?.id;
 
-  const childAgeObj = childAge.sort(
+  const childAgeObj = [...(childAge ?? [])].sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
-  const filteredchildAgeObj = childAgeObj.filter((x: any) => x.id >= activityTaxonomyId);
+  const currentAgeIndex = childAgeObj.findIndex((age: any) => String(age.id) === String(activityTaxonomyId));
+  const filteredchildAgeObj = currentAgeIndex < 0 ? [] : childAgeObj.slice(currentAgeIndex);
   // for CD 1st day of period and 5 days before period end
   filteredchildAgeObj.map((agebracket: any) => {
 
     if ((agebracket.days_to - agebracket.days_from) <= appConfig.oneMonthDays) {
       if (developmentEnabledFlag == true) {
         const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19, 0, 0, 0))).plus({ days: agebracket.days_from == 0 ? agebracket.days_from + appConfig.afterDays + 1 : agebracket.days_from + appConfig.afterDays });
-        if (isFutureDateTime(new Date(notificationDate))) {
+        if (isFutureDateTime((notificationDate).toJSDate())) {
           const message = t('cdNoti1', {
             childName:
               child.childName != null &&
@@ -723,7 +724,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
           allNotis.push({ 'type': 'cd', 'notiid': currNotiId, 'notiDate': notificationDate, 'notiMsg': message, 'childUuid': child.uuid });
         }
         const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19, 0, 0, 0))).plus({ days: agebracket.days_to - appConfig.beforeDays });
-        if (isFutureDateTime(new Date(notificationDate2))) {
+        if (isFutureDateTime((notificationDate2).toJSDate())) {
           const message2 = t('cdNoti2', {
             childName:
               child.childName != null &&
@@ -740,7 +741,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
         const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
         if (!isGrowthDataExist) {
           const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(19, 0, 0, 0))).plus({ days: agebracket.days_to - 1 });
-          if (isFutureDateTime(new Date(notificationDate3))) {
+          if (isFutureDateTime((notificationDate3).toJSDate())) {
             const message3 = t('gwNoti1', {
               childName:
                 child.childName != null &&
@@ -758,7 +759,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
     else if ((agebracket.days_to - agebracket.days_from) <= appConfig.threeeMonthDays) {
       if (developmentEnabledFlag == true) {
         const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19, 0, 0, 0))).plus({ days: agebracket.days_from + appConfig.afterDays });
-        if (isFutureDateTime(new Date(notificationDate))) {
+        if (isFutureDateTime((notificationDate).toJSDate())) {
           const message = t('cdNoti1', {
             childName:
               child.childName != null &&
@@ -776,7 +777,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
         const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
         if (!isGrowthDataExist) {
           const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(19, 0, 0, 0))).plus({ days: agebracket.days_to - 1 });
-          if (isFutureDateTime(new Date(notificationDate3))) {
+          if (isFutureDateTime((notificationDate3).toJSDate())) {
             const message3 = t('gwNoti1', {
               childName:
                 child.childName != null &&
@@ -794,7 +795,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
       for (let i = 0; i < diff; i++) {
         if (developmentEnabledFlag == true) {
           const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19, 0, 0, 0))).plus({ days: (i == diff - 1) ? agebracket.days_to - appConfig.beforeDays : agebracket.days_to < agebracket.days_from + (i * appConfig.oneMonthDays) + appConfig.oneMonthDays ? agebracket.days_to - appConfig.beforeDays : (agebracket.days_from + (i * appConfig.oneMonthDays) + appConfig.oneMonthDays - 1) - appConfig.beforeDays, });
-          if (isFutureDateTime(new Date(notificationDate2))) {
+          if (isFutureDateTime((notificationDate2).toJSDate())) {
             const message2 = t('cdNoti2', {
               childName:
                 child.childName != null &&
@@ -813,7 +814,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
     else {
       if (developmentEnabledFlag == true) {
         const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19, 0, 0, 0))).plus({ days: agebracket.days_from + appConfig.afterDays });
-        if (isFutureDateTime(new Date(notificationDate))) {
+        if (isFutureDateTime((notificationDate).toJSDate())) {
           const message = t('cdNoti1', {
             childName:
               child.childName != null &&
@@ -830,7 +831,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
       for (let i = 0; i < diff; i++) {
         if (developmentEnabledFlag == true) {
           const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19, 0, 0, 0))).plus({ days: (i == diff - 1) ? agebracket.days_to - appConfig.beforeDays : agebracket.days_to < agebracket.days_from + (i * appConfig.twoMonthDays) + appConfig.twoMonthDays ? agebracket.days_to - appConfig.beforeDays : (agebracket.days_from + (i * appConfig.twoMonthDays) + appConfig.twoMonthDays - 1) - appConfig.beforeDays, });
-          if (isFutureDateTime(new Date(notificationDate2))) {
+          if (isFutureDateTime((notificationDate2).toJSDate())) {
             const message2 = t('cdNoti2', {
               childName:
                 child.childName != null &&
@@ -848,7 +849,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
           const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * appConfig.twoMonthDays), (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * appConfig.twoMonthDays) + appConfig.twoMonthDays ? agebracket.days_to - 1 : agebracket.days_from + (i * appConfig.twoMonthDays) + appConfig.twoMonthDays - 2)
           if (!isGrowthDataExist) {
             const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(19, 0, 0, 0))).plus({ days: (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * appConfig.twoMonthDays) + appConfig.twoMonthDays ? agebracket.days_to - 1 : agebracket.days_from + (i * appConfig.twoMonthDays) + appConfig.twoMonthDays - 2 });
-            if (isFutureDateTime(new Date(notificationDate3))) {
+            if (isFutureDateTime((notificationDate3).toJSDate())) {
               const message3 = t('gwNoti1', {
                 childName:
                   child.childName != null &&
@@ -872,14 +873,14 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
     console.log(allVaccinePeriods, typeof allVaccinePeriods, "..createAllLocalNotificatoinsallVaccinePeriods.length")
 
     const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
-      (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+      (a: any, b: any) => new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime(),
     );
 
     const hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
 
     vcNotis.map((vc: any) => {
       const notificationDate4 = DateTime.fromJSDate(new Date(new Date(vc.notificationDate).setHours(19, 0, 0, 0)))
-      if (isFutureDateTime(new Date(notificationDate4)) && getVaccinesForPeriod(allVaccineData, vc.growth_period) != '' && getVaccinesForPeriod(allVaccineData, vc.growth_period) != null && getVaccinesForPeriod(allVaccineData, vc.growth_period) != undefined) {
+      if (isFutureDateTime((notificationDate4).toJSDate()) && getVaccinesForPeriod(allVaccineData, vc.growth_period) != '' && getVaccinesForPeriod(allVaccineData, vc.growth_period) != null && getVaccinesForPeriod(allVaccineData, vc.growth_period) != undefined) {
         const message4 = t(vc.title, {
           childName:
             child.childName != null &&
@@ -895,7 +896,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
 
     hcNotis.map((hc: any) => {
       const notificationDate5 = DateTime.fromJSDate(new Date(new Date(hc.notificationDate).setHours(19, 0, 0, 0)))
-      if (isFutureDateTime(new Date(notificationDate5))) {
+      if (isFutureDateTime((notificationDate5).toJSDate())) {
         const message5 = t(hc.title, {
           childName:
             child.childName != null &&

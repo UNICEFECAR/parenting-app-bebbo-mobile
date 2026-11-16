@@ -1,6 +1,6 @@
 import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
 import React, { useEffect, useMemo, useState } from "react";
-import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import { useTranslation } from "react-i18next";
 import HTML from "react-native-render-html";
 import { addSpaceToHtml } from "../../services/Utils";
@@ -287,9 +287,7 @@ const ChatBot: React.FC<ChatBotData> = (props: any) => {
   // const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink, noDataStep } = props;
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
-    console.log("chatbot screen", props.steps);
-    console.log("showNextStep screen", props.item);
-    console.log("categorySelection screen", props.categorySelection);
+
     if (props.item.showNextStep) {
       setLoading(true);
   

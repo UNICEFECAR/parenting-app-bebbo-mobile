@@ -1,0 +1,21 @@
+{
+  "application_source": "0a5ddab2f20dbb963bc0d64cf06ca8ed5cc164e8",
+  "compiled_source": "efd66b6009bef66574aeda4eb79df8673091d701",
+  "compiled_run": "43511087818",
+  "check_source": "0d608a5c16aaf0de9435bdb385df34d30e4b3c72",
+  "changed_paths": [
+    ".github/workflows/native-data-evidence.yml",
+    ".github/workflows/review-checks.yml",
+    "app/redux/reducers/realmSafe.ts",
+    "app/services/__tests__/realmDiagnostics.test.ts",
+    "index.js",
+    "qa/nativeDataQA.ts",
+    "qa/run-native-data.py",
+    "scripts/scan-new-secrets.sh",
+    "scripts/secret-scan-regression.py"
+  ],
+  "replaced_bundle_entries": [
+    "base/assets/index.android.bundle"
+  ],
+  "hermes_bytecode_sha256": "45dc248cb07049d35213e634d93df17f06d633c91b0fc94e3205565b0178a905"
+}

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { LayoutAnimation, Modal, UIManager, View } from "react-native";
+import React from 'react';
+import {Modal, View} from 'react-native';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,

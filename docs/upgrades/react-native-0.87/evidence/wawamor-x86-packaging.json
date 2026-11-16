@@ -1,0 +1,265 @@
+{
+  "bundle": "android/app/build/outputs/bundle/wawamorRelease/app-wawamor-release.aab",
+  "abis": [
+    "x86"
+  ],
+  "expected_abis": [
+    "x86"
+  ],
+  "manifest": {
+    "package": "org.unicef.ec.wawamor",
+    "extract_native_libs": "true",
+    "target_sdk": "37"
+  },
+  "libraries": [
+    {
+      "path": "base/lib/x86/libanimation-decoder-gif.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libappmodules.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libavif_android.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libc++_shared.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libcrashlytics-common.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libcrashlytics-handler.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libcrashlytics-trampoline.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libcrashlytics.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libdatastore_shared_counter.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libfbjni.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libgesturehandler.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libgifimage.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libglide-webp.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libhermestooling.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libhermesvm.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libimagepipeline.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libjsi.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libnative-filters.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libnative-imagetranscoder.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libreact_codegen_RNKC.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libreact_codegen_rnscreens.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libreact_codegen_rnsvg.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libreact_codegen_safeareacontext.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/libreactnative.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/librealm.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libreanimated.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/librnscreens.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    },
+    {
+      "path": "base/lib/x86/librnskia.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libsqliteJni.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libucrop.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/x86/libworklets.so",
+      "elf_class": 32,
+      "elf_machine": 3,
+      "matches_abi": true,
+      "minimum_load_alignment": 4096,
+      "supports_16kb": false
+    }
+  ],
+  "problems": []
+}

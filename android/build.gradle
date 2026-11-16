@@ -5,7 +5,10 @@ buildscript {
         compileSdkVersion = 37
         targetSdkVersion = 37
         ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.2.10"
+        kotlinVersion = "2.4.21"
+        // AsyncStorage's bundled lookup falls back to KSP 1 for Kotlin 2.4.
+        // Its supported override keeps legacy Room migration generation on KSP 2.
+        kspVersion = "2.3.14"
     }
     repositories {
         google()
@@ -15,7 +18,7 @@ buildscript {
         // AGP 9.2 supports API 37; keep Gradle aligned with its compatibility table.
         classpath("com.android.tools.build:gradle:9.2.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath 'com.google.gms:google-services:4.5.0'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.8'
     }

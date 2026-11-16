@@ -7,11 +7,17 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  * @type {import('@react-native/metro-config').MetroConfig}
  */
 const path = require("path");
+const fs = require("fs");
+const {flavourCacheVersion} = require("./scripts/flavour-cache.cjs");
 
 process.env.FLAVOR = process.env.FLAVOR || "bebbo"; // Default to 'bebbo'
 
+// Metro's disk cache must not reuse a Bebbo transform for another flavour.
+const flavourEnvPath = path.join(__dirname, `env/.env.${process.env.FLAVOR}`);
 const config = {
-  resetCache: true,
+  maxWorkers: 2,
+  cacheVersion: flavourCacheVersion(process.env.FLAVOR,
+    fs.existsSync(flavourEnvPath) ? fs.readFileSync(flavourEnvPath) : ''),
   transformer: {
     getTransformOptions: async () => ({
       transform: {
@@ -32,7 +38,6 @@ const config = {
       ),
     },
   },
-  resetCache: true,
 };
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);

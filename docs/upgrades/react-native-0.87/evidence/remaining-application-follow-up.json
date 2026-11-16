@@ -1,0 +1,1403 @@
+{
+  "base_commit": "283530b60f5fdc26acdf27dd667ab0a26ce861df",
+  "branch": "RNSDKUpgrade-review-fixes",
+  "observed_at": "2026-11-15T05:35:12.464708+00:00",
+  "scope": "Application source and local JS/tooling verification; fake CI configuration only. No production service/device acceptance claim. No library, SDK, ABI, signing, minimum-device, Realm schema or backup-format change.",
+  "checks": {
+    "jest": {
+      "suites": 63,
+      "tests": 524,
+      "result": "PASS"
+    },
+    "strict_typescript": "PASS",
+    "node_tooling": {
+      "tests": 35,
+      "result": "PASS"
+    },
+    "python": {
+      "tests": 30,
+      "result": "PASS"
+    },
+    "native_vectors": {
+      "resources": 96,
+      "result": "PASS"
+    },
+    "flavour_matrix": {
+      "primary": 8,
+      "auxiliary": 2,
+      "result": "PASS"
+    },
+    "analytics_inventory": {
+      "routes": 43,
+      "event_calls": 78,
+      "screen_files": 46,
+      "result": "PASS; source positions regenerated"
+    },
+    "network_inventory": {
+      "flavours": 8,
+      "ios_plists": 10,
+      "result": "PASS; public source only"
+    },
+    "release_js_bundles": [
+      {
+        "file": "babuni-android.bundle",
+        "sha256": "fe5f4695ced4bb6bc0a116ddd511f1fabe8362b2660ba749709329ad3dc0187e",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "babuni-ios.bundle",
+        "sha256": "dd26dda475ef050eac3598051c43c2ceabcdf6cceeebdef05cd3e63ffb3b9fa4",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "bebbo-android.bundle",
+        "sha256": "d7ce974bd91719c105f87ae423cc82a1eadebefe7796c06e86d7c176713f8fb2",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "bebbo-ios.bundle",
+        "sha256": "9a58513c0c482a3ab86b12a4c5a463a9f10b56492a6d48dd26b6c567e98cf986",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "bebboDev-android.bundle",
+        "sha256": "e565a0dea90fccb5608a3471f6a54b5ca84582a2bfc56f5881364b192e37128c",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "bebboDev-ios.bundle",
+        "sha256": "c3626c21e2294ca5769e4080985402e4a5a194a74aa2e54cbd8687dc1c1e7d5a",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "bebboPacific-android.bundle",
+        "sha256": "fb78a539ceed509b6cb6e0cd4ae2e2269e96d5f4d84ac55bc5e30953f569ef0c",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "bebboPacific-ios.bundle",
+        "sha256": "cf188c1f93913ead57439dfc2c7c6aea107c204c0444c41635e85b7309e849af",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "foleja-android.bundle",
+        "sha256": "47cb8323841377c32292322984ca79a6fb847b2cc8c67c5124ef21ab9887ecd2",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "foleja-ios.bundle",
+        "sha256": "483b34b5ef003976ab14ca1fadff48298433a6852375e97d4afdf5dc964725ec",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "merhabaBebek-android.bundle",
+        "sha256": "b1944d0698f114f5cb588a2f511ce74cd6faf3c26bbe3a731a365aa90a90b5fa",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "merhabaBebek-ios.bundle",
+        "sha256": "c91244f75604a3f9587626db1bf4a2c62f3c15391c9b86135fa9467ac151ccd2",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "reraiUmntwana-android.bundle",
+        "sha256": "3ddcd60c5ec317a244c1b5b2b3b1598f001fa744a7597ce5800a7b4ead463172",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "reraiUmntwana-ios.bundle",
+        "sha256": "951c72f518e58f1f7b06553a463be43963d0f0b412d15122aae6d85a043ea4b1",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "wawamor-android.bundle",
+        "sha256": "3963b7172e2c89dfacd9a9f737ba69f18a33f46714241c67996dabc411b1eefa",
+        "production_check": "Production bundle excludes the visual test controller"
+      },
+      {
+        "file": "wawamor-ios.bundle",
+        "sha256": "6968e59b41748a70250c693967af65795bb58711ec77e577034b2d3fdf1e2b7b",
+        "production_check": "Production bundle excludes the visual test controller"
+      }
+    ]
+  },
+  "lint": {
+    "before": {
+      "errors": 447,
+      "warnings": 2120
+    },
+    "after": {
+      "errors": 107,
+      "warnings": 2074,
+      "rules_of_hooks_errors": 0,
+      "unused_variable_errors": 0
+    },
+    "remaining_findings": [
+      {
+        "file": "app/components/FavActivities.tsx",
+        "line": 100,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'ActivitiesDataall'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/components/FavArticles.tsx",
+        "line": 104,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'articleDataall'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/components/HeaderNotiIcon.tsx",
+        "line": 268,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'allGrowthPeriods', 'allHealthCheckupsData', 'allVaccinePeriods', 'allnotis', 'childAge', 'developmentEnabledFlag', 'dispatch', 'growthEnabledFlag', and 'vchcEnabledFlag'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/HeaderNotiIcon.tsx",
+        "line": 352,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'activeChild.birthDate' and 'allVaccineData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/HeaderNotiIcon.tsx",
+        "line": 457,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'allGrowthPeriods', 'allHealthCheckupsData', 'allVaccineData', 'allVaccinePeriods', 'childAge', 'developmentEnabledFlag', 'dispatch', 'growthEnabledFlag', 'localNotifications', 'scheduledlocalNotifications', 't', and 'vchcEnabledFlag'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/HeaderNotiIcon.tsx",
+        "line": 477,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'dispatch' and 'newAllChildNotis'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/HeaderNotiIcon.tsx",
+        "line": 524,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'dispatch', 'scheduledlocalNotifications', and 't'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/growth/ActiveChildMeasureTimeline.tsx",
+        "line": 93,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'setNewChildMeasureUpdates'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/components/healthChekup/UpcomingHealthCheckup.tsx",
+        "line": 111,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'currentPeriodId' and 'item?.id'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/homeScreen/ChildInfo.tsx",
+        "line": 86,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'ChildDevData', 'PinnedChildDevData', 'activeChild', and 'activeChildGender'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/homeScreen/DailyHomeNotification.tsx",
+        "line": 112,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'currentNotification', 'records', and 'setNotiInDB'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/homeScreen/DailyReads.tsx",
+        "line": 523,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'ActivitiesData', 'activeChild.isPremature', 'activeChild.taxonomyData.id', 'activityCategoryArray', 'dailyDataCategoryall', 'dispatch', 'eligibleArticles', and 'showedDailyDataCategoryall'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/shared/InfiniteScrollList.tsx",
+        "line": 45,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'page' and 'requestData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/shared/InfiniteScrollList.tsx",
+        "line": 61,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'clientData', 'page', and 'receivedLoadingArticle'. Either include them or remove the dependency array. You can also do a functional update 'setClientData(c => ...)' if you only need 'clientData' in the 'setClientData' call."
+      },
+      {
+        "file": "app/components/shared/RelatedActivities.tsx",
+        "line": 121,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'ActivitiesData', 'relatedArticleData', and 'selectedChildActivitiesData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/components/shared/RelatedActivities.tsx",
+        "line": 187,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useMemo has an unnecessary dependency: 'relatedArticleData'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/components/shared/RelatedArticles.tsx",
+        "line": 118,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "Assignments to the 'relartlength' variable from inside React Hook React.useCallback will be lost after each render. To preserve the value over time, store it in a useRef Hook and keep the mutable value in the '.current' property. Otherwise, you can move this variable directly inside React.useCallback."
+      },
+      {
+        "file": "app/components/shared/RelatedArticles.tsx",
+        "line": 223,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useMemo has an unnecessary dependency: 'relatedArticleData'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/components/shared/RelatedVideoArticles.tsx",
+        "line": 115,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "Assignments to the 'relartlength' variable from inside React Hook React.useCallback will be lost after each render. To preserve the value over time, store it in a useRef Hook and keep the mutable value in the '.current' property. Otherwise, you can move this variable directly inside React.useCallback."
+      },
+      {
+        "file": "app/components/shared/RelatedVideoArticles.tsx",
+        "line": 222,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useMemo has an unnecessary dependency: 'relatedArticleData'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/components/vaccination/tabs/UpcomingVaccines.tsx",
+        "line": 79,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'currentPeriodId' and 'item?.periodID'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 151,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'setDistributionAnalytics'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 225,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'activeChild' and 'apiJsonData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 257,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "The ref value 'navigationRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'navigationRef.current' to a variable inside the effect, and use that variable in the cleanup function."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 260,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'onBackPress'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 269,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'callUrl'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 858,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'messaging', 'redirectPayload', and 't'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 888,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'child_age' and 'dispatch'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "line": 902,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'allCountries', 'countryId', and 'dispatch'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/AddChildInfoSetup.tsx",
+        "line": 170,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'navigation' and 'relationshipToParent'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/AddChildSetup.tsx",
+        "line": 172,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'navigation' and 'relationshipToParent'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/AddExpectingChildProfile.tsx",
+        "line": 127,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'childData' and 'childList'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/AddExpectingChildProfile.tsx",
+        "line": 143,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/AddSiblingData.tsx",
+        "line": 118,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'childData' and 'genders'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/ChildSetup.tsx",
+        "line": 195,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'navigation' and 'relationshipToParent'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/ChildSetupList.tsx",
+        "line": 157,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'childAge', 'dispatch', and 'navigation'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/ChildSetupList.tsx",
+        "line": 172,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/CustomDrawerContent.tsx",
+        "line": 181,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has an unnecessary dependency: 'activeChild.uuid'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/CustomDrawerContent.tsx",
+        "line": 194,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'allCountries' and 'countryId'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/CustomDrawerContent.tsx",
+        "line": 198,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'genders'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/CustomDrawerContent.tsx",
+        "line": 279,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'activeChild.birthDate' and 'allVaccineData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/CustomDrawerContent.tsx",
+        "line": 303,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has unnecessary dependencies: 'activeChild.uuid', 'allnotis', and 'isOpen'. Either exclude them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/EditParentDetails.tsx",
+        "line": 132,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'relationshipData', 'relationshipToParent', 'relationshipValue?.unique_name', and 'userRelationToParentEdit'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/LoadingScreen.tsx",
+        "line": 395,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'callSagaApi', 'incrementalSyncDT', 'netflag', and 'toggleSwitchVal'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/LoadingScreen.tsx",
+        "line": 429,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'dispatch' and 'route.params'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/PrivacyPolicy.tsx",
+        "line": 73,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/ServiceProviderInfoSetup.tsx",
+        "line": 120,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'childAge', 'dispatch', and 'navigation'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/ServiceProviderInfoSetup.tsx",
+        "line": 135,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/Terms.tsx",
+        "line": 130,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has an unnecessary dependency: 'languageCode'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/Terms.tsx",
+        "line": 136,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'dispatch' and 'taxonomyAllData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/Terms.tsx",
+        "line": 155,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/TermsPage.tsx",
+        "line": 71,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/Walkthrough.tsx",
+        "line": 204,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'navigation' and 'showPrevbtn'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/growth/AddNewChildgrowth.tsx",
+        "line": 262,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'activeChild' and 'measurePlaces'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/growth/AddNewChildgrowth.tsx",
+        "line": 663,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/growth/ChartFullScreen.tsx",
+        "line": 117,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useEffect has a missing dependency: 'closeFullScreen'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
+        "line": 167,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
+        "line": 274,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'activeChild', 'allVaccinePeriods', 'checkIfMeasuredVaccineExistsForLocale', and 'isMeasuredOptions'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/ChatBot.tsx",
+        "line": 302,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'props.categorySelection', 'props.item', and 'props.steps'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/DetailsScreen.tsx",
+        "line": 296,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'route.name'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/DetailsScreen.tsx",
+        "line": 687,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'fromScreen', 'netInfo.isConnected', 'onHeaderBack', and 't'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/EditChildProfile.tsx",
+        "line": 238,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'childData', 'gender', 'genders', 'isExpected', and 'taxonomyIds?.girlChildGender'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/Favourites.tsx",
+        "line": 47,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useLayoutEffect has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/Favourites.tsx",
+        "line": 59,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'navigation' and 'route.params?.backClicked'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/HealthCheckups.tsx",
+        "line": 193,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/Notifications.tsx",
+        "line": 117,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/Notifications.tsx",
+        "line": 206,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'handleAppStateChange'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/Notifications.tsx",
+        "line": 218,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'calculateNotis'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/SettingScreen.tsx",
+        "line": 188,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useLayoutEffect has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/SettingScreen.tsx",
+        "line": 636,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'activeChild', 'languageCode', and 'netInfo.isConnected'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/SettingScreen.tsx",
+        "line": 751,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'country', 'countryId', 'language', 'languageCode', and 'toggleSwitch'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/SettingScreen.tsx",
+        "line": 757,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'toggleSwitch'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/SupportChat.tsx",
+        "line": 96,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useLayoutEffect has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/SupportChat.tsx",
+        "line": 262,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useCallback has an unnecessary dependency: 'logEvent'. Either exclude it or remove the dependency array. Outer scope values like 'logEvent' aren't valid dependencies because mutating them doesn't re-render the component."
+      },
+      {
+        "file": "app/screens/home/SupportChat.tsx",
+        "line": 641,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'stepsjson'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/Vaccination.tsx",
+        "line": 103,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "line": 471,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'activeChild.isPremature' and 'netInfo.isConnected'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "line": 494,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "line": 525,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'route.params?.backClicked' and 'setFilteredActivityData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "line": 591,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'childAge', 'navigation', 'route.params', and 'showSelectedBracketData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "line": 620,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'navigation' and 'route.params'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "line": 778,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useMemo has an unnecessary dependency: 'DATA'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Articles.tsx",
+        "line": 406,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useMemo has an unnecessary dependency: 'DATA'. Either exclude it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Articles.tsx",
+        "line": 633,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Articles.tsx",
+        "line": 661,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'childAge', 'navigation', 'route.params?.backClicked', and 'showSelectedBracketData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Articles.tsx",
+        "line": 685,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Articles.tsx",
+        "line": 734,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'route.params?.backClicked' and 'setFilteredArticleData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+        "line": 213,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'childDevModalOpened' and 'netInfo.isConnected'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+        "line": 350,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'childAge' and 'showSelectedBracketData'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+        "line": 377,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'PinnedChildDevData' and 'activeChild?.gender'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+        "line": 383,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'calculateMileStone'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Home.tsx",
+        "line": 195,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Home.tsx",
+        "line": 315,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'countryId', 'dispatch', 'flavor', 'hcuModalOpened', 'updateContentOnAppVersionChange', and 'vaccineModalOpened'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Home.tsx",
+        "line": 344,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useLayoutEffect received a function whose dependencies are unknown. Pass an inline function instead."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Home.tsx",
+        "line": 355,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'netInfo.isConnected'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Home.tsx",
+        "line": 727,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'activeChild', 'bufferAgeBracket', 'dispatch', 'forceUpdateApis', 'forceUpdateData', 'incrementalSyncDT', 'languageCode', 'navigation', 'onNoForceUpdate', 'showDownloadPopup', 't', and 'userIsOnboarded'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+        "line": 166,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has a missing dependency: 'navigation'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+        "line": 301,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'getInitialSelection'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+        "line": 329,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'i18n', 'locale', and 'navigation'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/CountrySelection.tsx",
+        "line": 56,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has a missing dependency: 'allCountries'. Either include it or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/CountrySelection.tsx",
+        "line": 139,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'allCountries', 'countryId', 'dispatch', and 'userIsOnboarded'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/LanguageSelection.tsx",
+        "line": 123,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'country?.languages', 'languages', 'route.params.deviceLanCode', and 'route.params.luxonlocale'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/localization/LanguageSelection.tsx",
+        "line": 172,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'allCountries', 'countryId', 'dispatch', 'route.params', and 'userIsOnboarded'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/vaccination/AddChildVaccination.tsx",
+        "line": 246,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'activeChild', 'allVaccinePeriods', 'checkIfMeasuredVaccineExistsForLocale', and 'isMeasuredOptions'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/vaccination/AddChildVaccination.tsx",
+        "line": 616,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/vaccination/AddReminder.tsx",
+        "line": 651,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook useEffect has missing dependencies: 'navigation' and 'onBackPress'. Either include them or remove the dependency array."
+      },
+      {
+        "file": "app/screens/home/ChildProfile.tsx",
+        "line": 157,
+        "rule": "react-hooks/exhaustive-deps",
+        "message": "React Hook React.useCallback has missing dependencies: 'childAge', 'dispatch', and 'navigation'. Either include them or remove the dependency array."
+      }
+    ],
+    "disposition": "All remaining errors are legacy exhaustive-deps findings, not individually confirmed runtime bugs. Still open for individual lifecycle review; no blanket dependency autofix or rule disabling."
+  },
+  "import_cleanup": {
+    "method": "Each removed import binding was checked for exact emitted Babel output equality in both development and production before later independent application fixes. This is an import-only check, not an equivalence claim for the complete patch. The final unused useMemo import was then removed after replacing its network use with an effect.",
+    "verified_removed_bindings": 171,
+    "files": [
+      {
+        "file": "app/components/ChildDate.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/FavActivities.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/components/HeaderBabyMenu.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/LanguageItem.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/TabScreenHeader.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/ToggleRadios.tsx",
+        "removed_bindings": 4
+      },
+      {
+        "file": "app/components/growth/LastChildMeasure.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/components/homeScreen/ChildInfo.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/components/homeScreen/ChildMilestones.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/homeScreen/DailyReads.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/shared/FirstTimeModal.tsx",
+        "removed_bindings": 3
+      },
+      {
+        "file": "app/components/shared/ShareFavButtons.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/components/vaccination/tabs/UpcomingVaccines.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/customHooks/useNetInfoHook.ts",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/database/dbquery/userRealmCommon.ts",
+        "removed_bindings": 8
+      },
+      {
+        "file": "app/database/schema/StandardDevHeightForAgeSchema.ts",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/instances/bebbo/config/appConfig.ts",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/navigation/AppNavigation.tsx",
+        "removed_bindings": 3
+      },
+      {
+        "file": "app/navigation/DashboardTabNavigator.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/navigation/LocalizationNavigation.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/redux/reducers/localizationSlice.ts",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/AddChildInfoSetup.tsx",
+        "removed_bindings": 9
+      },
+      {
+        "file": "app/screens/AddChildSetup.tsx",
+        "removed_bindings": 14
+      },
+      {
+        "file": "app/screens/AddExpectingChildProfile.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/AddSiblingData.tsx",
+        "removed_bindings": 3
+      },
+      {
+        "file": "app/screens/ChildImportSetup.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/ChildSetup.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/CustomDrawerContent.tsx",
+        "removed_bindings": 3
+      },
+      {
+        "file": "app/screens/EditParentDetails.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/LoadingScreen.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/PrivacyPolicy.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/ServiceProviderInfoSetup.tsx",
+        "removed_bindings": 15
+      },
+      {
+        "file": "app/screens/Terms.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/TermsPage.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/growth/AddNewChildWeight.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/growth/AddNewChildgrowth.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/home/Aboutus.tsx",
+        "removed_bindings": 3
+      },
+      {
+        "file": "app/screens/home/ChatBot.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/home/Childgrowth.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/home/DetailsScreen.tsx",
+        "removed_bindings": 4
+      },
+      {
+        "file": "app/screens/home/EditChildProfile.tsx",
+        "removed_bindings": 14
+      },
+      {
+        "file": "app/screens/home/SettingScreen.tsx",
+        "removed_bindings": 4
+      },
+      {
+        "file": "app/screens/home/SupportChat.tsx",
+        "removed_bindings": 5
+      },
+      {
+        "file": "app/screens/home/UserGuide.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/home/Vaccination.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Activities.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Articles.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+        "removed_bindings": 6
+      },
+      {
+        "file": "app/screens/home/bottomTabs/Home.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+        "removed_bindings": 2
+      },
+      {
+        "file": "app/screens/localization/LanguageSelection.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/screens/vaccination/AddReminder.tsx",
+        "removed_bindings": 8
+      },
+      {
+        "file": "app/services/Utils.ts",
+        "removed_bindings": 14
+      },
+      {
+        "file": "app/services/__tests__/backupPasswordPrompt.test.tsx",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/services/__tests__/notificationGeneration.test.ts",
+        "removed_bindings": 1
+      },
+      {
+        "file": "app/services/childCRUD.ts",
+        "removed_bindings": 1
+      }
+    ]
+  },
+  "cleanup_safeguards": [
+    "Preserve callback argument positions, public generic call signatures and TypeScript parameter annotations.",
+    "Retain existing hook calls/order and side-effecting initializer calls even when their result is unused.",
+    "Keep return values/error handling, notification registrations, analytics payloads, Realm writes, backup readers and encryption envelopes unchanged.",
+    "Remove only unreferenced local functions/types/values; no object-rest exclusions or computed/default destructuring rewritten.",
+    "Two scoped lint exceptions: fixed checked-in test fixture compilation and an existing unused public generic type parameter. No shared ESLint rule changed."
+  ],
+  "source_manifest": [
+    {
+      "file": ".github/workflows/review-checks.yml",
+      "sha256": "5c8939757aa29786e5b21b4fd843d894611ab9442f4d116c3932f169c441b074"
+    },
+    {
+      "file": "app/assets/translations/appOfflineData/getDataToStore.ts",
+      "sha256": "64c7d0d891c723255a3bb906c51c0c752d495a6ebc03bc15c2df880da505b35f"
+    },
+    {
+      "file": "app/components/ChildDate.tsx",
+      "sha256": "ec99fccdd12a292f25fb518a2cf07d07027b867eb4acf3ec675f9a8307a56571"
+    },
+    {
+      "file": "app/components/ChildDevelopmentCollapsibleItem.tsx",
+      "sha256": "806492c5926902a07f598513b26a1af43282a59783410008284f74abf8a549d5"
+    },
+    {
+      "file": "app/components/FavActivities.tsx",
+      "sha256": "43f1712a5f1c0643a243c6b44176c05435219df77fda50e7a3e2039ec48ce3f4"
+    },
+    {
+      "file": "app/components/HeaderBabyMenu.tsx",
+      "sha256": "5588146b710ec74c491111a3eb8c47c2a88e945c25f0217e6fce3030387f5a01"
+    },
+    {
+      "file": "app/components/HeaderNotiIcon.tsx",
+      "sha256": "46e4f17e79c94b02e6d1b6cbedc06ae3de466cb2dc4e081b884e153077b224d3"
+    },
+    {
+      "file": "app/components/LanguageItem.tsx",
+      "sha256": "68c9ee492f28070062c6e307445f65c3aa043c465689136abc43340b24ff9e90"
+    },
+    {
+      "file": "app/components/LoadingScreenComponent.tsx",
+      "sha256": "0fed0a1d15f856d01191e2d6c3b3114d930339b3becb4201c40d2dd1f23cf730"
+    },
+    {
+      "file": "app/components/NotificationItem.tsx",
+      "sha256": "45354963a6ee3f40ee10ea22aa3ab7b213f841050024a36ec5786428ed62c20f"
+    },
+    {
+      "file": "app/components/TabScreenHeader.tsx",
+      "sha256": "edc1cf8dc1cfc2934e4edfc5db17f3d86ceb2aff50f2177647c1d4455de8005c"
+    },
+    {
+      "file": "app/components/ToggleRadios.tsx",
+      "sha256": "fcfd4614c24b4db4f445fcb97e090392905228720b84df414c3cc2473ab4d5f2"
+    },
+    {
+      "file": "app/components/growth/ChartHeightForAge.tsx",
+      "sha256": "51139e114d5ab7cc52daefc2d72a5bd93b8e16a7ba7707d52685b0565f18b485"
+    },
+    {
+      "file": "app/components/growth/ChartWeightForHeight.tsx",
+      "sha256": "22ce37e5d4ff042fe38acf55a1061bd6f755c65862d1bb784ee2c12279ba4aab"
+    },
+    {
+      "file": "app/components/growth/LastChildMeasure.tsx",
+      "sha256": "39c522e8bf8b087d834466f6fe8fb0157bda7a52bf2d85b737478ea9d0be02b0"
+    },
+    {
+      "file": "app/components/homeScreen/BabyNotification.tsx",
+      "sha256": "ab8a0904c5891edfa1c2087084d5d224184f75783fa775ae665dc07a5892ce58"
+    },
+    {
+      "file": "app/components/homeScreen/ChildInfo.tsx",
+      "sha256": "6e01565d66fe34931773ea885ac13de573a7dc5c1b68f73789280088c8145218"
+    },
+    {
+      "file": "app/components/homeScreen/ChildMilestones.tsx",
+      "sha256": "a98ae89608b32c040727a3b01a2f72eeb84aa63f560477d8919bb2ec3d08496f"
+    },
+    {
+      "file": "app/components/homeScreen/DailyReads.tsx",
+      "sha256": "b7ebb2c9af6f2513815cd97be8309c2f05ab3f7d6aaf7c1e54b2044930e2b60f"
+    },
+    {
+      "file": "app/components/shared/FirstTimeModal.tsx",
+      "sha256": "eab3c92833ffd8149ec42cd8fa91073875b2b54ad186e9c783465d4d15bfc38a"
+    },
+    {
+      "file": "app/components/shared/RelatedArticles.tsx",
+      "sha256": "1b5f763c4ffc828605784ef26d5a9f42e216edd177764794853808cd5ddeda9a"
+    },
+    {
+      "file": "app/components/shared/ShareFavButtons.tsx",
+      "sha256": "400fde2530f8fb66f6e68dd20c6f07879ab5df747e0b2c1ea3b9b672516ac670"
+    },
+    {
+      "file": "app/components/vaccination/VaccineItem.tsx",
+      "sha256": "a733e01965b4672f945a8fb2a11831b9dc24659c8b2e09eefc836c4626bc4f4f"
+    },
+    {
+      "file": "app/components/vaccination/tabs/UpcomingVaccines.tsx",
+      "sha256": "c3a6dd95a236c4d02652bb8f9370c9edd46457431d040f05b672d5ada222dc6a"
+    },
+    {
+      "file": "app/customHooks/useBandwidthPrompt.ts",
+      "sha256": "55441d4a4b192ac7628cd8762cf2b04c7b170ea390ec4eda4d902dc4ad8ddc9f"
+    },
+    {
+      "file": "app/customHooks/useNetInfoHook.ts",
+      "sha256": "ff2f9d5dc8231e94ae18676b70be484ae38333f78273111a9a49f7694d019cd6"
+    },
+    {
+      "file": "app/customHooks/useNetworkClassification.ts",
+      "sha256": "31c7a27c9697885038fc4aa101c5e397dab5b3d37dcc31be7e9dc4367ec91e77"
+    },
+    {
+      "file": "app/database/dbquery/dataRealmCommon.ts",
+      "sha256": "46513c665300d3adddfd4fcd0d27eae0bb2db7baff7ca7777307b267d2293024"
+    },
+    {
+      "file": "app/database/dbquery/userRealmCommon.ts",
+      "sha256": "048beaede43ba33ee9010924affeb708c5b5122c8824c633bf445fc5ea36d680"
+    },
+    {
+      "file": "app/database/schema/StandardDevHeightForAgeSchema.ts",
+      "sha256": "2564eca2d13aa0292fd8786470c6fddf2616dc787d52a11a3b53ad60169c5aba"
+    },
+    {
+      "file": "app/downloadImages/ImageStorage.ts",
+      "sha256": "e4f9b664d5509f191632c36240a06c9311672137576208dd61e7fcf627c007a3"
+    },
+    {
+      "file": "app/instances/bebbo/config/appConfig.ts",
+      "sha256": "4a724868050348b1f877027fbc7ac3261e98385c783db6fa09991e300071132f"
+    },
+    {
+      "file": "app/navigation/AppNavigation.tsx",
+      "sha256": "0f020a9f4377e5aaf65f75aa5a713ee81433ca0e4ab4246979277202bd41466e"
+    },
+    {
+      "file": "app/navigation/DashboardTabNavigator.tsx",
+      "sha256": "2cb310271aeb10348dbd3584ba5dad282aecf9cdab656c896a0efd49d4b17ce5"
+    },
+    {
+      "file": "app/navigation/LocalizationNavigation.tsx",
+      "sha256": "c67f41593d200dd908af04ca331311ce703d403dde54156a8655dc0fe1dc3cbf"
+    },
+    {
+      "file": "app/redux/reducers/localizationSlice.ts",
+      "sha256": "dcf5db6b7517e1207f981bd8fe120afa6d57dd00eeaeeff8707a1e9671812113"
+    },
+    {
+      "file": "app/redux/sagaMiddleware/saga.ts",
+      "sha256": "cb67c6e48bd72b6d2572658f7a57885b1a257e468548d4d04287c55ab48ff199"
+    },
+    {
+      "file": "app/redux/sagaMiddleware/sagaInsertInDB.ts",
+      "sha256": "615bd3d6ad768113f3d04fa094c121194bbc586f1b7efa7dca44b7ba79c38133"
+    },
+    {
+      "file": "app/redux/sagaMiddleware/sagaInsertInStore.ts",
+      "sha256": "9317392b7e5e65b946e5e60e9776f2b041c58b2d9f95ef6aa0ede671f88fb472"
+    },
+    {
+      "file": "app/screens/AddChildInfoSetup.tsx",
+      "sha256": "25d8dcdff266d097279a3d6fee838d83bc01b04b24923c0b26350f6ce5b6860f"
+    },
+    {
+      "file": "app/screens/AddChildSetup.tsx",
+      "sha256": "80ec0e3e97b30ca310e3374508b1a75ef2c3dde565752bffe0ddcf99e4db0fb5"
+    },
+    {
+      "file": "app/screens/AddExpectingChildProfile.tsx",
+      "sha256": "fb92a9409b7e71ab0e0ca42cd22ad81226ecca2198f0b841d84ce0c2e53d3f94"
+    },
+    {
+      "file": "app/screens/AddSiblingData.tsx",
+      "sha256": "cfcf7f2e8a6290b3b71a5000a5de5b2825b987dc370a13c3876003c957bb06f7"
+    },
+    {
+      "file": "app/screens/ChildImportSetup.tsx",
+      "sha256": "96a6cda38c3229edb1571a6f1c8275d86614fb426bd6cdc32ed87d6e3879a8e1"
+    },
+    {
+      "file": "app/screens/ChildSetup.tsx",
+      "sha256": "12e4a2e5c9a2e65911b58a1b7f85a87d1a45ef05894e8acf344ec61837d13d8b"
+    },
+    {
+      "file": "app/screens/ChildSetupList.tsx",
+      "sha256": "54e1826bdc784c806e1274a7e78dc0c13fdf9bdefacc83d31845f7bb9a2a4871"
+    },
+    {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "sha256": "e74e2742da34ba00334ec72ceae489d8dafd77942f93c51ce4237425a933cd9d"
+    },
+    {
+      "file": "app/screens/EditParentDetails.tsx",
+      "sha256": "db02e735dfced01a44a0568d6dec90383550c25355315d9306fa9caa5ea611fb"
+    },
+    {
+      "file": "app/screens/LoadingScreen.tsx",
+      "sha256": "2876ebc045887c20d75ca82f8f7557c8318204441bbbbe27d604fad1f8ddc258"
+    },
+    {
+      "file": "app/screens/PrivacyPolicy.tsx",
+      "sha256": "4a006a8fab12441480088bc4549657bce27034eef0fc24bc1d1c1b92dc45c362"
+    },
+    {
+      "file": "app/screens/ServiceProviderInfoSetup.tsx",
+      "sha256": "162fc63df1c7c779a91efd150fcbf9e80d72c8398e3b880c668a1565663b2e27"
+    },
+    {
+      "file": "app/screens/Terms.tsx",
+      "sha256": "0e9794748989c6203fb0d5ab70f3e3d597d2e63ee7ac593c0ff78627a0b25813"
+    },
+    {
+      "file": "app/screens/TermsPage.tsx",
+      "sha256": "c79dcbff3eaa4633c46b190e8e64370bf4c5e0ad1e7a56f45483ece3d62a6ff6"
+    },
+    {
+      "file": "app/screens/growth/AddNewChildWeight.tsx",
+      "sha256": "c558237b37a90973121c3cf6bdc2654683b5ce954e6e11ff27c4629580cbd8ad"
+    },
+    {
+      "file": "app/screens/growth/AddNewChildgrowth.tsx",
+      "sha256": "ddf0eb65c582cff5f3cda0f1975e27ac30151217f9ba40ae960f60c66499e426"
+    },
+    {
+      "file": "app/screens/home/Aboutus.tsx",
+      "sha256": "91bf7c38343c9d5c9e24ee2d7a06f197d1f1ab909cfeaaa47b15785c9ac07cbb"
+    },
+    {
+      "file": "app/screens/home/ChatBot.tsx",
+      "sha256": "af84d1a3890ca0cbbdca27ad313343b2991c6b169b94a8ee012557620027f7eb"
+    },
+    {
+      "file": "app/screens/home/ChildProfile.tsx",
+      "sha256": "cf21c7dd9fcea2e43aa05da04455ae53cef57d5d8312931fc82f0caefc2900e5"
+    },
+    {
+      "file": "app/screens/home/Childgrowth.tsx",
+      "sha256": "92ee123220369f71217beda52a13c71fad281dc7bc00044a71f6a19d8099bd9e"
+    },
+    {
+      "file": "app/screens/home/DetailsScreen.tsx",
+      "sha256": "00014aa2d5c44dd1b451c35d7ce1c6c5fad2430fb0b58bec34b43d72ee51283e"
+    },
+    {
+      "file": "app/screens/home/EditChildProfile.tsx",
+      "sha256": "60398616a6880bc3cd8a9d78c4a1ecca4f99b3aea1bb3b71b11204ea748db44e"
+    },
+    {
+      "file": "app/screens/home/SettingScreen.tsx",
+      "sha256": "ae0ca33126f6a9cfe94dea660f05b97ce5d0ee7e55cd1cae59ca918fcf94767e"
+    },
+    {
+      "file": "app/screens/home/SupportChat.tsx",
+      "sha256": "f65707f766cc8119922c8e023abf5d2ccf9844089d7439d9398ee50968c700b8"
+    },
+    {
+      "file": "app/screens/home/UserGuide.tsx",
+      "sha256": "6cfcec0ca9b0be4faf8b821e4ca9d498af2e3391e8ee8bc6ecff92b557530623"
+    },
+    {
+      "file": "app/screens/home/Vaccination.tsx",
+      "sha256": "750e7d05109ce7e6c9a7670dcff2862aebccabe991fb8fbb432b747821dae293"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Activities.tsx",
+      "sha256": "66cdbea7a14b495e1fa08ff0651699796cca571098b10b54bdd66adff1ecec34"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Articles.tsx",
+      "sha256": "fbd319658dd2adc3759b9aef7615e17f940cddc57000534f06bdf3115d14ffdb"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
+      "sha256": "34c3d2c934a8346084bacc2dfb6b63d14ed72434d2a5813aaaaf7dc60f3531e2"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Home.tsx",
+      "sha256": "2ace327ccc9513feb58523423222f3ca20f073c5ef5e18c3be3f6d08562a84f8"
+    },
+    {
+      "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+      "sha256": "d90fc1690ddc2680ef98d28b2a1ea20f12a2e4a5e100aec0a5ec1099f6ba8cd6"
+    },
+    {
+      "file": "app/screens/localization/CountrySelection.tsx",
+      "sha256": "22252b9b89ef7b1fc9f905eb10d0c89c393f7885fbd706993847fa8487bfb7f0"
+    },
+    {
+      "file": "app/screens/localization/LanguageSelection.tsx",
+      "sha256": "0164d9ddb3a05d72bad307450c1b4c60c52df6757ed085e17f86635f3bfb9d78"
+    },
+    {
+      "file": "app/screens/vaccination/AddReminder.tsx",
+      "sha256": "93adb8376f57061bc15377f1f36078875b51ced2e91d5847cea89f6de3d88968"
+    },
+    {
+      "file": "app/services/EventSyncService.ts",
+      "sha256": "543d9ffd83a3dd4f22729a51585d257448bdad60710c6c32b07b6bd0d21219b3"
+    },
+    {
+      "file": "app/services/MediaPicker.ts",
+      "sha256": "d8933efd0cd03e13e6c6b69027a78890d9dcac844555fc9bfed52095b65a7f20"
+    },
+    {
+      "file": "app/services/Utils.ts",
+      "sha256": "6e2aad46a3027139bbb2686f08ac210e92e8a4e94b3cdd362bfd0a3ece7f357a"
+    },
+    {
+      "file": "app/services/__tests__/backupPasswordPrompt.test.tsx",
+      "sha256": "6efb1148ba054b9fbeecd53f399c431bc906dd931980808a58dd833093d06686"
+    },
+    {
+      "file": "app/services/__tests__/bandwidthPrompt.test.tsx",
+      "sha256": "7b3669fa7c70ff6a92390cb1e284116ac43396022c98db25fe9fe0e3317d21cb"
+    },
+    {
+      "file": "app/services/__tests__/childDateRefresh.test.tsx",
+      "sha256": "e100271c40cb2947523126a089bb7db6ef8de25c5f17e548f049a4be22c2c6b2"
+    },
+    {
+      "file": "app/services/__tests__/milestoneContentRefresh.test.tsx",
+      "sha256": "0c07a05ce9f0d25a4cff17c8973de933f9049f0edde05a7e1c6799731eadf939"
+    },
+    {
+      "file": "app/services/__tests__/networkClassification.test.tsx",
+      "sha256": "70b5473835a469bab218544bca05c55781928d4e39462c50969bb6b6c5d06498"
+    },
+    {
+      "file": "app/services/__tests__/notificationGeneration.test.ts",
+      "sha256": "9aee80b6d10443f0f59b413483012783899b23402120aa6bdd9f9cec1b9ed0f8"
+    },
+    {
+      "file": "app/services/__tests__/realmDiagnostics.test.ts",
+      "sha256": "58a011298c5038f661e8fca34fc012b1429fc97afc9432efc66f0d16244347c9"
+    },
+    {
+      "file": "app/services/childCRUD.ts",
+      "sha256": "f67c57732a3ef2b5aeae8e587b73591413b26aceecc9acf061df849f3adecb3d"
+    },
+    {
+      "file": "app/services/commonApiService.ts",
+      "sha256": "633a1a9466412d8bc4ac3bf0bff5abe3552426a3e160bead25102bbb9f3ac7b0"
+    },
+    {
+      "file": "app/services/firebaseAnalytics.ts",
+      "sha256": "65ff475c59ac0d7387fb51c225c02b06852ec4910bfd7a73987d24dbd49f856c"
+    },
+    {
+      "file": "app/services/googleDrive.ts",
+      "sha256": "32da1ab85e9c09bdfa9b0db99c5d8f007fc60d266c386fc9652297d03fd12449"
+    },
+    {
+      "file": "app/services/healthCheckupService.ts",
+      "sha256": "c81a9f6a4b77563b728c29349ec7b4be25c2d41a93f285f3878b076007014bb6"
+    },
+    {
+      "file": "app/services/imageResolver.ts",
+      "sha256": "b44144d4e1e1482647907cee54a582a3c6ec090858948b703128023ab2eedf66"
+    },
+    {
+      "file": "app/services/notificationService.ts",
+      "sha256": "dd17d5c473ca4c44f9b28cfc52681292dbca46df6c9cea74458d2311aabab99d"
+    },
+    {
+      "file": "app/services/selectors.ts",
+      "sha256": "8feab3ef215c55ccb8b71dc4be5d65248ecf1ce2777d845fa82956ef041fd5aa"
+    },
+    {
+      "file": "scripts/network-source-inventory.cjs",
+      "sha256": "761b8686171f6eab10f2f19d418c359865f773a9d65dbebcb09f7ed1c7e50eed"
+    }
+  ],
+  "prior_native_ci": {
+    "run_id": 43668908479,
+    "head": "283530b60f5fdc26acdf27dd667ab0a26ce861df",
+    "attempt": 2,
+    "jobs_passed": 37,
+    "native_compile_jobs": 20,
+    "status": "PASS; applies to parent source, not this source manifest",
+    "earlier_failures": "Attempt 1 had a transient Merhaba native failure with no retrievable logs and a Rerai startup retry-dialog assertion failure after cancelling the data-saver prompt. The latter showed a blank app without an established fatal JS/native exception. Both passed attempt 2; root cause not established."
+  },
+  "open_acceptance": [
+    "Production API/media origins and redirects for every country are absent; private .env values and fake CI fixtures are not evidence. Broad iOS ATS narrowing remains blocked on inventory and country/device validation.",
+    "Signed release/store acceptance and physical VoiceOver/TalkBack/large-text/RTL checks are not established by unit tests or unsigned CI.",
+    "Production Firebase/Crashlytics/analytics completeness and real Drive account/service behaviour require authorised service access.",
+    "Remaining 107 exhaustive-deps findings require individual lifecycle review before any compliance claim."
+  ]
+}

@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 import { apiUrlDevelop } from "react-native-dotenv";
 import * as RNFS from "@dr.pogodin/react-native-fs";
-import { store } from "../../../../App";
+
 import { isPregnancy } from "../../../services/Utils";
 import { offlineImageMap } from "../assets/offlineImageMap";
 const config = {
@@ -35,7 +35,7 @@ const config = {
     "cognitive",
     "motor",
   ],
-  regexpEmojiPresentation: /[^\p{L} ]/gu,
+  regexpEmojiPresentation: /[^\p{L}\p{M} ]/gu,
   luxonDefaultLocale: "en-US",
   videoTypeVimeo: "vimeo",
   videoTypeYoutube: "youtube",

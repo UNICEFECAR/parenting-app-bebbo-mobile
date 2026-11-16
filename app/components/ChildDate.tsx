@@ -1,3 +1,4 @@
+import {calendarDateOffset} from "../services/calendarDate";
 import Icon from "@components/shared/Icon";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFocusEffect } from "@react-navigation/native";
@@ -6,8 +7,8 @@ import {
   ShiftFromTop10,
   ShiftFromTop15,
 } from "@styles/typography";
-import { dobMin, maxDue, minDue } from "@types/types";
-import { DateTime } from "luxon";
+import { dobMin, maxDue, minDue } from "@app-types/types";
+
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, Platform, Pressable, StyleSheet, View } from "react-native";
@@ -47,10 +48,11 @@ const styles = StyleSheet.create({
 });
 const ChildDate = (props: any): any => {
   const { dobMax, prevScreen } = props;
-  let birthDate: any,
-    isPremature: any,
-    plannedTermDate: any = null;
   const { childData } = props;
+  const hasChildData = childData != null;
+  const birthDate = childData?.birthDate;
+  const isPremature = childData?.isPremature;
+  const plannedTermDate = childData?.plannedTermDate;
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const [isDueDatePickerVisible, setDueDatePickerVisibility] = useState(false);
   const [dueDate, setdueDate] = useState<Date | null>(null);
@@ -77,10 +79,7 @@ const ChildDate = (props: any): any => {
       if (birthDate == "" || birthDate == null || birthDate == undefined) {
         setdisablePrematureCheck(true);
       }
-      if (childData != null) {
-        birthDate = childData.birthDate;
-        isPremature = childData.isPremature;
-        plannedTermDate = childData.plannedTermDate;
+      if (hasChildData) {
         const inFuture = isFutureDate(birthDate);
         setdisablePrematureCheck(inFuture);
         if (inFuture) {
@@ -89,14 +88,14 @@ const ChildDate = (props: any): any => {
           setIsExpected(false);
         }
         setToggleCheckBox(
-          isPremature != null ? JSON.parse(isPremature) : false
+          isPremature === true || isPremature === "true"
         );
         setdoborExpectedDate(
           birthDate != null ? new Date(birthDate) : new Date()
         );
         setdueDate(plannedTermDate != null ? new Date(plannedTermDate) : null);
       }
-    }, [])
+    }, [birthDate, hasChildData, isPremature, plannedTermDate])
   );
 
   const ondueDateChange = (event: any, selectedDate: any): any => {
@@ -334,18 +333,10 @@ const ChildDate = (props: any): any => {
                             mode={"date"}
                             display="spinner"
                             minimumDate={
-                              new Date(
-                                DateTime.fromJSDate(doborExpectedDate as Date)
-                                  .plus({ weeks: minDue })
-                                  .toISODate()
-                              )
+                              calendarDateOffset(doborExpectedDate as Date, { weeks: minDue })
                             }
                             maximumDate={
-                              new Date(
-                                DateTime.fromJSDate(doborExpectedDate as Date)
-                                  .plus({ months: maxDue })
-                                  .toISODate()
-                              )
+                              calendarDateOffset(doborExpectedDate as Date, { months: maxDue })
                             }
                             locale={locale}
                             // minimumDate={{}}
@@ -379,30 +370,18 @@ const ChildDate = (props: any): any => {
                           date={
                             dueDate != null
                               ? dueDate
-                              : new Date(
-                                  DateTime.fromJSDate(doborExpectedDate as Date)
-                                    .plus({ weeks: minDue })
-                                    .toISODate()
-                                )
+                              : calendarDateOffset(doborExpectedDate as Date, { weeks: minDue })
                           }
                           onConfirm={handleDueConfirm}
                           onCancel={(): any => {
                             setDueDatePickerVisibility(false);
                           }}
                           minimumDate={
-                            new Date(
-                              DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({ weeks: minDue })
-                                .toISODate()
-                            )
+                            calendarDateOffset(doborExpectedDate as Date, { weeks: minDue })
                           }
                           locale={locale}
                           maximumDate={
-                            new Date(
-                              DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({ months: maxDue })
-                                .toISODate()
-                            )
+                            calendarDateOffset(doborExpectedDate as Date, { months: maxDue })
                           }
                         />
                       )}

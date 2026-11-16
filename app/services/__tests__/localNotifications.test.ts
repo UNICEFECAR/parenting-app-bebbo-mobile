@@ -144,3 +144,14 @@ test('iOS queues only 64 nearest requests and retains overflow for a later resum
   await local.cancelReminderLocalNotification('0');
   expect(pending.has('64')).toBe(true);
 });
+
+test('a synchronous 55-reminder generation batch reconciles native alarms once', async () => {
+  await local.getAllScheduledLocalNotifications();
+  api.getTriggerNotifications.mockClear();
+  const tasks = Array.from({length: 55}, (_, index) =>
+    local.schduleNotification(new Date(future() + index * 60000), '', '', String(index), 'gw', 'child'));
+  await Promise.all(tasks);
+  expect(pending.size).toBe(55);
+  expect(api.getTriggerNotifications).toHaveBeenCalledTimes(1);
+  expect(Object.keys(JSON.parse(storage.get('local-reminders-v2')!))).toHaveLength(55);
+});

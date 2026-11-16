@@ -75,17 +75,15 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
   } = props;
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
-  let relartlength = relatedArticles ? relatedArticles.length : 0;
+
   const activeChild = useAppSelector(selectActiveChild);
   const VideoArticlesDataall = useAppSelector(selectPinnedChildDevData);
-  const videoarticleDataold = VideoArticlesDataall.filter(
+  const videoarticleData = useMemo(() => randomArrayShuffle(VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&
-      x.child_age.includes(activeChild.taxonomyData.id) &&
-      (x.child_gender == activeChild?.gender ||
-        x.child_gender == appConfig.bothChildGender)
-  );
-  const videoarticleData = randomArrayShuffle(videoarticleDataold);
+      x.child_age?.includes(activeChild?.taxonomyData?.id) &&
+      (x.child_gender == activeChild?.gender || x.child_gender == appConfig.bothChildGender)
+  )), [VideoArticlesDataall, activeChild?.taxonomyData?.id, activeChild?.gender]);
   const categoryData = useAppSelector(selectArticleCategoryArray);
   const favoriteadvices = useAppSelector(
     (state: any) => state.childData.childDataSet.favoriteadvices
@@ -94,8 +92,11 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
+      let active = true;
       setrelatedArticleData([]);
+      const updateRelated = (data: any) => {if (active) setrelatedArticleData(data);};
       async function fetchData(): Promise<any> {
+        let relartlength = Array.isArray(relatedArticles) ? relatedArticles.length : 0;
         if (relartlength > 0) {
           let relatedData: any = [];
           if (fromScreen == "ChildgrowthTab") {
@@ -126,9 +127,9 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
                 return x.category == category && x.id !== currentId && i == -1;
               })
               .slice(0, catartlength);
-            setrelatedArticleData([...relatedData, ...filteredArtData]);
+            updateRelated([...relatedData, ...filteredArtData]);
           } else {
-            setrelatedArticleData(relatedData);
+            updateRelated(relatedData);
           }
         }
         // if(category!=5){
@@ -148,11 +149,12 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
               return x.category == category && x.id !== currentId && i == -1;
             })
             .slice(0, catartlength);
-          setrelatedArticleData([...filteredArtData]);
+          updateRelated([...filteredArtData]);
         }
       }
       fetchData();
-    }, [currentId, relatedArticles])
+      return () => {active = false;};
+    }, [currentId, relatedArticles, videoarticleData, fromScreen, category])
   );
 
   const goToArticleDetail = (item: any): any => {
@@ -217,11 +219,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
     );
   };
 
-  const memoizedValue = useMemo(
-    () => RenderRelatedArticleItem,
-    [RenderRelatedArticleItem, relatedArticleData]
-  );
-
+  const memoizedValue = RenderRelatedArticleItem;
   return (
     <>
       {relatedArticleData.length > 0 ? (
@@ -239,7 +237,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              keyExtractor={(item): any => item.id}
+              keyExtractor={(item: {id: number}): string => String(item.id)}
             />
           </View>
         </ContainerView>

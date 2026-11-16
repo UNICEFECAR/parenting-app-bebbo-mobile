@@ -29,7 +29,7 @@ export const getDataToStore = async (
     jsonData: any,
     setAllHardcodedData: any,
     sortBy?: any,
-    currentChildData?: any
+    _currentChildData?: any
   ): Promise<any> => {
     let offlineData: any;
   

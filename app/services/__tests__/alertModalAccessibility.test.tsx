@@ -1,0 +1,20 @@
+import React from 'react';
+import TestRenderer, {act} from 'react-test-renderer';
+import {Modal, Platform} from 'react-native';
+import {ThemeProvider} from 'styled-components/native';
+import AlertModal from '../../components/AlertModal';
+import {appTheme} from '../../instances/bebbo/styles/theme';
+jest.mock('react-i18next', () => ({useTranslation: () => ({t: (key: string) => key})}));
+jest.mock('react-native-vector-image', () => require('react-native').View);
+jest.mock('../../components/shared/Icon', () => () => null);
+(globalThis as any).IS_REACT_ACT_ENVIRONMENT = true;
+let renderer: TestRenderer.ReactTestRenderer | undefined;
+afterEach(() => {if (renderer) act(() => renderer!.unmount()); renderer = undefined; jest.restoreAllMocks();});
+test('Android back and the labelled close control both invoke cancellation', () => {
+  jest.replaceProperty(Platform, 'OS', 'android');
+  const cancel = jest.fn();
+  act(() => {renderer = TestRenderer.create(<ThemeProvider theme={appTheme}><AlertModal loading title="Backup" message="Sign in" onCancel={cancel} /></ThemeProvider>);});
+  act(() => renderer!.root.findByType(Modal).props.onRequestClose());
+  act(() => renderer!.root.findAllByProps({accessibilityLabel: 'close'})[0].props.onPress());
+  expect(cancel).toHaveBeenCalledTimes(2);
+});

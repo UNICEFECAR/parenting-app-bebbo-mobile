@@ -13,9 +13,12 @@ class MainActivity : ReactActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(null)
     WindowCompat.setDecorFitsSystemWindows(window, false)
-    SplashScreen.show(this, R.style.SplashScreen_SplashTheme, R.id.lottie)
-    // Skip waiting for the Lottie animation to finish
-    SplashScreen.setAnimationFinished(true)
+    // SplashScreen 3 requires this flag for the existing JS hide() call to work.
+    SplashScreen.show(this, R.style.SplashScreen_SplashTheme, R.id.lottie, true)
+    // Match iOS's existing handover, including an early JS failure before navigation mounts.
+    window.decorView.postDelayed({
+      if (!isFinishing && !isDestroyed) SplashScreen.hide(this)
+    }, 2000)
   }
   
   /**

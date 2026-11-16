@@ -73,6 +73,7 @@ const FavArticles = (): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      let active = true;
       async function fetchData(): Promise<any> {
         setLoading(true);
         if (favoriteadvices.length > 0) {
@@ -94,14 +95,15 @@ const FavArticles = (): any => {
               (x: any) => favoriteadvices.findIndex((y: any) => y == x.id) > -1
             );
           }
-          setfavAdvicesToShow(favData);
+          if (active) setfavAdvicesToShow(favData);
         } else {
-          setfavAdvicesToShow([]);
+          if (active) setfavAdvicesToShow([]);
         }
-        setLoading(false);
+        if (active) setLoading(false);
       }
       fetchData();
-    }, [favoriteadvices])
+      return () => {active = false;};
+    }, [favoriteadvices, articleDataall])
   );
   const RenderArticleItem = React.memo(({ item, index }: any) => {
     return (

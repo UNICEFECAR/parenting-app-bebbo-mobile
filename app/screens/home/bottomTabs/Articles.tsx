@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import { appConfig } from "../../../instances";
 import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -15,9 +16,7 @@ import Icon, { IconClearPress, OuterIconRow } from "@components/shared/Icon";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
 import VideoPlayer from "@components/VideoPlayer";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import {
   miniSearchConfig,
@@ -56,7 +55,8 @@ import {
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { HistoryEntity } from "../../../database/schema/SearchHistorySchema";
 import VectorImage from "react-native-vector-image";
-import MiniSearch from "minisearch";
+import type MiniSearch from "minisearch";
+import {prepareSearchIndex, searchReadyIndex} from "../../../services/searchIndex";
 import {
   ADVICE_AGEGROUP_SELECTED,
   ARTICLE_SEARCHED,
@@ -65,13 +65,6 @@ import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectArticleCategoryArray, selectArticleDataAll, selectChildAge, selectPinnedChildDevData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
-type ArticlesNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-
-type Props = {
-  navigation: ArticlesNavigationProp;
-  route: any;
-};
 const styles = StyleSheet.create({
   ageBracketView: {
     backgroundColor: bgcolorWhite2,
@@ -129,7 +122,8 @@ const Articles = ({ route, navigation }: any): any => {
   );
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState("");
-  let searchIndex = useRef(null);
+  const searchIndex = useRef<MiniSearch<any> | null>(null);
+  const [searchReady, setSearchReady] = useState(false);
   const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
@@ -214,19 +208,18 @@ const Articles = ({ route, navigation }: any): any => {
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     const Realm = await getRealmLib();
     realm.write(() => {
-      const storeKeyword = realm.create(
-        "SearchHistory",
-        {
-          keyword: keyword,
-          createdAt: new Date(),
-        },
-        Realm.UpdateMode.Modified
-      );
+      realm.create("SearchHistory",{keyword:keyword,createdAt:new Date()},Realm.UpdateMode.Modified);
+
+
     });
   };
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+
   useFocusEffect(
     React.useCallback(() => {
+
+
       // const task = InteractionManager.runAfterInteractions(() => {
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
@@ -262,7 +255,7 @@ const Articles = ({ route, navigation }: any): any => {
   const activeChild = useAppSelector(selectActiveChild);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId ??
-    activeChild?.taxonomyData.id;
+    activeChild?.taxonomyData?.id;
   const articleDataall = useAppSelector(selectArticleDataAll);
   const articleDataOld = articleDataall.filter((x: any) =>
     taxonomyIds.articleCategoryArray.includes(x.category)
@@ -271,7 +264,7 @@ const Articles = ({ route, navigation }: any): any => {
   const videoarticleData = VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&
-      x.child_age.includes(activeChild.taxonomyData.id) &&
+      x.child_age.includes(activeChild?.taxonomyData?.id) &&
       taxonomyIds?.articleCategoryArray?.includes(x.category)
   );
 
@@ -403,17 +396,8 @@ const Articles = ({ route, navigation }: any): any => {
       </ArticleListBox>
     );
   };
-  const DATA = [
-    {
-      id: 1,
-      title: t("actScreensugacttxt"),
-      data: suggestedArticles,
-    },
-  ];
-  const memoizedValue = useMemo(
-    () => RenderArticleItem,
-    [RenderArticleItem, DATA]
-  );
+
+  const memoizedValue = RenderArticleItem;
   const toTop = (): any => {
     // use current
     if (flatListRef && flatListRef.current) {
@@ -443,7 +427,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -481,7 +465,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -538,7 +522,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -572,7 +556,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -639,30 +623,31 @@ const Articles = ({ route, navigation }: any): any => {
       };
       // });
 
-      return () => {
-        // task.cancel();
-      };
-    }, [])
+    }, [navigation])
   );
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs2 = useCommittedRef(() => ({childAge, navigation, showSelectedBracketData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {childAge: inputChildAge, navigation: inputNavigation, showSelectedBracketData: inputShowSelectedBracketData, backClicked: inputBackClicked} = focusCommandInputs2.current();
+
       // const task = InteractionManager.runAfterInteractions(() => {
-      if (route.params?.backClicked !== "yes") {
+      if (inputBackClicked !== "yes") {
         setshowNoData(false);
 
         const selectedId = route.params?.currentSelectedChildId;
         const validId =
           selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
 
-        const firstChildDevData = childAge.find((x: any) => x.id === validId);
+        const firstChildDevData = inputChildAge.find((x: any) => x.id === validId);
         if (firstChildDevData) {
-          showSelectedBracketData(firstChildDevData);
+          inputShowSelectedBracketData(firstChildDevData);
         }
       } else {
         setLoadingArticle(false);
-        if (route.params?.backClicked === "yes") {
-          navigation.setParams({ backClicked: "no" });
+        if (inputBackClicked === "yes") {
+          inputNavigation.setParams({ backClicked: "no" });
         }
       }
       // });
@@ -670,19 +655,19 @@ const Articles = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       activeChild?.uuid,
       languageCode,
       route.params?.currentSelectedChildId,
-      activityTaxonomyId,
-    ])
+      activityTaxonomyId, focusCommandInputs2])
   );
 
   useFocusEffect(
     React.useCallback(() => {
       // const task = InteractionManager.runAfterInteractions(() => {
       const fetchData = async (): Promise<void> => {
-        const filterQuery = `uuid == "${activeChild?.uuid}"`;
+
         // await callYourAPI(filterQuery); // if needed
       };
       fetchData();
@@ -694,79 +679,67 @@ const Articles = ({ route, navigation }: any): any => {
       };
       // });
 
-      return () => {
-        // task.cancel();
-      };
-    }, [activeChild?.uuid])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- A child switch deliberately runs this focus cleanup to discard filters.
+    }, [activeChild?.uuid, navigation])
   );
 
   useEffect(() => {
-    async function initializeSearchIndex() {
-      let videoArticleDataAllCategory: any;
-      try {
-        if (
-          activeChild != null &&
-          activeChild.taxonomyData != null &&
-          activeChild?.gender != null
-        ) {
-          videoArticleDataAllCategory = VideoArticlesDataall.filter(
-            (x: any) => x.mandatory == appConfig.videoArticleMandatory
-          );
-        }
-        const combineDartArr = mergearr(
-          articleDataall,
-          videoArticleDataAllCategory,
-          false
-        );
-        articleData = [...combineDartArr];
-        const processedArticles = combineDartArr;
-        const searchIndexData = new MiniSearch(miniSearchConfig);
-        // setSearchIndex(searchIndexData);
-        searchIndexData.addAllAsync(processedArticles);
-        searchIndex.current = searchIndexData;
-        setTimeout(() => {
-          setLoadingSection(false)
-        }, 1000)
-      } catch (error) {
-        console.log("Error: Retrieve minisearch data", error);
-      }
-    }
-    // const task = InteractionManager.runAfterInteractions(() => {
-    initializeSearchIndex();
-    // });
-    // return () => task.cancel();
-  }, []);
+    searchIndex.current = null;
+    setSearchReady(false);
+    setLoadingSection(true);
+    const videos = activeChild?.taxonomyData && activeChild?.gender != null
+      ? VideoArticlesDataall.filter((item: any) => item.mandatory == appConfig.videoArticleMandatory)
+      : [];
+    const job = prepareSearchIndex(
+      mergearr(articleDataall, videos, false),
+      miniSearchConfig,
+      index => {
+        searchIndex.current = index;
+        setSearchReady(true);
+        setLoadingSection(false);
+      },
+      error => {
+        console.warn("Error: Retrieve minisearch data", error);
+        setLoadingSection(false);
+      },
+    );
+    return job.cancel;
+  }, [articleDataall, VideoArticlesDataall, languageCode, activeChild?.taxonomyData, activeChild?.gender]);
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
   };
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs3 = useCommittedRef(() => ({setFilteredArticleData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {setFilteredArticleData: inputSetFilteredArticleData, backClicked: inputBackClicked} = focusCommandInputs3.current();
+
       if (isSerachedQueryText || queryText == "") {
         //setLoadingArticle(true);
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
-            setFilteredArticleData(route.params?.categoryArray);
+            inputSetFilteredArticleData(route.params?.categoryArray);
           } else {
             setFilterArray([]);
-            setFilteredArticleData([]);
+            inputSetFilteredArticleData([]);
           }
         }
         setIsSearchedQueryText(false);
-        if (route.params?.backClicked != "yes") {
+        if (inputBackClicked != "yes") {
           fetchData();
         } else {
           setLoadingArticle(false);
         }
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
       languageCode,
       queryText,
-      isSerachedQueryText,
-    ])
+      isSerachedQueryText, focusCommandInputs3])
   );
 
   const searchList = async (queryText: any): Promise<any> => {
@@ -791,7 +764,7 @@ const Articles = ({ route, navigation }: any): any => {
         //   return results;
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -826,7 +799,7 @@ const Articles = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -958,6 +931,7 @@ const Articles = ({ route, navigation }: any): any => {
                   <OuterIconRow>
                     <Pressable
                       style={styles.pressablePadding}
+                      disabled={!searchReady}
                       onPress={async (e): Promise<any> => {
                         e.preventDefault();
                         Keyboard.dismiss();
@@ -969,6 +943,7 @@ const Articles = ({ route, navigation }: any): any => {
                     </Pressable>
                   </OuterIconRow>
                   <SearchInput
+                    editable={searchReady}
                     autoCapitalize="none"
                     autoCorrect={false}
                     clearButtonMode="always"
@@ -985,7 +960,7 @@ const Articles = ({ route, navigation }: any): any => {
                       }
                     }}
                     value={queryText}
-                    onSubmitEditing={async (event: any): Promise<any> => {
+                    onSubmitEditing={async (_event: any): Promise<any> => {
                       setHistoryVisible(false);
                       Keyboard.dismiss();
                       setIsSearchedQueryText(true);
@@ -1060,7 +1035,7 @@ const Articles = ({ route, navigation }: any): any => {
                 ref={flatListRef}
                 data={optimizedFilteredData}
                 extraData={[filteredData, optimizedFilteredData]}
-                onScroll={(e): any => {
+                onScroll={(_e): any => {
                   if (keyboardStatus == true) {
                     Keyboard.dismiss();
                   }

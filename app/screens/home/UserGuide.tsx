@@ -9,8 +9,7 @@ import WalkthroughContainer, {
   WalkthroughTitle,
 } from "@components/shared/WalkthroughStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { StackNavigationProp } from "@react-navigation/stack";
+
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
@@ -21,11 +20,6 @@ import { ThemeContext } from "styled-components/native";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import { childListBgColor, bgcolorWhite, bgcolorWhite2, buttonBg, secondaryColor, } from "@styles/style";
 
-type DashboardNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  navigation: DashboardNavigationProp;
-};
 const styles = StyleSheet.create({
   button: {
     backgroundColor: buttonBg,
@@ -111,7 +105,7 @@ const UserGuide = (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   type Item = (typeof data)[0];
   const keyExtractor = (item: Item): any => item.title;
-  const [isDotsRequired, setIsDotsRequired] = useState(true);
+  const [isDotsRequired, _setIsDotsRequired] = useState(true);
   const getDotStyle = (colorString: string): any => {
     return isDotsRequired
       ? { backgroundColor: colorString }

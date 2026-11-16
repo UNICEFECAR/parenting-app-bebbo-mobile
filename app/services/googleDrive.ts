@@ -216,7 +216,7 @@ class GoogleDrive {
             } else {
                 return new Error(responseJson?.error?.message);
             }
-        } catch (e) {
+        } catch  {
             return new Error('Permissions not created');
         }
     }
@@ -303,7 +303,7 @@ class GoogleDrive {
             } else {
                 return new Error('There is no item with that id');
             }
-        } catch (e) {
+        } catch  {
             return new Error('Can not get GDrive file metadata');
         }
     }
@@ -333,7 +333,7 @@ class GoogleDrive {
             } else {
                 return new Error('There is no item for given args');
             }
-        } catch (e) {
+        } catch  {
             return new Error('Can not get file ID');
         }
     }
@@ -397,7 +397,6 @@ class GoogleDrive {
      * Download GDrive file to given local path.
      */
 }
-
 
 
 interface CreateFileMultipartArgs {
@@ -472,9 +471,5 @@ interface ListArgs {
     orderBy?: string;
 }
 
-interface DownloadArgs {
-    fileId: string;
-    filePath: string;
-}
 
 export const googleDrive = GoogleDrive.getInstance();

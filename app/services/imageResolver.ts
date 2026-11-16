@@ -22,7 +22,7 @@ const getBaseUrl = (): string => {
 };
 
 const normalizeUrl = (url?: string | null): string => {
-  if (!url) {
+  if (typeof url !== 'string' || !url) {
     return "";
   }
 
@@ -31,10 +31,21 @@ const normalizeUrl = (url?: string | null): string => {
     return "";
   }
 
+  // These sources come from CMS content, not the caregiver photo picker.
+  if (/[\x00-\x1f\x7f-\x9f]/.test(trimmedUrl) ||
+      (/^[a-z][a-z\d+.-]*:/i.test(trimmedUrl) && !/^https?:\/\//i.test(trimmedUrl))) {
+    return "";
+  }
+
   if (
-    trimmedUrl.startsWith("http://") ||
-    trimmedUrl.startsWith("https://")
+    /^https?:\/\//i.test(trimmedUrl)
   ) {
+    try {
+      const parsed = new URL(trimmedUrl);
+      if (!parsed.hostname || parsed.username || parsed.password || trimmedUrl.includes('\\')) return "";
+    } catch {
+      return "";
+    }
     return trimmedUrl;
   }
 
@@ -48,7 +59,7 @@ const normalizeUrl = (url?: string | null): string => {
 const safeDecode = (value: string): string => {
   try {
     return decodeURIComponent(value);
-  } catch (e) {
+  } catch  {
     return value;
   }
 };
@@ -142,7 +153,7 @@ export const getHtmlOfflineImageSource = (
   src?: string,
   offlineImageMap?: Record<string, any>
 ): any => {
-  if (!src || !offlineImageMap) {
+  if (typeof src !== 'string' || !src || !offlineImageMap) {
     return null;
   }
 
@@ -152,7 +163,7 @@ export const getHtmlOfflineImageSource = (
   cleanSrc = cleanSrc.split("?")[0];
 
   // Decode URL encoded characters
-  cleanSrc = decodeURIComponent(cleanSrc);
+  cleanSrc = safeDecode(cleanSrc);
 
   // Normalize slashes
   cleanSrc = cleanSrc.replace(/\\/g, "/");

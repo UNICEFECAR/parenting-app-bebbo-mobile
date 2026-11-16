@@ -1,3 +1,6 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
+import {readVaccineIds} from '../../services/healthInput';
 import {
   GROWTH_MEASUREMENT_ADDED,
   HEALTH_CHECKUP_ENTERED,
@@ -65,16 +68,7 @@ import {
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  BackHandler,
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Alert, Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from "styled-components/native";
@@ -91,7 +85,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues,
 } from "../../services/growthService";
-import { getAllHealthCheckupPeriods } from "../../services/healthCheckupService";
+import { useAllHealthCheckupPeriods } from "../../services/healthCheckupService";
 import {
   getMeasuresForDate,
   isGrowthMeasureExistForDate,
@@ -153,17 +147,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
     navigation.goBack();
     return true;
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const deleteHealthCheckup = async (): Promise<any> => {
     if (editHCDate) {
       const existingMeasure = getMeasuresForDate(
@@ -208,44 +192,47 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       });
     });
   };
+  // Reinitialise when selecting an edit date, not during an in-progress edit.
+  const editInputs = useCommittedRef({activeChild, allVaccinePeriods, checkIfMeasuredVaccineExistsForLocale, isMeasuredOptions});
   useEffect(() => {
+    const {activeChild: inputActiveChild, allVaccinePeriods: inputAllVaccinePeriods, checkIfMeasuredVaccineExistsForLocale: inputCheckIfMeasuredVaccineExistsForLocale, isMeasuredOptions: inputIsMeasuredOptions} = editInputs.current;
     if (editMeasurementDate) {
       setShowDelete(true);
       const existingMeasure = getMeasuresForDate(
         DateTime.fromJSDate(new Date(editMeasurementDate)),
-        activeChild
+        inputActiveChild
       );
       setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
       seteditHCDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
       setIsMeasured(existingMeasure?.isChildMeasured);
       setDefaultMeasured(
         existingMeasure?.isChildMeasured == true
-          ? isMeasuredOptions[0]
-          : isMeasuredOptions[1]
+          ? inputIsMeasuredOptions[0]
+          : inputIsMeasuredOptions[1]
       );
       setWeightValue(existingMeasure?.weight);
       setHeightValue(existingMeasure?.height);
       handleDoctorRemark(existingMeasure?.doctorComment);
-      const existingMeasuredVaccines = checkIfMeasuredVaccineExistsForLocale(
+      const existingMeasuredVaccines = inputCheckIfMeasuredVaccineExistsForLocale(
         existingMeasure?.vaccineIds &&
           existingMeasure?.vaccineIds != "" &&
           existingMeasure?.vaccineIds != null
-          ? checkIfMeasuredVaccineExistsForLocale(
-              JSON.parse(existingMeasure?.vaccineIds)
+          ? inputCheckIfMeasuredVaccineExistsForLocale(
+              readVaccineIds(existingMeasure?.vaccineIds)
             )
           : []
       );
       if (existingMeasuredVaccines?.length > 0) {
         existingMeasuredVaccines?.forEach((element: any) => {
-          element["id"] = allVaccinePeriods.find(
+          element["id"] = inputAllVaccinePeriods.find(
             (item: any) => item.uuid == element?.uuid
           )?.id;
           element["uuid"] = element?.uuid;
-          element["title"] = allVaccinePeriods.find(
+          element["title"] = inputAllVaccinePeriods.find(
             (item: any) => item.uuid == element?.uuid
           )?.title;
           element["isMeasured"] = true;
-          element["pinned_article"] = allVaccinePeriods.find(
+          element["pinned_article"] = inputAllVaccinePeriods.find(
             (item: any) => item.uuid == element?.uuid
           )?.pinned_article;
         });
@@ -256,8 +243,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
         );
         setDefaultVaccineMeasured(
           existingMeasuredVaccines?.length > 0
-            ? isMeasuredOptions[0]
-            : isMeasuredOptions[1]
+            ? inputIsMeasuredOptions[0]
+            : inputIsMeasuredOptions[1]
         );
       } else {
         setIsVaccineMeasured(
@@ -265,12 +252,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
         );
         setDefaultVaccineMeasured(
           existingMeasuredVaccines?.didChildGetVaccines
-            ? isMeasuredOptions[0]
-            : isMeasuredOptions[1]
+            ? inputIsMeasuredOptions[0]
+            : inputIsMeasuredOptions[1]
         );
       }
     }
-  }, [editMeasurementDate]);
+  }, [editMeasurementDate, editInputs]);
 
   const onmeasureDateChange = (event: any, selectedDate: any): any => {
     setmeasureDateShow(false);
@@ -344,7 +331,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                     existingMeasure?.vaccineIds != "" &&
                     existingMeasure?.vaccineIds != null
                       ? checkIfMeasuredVaccineExistsForLocale(
-                          JSON.parse(existingMeasure?.vaccineIds)
+                          readVaccineIds(existingMeasure?.vaccineIds)
                         )
                       : [];
                   if (existingMeasuredVaccines?.length > 0) {
@@ -669,7 +656,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       return false;
     }
   };
-  const { previousPeriods } = getAllHealthCheckupPeriods();
+  const { previousPeriods } = useAllHealthCheckupPeriods();
   const isAllVaccinesMeasured = (): any => {
     // previousPeriods.shift();
     //remove first period which is the current period

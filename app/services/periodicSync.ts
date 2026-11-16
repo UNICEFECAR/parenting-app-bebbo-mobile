@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 import { selectChildAge, selectChildList } from "./selectors";
 
-export const getAllPeriodicSyncData = (): any => {
+export const useAllPeriodicSyncData = (): any => {
   const childList = useAppSelector(selectChildList);
   const bufferAgeBracket = useAppSelector((state: any) =>
     state.childData.childDataSet.bufferAgeBracket
@@ -19,7 +19,7 @@ export const getAllPeriodicSyncData = (): any => {
     (state: any) => state.utilsData.monthlyDownloadDate,
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
-    (state.utilsData.incrementalSyncDT),
+    (state.utilsData.incrementalSyncDT || {}),
   );
   const apiJsonDataFirstSync = [
     {
@@ -108,7 +108,7 @@ export const getAllPeriodicSyncData = (): any => {
   else {
     if (childList.length > 0) {
       childList.map((child: any) => {
-        const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
+        const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').days;
         if (childAgedays >= child.taxonomyData?.days_to - child.taxonomyData?.buffers_days) {
           const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
           

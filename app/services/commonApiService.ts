@@ -218,32 +218,16 @@ export const onCountryApiSuccess = async (
   languageCode: string,
   prevPage: string
 ): Promise<any> => {
-  if (
-    response &&
-    response[0] &&
-    response[0].apiEndpoint == appConfig.apiConfig.countryGroups
-  ) {
-    response = response[0];
-    if (response.data && response.data.status && response.data.status == 200) {
-      dispatch(setuserIsFirstTime(true));
-      dispatch(setCountriesStore(response.data?.data));
-      const allDatatoStore = await getAllDataToStore(
-        languageCode,
-        dispatch,
-        prevPage
-      );
-    }
-    else {
-      const allDatatoStore = await getAllDataOnRetryToStore(
-        appConfig.apiConfig.countryGroups,
-        languageCode,
-        dispatch,
-        prevPage,
-      );
-    }
+  const countriesResponse = response?.find(
+    (item: any) => item?.apiEndpoint == appConfig.apiConfig.countryGroups
+  );
+  if (countriesResponse?.status == 200 && countriesResponse.data?.status == 200) {
+    dispatch(setuserIsFirstTime(true));
+    dispatch(setCountriesStore(countriesResponse.data.data));
   }
-
-  // navigation.navigate('Walkthrough');
+  // Read the persisted response or fall back to the bundled country catalogue,
+  // including when every request failed or the retry batch omitted countries.
+  await getAllDataToStore(languageCode, dispatch, prevPage);
 };
 export const onOnLoadApiSuccess = async (
   _response: any,
@@ -439,15 +423,7 @@ export const downloadArticleImages = async (): Promise<any> => {
     }
   });
 
-  FastImage.preload(
-    imageArray,
-    () => {
-      console.log("images preloaded");
-    },
-    () => {
-      return "complete";
-    }
-  );
+  FastImage.preload(imageArray);
   // });
 };
 export const onHomeapiSuccess = async (
@@ -524,9 +500,9 @@ export const onHomeapiSuccess = async (
     const artresp = response.find(
       (x: any) => x.apiEndpoint == "articles" && x.status == 200
     );
-    if (artresp && artresp != {}) {
+    if (artresp) {
       const artobj = oldErrorObj.find((x: any) => x.apiEndpoint == "articles");
-      if (artobj && artobj != {}) {
+      if (artobj) {
         try {
           const storedata = store.getState();
           const childagearray = storedata.utilsData?.taxonomy?.allTaxonomyData
@@ -539,7 +515,7 @@ export const onHomeapiSuccess = async (
               : artobj.postdata.childAge.split(",").map(Number);
           console.log(artarray, "---childagearray--", childagearray);
           dispatch(setDownloadedBufferAgeBracket(artarray));
-        } catch (err) {}
+        } catch  {}
       }
     }
   }

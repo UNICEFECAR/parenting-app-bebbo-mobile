@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import { scheduleIdleTask } from "../../../services/scheduleIdleTask";
 import ActivitiesCategories from "@components/ActivitiesCategories";
 import AgeBrackets from "@components/AgeBrackets";
@@ -18,9 +19,7 @@ import { Flex2, Flex4, FlexCol } from "@components/shared/FlexBoxStyle";
 import { PrematureTagActivity, PrematureTagDevelopment } from "@components/shared/PrematureTag";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading3,
   Heading4,
@@ -34,8 +33,8 @@ import {
   SideSpacing10,
 } from "@styles/typography";
 import React, { useContext, useMemo, useState, useEffect, useRef } from "react";
+import type {ActivitiesEntity} from "../../../database/schema/ActivitiesSchema";
 import { useTranslation } from "react-i18next";
-
 import {
   FlatList,
   Keyboard,
@@ -77,7 +76,6 @@ import {
   randomArrayShuffle,
   miniSearchConfigActivity,
 } from "../../../services/Utils";
-
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
@@ -85,19 +83,13 @@ import {
   synchronizeEvents,
 } from "../../../services/EventSyncService";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
-import MiniSearch from "minisearch";
+import type MiniSearch from "minisearch";
+import {prepareSearchIndex, searchReadyIndex} from "../../../services/searchIndex";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray, selectChildAge, selectMileStonesData } from "../../../services/selectors";
 import { getRealmLib } from "../../../redux/reducers/realmSafe";
-
-type ActivitiesNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  route: any;
-  navigation: ActivitiesNavigationProp;
-};
 const styles = StyleSheet.create({
   activityHeadingView: {
     flexDirection: "row",
@@ -173,7 +165,8 @@ const Activities = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   let sectionListRef: any;
-  let searchIndex = useRef(null);
+  const searchIndex = useRef<MiniSearch<any> | null>(null);
+  const [searchReady, setSearchReady] = useState(false);
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
@@ -190,7 +183,7 @@ const Activities = ({ route, navigation }: any): any => {
     (state: any) => state.selectedCountry.languageCode
   );
   const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
-  const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
+  const ActivitiesData = useMemo(() => randomArrayShuffle<ActivitiesEntity>(ActivitiesDataold), [ActivitiesDataold]);
   const activityCategoryData = useAppSelector(selectActivityCategoryArray);
   const MileStonesData = useAppSelector(selectMileStonesData);
   const activityTaxonomyId =
@@ -198,7 +191,7 @@ const Activities = ({ route, navigation }: any): any => {
       activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
       activeChild?.taxonomyData?.prematureTaxonomyId != ""
       ? activeChild?.taxonomyData?.prematureTaxonomyId
-      : activeChild?.taxonomyData.id;
+      : activeChild?.taxonomyData?.id;
   const favoritegames = useAppSelector(
     (state: any) => state.childData.childDataSet.favoritegames
   );
@@ -215,7 +208,7 @@ const Activities = ({ route, navigation }: any): any => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
-    useState([]);
+    useState<ActivitiesEntity[]>([]);
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -269,8 +262,7 @@ const Activities = ({ route, navigation }: any): any => {
         let newArticleData: any = selectedChildActivitiesData.filter((x: any) =>
           itemId.includes(x.activity_category)
         );
-        let titleData = [];
-        let bodyData = [];
+
         if (queryText != "" && queryText != undefined && queryText != null) {
           const keywords = queryText
             .trim()
@@ -279,7 +271,7 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -317,7 +309,7 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -367,8 +359,7 @@ const Activities = ({ route, navigation }: any): any => {
           selectedChildActivitiesData.length > 0
             ? selectedChildActivitiesData
             : [];
-        let titleData = [];
-        let bodyData = [];
+
         if (queryText != "" && queryText != undefined && queryText != null) {
           const keywords = queryText
             .trim()
@@ -377,7 +368,7 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results2 = searchIndex.current.search(keyword);
+              const results2 = searchReadyIndex(searchIndex.current, keyword);
               const results = results2.slice().sort((a:any, b:any) => {
                 const aMatch = [a.title, a.body, a.summary].some(field =>
                   field?.toLowerCase().includes(keyword.toLowerCase())
@@ -411,7 +402,7 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results2 = searchIndex.current.search(queryText);
+            const results2 = searchReadyIndex(searchIndex.current, queryText);
             const results = results2.slice().sort((a:any, b:any) => {
               const aMatch = [a.title, a.body, a.summary].some(field =>
                 field?.toLowerCase().includes(queryText.toLowerCase())
@@ -459,12 +450,16 @@ const Activities = ({ route, navigation }: any): any => {
     }
     toTop();
   };
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs1 = useCommittedRef(() => ({netInfo}));
   useFocusEffect(
     React.useCallback(() => {
+      const {netInfo: inputNetInfo} = focusCommandInputs1.current();
+
       const task = scheduleIdleTask(() => {
-        console.log("is child premature", activeChild.isPremature);
-        if (netInfo.isConnected) {
-          synchronizeEvents(netInfo.isConnected);
+
+        if (inputNetInfo.isConnected) {
+          synchronizeEvents(inputNetInfo.isConnected);
         }
         getSearchedKeywords();
         setModalVisible(activityModalOpened);
@@ -473,7 +468,7 @@ const Activities = ({ route, navigation }: any): any => {
       return () => {
         task.cancel();
       };
-    }, [activityModalOpened])
+    }, [activityModalOpened, focusCommandInputs1])
   );
 
   useFocusEffect(
@@ -496,27 +491,31 @@ const Activities = ({ route, navigation }: any): any => {
         hideSubscription?.remove();
         // task.cancel();
       };
-    }, [])
+    }, [navigation])
   );
 
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs2 = useCommittedRef(() => ({setFilteredActivityData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {setFilteredActivityData: inputSetFilteredActivityData, backClicked: inputBackClicked} = focusCommandInputs2.current();
+
       // const task = InteractionManager.runAfterInteractions(() => {
       if (isSerachedQueryText || queryText === "") {
         const fetchData = async (): Promise<void> => {
-          console.log("route category data", route.params?.categoryArray);
+
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
-            setFilteredActivityData(route.params?.categoryArray);
+            inputSetFilteredActivityData(route.params?.categoryArray);
           } else {
             console.log("route category data in else");
             setFilterArray([]);
-            setFilteredActivityData([]);
+            inputSetFilteredActivityData([]);
           }
         };
 
         setIsSearchedQueryText(false);
-        if (route.params?.backClicked !== "yes") {
+        if (inputBackClicked !== "yes") {
           fetchData();
         } else {
           setLoading(false);
@@ -527,13 +526,13 @@ const Activities = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
       languageCode,
       queryText,
-      isSerachedQueryText,
-    ])
+      isSerachedQueryText, focusCommandInputs2])
   );
 
   const showSelectedBracketData = (item: any): any => {
@@ -557,35 +556,35 @@ const Activities = ({ route, navigation }: any): any => {
     //   setCurrentChildSelected(true)
     // }
   };
+  // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
+  const focusCommandInputs3 = useCommittedRef(() => ({childAge, navigation, showSelectedBracketData, backClicked: route.params?.backClicked}));
   useFocusEffect(
     React.useCallback(() => {
+      const {childAge: inputChildAge, navigation: inputNavigation, showSelectedBracketData: inputShowSelectedBracketData, backClicked: inputBackClicked} = focusCommandInputs3.current();
+
       // const task = InteractionManager.runAfterInteractions(() => {
-      if (route.params?.backClicked !== "yes") {
+      if (inputBackClicked !== "yes") {
         setshowNoData(false);
         if (
           route.params?.currentSelectedChildId &&
           route.params?.currentSelectedChildId !== 0
         ) {
-          console.log("if route params 0", route.params);
-          const firstChildDevData = childAge.filter(
+
+          const firstChildDevData = inputChildAge.filter(
             (x: any) => x.id === route.params?.currentSelectedChildId
           );
-          showSelectedBracketData(firstChildDevData[0]);
+          inputShowSelectedBracketData(firstChildDevData[0]);
         } else {
-          console.log(
-            "else if route params 0",
-            route.params,
-            activityTaxonomyId
-          );
-          const firstChildDevData = childAge.filter(
+
+          const firstChildDevData = inputChildAge.filter(
             (x: any) => x.id === activityTaxonomyId
           );
-          showSelectedBracketData(firstChildDevData[0]);
+          inputShowSelectedBracketData(firstChildDevData[0]);
         }
       } else {
         setLoading(false);
-        if (route.params?.backClicked === "yes") {
-          navigation.setParams({ backClicked: "no" });
+        if (inputBackClicked === "yes") {
+          inputNavigation.setParams({ backClicked: "no" });
         }
       }
       // });
@@ -593,36 +592,37 @@ const Activities = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
     }, [
       activeChild?.uuid,
       languageCode,
       route.params?.currentSelectedChildId,
-      activityTaxonomyId,
-    ])
+      activityTaxonomyId, focusCommandInputs3])
   );
 
   useFocusEffect(
     React.useCallback(() => {
       // const task = InteractionManager.runAfterInteractions(() => {
+      let active = true;
       const fetchData = async (): Promise<void> => {
         const filterQuery = `uuid == "${activeChild?.uuid}"`;
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(
           ChildEntitySchema,
           filterQuery
         );
-        setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
+        if (active) setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
       };
       fetchData();
       // });
 
       return () => {
         // task.cancel();
-        console.log("unmount activity", route.params);
+        active = false;
         navigation.setParams({ backClicked: "no" });
         navigation.setParams({ currentSelectedChildId: 0 });
         navigation.setParams({ categoryArray: [] });
       };
-    }, [activeChild?.uuid])
+    }, [activeChild?.uuid, navigation])
   );
 
   useFocusEffect(
@@ -778,10 +778,7 @@ const Activities = ({ route, navigation }: any): any => {
       data: otherGames,
     },
   ];
-  const memoizedValue = useMemo(
-    () => SuggestedActivities,
-    [SuggestedActivities, DATA]
-  );
+  const memoizedValue = SuggestedActivities;
 
   const HeadingComponent = React.memo(({ section }: any) => {
     const maxWidthpercent =
@@ -811,57 +808,26 @@ const Activities = ({ route, navigation }: any): any => {
       </ArticleHeading>
     );
   });
-  const suffixCache = new Map<string, string[]>();
-  const suffixes = (
-    term: string,
-    minLength: number,
-    maxSuffixes = 5
-  ): string[] => {
-    if (suffixCache.has(term)) return suffixCache.get(term)!;
-
-    const tokens: string[] = [];
-    const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
-
-    for (let i = 0; i <= maxStart; i++) {
-      tokens.push(term.slice(i));
-    }
-
-    suffixCache.set(term, tokens);
-    // console.log("--------", tokens);
-    return tokens;
-  };
 
   // console.log()
   //add minisearch on active child article data
   useEffect(() => {
-    async function initializeSearchIndex() {
-      try {
-        const processedActivities = ActivitiesData;
-        const searchActivittiesData = new MiniSearch(miniSearchConfigActivity);
-        searchActivittiesData.addAllAsync(processedActivities);
-        searchIndex.current = searchActivittiesData;
-      } catch (error) {
-        console.log("Error: Retrieve minisearch data", error);
-      }
-    }
-    // const task = InteractionManager.runAfterInteractions(() => {
-    initializeSearchIndex();
-    // });
-    // return () => task.cancel();
-  }, []);
+    searchIndex.current = null;
+    setSearchReady(false);
+    const job = prepareSearchIndex(ActivitiesData, miniSearchConfigActivity, index => {
+      searchIndex.current = index;
+      setSearchReady(true);
+    });
+    return job.cancel;
+  }, [ActivitiesData, languageCode]);
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     const Realm = await getRealmLib();
     realm.write(() => {
-      const storeKeyword = realm.create(
-        "ActivitySearchHistory",
-        {
-          keyword: keyword,
-          createdAt: new Date(),
-        },
-        Realm.UpdateMode.Modified
-      );
+      realm.create("ActivitySearchHistory",{keyword:keyword,createdAt:new Date()},Realm.UpdateMode.Modified);
+
+
     });
   };
   const searchList = async (queryText: any): Promise<any> => {
@@ -876,7 +842,7 @@ const Activities = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -912,7 +878,7 @@ const Activities = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results2 = searchIndex.current.search(queryText);
+        const results2 = searchReadyIndex(searchIndex.current, queryText);
         const results = results2.slice().sort((a:any, b:any) => {
           const aMatch = [a.title, a.body, a.summary].some(field =>
             field?.toLowerCase().includes(queryText.toLowerCase())
@@ -1036,6 +1002,7 @@ const Activities = ({ route, navigation }: any): any => {
                   <OuterIconRow>
                     <Pressable
                       style={styles.pressablePadding}
+                      disabled={!searchReady}
                       onPress={async (e): Promise<any> => {
                         e.preventDefault();
                         Keyboard.dismiss();
@@ -1047,6 +1014,7 @@ const Activities = ({ route, navigation }: any): any => {
                     </Pressable>
                   </OuterIconRow>
                   <SearchInput
+                    editable={searchReady}
                     autoCapitalize="none"
                     autoCorrect={false}
                     clearButtonMode="always"
@@ -1063,7 +1031,7 @@ const Activities = ({ route, navigation }: any): any => {
                       }
                     }}
                     value={queryText}
-                    onSubmitEditing={async (event: any): Promise<any> => {
+                    onSubmitEditing={async (_event: any): Promise<any> => {
                       console.log("event-", queryText);
                       setHistoryVisible(false);
                       Keyboard.dismiss();
@@ -1148,7 +1116,7 @@ const Activities = ({ route, navigation }: any): any => {
                   }
                   contentContainerStyle={{ backgroundColor: backgroundColorList }}
                   stickySectionHeadersEnabled={false}
-                  onScroll={(e: any) => {
+                  onScroll={(_e: any) => {
                     if (keyboardStatus == true) {
                       Keyboard.dismiss();
                     }

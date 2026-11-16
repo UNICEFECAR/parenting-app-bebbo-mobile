@@ -17,14 +17,9 @@ import {
   ActivitiesEntitySchema,
 } from "../database/schema/ActivitiesSchema";
 import LoadableImage from "../services/LoadableImage";
-import {
-  ArticleListBox,
-  ArticleListContainer,
-  ArticleListContent,
-} from "./shared/ArticlesStyle";
+import {ArticleListBox, ArticleListContent} from './shared/ArticlesStyle';
 import { FlexCol } from "./shared/FlexBoxStyle";
 import ShareFavButtons from "./shared/ShareFavButtons";
-import BackgroundColors from "./shared/BackgroundColors";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray } from "../services/selectors";
 
 const ContainerView = styled.View`
@@ -80,6 +75,7 @@ const FavActivities = (): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      let active = true;
       async function fetchData(): Promise<any> {
         setLoading(true);
         if (favoritegames.length > 0) {
@@ -95,14 +91,15 @@ const FavActivities = (): any => {
               (x: any) => favoritegames.findIndex((y: any) => y == x.id) > -1
             );
           }
-          setfavGamesToShow(favData);
+          if (active) setfavGamesToShow(favData);
         } else {
-          setfavGamesToShow([]);
+          if (active) setfavGamesToShow([]);
         }
-        setLoading(false);
+        if (active) setLoading(false);
       }
       fetchData();
-    }, [favoritegames])
+      return () => {active = false;};
+    }, [favoritegames, ActivitiesDataall])
   );
   const SuggestedActivities = React.memo(({ item, index }: any) => {
     return (

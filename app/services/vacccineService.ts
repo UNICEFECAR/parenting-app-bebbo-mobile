@@ -1,15 +1,16 @@
 import { DateTime } from "luxon";
-import { apiUrlDevelop } from "react-native-dotenv";
 import { useAppSelector } from "../../App";
 import { selectActiveChild, selectAllTaxonomyData, selectVaccineData } from "./selectors";
 
-export const getAllVaccinePeriods = (): any => {
+import { readVaccineIds } from './healthInput';
+
+export const useAllVaccinePeriods = (): any => {
   const activeChild = useAppSelector(selectActiveChild);
   //filter measures by didChildGetVaccines
-  const vaccineMeasures = activeChild?.measures.filter((item: any) => item.didChildGetVaccines == true);
+  const vaccineMeasures = (Array.isArray(activeChild?.measures) ? activeChild.measures : []).filter((item: any) => item.didChildGetVaccines == true);
   const measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure: any) => {
-    const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? JSON.parse(measure.vaccineIds) : [];
+    const vaccinesForAmeasure = readVaccineIds(measure.vaccineIds);
     if (vaccinesForAmeasure) {
       vaccinesForAmeasure.forEach((vaccine: any) => {
         measuredVaccines.push({ uuid: vaccine.uuid, measurementDate: measure.measurementDate });
@@ -24,11 +25,12 @@ export const getAllVaccinePeriods = (): any => {
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
   const taxonomy = useAppSelector(selectAllTaxonomyData);
-  const allGrowthPeriods = taxonomy.growth_period
+  const allGrowthPeriods = Array.isArray(taxonomy?.growth_period) ? taxonomy.growth_period : [];
   const getVaccineInfo = (periodID: any): any => {
     return allGrowthPeriods.find((item: any) => item.id == periodID);
   }
-  const allVaccinePeriods = useAppSelector(selectVaccineData);
+  const vaccineData = useAppSelector(selectVaccineData);
+  const allVaccinePeriods = Array.isArray(vaccineData) ? vaccineData : [];
   const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj: any, item: any) {
     obj[item.growth_period] = obj[item.growth_period] || [];
     obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at, old_calendar: item.old_calendar });

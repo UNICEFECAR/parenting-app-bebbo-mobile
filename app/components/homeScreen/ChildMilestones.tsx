@@ -5,9 +5,8 @@ import { FlexDirRow } from "@components/shared/FlexBoxStyle";
 import {
   FeatureBox,
   FeatureContentBox,
-  FeatureDivideArea,
   FeatureImageBox,
-} from "@components/shared/HomeScreenStyle";
+} from '@components/shared/HomeScreenStyle';
 import { useNavigation } from "@react-navigation/native";
 import {
   Heading2,

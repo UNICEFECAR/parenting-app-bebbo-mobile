@@ -1,0 +1,57 @@
+{
+  "qa_branch": "RNSDKUpgrade-native-data-checks",
+  "workflow_run": 43483023359,
+  "artifact_id": 14067000452,
+  "artifact_sha256": "84c1aa2407da61eba6dc4df1bf7593b8ff32205da8cb4966439a2cbbc54c4f5c",
+  "production_data_source": "1943dc16f72a8ff6830d98e16c977da61fce42aa",
+  "provenance": {
+    "compiled_source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+    "compiled_run": "43477593213",
+    "check_source": "9d6074f546788099728a28067dfaa4938a1ee80d",
+    "changed_paths": [
+      ".github/workflows/native-data-evidence.yml",
+      "app/redux/reducers/realmPersistor.js",
+      "app/screens/localization/CountrySelection.tsx",
+      "app/screens/localization/LanguageSelection.tsx",
+      "app/services/__tests__/realmPersistence.test.ts",
+      "docs/upgrades/react-native-0.87/backup-validation.md",
+      "docs/upgrades/react-native-0.87/extended-review.md",
+      "index.js",
+      "qa/nativeDataQA.ts",
+      "qa/run-native-data.py",
+      "scripts/__tests__/release-guards.test.cjs"
+    ],
+    "replaced_bundle_entries": [
+      "base/assets/index.android.bundle"
+    ],
+    "hermes_bytecode_sha256": "a9e455b3ed6c1fef39ec903982f8d1c7ac52396883d6b2fbb7195faa4f42082f"
+  },
+  "observed_before_kill": "writing",
+  "result": {
+    "phase": "passed",
+    "passed": [
+      "native_random_iv_hmac_aes_unicode_roundtrips",
+      "native_tamper_rejection",
+      "native_legacy_cipher_compatibility",
+      "native_nested_records_and_profile_ownership",
+      "native_repeated_replacement",
+      "native_atomic_rollback",
+      "native_legacy_record_conversion",
+      "native_schema3_to4_fixture_migration",
+      "native_redux_schema0_to1_fixture_migration",
+      "native_large_unicode_cache_fragment_roundtrip",
+      "native_content_reset_preserves_settings",
+      "native_restart_profile_persistence",
+      "actual_startup_taxonomy_recovery",
+      "native_process_interruption_atomic_outcome"
+    ],
+    "interruptionOutcome": "rolled_back",
+    "profiles": 3
+  },
+  "limits": [
+    "Synthetic fixture databases, not historical installed production files",
+    "Android API 35 x86_64 emulator; not physical devices",
+    "Direct backup service tests, not file-provider/Drive UI or live Firebase delivery",
+    "Final bookmark-only changes do not change these tested data/crypto paths"
+  ]
+}

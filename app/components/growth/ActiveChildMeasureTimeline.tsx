@@ -49,7 +49,7 @@ const ActiveChildMeasureTimeline = (props: any): any => {
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const { t } = useTranslation();
-  const setNewChildMeasureUpdates = (): any => {
+  useFocusEffect(React.useCallback(() => {
     const measures = activeChild.measures.filter(
       (item: any) =>
         item.isChildMeasured == true && item.weight > 0 && item.height > 0
@@ -86,12 +86,7 @@ const ActiveChildMeasureTimeline = (props: any): any => {
       (a: any, b: any) => a.dateToMilis - b.dateToMilis
     );
     setChildmeasures(allMeasurements.reverse());
-  };
-  useFocusEffect(
-    React.useCallback(() => {
-      setNewChildMeasureUpdates();
-    }, [activeChild])
-  );
+  }, [activeChild]));
 
   const renderDetail = (rowData: any, sectionID: any): any => {
     const renderTitle = (key: number, titleDateInMonth: number): any => {

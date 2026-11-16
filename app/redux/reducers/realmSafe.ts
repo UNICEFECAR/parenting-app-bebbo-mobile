@@ -1,3 +1,4 @@
+import {diagnosticError} from '../../services/diagnostics';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 
 let RealmLib: any = null;
@@ -32,7 +33,7 @@ export async function safeOpenRealm(config: any) {
     const realm = await Realm.open(config);
     return realm;
   } catch (e) {
-    console.error('safeOpenRealm failed:', e);
+    console.error('safeOpenRealm failed:', diagnosticError(e instanceof Error ? e : 'Realm operation failed'));
     return null;
   }
 }
@@ -42,19 +43,21 @@ export async function safeDeleteRealm(config: any) {
     const Realm = await getRealmLib();
     if (Realm && Realm.deleteFile) {
       await Realm.deleteFile(config);
-      console.log('safeDeleteRealm deleted', config && config.path);
+      console.log('safeDeleteRealm deleted temporary database');
       return;
     }
   } catch (e) {
-    console.error('safeDeleteRealm failed (deleteFile):', e);
+    console.error('safeDeleteRealm failed (deleteFile):', diagnosticError(e instanceof Error ? e : 'Realm operation failed'));
   }
   // Fallback to filesystem delete if available
   try {
     if (config && config.path) {
-      await RNFS.unlink(config.path).catch(() => {});
-      console.log('safeDeleteRealm fallback deleted file:', config.path);
+      await RNFS.unlink(config.path).catch((error: any) => {
+        if (error?.code !== 'ENOENT') throw error;
+      });
+      console.log('safeDeleteRealm fallback completed');
     }
   } catch (e) {
-    console.error('safeDeleteRealm fallback failed:', e);
+    console.error('safeDeleteRealm fallback failed:', diagnosticError(e instanceof Error ? e : 'Realm operation failed'));
   }
 }

@@ -1,23 +1,20 @@
+import {initialLanguage} from "../../services/initialLanguage";
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
+import {CommonActions} from "@react-navigation/native";
 import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import LanguageItem from "@components/LanguageItem";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingStyle from "@components/shared/OnboardingStyle";
-import { LocalizationStackParamList } from "@navigation/types";
+import { LocalizationStackParamList, RootStackParamList } from "@navigation/types";
+import type { CompositeNavigationProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { SelectionViewLang } from "@styles/style";
 import { useContext, useEffect, useState } from "react";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
 import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
-import { ChildEntitySchema } from "../../database/schema/ChildDataSchema";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  FlatList,
-  Platform,
-  Pressable,
-} from "react-native";
+import {Alert, FlatList, Pressable} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import {
@@ -42,9 +39,9 @@ import "moment/locale/tr";
 import { getLanguageCode } from "../../services/Utils";
 import { recordError, setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
-type LanguageSelectionNavigationProp = StackNavigationProp<
-  LocalizationStackParamList,
-  "CountryLanguageConfirmation"
+type LanguageSelectionNavigationProp = CompositeNavigationProp<
+  StackNavigationProp<LocalizationStackParamList, "LanguageSelection">,
+  StackNavigationProp<RootStackParamList>
 >;
 type Props = {
   navigation: LanguageSelectionNavigationProp;
@@ -53,7 +50,7 @@ type Props = {
 const LanguageSelection = ({ route, navigation }: Props): any => {
   const [language, setLanguage] = useState<any>();
   const allCountries = useAppSelector(selectAllCountries);
-  let country: any, languagenew: any;
+  let country: any;
   if (
     appConfig.buildFor == appConfig.buildForFoleja &&
     (route.params == null ||
@@ -62,10 +59,8 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   ) {
     console.log("in if--");
     country = allCountries[allCountries.length - 1];
-    languagenew = null;
   } else {
     country = route?.params?.country;
-    languagenew = route?.params?.language;
   }
   const [sponsorsData, setSponsorsData] = useState<any>();
   const countryId = useAppSelector(
@@ -78,10 +73,10 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const isVisible = useIsFocused();
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode
-  );
-  const isFocused = useIsFocused();
+  useAppSelector((state:any)=>state.selectedCountry.languageCode);
+
+
+  useIsFocused();
   const incrementalSyncDT = useAppSelector(
     (state: any) => state.utilsData.incrementalSyncDT
   );
@@ -101,74 +96,56 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   ];
 
   const locale = useAppSelector((state: any) => state.selectedCountry.locale);
-  const extractLanguageCode = (languageTag: string): string => {
-    const [languageCode] = languageTag.split("-");
-    return languageCode;
-  };
-
+  // Re-read route defaults without resetting an explicit caregiver selection during editing.
+  const languageDefaults = useCommittedRef(() => ({languages, luxonLocale: route?.params?.luxonlocale, deviceCode: route?.params?.deviceLanCode}));
   useEffect(() => {
-    if (route?.params?.language != undefined) {
-      setLanguage(route?.params?.language);
-    } else {
-      console.log("languages for foleja is", languages);
-      if (appConfig.buildFor == String(appConfig.buildForFoleja)) {
-        setLanguage(languages[0]);
-      } else {
-        const languagesWithLuxonLocale = country?.languages?.filter(
-          (lang: any) =>
-            lang.luxonLocale === route.params.luxonlocale ||
-            extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode
-        );
-
-        if (languagesWithLuxonLocale?.length != 0) {
-          setLanguage(languagesWithLuxonLocale);
-        } else {
-          setLanguage(languages[0]);
-        }
-      }
-    }
-  }, [route?.params?.language]);
+    const inputs = languageDefaults.current();
+    setLanguage(initialLanguage(route?.params?.language, inputs.languages, inputs.luxonLocale, inputs.deviceCode,
+      String(appConfig.buildFor) === String(appConfig.buildForFoleja)));
+  }, [route?.params?.language, languageDefaults]);
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const languageChoiceInputs = useCommittedRef(() => ({allCountries, countryId, dispatch, route, userIsOnboarded}));
   useEffect(() => {
+    const {allCountries: inputAllCountries, countryId: inputCountryId, dispatch: inputDispatch, route: inputRoute, userIsOnboarded: inputUserIsOnboarded} = languageChoiceInputs.current();
+
     if (isVisible) {
       let newCountryId: any;
-      let newCountryLocale: any;
-      if (userIsOnboarded == true) {
+
+      if (inputUserIsOnboarded == true) {
         if (
-          route.params.country &&
-          route.params.country != null &&
-          route.params.country != undefined
+          inputRoute.params.country &&
+          inputRoute.params.country != null &&
+          inputRoute.params.country != undefined
         ) {
-          newCountryId = route.params.country?.countryId;
+          newCountryId = inputRoute.params.country?.countryId;
         } else {
-          newCountryId = countryId;
+          newCountryId = inputCountryId;
         }
       } else {
-        if (Object.keys(route.params ?? {}).length === 0) {
-          newCountryId = countryId;
+        if (Object.keys(inputRoute.params ?? {}).length === 0) {
+          newCountryId = inputCountryId;
         } else {
-          if (route.params != undefined) {
-            newCountryId = route.params?.country?.countryId;
+          if (inputRoute.params != undefined) {
+            newCountryId = inputRoute.params?.country?.countryId;
           } else {
-            newCountryId = countryId;
+            newCountryId = inputCountryId;
           }
         }
       }
       const fetchData = async (): Promise<any> => {
-        if (userIsOnboarded == false && route.params?.isDirect) {
-          await userRealmCommon.deleteBy(
-            ChildEntitySchema,
-            "isMigrated == false"
-          );
+        if (inputUserIsOnboarded == false && inputRoute.params?.isDirect) {
+          // A lost onboarding flag must never delete caregiver-created profiles.
+          // isMigrated identifies imported records, not disposable setup data.
           const data = await dataRealmCommon.deleteAllAtOnce();
           console.log(data, "..newdata..");
           // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
           const payload = { errorArr: [], fromPage: "OnLoad" };
-          dispatch(receiveAPIFailure(payload));
+          inputDispatch(receiveAPIFailure(payload));
         }
       };
       fetchData();
 
-      const selectedCountry = allCountries.find(
+      const selectedCountry = inputAllCountries.find(
         (country: any) => country.CountryID == newCountryId
       );
 
@@ -176,9 +153,9 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       //   (country: any) => country.id === selectedCountry.CountryID,
       // )
       console.log("selectedCountry country is", selectedCountry);
-      setSponsorsData(route?.params?.country);
+      setSponsorsData(inputRoute?.params?.country);
     }
-  }, [isVisible]);
+  }, [isVisible, languageChoiceInputs]);
   const renderItem = ({ item, index }: any): any => (
     <LanguageItem
       item={item}
@@ -204,14 +181,14 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       ) {
         if (await applyLanguageDirection(language, { screen: "HomeDrawerNavigator" }))
           return;
-        navigation.reset({
+        navigation.dispatch(CommonActions.reset({
           index: 0,
           routes: [
             {
               name: "HomeDrawerNavigator",
             },
           ],
-        });
+        }));
       } else {
         console.log(language, "..newLanguage");
         if (Object.keys(route.params ?? {}).length !== 0) {
@@ -335,7 +312,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <OnboardingContainer>
           <Pressable
-            onPress={(e: any): any => {
+            onPress={(_e: any): any => {
               console.log("Back icon click");
               if (route?.params?.isSetting) {
                 navigation?.goBack();

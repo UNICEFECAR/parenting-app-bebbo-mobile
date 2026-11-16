@@ -16,7 +16,7 @@ import Childgrowth from "@screens/home/Childgrowth";
 import HealthCheckups from "@screens/home/HealthCheckups";
 import Vaccination from "@screens/home/Vaccination";
 import { Heading3 } from "@styles/typography";
-import React, { useContext, useState, Suspense } from "react";
+import React, {useContext, useState} from 'react';
 import { useTranslation } from "react-i18next";
 import { Modal, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { ThemeContext } from "styled-components/native";

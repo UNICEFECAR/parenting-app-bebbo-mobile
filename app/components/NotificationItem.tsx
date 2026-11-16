@@ -59,9 +59,9 @@ const NotificationItem = (props: any): any => {
   const hcheaderColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation<any>();
   const primaryTintColor = themeContext?.colors.PRIMARY_TINTCOLOR;
-  const pluralShow = useAppSelector(
-    (state: any) => state.selectedCountry.pluralShow
-  );
+  useAppSelector((state:any)=>state.selectedCountry.pluralShow);
+
+
   const { t } = useTranslation();
   const geticonname = (type: string): any => {
     return type == "gw"
@@ -160,7 +160,7 @@ const NotificationItem = (props: any): any => {
     );
     let vc = " ";
     const vcArray: any = [];
-    allvc.map((item: any, index: number) => {
+    allvc.map((item: any, _index: number) => {
       if (item.old_calendar != 1) {
         vcArray.push(item.title);
       }

@@ -1,0 +1,36 @@
+{
+  "qa_branch": "RNSDKUpgrade-native-data-checks",
+  "workflow_run": 43482015050,
+  "artifact_id": 14067018499,
+  "artifact_sha256": "6eb160b5a0cdc6dc8d5ff7f38d39b5dde249c226771321e24ebea46eb18a2318",
+  "qa_source": "39b8762191aafa28cfcccf43dcf72f5701a29579",
+  "production_data_source": "1943dc16f72a8ff6830d98e16c977da61fce42aa",
+  "observed_before_kill": "writing",
+  "result": {
+    "phase": "passed",
+    "passed": [
+      "native_random_iv_hmac_aes_unicode_roundtrips",
+      "native_tamper_rejection",
+      "native_legacy_cipher_compatibility",
+      "native_nested_records_and_profile_ownership",
+      "native_repeated_replacement",
+      "native_atomic_rollback",
+      "native_legacy_record_conversion",
+      "native_schema3_to4_fixture_migration",
+      "native_redux_schema0_to1_fixture_migration",
+      "native_large_unicode_cache_fragment_roundtrip",
+      "native_content_reset_preserves_settings",
+      "native_restart_profile_persistence",
+      "actual_startup_taxonomy_recovery",
+      "native_process_interruption_atomic_outcome"
+    ],
+    "interruptionOutcome": "rolled_back",
+    "profiles": 3
+  },
+  "limits": [
+    "Synthetic fixture databases, not historical production files",
+    "iPhone simulator Release build; not physical devices",
+    "Direct backup service tests, not file-provider/Drive UI or live Firebase delivery",
+    "Later bookmark/profile-delete-only changes do not alter these tested backup/crypto/migration paths"
+  ]
+}

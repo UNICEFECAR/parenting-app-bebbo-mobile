@@ -7,7 +7,6 @@ import { CameraRoll } from "@react-native-camera-roll/camera-roll";
 
 // Android permissions
 const GALLERY_PERMISSION_ANDROID_PRE33 = PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE;
-const GALLERY_PERMISSION_ANDROID_33_PLUS = PERMISSIONS.ANDROID.READ_MEDIA_IMAGES;
 
 // iOS permission
 const GALLERY_PERMISSION_IOS = PERMISSIONS.IOS.PHOTO_LIBRARY;
@@ -87,8 +86,8 @@ class MediaPicker {
       callback,
       pickerTypeCamera,
       cameraOptions,
-      pickerTypeGallery,
-      galleryOptions,
+      _pickerTypeGallery,
+      _galleryOptions,
     ] = args;
     switch (pickerTypeCamera) {
       case PICKER_TYPE.CAMERA:
@@ -124,8 +123,8 @@ class MediaPicker {
   pickGalleryOptions(...args: any):any {
     const [
       callback,
-      pickerTypeCamera,
-      cameraOptions,
+      _pickerTypeCamera,
+      _cameraOptions,
       pickerTypeGallery,
       galleryOptions,
     ] = args;
@@ -422,7 +421,7 @@ class MediaPicker {
     });
   }
 
-  checkPermissionGallery(triggerFunc: any, openSettings = undefined): any {
+  checkPermissionGallery(triggerFunc: any, _openSettings = undefined): any {
     if (Platform.OS === "android") {
       const sdk = Platform.Version;
   

@@ -2,15 +2,11 @@ import { DateTime } from 'luxon';
 
 import { Component } from 'react';
 import type RealmType from 'realm';
-import type { ObjectSchema } from 'realm';
+import type { ObjectSchema, UpdateMode } from 'realm';
 import { getDiffinDays } from '../../services/childCRUD';
 import { deleteUserRealm, openUserRealm } from '../config/dbConfig';
 
-import { ActivitiesEntity, ActivitiesEntitySchema } from '../schema/ActivitiesSchema';
-import { ArticleEntity, ArticleEntitySchema } from '../schema/ArticleSchema';
-import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
-import { dataRealmCommon } from './dataRealmCommon';
-import { Alert } from 'react-native';
+
 const deleteRealmFilesBeforeOpen = false;
 
 class UserRealmCommon extends Component {
@@ -99,7 +95,7 @@ class UserRealmCommon extends Component {
                 result = 0;
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 0;
             return result;
         }
@@ -114,7 +110,7 @@ class UserRealmCommon extends Component {
             if (realm) {
                 realm?.write(() => {
                     records.forEach(record => {
-                        realm?.create<Entity>(entitySchema.name, record, "modified");
+                        realm?.create<Entity>(entitySchema.name, record, "modified" as UpdateMode);
                     })
                     result = records;
                 });
@@ -124,7 +120,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -148,7 +144,7 @@ class UserRealmCommon extends Component {
                 result = 'Fail';
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 'Fail';
             return result;
         }
@@ -177,7 +173,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }
@@ -212,7 +208,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -241,7 +237,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }
@@ -276,7 +272,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }
@@ -291,17 +287,18 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     records.forEach((record: any) => {
                         record.updatedAt = new Date();
-                        realm?.create<Entity>(entitySchema.name, record, "modified");
+                        realm?.create<Entity>(entitySchema.name, record, "modified" as UpdateMode);
                     })
                     result = records;
                     return result;
                 });
+                return result;
             }
             else {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -336,7 +333,7 @@ class UserRealmCommon extends Component {
                 result = 'else';
                 return result
             }
-        } catch (e) {
+        } catch  {
             result = 'catch';
             return result
         }
@@ -387,55 +384,18 @@ class UserRealmCommon extends Component {
                 result = 'else';
                 return result
             }
-        } catch (e) {
+        } catch  {
             result = 'catch';
             return result
         }
         // });
     }
-    public async verifyFavorites(): Promise<any> {
-        // return new Promise(async (resolve, reject) => {
-        let result: any = '';
-        try {
-            const realm = await this.openRealm();
-            const realmdata = await dataRealmCommon.openRealm();
-            if (realm && realmdata) {
-                const obj: any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
-                realm?.write(() => {
-                    console.log("write")
-                    if (obj.length > 0) {
-                        obj.map((child: any) => {
-                            const favoriteadvices = child.favoriteadvices;
-                            let favoritegames = child.favoritegames;
-                            favoritegames = [...favoritegames, 1234];
-                            if (favoriteadvices.length > 0) {
-                                const filterQuery = favoriteadvices?.map((x: any) => `id = '${x}'`).join(' OR ');
-                                const artobj: any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
-                                const finaladvicesobj = favoriteadvices.filter((i: any) => artobj.find((f: any) => f.id === i));
-                                child.favoriteadvices = finaladvicesobj;
-                            }
-                            if (favoritegames.length > 0) {
-                                const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
-                                const actobj: any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
-                                const finalgamesobj = favoritegames.filter((i: any) => actobj.find((f: any) => f.id === i))
-                                child.favoritegames = finalgamesobj
-                            }
-
-                        })
-                    }
-                });
-                result = 'success';
-                return result;
-            }
-            else {
-                result = 'else';
-                return result;
-            }
-        } catch (e) {
-            result = 'catch';
-            return result;
-        }
-        // });
+    public async verifyFavorites(): Promise<string> {
+        // Bookmarks are user data. A filtered/partial offline content response
+        // cannot establish that an absent CMS ID was deleted. Keep saved IDs;
+        // listing screens resolve the currently available content separately.
+        // Retain this API for the existing synchronisation caller.
+        return 'success';
     }
     public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
         // return new Promise(async (resolve, reject) => {
@@ -451,7 +411,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -471,7 +431,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -504,7 +464,7 @@ class UserRealmCommon extends Component {
                 result = 'error';
                 return result;
             }
-        } catch (e: any) {
+        } catch  {
             result = 'error';
             return result;
         }
@@ -529,7 +489,7 @@ class UserRealmCommon extends Component {
                 result = 'error';
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 'error';
             return result;
         }
@@ -554,7 +514,7 @@ class UserRealmCommon extends Component {
                 result = 'error';
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = 'error';
             return result;
         }
@@ -570,8 +530,8 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].measures.length > 0) {
-                        obj[0].measures.map((itemnew: any) => {
-                            const updateItemIndex = obj[0]?.measures?.findIndex((item: any, index: any) => {
+                        obj[0].measures.map((_itemnew: any) => {
+                            const updateItemIndex = obj[0]?.measures?.findIndex((item: any, _index: any) => {
                                 const measuredays = getDiffinDays(param, item.measurementDate);
                                 return measuredays < 0;
                             });
@@ -589,7 +549,7 @@ class UserRealmCommon extends Component {
                 result = [];
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = [];
             return result;
         }
@@ -624,7 +584,7 @@ class UserRealmCommon extends Component {
                 result = []
                 return result;
             }
-        } catch (e) {
+        } catch  {
             result = []
             return result;
         }

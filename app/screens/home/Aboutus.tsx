@@ -9,13 +9,12 @@ import {
 } from "../../instances/bebbo/styles/style";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {Dimensions, StyleSheet, View} from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
-import HTML, { RenderHTML } from "react-native-render-html";
+import {RenderHTML} from 'react-native-render-html';
 import WebView from "react-native-webview";
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../../App";
-import RenderImage from "../../services/RenderImage";
 import { addSpaceToHtml } from "../../services/Utils";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
@@ -40,9 +39,8 @@ const Aboutus = (): any => {
   const aboutusdata = useAppSelector(
     (state: any) => state.utilsData.aboutus.body
   );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
+  useAppSelector((state:any)=>state.bandWidthData?.lowbandWidth?state.bandWidthData.lowbandWidth:false);
+
 
   return (
     <>
@@ -63,7 +61,7 @@ const Aboutus = (): any => {
             {aboutusdata != "" ? (
               <RenderHTML
                 source={{ html: addSpaceToHtml(aboutusdata) }}
-                baseStyle={styles.fontStyle}
+                baseStyle={{...styles.fontStyle, direction: appLayoutDirection()}}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}
                 tagsStyles={{
                   img: { maxWidth: Dimensions.get("window").width - 30 },
@@ -103,10 +101,10 @@ const Aboutus = (): any => {
                   //   }
                   // },
                 }}
-                WebView={() => (
-                  <WebView renderToHardwareTextureAndroid={true} />
-                )}
+                WebView={WebView}
+                defaultWebViewProps={{renderToHardwareTextureAndroid: true}}
                 renderersProps={{
+                  ...htmlListRenderers,
                   iframe: { webViewProps: { allowsFullscreenVideo: true } },
                 }}
               />

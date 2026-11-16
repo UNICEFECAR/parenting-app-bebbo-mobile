@@ -1,3 +1,4 @@
+import {activeChildFirst} from "../../services/activeChildOrder";
 import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
 import { scheduleIdleTask } from "../../services/scheduleIdleTask";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -48,7 +49,7 @@ import {
   Heading5,
   ShiftFromTop30,
 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -111,11 +112,11 @@ type Props = {
 };
 const ChildProfile = ({ navigation }: Props): any => {
   const { t } = useTranslation();
-  const isFocused = useIsFocused();
+  useIsFocused();
   const [parentViewHeight, setParentViewheight] = useState(0);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [isChildSwitch, setISChildSwitch] = React.useState(false);
-  const [profileViewHeight, setProfileViewheight] = useState(0);
+  const [profileViewHeight, _setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const secopndaryTintColor = themeContext?.colors.SECONDARY_TINTCOLOR;
@@ -153,7 +154,7 @@ const ChildProfile = ({ navigation }: Props): any => {
         clearTimeout(cleanupTimer);
         task.cancel();
       };
-    }, [])
+    }, [childAge, dispatch, navigation])
   );
 
   const childList = useAppSelector(selectChildList);
@@ -216,15 +217,16 @@ const ChildProfile = ({ navigation }: Props): any => {
       : "";
   const windowHeight = Dimensions.get("window").height;
 
-  const SortedchildList = [...childList].sort((a: any, b: any): any => {
-    if (a.uuid == currentActiveChild) return -1;
-  });
+  const SortedchildList = React.useMemo(
+    () => activeChildFirst(childList, currentActiveChild),
+    [childList, currentActiveChild]
+  );
   useEffect(() => {
     if (isChildSwitch) {
       dispatch(setAllChildData(SortedchildList));
       setISChildSwitch(false);
     }
-  }, [SortedchildList, isChildSwitch]);
+  }, [SortedchildList, isChildSwitch, dispatch]);
   const renderChildProfile = (
     dispatch: any,
     data: any,

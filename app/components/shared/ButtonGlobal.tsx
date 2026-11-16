@@ -1,10 +1,11 @@
+import {buttonAccessibility} from './buttonAccessibility';
 import React from 'react';
 import {type StyleProp, type TextStyle} from 'react-native';
 import { menuDrawerTextColor } from '@styles/style';
 import styled from 'styled-components/native';
 
 /*Button Pressable */
-export const ButtonPrimary = styled.Pressable`
+export const ButtonPrimary = styled.Pressable.attrs(buttonAccessibility)`
 background-color: ${(props: any): any => props.disabled ? props.theme?.colors?.SECONDARY_COLOR : props.theme?.colors?.SECONDARY_COLOR};
 opacity: ${(props: any): any => props.disabled ? 0.5 : 1};
 color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
@@ -22,7 +23,7 @@ justify-content:center;
 
 `;
 /*Button Pressable */
-export const ButtonWithBorder = styled.Pressable`
+export const ButtonWithBorder = styled.Pressable.attrs(buttonAccessibility)`
 background-color: ${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 opacity: ${(props: any): any => props.disabled ? 0.5 : 1};
 color: ${(props: any): any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
@@ -196,7 +197,7 @@ padding:5px 15px;
 
 
 
-export const ButtonLinkPress = styled.Pressable`
+export const ButtonLinkPress = styled.Pressable.attrs(buttonAccessibility)`
 flex-direction:row;
 align-items:center;
 justify-content:center;
@@ -221,7 +222,7 @@ export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   justify-content:center;
   
 `;
-export const ButtonDelPress = styled.Pressable`
+export const ButtonDelPress = styled.Pressable.attrs(buttonAccessibility)`
   min-width:70px;
   margin-left:5px;
   min-height:32px;

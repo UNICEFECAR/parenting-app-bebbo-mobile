@@ -1,3 +1,4 @@
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import PreviousHealthCheckup from "@components/healthChekup/PreviousHealthCheckup";
 import UpcomingHealthCheckup from "@components/healthChekup/UpcomingHealthCheckup";
@@ -24,18 +25,11 @@ import {
 } from "../../instances/bebbo/styles/typography";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  BackHandler,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
-import { getAllHealthCheckupPeriods } from "../../services/healthCheckupService";
+import { useAllHealthCheckupPeriods } from "../../services/healthCheckupService";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -62,12 +56,12 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext?.colors.HEALTHCHECKUP_TINTCOLOR;
-  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const headerTextColor = themeContext?.colors.HEALTHCHECKUP_TEXTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
   const { upcomingPeriods, previousPeriods, childAgeIndays, currentPeriod } =
-    getAllHealthCheckupPeriods();
+    useAllHealthCheckupPeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{ title: t("vcTab1") }, { title: t("vcTab2") }];
   const [modalVisible, setModalVisible] = React.useState(true);
@@ -99,9 +93,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   let hcReminder: any;
   if (healthCheckupReminder) {
     const today = DateTime.fromJSDate(new Date());
-    const reminderDate = new Date(
-      DateTime.fromMillis(healthCheckupReminder?.reminderDate)
-    );
+    const reminderDate = (DateTime.fromMillis(healthCheckupReminder?.reminderDate)).toJSDate();
     const hours = new Date(healthCheckupReminder?.reminderTime).getHours();
     const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes();
     reminderDate.setHours(hours);
@@ -182,17 +174,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
       return true;
     }
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
 
   console.log(upcomingPeriods);
   return (

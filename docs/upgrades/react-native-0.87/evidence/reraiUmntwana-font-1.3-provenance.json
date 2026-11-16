@@ -1,0 +1,16 @@
+{
+  "compiled_source": "4e3f9931c92a5abca437c5730864a5b21ddae28b",
+  "compiled_run": "43438512801",
+  "check_source": "e9b50173d5f0b51876a4ab8d15fb252e10dc533a",
+  "changed_paths": [
+    ".github/workflows/onboarding-evidence.yml",
+    "app/components/FocusAwareStatusBar.tsx",
+    "app/screens/localization/CountryLanguageConfirmation.tsx",
+    "app/services/__tests__/focusAwareStatusBar.test.tsx",
+    "scripts/android-startup-smoke.sh"
+  ],
+  "replaced_bundle_entries": [
+    "base/assets/index.android.bundle"
+  ],
+  "hermes_bytecode_sha256": "6ab48627665487f7e0c701350fbd62fcc71617667f14e0772813dae57ef3e567"
+}

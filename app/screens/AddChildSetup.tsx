@@ -18,31 +18,16 @@ import {
 } from "@components/shared/ChildSetupStyle";
 import Icon from "@components/shared/Icon";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
-import {
-  FlexCol,
-  FlexRow,
-  Flex1,
-  Flex2,
-  FDirRow,
-} from "@components/shared/FlexBoxStyle";
+import {FlexCol, FlexRow, Flex2} from '@components/shared/FlexBoxStyle';
 import OnboardingHeading from "@components/shared/OnboardingHeading";
 import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
 import { CommonActions, useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { dobMax } from "@types/types";
-import React, { createRef, useContext, useEffect, useState } from "react";
+import { dobMax } from "../types/types";
+import React, { useRef, createRef, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Pressable,
-  Text,
-  View,
-  ScrollView,
-  Alert,
-  Platform,
-  StyleSheet,
-  ToastAndroid,
-} from "react-native";
+import {Pressable, View, ScrollView, StyleSheet} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
@@ -50,20 +35,16 @@ import {
   ChildEntity,
   ChildEntitySchema,
 } from "../database/schema/ChildDataSchema";
-import { backup } from "../services/backup";
 import {
   addChild,
   apiJsonDataGet,
-  getAge,
   getNewChild,
   isFutureDate,
   setActiveChild,
-} from "../services/childCRUD";
+} from '../services/childCRUD';
 import { notiPermissionUtil, validateForm } from "../services/Utils";
 import {
   Heading1Centerw,
-  Heading3,
-  Heading4Regularw,
   ShiftFromTop20,
   Heading3w,
   ShiftFromTop25,
@@ -71,16 +52,10 @@ import {
   Heading3BoldCenterrw,
   Heading4Centerrw,
   ShiftFromTopBottom20,
-} from "@styles/typography";
+} from '@styles/typography';
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
-import { openBackupDocument } from "../services/backupDocuments";
-import * as RNFS from "@dr.pogodin/react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2, primaryColor, secondaryBtnColor } from "@styles/style";
-import AesCrypto from "react-native-aes-crypto";
-import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
-import BackgroundColors from "@components/shared/BackgroundColors";
+import {bgcolorWhite2, secondaryBtnColor} from '@styles/style';
 import { logEvent } from "../services/EventSyncService";
 import {
   EXPECTED_CHILD_ENTERED,
@@ -100,6 +75,7 @@ type ChildSetupNavigationProp = StackNavigationProp<
 >;
 
 type Props = {
+  route: { params: { birthDate?: Date; relationship?: string; relationshipname?: string; userRelationToParent?: any; parentName?: string } };
   navigation: ChildSetupNavigationProp;
 };
 const styles = StyleSheet.create({
@@ -142,24 +118,24 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const [parentName, setParentName] = useState("");
   const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
-  const [isImportRunning, setIsImportRunning] = useState(false);
+  const [_isImportRunning, _setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>("false");
   const [isExpected, setIsExpected] = useState<string>("false");
   const [name, setName] = React.useState("");
   const [loading, setLoading] = useState(false);
-  const [isImportAlertVisible, setImportAlertVisible] = useState(false);
-  const actionSheetRefImport = createRef<any>();
+  const [_isImportAlertVisible, _setImportAlertVisible] = useState(false);
+  createRef<any>();
   const netInfo = useNetInfoHook();
-  let relationshipData = useAppSelector(selectParentGender);
+  useAppSelector(selectParentGender);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
-  const relationshipToParent = useAppSelector(selectRelationshipToParent);
+  useAppSelector(selectRelationshipToParent);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
   const childAge = useAppSelector(selectChildAge);
-  const actionSheetRef = createRef<any>();
+  createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
   const sendData = (data: any): any => {
@@ -177,18 +153,10 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     .filter(function (e: any) {
       return e.unique_name != taxonomyIds?.bothChildGender;
     });
-  relationshipData = relationshipData
-    .map((v: any) => ({ ...v, title: v.name }))
-    .filter(function (e: any) {
-      return e.unique_name != taxonomyIds?.bothParentGender;
-    });
-  const onImportCancel = (): any => {
-    setImportAlertVisible(false);
-  };
+
   useFocusEffect(
     React.useCallback(() => {
-      console.log("taxonomyData is", relationshipToParent);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         navigation.dispatch((state) => {
           // Remove the home route from the stack
           const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
@@ -200,230 +168,21 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+      return () => clearTimeout(timer);
+    }, [navigation])
   );
   useEffect(() => {
-    setRelationship(route?.params.relationship);
-    setRelationshipName(route?.params.relationshipName);
+    setRelationship(route?.params.relationship ?? "");
+    setRelationshipName(route?.params.relationshipname ?? "");
     console.log("Setuser relationship to parent", route?.params.parentName);
     setUserRelationToParent(route?.params.userRelationToParent);
-    setParentName(route?.params.parentName);
+    setParentName(route?.params.parentName ?? "");
   }, [route?.params]);
   const getCheckedItem = (checkedItem: (typeof genders)[0]): any => {
     setGender(checkedItem.id);
   };
-  const getCheckedParentItem = (checkedItem: any): any => {
-    if (
-      typeof checkedItem.id === "string" ||
-      checkedItem.id instanceof String
-    ) {
-      setRelationship(checkedItem.id);
-    } else {
-      setRelationship(String(checkedItem.id));
-    }
-  };
-  const handleError = (err: any): any => {
-    console.log(err, "..err");
-    // if (isErrorWithCode(err) && err.code === errorCodes.OPERATION_CANCELED) {
-    //   console.log("cancelled");
-    //   // User cancelled the picker, exit any dialogs or menus and move on
-    // } else if (isInProgress(err)) {
-    //   console.log(
-    //     "multiple pickers were opened, only the last will be considered"
-    //   );
-    // } else {
-    //   throw err;
-    // }
 
-    if (isErrorWithCode(err)) {
-      switch (err.code) {
-        case errorCodes.IN_PROGRESS:
-          console.warn('user attempted to present a picker, but a previous one was already presented')
-          break
-        case errorCodes.UNABLE_TO_OPEN_FILE_TYPE:
-          console.log('unable to open file type')
-          break
-        case errorCodes.OPERATION_CANCELED:
-          // ignore
-          break
-        default:
-          console.error(err)
-      }
-    } else {
-      throw err;
-    }
-  };
-  const decryptData = (text: string, key: any): any => {
-    return AesCrypto.decrypt(text, key, encryptionsIVKey, "aes-256-cbc");
-  };
-  const handleImportedData = async (
-    importedData: any,
-    importedrealm: any
-  ): Promise<any> => {
-    if (importedData.length > 0) {
-      await userRealmCommon.openRealm();
-      await userRealmCommon.deleteAllAtOnce();
-      setIsImportRunning(false);
-      setLoading(false);
-      navigation.navigate("ChildImportSetup", {
-        importResponse: JSON.stringify(importedData),
-      });
-      if (importedrealm) {
-        importedrealm.close();
-      }
-      try {
-        Realm.deleteFile({ path: appConfig.tempRealmFile });
-      } catch (error) {
-        //console.log(error);
-      }
-    } else {
-      setLoading(false);
-      setIsImportRunning(false);
-    }
-  };
-  const importDataAndroid = async (): Promise<any> => {
-    setIsImportRunning(true);
-    try {
-      const dataset: any = await openBackupDocument();
-      let oldChildrenData: any = null;
-      let importedrealm: any = null;
-      if (
-        dataset &&
-        dataset.data != "" &&
-        dataset.data != null &&
-        dataset.data != undefined
-      ) {
-        if (dataset.name.toLowerCase().endsWith(".json")) {
-          const decryptedData = decryptData(dataset.data, encryptionsKey)
-            .then((text: any) => {
-              return text;
-            })
-            .catch((error: any) => {
-              console.log("Decrypted error", error);
-              throw error;
-            });
-          const importedJsonData = JSON.parse(await decryptedData);
-          await RNFS.writeFile(
-            appConfig.tempRealmFile,
-            JSON.stringify(importedJsonData),
-            "utf8"
-          );
-          oldChildrenData = importedJsonData;
-        } else {
-          await RNFS.writeFile(
-            appConfig.tempRealmFile,
-            dataset.data,
-            "base64"
-          );
-          importedrealm = await new Realm({ path: "user1.realm" });
-          const user1Path = importedrealm.path;
-          console.log(user1Path, "..user1Path");
-          oldChildrenData = importedrealm.objects("ChildEntity");
-        }
-        setImportAlertVisible(false);
-        setLoading(true);
-        setIsImportRunning(true);
-        await handleImportedData(oldChildrenData, importedrealm);
-      }
-    } catch (error) {
-      console.error("Backup import failed", error);
-      Alert.alert("", t("generalError"));
-    } finally {
-      setIsImportRunning(false);
-      setLoading(false);
-    }
-  };
-  const importDataIOS = async (): Promise<any> => {
-    pick({
-      allowMultiSelection: false,
-      allowedTypes: ['*/*'],
-    })
-      .then(async (res: any) => {
-        console.log(res, "..res..");
-        let oldChildrenData: any = null;
-        let importedrealm: any = null;
-        if (res.length > 0 && res[0].uri) {
-          if (res[0].name.endsWith(".json")) {
-            const exportedFileContent: any = await RNFS.readFile(
-              decodeURIComponent(res[0].uri),
-              "utf8"
-            );
-            const decryptedData = decryptData(
-              exportedFileContent,
-              encryptionsKey
-            )
-              .then((text: any) => {
-                return text;
-              })
-              .catch((error: any) => {
-                console.log("Decrypted error", error);
-                throw error;
-              });
-            const importedData = JSON.parse(await decryptedData);
-            await RNFS.writeFile(
-              appConfig.tempRealmFile,
-              JSON.stringify(decryptedData),
-              "utf8"
-            );
-            oldChildrenData = importedData;
-          } else {
-            const exportedFileContent: any = await RNFS.readFile(
-              decodeURIComponent(res[0].uri),
-              "base64"
-            );
-            await RNFS.writeFile(
-              appConfig.tempRealmFile,
-              exportedFileContent,
-              "base64"
-            );
-            importedrealm = await new Realm({ path: "user1.realm" });
-            if (importedrealm) {
-              importedrealm.close();
-            }
-            importedrealm = await new Realm({ path: "user1.realm" });
-            const user1Path = importedrealm.path;
-            console.log(user1Path, "..user1Path");
-            oldChildrenData = importedrealm.objects("ChildEntity");
-          }
-
-          setImportAlertVisible(false);
-          setLoading(true);
-          setIsImportRunning(true);
-          handleImportedData(oldChildrenData, importedrealm);
-        }
-      })
-      .catch(handleError);
-  };
-  const importFromFile = async (): Promise<any> => {
-    if (Platform.OS == "android") {
-      importDataAndroid();
-    } else {
-      importDataIOS();
-    }
-  };
-  const importAllData = async (): Promise<any> => {
-    setImportAlertVisible(false);
-    setLoading(true);
-    setIsImportRunning(true);
-    //param 1 from settings import for navigation
-    const importResponse = await backup.import1(
-      navigation,
-      languageCode,
-      dispatch,
-      childAge,
-      genders
-    );
-    if (importResponse.length > 0) {
-      setIsImportRunning(false);
-      setLoading(false);
-      navigation.navigate("ChildImportSetup", {
-        importResponse: JSON.stringify(importResponse),
-      });
-    } else {
-      setLoading(false);
-      setIsImportRunning(false);
-    }
-  };
+  useRef(false);
 
   const AddChild = async (
     isDefaultChild: boolean,
@@ -546,7 +305,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
             <FlexRow>
               <ShiftFromTop25>
                 <Pressable
-                  onPress={(e: any): any => {
+                  onPress={(_e: any): any => {
                     navigation.navigate("ChildSetup");
                   }}
                 >

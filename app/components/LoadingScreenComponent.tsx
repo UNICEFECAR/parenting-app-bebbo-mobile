@@ -128,7 +128,7 @@ const renderLoadingLogo = (
     />
   );
 };
-const LoadingScreenComponent = (props: any): any => {
+const LoadingScreenComponent = (_props: any): any => {
   const { t } = useTranslation();
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors

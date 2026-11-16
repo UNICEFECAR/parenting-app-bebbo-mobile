@@ -5,22 +5,24 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from "../../App";
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { formatStringDate } from './Utils';
-import { useEffect } from 'react';
-import { t } from 'i18next';
+import { readVaccineIds } from './healthInput';
 import { selectActiveChild, selectAllTaxonomyData, selectHealthCheckupsData, selectVaccineData } from './selectors';
-export const getAllHealthCheckupPeriods = (): any => {
+export const useAllHealthCheckupPeriods = (): any => {
+  const { t } = useTranslation();
   const activeChild = useAppSelector(selectActiveChild);
+  const measures = Array.isArray(activeChild?.measures) ? activeChild.measures : [];
   const taxonomy = useAppSelector(selectAllTaxonomyData);
 
-  const allGrowthPeriods = taxonomy.growth_period;
-  const allMeasures = activeChild?.measures.filter((item: any) => (item.measurementPlace == 0)).sort(
+  const allGrowthPeriods = (Array.isArray(taxonomy?.growth_period) ? taxonomy.growth_period : []);
+  const allMeasures = measures.filter((item: any) => (item.measurementPlace == 0)).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
   // getall measures where child received vaccines but growth data marked as measured at home
-  const vcMeasures = activeChild?.measures.filter((item: any) => (item.measurementPlace == 1 && item.didChildGetVaccines == true)).sort(
+  const vcMeasures = measures.filter((item: any) => (item.measurementPlace == 1 && item.didChildGetVaccines == true)).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
-  const allVaccinePeriods = useAppSelector(selectVaccineData);
+  const vaccineData = useAppSelector(selectVaccineData);
+  const allVaccinePeriods = (Array.isArray(vaccineData) ? vaccineData : []).map((item: any) => ({...item}));
   const checkIfMeasuredVaccineExistsForLocale = (vaccineIds: any): any => {
     return vaccineIds?.filter((vcId: any) => {
       return allVaccinePeriods?.some((el: any) => {
@@ -31,7 +33,7 @@ export const getAllHealthCheckupPeriods = (): any => {
   // sorting measures by date
   const allMeasurements = [...allMeasures, ...vcMeasures].map((item: MeasuresEntity) => {
     const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
-    const filteredVaccinesForLocale = (item.vaccineIds || item.vaccineIds != '') ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(item.vaccineIds)) : []
+    const filteredVaccinesForLocale = checkIfMeasuredVaccineExistsForLocale(readVaccineIds(item.vaccineIds))
     return {
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
@@ -50,11 +52,11 @@ export const getAllHealthCheckupPeriods = (): any => {
       doctorComment: item.doctorComment
     };
   })
-  const vaccineMeasures = activeChild.measures.filter((item: any) => item.didChildGetVaccines == true);
+  const vaccineMeasures = measures.filter((item: any) => item.didChildGetVaccines == true);
   const measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure: any) => {
     // remove uuids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
-    const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(measure.vaccineIds)) : [];
+    const vaccinesForAmeasure = checkIfMeasuredVaccineExistsForLocale(readVaccineIds(measure.vaccineIds));
     if (vaccinesForAmeasure) {
       vaccinesForAmeasure.forEach((vaccine: any) => {
         measuredVaccines.push(vaccine);
@@ -91,11 +93,11 @@ export const getAllHealthCheckupPeriods = (): any => {
       return vaccinesforHC;
     }
   }
-  const allHealthCheckupsData = useAppSelector(selectHealthCheckupsData);
+  const healthCheckupsData = useAppSelector(selectHealthCheckupsData);
+  const allHealthCheckupsData = (Array.isArray(healthCheckupsData) ? healthCheckupsData : []).map((item: any) => ({...item}));
   const additionalMeasures: any[] = [];
-  const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number): any => {
+  const getMeasuresForHCPeriod = (hcItem: any, _currentIndex: number): any => {
     // console.log("currentIndex--",currentIndex)
-    const { t } = useTranslation();
     if (hcItem && hcItem.vaccination_opens !== undefined && hcItem.vaccination_ends !== undefined) {
       const measure = allMeasurements.filter((measure: any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
       let regularMeasure: any = {};
@@ -264,7 +266,7 @@ export const getAllHealthCheckupPeriods = (): any => {
     // Next period will become upcoming HC period.
     // Once the age period of child matches the upcoming HC period, only then Add button will be displayed
     if (previousPeriods.length > 0) {
-      if (!('uuid' in previousPeriods[0]?.growthMeasures || '')) {
+      if (!Object.prototype.hasOwnProperty.call(previousPeriods[0]?.growthMeasures ?? {}, 'uuid')) {
         upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
         currentPeriod = upcomingPeriods[0];
         previousPeriods.shift();

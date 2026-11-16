@@ -34,7 +34,7 @@ const config = {
     "cognitive",
     "motor",
   ],
-  regexpEmojiPresentation: /[^\p{L} ]/gu,
+  regexpEmojiPresentation: /[^\p{L}\p{M} ]/gu,
   luxonDefaultLocale: "en-US",
   videoTypeVimeo: "vimeo",
   videoTypeYoutube: "youtube",

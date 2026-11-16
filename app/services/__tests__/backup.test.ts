@@ -1,3 +1,9 @@
+jest.mock('../backupPassword',()=>({requestBackupPassword:jest.fn().mockResolvedValue('a long backup passphrase'),setBackupOperationBusy:jest.fn()}));
+jest.mock('../backupRuntime',()=>({backupRuntime:()=>({context:()=>({flavour:'bebbo',country:'1',language:'en'}),flags:()=>({growthEnabled:true,developmentEnabled:true,vchcEnabled:true})})}));
+jest.mock('../firebaseAnalytics', () => ({logAnalyticsEvent: jest.fn().mockResolvedValue(undefined)}));
+import {Platform} from 'react-native';
+import Share from 'react-native-share';
+import {normaliseBackupCiphertext, parseBackupChildren} from '../backupFormat';
 import { backup } from '../backup';
 import { openBackupDocument, saveBackupDocument } from '../backupDocuments';
 import { pick, keepLocalCopy, saveDocuments } from '@react-native-documents/picker';
@@ -11,6 +17,7 @@ import AesCrypto from 'react-native-aes-crypto';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { getAllChildren, setActiveChild } from '../childCRUD';
 
+jest.mock('react-native-share', () => ({open: jest.fn()}));
 jest.mock('../googleAuth', () => ({ googleAuth: { ensureSignedIn: jest.fn() } }));
 jest.mock('../googleDrive', () => ({ googleDrive: {
   findBackupFiles: jest.fn(), safeCreateFolder: jest.fn(), createFileMultipart: jest.fn(),
@@ -19,16 +26,16 @@ jest.mock('../googleDrive', () => ({ googleDrive: {
 jest.mock('../../instances', () => ({ appConfig: { backupGDriveFolderName: 'ParentBuddy', backupGDriveFileName: 'mybackup.json' } }));
 jest.mock('@dr.pogodin/react-native-fs', () => ({
   DocumentDirectoryPath: '/documents', CachesDirectoryPath: '/cache',
-  readFile: jest.fn(), writeFile: jest.fn(), unlink: jest.fn(),
+  readFile: jest.fn(), writeFile: jest.fn(), unlink: jest.fn(), stat:jest.fn().mockResolvedValue({size:68,isFile:()=>true}), mkdir:jest.fn(), exists:jest.fn(), readDir:jest.fn().mockResolvedValue([]),
 }));
 jest.mock('@react-native-documents/picker', () => ({
   pick: jest.fn(), keepLocalCopy: jest.fn(), saveDocuments: jest.fn(),
   types: { allFiles: '*/*' }, errorCodes: { OPERATION_CANCELED: 'OPERATION_CANCELED' },
   isErrorWithCode: (error: any) => error != null && typeof error === 'object' && 'code' in error,
 }));
-jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn() }));
+jest.mock('react-native-aes-crypto', () => ({ encrypt: jest.fn(), decrypt: jest.fn(), randomKey: jest.fn().mockImplementation(async (length: number) => '1'.repeat(length*2)), hmac256: jest.fn().mockResolvedValue('2'.repeat(64)), pbkdf2:jest.fn().mockResolvedValue('ab'.repeat(32)) }));
 jest.mock('../../database/dbquery/userRealmCommon', () => ({ userRealmCommon: { openRealm: jest.fn(), exportUserRealmDataToJson: jest.fn() } }));
-jest.mock('../../database/dbquery/dataRealmCommon', () => ({ dataRealmCommon: { getFilteredData: jest.fn().mockResolvedValue([]) } }));
+jest.mock('../../database/dbquery/dataRealmCommon', () => ({ dataRealmCommon: { getFilteredData: jest.fn().mockResolvedValue([]), openRealm:jest.fn().mockResolvedValue({objects:()=>({filtered:()=>[]})}) } }));
 jest.mock('../childCRUD', () => ({ getAllChildren: jest.fn().mockResolvedValue([{ uuid: 'child' }]), setActiveChild: jest.fn() }));
 jest.mock('../../redux/reducers/realmSafe', () => ({ safeOpenRealm: jest.fn(), safeDeleteRealm: jest.fn() }));
 jest.mock('../Utils', () => ({ getChild: jest.fn() }));
@@ -45,6 +52,7 @@ const restore = () => backup.import(navigation, 'en', jest.fn(), [], [], {});
 
 beforeEach(() => {
   jest.clearAllMocks();
+  Object.defineProperty(Platform, "OS", {value: "android", configurable: true});
   realm = { write: jest.fn((callback: () => void) => callback()), deleteAll: jest.fn(), create: jest.fn() };
   navigation = { navigate: jest.fn() };
   auth.ensureSignedIn.mockResolvedValue(true);
@@ -57,7 +65,7 @@ beforeEach(() => {
   drive.createFileMultipart.mockResolvedValue('new');
   drive.deleteFile.mockResolvedValue(true);
   drive.downloadAndReadFile.mockResolvedValue({ statusCode: 200 });
-  jest.mocked(RNFS.readFile).mockResolvedValue('encrypted');
+  jest.mocked(RNFS.readFile).mockImplementation(async (_path,encoding) => encoding==='base64' ? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9ioAAAAASUVORK5CYII=' : 'encrypted');
   jest.mocked(getChild).mockImplementation(async item => ({ ...item }));
 });
 
@@ -199,9 +207,12 @@ const completeChild = {
 test('exports the same complete child payload to encrypted JSON', async () => {
   userData.exportUserRealmDataToJson.mockResolvedValueOnce([completeChild]);
   await expect(backup.export()).resolves.toBe(true);
-  expect(crypto.encrypt.mock.calls[0][0]).toBe(JSON.stringify([completeChild]));
+  const snapshot=JSON.parse(crypto.encrypt.mock.calls[0][0]);
+  expect(snapshot.children).toEqual([{...completeChild,photoUri:'attached'}]);
+  expect(snapshot.context).toEqual({flavour:'bebbo',country:'1',language:'en'});
+  expect(snapshot.photos.child).toEqual(expect.any(String));
   expect(crypto.encrypt.mock.calls[0][3]).toBe('aes-256-cbc');
-  expect(drive.createFileMultipart).toHaveBeenCalledWith(expect.objectContaining({ name: 'mybackup.json', content: 'encrypted', parentFolderId: 'folder' }));
+  expect(drive.createFileMultipart).toHaveBeenCalledWith(expect.objectContaining({ name: 'mybackup.json', content: expect.stringContaining('\"version\":3'), parentFolderId: 'folder' }));
 });
 
 test('retains expected children and nested data when reading an onboarding backup', async () => {
@@ -320,4 +331,159 @@ describe('local backup document selection and saving', () => {
     await expect(saveBackupDocument('encrypted')).rejects.toThrow('No space');
     expect(RNFS.unlink).toHaveBeenCalledTimes(1);
   });
+});
+
+test.each(['ciphertext', '"ciphertext"', '\uFEFF  "ciphertext"\n'])(
+  'accepts historical raw or JSON-quoted ciphertext: %s', input => {
+    expect(normaliseBackupCiphertext(input)).toBe('ciphertext');
+  },
+);
+
+test.each(['', '""', '"unterminated'])('rejects damaged ciphertext without decrypting: %s', input => {
+  expect(() => normaliseBackupCiphertext(input)).toThrow();
+});
+
+test.each([[child, child], [{...child, birthDate: 'bad date'}], [], {}].map(data => ({data})))(
+  'rejects invalid or duplicate child records before opening the live Realm', async ({data}) => {
+    await expect(backup.restoreChildren(data, [])).rejects.toThrow();
+    expect(userData.openRealm).not.toHaveBeenCalled();
+    expect(realm.write).not.toHaveBeenCalled();
+  },
+);
+
+test('a failure inserting the second child rolls back deletion and earlier insertions', async () => {
+  const previous = [{uuid: 'existing-child'}];
+  let contents: any[] = [...previous];
+  realm.write.mockImplementation((write: () => void) => {
+    const snapshot = [...contents];
+    try {write();} catch (error) {contents = snapshot; throw error;}
+  });
+  realm.deleteAll.mockImplementation(() => {contents = [];});
+  realm.create.mockImplementation((_schema: string, value: any) => {
+    if (value.uuid === 'broken-child') throw new Error('Invalid nested measurement');
+    contents.push(value);
+  });
+  const result = await backup.importFromFile([child, {...child, uuid: 'broken-child'}], navigation, [], jest.fn(), [], 'en');
+  expect(result).toEqual(new Error('Invalid nested measurement'));
+  expect(contents).toEqual(previous);
+  expect(realm.write).toHaveBeenCalledTimes(1);
+  expect(navigation.navigate).not.toHaveBeenCalled();
+});
+
+test('local imports use the same atomic restore and return success to the caller', async () => {
+  await expect(backup.importFromFile([completeChild], navigation, [], jest.fn(), [], 'en')).resolves.toBe('Imported');
+  expect(realm.write).toHaveBeenCalledTimes(1);
+  expect(realm.create).toHaveBeenCalledTimes(1);
+  expect(navigation.navigate).toHaveBeenCalledTimes(1);
+});
+
+test('conversion does not mutate the selected backup or erase live data if it fails', async () => {
+  jest.mocked(getChild).mockImplementationOnce(async item => {
+    item.childName = 'mutated';
+    throw new Error('conversion failed');
+  });
+  const source = {...completeChild};
+  await expect(backup.restoreChildren([source], [])).rejects.toThrow('conversion failed');
+  expect(source.childName).toBe('Child');
+  expect(realm.write).not.toHaveBeenCalled();
+});
+
+test('local preview accepts Android quoted JSON and never changes the live Realm', async () => {
+  jest.mocked(pick).mockResolvedValueOnce([{uri: 'content://backup', name: 'BACKUP.JSON'}] as any);
+  jest.mocked(keepLocalCopy).mockResolvedValueOnce([{status: 'success', sourceUri: 'content://backup', localUri: 'file:///cache/selected'}]);
+  jest.mocked(RNFS.readFile).mockResolvedValueOnce('"ciphertext"');
+  await expect(backup.readLocalBackup()).resolves.toEqual([child]);
+  expect(crypto.decrypt.mock.calls[0][0]).toBe('ciphertext');
+  expect(crypto.decrypt.mock.calls[0][3]).toBe('aes-256-cbc');
+  expect(userData.openRealm).not.toHaveBeenCalled();
+});
+
+test('legacy binary local preview closes its private Realm when validation fails', async () => {
+  jest.mocked(pick).mockResolvedValueOnce([{uri: 'content://backup', name: 'backup.realm'}] as any);
+  jest.mocked(keepLocalCopy).mockResolvedValueOnce([{status: 'success', sourceUri: 'content://backup', localUri: 'file:///cache/selected'}]);
+  const close = jest.fn();
+  jest.mocked(safeOpenRealm).mockResolvedValueOnce({objects: () => [{uuid: 'invalid'}], close} as any);
+  await expect(backup.readLocalBackup()).rejects.toThrow('invalid child data');
+  expect(close).toHaveBeenCalledTimes(1);
+  expect(userData.openRealm).not.toHaveBeenCalled();
+});
+
+test('cancelled local selection does not open or replace the live database', async () => {
+  jest.mocked(pick).mockRejectedValueOnce({code: 'OPERATION_CANCELED'});
+  await expect(backup.readLocalBackup()).resolves.toBeNull();
+  expect(userData.openRealm).not.toHaveBeenCalled();
+  expect(realm.deleteAll).not.toHaveBeenCalled();
+});
+
+test('iOS exports the authenticated envelope and awaits the share operation before cleanup', async () => {
+  Object.defineProperty(Platform, 'OS', {value: 'ios', configurable: true});
+  let finish!: (value: any) => void;
+  jest.mocked(Share.open).mockImplementationOnce(() => new Promise(resolve => {finish = resolve;}));
+  const result = backup.exportToFile();
+  for (let index = 0; index < 30 && !finish; index++) await Promise.resolve();
+  expect(finish).toBeDefined();
+  expect(RNFS.writeFile).toHaveBeenCalledWith(expect.any(String), expect.stringContaining('\"version\":3'), 'utf8');
+  expect(RNFS.unlink).not.toHaveBeenCalled();
+  finish({success: true});
+  await expect(result).resolves.toBe(true);
+  expect(RNFS.unlink).toHaveBeenCalledTimes(1);
+  expect(saveDocuments).not.toHaveBeenCalled();
+});
+
+test('cancelled iOS share cleans its temporary export and releases the operation lock', async () => {
+  Object.defineProperty(Platform, 'OS', {value: 'ios', configurable: true});
+  jest.mocked(Share.open).mockRejectedValueOnce({error: {code: 'ECANCELLED500'}});
+  await expect(backup.exportToFile()).resolves.toBe(false);
+  expect(RNFS.unlink).toHaveBeenCalledTimes(1);
+  jest.mocked(Share.open).mockResolvedValueOnce({success: true, message: ''});
+  await expect(backup.exportToFile()).resolves.toBe(true);
+});
+
+
+test('each completed restore reports imported records without reporting new profiles', async () => {
+  const log = require('../firebaseAnalytics').logAnalyticsEvent;
+  await backup.restoreChildren([child], []);
+  await backup.restoreChildren([child], []);
+  expect(log.mock.calls).toEqual([
+    ['backup_restore_completed', {restored_count: 1}], ['backup_restore_completed', {restored_count: 1}],
+  ]);
+});
+test('a failed restore never reports imported records', async () => {
+  realm.create.mockImplementationOnce(() => {throw new Error('disk full');});
+  await expect(backup.restoreChildren([child], [])).rejects.toThrow('disk full');
+  expect(require('../firebaseAnalytics').logAnalyticsEvent).not.toHaveBeenCalled();
+});
+
+
+test.each([
+  {...child, uuid: "child' OR TRUEPREDICATE"},
+  {...child, measures: {bad: true}},
+  {...child, reminders: 'not JSON'},
+  {...child, reminders: [{uuid: 'same'}, {uuid: 'same'}]},
+  {...child, favoritegames: ['12']},
+])('rejects malformed nested records or unsafe profile identifiers before live writes', async value => {
+  await expect(backup.restoreChildren([value], [])).rejects.toThrow();
+  expect(userData.openRealm).not.toHaveBeenCalled();
+});
+test('invalid control bytes inside text are rejected rather than silently changing records', () => {
+  const invalid = JSON.stringify([{...child, childName: 'A B'}]).replace('A B', 'A' + String.fromCharCode(1) + 'B');
+  expect(() => parseBackupChildren(invalid)).toThrow();
+  expect(parseBackupChildren(JSON.stringify([{...child, comment: 'line 1\nline 2'}]))[0].comment).toBe('line 1\nline 2');
+});
+test('a large multilingual multi-profile import retains all nested records and is repeatable without duplicates', async () => {
+  const data = Array.from({length: 500}, (_, index) => ({...completeChild, uuid: `child-${index}`,
+    childName: index % 2 ? 'عائشَہ' : 'فاطِمة', isExpected: index % 2 ? 'true' : 'false'}));
+  let saved: any[] = [];
+  realm.deleteAll.mockImplementation(() => {saved = [];});
+  realm.create.mockImplementation((_schema: string, value: any) => saved.push(JSON.parse(JSON.stringify(value))));
+  for (let repeat = 0; repeat < 2; repeat++) {
+    await backup.restoreChildren(data, []);
+    expect(saved).toHaveLength(500);
+    expect(new Set(saved.map(value => value.uuid)).size).toBe(500);
+    expect(saved[42].measures).toEqual(data[42].measures);
+    expect(saved[43].reminders).toEqual(data[43].reminders);
+    expect(saved[43].childName).toBe('عائشَہ');
+    expect(saved[43].checkedMilestones).toEqual(data[43].checkedMilestones);
+    expect(saved[43].favoriteadvices).toEqual(data[43].favoriteadvices);
+  }
 });

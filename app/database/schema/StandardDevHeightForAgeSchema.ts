@@ -1,5 +1,5 @@
 import { ObjectSchema } from "realm";
-import { StandDevObjEntity, StandDevObj } from "./StandardDevWeightForHeightSchema";
+import {StandDevObjEntity} from './StandardDevWeightForHeightSchema';
 
 export type StandardDevHeightForAgeEntity = {
   child_age: number[];

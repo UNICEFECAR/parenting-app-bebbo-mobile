@@ -1,3 +1,5 @@
+import {openExternalLink} from '../services/externalLink';
+import {openMeasuredLink} from "../services/measuredLink";
 import {
   APP_SHARE,
   DONATE_OPENED,
@@ -12,7 +14,7 @@ import {
   BgHealth,
   BgVaccination,
 } from "@components/shared/BackgroundColors";
-import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
+import {ButtonModal, ButtonTextTheme} from '@components/shared/ButtonGlobal';
 import {
   FDirCol,
   FDirRow,
@@ -42,10 +44,9 @@ import {
   DrawerHeadContainer,
   DrawerLinkView,
   NavIconSpacing,
-  NavIconSpacingAbout,
   SubDrawerHead,
   SubDrawerLinkView,
-} from "@components/shared/NavigationDrawer";
+} from '@components/shared/NavigationDrawer';
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { useFocusEffect } from "@react-navigation/native";
 import { bgcolorWhite2, lightShadeColor, menuDrawerTextColor, secondaryColor } from "@styles/style";
@@ -56,13 +57,12 @@ import {
   Heading4Center,
   Heading5,
 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH } from "@app-types/types";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
-  Linking,
   Modal,
   Platform,
   Pressable,
@@ -78,13 +78,11 @@ import { useAppSelector } from "../../App";
 import { isFutureDate } from "../services/childCRUD";
 import { getVaccinesForPeriodCount } from "../services/notificationService";
 import { formatDate, addSpaceToHtml } from "../services/Utils";
-import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
 import { selectActiveChild, selectAllCountries, selectChildGenders, selectSurveyData, selectVaccineData } from "../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor: secondaryColor,
@@ -123,7 +121,7 @@ const styles = StyleSheet.create({
   },
 });
 const CustomDrawerContent = ({ navigation }: any): any => {
-  const netInfo = useNetInfoHook();
+  useNetInfoHook();
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -179,6 +177,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         }
         setfavoritescount(favadvices + favgames);
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Selected-child identity deliberately restarts the focus count calculation.
     }, [isOpen, activeChild.uuid, favoriteadvices, favoritegames])
   );
   const languageCode = useAppSelector(
@@ -192,11 +191,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       (country: any) => country.CountryID === countryId.toString()
     );
     setCountryEmail(selectedCountry?.country_email);
-  }, []);
+  }, [allCountries, countryId]);
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
     setActiveChildGenderData(gender);
-  }, [activeChild?.gender]);
+  }, [activeChild?.gender, genders]);
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -252,7 +251,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               const combinedNotis = currentChildallnoti
                 .sort(
                   (a: any, b: any) =>
-                    new Date(a.notificationDate) - new Date(b.notificationDate)
+                    new Date(a.notificationDate).getTime() - new Date(b.notificationDate).getTime()
                 )
                 .filter((item: any) => {
                   return (
@@ -277,7 +276,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           }
         }
       }
-    }, [isOpen, activeChild.uuid, allnotis])
+    }, [isOpen, activeChild.uuid, activeChild.birthDate, allnotis, allVaccineData])
   );
   const onShare = async (): Promise<any> => {
     const localeData =
@@ -293,7 +292,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       if (result.action === Share.sharedAction) {
         await logAnalyticsEvent(APP_SHARE);
       }
-    } catch (error: any) {
+    } catch  {
       Alert.alert(t("generalError"));
     }
   };
@@ -301,6 +300,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Drawer, child and notification transitions deliberately dismiss this transient modal.
     }, [isOpen, activeChild.uuid, allnotis])
   );
 
@@ -626,14 +626,13 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </Heading4>
           </DrawerLinkView>
           {userGuideItem &&
-            userGuideItem != {} &&
             userGuideItem != "" &&
             userGuideItem?.survey_feedback_link &&
             userGuideItem?.survey_feedback_link != "" &&
             userGuideItem?.survey_feedback_link != null ? (
             <DrawerLinkView
-              onPress={(): any => {
-                Linking.openURL(userGuideItem?.survey_feedback_link);
+              onPress={async (): Promise<void> => {
+                if (!(await openExternalLink(userGuideItem?.survey_feedback_link))) Alert.alert("", t("generalError"));
                 // navigation.navigate('UserGuide')
               }}
             >
@@ -694,11 +693,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 </Heading4>
               </DrawerLinkView>
               <DrawerLinkView
-                onPress={(): any => {
-                  const eventData = { name: EMAIL_SENT };
-                  logEvent(eventData, netInfo.isConnected);
-                  console.log("Country email is", countryEmail);
-                  Linking.openURL(`mailto:${countryEmail}`);
+                onPress={async (): Promise<void> => {
+                  if (!(await openMeasuredLink(`mailto:${countryEmail}`, EMAIL_SENT))) Alert.alert("", t("generalError"));
                 }}
               >
                 <OuterIconRow>
@@ -721,9 +717,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 </Heading4>
               </DrawerLinkView>
               <DrawerLinkView
-                onPress={(): any => {
-                  console.log(appConfig.reviewURL);
-                  Linking.openURL(appConfig.reviewURL);
+                onPress={async (): Promise<void> => {
+                  if (!(await openExternalLink(appConfig.reviewURL, {allowAppStore: true}))) Alert.alert("", t("generalError"));
                 }}
               >
                 <OuterIconRow>
@@ -769,15 +764,13 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </>
           ) : null}
           {donateItem &&
-            donateItem != {} &&
             donateItem != "" &&
             donateItem?.survey_feedback_link &&
             donateItem?.survey_feedback_link != "" &&
             donateItem?.survey_feedback_link != null ? (
             <DrawerLinkView
               onPress={async (): Promise<any> => {
-                await logAnalyticsEvent(DONATE_OPENED);
-                Linking.openURL(donateItem?.survey_feedback_link);
+                if (!(await openMeasuredLink(donateItem?.survey_feedback_link, DONATE_OPENED))) Alert.alert("", t("generalError"));
               }}
             >
               <OuterIconRow>
@@ -836,8 +829,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     <ButtonModal
                       onPress={async (): Promise<any> => {
                         setModalVisible(false);
-                        await logAnalyticsEvent(FEEDBACK_SUBMIT);
-                        Linking.openURL(feedbackItem?.survey_feedback_link);
+                        if (!(await openMeasuredLink(feedbackItem?.survey_feedback_link, FEEDBACK_SUBMIT))) Alert.alert("", t("generalError"));
                       }}
                     >
                       <ButtonTextTheme numberOfLines={2}>

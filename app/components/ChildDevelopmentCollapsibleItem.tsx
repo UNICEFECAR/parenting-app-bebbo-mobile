@@ -133,18 +133,21 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
     } else {
       setToggleCheckBox(false);
     }
+  }, [item]);
+  // Content refresh must not reset a caregiver's in-progress milestone choice.
+  useEffect(() => {
     const fetchData = async (): Promise<any> => {
       const currVideoArtData = VideoArticlesData.filter(
-        (x: any) => x.id == item?.related_video_articles[0]
+        (x: any) => x.id == item?.related_video_articles?.[0]
       )[0];
       setselVideoArticleData(currVideoArtData);
       const currActivityData = ActivitiesData.filter(
-        (x: any) => x.id == item?.related_activities[0]
+        (x: any) => x.id == item?.related_activities?.[0]
       )[0];
       setselActivitiesData(currActivityData);      
     };
     fetchData();
-  }, [item]);
+  }, [item, ActivitiesData, VideoArticlesData]);
   const milestoneCheckUncheck = async (): Promise<any> => {
     const filterQuery = 'uuid == "' + activeChilduuid + '"';
     setToggleCheckBox(!toggleCheckBox);

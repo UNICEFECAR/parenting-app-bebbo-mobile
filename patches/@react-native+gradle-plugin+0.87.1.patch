@@ -1,0 +1,20 @@
+diff --git a/node_modules/@react-native/gradle-plugin/gradle/libs.versions.toml b/node_modules/@react-native/gradle-plugin/gradle/libs.versions.toml
+index 65dd0b1..829cb3a 100644
+--- a/node_modules/@react-native/gradle-plugin/gradle/libs.versions.toml
++++ b/node_modules/@react-native/gradle-plugin/gradle/libs.versions.toml
+@@ -5,6 +5,8 @@ guava = "31.0.1-jre"
+ javapoet = "1.13.0"
+ junit = "4.13.2"
+ kotlin = "2.2.0"
++# Compile the build plugins against Gradle 9.8 embedded Kotlin; keep the app KGP dependency.
++kotlin-build = "2.4.21"
+ assertj = "3.25.1"
+ ktfmt = "0.22.0"
+ 
+@@ -18,5 +20,5 @@ junit = {module = "junit:junit", version.ref = "junit" }
+ assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+ 
+ [plugins]
+-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
++kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-build" }
+ ktfmt = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt" }

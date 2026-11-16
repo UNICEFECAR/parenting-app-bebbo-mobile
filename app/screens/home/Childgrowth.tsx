@@ -26,10 +26,9 @@ import {
   Heading4Centerr,
   ShiftFromBottom5,
   ShiftFromTop10,
-  ShiftFromTopBottom20,
   ShiftFromTopBottom20Padding,
   SideSpacing10,
-} from "../../instances/bebbo/styles/typography";
+} from '../../instances/bebbo/styles/typography';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -92,7 +91,7 @@ const Childgrowth = ({ navigation }: any): any => {
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const headerTextColor = themeContext?.colors.CHILDGROWTH_TEXTCOLOR;
-  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
+
   const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading, setProfileLoading] = React.useState(false);

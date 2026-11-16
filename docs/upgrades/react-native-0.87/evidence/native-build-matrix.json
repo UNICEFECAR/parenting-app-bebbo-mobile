@@ -1,0 +1,173 @@
+{
+  "application_source": "efe62468b945cd372243a8ef1618a7cc2d13a54c",
+  "native_run": 43477593213,
+  "flavours": [
+    {
+      "flavour": "bebbo",
+      "android": {
+        "job_id": 132065691903,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065692264,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    },
+    {
+      "flavour": "bebboDev",
+      "android": {
+        "job_id": 132065692253,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065692309,
+        "original_conclusion": "failure",
+        "effective_conclusion": "success",
+        "source": "529784d8d5bbda9240be742f28cf9d7cd03d73ba",
+        "retry_run": 43484429818,
+        "retry_job": 132088987092,
+        "retry_reason": "CocoaPods CDN transfer failed before compilation in original job"
+      }
+    },
+    {
+      "flavour": "babuni",
+      "android": {
+        "job_id": 132065691904,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065692258,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    },
+    {
+      "flavour": "foleja",
+      "android": {
+        "job_id": 132065692369,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065692026,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    },
+    {
+      "flavour": "merhabaBebek",
+      "android": {
+        "job_id": 132065692479,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065692235,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    },
+    {
+      "flavour": "wawamor",
+      "android": {
+        "job_id": 132065691771,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065691982,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    },
+    {
+      "flavour": "reraiUmntwana",
+      "android": {
+        "job_id": 132065692414,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "arm64-v8a",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065691940,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    },
+    {
+      "flavour": "bebboPacific",
+      "android": {
+        "job_id": 132065691948,
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+        "conclusion": "success",
+        "checked_abis": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86",
+          "x86_64"
+        ]
+      },
+      "ios": {
+        "original_job_id": 132065691704,
+        "original_conclusion": "success",
+        "effective_conclusion": "success",
+        "source": "0da745ba70da7b2f2cd1173284731d2b5278044d"
+      }
+    }
+  ],
+  "limits": [
+    "Unsigned compile fixtures, not signed releases or live Firebase routing",
+    "Two auxiliary country development targets and tvOS were source-inventoried, not compiled",
+    "Rerai CI checks 64-bit ABIs; production defaults retain all four",
+    "See native-input-equivalence.json; JS and runtime data/UI checks have their own source/run IDs"
+  ]
+}

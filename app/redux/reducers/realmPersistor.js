@@ -1,6 +1,8 @@
 import { getRealmLib, safeOpenRealm } from './realmSafe';
 
-const FRAGMENT_SIZE = 16000000; // Limit of 16 MB per string
+// Bound UTF-8 storage size too: one UTF-16 code unit takes at most three
+// UTF-8 bytes. Four million units stay below Realm's 16 MB string boundary.
+const FRAGMENT_SIZE = 4000000;
 
 const ITEM_SCHEMA = {
   name: "ReduxPersistItem",
@@ -27,10 +29,19 @@ async function getItemSchemaClass() {
   return ItemSchemaClass;
 }
 
-function fragmentString(str) {
+export function fragmentString(str) {
+  if (typeof str !== 'string') throw new TypeError('Persisted value must be a string');
   const fragments = [];
-  for (let i = 0; (i * FRAGMENT_SIZE) < str.length; i++) {
-    fragments.push(str.substr(i * FRAGMENT_SIZE, FRAGMENT_SIZE));
+  let start = 0;
+  while (start < str.length) {
+    let end = Math.min(start + FRAGMENT_SIZE, str.length);
+    // Never turn a split surrogate pair into two invalid native UTF-8 strings.
+    if (end < str.length) {
+      const before = str.charCodeAt(end - 1), after = str.charCodeAt(end);
+      if (before >= 0xD800 && before <= 0xDBFF && after >= 0xDC00 && after <= 0xDFFF) end--;
+    }
+    fragments.push(str.slice(start, end));
+    start = end;
   }
   return fragments;
 }
@@ -64,11 +75,10 @@ function createRealmAccess(path) {
           schema: [ItemSchema],
           schemaVersion: 1,
           path,
-          migration: (oldRealm, newRealm) => {
-            console.log(newRealm)
+          onMigration: (oldRealm, newRealm) => {
             if (oldRealm.schemaVersion < 1) {
               const oldItems = oldRealm.objects(ITEM_SCHEMA.name);
-              const newItems = oldRealm.objects(ITEM_SCHEMA.name);   
+              const newItems = newRealm.objects(ITEM_SCHEMA.name);
               for (let i = 0; i < oldItems.length; i++) {
                 newItems[i].fragments = fragmentString(oldItems[i].content);
               }
@@ -96,7 +106,7 @@ export function createRealmPersistStorage({ path } = {}) {
   async function getItem(key, callback) {
     return withCallback(callback, async function() {
       const items = await accessItemInstances();
-      const matches = items.filtered(`name = "${key}"`);
+      const matches = items.filtered("name = $0", key);
       if (matches.length > 0 && matches[0]) {
         return matches[0].content;
       } else {
@@ -127,7 +137,7 @@ export function createRealmPersistStorage({ path } = {}) {
       const realm = await accessRealm();
       const items = await accessItemInstances();
       realm.write(() => {
-        const item = items.filtered(`name = "${key}"`);
+        const item = items.filtered("name = $0", key);
         realm.delete(item);
       });
     });

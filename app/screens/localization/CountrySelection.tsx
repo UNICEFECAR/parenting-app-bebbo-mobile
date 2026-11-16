@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 // import { localization } from '@dynamicImportsClass/dynamicImports';
 import CountryItem from "@components/CountryItem";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -11,8 +12,6 @@ import { Alert, FlatList, Linking, Platform, Pressable, StyleProp, ViewStyle } f
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
-import { ChildEntitySchema } from "../../database/schema/ChildDataSchema";
 import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
 import * as RNLocalize from "react-native-localize";
 import {
@@ -47,7 +46,7 @@ const CountrySelection = (props: any): any => {
   );
   const netInfo = useNetInfoHook();
   useEffect(() => {
-    console.log("All allCountries datas", allCountries);
+
     if (props.route?.params?.country == country) {
       if (props.route?.params?.language != undefined) {
         setSelectedLanguage(props.route?.params?.language);
@@ -57,7 +56,11 @@ const CountrySelection = (props: any): any => {
     }
   }, [props.route.params, country]);
 
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const countryChoiceInputs = useCommittedRef(() => ({allCountries, countryId, dispatch, userIsOnboarded}));
   useEffect(() => {
+    const {allCountries: inputAllCountries, countryId: inputCountryId, dispatch: inputDispatch, userIsOnboarded: inputUserIsOnboarded} = countryChoiceInputs.current();
+
     const getSelectedLanguage = (): any => {
       const selectedLanguage = RNLocalize.getLocales(); // Get the locales
       return selectedLanguage[0]?.languageCode || "en"; // Extract the language code
@@ -68,10 +71,10 @@ const CountrySelection = (props: any): any => {
     };
 
     const getCountryByCountryCode = (countryCode: any): any => {
-      for (const country of allCountries) {
-        for (const language of country.languages) {
-          const [languageCodeFromLuxon, countryCodeFromLuxon] =
-            language.luxonLocale.split("-");
+      for (const country of inputAllCountries) {
+        for (const language of (Array.isArray(country?.languages) ? country.languages : [])) {
+          const [_languageCodeFromLuxon, countryCodeFromLuxon] =
+            String(language?.luxonLocale ?? "").split("-");
           if (countryCodeFromLuxon === countryCode) {
             return country;
           }
@@ -86,37 +89,31 @@ const CountrySelection = (props: any): any => {
 
     if (isVisible) {
       let newCountryId: any;
-      let newCountryLocale: any;
-      if (userIsOnboarded == true) {
+      if (inputUserIsOnboarded == true) {
         if (
           props.route.params.country &&
           props.route.params.country != null &&
           props.route.params.country != undefined
         ) {
           newCountryId = props.route.params.country.CountryID;
-          newCountryLocale = props.route.params.country.luxonLocale;
           setCountry(props.route.params.country);
         } else {
-          newCountryId = countryId;
-          newCountryLocale = selectedDefaultCountry;
+          newCountryId = inputCountryId;
         }
       } else {
         if (props.route.params == undefined) {
-          newCountryLocale = selectedDefaultCountry;
-          newCountryId = countryId;
+          newCountryId = inputCountryId;
         } else {
           //  setCountry(props.route.params.country)
           newCountryId = props.route.params.country.CountryID;
           console.log("wewewe country is", newCountryId);
           if (props.route.params.language != undefined) {
-            newCountryLocale = props.route.params.language.luxonLocale;
           } else {
-            newCountryLocale = selectedDefaultCountry;
           }
         }
       }
       console.log("newCountryId country is", newCountryId);
-      const selectedCountry = allCountries.find(
+      const selectedCountry = inputAllCountries.find(
         (country: any) => country.CountryID == newCountryId
       );
       const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
@@ -132,21 +129,19 @@ const CountrySelection = (props: any): any => {
       }
 
       const fetchData = async (): Promise<any> => {
-        if (userIsOnboarded == false) {
-          await userRealmCommon.deleteBy(
-            ChildEntitySchema,
-            "isMigrated == false"
-          );
+        if (inputUserIsOnboarded == false) {
+          // A lost onboarding flag must never delete caregiver-created profiles.
+          // isMigrated identifies imported records, not disposable setup data.
           const data = await dataRealmCommon.deleteAllAtOnce();
           console.log(data, "..newdata..");
           // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
           const payload = { errorArr: [], fromPage: "OnLoad" };
-          dispatch(receiveAPIFailure(payload));
+          inputDispatch(receiveAPIFailure(payload));
         }
       };
       fetchData();
     }
-  }, [isVisible, props.route.params]);
+  }, [isVisible, props.route.params, countryChoiceInputs]);
   const renderItem = ({ item }: any): any => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
@@ -181,7 +176,7 @@ const CountrySelection = (props: any): any => {
   
     try {
       await Linking.openURL(storeUrl);
-    } catch (error) {
+    } catch  {
       Alert.alert(
         t("newAppStoreErrorTitle"),
         t("newAppStoreErrorMessage")
@@ -283,7 +278,7 @@ const handleContinueCountry = async () => {
 
         <OnboardingContainer>
           <Pressable
-            onPress={(e: any): any => {
+            onPress={(_e: any): any => {
               console.log("Back icon click");
               navigation.goBack();
             }}
@@ -304,7 +299,7 @@ const handleContinueCountry = async () => {
                 windowSize={20}
                 keyExtractor={(item): any => item.CountryID}
                 contentContainerStyle={contentContainer}
-                ListFooterComponent={allCountries.length <= 12 && renderHeader}
+                ListFooterComponent={allCountries.length <= 12 ? renderHeader : undefined}
               />
             ) : (
               <FlatList
@@ -315,7 +310,7 @@ const handleContinueCountry = async () => {
                 initialNumToRender={20}
                 windowSize={20}
                 keyExtractor={(item): any => item.CountryID}
-                ListHeaderComponent={allCountries.length <= 12 && renderHeader}
+                ListHeaderComponent={allCountries.length <= 12 ? renderHeader : undefined}
               />
             )}
           </SelectionView>

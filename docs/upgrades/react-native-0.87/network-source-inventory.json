@@ -1,0 +1,1480 @@
+{
+  "scope": "Hardcoded public instance source references and native source configuration",
+  "limitations": "References may be links or examples, not actual requests. Runtime API origins, redirects, SDK endpoints and device TLS results require separate verification. No credentials, query values or environment files are read. Do not use this inventory automatically as a trust allowlist.",
+  "generatedBy": "node scripts/network-source-inventory.cjs",
+  "flavours": [
+    {
+      "flavour": "babuni",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "https://afinidata.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://apps.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://babuni.app",
+          "references": 947,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/babuni/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/babuni/assets/offlinecontent/article.ts",
+            "app/instances/babuni/assets/offlinecontent/countryData.ts"
+          ]
+        },
+        {
+          "origin": "https://docs.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.babuni.app",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://www.realplaycoalition.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 140,
+          "sourceFiles": [
+            "app/instances/babuni/assets/offlinecontent/SurveyData.ts",
+            "app/instances/babuni/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "bebbo",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "http://med.uz",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "http://www.halobeba.rs",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "http://www.spid.uz",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://afinidata.com",
+          "references": 40,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://apps.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://bebbo.app",
+          "references": 3156,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/bebbo/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/bebbo/assets/offlinecontent/article.ts",
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts",
+            "app/instances/bebbo/assets/offlinecontent/countryData.ts"
+          ]
+        },
+        {
+          "origin": "https://docs.google.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.cloud.microsoft",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.gle",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://goo.gl",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://lh3.googleusercontent.com",
+          "references": 20,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://lh4.googleusercontent.com",
+          "references": 24,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://lh5.googleusercontent.com",
+          "references": 24,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://lh6.googleusercontent.com",
+          "references": 8,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://lh7-rt.googleusercontent.com",
+          "references": 20,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts",
+            "app/instances/bebbo/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 29,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 20,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://realplaycoalition.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://ru.m.wikipedia.org",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://wawamor.ec",
+          "references": 121,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 29,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.bebbo.app",
+          "references": 302,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/bebbo/assets/offlinecontent/article.ts",
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts",
+            "app/instances/bebbo/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://www.goldenpages.uz",
+          "references": 6,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.kinderkrebsinfo.de",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.realplaycoalition.com",
+          "references": 23,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 179,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/bebbo/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://youtu.be",
+          "references": 363,
+          "sourceFiles": [
+            "app/instances/bebbo/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "bebboDev",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "http://www.halobeba.rs",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://afinidata.com",
+          "references": 41,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://apps.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://bebbo.app",
+          "references": 30,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/article.ts",
+            "app/instances/bebboDev/assets/offlinecontent/countryData.ts"
+          ]
+        },
+        {
+          "origin": "https://goo.gl",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts",
+            "app/instances/bebboDev/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 31,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 19,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://realplaycoalition.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://wawamor.ec",
+          "references": 121,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 30,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.bebbo.app",
+          "references": 332,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/bebboDev/assets/offlinecontent/article.ts",
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts",
+            "app/instances/bebboDev/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://www.realplaycoalition.com",
+          "references": 22,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 11,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://youtu.be",
+          "references": 110,
+          "sourceFiles": [
+            "app/instances/bebboDev/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "bebboPacific",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "https://afinidata.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://bebbopacific.app",
+          "references": 1794,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/countryData.ts",
+            "app/instances/bebboPacific/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://childrenswi.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://en.wikipedia.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.gle",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://globalhealthmedia.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://hygeiahealth.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://i.vimeocdn.com",
+          "references": 28,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://images.openai.com",
+          "references": 114,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://laleche.org.uk",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://llli.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://medela.sg",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://natashaskitchen.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 279,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://realplaycoalition.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://richmondsunsetnews.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://trudnocaizdravlje.rs",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://vimeo.com",
+          "references": 28,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.acog.org",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.bbc.co.uk",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.breastfeeding.asn.au",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.cubesnjuliennes.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.ecdc.europa.eu",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.empowerpacific.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.facebook.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.fijiwomen.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.healthychildren.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.imthecheftoo.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.instagram.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.loveandlemons.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.lukecoutinho.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.mayoclinic.org",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.medela.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.motherhoodcenter.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.msp.org.fj",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.mwcsp.gov.fj",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.nhs.uk",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.playgroupwa.com.au",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.savethechildren.org.fj",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.thegardnerschool.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.unicef.org",
+          "references": 4,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/FaqsData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.who.int",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/FaqsData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 37,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/SurveyData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/bebboPacific/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www2.hse.ie",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www3.ha.org.hk",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://youtu.be",
+          "references": 254,
+          "sourceFiles": [
+            "app/instances/bebboPacific/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "foleja",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "http://americanpregnancy.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "http://trudnocaizdravlje.rs",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "http://www.marchofdimes.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://afinidata.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://apps.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://beba-ks.org",
+          "references": 4,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://bebbo.app",
+          "references": 2094,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/foleja/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/foleja/assets/offlinecontent/article.ts",
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts",
+            "app/instances/foleja/assets/offlinecontent/countryData.ts"
+          ]
+        },
+        {
+          "origin": "https://docs.google.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://i.vimeocdn.com",
+          "references": 13,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://mpn.gov.rs",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts",
+            "app/instances/foleja/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://vimeo.com",
+          "references": 13,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.bebbo.app",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://www.cdc.gov",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.ecdc.europa.eu",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.realplaycoalition.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.rks-gov.net",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.unicef.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.who.int",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 282,
+          "sourceFiles": [
+            "app/instances/foleja/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/foleja/assets/offlinecontent/article.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "merhabaBebek",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "https://afinidata.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://asi.saglik.gov.tr",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.gle",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://hsgm.saglik.gov.tr",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://merhababebek.app",
+          "references": 320,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/merhabaBebek/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/merhabaBebek/assets/offlinecontent/article.ts",
+            "app/instances/merhabaBebek/assets/offlinecontent/countryData.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://realplaycoalition.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.ecdc.europa.eu",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.merhababebek.app",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://www.unicef.org",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.who.int",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://youtu.be",
+          "references": 139,
+          "sourceFiles": [
+            "app/instances/merhabaBebek/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "reraiUmntwana",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "http://rerai.umntwana.app",
+          "references": 586,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://afinidata.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.cloud.microsoft",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.gle",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://globalhealthmedia.org",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://i.vimeocdn.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 43,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://realplaycoalition.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://rerai.umntwana.app",
+          "references": 2294,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/countryData.ts",
+            "app/instances/reraiUmntwana/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://trudnocaizdravlje.rs",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://vimeo.com",
+          "references": 28,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.ecdc.europa.eu",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.realplaycoalition.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.unicef.org",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.who.int",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/FaqsData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 8,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/SurveyData.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/reraiUmntwana/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://youtu.be",
+          "references": 417,
+          "sourceFiles": [
+            "app/instances/reraiUmntwana/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "flavour": "wawamor",
+      "productionApi": "External configuration required; CI fixtures are not production evidence",
+      "hosts": [
+        {
+          "origin": "https://afinidata.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://aquiporti.ec",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://cdn.lottielab.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/splash.json"
+          ]
+        },
+        {
+          "origin": "https://docs.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://drive.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://forms.office.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/SurveyData.ts"
+          ]
+        },
+        {
+          "origin": "https://play.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://policies.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://raisingchildren.net.au",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://unicef.org.ec",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://wawamor.ec",
+          "references": 510,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/wawamor/assets/offlinecontent/VideoArticleData.ts",
+            "app/instances/wawamor/assets/offlinecontent/article.ts",
+            "app/instances/wawamor/assets/offlinecontent/countryData.ts",
+            "app/instances/wawamor/config/appConfig.ts"
+          ]
+        },
+        {
+          "origin": "https://www.apple.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.google.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/ActivitiesData.ts"
+          ]
+        },
+        {
+          "origin": "https://www.instagram.com",
+          "references": 3,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.realplaycoalition.com",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/basicPages.ts"
+          ]
+        },
+        {
+          "origin": "https://www.salud.gob.ec",
+          "references": 9,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.unicef.es",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.unicef.org",
+          "references": 10,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/SurveyData.ts",
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.w3.org",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.who.int",
+          "references": 1,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/article.ts"
+          ]
+        },
+        {
+          "origin": "https://www.youtube.com",
+          "references": 9,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://youtu.be",
+          "references": 102,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/ActivitiesData.ts",
+            "app/instances/wawamor/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        },
+        {
+          "origin": "https://youtube.com",
+          "references": 2,
+          "sourceFiles": [
+            "app/instances/wawamor/assets/offlinecontent/VideoArticleData.ts"
+          ]
+        }
+      ]
+    }
+  ],
+  "ios": [
+    {
+      "file": "ios/BebboPacific-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/MerhabaBebek-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ParentBuddyApp/Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ParentBuddyAppBangla-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ParentBuddyAppBanglaDev-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ParentBuddyAppDev-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ParentBuddyAppXk-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ParentBuddyAppXkDev-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/ReraiUmntwana-Info.plist",
+      "allowsArbitraryLoads": true
+    },
+    {
+      "file": "ios/Wawamor-Info.plist",
+      "allowsArbitraryLoads": true
+    }
+  ]
+}

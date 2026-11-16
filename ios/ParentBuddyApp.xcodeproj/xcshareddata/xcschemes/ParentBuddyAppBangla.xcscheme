@@ -92,5 +92,20 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction ActionType="Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent title="Upload archive symbols to this app's Firebase project" scriptText="bash &quot;${SRCROOT}/../scripts/ios-archive-symbols.sh&quot; &quot;Babuni.app&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "D6F142DE2E293C3A00986814"
+                     BuildableName = "Babuni.app"
+                     BlueprintName = "ParentBuddyAppBangla"
+                     ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>

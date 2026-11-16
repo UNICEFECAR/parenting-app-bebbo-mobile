@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -12,8 +13,7 @@ import Icon, {
   OuterIconLeft,
   OuterIconRow,
 } from "@components/shared/Icon";
-import OnboardingContainer, {
-  LocalizationAction,
+import {
   LocalizationCol,
   LocalizationWithoutBorderCol,
   LocalizationContainer,
@@ -42,14 +42,8 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Platform,
-  BackHandler,
-  Text,
-  StyleSheet,
-  View,
-  Alert,
-} from "react-native";
+import {BackHandler, Text, StyleSheet, Alert, ScrollView} from 'react-native';
+import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { appConfig, localization } from "../../instances";
@@ -62,8 +56,8 @@ import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor, secondaryColor } from "@styles/style";
 import moment from "moment";
 import "moment/min/locales";
-import "moment/locale/bn-bd"; // import for bangla language
-import "moment/locale/bn"; // import for bangla language
+import "moment/locale/bn-bd";
+import "moment/locale/bn";
 import "moment/locale/sq";
 import "moment/locale/sr";
 import "moment/locale/tr";
@@ -73,7 +67,9 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
 import CountryAppBanner from "@components/shared/CountryAppBanner";
-const flavor = process.env.FLAVOR || "bebbo";
+ // import for bangla language
+ // import for bangla language
+
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "Terms"
@@ -83,6 +79,18 @@ type Props = {
   route: any;
 };
 const styles = StyleSheet.create({
+  page: { flex: 1 },
+  content: {
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingHorizontal: 25,
+    paddingVertical: 24,
+  },
+  naturalBlock: { flex: 0, flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
+  header: { marginTop: 0 },
+  countryRow: { minHeight: 0 },
+  countryCell: { minHeight: 64, paddingVertical: 16, marginTop: 0 },
+  continueAction: { marginTop: 16 },
   welcomeText: {
     fontSize: 20,
     fontFamily: "roboto-bold",
@@ -91,7 +99,7 @@ const styles = StyleSheet.create({
   },
 });
 const CountryLanguageConfirmation = ({ route }: Props): any => {
-  const country = route?.params?.country ?? null;
+
   const language = route?.params?.language ?? null;
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
@@ -111,9 +119,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId
   );
-  const countrySelectedId = useAppSelector(
-    (state: any) => state.selectedCountry.countrySelectedId
-  );
+  useAppSelector((state:any)=>state.selectedCountry.countrySelectedId);
+
+
   const locale = useAppSelector((state: any) => state.selectedCountry.locale);
   const selectedLocale = useAppSelector(
     (state: any) => state.selectedCountry.selectedLocale
@@ -135,44 +143,12 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       saveinDB: true,
     },
   ];
-  const sponsors = useAppSelector(
-    (state: any) => state.selectedCountry.sponsors
-  );
+  useAppSelector((state:any)=>state.selectedCountry.sponsors);
+
+
   const allCountries = useAppSelector(selectAllCountries);
 
   const { t, i18n } = useTranslation();
-  const extractLanguageCode = (languageTag: string): string => {
-    const [languageCode] = languageTag.split("-");
-    return languageCode;
-  };
-  const getCountryByCountryCode = (countryCode: any): any => {
-    const normalizedCountryCode = countryCode.toLowerCase(); // Normalize to lowercase for case-insensitive comparison
-
-    for (const country of allCountries) {
-      if (country?.languages) {
-        // Ensure country.languages is not null or undefined
-        for (const language of country?.languages) {
-          if (
-            !language?.languageCode?.toLowerCase().includes("-") &&
-            language?.languageCode?.toLowerCase().includes(normalizedCountryCode)
-          ) {
-            return country;
-          } else if (
-            language.languageCode
-              ?.toLowerCase()
-              ?.split("-")[0]
-              ?.includes(normalizedCountryCode)
-          ) {
-            return country;
-          }
-        }
-      }
-    }
-    const sortedCountries = [...allCountries].sort(
-      (a, b) => (a?.CountryID ?? 0) - (b?.CountryID ?? 0)
-    );
-    return flavor == "bebbo" ? null : sortedCountries[0]; // Return null if country not found
-  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -190,7 +166,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           });
         });
       }, 500);
-    }, [])
+    }, [navigation])
   );
   const getDeviceLocaleTag = (): string => {
     return RNLocalize.getLocales()?.[0]?.languageTag || "en-US";
@@ -310,7 +286,11 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     return getFirstAvailableSelection();
   };
 
+  // Keep the selection helper current without resetting choices on every render.
+  const confirmationInputs = useCommittedRef(() => ({getInitialSelection}));
   useEffect(() => {
+    const {getInitialSelection: inputGetInitialSelection} = confirmationInputs.current();
+
     if (!isVisible) return;
     if (!allCountries?.length) return;
 
@@ -320,7 +300,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     setLuxonLanLocale(selectedLanguageTag);
     setDeviceLangCode(selectedLanguageCode);
 
-    const initialSelection = getInitialSelection();
+    const initialSelection = inputGetInitialSelection();
 
     setCountryData(initialSelection.country);
     setNewLanguage(initialSelection.language);
@@ -332,8 +312,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     selectedLocale,
     locale,
     languageCode,
-    route?.params,
-  ]);
+    route?.params, confirmationInputs]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -353,7 +332,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
       };
-    }, [])
+    }, [i18n, locale, navigation])
   );
 
   const rtlConditions = async (language: any): Promise<any> => {
@@ -393,7 +372,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         } else {
           console.log("countyData is", countryData);
           console.log("newLanguage is", newLanguage);
-          const languageSelected = selectedLocale !== "" ? selectedLocale : locale;
+
           const filteredLan = countryData?.languages?.filter(
             (lang: any) => lang?.locale == newLanguage?.locale
           );
@@ -521,92 +500,95 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             <Heading3Centerr>{t("noInternet")}</Heading3Centerr>
           </OfflineBar>
         ) : null}
-        <OnboardingContainer>
-          <OnboardingConfirmationHead>
-            <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
-            <Icon name="ic_country" size={100} color={secondaryColor} />
-            <OnboardingShiftHead>
-              <Heading2Centerw>{t("countryLangSelection")}</Heading2Centerw>
-            </OnboardingShiftHead>
-            <Heading4Centerr>{t("checkonce")}</Heading4Centerr>
-          </OnboardingConfirmationHead>
-          <CountryAppBanner countryId={countryData?.CountryID ?? countryData?.countryId} />
-          <LocalizationContainer>
-            <LocalizationRow>
-              <LocalizationCol
-                disabled={allCountries.length === 0}
-                onPress={(): any =>
-                  navigation.navigate("CountrySelection", {
-                    country: countryData,
-                    language: newLanguage,
-                  })
-                }
-              >
-                <LocalizationContentHead>
-                  <Heading3Regular>{t("country")}</Heading3Regular>
-                </LocalizationContentHead>
-                <LocalizationContentResult>
-                  <Heading3>{countryData?.name}</Heading3>
-                </LocalizationContentResult>
-              </LocalizationCol>
+        <SafeAreaView style={[styles.page, { backgroundColor: headerColor }]} edges={["top", "bottom"]}>
+          <ScrollView style={styles.page} contentContainerStyle={styles.content} bounces={false}>
+            <OnboardingConfirmationHead style={[styles.naturalBlock, styles.header]}>
+              <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
+              <Icon name="ic_country" size={100} color={secondaryColor} />
+              <OnboardingShiftHead>
+                <Heading2Centerw>{t("countryLangSelection")}</Heading2Centerw>
+              </OnboardingShiftHead>
+              <Heading4Centerr>{t("checkonce")}</Heading4Centerr>
+            </OnboardingConfirmationHead>
+            <CountryAppBanner countryId={countryData?.CountryID ?? countryData?.countryId} />
+            <LocalizationContainer style={styles.naturalBlock}>
+              <LocalizationRow style={[styles.naturalBlock, styles.countryRow]}>
+                <LocalizationCol
+                  style={[styles.naturalBlock, styles.countryCell]}
+                  disabled={allCountries.length === 0}
+                  onPress={(): any =>
+                    navigation.navigate("CountrySelection", {
+                      country: countryData,
+                      language: newLanguage,
+                    })
+                  }
+                >
+                  <LocalizationContentHead>
+                    <Heading3Regular>{t("country")}</Heading3Regular>
+                  </LocalizationContentHead>
+                  <LocalizationContentResult>
+                    <Heading3>{countryData?.name}</Heading3>
+                  </LocalizationContentResult>
+                </LocalizationCol>
 
-              <LocalizationWithoutBorderCol
-                disabled={allCountries.length === 0}
-                onPress={() =>
-                  popAndPush(navigation, "LanguageSelection", {
-                    country: countryData,
-                    language: newLanguage,
-                    luxonLocale: luxonLanLocale ?? null,
-                    deviceLanCode: deviceLanCode ?? null,
-                    isFromCountry: true,
-                    isDirect: true,
-                  })
-                }
-              >
-                <LocalizationContentHead>
-                  <Heading3Regular>{t("language")}</Heading3Regular>
-                </LocalizationContentHead>
-                <LocalizationContentResult>
-                  <Heading3>
-                    {Array.isArray(route?.params?.language)
-                      ? language?.[0]?.displayName
-                      : newLanguage?.displayName}
-                  </Heading3>
-                </LocalizationContentResult>
-              </LocalizationWithoutBorderCol>
+                <LocalizationWithoutBorderCol
+                  style={[styles.naturalBlock, styles.countryCell]}
+                  disabled={allCountries.length === 0}
+                  onPress={() =>
+                    popAndPush(navigation, "LanguageSelection", {
+                      country: countryData,
+                      language: newLanguage,
+                      luxonLocale: luxonLanLocale ?? null,
+                      deviceLanCode: deviceLanCode ?? null,
+                      isFromCountry: true,
+                      isDirect: true,
+                    })
+                  }
+                >
+                  <LocalizationContentHead>
+                    <Heading3Regular>{t("language")}</Heading3Regular>
+                  </LocalizationContentHead>
+                  <LocalizationContentResult>
+                    <Heading3>
+                      {Array.isArray(route?.params?.language)
+                        ? language?.[0]?.displayName
+                        : newLanguage?.displayName}
+                    </Heading3>
+                  </LocalizationContentResult>
+                </LocalizationWithoutBorderCol>
 
-              <LocalizationAction></LocalizationAction>
-            </LocalizationRow>
-            <ShiftFromTop25>
-              <ButtonWithBorder
-                disabled={allCountries.length === 0}
-                onPress={onEditLang}
-              >
-                <OuterIconRow>
-                  <OuterIconLeft>
-                    <IconML
-                      name="ic_edit"
-                      size={16}
-                      color={secondaryBtnColor}
-                    />
-                  </OuterIconLeft>
-                  <ButtonTextLg>{t("editCountryLang")}</ButtonTextLg>
-                </OuterIconRow>
-              </ButtonWithBorder>
-            </ShiftFromTop25>
+              </LocalizationRow>
+              <ShiftFromTop25>
+                <ButtonWithBorder
+                  disabled={allCountries.length === 0}
+                  onPress={onEditLang}
+                >
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <IconML
+                        name="ic_edit"
+                        size={16}
+                        color={secondaryBtnColor}
+                      />
+                    </OuterIconLeft>
+                    <ButtonTextLg>{t("editCountryLang")}</ButtonTextLg>
+                  </OuterIconRow>
+                </ButtonWithBorder>
+              </ShiftFromTop25>
 
-            <Flex1>
-              <ButtonPrimary
-                disabled={allCountries.length === 0}
-                onPress={(): any => saveSelection()}
-              >
-                <ButtonUpperCaseText numberOfLines={2}>
-                  {t("continueCountryLang")}
-                </ButtonUpperCaseText>
-              </ButtonPrimary>
-            </Flex1>
-          </LocalizationContainer>
-        </OnboardingContainer>
+              <Flex1 style={[styles.naturalBlock, styles.continueAction]}>
+                <ButtonPrimary
+                  disabled={allCountries.length === 0}
+                  onPress={(): any => saveSelection()}
+                >
+                  <ButtonUpperCaseText numberOfLines={2}>
+                    {t("continueCountryLang")}
+                  </ButtonUpperCaseText>
+                </ButtonPrimary>
+              </Flex1>
+            </LocalizationContainer>
+          </ScrollView>
+        </SafeAreaView>
       </>
     </>
   );

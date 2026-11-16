@@ -1,0 +1,189 @@
+name: Unsigned native verification
+on:
+  workflow_call:
+    inputs:
+      platform:
+        required: true
+        type: string
+      flavour:
+        required: true
+        type: string
+      configuration:
+        default: primary
+        type: string
+      smoke:
+        default: false
+        type: boolean
+  workflow_dispatch:
+    inputs:
+      platform:
+        type: choice
+        options: [android, ios]
+        required: true
+      flavour:
+        type: choice
+        options: [bebbo, bebboDev, babuni, foleja, merhabaBebek, wawamor, reraiUmntwana, bebboPacific]
+        required: true
+      configuration:
+        default: primary
+        type: choice
+        options: [primary, development]
+permissions:
+  contents: read
+jobs:
+  compile:
+    runs-on: ${{ inputs.platform == 'ios' && 'macos-latest' || 'ubuntu-24.04' }}
+    timeout-minutes: 90
+    env:
+      FLAVOR: ${{ inputs.flavour }}
+      NATIVE_CONFIGURATION: ${{ inputs.configuration || 'primary' }}
+      CI: 'true'
+      NATIVE_SMOKE: ${{ inputs.smoke || false }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - name: Prepare fake configuration for compile checks
+        run: node scripts/ci-fixtures.cjs
+      - run: npm run assets:check
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        if: inputs.platform == 'android'
+        with:
+          distribution: temurin
+          java-version: '21'
+          problem-matcher: true
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+        if: inputs.platform == 'android'
+      - name: Install pinned Android tools
+        if: inputs.platform == 'android'
+        run: sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;27.1.12297006'
+      - name: Verify unsafe Gradle version catalog values are rejected
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        run: python3 scripts/check-gradle-catalog-security.py --report "$RUNNER_TEMP/native-smoke/gradle-catalog-security.json"
+      - name: Verify dependency inventory scopes composite builds correctly
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        run: python3 scripts/check-gradle-inventory-scope.py --report "$RUNNER_TEMP/native-smoke/inventory-scope.json"
+      - name: Audit resolved runtime dependencies and selected Kotlin compiler
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        working-directory: android
+        run: |
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew -I ../scripts/android-dependency-inventory.gradle :app:reviewDependencyInventory \
+            -PreviewDependencyInventoryFile="$RUNNER_TEMP/native-smoke/dependency-inventory.json" \
+            -PunsignedVerification=true --no-daemon --max-workers=2
+          python3 ../scripts/audit-maven-dependencies.py "$RUNNER_TEMP/native-smoke/dependency-inventory.json" \
+            --report "$RUNNER_TEMP/native-smoke/maven-advisories.json"
+      - name: Verify notification permission requests run on the UI thread
+        if: inputs.platform == 'android' && inputs.flavour == 'bebbo' && inputs.configuration != 'development'
+        working-directory: android
+        run: |
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew -I ../scripts/notification-permission-tests.gradle \
+            :react-native-notify-kit:testReleaseUnitTest \
+            --tests io.invertase.notifee.RequestPermissionThreadTest \
+            -Pandroid.onlyEnableUnitTestForTheTestedBuildType=false \
+            -PunsignedVerification=true --no-daemon --max-workers=2
+      - name: Compile unsigned Android release
+        if: inputs.platform == 'android'
+        working-directory: android
+        shell: bash
+        run: |
+          args=(":app:bundle${ANDROID_VARIANT}Release" ":app:assemble${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2 --continue)
+          # Bebbo also verifies the production default, including 32-bit ABIs.
+          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then
+            args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
+          fi
+          python3 ../scripts/run-gradle-with-retry.py ./gradlew "${args[@]}"
+      - name: Install pinned bundletool
+        if: inputs.platform == 'android'
+        shell: bash
+        run: |
+          jar="$RUNNER_TEMP/bundletool.jar"
+          curl --fail --location --silent --show-error \
+            'https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar' -o "$jar"
+          printf '%s  %s\n' 'a099cfa1543f55593bc2ed16a70a7c67fe54b1747bb7301f37fdfd6d91028e29' "$jar" | sha256sum --check
+          echo "BUNDLETOOL_JAR=$jar" >> "$GITHUB_ENV"
+      - name: Check Android native library packaging
+        if: inputs.platform == 'android'
+        shell: bash
+        run: |
+          bundle=$(python3 -c 'from pathlib import Path; files=list(Path("android/app/build/outputs/bundle").glob("**/*.aab")); assert len(files)==1, files; print(files[0])')
+          report="$RUNNER_TEMP/native-smoke"
+          mkdir -p "$report"
+          java -jar "$BUNDLETOOL_JAR" dump manifest --bundle="$bundle" --module=base > "$report/manifest.xml"
+          abis=armeabi-v7a,arm64-v8a,x86,x86_64
+          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then abis=arm64-v8a,x86_64; fi
+          python3 scripts/check-android-bundle.py "$bundle" --expected-abis "$abis" \
+            --manifest "$report/manifest.xml" --report "$report/packaging.json"
+      - name: Enable emulator acceleration
+        if: inputs.platform == 'android' && inputs.smoke
+        run: sudo chmod 666 /dev/kvm
+      - name: Launch Android release on an emulator
+        if: inputs.platform == 'android' && inputs.smoke
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          ram-size: 3072M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          script: bash scripts/android-startup-smoke.sh
+      - name: Preserve Android startup evidence
+        if: inputs.platform == 'android' && always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: native-smoke-evidence-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
+          path: |
+            ${{ runner.temp }}/native-smoke
+            node_modules/react-native-notify-kit/android/build/test-results/testReleaseUnitTest
+          if-no-files-found: warn
+      - uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1
+        if: inputs.platform == 'ios'
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - name: Resolve pinned CocoaPods tooling
+        if: inputs.platform == 'ios'
+        working-directory: ios
+        run: bundle exec pod install --deployment
+      - name: Compile unsigned iOS archive
+        if: inputs.platform == 'ios'
+        run: |
+          xcodebuild -version
+          xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme "$IOS_SCHEME" \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/verification.xcarchive" CODE_SIGNING_ALLOWED=NO archive
+      - name: Verify built iOS Firebase/privacy settings and app symbols
+        if: inputs.platform == 'ios'
+        run: |
+          python3 scripts/check-ios-archive.py "$RUNNER_TEMP/verification.xcarchive" \
+            --application-id "$IOS_APP_ID" --firebase-project bebbo-compile-check \
+            --report "$RUNNER_TEMP/ios-configuration.json"
+      - name: Preserve iOS configuration evidence
+        if: inputs.platform == 'ios' && always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-configuration-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
+          path: ${{ runner.temp }}/ios-configuration.json
+          if-no-files-found: warn
+      - name: Preserve resolved native dependency versions
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dependency-locks-${{ inputs.platform }}-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
+          path: |
+            package-lock.json
+            Gemfile.lock
+            ios/Podfile.lock
+          if-no-files-found: error
+# Fake Firebase/environment configuration and disabled signing make these
+# compile checks unsuitable for distribution. Signed device QA is separate.
+      - name: Preserve unsigned Android bundle for packaging checks
+        if: inputs.platform == 'android' && success()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: unsigned-native-${{ inputs.flavour }}-${{ inputs.configuration || 'primary' }}
+          path: android/app/build/outputs/bundle/**/*.aab
+          if-no-files-found: error

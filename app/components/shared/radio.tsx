@@ -18,15 +18,15 @@ export const RadioActive = styled(Radio)`
   background-color: ${(props:any):any => props.theme?.colors?.SECONDARY_RE_COLOR};
 `;
 
-export const RadioItemText = styled.Text`
+export const RadioItemText = styled.Text<{$isActive?: boolean}>`
   text-align: start;
   font-size: 16px;
   line-height: 20px;
   color: #2D2926;
   flex: 9;
-  margin-left: 15px;
+  margin-start: 15px;
   fontFamily: ${(props: any):any =>
-    props.isActive
+    props.$isActive
       ? props.theme.fonts.ROBOTO_BOLD
       : props.theme.fonts.ROBOTO_REGULAR};
 `;

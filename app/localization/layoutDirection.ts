@@ -35,6 +35,7 @@ export function getLanguageDirection(language: Language): 'rtl' | 'ltr' {
   ) {
     return 'rtl';
   }
+  language = language && typeof language === "object" ? language : {};
   const legacyLocale = ({GRarb: 'ar', GRda: 'fa-AF'} as Record<string, string>)[
     language.locale ?? ''
   ];
@@ -44,7 +45,7 @@ export function getLanguageDirection(language: Language): 'rtl' | 'ltr' {
     language.languageCode ||
     language.locale ||
     'en';
-  return i18n.dir(tag.replace(/_/g, '-'));
+  return i18n.dir(typeof tag === 'string' ? tag.replace(/_/g, '-') : 'en');
 }
 
 export function configureLayoutDirection(value: Persistence): void {

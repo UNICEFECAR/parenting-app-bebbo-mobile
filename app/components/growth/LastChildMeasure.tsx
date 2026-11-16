@@ -5,7 +5,6 @@ import {
 import { BannerContainer1 } from "@components/shared/Container";
 import {
   FDirRowStart,
-  Flex1,
   Flex_5,
   Flex2,
   Flex3,
@@ -14,7 +13,7 @@ import {
   FlexDirRowEnd,
   FlexDirRowSpace,
   FlexDirRowSpaceStart,
-} from "@components/shared/FlexBoxStyle";
+} from '@components/shared/FlexBoxStyle';
 import Icon, {
   IconViewAlert,
   OuterIconLeft,
@@ -42,7 +41,6 @@ import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, Pressable, StyleSheet, View } from "react-native";
-import { Text } from "react-native-svg";
 import { useAppSelector } from "../../../App";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import { MeasuresEntity } from "../../database/schema/ChildDataSchema";
@@ -162,7 +160,7 @@ const LastChildMeasure = (): any => {
         <ShiftFromTop20>
           <FlexDirRowSpace>
             <Flex2>
-              <FlexDirRowSpace alignItems="flex-start">
+              <FlexDirRowSpace style={{alignItems: "flex-start"}}>
                 <FlexDirColStart>
                   <Heading4Regular>{t("growthScreenwText")}</Heading4Regular>
                   <Heading2>

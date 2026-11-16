@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import { returnToScreen } from "../../navigation/returnToScreen";
 import { appConfig } from "../../instances";
 import ChildDate from "@components/ChildDate";
@@ -18,7 +19,7 @@ import {
   MainContainer,
   MainManageProfileContainer,
 } from "@components/shared/Container";
-import { FlexCol, FlexRow } from "@components/shared/FlexBoxStyle";
+import {FlexCol} from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderIconPress,
@@ -26,11 +27,11 @@ import {
   HeaderRowView,
   HeaderTitleView,
 } from "@components/shared/HeaderContainerStyle";
-import Icon, { IconBox, IconML } from "@components/shared/Icon";
+import Icon, {IconML} from '@components/shared/Icon';
 import { ProfileEditView } from "@components/shared/ProfileListingStyle";
 import ToggleRadios from "@components/ToggleRadios";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import {useFocusEffect} from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading2,
@@ -38,10 +39,8 @@ import {
   Heading4,
   Heading4Regular,
   ShiftFromTop10,
-  ShiftFromTop15,
-  ShiftFromTop20,
-} from "@styles/typography";
-import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@types/types";
+} from '@styles/typography';
+import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@app-types/types";
 import React, { useRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -59,33 +58,14 @@ import { Image as ImageObject } from "react-native-image-crop-picker";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { deleteImageFile } from "../../downloadImages/ImageStorage";
-import {
-  addChild,
-  deleteChild,
-  getAllChildren,
-  getNewChild,
-  setActiveChild,
-} from "../../services/childCRUD";
+import {addChild, deleteChild, getNewChild} from '../../services/childCRUD';
 import MediaPicker from "../../services/MediaPicker";
 import { validateForm } from "../../services/Utils";
 import TextInputML from "@components/shared/TextInputML";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
-import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
-import {
-  ConfigSettingsEntity,
-  ConfigSettingsSchema,
-} from "../../database/schema/ConfigSettingsSchema";
 import { setActiveChildData } from "../../redux/reducers/childSlice";
-import {
-  bgcolorWhite,
-  childProfileBgColor,
-  secondaryBtnColor,
-} from "@styles/style";
-import Checkbox, {
-  CheckboxActive,
-  CheckboxItem,
-} from "@components/shared/CheckboxStyle";
+import {bgcolorWhite, childProfileBgColor} from '@styles/style';
 import VectorImage from "react-native-vector-image";
 import { cameraProfileImage } from "../../instances";
 import { selectChildAge, selectChildGenders, selectChildList } from "../../services/selectors";
@@ -139,7 +119,7 @@ const styles = StyleSheet.create({
 
 const EditChildProfile = ({ route, navigation }: Props): any => {
   const netInfo = useNetInfoHook();
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [_toggleCheckBox, _setToggleCheckBox] = useState(false);
   const childData = route.params.childData;
   const childList = useAppSelector(selectChildList);
   const editScreen = childData && childData.uuid != "" ? true : false;
@@ -147,7 +127,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
-  const SecondaryColor = themeContext?.colors.SECONDARY_COLOR;
+
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
@@ -184,7 +164,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const uuid = childData != null ? childData.uuid : "";
   const createdAt = childData != null ? childData.createdAt : null;
   const [isExpected, setIsExpected] = React.useState<string>("false");
-  const [destPath, setDestPath] = React.useState<string>("");
+  const [_destPath, setDestPath] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const childAge = useAppSelector(selectChildAge);
   const dobMax = uuid == "" ? new Date(new Date().setHours(23, 59, 59, 999)) : dobMaxFuture;
@@ -214,49 +194,52 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       backHandler.remove();
     };
   }, [navigation]));
+  // Refresh from current inputs on focus; background metadata must not reset edits.
+  const focusInputs = useCommittedRef({childData, gender, genders, isExpected, taxonomyIds});
   useFocusEffect(
     React.useCallback(() => {
+      const {childData: inputChildData, gender: inputGender, genders: inputGenders, isExpected: inputIsExpected, taxonomyIds: inputTaxonomyIds} = focusInputs.current;
+
       if (
-        childData != undefined &&
-        childData != null &&
-        childData != "" &&
-        childData.uuid != ""
+        inputChildData != undefined &&
+        inputChildData != null &&
+        inputChildData != "" &&
+        inputChildData.uuid != ""
       ) {
-        setphotoUri(childData.photoUri);
+        setphotoUri(inputChildData.photoUri);
         if (
-          childData.photoUri != "" &&
-          childData.photoUri != null &&
-          childData.photoUri != undefined
+          inputChildData.photoUri != "" &&
+          inputChildData.photoUri != null &&
+          inputChildData.photoUri != undefined
         ) {
           setCapturedImage(
-            "file://" + `${CHILDREN_PATH}/${childData.photoUri}`
+            "file://" + `${CHILDREN_PATH}/${inputChildData.photoUri}`
           );
         }
-        sendData(childData);
+        sendData(inputChildData);
       }
       if (
-        childData != null &&
-        childData.uuid !== "" &&
-        childData?.gender === 0
+        inputChildData != null &&
+        inputChildData.uuid !== "" &&
+        inputChildData?.gender === 0
       ) {
         setDefaultGenderValue(
-          genders.find(
-            (item: any) => item.unique_name === taxonomyIds?.girlChildGender
+          inputGenders.find(
+            (item: any) => item.unique_name === inputTaxonomyIds?.girlChildGender
           )
         );
-        gender == 0 &&
-          isExpected &&
-          setGender(
-            genders.find(
-              (item: any) => item.unique_name === taxonomyIds?.girlChildGender
-            ).id
-          );
+        const defaultGender = inputGenders.find(
+          (item: any) => item.unique_name === inputTaxonomyIds?.girlChildGender
+        );
+        if (inputGender == 0 && inputIsExpected && defaultGender) {
+          setGender(defaultGender.id);
+        }
       } else {
         setDefaultGenderValue(
-          genders.find((item: any) => item.id === childData?.gender)
+          inputGenders.find((item: any) => item.id === inputChildData?.gender)
         );
       }
-    }, [])
+    }, [focusInputs])
   );
 
   const onChildPhotoChange = async (image: ImageObject): Promise<any> => {
@@ -331,14 +314,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         {
           text: t("removeOption2"),
           onPress: async (): Promise<any> => {
-            if (index == 0) {
-              const filterList = childList.filter(
-                (item: any) => item.uuid != uuid
-              );
-              const selectedUuid = filterList[0];
-              dispatch(setActiveChildData(selectedUuid));
-            }
-            await deleteChild(
+            const deleted = await deleteChild(
               navigation,
               languageCode,
               index,
@@ -352,6 +328,14 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
+            if (!deleted) return;
+            if (index == 0) {
+              const filterList = childList.filter(
+                (item: any) => item.uuid != uuid
+              );
+              const selectedUuid = filterList[0];
+              dispatch(setActiveChildData(selectedUuid));
+            }
             returnToScreen(navigation, "ChildProfileScreen");
           },
         },
@@ -516,7 +500,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               photoDeleted == false ? (
               <View style={styles.container}>
                 <ImageBackground
-                  source={capturedPhoto != "" ? { uri: capturedPhoto } : null}
+                  source={capturedPhoto != "" ? { uri: capturedPhoto } : undefined}
                   style={styles.image}
                 >
                   <ProfileEditView

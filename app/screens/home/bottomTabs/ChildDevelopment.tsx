@@ -1,3 +1,5 @@
+import {milestoneProgress} from "../../../services/milestoneProgress";
+import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../../localization/layoutDirection";
 import { returnToScreen } from "../../../navigation/returnToScreen";
 import AgeBrackets from "@components/AgeBrackets";
@@ -5,10 +7,7 @@ import VideoPlayer from "@components/VideoPlayer";
 import ChildDevelopmentCollapsibleItem from "@components/ChildDevelopmentCollapsibleItem";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { ArticleHeading } from "@components/shared/ArticlesStyle";
-import Container, {
-  BannerContainer,
-  MainContainer,
-} from "@components/shared/Container";
+import {BannerContainer, MainContainer} from '@components/shared/Container';
 import {
   DevelopmentContent,
   DevelopmentStatus,
@@ -44,7 +43,6 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
 import {
   BackHandler,
   FlatList,
@@ -66,9 +64,7 @@ import {
   ChildEntitySchema,
 } from "../../../database/schema/ChildDataSchema";
 import ProgressCircle from "@components/shared/ProgressCircle";
-import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
-import FirstTimeModal from "@components/shared/FirstTimeModal";
-import { addSpaceToHtml, isPregnancy } from "../../../services/Utils";
+import {addSpaceToHtml} from '../../../services/Utils';
 import {
   CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
   CHILD_MILESTONE_TRACKED,
@@ -88,7 +84,12 @@ import {
 } from "../../../services/EventSyncService";
 import useDigitConverter from "../../../customHooks/useDigitConvert";
 import { appConfig } from "../../../instances";
-import { selectActiveChild, selectActivitiesDataAll, selectChildAge, selectChildDevData, selectMileStonesData, selectPinnedChildDevData } from "../../../services/selectors";
+import {
+  selectActiveChild,
+  selectActivitiesDataAll,
+  selectChildDevData,
+  selectPinnedChildDevData,
+} from '../../../services/selectors';
 import LoadableImage from "../../../services/LoadableImage";
 import FastImage from "@d11/react-native-fast-image";
 const styles = StyleSheet.create({
@@ -152,7 +153,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
-  const dispatch = useAppDispatch();
+  useAppDispatch();
   const { width } = useWindowDimensions();
   const [profileLoading, setProfileLoading] = React.useState(true);
   const headerColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
@@ -186,7 +187,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     childDevModalOpened
   );
   const isFocused = useIsFocused();
-  const [modalVisible, setModalVisible] = useState(false);
+  const [_modalVisible, setModalVisible] = useState(false);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildDevData, setSelectedChildDevData] = useState<any>();
   const [selectedChildMilestoneData, setselectedChildMilestoneData] =
@@ -196,7 +197,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const [showNoData, setshowNoData] = useState(false);
   const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
-  const flatListRef = useRef<any>();
+  const flatListRef = useRef<any>(null);
   const activityTaxonomyId =
     activeChild?.taxonomyData.prematureTaxonomyId != null &&
       activeChild?.taxonomyData.prematureTaxonomyId != undefined &&
@@ -204,21 +205,18 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       ? activeChild?.taxonomyData.prematureTaxonomyId
       : activeChild?.taxonomyData.id;
 
-  const setIsModalOpened = (varkey: any): any => {
-    if (modalVisible == true) {
-      const obj = { key: varkey, value: false };
-      dispatch(setInfoModalOpened(obj));
-      setModalVisible(false);
-    }
-  };
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const helpInputs = useCommittedRef(() => ({childDevModalOpened, netInfo}));
   useEffect(() => {
+    const {childDevModalOpened: inputChildDevModalOpened, netInfo: inputNetInfo} = helpInputs.current();
+
     if (isFocused) {
-      if (netInfo.isConnected) {
-        synchronizeEvents(netInfo.isConnected);
+      if (inputNetInfo.isConnected) {
+        synchronizeEvents(inputNetInfo.isConnected);
       }
-      setModalVisible(childDevModalOpened);
+      setModalVisible(inputChildDevModalOpened);
     }
-  }, [isFocused]);
+  }, [isFocused, helpInputs]);
 
   const onPressInfo = (): any => {
     navigation.navigate("DetailsScreen", {
@@ -328,38 +326,34 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   }, [isFocused, listLoading]);
 
   const calculateMileStone = (): any => {
-    const arrlength = selectedChildMilestoneData?.length;
-    let abc = 0;
-    if (arrlength > 0) {
-      abc = selectedChildMilestoneData.filter(
-        (x: any) => x.toggleCheck == true
-      ).length;
-    }
-    const percent = Math.round((abc / arrlength) * 100);
-    setMilestonePercent(percent);
+    setMilestonePercent(milestoneProgress(selectedChildMilestoneData));
   };
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const bracketInputs = useCommittedRef(() => ({childAge, showSelectedBracketData}));
   useEffect(() => {
+    const {childAge: inputChildAge, showSelectedBracketData: inputShowSelectedBracketData} = bracketInputs.current();
+
     console.log("USe effect chilkd 3");
     setshowNoData(false);
     if (
       route.params?.currentSelectedChildId &&
       route.params?.currentSelectedChildId != 0
     ) {
-      const firstChildDevData = childAge.filter(
+      const firstChildDevData = inputChildAge.filter(
         (x: any) => x.id == route.params?.currentSelectedChildId
       );
-      showSelectedBracketData(firstChildDevData[0]);
+      inputShowSelectedBracketData(firstChildDevData[0]);
     } else {
-      const firstChildDevData = childAge.filter(
+      const firstChildDevData = inputChildAge.filter(
         (x: any) => x.id == activityTaxonomyId
       );
-      showSelectedBracketData(firstChildDevData[0]);
+      inputShowSelectedBracketData(firstChildDevData[0]);
     }
   }, [
     activeChild?.uuid,
     route.params?.currentSelectedChildId,
     activityTaxonomyId,
-  ]);
+  , bracketInputs]);
   useEffect(() => {
     if (isFocused) {
       console.log("UseFouusEffect child development one");
@@ -382,13 +376,17 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
         setSelectedPinnedArticleData(filteredPinnedData);
       }
     }
-  }, [isFocused, selectedChildDevData]);
+  }, [isFocused, selectedChildDevData, PinnedChildDevData, activeChild?.gender]);
+  // Keep current inputs for this focus/selection command without resetting drafts on metadata writes.
+  const milestoneInputs = useCommittedRef(() => ({calculateMileStone}));
   useEffect(() => {
+    const {calculateMileStone: inputCalculateMileStone} = milestoneInputs.current();
+
     if (isFocused) {
       console.log("UseFouusEffect child development two");
-      calculateMileStone();
+      inputCalculateMileStone();
     }
-  }, [isFocused, selectedChildMilestoneData]);
+  }, [isFocused, selectedChildMilestoneData, milestoneInputs]);
 
   const sendMileStoneDatatoParent = (item: any, togglevalue: any): any => {
     if (togglevalue == true) {

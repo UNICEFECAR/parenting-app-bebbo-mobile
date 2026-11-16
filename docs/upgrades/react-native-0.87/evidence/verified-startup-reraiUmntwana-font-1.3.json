@@ -1,0 +1,53 @@
+{
+  "workflow_run": 43490604453,
+  "artifact_id": 14070230462,
+  "artifact_sha256": "122ae79bc451fb228cd3b547bb4504004377cf775012f94bd1e102bd2b69e5b8",
+  "provenance": {
+    "compiled_source": "0da745ba70da7b2f2cd1173284731d2b5278044d",
+    "compiled_run": "43477593213",
+    "workflow_source": "deedf00f7289c94d78f03b106773b1d2b8b4ab8d",
+    "application_source": "f077fa4d9ffc22b5411557bc9f2a37105d8ac316",
+    "changed_paths": [
+      "app/components/shared/ShareFavButtons.tsx",
+      "app/redux/reducers/realmPersistor.js",
+      "app/screens/AddExpectingChildProfile.tsx",
+      "app/screens/ChildSetupList.tsx",
+      "app/screens/home/EditChildProfile.tsx",
+      "app/screens/localization/CountrySelection.tsx",
+      "app/screens/localization/LanguageSelection.tsx",
+      "app/services/Utils.ts",
+      "app/services/__tests__/bookmarkControls.test.tsx",
+      "app/services/__tests__/bookmarks.test.ts",
+      "app/services/__tests__/legacyBackupConversion.test.ts",
+      "app/services/__tests__/profileDeletion.test.ts",
+      "app/services/__tests__/realmPersistence.test.ts",
+      "app/services/bookmarks.ts",
+      "app/services/childCRUD.ts",
+      "app/services/profileDeletion.ts",
+      "docs/upgrades/react-native-0.87/analytics-coverage.md",
+      "docs/upgrades/react-native-0.87/analytics-source-inventory.json",
+      "docs/upgrades/react-native-0.87/backup-validation.md",
+      "docs/upgrades/react-native-0.87/crash-history.md",
+      "docs/upgrades/react-native-0.87/evidence/native-data-bebbo-android.json",
+      "docs/upgrades/react-native-0.87/evidence/native-data-bebbo-ios.json",
+      "docs/upgrades/react-native-0.87/evidence/native-data-rerai-android.json",
+      "docs/upgrades/react-native-0.87/evidence/native-data-rerai-ios.json",
+      "docs/upgrades/react-native-0.87/extended-review.md",
+      "docs/upgrades/react-native-0.87/flavour-matrix.json",
+      "docs/upgrades/react-native-0.87/rtl-and-device-validation.md",
+      "docs/upgrades/react-native-0.87/security-assessment.md",
+      "scripts/__tests__/release-guards.test.cjs",
+      "scripts/android-startup-smoke.sh",
+      "scripts/flavour-audit.py"
+    ],
+    "replaced_bundle_entries": [
+      "base/assets/index.android.bundle"
+    ],
+    "hermes_bytecode_sha256": "24740cec9a6debc0e75734f8fbe9817e5d5487a76032e103938bf12c27c56676"
+  },
+  "screenshot": "verified-startup-reraiUmntwana-font-1.3.png",
+  "limits": [
+    "English fixture welcome/startup only; not Arabic/Urdu visual acceptance",
+    "Later backup profile-flag normalisation does not alter this startup UI path"
+  ]
+}

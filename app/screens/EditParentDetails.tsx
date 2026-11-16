@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import { returnToScreen } from "../navigation/returnToScreen";
 // import { regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../instances";
@@ -5,9 +6,8 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonMangeProfileContainer,
   ButtonPrimary,
-  ButtonText,
   ButtonUpperCaseText,
-} from "@components/shared/ButtonGlobal";
+} from '@components/shared/ButtonGlobal';
 import {
   ChildRelationList,
   FormContainer,
@@ -106,31 +106,35 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     (item: any) => item.id === userRelationToParentEdit
   );
   // console.log('result is',relationshipToParent);
+  // Refresh from current inputs on focus; background metadata must not reset edits.
+  const focusInputs = useCommittedRef({relationshipData, relationshipToParent, relationshipValue, userRelationToParentEdit});
   useFocusEffect(
     React.useCallback(() => {
+      const {relationshipData: inputRelationshipData, relationshipToParent: inputRelationshipToParent, relationshipValue: inputRelationshipValue, userRelationToParentEdit: inputUserRelationToParentEdit} = focusInputs.current;
+
       setRelationshipName(
-        relationshipToParent != "" &&
-          relationshipToParent != null &&
-          relationshipToParent != undefined
-          ? relationshipToParent.name
+        inputRelationshipToParent != "" &&
+          inputRelationshipToParent != null &&
+          inputRelationshipToParent != undefined
+          ? inputRelationshipToParent.name
           : ""
       );
       setUserRelationToParent(
-        relationshipToParent != "" &&
-          relationshipToParent != null &&
-          relationshipToParent != undefined
-          ? relationshipToParent.unique_name
+        inputRelationshipToParent != "" &&
+          inputRelationshipToParent != null &&
+          inputRelationshipToParent != undefined
+          ? inputRelationshipToParent.unique_name
           : ""
       );
       setDefaultGenderValue(
-        userRelationToParentEdit != ""
-          ? relationshipData.find(
-              (item: any) => item.id == userRelationToParentEdit
+        inputUserRelationToParentEdit != ""
+          ? inputRelationshipData.find(
+              (item: any) => item.id == inputUserRelationToParentEdit
             )
           : { title: "" }
       );
-      setRelationshipUniqueName(relationshipValue?.unique_name || "");
-    }, [])
+      setRelationshipUniqueName(inputRelationshipValue?.unique_name || "");
+    }, [focusInputs])
   );
   useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {

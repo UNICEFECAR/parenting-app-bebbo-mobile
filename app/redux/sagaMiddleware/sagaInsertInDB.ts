@@ -6,7 +6,7 @@ function* onInsertInDB(response:any):any {
     try{
         yield fork(addApiDataInRealm, response);
       }
-      catch(e) {
+      catch {
        // console.log("in onInsertInDB err ", e);
       }
 }

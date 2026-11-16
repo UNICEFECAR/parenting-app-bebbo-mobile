@@ -1,39 +1,34 @@
-import { useEffect, useState } from "react";
-import { Linking } from "react-native";
+import {useCallback, useEffect, useRef, useState} from 'react';
+import {Linking} from 'react-native';
 
-export function useDeepLinkURL():any {
-    const [linkedURL, setLinkedURL] = useState<string | null>(null);
-  
-    // 1. If the app is not already open, it is opened and the url is passed in as the initialURL
-    // You can handle these events with Linking.getInitialURL(url) -- it returns a Promise that
-    // resolves to the url, if there is one.
-    useEffect(() => {
-      const getUrlAsync = async ():Promise<any> => {
-        // Get the deep link used to open the app
-        const initialUrl = await Linking.getInitialURL();
-        console.log(initialUrl,"..11initialUrl");
-        if(initialUrl){
-        setLinkedURL(decodeURI(initialUrl));
-        }
-       else{
-        setLinkedURL(initialUrl);
-       }
-      };
-  
-      getUrlAsync();
-    }, []);
-  
-    // 2. If the app is already open, the app is foregrounded and a Linking event is fired
-    // You can handle these events with Linking.addEventListener(url, callback)
-    useEffect(() => {
-      const callback = ({url}: {url: string}):any=> setLinkedURL(decodeURI(url));
-      const subscription = Linking.addEventListener('url', callback);
-      return ():any => {
-        subscription.remove()
-      };
-    }, []);
-  
-    const resetURL = ():any => setLinkedURL(null);
-  
-    return {linkedURL, resetURL};
-  }
+function decodeLink(url: string | null | undefined): string | null {
+  if (!url) return null;
+  try {return decodeURI(url);} catch {return null;}
+}
+
+export function useDeepLinkURL(): {linkedURL: string | null; resetURL: () => void} {
+  const [linkedURL, setLinkedURL] = useState<string | null>(null);
+  const generation = useRef(0);
+
+  useEffect(() => {
+    let mounted = true;
+    const initialGeneration = generation.current;
+    const subscription = Linking.addEventListener('url', ({url}) => {
+      generation.current += 1;
+      setLinkedURL(decodeLink(url));
+    });
+    Linking.getInitialURL().then(url => {
+      // A slow cold-start lookup must not replay a link already handled/reset.
+      if (mounted && generation.current === initialGeneration) {
+        setLinkedURL(decodeLink(url));
+      }
+    }).catch(() => { /* No initial link is a valid startup state. */ });
+    return () => {mounted = false; subscription.remove();};
+  }, []);
+
+  const resetURL = useCallback(() => {
+    generation.current += 1;
+    setLinkedURL(null);
+  }, []);
+  return {linkedURL, resetURL};
+}

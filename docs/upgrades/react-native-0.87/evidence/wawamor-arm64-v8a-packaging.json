@@ -1,0 +1,265 @@
+{
+  "bundle": "android/app/build/outputs/bundle/wawamorRelease/app-wawamor-release.aab",
+  "abis": [
+    "arm64-v8a"
+  ],
+  "expected_abis": [
+    "arm64-v8a"
+  ],
+  "manifest": {
+    "package": "org.unicef.ec.wawamor",
+    "extract_native_libs": "true",
+    "target_sdk": "37"
+  },
+  "libraries": [
+    {
+      "path": "base/lib/arm64-v8a/libanimation-decoder-gif.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libappmodules.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libavif_android.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libc++_shared.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libcrashlytics-common.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libcrashlytics-handler.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libcrashlytics-trampoline.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libcrashlytics.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libdatastore_shared_counter.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libfbjni.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libgesturehandler.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libgifimage.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libglide-webp.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libhermestooling.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libhermesvm.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libimagepipeline.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libjsi.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libnative-filters.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libnative-imagetranscoder.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libreact_codegen_RNKC.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libreact_codegen_rnscreens.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libreact_codegen_rnsvg.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libreact_codegen_safeareacontext.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libreactnative.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/librealm.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libreanimated.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/librnscreens.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/librnskia.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libsqliteJni.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libucrop.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    },
+    {
+      "path": "base/lib/arm64-v8a/libworklets.so",
+      "elf_class": 64,
+      "elf_machine": 183,
+      "matches_abi": true,
+      "minimum_load_alignment": 16384,
+      "supports_16kb": true
+    }
+  ],
+  "problems": []
+}

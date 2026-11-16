@@ -33,7 +33,7 @@ module.exports = (api) => {
           '@components': './app/components',
           '@assets': './app/assets',
           '@screens': './app/screens',
-          '@types': './app/types',
+          '@app-types': './app/types',
           '@styles': `./app/instances/${flavor}/styles`,
           '@images': `./app/instances/${flavor}/assets/images`,
           '@navigation': './app/navigation',

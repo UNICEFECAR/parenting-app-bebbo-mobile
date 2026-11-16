@@ -1,65 +1,37 @@
-import { CHILDREN_PATH } from "@types/types";
+import {diagnosticError} from './diagnostics';
+import {localisedDigits} from './localisedDigits';
+import { CHILDREN_PATH } from "@app-types/types";
 import { DateTime } from "luxon";
 import { Platform } from "react-native";
 import { store } from "../../App";
 import * as RNFS from "@dr.pogodin/react-native-fs";
 import { requestNotifications } from "react-native-permissions";
-import { ObjectSchema, PrimaryKey } from "realm";
+import {ObjectSchema} from 'realm';
 import { v4 as uuidv4 } from "uuid";
 import { appConfig } from "../instances";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
-import {
-  ActivitiesEntity,
-  ActivitiesEntitySchema,
-} from "../database/schema/ActivitiesSchema";
+import {ActivitiesEntitySchema} from '../database/schema/ActivitiesSchema';
 import {
   ArticleEntity,
   ArticleEntitySchema,
 } from "../database/schema/ArticleSchema";
-import {
-  BasicPagesEntity,
-  BasicPagesSchema,
-} from "../database/schema/BasicPagesSchema";
-import {
-  ChildDevelopmentEntity,
-  ChildDevelopmentSchema,
-} from "../database/schema/ChildDevelopmentSchema";
-import {
-  ChildGrowthEntity,
-  ChildGrowthSchema,
-} from "../database/schema/ChildGrowthSchema";
-import {
-  DailyHomeMessagesEntity,
-  DailyHomeMessagesSchema,
-} from "../database/schema/DailyHomeMessagesSchema";
-import { FAQsEntity, FAQsSchema } from "../database/schema/FAQsSchema";
-import {
-  HealthCheckUpsEntity,
-  HealthCheckUpsSchema,
-} from "../database/schema/HealthCheckUpsSchema";
-import {
-  MilestonesEntity,
-  MilestonesSchema,
-} from "../database/schema/MilestonesSchema";
+import {BasicPagesSchema} from '../database/schema/BasicPagesSchema';
+import {ChildDevelopmentSchema} from '../database/schema/ChildDevelopmentSchema';
+import {ChildGrowthSchema} from '../database/schema/ChildGrowthSchema';
+import {DailyHomeMessagesSchema} from '../database/schema/DailyHomeMessagesSchema';
+import {FAQsSchema} from '../database/schema/FAQsSchema';
+import {HealthCheckUpsSchema} from '../database/schema/HealthCheckUpsSchema';
+import {MilestonesSchema} from '../database/schema/MilestonesSchema';
 import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
-import { SurveysEntity, SurveysSchema } from "../database/schema/SurveysSchema";
-import {
-  TaxonomyEntity,
-  TaxonomySchema,
-} from "../database/schema/TaxonomySchema";
-import {
-  VaccinationEntity,
-  VaccinationSchema,
-} from "../database/schema/VaccinationSchema";
-import {
-  VideoArticleEntity,
-  VideoArticleEntitySchema,
-} from "../database/schema/VideoArticleSchema";
+import {SurveysSchema} from '../database/schema/SurveysSchema';
+import {TaxonomySchema} from '../database/schema/TaxonomySchema';
+import {VaccinationSchema} from '../database/schema/VaccinationSchema';
+import {VideoArticleEntitySchema} from '../database/schema/VideoArticleSchema';
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import LocalNotifications from "./LocalNotifications";
 import moment from "moment";
-import { Country, CountrySchema } from "../database/schema/CountrySchema";
+import {CountrySchema} from '../database/schema/CountrySchema';
 import { apiUrlDevelop } from "react-native-dotenv";
 
 const requestNotificationPermission = async (): Promise<any> => {
@@ -82,18 +54,15 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
   let EntitySchema2: ObjectSchema = { name: "", properties: {} };
   let EntitySchema3: ObjectSchema = { name: "", properties: {} };
   let EntitySchema4: ObjectSchema = { name: "", properties: {} };
-  let Entity: any;
   let insertData = [];
   let pinnedArticle = "";
 
   if (response.payload.apiEndpoint == appConfig.apiConfig.articles) {
     insertData = response.payload.data.data;
-    Entity = Entity as ArticleEntity;
     EntitySchema = ArticleEntitySchema;
     pinnedArticle = "";
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.archive) {
     insertData = response.payload.data.data;
-    Entity = Entity as VideoArticleEntity;
     EntitySchema = VideoArticleEntitySchema;
     EntitySchema2 = ArticleEntitySchema;
     EntitySchema3 = ActivitiesEntitySchema;
@@ -102,23 +71,19 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     response.payload.apiEndpoint == appConfig.apiConfig.countryGroups
   ) {
     insertData = response.payload.data.data;
-    Entity = Entity as Country;
     EntitySchema = CountrySchema;
   } else if (
     response.payload.apiEndpoint == appConfig.apiConfig.videoArticles
   ) {
     insertData = response.payload.data.data;
-    Entity = Entity as VideoArticleEntity;
     EntitySchema = VideoArticleEntitySchema;
   } else if (
     response.payload.apiEndpoint == appConfig.apiConfig.dailyMessages
   ) {
     insertData = response.payload.data.data;
-    Entity = Entity as DailyHomeMessagesEntity;
     EntitySchema = DailyHomeMessagesSchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.basicPages) {
     insertData = response.payload.data.data;
-    Entity = Entity as BasicPagesEntity;
     EntitySchema = BasicPagesSchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.taxonomies) {
     const { ...allData } = response.payload.data.data;
@@ -129,41 +94,33 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         response.payload.data.data.standard_deviation
       ),
     });
-    Entity = Entity as TaxonomyEntity;
     EntitySchema = TaxonomySchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.activities) {
     insertData = response.payload.data.data;
-    Entity = Entity as ActivitiesEntity;
     EntitySchema = ActivitiesEntitySchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.surveys) {
     insertData = response.payload.data.data;
-    Entity = Entity as SurveysEntity;
     EntitySchema = SurveysSchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.milestones) {
     insertData = response.payload.data.data;
-    Entity = Entity as MilestonesEntity;
     EntitySchema = MilestonesSchema;
   } else if (
     response.payload.apiEndpoint == appConfig.apiConfig.childDevelopmentData
   ) {
     insertData = response.payload.data.data;
-    Entity = Entity as ChildDevelopmentEntity;
     EntitySchema = ChildDevelopmentSchema;
   } else if (
     response.payload.apiEndpoint == appConfig.apiConfig.childGrowthData
   ) {
     insertData = response.payload.data.data;
-    Entity = Entity as ChildGrowthEntity;
     EntitySchema = ChildGrowthSchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.vaccinations) {
     insertData = response.payload.data.data;
-    Entity = Entity as VaccinationEntity;
     EntitySchema = VaccinationSchema;
   } else if (
     response.payload.apiEndpoint == appConfig.apiConfig.healthCheckupData
   ) {
     insertData = response.payload.data.data;
-    Entity = Entity as HealthCheckUpsEntity;
     EntitySchema = HealthCheckUpsSchema;
   } else if (
     response.payload.apiEndpoint == appConfig.apiConfig.standardDeviation
@@ -172,18 +129,18 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     EntitySchema = StandardDevWeightForHeightSchema;
   } else if (response.payload.apiEndpoint == appConfig.apiConfig.faqs) {
     insertData = response.payload.data.data;
-    Entity = Entity as FAQsEntity;
     EntitySchema = FAQsSchema;
   }
   if (EntitySchema == ArticleEntitySchema) {
     try {
-      await dataRealmCommon.createArticles<typeof Entity>(
+      const saved = await dataRealmCommon.createArticles<ArticleEntity>(
         EntitySchema,
         insertData,
         pinnedArticle
       );
+      if (saved !== "success") throw new Error("Article cache write was not confirmed");
       return "successinsert";
-    } catch (e) {
+    } catch  {
       const errorArr = [];
       errorArr.push(response.payload);
       const payload = { errorArr: errorArr, fromPage: "OnLoad" };
@@ -195,15 +152,16 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     response.payload.apiEndpoint == appConfig.apiConfig.archive
   ) {
     try {
-      await dataRealmCommon.deleteDeltaData(
+      const saved = await dataRealmCommon.deleteDeltaData(
         EntitySchema.name,
         EntitySchema2.name,
         EntitySchema3.name,
         EntitySchema4.name,
         insertData
       );
+      if (saved !== "success") throw new Error("Archive cache update was not confirmed");
       return "successinsert";
-    } catch (e) {
+    } catch  {
       const errorArr = [];
       errorArr.push(response.payload);
       const payload = { errorArr: errorArr, fromPage: "OnLoad" };
@@ -212,9 +170,10 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     }
   } else if (EntitySchema == StandardDevWeightForHeightSchema) {
     try {
-      await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
+      const saved = await dataRealmCommon.createStandardDev(insertData);
+      if (saved !== "success") throw new Error("Chart reference cache write was not confirmed");
       return "successinsert";
-    } catch (e) {
+    } catch  {
       const errorArr = [];
       errorArr.push(response.payload);
       const payload = { errorArr: errorArr, fromPage: "OnLoad" };
@@ -223,9 +182,10 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     }
   } else {
     try {
-      await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+      const saved = await dataRealmCommon.create(EntitySchema, insertData);
+      if (saved !== "success") throw new Error("Content cache write was not confirmed");
       return "successinsert";
-    } catch (e) {
+    } catch  {
       const errorArr = [];
       errorArr.push(response.payload);
       const payload = { errorArr: errorArr, fromPage: "OnLoad" };
@@ -577,28 +537,15 @@ const formatImportedMeasures = async (measures: any): Promise<any> => {
             measure.measurementPlace = 1;
           }
         } //titleDateInMonth
-        if (
-          "length" in measure &&
-          measure.length != null &&
-          measure.length != undefined
-        ) {
-          if (
-            isNaN(parseFloat(measure.length)) ||
-            isNaN(parseFloat(measure.weight))
-          ) {
-            measure.isChildMeasured = false;
-          } else {
-            measure.weight =
-              measure.weight == ""
-                ? ""
-                : (parseFloat(measure?.weight) / 1000).toFixed(2);
-            measure.height =
-              measure.length == ""
-                ? ""
-                : parseFloat(measure?.length).toFixed(2);
-            measure.isChildMeasured = true;
-            delete measure.length;
-          }
+        if ("length" in measure) {
+          // Old vaccination/health-only records legitimately have blank or
+          // null measurements. Realm still requires string height/weight fields.
+          const height = parseFloat(measure.length);
+          const weight = parseFloat(measure.weight);
+          measure.isChildMeasured = Number.isFinite(height) && Number.isFinite(weight);
+          measure.height = Number.isFinite(height) ? height.toFixed(2) : "";
+          measure.weight = Number.isFinite(weight) ? (weight / 1000).toFixed(2) : "";
+          delete measure.length;
         }
       });
       return importedMeasures;
@@ -655,21 +602,6 @@ const formatImportedReminders = async (reminders: any): Promise<any> => {
       });
       return importedReminders;
     }
-  }
-};
-const checkFileExistence = async (filePath: string) => {
-  console.log("Existskkkkkkk");
-  try {
-    const exists = await RNFS.exists(filePath);
-    console.log("Exists:", exists);
-
-    if (exists) {
-      console.log("File exists");
-    } else {
-      console.log("File does not exist");
-    }
-  } catch (error) {
-    console.log("Error:", error);
   }
 };
 
@@ -757,8 +689,8 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
     console.log("reminders output---", childmeasures);
     const childreminders = await formatImportedReminders(child.reminders);
     console.log("reminders output---", childreminders);
-    const isPremature: any = child?.isPremature == "true" ? "true" : "false";
-    const autoChild: any = child?.autoChild == "true" ? "true" : "false";
+    const isPremature: any = child?.isPremature === true || child?.isPremature === "true" ? "true" : "false";
+    const autoChild: any = child?.autoChild === true || child?.autoChild === "true" ? "true" : "false";
     const childName: any =
       "name" in child === true
         ? child.name
@@ -802,67 +734,32 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
       plannedTermDate: child.plannedTermDate,
       birthDate: child.birthDate,
       babyRating: child.babyRating,
+      measurementPlace: child.measurementPlace,
       measures: childmeasures,
       comment: child.comment,
       checkedMilestones: child.checkedMilestones,
       reminders: childreminders,
       isMigrated: true,
       isPremature: isPremature,
-      isExpected: inFuture == true ? "true" : "false",
+      // A due date passing does not establish that an expected child was born.
+      // Preserve stored flags; only infer dates for legacy files without one.
+      isExpected: child.isExpected === true || child.isExpected === "true" ? "true"
+        : child.isExpected === false || child.isExpected === "false" ? "false"
+        : inFuture == true ? "true" : "false",
       favoriteadvices: favoriteadvices,
       favoritegames: favoritegames,
       autoChild: autoChild,
     };
   } catch (error) {
-    console.error("Error in getChild:", error);
+    console.error("Error in getChild:", diagnosticError(error instanceof Error ? error : "Backup conversion failed"));
     throw error; // Re-throw the error for handling in the calling function
   }
 };
 
 type DigitLanguage = "bn" | "hin" | "urd" | "ar" | "tr" | "en";
 
-export function convertDigits(
-  inputString: any,
-  targetLanguage: DigitLanguage
-): string {
-  const digitMap: Record<DigitLanguage, string[]> = {
-    bn: ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"],
-    hin: ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"],
-    urd: ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"],
-    ar: ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"],
-    tr: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    en: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], // Turkish uses Latin digits
-    // Add more languages and their digit mappings as needed
-  };
-  if (inputString === null || inputString === undefined) return "";
-
-  // Convert input string to lowercase for case-insensitive comparison
-  const lowerTarget = targetLanguage?.toLowerCase?.() as DigitLanguage;
-
-  // Check if the target language is supported
-  if (!digitMap[lowerTarget]) {
-    // console.log('Unsupported language');
-    return inputString;
-  }
-
-  // Get the digit array for the target language
-  const targetDigits = digitMap[lowerTarget];
-
-  // Replace digits in the input string
-  let result = "";
-  for (let char of inputString.toString?.()) {
-    // Check if the character is a digit (0-9)
-    if (/[0-9]/.test(char)) {
-      // Find the corresponding digit in the target language
-      const index = parseInt(char); // Convert character to integer
-      result += targetDigits[index];
-    } else {
-      // If the character is not a digit, keep it unchanged
-      result += char;
-    }
-  }
-
-  return result;
+export function convertDigits(inputString: any, targetLanguage: DigitLanguage): string {
+  return localisedDigits(inputString, targetLanguage);
 }
 
 /**
@@ -948,7 +845,7 @@ export const miniSearchConfig = {
       console.log("tokens 2 is--",[...words, ...bigrams])
       return [...words, ...bigrams];
     },
-    combineWith: "OR",
+    combineWith: "OR" as const,
     fuzzy: true,
     // prefix true means it will contain "foo" then search for "foobar"
     prefix: true,

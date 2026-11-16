@@ -1,8 +1,11 @@
+import {CommonActions} from "@react-navigation/native";
+import {openMeasuredLink} from "../../services/measuredLink";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { FDirRow, FlexCol } from "@components/shared/FlexBoxStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import type { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import {
   Heading1Centerr,
   Heading4Center,
@@ -17,23 +20,21 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  Alert,
   Dimensions,
   FlatList,
   ImageBackground,
-  Linking,
   Modal,
   Platform,
   StyleSheet,
-  Text,
   useWindowDimensions,
   View,
-} from "react-native";
+} from 'react-native';
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setchatBotData } from "../../redux/reducers/childSlice";
 import ChatBot from "./ChatBot";
 import ChatContainer from "@components/shared/SupportChatStyle";
-import { createSelector } from "reselect";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -43,7 +44,7 @@ import ModalPopupContainer, {
 import Icon from "@components/shared/Icon";
 import HTML from "react-native-render-html";
 import { addSpaceToHtml } from "../../services/Utils";
-import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
+import {ButtonModal, ButtonTextTheme} from '@components/shared/ButtonGlobal';
 import {
   CHATBOT_CATEGORY_SELECTED,
   CHATBOT_FAQ_SELECTED,
@@ -52,12 +53,10 @@ import {
 } from "@assets/data/firebaseEvents";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
-import { useFocusEffect } from "@react-navigation/native";
 import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurveyData } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { imageBg } from "@styles/style";
-
-type SupportChatNavigationProp = StackNavigationProp<any>;
+type SupportChatNavigationProp = DrawerNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
 };
@@ -80,8 +79,8 @@ const SupportChat = ({ navigation }: Props): any => {
   const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const windowWidthstyle = Dimensions.get("window").width;
-  const windowHeightstyle = Dimensions.get("window").height;
+  Dimensions.get("window");
+  Dimensions.get("window");
   const { width } = useWindowDimensions();
   const allConfigData = useAppSelector(selectAllConfigData);
   const userNameData =
@@ -93,23 +92,8 @@ const SupportChat = ({ navigation }: Props): any => {
 
   useLayoutEffect(() => {
     navigation.closeDrawer();
-  }, []);
+  }, [navigation]);
 
-  function parseWithFunctions(obj: any): any {
-    return JSON.parse(obj, (k, v) => {
-      if (typeof v === "string" && k == "nextStepFunc") {
-        return eval(v);
-      }
-      return v;
-    });
-  }
-  const chatBotData = useAppSelector((state: any) => {
-    console.log("ChildData is", state.childData.childDataSet.chatBotData);
-    console.log("all texonomy data", state.utilsData.taxonomy?.allTaxonomyData);
-    state.childData.childDataSet.chatBotData != ""
-      ? parseWithFunctions(state.childData.childDataSet.chatBotData)
-      : state.childData.childDataSet.chatBotData;
-  });
   const [profileLoading, setProfileLoading] = React.useState(false);
   const surveryData = useAppSelector(selectSurveyData);
   const feedbackItem = surveryData.find((item: any) => item.type == "feedback");
@@ -121,9 +105,9 @@ const SupportChat = ({ navigation }: Props): any => {
   const forceScrollOnceRef = useRef(false);
   const prevStepsLengthRef = useRef(steps.length);
   const insets = useSafeAreaInsets();
-  const noDataStep = (): any => {
+  const noDataStep = useCallback((): any => {
     console.log("noDataStep");
-  };
+  }, []);
   
   const updateChatBotData = useCallback((updatedData: any) => {
     setsteps(updatedData);
@@ -132,7 +116,7 @@ const SupportChat = ({ navigation }: Props): any => {
       dispatch(setchatBotData(updatedData));
     }, 100);
   }, [dispatch]);
-  const showdynamicdelay = (stepobj: any[], index: number): any => {
+  const showdynamicdelay = useCallback((stepobj: any[], index: number): any => {
     setTimeout(() => {
       let localsteps = [...stepobj];
       localsteps = localsteps.map((item) => ({ ...item, delay: 0 }));
@@ -140,7 +124,7 @@ const SupportChat = ({ navigation }: Props): any => {
       localsteps[index + 1].showNextStep = true;
       updateChatBotData(localsteps);
     }, delayOfSteps);
-  };
+  }, [updateChatBotData]);
   const dynamicStepSelection = (
     stepIndex: any,
     optionIndex: any,
@@ -278,7 +262,6 @@ const SupportChat = ({ navigation }: Props): any => {
     faqsData,
     netInfo.isConnected,updateChatBotData,
     showdynamicdelay,
-    logEvent,
     t,
     noDataStep]);
 
@@ -341,14 +324,14 @@ const SupportChat = ({ navigation }: Props): any => {
     localstepsjson[0].showNextStep = true;
     const updatedsteps = [...localsteps, ...localstepsjson];
     dispatch(setchatBotData(updatedsteps));
-    navigation.reset({
+    navigation.dispatch(CommonActions.reset({
       index: 0,
       routes: [
         {
           name: "HomeDrawerNavigator",
         },
       ],
-    });
+    }));
   };
   const showFeedbackLink = (
     stepIndex: any,
@@ -643,67 +626,18 @@ const SupportChat = ({ navigation }: Props): any => {
   //   }, delayOfConcurrentSteps);
   // }, [steps]);
 
-  const setOnloadChatBotData = (chatBotData: any, stepsjson: any): any => {
-    console.log("ChatbotData", chatBotData);
-    console.log("stepsjson", stepsjson);
-    if (chatBotData && chatBotData.length > 0) {
-      setsteps(chatBotData);
-    } else {
-      console.log("In else condition");
-      setsteps(stepsjson);
-      setTimeout(() => {
-        const localstepsjson = [...stepsjson];
-        localstepsjson[1].showNextStep = true;
-        setsteps(localstepsjson);
-        console.log("setsteps is 1", steps);
-      }, delayOfConcurrentSteps);
-    }
-  };
-
-  // useEffect(()=>{
-  //   console.log('stepsjson123',stepsjson)
-  //   async function fetchData(): Promise<any> {
-  //     setOnloadChatBotData(chatBotData, stepsjson);
-
-  //   }
-  //   fetchData()
-  //  })
-  const fetchData = async () => {
-    try {
-      // Fetch necessary data (using Redux or other methods)
-      // Update the steps state with the fetched chat steps
-      console.log("chatBotData", chatBotData);
-      console.log("stepsjson", stepsjson);
-      setOnloadChatBotData(chatBotData, stepsjson);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      // Handle errors, set default steps, show error message, etc.
-    }
-  };
-
-  // useEffect(() => {
-  //   fetchData(); // Fetch data on component mount
-  // }, []);// Add stepsjson to the dependency array
-
+  const [initialStepsSnapshot] = useState(() => stepsjson);
   useEffect(() => {
-    async function fetchData(): Promise<any> {
-      setOnloadChatBotData(chatBotData, stepsjson);
-    }
-    fetchData();
-  }, []);
-  const scrollToIndexFailed = (error: any): any => {
-    console.log("Scrolled failed while initial", error);
-    // const offset = error.averageItemLength * error.index;
-    //flatListRef?.current?.scrollToOffset({ offset });
-    setTimeout(
-      () =>
-        flatListRef?.current?.scrollToIndex({
-          animated: true,
-          index: steps.length - 1,
-        }),
-      10
-    ); // You may choose to skip this line if the above typically works well because your average item height is accurate.
-  };
+    // FAQ sessions already start afresh on this screen. Persisted function strings
+    // must never be evaluated as JavaScript to reconstruct callbacks.
+    setsteps(initialStepsSnapshot);
+    const timer = setTimeout(() => {
+      const initialSteps = [...initialStepsSnapshot];
+      initialSteps[1].showNextStep = true;
+      setsteps(initialSteps);
+    }, delayOfConcurrentSteps);
+    return () => clearTimeout(timer);
+  }, [initialStepsSnapshot]);
 
   return (
     <>
@@ -759,7 +693,7 @@ const SupportChat = ({ navigation }: Props): any => {
                       noDataStep={noDataStep}
                     />
                   )}
-                  keyExtractor={(item: any, index: any): any =>
+                  keyExtractor={(item: any, _index: any): any =>
                     `step-${item.id}`
                   }
                   onScrollToIndexFailed={(info: {
@@ -830,11 +764,9 @@ const SupportChat = ({ navigation }: Props): any => {
                 </ModalPopupContent>
                 <FDirRow>
                   <ButtonModal
-                    onPress={(): any => {
+                    onPress={async (): Promise<void> => {
                       setModalVisible(false);
-                      const eventData = { name: FEEDBACK_SUBMIT };
-                      logEvent(eventData, netInfo.isConnected);
-                      Linking.openURL(feedbackItem?.survey_feedback_link);
+                      if (!(await openMeasuredLink(feedbackItem?.survey_feedback_link, FEEDBACK_SUBMIT))) Alert.alert("", t("generalError"));
                     }}
                   >
                     <ButtonTextTheme numberOfLines={2}>

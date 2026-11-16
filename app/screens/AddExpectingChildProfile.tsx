@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../customHooks/useCommittedRef";
 import { returnToScreen } from "../navigation/returnToScreen";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -12,9 +13,8 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
-  LabelDatePlaceHolderText,
   LabelText,
-} from "@components/shared/ChildSetupStyle";
+} from '@components/shared/ChildSetupStyle';
 import { MainManageProfileContainer } from "@components/shared/Container";
 import Icon, { IconML } from "@components/shared/Icon";
 import { RootStackParamList } from "@navigation/types";
@@ -38,15 +38,14 @@ import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { addChild, deleteChild, getNewChild } from "../services/childCRUD";
 import { DateTime } from "luxon";
-import { dobMax } from "@types/types";
+import { dobMax } from "@app-types/types";
 import {
   HeaderActionView,
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
-  HeaderTitleExpectedView,
   HeaderTitleView,
-} from "@components/shared/HeaderContainerStyle";
+} from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { appConfig } from "../instances";
 import TextInputML from "@components/shared/TextInputML";
@@ -54,7 +53,6 @@ import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { setActiveChildData } from "../redux/reducers/childSlice";
 import { bgcolorWhite } from "@styles/style";
 import { selectChildAge, selectChildList } from "../services/selectors";
-
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildProfileScreen"
@@ -116,17 +114,20 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     ondobChange(event, date);
     setDobDatePickerVisibility(false);
   };
+  // Refresh from current inputs on focus; background metadata must not reset edits.
+  const focusInputs = useCommittedRef({childData});
   useFocusEffect(
     React.useCallback(() => {
-      console.log("childList", childList);
-      console.log("childData is", childData);
-      if (childData?.uuid != "") {
-        setName(childData?.childName ? childData?.childName : "");
+      const {childData: inputChildData} = focusInputs.current;
+
+
+      if (inputChildData?.uuid != "") {
+        setName(inputChildData?.childName ? inputChildData?.childName : "");
         setPlannedTermDate(
-          childData?.birthDate != null ? new Date(childData?.birthDate) : null
+          inputChildData?.birthDate != null ? new Date(inputChildData?.birthDate) : null
         );
       }
-    }, [])
+    }, [focusInputs])
   );
   useEffect(() => {
     const backAction = (): any => {
@@ -142,7 +143,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       navigation.removeListener("gestureEnd", backAction);
       backHandler.remove();
     };
-  }, []);
+  }, [navigation]);
   const AddChild = async (): Promise<any> => {
     let insertData: any;
     if (name == "" || name == null) {
@@ -234,14 +235,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         {
           text: t("removeOption2"),
           onPress: async (): Promise<any> => {
-            if (index == 0) {
-              const filterList = childList.filter(
-                (item: any) => item.uuid != uuid
-              );
-              const selectedUuid = filterList[0];
-              dispatch(setActiveChildData(selectedUuid));
-            }
-            await deleteChild(
+            const deleted = await deleteChild(
               navigation,
               languageCode,
               index,
@@ -255,6 +249,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
+            if (!deleted) return;
+            if (index == 0) {
+              const filterList = childList.filter(
+                (item: any) => item.uuid != uuid
+              );
+              const selectedUuid = filterList[0];
+              dispatch(setActiveChildData(selectedUuid));
+            }
             returnToScreen(navigation, "ChildProfileScreen");
           },
         },

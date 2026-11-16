@@ -1,3 +1,4 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../localization/layoutDirection";
 import { returnToScreen } from "../../navigation/returnToScreen";
 import ActivitiesCategories from "@components/ActivitiesCategories";
@@ -19,14 +20,7 @@ import RelatedArticles from "@components/shared/RelatedArticles";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TrackMilestoneView from "@components/shared/TrackMilestoneView";
 import VideoPlayer from "@components/VideoPlayer";
-import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  Heading2,
-  Heading3Regular,
-  Heading6Bold,
-  ShiftFromBottom5,
-} from "@styles/typography";
+import {Heading2, Heading6Bold, ShiftFromBottom5} from '@styles/typography';
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -49,13 +43,12 @@ import {
 } from "../../database/schema/ArticleSchema";
 import RelatedActivities from "@components/shared/RelatedActivities";
 import table, {
-  IGNORED_TAGS,
+  tableModel,
   cssRulesFromSpecs,
   defaultTableStylesSpecs,
 } from "@native-html/table-plugin";
 import WebView from "react-native-webview";
 import LoadableImage from "../../services/LoadableImage";
-import { DefaultImage } from "@components/shared/Image";
 import {
   ADVICE_CATEGORY_SELECTED,
   ADVICE_DETAILS_OPENED,
@@ -83,12 +76,7 @@ import { appConfig } from "../../instances";
 import { selectArticleCategoryArray } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getHtmlOfflineImageSource } from "../../services/imageResolver";
-type DetailsScreenNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
-type Props = {
-  navigation: DetailsScreenNavigationProp;
-};
 const styles = StyleSheet.create({
   defaultImage: { height: 200, width: "100%" },
   flex1: { flex: 1 },
@@ -120,6 +108,7 @@ export type RelatedArticlesProps = {
 };
 const DetailsScreen = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
+  const themeContext = useContext(ThemeContext);
   const {
     fromCd,
     headerColor,
@@ -144,7 +133,6 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     newHeaderColor = headerColor;
     newBackgroundColor = backgroundColor;
   } else {
-    const themeContext = useContext(ThemeContext);
     newHeaderColor = themeContext?.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   }
@@ -306,7 +294,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         merge: true,
       });
     }
-  }, [navigation, fromScreen, fromCd, fromAdditionalScreen, listCategoryArray, currentSelectedChildId]);
+  }, [navigation, fromScreen, fromCd, fromAdditionalScreen, listCategoryArray, currentSelectedChildId, route.name]);
   useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       //console.log("dwferfef")
@@ -325,21 +313,25 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       backHandler.remove();
     };
   }, [navigation, onHeaderBack]));
+  // Count each detail transition once; network/UI rerenders are not new views.
+  const viewInputs = useCommittedRef(() => ({fromScreen, netInfo, onHeaderBack, t}));
   useEffect(() => {
+    const {fromScreen: inputFromScreen, netInfo: inputNetInfo, onHeaderBack: inputOnHeaderBack, t: inputT} = viewInputs.current();
+
     const functionOnLoad = async (): Promise<any> => {
       if (
-        fromScreen == "VaccinationTab" ||
-        fromScreen == "FirebaseVaccinationTab" ||
-        fromScreen == "Articles" ||
-        fromScreen == "FirebaseArticles" ||
-        fromScreen == "HealthCheckupsTab" ||
-        fromScreen == "FirebaseHealthCheckupsTab" ||
-        fromScreen == "AddChildHealthCheckup" ||
-        fromScreen == "AddChildVaccination" ||
-        fromScreen == "MileStone" ||
-        fromScreen == "HomeArt" ||
-        fromScreen == "FavArticles" ||
-        fromScreen == "SupportChat"
+        inputFromScreen == "VaccinationTab" ||
+        inputFromScreen == "FirebaseVaccinationTab" ||
+        inputFromScreen == "Articles" ||
+        inputFromScreen == "FirebaseArticles" ||
+        inputFromScreen == "HealthCheckupsTab" ||
+        inputFromScreen == "FirebaseHealthCheckupsTab" ||
+        inputFromScreen == "AddChildHealthCheckup" ||
+        inputFromScreen == "AddChildVaccination" ||
+        inputFromScreen == "MileStone" ||
+        inputFromScreen == "HomeArt" ||
+        inputFromScreen == "FavArticles" ||
+        inputFromScreen == "SupportChat"
       ) {
         console.log(detailData, "..detailData..");
 
@@ -352,11 +344,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           if (articleData && articleData.length > 0) {
             setDetailDataToUse(articleData[0]);
             if (
-              fromScreen === "Activities" ||
-              fromScreen === "FirebaseActivities" ||
-              fromScreen === "MileStoneActivity" ||
-              fromScreen === "HomeAct" ||
-              fromScreen === "FavActivities"
+              inputFromScreen === "Activities" ||
+              inputFromScreen === "FirebaseActivities" ||
+              inputFromScreen === "MileStoneActivity" ||
+              inputFromScreen === "HomeAct" ||
+              inputFromScreen === "FavActivities"
             ) {
               const eventGameCatData = {
                 name:
@@ -371,8 +363,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   game_category_id: articleData?.[0]?.activity_category != null ? articleData[0].activity_category : 0,
                 },
               };
-              await logEvent(eventGameCatData, netInfo.isConnected);
-              await logEvent(eventData, netInfo.isConnected);
+              await logEvent(eventGameCatData, inputNetInfo.isConnected);
+              await logEvent(eventData, inputNetInfo.isConnected);
             } else {
               const eventAdviceCatData = {
                 name: ADVICE_CATEGORY_SELECTED + "_" + (articleData?.[0]?.category != null ? articleData[0].category : 0),
@@ -384,8 +376,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   advice_catergory_id: articleData?.[0]?.category != null ? articleData[0].category : 0,
                 },
               };
-              await logEvent(eventAdviceCatData, netInfo.isConnected);
-              await logEvent(eventData, netInfo.isConnected);
+              await logEvent(eventAdviceCatData, inputNetInfo.isConnected);
+              await logEvent(eventData, inputNetInfo.isConnected);
             }
           } else {
             const videoarticleData =
@@ -396,11 +388,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             if (videoarticleData && videoarticleData.length > 0) {
               setDetailDataToUse(videoarticleData[0]);
               if (
-                fromScreen === "Activities" ||
-                fromScreen === "FirebaseActivities" ||
-                fromScreen === "MileStoneActivity" ||
-                fromScreen === "HomeAct" ||
-                fromScreen === "FavActivities"
+                inputFromScreen === "Activities" ||
+                inputFromScreen === "FirebaseActivities" ||
+                inputFromScreen === "MileStoneActivity" ||
+                inputFromScreen === "HomeAct" ||
+                inputFromScreen === "FavActivities"
               ) {
                 const eventGameCatData = {
                   name:
@@ -415,8 +407,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     game_category_id: videoarticleData?.[0]?.activity_category != null ? videoarticleData[0].activity_category : 0,
                   },
                 };
-                await logEvent(eventGameCatData, netInfo.isConnected);
-                await logEvent(eventGameDetailsData, netInfo.isConnected);
+                await logEvent(eventGameCatData, inputNetInfo.isConnected);
+                await logEvent(eventGameDetailsData, inputNetInfo.isConnected);
               } else {
                 const eventAdviceCatData = {
                   name:
@@ -431,18 +423,18 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     advice_catergory_id: videoarticleData?.[0]?.category != null ? videoarticleData[0].category : 0,
                   },
                 };
-                await logEvent(eventAdviceCatData, netInfo.isConnected);
-                await logEvent(eventAdviceDetailsData, netInfo.isConnected);
+                await logEvent(eventAdviceCatData, inputNetInfo.isConnected);
+                await logEvent(eventAdviceDetailsData, inputNetInfo.isConnected);
               }
             } else {
               //show alert and back function
               Alert.alert(
-                t("detailScreenNoDataPopupTitle"),
-                t("newdetailScreenNoDataPopupText"),
+                inputT("detailScreenNoDataPopupTitle"),
+                inputT("newdetailScreenNoDataPopupText"),
                 [
                   {
-                    text: t("detailScreenNoDataOkBtn"),
-                    onPress: (): any => onHeaderBack(),
+                    text: inputT("detailScreenNoDataOkBtn"),
+                    onPress: (): any => inputOnHeaderBack(),
                   },
                 ]
               );
@@ -451,11 +443,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         } else if (typeof detailData == "object") {
           setDetailDataToUse(detailData);
           if (
-            fromScreen === "Activities" ||
-            fromScreen === "FirebaseActivities" ||
-            fromScreen === "MileStoneActivity" ||
-            fromScreen === "HomeAct" ||
-            fromScreen === "FavActivities"
+            inputFromScreen === "Activities" ||
+            inputFromScreen === "FirebaseActivities" ||
+            inputFromScreen === "MileStoneActivity" ||
+            inputFromScreen === "HomeAct" ||
+            inputFromScreen === "FavActivities"
           ) {
             const eventGameCatData = {
               name:
@@ -468,8 +460,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                 game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0,
               },
             };
-            await logEvent(eventGameCatData, netInfo.isConnected);
-            await logEvent(eventGameDetailsData, netInfo.isConnected);
+            await logEvent(eventGameCatData, inputNetInfo.isConnected);
+            await logEvent(eventGameDetailsData, inputNetInfo.isConnected);
           } else {
             const eventAdviceCatData = {
               name: ADVICE_CATEGORY_SELECTED + "_" + (detailData?.category != null ? detailData.category : 0),
@@ -481,15 +473,15 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                 advice_catergory_id: detailData?.category != null ? detailData.category : 0,
               },
             };
-            await logEvent(eventAdviceCatData, netInfo.isConnected);
-            await logEvent(eventAdviceDetailsData, netInfo.isConnected);
+            await logEvent(eventAdviceCatData, inputNetInfo.isConnected);
+            await logEvent(eventAdviceDetailsData, inputNetInfo.isConnected);
           }
         }
       } else {
         if (
-          fromScreen == "HomeAct" ||
-          fromScreen == "Activities" ||
-          fromScreen === "FirebaseActivities"
+          inputFromScreen == "HomeAct" ||
+          inputFromScreen == "Activities" ||
+          inputFromScreen === "FirebaseActivities"
         ) {
           if (typeof detailData == "number") {
             const activityData =
@@ -500,11 +492,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             if (activityData && activityData.length > 0) {
               setDetailDataToUse(activityData[0]);
               if (
-                fromScreen === "Activities" ||
-                fromScreen === "FirebaseActivities" ||
-                fromScreen === "MileStoneActivity" ||
-                fromScreen === "HomeAct" ||
-                fromScreen === "FavActivities"
+                inputFromScreen === "Activities" ||
+                inputFromScreen === "FirebaseActivities" ||
+                inputFromScreen === "MileStoneActivity" ||
+                inputFromScreen === "HomeAct" ||
+                inputFromScreen === "FavActivities"
               ) {
                 const eventGameCatData = {
                   name:
@@ -519,8 +511,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     game_category_id: activityData?.[0]?.activity_category != null ? activityData[0].activity_category : 0,
                   },
                 };
-                await logEvent(eventGameCatData, netInfo.isConnected);
-                await logEvent(eventGameDetailsData, netInfo.isConnected);
+                await logEvent(eventGameCatData, inputNetInfo.isConnected);
+                await logEvent(eventGameDetailsData, inputNetInfo.isConnected);
               } else {
                 const eventAdviceCatData = {
                   name:
@@ -533,18 +525,18 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     advice_catergory_id: activityData?.[0]?.category != null ? activityData[0].category : 0,
                   },
                 };
-                await logEvent(eventAdviceCatData, netInfo.isConnected);
-                await logEvent(eventAdviceDetailsData, netInfo.isConnected);
+                await logEvent(eventAdviceCatData, inputNetInfo.isConnected);
+                await logEvent(eventAdviceDetailsData, inputNetInfo.isConnected);
               }
             } else {
               //show alert and back function
               Alert.alert(
-                t("detailScreenNoDataPopupTitle"),
-                t("newdetailScreenNoDataPopupText"),
+                inputT("detailScreenNoDataPopupTitle"),
+                inputT("newdetailScreenNoDataPopupText"),
                 [
                   {
-                    text: t("detailScreenNoDataOkBtn"),
-                    onPress: (): any => onHeaderBack(),
+                    text: inputT("detailScreenNoDataOkBtn"),
+                    onPress: (): any => inputOnHeaderBack(),
                   },
                 ]
               );
@@ -552,11 +544,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           } else {
             setDetailDataToUse(detailData);
             if (
-              fromScreen === "Activities" ||
-              fromScreen === "FirebaseActivities" ||
-              fromScreen === "MileStoneActivity" ||
-              fromScreen === "HomeAct" ||
-              fromScreen === "FavActivities"
+              inputFromScreen === "Activities" ||
+              inputFromScreen === "FirebaseActivities" ||
+              inputFromScreen === "MileStoneActivity" ||
+              inputFromScreen === "HomeAct" ||
+              inputFromScreen === "FavActivities"
             ) {
               const eventGameCatData = {
                 name:
@@ -569,8 +561,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0,
                 },
               };
-              await logEvent(eventGameCatData, netInfo.isConnected);
-              await logEvent(eventGameDetailsData, netInfo.isConnected);
+              await logEvent(eventGameCatData, inputNetInfo.isConnected);
+              await logEvent(eventGameDetailsData, inputNetInfo.isConnected);
             } else {
               const eventAdviceCatData = {
                 name: ADVICE_CATEGORY_SELECTED + "_" + (detailData?.category != null ? detailData.category : 0),
@@ -582,19 +574,19 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   advice_catergory_id: detailData?.category != null ? detailData.category : 0,
                 },
               };
-              await logEvent(eventAdviceCatData, netInfo.isConnected);
-              await logEvent(eventAdviceDetailsData, netInfo.isConnected);
+              await logEvent(eventAdviceCatData, inputNetInfo.isConnected);
+              await logEvent(eventAdviceDetailsData, inputNetInfo.isConnected);
             }
           }
         } else {
           console.log("detailData in else--",detailData)
           setDetailDataToUse(detailData);
           if (
-            fromScreen === "Activities" ||
-            fromScreen === "FirebaseActivities" ||
-            fromScreen === "MileStoneActivity" ||
-            fromScreen === "HomeAct" ||
-            fromScreen === "FavActivities"
+            inputFromScreen === "Activities" ||
+            inputFromScreen === "FirebaseActivities" ||
+            inputFromScreen === "MileStoneActivity" ||
+            inputFromScreen === "HomeAct" ||
+            inputFromScreen === "FavActivities"
           ) {
             const eventGameCatData = {
               name:
@@ -607,8 +599,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                 game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0,
               },
             };
-            await logEvent(eventGameCatData, netInfo.isConnected);
-            await logEvent(eventGameDetailsData, netInfo.isConnected);
+            await logEvent(eventGameCatData, inputNetInfo.isConnected);
+            await logEvent(eventGameDetailsData, inputNetInfo.isConnected);
           } else {
             const eventAdviceCatData = {
               name: ADVICE_CATEGORY_SELECTED + "_" + (detailData?.category != null ? detailData.category : 0),
@@ -620,29 +612,29 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                 advice_catergory_id: detailData?.category != null ? detailData.category : 0,
               },
             };
-            await logEvent(eventAdviceCatData, netInfo.isConnected);
-            await logEvent(eventAdviceDetailsData, netInfo.isConnected);
+            await logEvent(eventAdviceCatData, inputNetInfo.isConnected);
+            await logEvent(eventAdviceDetailsData, inputNetInfo.isConnected);
           }
         }
       }
 
       const realm = await dataRealmCommon.openRealm();
       if (
-        fromScreen === "Activities" ||
-        fromScreen === "Articles" ||
-        fromScreen === "FirebaseActivities" ||
-        fromScreen === "MileStoneActivity" ||
-        fromScreen === "FavActivities" ||
-        fromScreen === "VaccinationTab" ||
-        fromScreen === "FirebaseVaccinationTab" ||
-        fromScreen === "FirebaseArticles" ||
-        fromScreen === "HealthCheckupsTab" ||
-        fromScreen === "FirebaseHealthCheckupsTab" ||
-        fromScreen === "AddChildHealthCheckup" ||
-        fromScreen === "AddChildVaccination" ||
-        fromScreen === "MileStone" ||
-        fromScreen === "FavArticles" ||
-        fromScreen === "SupportChat"
+        inputFromScreen === "Activities" ||
+        inputFromScreen === "Articles" ||
+        inputFromScreen === "FirebaseActivities" ||
+        inputFromScreen === "MileStoneActivity" ||
+        inputFromScreen === "FavActivities" ||
+        inputFromScreen === "VaccinationTab" ||
+        inputFromScreen === "FirebaseVaccinationTab" ||
+        inputFromScreen === "FirebaseArticles" ||
+        inputFromScreen === "HealthCheckupsTab" ||
+        inputFromScreen === "FirebaseHealthCheckupsTab" ||
+        inputFromScreen === "AddChildHealthCheckup" ||
+        inputFromScreen === "AddChildVaccination" ||
+        inputFromScreen === "MileStone" ||
+        inputFromScreen === "FavArticles" ||
+        inputFromScreen === "SupportChat"
       ) {
         if (detailData.type == "Article") {
           const articleVisitCount: any = realm
@@ -697,7 +689,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     return (): any => {
       console.log("in return");
     };
-  }, [detailData]);
+  }, [detailData, viewInputs]);
 
   const categoryData = useAppSelector(selectArticleCategoryArray);
   const toggleSwitchVal = useAppSelector((state: any) =>
@@ -849,8 +841,8 @@ const renderHtmlImage = ({ tnode }: any): any => {
             br: { height: 0 },
             iframe: { maxWidth: "100%", height: 200 },
           }}
-          WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
-          ignoredDomTags={IGNORED_TAGS}
+          WebView={WebView}
+          defaultWebViewProps={{renderToHardwareTextureAndroid: true}}
         />
       </View>
     );
@@ -999,10 +991,10 @@ const renderHtmlImage = ({ tnode }: any): any => {
                         img: renderHtmlImage,
                       }}
                   customHTMLElementModels={{
+                    table: tableModel,
                     iframe: iframeModel,
                   }}
                   WebView={WebView}
-                  ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{...htmlListRenderers,
                     table: {
                       cssRules,

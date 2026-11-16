@@ -1,5 +1,7 @@
+import {useCommittedRef} from "../../customHooks/useCommittedRef";
+import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
+import {readVaccineIds} from '../../services/healthInput';
 import { VACCINE_ADDED } from "@assets/data/firebaseEvents";
-// import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -59,16 +61,7 @@ import { DateTime } from "luxon";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  BackHandler,
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Alert, Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from "styled-components/native";
@@ -97,6 +90,7 @@ import { logEvent } from "../../services/EventSyncService";
 import ToggleRadiosBgColor from "@components/ToggleRadiosBgColor";
 import { selectActiveChild, selectVaccineData } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+// import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 
 const styles = StyleSheet.create({
   constinerView: {
@@ -171,7 +165,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
   const deleteVaccination = async (): Promise<any> => {
     if (editVCDate) {
       const existingMeasure = getMeasuresForDate(
-        DateTime.fromJSDate(new Date(editVCDate)),
+        DateTime.fromJSDate((editVCDate).toJSDate()),
         activeChild
       );
       //delete measure obj
@@ -197,44 +191,47 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
       });
     });
   };
+  // Reinitialise when selecting an edit date, not during an in-progress edit.
+  const editInputs = useCommittedRef({activeChild, allVaccinePeriods, checkIfMeasuredVaccineExistsForLocale, isMeasuredOptions});
   useEffect(() => {
+    const {activeChild: inputActiveChild, allVaccinePeriods: inputAllVaccinePeriods, checkIfMeasuredVaccineExistsForLocale: inputCheckIfMeasuredVaccineExistsForLocale, isMeasuredOptions: inputIsMeasuredOptions} = editInputs.current;
     if (editVaccineDate) {
       setShowDelete(true);
       const existingMeasure = getMeasuresForDate(
         DateTime.fromJSDate(new Date(editVaccineDate)),
-        activeChild
+        inputActiveChild
       );
       setmeasureDate(DateTime.fromJSDate(new Date(editVaccineDate)));
       seteditVCDate(DateTime.fromJSDate(new Date(editVaccineDate)));
       setIsMeasured(existingMeasure?.isChildMeasured);
       setDefaultMeasured(
         existingMeasure?.isChildMeasured == true
-          ? isMeasuredOptions[0]
-          : isMeasuredOptions[1]
+          ? inputIsMeasuredOptions[0]
+          : inputIsMeasuredOptions[1]
       );
       setWeightValue(existingMeasure?.weight);
       setHeightValue(existingMeasure?.height);
       handleDoctorRemark(existingMeasure?.doctorComment);
-      const existingMeasuredVaccines = checkIfMeasuredVaccineExistsForLocale(
+      const existingMeasuredVaccines = inputCheckIfMeasuredVaccineExistsForLocale(
         existingMeasure?.vaccineIds &&
           existingMeasure?.vaccineIds != "" &&
           existingMeasure?.vaccineIds != null
-          ? checkIfMeasuredVaccineExistsForLocale(
-              JSON.parse(existingMeasure?.vaccineIds)
+          ? inputCheckIfMeasuredVaccineExistsForLocale(
+              readVaccineIds(existingMeasure?.vaccineIds)
             )
           : []
       );
       if (existingMeasuredVaccines?.length > 0) {
         existingMeasuredVaccines?.forEach((element: any) => {
-          element["id"] = allVaccinePeriods.find(
+          element["id"] = inputAllVaccinePeriods.find(
             (item: any) => item.uuid == element?.uuid
           )?.id;
           element["uuid"] = element?.uuid;
-          element["title"] = allVaccinePeriods.find(
+          element["title"] = inputAllVaccinePeriods.find(
             (item: any) => item.uuid == element?.uuid
           )?.title;
           element["isMeasured"] = true;
-          element["pinned_article"] = allVaccinePeriods.find(
+          element["pinned_article"] = inputAllVaccinePeriods.find(
             (item: any) => item.uuid == element?.uuid
           )?.pinned_article;
         });
@@ -242,7 +239,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
         setTakenVaccineForPrevPeriod(existingMeasuredVaccines);
       }
     }
-  }, [editVaccineDate]);
+  }, [editVaccineDate, editInputs]);
 
   const getCheckedItem = (checkedItem: (typeof isMeasuredOptions)[0]): any => {
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
@@ -323,7 +320,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                     existingMeasure?.vaccineIds != "" &&
                     existingMeasure?.vaccineIds != null
                       ? checkIfMeasuredVaccineExistsForLocale(
-                          JSON.parse(existingMeasure?.vaccineIds)
+                          readVaccineIds(existingMeasure?.vaccineIds)
                         )
                       : [];
                   if (existingMeasuredVaccines?.length > 0) {
@@ -464,7 +461,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
     } else {
       if (editVCDate) {
         const existingMeasure = getMeasuresForDate(
-          DateTime.fromJSDate(new Date(editVCDate)),
+          DateTime.fromJSDate((editVCDate).toJSDate()),
           activeChild
         );
         const growthValues = {
@@ -602,17 +599,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
       return false;
     }
   };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      onBackPress
-    );
-    navigation.addListener("gestureEnd", onBackPress);
-    return (): any => {
-      navigation.removeListener("gestureEnd", onBackPress);
-      backHandler.remove();
-    };
-  }, []);
+  useNavigationBackHandler(navigation, onBackPress);
   const insets = useSafeAreaInsets();
   return (
     <>

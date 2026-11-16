@@ -1,3 +1,12 @@
+import {onNetworkStateChange} from './app/redux/reducers/bandwidthSlice';
+import BackupPasswordPrompt from './app/components/BackupPasswordPrompt';
+import BackupRecoveryScreen from './app/components/BackupRecoveryScreen';
+import {installBackupRuntime} from './app/services/backupRuntime';
+import {recoverPendingBackup} from './app/services/backupRecovery';
+import {backupFlavor} from './app/instances';
+import {toggleNotificationFlags} from './app/redux/reducers/notificationSlice';
+import {cleanupAbandonedBackupFiles} from './app/services/backupCacheCleanup';
+import {recoverTaxonomySnapshot} from './app/services/taxonomyRecovery';
 /**
  * React Native App
  * https://github.com/facebook/react-native
@@ -37,7 +46,7 @@ import configureAppStore from "./app/redux/store";
 import { googleAuth } from "./app/services/googleAuth";
 import { EventProvider } from "react-native-outside-press";
 import RNRestart from "react-native-restart";
-import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
+import { setAllTaxonomyData, setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
 import { recordError } from "./app/services/firebaseAnalytics";
 import {applyLanguageDirection, configureLayoutDirection} from "./app/localization/layoutDirection";
 import { primaryColor } from "@styles/style";
@@ -92,11 +101,10 @@ const styles = StyleSheet.create({
 const { appTheme } = require(`./app/instances/${flavor}/styles/theme`);
 
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
-  recordError(props.error);
+  React.useEffect(() => { void recordError(props.error); }, [props.error]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t("generalError")}</Text>
-      <Text style={styles.message}>{props.error?.toString()}</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -112,18 +120,36 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
 
 const App = () => {
   const [persistor, setPersistor] = React.useState<any>(null);
+  const [backupRecoveryRequired, setBackupRecoveryRequired] = React.useState(false);
   const [directionError, setDirectionError] = React.useState<Error | null>(null);
   React.useEffect(() => {
     const p = persistStore(store);
     configureLayoutDirection({dispatch: store.dispatch, flush: () => p.flush()});
+    const releaseBackupRuntime = installBackupRuntime({
+      context: () => ({flavour: backupFlavor, country: String(store.getState().selectedCountry.countryId), language: store.getState().selectedCountry.languageCode}),
+      flags: () => {const n = store.getState().notificationData; return {growthEnabled:n.growthEnabled,developmentEnabled:n.developmentEnabled,vchcEnabled:n.vchcEnabled,lowbandWidth:store.getState().bandWidthData.lowbandWidth};},
+      applyFlags: async flags => {for (const [key,value] of Object.entries(flags)) {if(key==='lowbandWidth')store.dispatch(onNetworkStateChange(value));else store.dispatch(toggleNotificationFlags({key,value}));} await p.flush();},
+      recoveryRequired: () => setBackupRecoveryRequired(true),
+    });
     setPersistor(p);
     Orientation.lockToPortrait();
     // SplashScreen.hide();
     googleAuth.configure();
+    return releaseBackupRuntime;
   },[]);
+  if (backupRecoveryRequired) return <BackupRecoveryScreen onComplete={() => {setBackupRecoveryRequired(false); RNRestart.Restart();}} />;
   if (directionError) return <CustomFallback error={directionError} resetError={() => setDirectionError(null)} />;
   if (!persistor) return <ActivityIndicator size="large" color="#0000ff" />;
   const onBeforeLift = async () => {
+    try {await recoverPendingBackup();} catch {setBackupRecoveryRequired(true); return;}
+    try {
+      const cleanup = await cleanupAbandonedBackupFiles();
+      if (cleanup.failed) void recordError('Temporary backup cleanup incomplete');
+    } catch {
+      // Do not prevent caregivers reaching their committed data if cache storage
+      // is temporarily unavailable. Retry cleanup on the next cold launch.
+      void recordError('Temporary backup cache unavailable');
+    }
     try {
       if (await applyLanguageDirection(store.getState().selectedCountry)) {
         // Keep the old-direction navigator off screen while the native restart runs.
@@ -133,11 +159,31 @@ const App = () => {
       setDirectionError(error instanceof Error ? error : new Error(String(error)));
       return;
     }
-    const taxonomyAllData = store.getState().utilsData.taxonomy.allTaxonomyData
-      ? JSON.parse(store.getState().utilsData.taxonomy.allTaxonomyData)
-      : [];
-    if (taxonomyAllData?.relationship_to_parent) {
-      store.dispatch(setTaxonomyIds(taxonomyAllData));
+    const snapshot = store.getState().utilsData.taxonomy.allTaxonomyData;
+    if (!snapshot) return;
+    try {
+      const languageCode = store.getState().selectedCountry.languageCode;
+      const restored = await recoverTaxonomySnapshot(snapshot, async () => {
+        // Redux's cached JSON can be truncated independently of Realm. Read only
+        // this language's metadata; never reset caregiver profiles/preferences.
+        const {dataRealmCommon} = await import('./app/database/dbquery/dataRealmCommon');
+        const realm = await dataRealmCommon.openRealm();
+        const cached = realm?.objects('Taxonomy').filtered('langCode == $0', languageCode)[0] as any;
+        if (cached?.allData) {
+          try {const parsed = JSON.parse(cached.allData); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) return parsed;} catch { /* Try the existing bundled content. */ }
+        }
+        const {taxonomydata} = await import('./app/instances');
+        return taxonomydata[languageCode]?.[0]?.allData;
+      });
+      if (restored.recovered) {
+        store.dispatch(setAllTaxonomyData([{langCode: languageCode, allData: restored.data}]));
+        void recordError('Recovered invalid persisted taxonomy cache');
+      }
+      if (restored.data.relationship_to_parent) store.dispatch(setTaxonomyIds(restored.data));
+    } catch (error) {
+      // PersistGate does not catch rejected async callbacks. Show the existing
+      // retry screen instead of leaving the app indefinitely behind its loader.
+      setDirectionError(error instanceof Error ? error : new Error('Taxonomy recovery failed'));
     }
   };
 
@@ -159,6 +205,7 @@ const App = () => {
                 <SafeAreaProvider style={styles.flex1}>
                   <KeyboardProvider preload={false}>
                     <AppNavigation />
+                    <BackupPasswordPrompt />
                   </KeyboardProvider>
                 </SafeAreaProvider>
               </PersistGate>

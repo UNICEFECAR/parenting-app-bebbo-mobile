@@ -1,3 +1,4 @@
+import {diagnosticError} from '../../services/diagnostics';
 import { appConfig } from '../../instances';
 import { deleteDataRealm, openDataRealm } from '../config/dataDbConfig';
 import { StandardDevHeightForAgeSchema } from '../schema/StandardDevHeightForAgeSchema';
@@ -6,6 +7,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSe
 
 // ONLY use for TypeScript types:
 import type RealmInstance from 'realm';
+import type {UpdateMode} from 'realm';
 const deleteRealmFilesBeforeOpen = false;
 
 class DataRealmCommon {
@@ -72,7 +74,7 @@ class DataRealmCommon {
                     result=0;
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result=0;
                 return result;
             }
@@ -88,102 +90,84 @@ class DataRealmCommon {
                     realm.write(() => {
                         if (records?.length > 0) {
                             records.forEach(record => {
-                                realm?.create<Entity>(entitySchema.name, record, "modified");
+                                realm?.create<Entity>(entitySchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         result="success";
                         return result
                     });
+                    return result;
                 }
                 else {
                     result="fail";
                     return result
                 }
             } catch (e) {
-                console.error("data insert err", e);
+                console.error("data insert err", diagnosticError(e instanceof Error ? e : "Cache operation failed"));
                 result="fail";
                 return result
             }
         // });
     }
-    public async createArticles<Entity>(entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string): Promise<any> {
+    public async createArticles<Entity extends {id: number; isarticle_pinned?: string}>(
+        entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string
+    ): Promise<'success' | 'fail'> {
+        try {
+            const realm = await this.openRealm();
+            if (!realm || !Array.isArray(records)) return 'fail';
+            realm.write(() => {
+                for (const record of records) {
+                    const existing = realm.objectForPrimaryKey<{id: number; isarticle_pinned?: string}>(entitySchema.name, record.id);
+                    const pinned = existing?.isarticle_pinned == appConfig.isArticlePinned || articleRelation == appConfig.isArticlePinned;
+                    // Refresh content even when the existing record is becoming pinned.
+                    realm.create<Entity>(entitySchema.name, {
+                        ...record,
+                        isarticle_pinned: pinned ? appConfig.isArticlePinned : articleRelation,
+                    }, 'modified' as UpdateMode);
+                }
+            });
+            return 'success';
+        } catch (error) {
+            console.error('Article cache write failed', diagnosticError(error instanceof Error ? error : 'Cache operation failed'));
+            return 'fail';
+        }
+    }
+    public async createStandardDev<Entity>(records: {weight_for_height?: Entity[]; height_for_age?: Entity[]}): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     realm.write(() => {
-                        if (records?.length > 0) {
-                            records.forEach(async record => {
-                                const obj = realm?.objects<Entity>(entitySchema.name).filtered('id == "' + record.id + '"');
-                                if (obj.length > 0) {
-                                    if (articleRelation == appConfig.isArticlePinned && obj[0].isarticle_pinned != "1") {
-                                        obj[0].isarticle_pinned = articleRelation;
-                                    }
-                                    else {
-                                        if (obj[0].isarticle_pinned != "1") {
-                                            record.isarticle_pinned = articleRelation;
-                                        }
-                                        else {
-                                            record.isarticle_pinned = appConfig.isArticlePinned;
-                                        }
-                                        realm?.create<Entity>(entitySchema.name, record, "modified");
-                                    }
-                                } else {
-                                    record.isarticle_pinned = articleRelation;
-                                    realm?.create<Entity>(entitySchema.name, record, "modified");
-                                }
-                            })
-                        }
-                        result="success";
-                        return result
-                    });
-                }
-                else {
-                    result="fail";
-                    return result
-                }
-            } catch (e) {
-                console.error("data insert err", e);
-                result="fail";
-                return result
-            }
-        // });
-    }
-    public async createStandardDev<Entity>(records: Entity[]): Promise<any> {
-        // return new Promise(async (resolve, reject) => {
-            let result: any='';
-            try {
-                const realm = await this.openRealm();
-                if (realm) {
-                    realm.write(() => {
-                        const weightforheight = records['weight_for_height'];
-                        const heightforAge = records['height_for_age'];
+                        const weightforheight = records.weight_for_height ?? [];
+                        const heightforAge = records.height_for_age ?? [];
                         if (weightforheight?.length > 0) {
                             weightforheight.forEach((record: any) => {
-                                realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified");
+                                realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         if (heightforAge?.length > 0) {
                             heightforAge.forEach((record: any) => {
-                                realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record, "modified");
+                                realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         result="success";
                         return result;
                     });
+                    return result;
                 }
                 else {
                     result="fail";
                         return result;
                 }
             } catch (e) {
-                console.error("data insert err", e);
+                console.error("data insert err", diagnosticError(e instanceof Error ? e : "Cache operation failed"));
                 result="fail";
                 return result;
             }
         // });
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Retain the existing generic caller API for settings updates.
     public async updateSettings<Entity>(_entitySchema: RealmInstance.ObjectSchema, key: string, value: string): Promise<string> {
         let result: any='';
         // return new Promise(async (resolve, reject) => {
@@ -211,7 +195,7 @@ class DataRealmCommon {
                                 value: value,
                                 createdAt: new Date(),
                                 updatedAt: new Date(),
-                            }, "modified");
+                            }, "modified" as UpdateMode);
                             result="success";
                             return result
                         });
@@ -224,7 +208,7 @@ class DataRealmCommon {
                     return result
                 }
             } catch (e) {
-                console.error("data insert err", e);
+                console.error("data insert err", diagnosticError(e instanceof Error ? e : "Cache operation failed"));
                 result="fail";
                 return result
             }
@@ -251,7 +235,7 @@ class DataRealmCommon {
                     result=[]
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result=[]
                 return result;
             }
@@ -273,7 +257,7 @@ class DataRealmCommon {
                     result=[]
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result=[]
             
                 return result;
@@ -341,12 +325,13 @@ class DataRealmCommon {
                         result='success';
                         return result;
                     });
+                    return result;
                 }
                 else {
                     result='error';
                     return result;
                 }
-            } catch (e: any) {
+            } catch  {
                 result='error';
                 return result;
             }
@@ -376,7 +361,7 @@ class DataRealmCommon {
                     result='error'
                     return result;
                 }
-            } catch (e: any) {
+            } catch  {
                 result='error'
                 return result;
             }
@@ -390,7 +375,13 @@ class DataRealmCommon {
                 if (realm) {
                     realm?.write(() => {
                         console.log("write")
-                        realm.deleteAll();
+                        // This method is used only by country/language content resets.
+                        // Caregiver settings and unsent events are not content cache.
+                        for (const schema of realm.schema) {
+                            if (!schema.embedded && ![ConfigSettingsSchema.name, 'Event'].includes(schema.name)) {
+                                realm.delete(realm.objects(schema.name));
+                            }
+                        }
                       
                     });
                     result='success';
@@ -401,7 +392,7 @@ class DataRealmCommon {
                     result='fail';
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result='error';
                 return result;
             }
@@ -428,7 +419,7 @@ class DataRealmCommon {
                     result='fail'
                     return result;
                 }
-            } catch (e) {
+            } catch  {
                 result='fail'
                 return result;
             }

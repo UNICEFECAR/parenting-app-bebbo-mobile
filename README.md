@@ -90,9 +90,9 @@ Refer to [`package.json`](https://github.com/UNICEFECAR/parenting-app-bebbo-mobi
 
 The project currently uses:
 
-- Node.js: **18 or later**
-- NPM: **10.8.2**
-- React Native: **0.78.2**
+- Node.js: **22.13 or later on Node 22** (use `.nvmrc`)
+- NPM: bundled with the supported Node version
+- React Native: **0.87.1**
 
 > React Native does not need to be installed globally. It is installed as a project dependency when running `npm install`. Use `npx react-native` to run the locally installed version.
 
@@ -105,8 +105,8 @@ Before setting up the project, install the required development tools for your p
 ## All platforms
 
 - Git
-- Node.js **18 or later**
-- NPM **10.8.2**
+- Node.js **22.13 or later on Node 22**
+- NPM bundled with the supported Node version
 
 You can download Node.js from:
 
@@ -281,13 +281,14 @@ Access should be granted to the developer's individual account rather than shari
 ---
 
 ## 4. Generate Vector Images
-Before running the application, generate the vector images for the required flavor:
+Native vector resources for every flavour are checked in. After editing SVGs, regenerate their union:
 
 ```bash
-FLAVOR=bebboDev npx react-native-vector-image generate
+npm run assets:generate
+npm run assets:check
 ```
 
-This command should be run whenever the vector image assets need to be regenerated.
+This resolves the application assets for all eight flavours before publishing the shared Android and iOS resources. Native builds verify the manifest and stop if an SVG or generated resource is missing or stale. Do not run the upstream single-flavour generator: it removes the other flavours' shared resources.
 
 ---
 
@@ -348,7 +349,7 @@ Android Gradle and iOS CocoaPods bundle this font automatically. Do not copy fon
 
 After installing dependencies, run CocoaPods before building iOS. When replacing the custom font, update this file and the matching glyph map in `app/assets/iconConfig/config.json`, then run CocoaPods again and rebuild both apps.
 
-`FLAVOR=bebbo npx react-native-vector-image generate` remains the command for generating SVG/vector-image resources. It is separate from the Fontello icon font and is not needed just to switch between Android and iOS.
+`npm run assets:generate` generates the SVG/vector-image resources for all flavours. It is separate from the Fontello icon font and is not needed just to switch between Android and iOS.
 
 Refer to the [Fontello package setup](https://github.com/oblador/react-native-vector-icons/blob/master/packages/fontello/README.md).
 
