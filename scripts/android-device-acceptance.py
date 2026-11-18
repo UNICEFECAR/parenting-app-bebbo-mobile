@@ -40,15 +40,30 @@ def back():
 
 
 def home():
-    # Restarting the existing process retains profiles and downloaded data.
-    ui.adb('shell', 'am', 'force-stop', ui.PACKAGE)
-    ui.adb('shell', 'monkey', '-p', ui.PACKAGE, '-c', 'android.intent.category.LAUNCHER', '1')
-    for _ in range(18):
-        tree, _ = ui.snapshot()
-        if ui.find(tree, 'Daily reads|Today.s advice|child profile is incomplete') is not None:
+    for attempt in range(12):
+        tree, xml = ui.snapshot()
+        # A tap target on the article card distinguishes a ready Home from its
+        # header during a transition and from a matching label in a dialog.
+        if ui.find(tree, r"^Today.s advice,") is not None:
             return
-        time.sleep(1)
-    raise ValueError('home-after-restart')
+        if ui.find(tree, r'Poor connection|^Attention$|allow .*notifications') is not None:
+            button = ui.find(tree, r"^Cancel$|^OK$|^Don.t allow$")
+            if button is not None:
+                ui.touch(button)
+                continue
+        button = ui.find(tree, r'^Home$')
+        if button is not None:
+            ui.touch(button)
+        elif attempt < 3:
+            back()
+        elif attempt == 4:
+            ui.adb('shell', 'am', 'force-stop', ui.PACKAGE)
+            ui.adb('shell', 'am', 'start', '-W', '-a', 'android.intent.action.MAIN',
+                   '-c', 'android.intent.category.LAUNCHER', '-p', ui.PACKAGE)
+        else:
+            time.sleep(1)
+    ui.persist('could-not-return-home', xml)
+    raise ValueError('return-to-cached-home')
 
 
 def drawer():
@@ -183,13 +198,23 @@ def main():
         ('terms',lambda:menu('terms','^Terms and Conditions$','Terms and Conditions')),
         ('legacy backup via Android picker',local_backup),
     ]
+    # The previous installed journey already verified online staging onboarding.
+    # Exercise cached usability with both network interfaces explicitly offline.
+    ui.adb('shell','svc','wifi','disable')
+    ui.adb('shell','svc','data','disable')
     for name,check in scenarios:
         try:
             home()
             check()
         except (ValueError,RuntimeError,subprocess.SubprocessError) as error:
-            results.append({'scenario':name,'result':'Not Verified','stopped_at':str(error)[:180]})
+            tree, xml = ui.snapshot()
+            ui.persist('stopped-' + re.sub(r'[^a-z0-9]+', '-', name.lower()), xml)
+            labels = [node.get('text') or node.get('content-desc') for node in tree.iter('node')]
+            results.append({'scenario':name,'result':'Not Verified','stopped_at':str(error)[:180],
+                            'screen_labels':[label for label in labels if label][:18]})
         (ui.REPORT/'acceptance.json').write_text(json.dumps(results,indent=2))
+    ui.adb('shell','svc','wifi','enable')
+    ui.adb('shell','svc','data','enable')
     if not any(row['result']=='Passed' for row in results):
         raise SystemExit('No installed-app acceptance checkpoint could be verified')
 
