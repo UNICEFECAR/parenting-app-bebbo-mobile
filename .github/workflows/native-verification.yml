@@ -48,6 +48,11 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - name: Prepare fake configuration for compile checks
         run: node scripts/ci-fixtures.cjs
+      - name: Enable public staging CMS for the Bebbo Dev device journey
+        if: inputs.platform == 'android' && inputs.flavour == 'bebboDev' && inputs.smoke && github.ref_name == 'RNSDKUpgrade-review-fixesnew'
+        run: |
+          sed -i 's|^apiUrlDevelop=.*|apiUrlDevelop=https://dev.bebbo.app/api|' env/.env.bebboDev
+          echo 'BEBBO_DEV_JOURNEY=true' >> "$GITHUB_ENV"
       - run: BUNDLE_PLATFORM=${{ inputs.platform }} npm run assets:check
       - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
         if: inputs.platform == 'android'

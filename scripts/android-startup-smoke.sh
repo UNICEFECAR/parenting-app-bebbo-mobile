@@ -71,6 +71,10 @@ PYCODE
 )
 adb shell am start -W -n "$component"
 sleep 20
+if [[ "${BEBBO_DEV_JOURNEY:-false}" == "true" ]]; then
+  python3 scripts/android-dev-journey.py
+  exit 0
+fi
 # Slow emulator networking can legitimately show the existing data-saver prompt
 # before the fixture download error. Decline it, then require the same retry UI;
 # never dismiss arbitrary dialogs or accept a blank screen as successful startup.

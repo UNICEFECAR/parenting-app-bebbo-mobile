@@ -76,7 +76,7 @@ jobs:
     with:
       flavour: ${{ matrix.flavour }}
       platform: ${{ matrix.platform }}
-      smoke: ${{ matrix.flavour == 'bebbo' || matrix.flavour == 'reraiUmntwana' }}
+      smoke: ${{ matrix.flavour == 'bebbo' || matrix.flavour == 'reraiUmntwana' || (matrix.flavour == 'bebboDev' && matrix.platform == 'android' && github.ref_name == 'RNSDKUpgrade-review-fixesnew') }}
   auxiliary-native:
     strategy:
       fail-fast: false

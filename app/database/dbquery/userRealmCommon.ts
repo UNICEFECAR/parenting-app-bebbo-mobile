@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon';
 
 import { Component } from 'react';
 import type RealmType from 'realm';
@@ -163,7 +162,9 @@ class UserRealmCommon extends Component {
                         const updateItemIndex = obj[0]?.reminders?.findIndex((item: any) => {
                             return item.uuid == reminder.uuid
                         });
-                        obj[0].reminders.splice(updateItemIndex, 1);
+                        if (updateItemIndex >= 0) {
+                            obj[0].reminders.splice(updateItemIndex, 1);
+                        }
                     }
                 });
                 result = obj[0].reminders
@@ -227,7 +228,9 @@ class UserRealmCommon extends Component {
                         const updateItemIndex = obj[0]?.measures?.findIndex((item: any) => {
                             return item.uuid == measure.uuid
                         });
-                        obj[0].measures.splice(updateItemIndex, 1);
+                        if (updateItemIndex >= 0) {
+                            obj[0].measures.splice(updateItemIndex, 1);
+                        }
                     }
                 });
                 result = obj[0].measures
@@ -564,17 +567,16 @@ class UserRealmCommon extends Component {
                 const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                 realm?.write(() => {
                     console.log("write")
-                    if (obj[0].reminders.length > 0) {
-                        const updateItemIndex = obj[0]?.reminders?.findIndex(async (item: any) => {
-                            const reminderDate: any = DateTime.fromMillis(item.reminderDate);
-                            const newreminderDate: any = new Date(reminderDate);
-                            const hours = new Date(item.reminderTime).getHours()
-                            const mins = new Date(item.reminderTime).getMinutes()
-                            newreminderDate.setHours(hours);
-                            newreminderDate.setMinutes(mins);
-                            return DateTime.fromJSDate(new Date(newreminderDate)).toMillis() < param;
-                        });
-                        obj[0].reminders.splice(updateItemIndex, 1);
+                    const reminders = obj[0].reminders;
+                    // Realm lists are live. Walk backwards so adjacent expired appointments are all removed.
+                    for (let index = reminders.length - 1; index >= 0; index--) {
+                        const reminder = reminders[index];
+                        const appointment = new Date(reminder.reminderDate);
+                        const time = new Date(reminder.reminderTime);
+                        appointment.setHours(time.getHours(), time.getMinutes());
+                        if (appointment.getTime() < param) {
+                            reminders.splice(index, 1);
+                        }
                     }
                 });
                 result = obj[0].reminders
