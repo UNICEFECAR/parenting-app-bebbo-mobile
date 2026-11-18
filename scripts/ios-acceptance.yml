@@ -1,6 +1,15 @@
 appId: org.unicef.bebbodev
 ---
 - launchApp
+- tapOn:
+    text: "(?i)Don.t Allow"
+    optional: true
+- tapOn:
+    text: "Ask App Not to Track"
+    optional: true
+- tapOn:
+    text: "(?i)Don.t Allow"
+    optional: true
 - extendedWaitUntil:
     visible: ".*Welcome!.*"
     timeout: 90000
