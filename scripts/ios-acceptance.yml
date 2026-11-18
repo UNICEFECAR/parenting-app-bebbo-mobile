@@ -1,0 +1,54 @@
+appId: org.unicef.bebbodev
+---
+- launchApp
+- extendedWaitUntil:
+    visible: ".*Welcome!.*"
+    timeout: 90000
+- takeScreenshot: ios-welcome
+- scrollUntilVisible:
+    element: "(?i)continue"
+- tapOn: "(?i)continue"
+- scrollUntilVisible:
+    element: ".*I have read, understood.*"
+- tapOn:
+    text: ".*I have read, understood.*"
+    point: "4%,50%"
+- tapOn: "(?i)continue"
+- assertVisible: ".*What is your name or nickname.*"
+- takeScreenshot: ios-caregiver
+- tapOn:
+    text: ".*What is your name or nickname.*"
+    point: "35%,250%"
+- inputText: "TestCaregiver"
+- hideKeyboard
+- tapOn: "(?i).*You are.*"
+- tapOn: "(?i)mother"
+- tapOn: "(?i)continue"
+- scrollUntilVisible:
+    element: "(?i)skip"
+- tapOn: "(?i)skip"
+- extendedWaitUntil:
+    visible: ".*Daily reads.*"
+    timeout: 180000
+- takeScreenshot: ios-home
+- tapOn: "(?i).*Tools"
+- tapOn: "(?i).*Vaccinations"
+- tapOn:
+    text: "(?i)continue"
+    optional: true
+- assertVisible: "(?i).*Vaccination summary.*"
+- takeScreenshot: ios-vaccinations
+- tapOn: "(?i).*Tools"
+- tapOn: "(?i).*Health check-ups"
+- tapOn:
+    text: "(?i)continue"
+    optional: true
+- assertVisible: "(?i).*Add doctor visit.*"
+- takeScreenshot: ios-health-checkups
+- tapOn: "(?i).*Tools"
+- tapOn: "(?i).*Child.s growth"
+- tapOn:
+    text: "(?i)continue"
+    optional: true
+- assertVisible: "(?i).*No growth measurements recorded.*"
+- takeScreenshot: ios-growth

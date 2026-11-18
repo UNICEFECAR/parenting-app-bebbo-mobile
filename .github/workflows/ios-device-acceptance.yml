@@ -1,0 +1,69 @@
+name: Bebbo Dev installed iOS acceptance
+on:
+  push:
+    branches: [RNSDKUpgrade-review-fixesnew]
+    paths:
+      - '.github/workflows/ios-device-acceptance.yml'
+      - 'scripts/ios-acceptance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  installed-app:
+    runs-on: macos-latest
+    timeout-minutes: 80
+    env:
+      FLAVOR: bebboDev
+      CI: 'true'
+      MAESTRO_CLI_NO_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Prepare disposable national configuration and public development content
+        run: |
+          npm ci --legacy-peer-deps
+          node scripts/ci-fixtures.cjs
+          sed -i '' 's|^apiUrlDevelop=.*|apiUrlDevelop=https://dev.bebbo.app/api|' env/.env.bebboDev
+          cd ios && bundle exec pod install --deployment
+      - name: Compile and install Bebbo Dev on an available iPhone simulator
+        run: |
+          mkdir -p "$RUNNER_TEMP/ios-evidence"
+          xcrun simctl list devices available --json > "$RUNNER_TEMP/ios-evidence/simulators.json"
+          phone=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1]))["devices"]; sets=sorted(((tuple(map(int,k.rsplit("iOS-",1)[1].split("-"))),v) for k,v in d.items() if "iOS-" in k),reverse=True); print(next(p["udid"] for _,group in sets for p in group if p["name"].startswith("iPhone") and p["isAvailable"]))' "$RUNNER_TEMP/ios-evidence/simulators.json")
+          echo "PHONE=$phone" >> "$GITHUB_ENV"
+          xcrun simctl boot "$phone"
+          xcrun simctl bootstatus "$phone" -b
+          xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme "$IOS_SCHEME" -configuration Release \
+            -destination "platform=iOS Simulator,id=$phone" -derivedDataPath "$RUNNER_TEMP/ios-build" \
+            ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/ios-xcode.log" 2>&1 || { tail -100 "$RUNNER_TEMP/ios-xcode.log"; exit 1; }
+          app=$(find "$RUNNER_TEMP/ios-build/Build/Products/Release-iphonesimulator" -maxdepth 1 -type d -name '*.app' -print -quit)
+          test -n "$app" && xcrun simctl install "$phone" "$app"
+          xcrun simctl launch "$phone" "$IOS_APP_ID"
+      - name: Exercise the real welcome, caregiver and Tool screens
+        run: |
+          curl -fLsS --retry 3 https://github.com/mobile-dev-inc/Maestro/releases/download/cli-2.12.1/maestro.zip -o "$RUNNER_TEMP/maestro.zip"
+          echo "54dbb0716425626604973cbb374c585ca30272375d9ce15177a1152765ddd9d7  $RUNNER_TEMP/maestro.zip" | shasum -a 256 -c -
+          unzip -q "$RUNNER_TEMP/maestro.zip" -d "$RUNNER_TEMP/maestro-download"
+          cli=$(find "$RUNNER_TEMP/maestro-download" -path '*/bin/maestro' -type f -print -quit)
+          chmod +x "$cli"
+          cd "$RUNNER_TEMP/ios-evidence"
+          "$cli" --device "$PHONE" test --test-output-dir "$RUNNER_TEMP/ios-evidence" "$GITHUB_WORKSPACE/scripts/ios-acceptance.yml"
+      - name: Capture the last simulator screen
+        if: always() && env.PHONE != ''
+        run: xcrun simctl io "$PHONE" screenshot "$RUNNER_TEMP/ios-evidence/last-screen.png"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: bebbo-dev-installed-ios-evidence
+          path: ${{ runner.temp }}/ios-evidence
