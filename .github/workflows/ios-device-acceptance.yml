@@ -17,6 +17,7 @@ jobs:
       FLAVOR: bebboDev
       CI: 'true'
       MAESTRO_CLI_NO_ANALYTICS: 'true'
+      MAESTRO_DRIVER_STARTUP_TIMEOUT: '300000'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
