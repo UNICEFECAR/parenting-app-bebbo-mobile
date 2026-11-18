@@ -1,0 +1,60 @@
+name: Bebbo Dev installed app acceptance
+on:
+  push:
+    branches: [RNSDKUpgrade-review-fixesnew]
+    paths:
+      - '.github/workflows/android-device-acceptance.yml'
+      - 'scripts/android-device-acceptance.py'
+  workflow_dispatch:
+    inputs:
+      build_run:
+        description: 'Run with the Bebbo Dev public staging AAB'
+        required: true
+        default: '44259708308'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  installed-app:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      ANDROID_APP_ID: org.unicef.bebbodev
+      BEBBO_DEV_JOURNEY: 'true'
+      BUILD_RUN: ${{ inputs.build_run || '44259708308' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Fetch existing package and confirm the application inputs match
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          commit=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN" --jq .head_sha)
+          git diff --exit-code "$commit" HEAD -- app android ios App.tsx index.js package.json package-lock.json patches babel.config.js metro.config.js scripts/ci-fixtures.cjs scripts/vector-assets.cjs
+          gh run download "$BUILD_RUN" --name unsigned-native-bebboDev-primary --dir "$RUNNER_TEMP/dev-aab"
+          mkdir -p "$RUNNER_TEMP/native-smoke" android/app/build/outputs/bundle/qa
+          bundle=$(find "$RUNNER_TEMP/dev-aab" -name '*.aab' -print -quit)
+          cp "$bundle" android/app/build/outputs/bundle/qa/app.aab
+          jar="$RUNNER_TEMP/bundletool.jar"
+          curl -fsSL --retry 3 https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar -o "$jar"
+          printf '%s  %s\n' 'a099cfa1543f55593bc2ed16a70a7c67fe54b1747bb7301f37fdfd6d91028e29' "$jar" | sha256sum --check
+          java -jar "$jar" dump manifest --bundle="$bundle" --module=base > "$RUNNER_TEMP/native-smoke/manifest.xml"
+          echo "BUNDLETOOL_JAR=$jar" >> "$GITHUB_ENV"
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          ram-size: 3072M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          script: |
+            bash scripts/android-startup-smoke.sh
+            python3 scripts/android-device-acceptance.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: bebbo-dev-installed-app-evidence
+          path: ${{ runner.temp }}/native-smoke
