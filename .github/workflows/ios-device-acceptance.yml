@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 jobs:
   installed-app:
     runs-on: macos-latest
@@ -18,11 +19,27 @@ jobs:
       MAESTRO_CLI_NO_ANALYTICS: 'true'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Reuse the verified staging simulator package when application inputs match
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # A successful compile in this run produced the package before UI testing.
+          source_run=44275651925
+          sha=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$source_run" --jq .head_sha)
+          if git diff --quiet "$sha" HEAD -- . ':(exclude).github/workflows/ios-device-acceptance.yml' ':(exclude)scripts/ios-acceptance.yml'               && gh run download "$source_run" --name bebbo-dev-simulator-app --dir "$RUNNER_TEMP/simulator-package"; then
+            ditto -x -k "$RUNNER_TEMP/simulator-package/bebbo-dev-simulator.zip" "$RUNNER_TEMP/existing-simulator-app"
+            echo "REUSE_SIM_APP=true" >> "$GITHUB_ENV"
+            echo "IOS_APP_ID=org.unicef.bebbodev" >> "$GITHUB_ENV"
+          fi
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        if: env.REUSE_SIM_APP != 'true'
         with:
           node-version-file: .nvmrc
           cache: npm
       - uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199
+        if: env.REUSE_SIM_APP != 'true'
         with:
           ruby-version: '3.4'
           bundler-cache: true
@@ -31,6 +48,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - name: Prepare disposable national configuration and public development content
+        if: env.REUSE_SIM_APP != 'true'
         run: |
           npm ci --legacy-peer-deps
           node scripts/ci-fixtures.cjs
@@ -44,14 +62,19 @@ jobs:
           echo "PHONE=$phone" >> "$GITHUB_ENV"
           xcrun simctl boot "$phone"
           xcrun simctl bootstatus "$phone" -b
-          xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme "$IOS_SCHEME" -configuration Release \
-            -destination "platform=iOS Simulator,id=$phone" -derivedDataPath "$RUNNER_TEMP/ios-build" \
-            ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/ios-xcode.log" 2>&1 || { tail -100 "$RUNNER_TEMP/ios-xcode.log"; exit 1; }
-          app=$(find "$RUNNER_TEMP/ios-build/Build/Products/Release-iphonesimulator" -maxdepth 1 -type d -name '*.app' -print -quit)
+          if [[ "${REUSE_SIM_APP:-}" == true ]]; then
+            app=$(find "$RUNNER_TEMP/existing-simulator-app" -maxdepth 1 -type d -name '*.app' -print -quit)
+          else
+            xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme "$IOS_SCHEME" -configuration Release \
+              -destination "platform=iOS Simulator,id=$phone" -derivedDataPath "$RUNNER_TEMP/ios-build" \
+              ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/ios-xcode.log" 2>&1 || { tail -100 "$RUNNER_TEMP/ios-xcode.log"; exit 1; }
+            app=$(find "$RUNNER_TEMP/ios-build/Build/Products/Release-iphonesimulator" -maxdepth 1 -type d -name '*.app' -print -quit)
+            ditto -c -k --keepParent "$app" "$RUNNER_TEMP/bebbo-dev-simulator.zip"
+          fi
           test -n "$app" && xcrun simctl install "$phone" "$app"
-          ditto -c -k --keepParent "$app" "$RUNNER_TEMP/bebbo-dev-simulator.zip"
           xcrun simctl launch "$phone" "$IOS_APP_ID"
       - name: Preserve the staging simulator app for a device retest
+        if: env.REUSE_SIM_APP != 'true'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: bebbo-dev-simulator-app

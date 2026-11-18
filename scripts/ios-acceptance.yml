@@ -32,8 +32,8 @@ appId: org.unicef.bebbodev
 - assertVisible: ".*What is your name or nickname.*"
 - takeScreenshot: ios-caregiver
 - tapOn:
-    text: ".*What is your name or nickname.*"
-    point: "35%,250%"
+    # The field immediately under the asserted label has no accessibility ID.
+    point: "50%,33%"
 - inputText: "TestCaregiver"
 - hideKeyboard
 - tapOn: "(?i).*You are.*"
