@@ -68,6 +68,9 @@ def dismiss_intro(tree):
 def home():
     for attempt in range(12):
         tree, xml = ui.snapshot()
+        if ui.find(tree, '^Close drawer$') is not None:
+            back()
+            continue
         if ui.find(tree, r"^Today.s advice,") is not None:
             return
         if ui.find(tree, r'Poor connection|Content is not fully downloaded|^Attention$|allow .*notifications') is not None:
@@ -97,6 +100,8 @@ def home():
 def drawer():
     tree, _ = ui.snapshot()
     # The home hamburger's labelled glyph is defined by the existing Fontello map.
+    if ui.find(tree, '^Close drawer$') is not None:
+        return
     node = ui.find(tree, '^\ue824$')
     if node is None:
         raise ValueError('home-drawer-control')
@@ -199,9 +204,11 @@ def checkup():
 def menu(name,entry,proof):
     drawer()
     if name in ('about','privacy','terms'):
-        click('expand-about-'+name, '^About Bebbo$',True)
         if name=='about':
             entry='^About us$'
+        tree, _ = ui.snapshot()
+        if ui.find(tree, entry) is None:
+            click('expand-about-'+name, '^About Bebbo$',True)
     click('drawer-'+name,entry,True)
     opened('view-'+name,proof)
 
@@ -214,6 +221,9 @@ def local_backup():
     p=Path(os.environ['RUNNER_TEMP'])/'BebboLegacyQA.json'
     p.write_bytes(enc)
     ui.adb('push',str(p),'/sdcard/Download/BebboLegacyQA.json')
+    ui.adb('shell','am','force-stop',ui.PACKAGE)
+    launch_app()
+    home()
     drawer()
     click('backup-settings','^Settings$',True)
     click('backup-import','^Upload saved data$',True)
