@@ -3,10 +3,12 @@ on:
   pull_request:
   push:
     branches: [RNSDKUpgrade-review-fixes, RNSDKUpgrade-review-fixesnew]
-    # These two files exercise an existing package in their own workflow.
+    # Installed-device checks run in their own workflows.
     paths-ignore:
       - '.github/workflows/android-device-acceptance.yml'
       - 'scripts/android-device-acceptance.py'
+      - '.github/workflows/ios-device-acceptance.yml'
+      - 'scripts/ios-acceptance.yml'
 permissions:
   contents: read
 concurrency:
