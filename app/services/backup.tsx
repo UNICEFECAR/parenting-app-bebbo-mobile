@@ -1,3 +1,4 @@
+import {BACKUP_EXPORT_COMPLETED, BACKUP_RESTORE_COMPLETED} from '../assets/data/firebaseEvents';
 import {requestBackupPassword, setBackupOperationBusy} from './backupPassword';
 import {encryptProtectedBackup, decryptProtectedBackup, isProtectedBackup} from './protectedBackupCipher';
 import {backupRuntime} from './backupRuntime';
@@ -66,7 +67,7 @@ class Backup {
     if (isProtectedBackup(text)) {
       const password = await requestBackupPassword('unlock');
       if (password == null) throw new Error('loginCanceled');
-      return validateSnapshot(JSON.parse(await decryptProtectedBackup(text, password)), backupRuntime().context());
+      return validateSnapshot(JSON.parse(await decryptProtectedBackup(text, password)));
     }
     return parseBackupChildren(await this.decryptData(text, encryptionsKey));
   }
@@ -76,7 +77,7 @@ class Backup {
       const cipher = await this.encryptedUserData();
       if (cipher == null) return false;
       const saved = await saveBackupDocument(cipher);
-      if (saved) void logAnalyticsEvent('backup_export_completed', {source: 'local_file'});
+      if (saved) void logAnalyticsEvent(BACKUP_EXPORT_COMPLETED, {source: 'local_file'});
       return saved;
     });
   }
@@ -106,7 +107,7 @@ class Backup {
           if (deleted instanceof Error) throw deleted;
         } catch (error) { console.warn('Previous Drive backup could not be removed', error); }
       }
-      void logAnalyticsEvent('backup_export_completed', {source: 'drive'});
+      void logAnalyticsEvent(BACKUP_EXPORT_COMPLETED, {source: 'drive'});
       return true;
     });
   }
@@ -158,10 +159,10 @@ class Backup {
     catch (error) { return error instanceof Error && error.message === 'loginCanceled' ? null : asError(error); }
   }
 
-  private async replaceChildren(data: unknown, genders: any): Promise<any[]> {
+  private async replaceChildren(data: unknown, genders: any, caregiver?: Record<string,string>): Promise<any[]> {
     // Detach before the legacy converter mutates records. Convert every child
     // before the transaction; a conversion failure cannot affect live data.
-    const snapshot = !Array.isArray(data) ? validateSnapshot(data, backupRuntime().context()) : undefined;
+    const snapshot = !Array.isArray(data) ? validateSnapshot(data) : undefined;
     const staged = snapshot ? await stagePhotos(snapshot) : undefined;
     try {
     const detached = JSON.parse(JSON.stringify(validateBackupChildren(staged?.children ?? data)));
@@ -179,19 +180,24 @@ class Backup {
     const realm = await userRealmCommon.openRealm();
     if (!realm) throw new Error('Cannot open user data');
     // A bad nested record rolls back the deletion and preceding insertions.
-    if (snapshot) await commitPortableRestore(children, snapshot.settings, snapshot.preferences);
+    if (snapshot || caregiver) {
+      const settingsRealm = !snapshot && await dataRealmCommon.openRealm();
+      if (!snapshot && !settingsRealm) throw new Error('Cannot open preferences');
+      const settings = snapshot?.settings ?? readPortableSettings(settingsRealm);
+      await commitPortableRestore(children, {...settings, ...caregiver}, snapshot?.preferences ?? backupRuntime().flags());
+    }
     else realm.write(() => {
       realm.deleteAll();
       children.forEach(child => realm.create(ChildEntitySchema.name, child, 'modified' as UpdateMode));
     });
-    void logAnalyticsEvent('backup_restore_completed', {restored_count: children.length});
+    void logAnalyticsEvent(BACKUP_RESTORE_COMPLETED, {restored_count: children.length});
     return children;
     } finally { if (staged) await cleanupUnjournaledBackupPhotos().catch(() => {}); }
   }
 
   /** Atomic replacement shared by onboarding, local documents and Drive. */
-  public async restoreChildren(data: unknown, genders: any): Promise<any[]> {
-    return this.exclusive(() => this.replaceChildren(data, genders));
+  public async restoreChildren(data: unknown, genders: any, caregiver?: Record<string,string>): Promise<any[]> {
+    return this.exclusive(() => this.replaceChildren(data, genders, caregiver));
   }
 
   private async finishRestore(navigation: any, langCode: any, dispatch: any, childAge: any, taxonomyIds?: any): Promise<'Imported'> {

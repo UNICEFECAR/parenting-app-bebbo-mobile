@@ -10,6 +10,8 @@ import { store } from '../../App';
 import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
 import { localization, AVAILABLE_LANGUAGES } from '../instances/index';
 
+import {backupFallback} from './backupFallback';
+
 const localisationnew = [...localization];
 const findAllByKey: any = (obj: object | null, keyToFind: string) => {
   if (obj) {
@@ -86,7 +88,7 @@ i18n
     cleanCode: false,
     returnEmptyString: true,
     fallbackLng: ['dev'],
-    resources: AVAILABLE_LANGUAGES,
+    resources: {...AVAILABLE_LANGUAGES, dev: {translation: backupFallback}},
   //   load: 'currentOnly',
     react: {
       useSuspense: false,

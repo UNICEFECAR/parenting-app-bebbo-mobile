@@ -1,0 +1,27 @@
+{
+  "fingerprint": "3ed92cf74946a0320416c42d68225270f62e8362a7ae77d53b506d13ce37ccd5",
+  "files": {
+    "drawable/activity_feature_logo_svg_97fc39.xml": "d11f5d0d4e2b91ee1fbc19fbdf5030e4135e2a6730b663e9206e86fab63061c7",
+    "drawable/advice_feature_logo_svg_7c0e83.xml": "e90fb4de53031a5229e147664ec1d3b8ae4237b38a71bed84b6963ca9ffac566",
+    "drawable/bebbo_logo_shape1_svg_98422f.xml": "3bff6f100c67e546b0c2b673da179b284f29603c3f4a92b96ec929bdbd73016f",
+    "drawable/bebbo_logo_shape_svg_b84625.xml": "2ed3ab795f5c0fe3d025ddfeb0ab53e1b6baba096d6f84457d72f665310efb0d",
+    "drawable/camera_profile_svg_a16942.xml": "5ec9fba84fdd5bb1f6d8499e0c4ba195fa39ce967018138f8ccb05bde7ef6500",
+    "drawable/chart_svg_e10e63.xml": "3295f0412b43a29c9a493890da59c21b6be07fd0b8b0ac19c841bb84fb5e7397",
+    "drawable/history_svg_a08286.xml": "a4a325045ab89046d1329a0f5e255eb8bbdeaef00c9688a7d6ad7f5f10a9bec7",
+    "drawable/ic_activity_color_svg_86e25d.xml": "e12f1062406d41b96af4426982b9c5e3d4c559f094709cd6717841cb338d5466",
+    "drawable/ic_article_color_svg_0eb212.xml": "e73ddd5b71457c270a4c9008c60c7bafb2dbba2d99552a4589a693d884ca314e",
+    "drawable/ic_backup_link_svg_5eb37b.xml": "f2392d11a0b20de387e777b43a0594e8514b990b23e92e9fc4c7d56255ea6de2",
+    "drawable/ic_chat_link_svg_68719f.xml": "aea19bfae117ecea46fef58e777535add1a2a5cde06f8bfe6a2a068e2ca7cd81",
+    "drawable/ic_development_color_svg_623199.xml": "0e3895ed5725d4d1d1f9625587b5e0b92825b095377133168ef82454c40fdf32",
+    "drawable/ic_favorites_link_svg_a63c49.xml": "a66d36b2ef112bec74bec310449c6589c3b6639c316dc4a9e1b07fe0f736e65c",
+    "drawable/ic_file_svg_873adc.xml": "b1089fda812f459ed7221063350f34e420d34da8ddc4d4f8f8177db5409db659",
+    "drawable/ic_gdrive_svg_1618e2.xml": "e96a0ad6776fc02ca8ef3670c487ea1c4dfa40597c40f647d05b5e9f1bf71621",
+    "drawable/ic_growth_color_svg_532ea2.xml": "8029c88082d2a62f0793bb30ebb64b127563d7d8aefac4a3cae3e53beb70e8c1",
+    "drawable/ic_health_color_svg_b47d6e.xml": "8017f52f51cc4e0bf04d9a61cd000b6ff7343d243a02a3e1e3c3bddef60e1b9e",
+    "drawable/ic_tools_color_svg_335b8f.xml": "3871c3e3a7ea4f130f24f1de3abb102f2cac85852fa2492bd51fdddfcadfb0fc",
+    "drawable/ic_vaccination_color_svg_5b90d8.xml": "040c28b0446329359c1937b059fc1be317627fa9b96c450093ffbb77a5386763",
+    "drawable/img_logo_chatbot_new_svg_c61e96.xml": "78ba806ba9b044b3addc80edf9962d76d4f318c2614fb0785631e5abdae9ea95",
+    "drawable/play_icon_svg_b1cbb6.xml": "6a902e98ef2731321e0623a402cd7cb5746078f677fcb76274ff814011da21a5",
+    "drawable/tools_features_logo_svg_41c195.xml": "8ea7ad55d15b529ea3fb2c60f6917968f8f53a9d4ac199920d22bd471fb8af3d"
+  }
+}

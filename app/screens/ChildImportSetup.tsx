@@ -1,3 +1,6 @@
+import {ONBOARDING_CHILD_COUNT} from "@assets/data/firebaseEvents";
+import {logEvent} from "../services/EventSyncService";
+import type {PortableSnapshot} from "../services/backupSnapshot";
 import {getBackupPreview, clearBackupPreviews} from '../services/backupPreview';
 import {backupErrorMessage} from '../services/backupErrorMessage';
 import {recordError} from "../services/firebaseAnalytics";
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
   },
 });
 const ChildImportSetup = (props: any): any => {
-  useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const { importResponse, importPreviewId } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -117,7 +120,7 @@ const ChildImportSetup = (props: any): any => {
     });
 
   const relationshipToParent = useAppSelector(selectRelationshipToParent);
-  useEffect(() => {
+  useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       return true;
     };
@@ -130,14 +133,21 @@ const ChildImportSetup = (props: any): any => {
       unsubscribeGesture();
       backHandler.remove();
     };
-  }, [props.navigation]);
+  }, [props.navigation]));
 
   useEffect(() => {
     const propsData = props?.route?.params;
-    setRelationship(propsData?.relationData);
-    setRelationshipName(propsData?.relationshipNameData);
-    setUserRelationToParent(propsData?.userRelationToParentData);
-    setName(propsData?.parentName);
+    let saved: Record<string, string> = {};
+    if (propsData?.importPreviewId) {
+      try {
+        const preview = getBackupPreview(propsData.importPreviewId) as PortableSnapshot | unknown[];
+        if (!Array.isArray(preview)) saved = preview.settings;
+      } catch { /* Confirmation reports an expired preview without changing stored data. */ }
+    }
+    setRelationship(saved.userParentalRole ?? propsData?.relationData);
+    setRelationshipName(saved.userRelationToParent ? "" : propsData?.relationshipNameData);
+    setUserRelationToParent(saved.userRelationToParent ?? propsData?.userRelationToParentData);
+    setName(saved.userName ?? propsData?.parentName ?? "");
   }, [props?.route?.params]);
 
   const getCheckedParentItem = (checkedItem: any): any => {
@@ -177,16 +187,10 @@ const ChildImportSetup = (props: any): any => {
     try {
       if (!(await confirmBackupReplacement(t))) return;
       const data = importPreviewId ? getBackupPreview(importPreviewId) : typeof importResponse === "string" ? JSON.parse(importResponse) : importResponse;
-      const children = await backup.restoreChildren(data, genders);
+      const caregiver = {userParentalRole: relationship, userRelationToParent: String(userRelationToParent),
+        userName: name, userEnteredChildData: Array.isArray(data) ? "true" : data.settings.userEnteredChildData ?? "true"};
+      const children = await backup.restoreChildren(data, genders, caregiver);
       clearBackupPreviews();
-      for (const [key, value] of [
-        ["userParentalRole", relationship],
-        ["userRelationToParent", String(userRelationToParent)],
-        ["userEnteredChildData", "true"],
-        ["userName", name],
-      ]) {
-        await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, key, value);
-      }
       const settings = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(
         ConfigSettingsSchema, "key='currentActiveChildId'"
       );
@@ -197,6 +201,7 @@ const ChildImportSetup = (props: any): any => {
       await getAllChildren(dispatch,childAge,1);
       dispatch(setInfoModalOpened({key: "generateNotifications", value: true}));
       dispatch(setAllLocalNotificationGenerateType({generateFlag: true, generateType: "add", childuuid: "all"}));
+      void logEvent({name: ONBOARDING_CHILD_COUNT, params: {child_count: children.length}}, netInfo.isConnected);
       props.navigation.reset({index: 0, routes: [{name: "LoadingScreen", params: {
         apiJsonData: apiJsonDataGet("all"), prevPage: "ChildSetup",
       }}]});
@@ -273,7 +278,7 @@ const ChildImportSetup = (props: any): any => {
                           <Text>
                             {relationshipname
                               ? relationshipname
-                              : t("childSetuprelationSelectText")}
+                              : relationshipToParent.find((item: any) => item.unique_name === userRelationToParent)?.name ?? t("childSetuprelationSelectText")}
                           </Text>
                         </FormDateText>
                         <FormDateAction>

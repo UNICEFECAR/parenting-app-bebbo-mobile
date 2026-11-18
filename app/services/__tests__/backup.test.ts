@@ -259,6 +259,13 @@ describe('local backup document selection and saving', () => {
     jest.mocked(RNFS.unlink).mockResolvedValue(undefined);
   });
 
+  test('reads a provider-labelled JSON backup with an encoded cache path and no display name', async () => {
+    jest.mocked(pick).mockResolvedValueOnce([{uri:'content://provider/1',name:null,type:'application/json'}] as any);
+    jest.mocked(keepLocalCopy).mockResolvedValueOnce([{status:'success',sourceUri:'content://provider/1',localUri:'file:///my%20cache/1.json'}]);
+    jest.mocked(RNFS.readFile).mockResolvedValueOnce('legacy ciphertext');
+    expect(await openBackupDocument()).toEqual({name:'backup.json',data:'legacy ciphertext'});
+    expect(RNFS.readFile).toHaveBeenCalledWith('file:///my cache/1.json','utf8');
+  });
   test('reads encrypted JSON unchanged and removes only the temporary local copy', async () => {
     jest.mocked(RNFS.readFile).mockResolvedValue('"encrypted"');
     await expect(openBackupDocument()).resolves.toEqual({ name: 'mybackup.json', data: '"encrypted"' });

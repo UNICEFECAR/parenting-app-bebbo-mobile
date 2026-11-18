@@ -101,3 +101,15 @@ test('cancellation passes only accepted responses to cache consumers and cursors
   expect(actions.find(action => action.type === 'success')?.payload).toEqual([response]);
   expect(updateIncrementalSyncDT).toHaveBeenCalledWith([response], expect.anything(), undefined, undefined, 'Home');
 });
+
+test('retry keeps accepted responses and reissues only the failed request, including its parameters', async () => {
+  const second = {...request, postdata:{page:2}};
+  const secondResponse = {...response, data:{...response.data, datetime:'second-page'}};
+  jest.mocked(commonApiService).mockResolvedValueOnce(response as any)
+    .mockResolvedValueOnce({...response,status:503} as any).mockResolvedValueOnce(secondResponse as any);
+  jest.mocked(retryAlert).mockResolvedValueOnce('Retry');
+  await start({payload:[request,second]}).toPromise();
+  expect(jest.mocked(commonApiService).mock.calls.map(call => call[2])).toEqual([{}, {page:2}, {page:2}]);
+  expect(actions.filter(action => action.type === 'success')).toEqual([{type:'success',payload:[response,secondResponse]}]);
+  expect(onHomeapiSuccess).toHaveBeenCalledTimes(1);
+});

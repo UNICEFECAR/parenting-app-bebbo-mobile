@@ -214,6 +214,16 @@
 		EC87B63199C7B68850492E2F /* LegacyNotifications.mm in Sources */ = {isa = PBXBuildFile; fileRef = C6521E46709FC9EEEA0441D5 /* LegacyNotifications.mm */; };
 		EF8E55A5C624373270C86862 /* LegacyNotifications.mm in Sources */ = {isa = PBXBuildFile; fileRef = C6521E46709FC9EEEA0441D5 /* LegacyNotifications.mm */; };
 		F27D058AF84CA2E66A66BAAF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */; };
+		8D1935CB1B0F4FA50178ADE8 /* bebbo vectors in Resources */ = {isa = PBXBuildFile; fileRef = 39AF0666467B09186CFB8B8C /* bebbo vectors */; };
+		9D0D81ACD6318FD7BE7A041F /* bebboDev vectors in Resources */ = {isa = PBXBuildFile; fileRef = 93546A56B0F814D5C2144990 /* bebboDev vectors */; };
+		1E2DE98A25D0630091B10EC5 /* babuni vectors in Resources */ = {isa = PBXBuildFile; fileRef = 23FC338D0755E4D142305B0A /* babuni vectors */; };
+		0AAD65BE055E3B1C1BE84477 /* babuni vectors in Resources */ = {isa = PBXBuildFile; fileRef = 23FC338D0755E4D142305B0A /* babuni vectors */; };
+		72747A6815A52BF9B13093E8 /* foleja vectors in Resources */ = {isa = PBXBuildFile; fileRef = 932D5B9D38402DE255097B7F /* foleja vectors */; };
+		2467016BE6B408E0409DE156 /* foleja vectors in Resources */ = {isa = PBXBuildFile; fileRef = 932D5B9D38402DE255097B7F /* foleja vectors */; };
+		5737337E272CB4101C43703E /* bebboPacific vectors in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CBF7E17759AD0FDA3D009 /* bebboPacific vectors */; };
+		B2312CA8296E7FAE5100F8D5 /* wawamor vectors in Resources */ = {isa = PBXBuildFile; fileRef = FDFC82E04EEAC71D3A479481 /* wawamor vectors */; };
+		1ECBE237CD1E7FB017006661 /* reraiUmntwana vectors in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D827640D60CB4CEFE0092 /* reraiUmntwana vectors */; };
+		5CDE469C9D005654FB66EFEF /* merhabaBebek vectors in Resources */ = {isa = PBXBuildFile; fileRef = D6297A5762CA6833C5402127 /* merhabaBebek vectors */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,6 +390,14 @@
 		F4F28DB5EB235B2642A26D6E /* Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppTests/Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F57C38D930E37ED60322D609 /* Pods-ParentBuddyApp-Wawamor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-Wawamor.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-Wawamor/Pods-ParentBuddyApp-Wawamor.debug.xcconfig"; sourceTree = "<group>"; };
 		F6A85ECD172E127848C8EC2C /* Pods-ParentBuddyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp/Pods-ParentBuddyApp.release.xcconfig"; sourceTree = "<group>"; };
+		23FC338D0755E4D142305B0A /* babuni vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "babuni vectors"; path = "../app/instances/babuni/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		39AF0666467B09186CFB8B8C /* bebbo vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "bebbo vectors"; path = "../app/instances/bebbo/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		93546A56B0F814D5C2144990 /* bebboDev vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "bebboDev vectors"; path = "../app/instances/bebboDev/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		1A4CBF7E17759AD0FDA3D009 /* bebboPacific vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "bebboPacific vectors"; path = "../app/instances/bebboPacific/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		932D5B9D38402DE255097B7F /* foleja vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "foleja vectors"; path = "../app/instances/foleja/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		D6297A5762CA6833C5402127 /* merhabaBebek vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "merhabaBebek vectors"; path = "../app/instances/merhabaBebek/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		2F5D827640D60CB4CEFE0092 /* reraiUmntwana vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "reraiUmntwana vectors"; path = "../app/instances/reraiUmntwana/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		FDFC82E04EEAC71D3A479481 /* wawamor vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "wawamor vectors"; path = "../app/instances/wawamor/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -521,6 +539,14 @@
 				D6F1422A2E2925F500986814 /* ParentBuddyApp.entitlements */,
 				D6F142002E29131100986814 /* GoogleServices */,
 				D6F141E42E2912C200986814 /* InfoPlist_Bebbo */,
+				23FC338D0755E4D142305B0A /* babuni vectors */,
+				39AF0666467B09186CFB8B8C /* bebbo vectors */,
+				93546A56B0F814D5C2144990 /* bebboDev vectors */,
+				1A4CBF7E17759AD0FDA3D009 /* bebboPacific vectors */,
+				932D5B9D38402DE255097B7F /* foleja vectors */,
+				D6297A5762CA6833C5402127 /* merhabaBebek vectors */,
+				2F5D827640D60CB4CEFE0092 /* reraiUmntwana vectors */,
+				FDFC82E04EEAC71D3A479481 /* wawamor vectors */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -1243,6 +1269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D1935CB1B0F4FA50178ADE8 /* bebbo vectors in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				D6F141E52E2912C200986814 /* InfoPlist.strings in Resources */,
 				D6F1420D2E29131100986814 /* GoogleService-Info.plist in Resources */,
@@ -1273,6 +1300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5737337E272CB4101C43703E /* bebboPacific vectors in Resources */,
 				D6C1B5BD2EBCB0D100E466C0 /* splash.json in Resources */,
 				D6C1B5862EBC847B00E466C0 /* roboto-regular.woff2 in Resources */,
 				D6C1B5882EBC847B00E466C0 /* roboto-bold.svg in Resources */,
@@ -1297,6 +1325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72747A6815A52BF9B13093E8 /* foleja vectors in Resources */,
 				D6F142332E29268B00986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142562E292B7A00986814 /* README.md in Resources */,
 				D6F142552E292B7600986814 /* GoogleService-Info.plist in Resources */,
@@ -1320,6 +1349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D0D81ACD6318FD7BE7A041F /* bebboDev vectors in Resources */,
 				D6F1429B2E29334B00986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142B72E29361400986814 /* ParentBuddyAppDev-Info.plist in Resources */,
 				D6F1429F2E29334B00986814 /* Images.xcassets in Resources */,
@@ -1343,6 +1373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2467016BE6B408E0409DE156 /* foleja vectors in Resources */,
 				D6F142C12E29392300986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142C42E29392300986814 /* Images.xcassets in Resources */,
 				D6F142C52E29392300986814 /* roboto-bold.svg in Resources */,
@@ -1366,6 +1397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2DE98A25D0630091B10EC5 /* babuni vectors in Resources */,
 				D6F142E52E293C3A00986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142FD2E293C8B00986814 /* GoogleService-Info.plist in Resources */,
 				D6F143022E293CC100986814 /* InfoPlist.strings in Resources */,
@@ -1389,6 +1421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AAD65BE055E3B1C1BE84477 /* babuni vectors in Resources */,
 				D6F1430D2E2A29F400986814 /* LaunchScreen.storyboard in Resources */,
 				D6F1430F2E2A29F400986814 /* InfoPlist.strings in Resources */,
 				D6F143102E2A29F400986814 /* Images.xcassets in Resources */,
@@ -1412,6 +1445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CDE469C9D005654FB66EFEF /* merhabaBebek vectors in Resources */,
 				D6F143312E2A366200986814 /* LaunchScreen.storyboard in Resources */,
 				D6F1434F2E2A36C400986814 /* MerhabaBebek-Info.plist in Resources */,
 				D6F1434D2E2A36AE00986814 /* InfoPlist.strings in Resources */,
@@ -1435,6 +1469,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2312CA8296E7FAE5100F8D5 /* wawamor vectors in Resources */,
 				D6F143592E2A39D000986814 /* LaunchScreen.storyboard in Resources */,
 				D6F143712E2A39E500986814 /* GoogleService-Info.plist in Resources */,
 				D6B295592E2E88E500C8889C /* splash.json in Resources */,
@@ -1458,6 +1493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ECBE237CD1E7FB017006661 /* reraiUmntwana vectors in Resources */,
 				D6F143862E2A3B7900986814 /* roboto-regular.woff2 in Resources */,
 				D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */,
 				D6F143872E2A3B7900986814 /* roboto-bold.svg in Resources */,

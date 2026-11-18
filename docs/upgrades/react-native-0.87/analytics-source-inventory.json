@@ -5,175 +5,175 @@
   "routes": [
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 976,
+      "line": 974,
       "route": "\"Localization\"",
       "component": "{LocalizationNavigation}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 981,
+      "line": 979,
       "route": "\"Terms\"",
       "component": "{Terms}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 986,
+      "line": 984,
       "route": "\"TermsPage\"",
       "component": "{TermsPage}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 991,
+      "line": 989,
       "route": "\"PrivacyPolicy\"",
       "component": "{PrivacyPolicy}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 996,
+      "line": 994,
       "route": "\"ChildSetup\"",
       "component": "{ChildSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1001,
+      "line": 999,
       "route": "\"AddChildSetup\"",
       "component": "{AddChildSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1006,
+      "line": 1004,
       "route": "\"ChildImportSetup\"",
       "component": "{ChildImportSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1011,
+      "line": 1009,
       "route": "\"ChildSetupList\"",
       "component": "{ChildSetupList}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1016,
+      "line": 1014,
       "route": "\"ServiceProviderInfoSetup\"",
       "component": "{ServiceProviderInfoSetup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1021,
+      "line": 1019,
       "route": "\"AddSiblingDataScreen\"",
       "component": "{AddSiblingData}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1026,
+      "line": 1024,
       "route": "\"LoadingScreen\"",
       "component": "{LoadingScreen}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1038,
+      "line": 1036,
       "route": "\"HomeDrawerNavigator\"",
       "component": "{HomeDrawerNavigator}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1043,
+      "line": 1041,
       "route": "\"EditChildProfile\"",
       "component": "{EditChildProfile}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1048,
+      "line": 1046,
       "route": "\"AddExpectingChildProfile\"",
       "component": "{AddExpectingChildProfile}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1053,
+      "line": 1051,
       "route": "\"EditParentDetails\"",
       "component": "{EditParentDetails}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1058,
+      "line": 1056,
       "route": "\"AddNewChildgrowth\"",
       "component": "{AddNewChildgrowth}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1063,
+      "line": 1061,
       "route": "\"AddNewChildWeight\"",
       "component": "{AddNewChildWeight}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1068,
+      "line": 1066,
       "route": "\"AddNewChildHeight\"",
       "component": "{AddNewChildHeight}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1073,
+      "line": 1071,
       "route": "\"AllChildgrowthMeasures\"",
       "component": "{AllChildgrowthMeasures}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1078,
+      "line": 1076,
       "route": "\"ChartFullScreen\"",
       "component": "{ChartFullScreen}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1083,
+      "line": 1081,
       "route": "\"DetailsScreen\"",
       "component": "{DetailsScreen}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1088,
+      "line": 1086,
       "route": "\"ChildProfileScreen\"",
       "component": "{ChildProfile}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1093,
+      "line": 1091,
       "route": "\"AddChildVaccination\"",
       "component": "{AddChildVaccination}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1098,
+      "line": 1096,
       "route": "\"AddReminder\"",
       "component": "{AddReminder}",
       "screen_view": "shared navigation tracker; runtime validation pending"
     },
     {
       "file": "app/navigation/AppNavigation.tsx",
-      "line": 1103,
+      "line": 1101,
       "route": "\"AddChildHealthCheckup\"",
       "component": "{AddChildHealthCheckup}",
       "screen_view": "shared navigation tracker; runtime validation pending"
@@ -367,6 +367,13 @@
       "line": 221,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_SKIPPED }",
+      "parameters": "netInfo.isConnected"
+    },
+    {
+      "file": "app/screens/ChildImportSetup.tsx",
+      "line": 204,
+      "api": "logEvent",
+      "event": "{name: ONBOARDING_CHILD_COUNT, params: {child_count: children.length}}",
       "parameters": "netInfo.isConnected"
     },
     {
@@ -759,60 +766,60 @@
       "line": 13,
       "api": "logAnalyticsEvent",
       "event": "eventData.name",
-      "parameters": "eventData.params"
+      "parameters": "_netInfo === false ? {...eventData.params, is_offline_event: true} : eventData.params"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 79,
+      "line": 80,
       "api": "logAnalyticsEvent",
-      "event": "'backup_export_completed'",
+      "event": "BACKUP_EXPORT_COMPLETED",
       "parameters": "{source: 'local_file'}"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 109,
+      "line": 110,
       "api": "logAnalyticsEvent",
-      "event": "'backup_export_completed'",
+      "event": "BACKUP_EXPORT_COMPLETED",
       "parameters": "{source: 'drive'}"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 187,
+      "line": 193,
       "api": "logAnalyticsEvent",
-      "event": "'backup_restore_completed'",
+      "event": "BACKUP_RESTORE_COMPLETED",
       "parameters": "{restored_count: children.length}"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 389,
+      "line": 390,
       "api": "logEvent",
-      "event": "{name: 'profile_updated', params: {source: 'manage_profile'}}",
-      "parameters": "netInfo?.isConnected"
-    },
-    {
-      "file": "app/services/childCRUD.ts",
-      "line": 399,
-      "api": "logEvent",
-      "event": "{name: EXPECTED_CHILD_ENTERED}",
+      "event": "{name: PROFILE_UPDATED, params: {source: 'manage_profile'}}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
       "line": 400,
       "api": "logEvent",
-      "event": "{name: 'profile_created', params: {source: param === 2 ? 'manage_profile' : 'onboarding', profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}",
+      "event": "{name: EXPECTED_CHILD_ENTERED}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 407,
+      "line": 401,
+      "api": "logEvent",
+      "event": "{name: PROFILE_CREATED, params: {source: param === 2 ? 'manage_profile' : 'onboarding', profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}",
+      "parameters": "netInfo?.isConnected"
+    },
+    {
+      "file": "app/services/childCRUD.ts",
+      "line": 408,
       "api": "logEvent",
       "event": "{ name: CHILD_ADDED_FROM_MANAGE_PROFILE }",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 423,
+      "line": 424,
       "api": "logEvent",
       "event": "{ 'name': ONBOARDING_SKIPPED }",
       "parameters": "netInfo?.isConnected"
@@ -833,16 +840,16 @@
     },
     {
       "file": "app/services/profileDeletion.ts",
-      "line": 25,
+      "line": 26,
       "api": "logAnalyticsEvent",
-      "event": "'profile_deleted'",
+      "event": "PROFILE_DELETED",
       "parameters": "{ source: 'manage_profile', profile_type: placeholder ? 'placeholder' : 'caregiver_entered', }"
     },
     {
       "file": "app/services/screenAnalytics.ts",
       "line": 7,
       "api": "logAnalyticsEvent",
-      "event": "'screen_view'",
+      "event": "SCREEN_VIEW",
       "parameters": "{screen_name: route.name, screen_class: route.name}"
     },
     {
@@ -869,7 +876,6 @@
     "app/screens/Terms.tsx",
     "app/screens/TermsPage.tsx",
     "app/screens/Tour.tsx",
-    "app/screens/Walkthrough.tsx",
     "app/screens/growth/AddNewChildHeight.tsx",
     "app/screens/growth/AddNewChildWeight.tsx",
     "app/screens/growth/AddNewChildgrowth.tsx",

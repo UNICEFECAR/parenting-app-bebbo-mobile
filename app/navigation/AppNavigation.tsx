@@ -3,7 +3,6 @@ import {useCommittedRef} from "../customHooks/useCommittedRef";
 import {useNetworkClassification} from "../customHooks/useNetworkClassification";
 import {openNotificationLink} from '../services/notificationLink';
 import {trackScreen} from '../services/screenAnalytics';
-import {clearLegacyProfileAnalytics} from '../services/firebaseAnalytics';
 import {I18nManager} from "react-native";
 import {setrestartOnLangChange, setAppLayoutDirectionParams} from "../redux/reducers/localizationSlice";
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
@@ -949,8 +948,7 @@ export default (): any => {
               dispatch(setAppLayoutDirectionParams({}));
             }
             LocalNotifications.flushPendingPress();
-            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current);
-            void clearLegacyProfileAnalytics();
+            routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
             // SplashScreen.hide();
           }}
           onStateChange={(): any => {

@@ -1,7 +1,8 @@
 import type {TFunction} from 'i18next';
 import {Alert} from 'react-native';
 import {confirmBackupReplacement} from '../confirmBackupReplacement';
-const t = (key: string, options?: any) => options?.defaultValue ?? key;
+import {backupFallback} from '../../localization/backupFallback';
+const t = (key: string) => backupFallback[key as keyof typeof backupFallback] ?? key;
 afterEach(() => jest.restoreAllMocks());
 test.each(['cancel', 'dismiss', 'confirm'])('replacement requires the explicit confirm action (%s)', async action => {
   jest.spyOn(Alert, 'alert').mockImplementation((_title, message, buttons, options) => {

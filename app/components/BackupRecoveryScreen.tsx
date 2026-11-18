@@ -13,11 +13,11 @@ export default function BackupRecoveryScreen({onComplete}: {onComplete: () => vo
     catch {inFlight.current = false;setBusy(false);}
   };
   return <ScrollView contentContainerStyle={{flexGrow:1,padding:24,backgroundColor:'white',justifyContent:'center'}}>
-    <Text allowFontScaling style={{fontSize:22,color:'#111'}}>{String(t('backupRecoveryTitle',{defaultValue:'Finish interrupted restore'}))}</Text>
-    <Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('backupRecoveryHelp',{defaultValue:'The restore did not finish. Free some storage if necessary, then retry. You can also keep the data that was on this device before the restore. The app will remain here until recovery finishes.'}))}</Text>
+    <Text allowFontScaling style={{fontSize:22,color:'#111'}}>{String(t('generalErrorTitle'))}</Text>
+    <Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('backupRecoveryHelp'))}</Text>
     {busy ? <ActivityIndicator/> : <View>
-      <Pressable accessibilityRole="button" style={{padding:20}} onPress={()=>{void run(false);}}><Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('tryText',{defaultValue:'Retry'}))}</Text></Pressable>
-      <Pressable accessibilityRole="button" style={{padding:20}} onPress={()=>{void run(true);}}><Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('backupKeepPrevious',{defaultValue:'Keep previous data'}))}</Text></Pressable>
+      <Pressable accessibilityRole="button" style={{padding:20}} onPress={()=>{void run(false);}}><Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('retryRetryBtn'))}</Text></Pressable>
+      <Pressable accessibilityRole="button" style={{padding:20}} onPress={()=>{void run(true);}}><Text allowFontScaling style={{color:'#111',fontSize:18}}>{String(t('backupKeepPrevious'))}</Text></Pressable>
     </View>}
   </ScrollView>;
 }

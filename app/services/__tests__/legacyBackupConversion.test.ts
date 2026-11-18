@@ -53,3 +53,8 @@ test('failed backup conversion preserves the error for recovery without logging 
     expect(detail.stack).not.toMatch(/private-child-photo|Synthetic Child|\/children\//);
   } finally { logged.mockRestore(); }
 });
+
+test.each([[706,40], ['711',41], ['boy',40], [41,41], [0,0]])('maps known source gender %s into the target taxonomy', async (gender,expected) => {
+  const target = [{unique_name:'girl',id:41},{unique_name:'boy',id:40}];
+  expect((await getChild({...child,gender,measures:[]},target)).gender).toBe(expected);
+});

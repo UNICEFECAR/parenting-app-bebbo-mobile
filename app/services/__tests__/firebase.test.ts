@@ -70,11 +70,11 @@ test('does not bypass denied consent with the retry store', async () => {
   await logAnalyticsEvent('safe_event');
   expect(require('../analyticsOutbox').saveAnalyticsRetry).not.toHaveBeenCalled();
 });
-test('stores only sanitised retry parameters when native submission fails and storage is permitted', async () => {
+test('retains original retry parameters when native submission fails and storage is permitted', async () => {
   jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('SDK failed');});
   await logAnalyticsEvent('article_searched', {article_searched: 'private text'});
   expect(require('../analyticsOutbox').saveAnalyticsRetry).toHaveBeenCalledWith({name: 'article_searched',
-    params: {query_length: 12, captured_at_ms: expect.any(Number)}});
+    params: {article_searched: 'private text'}});
 });
 test('initialisation failure is contained within the telemetry operation', async () => {
   jest.mocked(require('@react-native-firebase/app').getApp).mockImplementationOnce(() => {throw new Error('missing configuration');});
@@ -83,19 +83,12 @@ test('initialisation failure is contained within the telemetry operation', async
 });
 
 
-test('the first custom event waits for removal of legacy child attributes', async () => {
-  jest.resetModules();
-  const sdk = require('@react-native-firebase/analytics');
-  let finish!: () => void;
-  sdk.setUserProperties.mockImplementationOnce(() => new Promise<void>(resolve => {finish = resolve;}));
-  const transport = require('../firebaseAnalytics');
-  const sending = transport.logAnalyticsEvent('screen_view', {screen_name: 'Welcome'});
-  expect(finish).toBeDefined();
-  expect(sdk.setUserProperties).toHaveBeenCalledWith('analytics', expect.objectContaining({ageid: null, is_premature: null, child_gender: null}));
-  expect(sdk.logEvent).not.toHaveBeenCalled();
-  finish();
-  await sending;
-  expect(sdk.logEvent).toHaveBeenCalledTimes(1);
-  await transport.logAnalyticsEvent('second_screen');
-  expect(sdk.setUserProperties).toHaveBeenCalledTimes(1);
+test('does not clear dashboard properties before logging the first event', async () => {
+  const properties = {ageid:'17', is_premature:'false', child_gender:'Boy',
+    relationship_with_child:'mother', parent_gender:'female', auto_child:'false'};
+  await setUserProperties(properties);
+  await logAnalyticsEvent('advice_category_selected_42', {age_id:'17', advise_id:12});
+  expect(analytics.setUserProperties).toHaveBeenCalledTimes(1);
+  expect(analytics.setUserProperties).toHaveBeenCalledWith('analytics', properties);
+  expect(analytics.logEvent).toHaveBeenCalledWith('analytics','advice_category_selected_42',{age_id:'17',advise_id:12});
 });

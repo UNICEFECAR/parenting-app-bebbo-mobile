@@ -109,7 +109,7 @@ class DataRealmCommon {
             }
         // });
     }
-    public async createArticles<Entity extends {id: number; isarticle_pinned?: string}>(
+    public async createArticles<Entity extends {id: number; isarticle_pinned?: string; body?: string | boolean; do_not_feature?: string | number}>(
         entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string
     ): Promise<'success' | 'fail'> {
         try {
@@ -117,11 +117,14 @@ class DataRealmCommon {
             if (!realm || !Array.isArray(records)) return 'fail';
             realm.write(() => {
                 for (const record of records) {
-                    const existing = realm.objectForPrimaryKey<{id: number; isarticle_pinned?: string}>(entitySchema.name, record.id);
+                    const existing = realm.objectForPrimaryKey<{id: number; isarticle_pinned?: string; body?: string | boolean; do_not_feature?: string | number}>(entitySchema.name, record.id);
                     const pinned = existing?.isarticle_pinned == appConfig.isArticlePinned || articleRelation == appConfig.isArticlePinned;
                     // Refresh content even when the existing record is becoming pinned.
                     realm.create<Entity>(entitySchema.name, {
                         ...record,
+                        // Drupal sends false for an empty formatted body and serialises this flag as "0" or "1".
+                        ...(record.body === false ? {body: ''} : {}),
+                        ...(['0', '1'].includes(String(record.do_not_feature)) ? {do_not_feature: Number(record.do_not_feature)} : {}),
                         isarticle_pinned: pinned ? appConfig.isArticlePinned : articleRelation,
                     }, 'modified' as UpdateMode);
                 }
@@ -142,11 +145,13 @@ class DataRealmCommon {
                         const weightforheight = records.weight_for_height ?? [];
                         const heightforAge = records.height_for_age ?? [];
                         if (weightforheight?.length > 0) {
+                            realm.delete(realm.objects(StandardDevWeightForHeightSchema.name));
                             weightforheight.forEach((record: any) => {
                                 realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified" as UpdateMode);
                             })
                         }
                         if (heightforAge?.length > 0) {
+                            realm.delete(realm.objects(StandardDevHeightForAgeSchema.name));
                             heightforAge.forEach((record: any) => {
                                 realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record, "modified" as UpdateMode);
                             })

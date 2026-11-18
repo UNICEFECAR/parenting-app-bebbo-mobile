@@ -62,7 +62,7 @@ for flavour,(variant,target,group,bundle,project_id) in flavours.items():
       'language_resources_registered':languages,'android_manifest':str(manifest.relative_to(root)),
       'android_manifest_permissions':permissions,'ios_configurations':ios_configs,
       'ios_checked_in_script_phases':phase_names,
-      'google_service_plist_group':group,'assets_status':'96 generated native resources verified separately',
+      'google_service_plist_group':group,'assets_status':'per-instance Android resources and iOS catalog checked against the platform graph separately',
       'feature_status':'shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified'}
     rows.append(row)
 aux=[]

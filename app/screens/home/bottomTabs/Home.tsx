@@ -153,7 +153,7 @@ const Home = ({ route: _route, navigation }: any): any => {
     themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
 
   const netInfo = useNetInfoHook();
-  let currentCount = 0;
+  const lastBackPress = React.useRef(0);
 
   const {
     downloadWeeklyData,
@@ -163,25 +163,16 @@ const Home = ({ route: _route, navigation }: any): any => {
     ageBrackets,
   } = useAllPeriodicSyncData();
   const onBackPress = (): any => {
-    if (currentCount === 0) {
-      currentCount++;
-      if (Platform.OS === "android") {
-        ToastAndroidLocal.show(t("backPressText"), 6000);
-        setTimeout(() => {
-          currentCount = 0;
-        }, 2000);
-        return true;
-      } else {
-        Alert.alert(t("backPressText"));
-        setTimeout(() => {
-          currentCount = 0;
-        }, 2000);
-        return true;
-      }
-    } else {
-      // exit the app here using
+    const now = Date.now();
+    if (now - lastBackPress.current < 2000) {
+      lastBackPress.current = 0;
       BackHandler.exitApp();
+    } else {
+      lastBackPress.current = now;
+      if (Platform.OS === "android") ToastAndroidLocal.show(t("backPressText"), 6000);
+      else Alert.alert(t("backPressText"));
     }
+    return true;
   };
   useNavigationBackHandler(navigation, onBackPress);
   const [profileLoading, setProfileLoading] = React.useState(false);

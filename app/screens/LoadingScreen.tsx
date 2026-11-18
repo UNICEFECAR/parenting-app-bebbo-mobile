@@ -394,7 +394,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       }
     }, [netInfo.isConnected, languageReady, startupInputs])
   );
-  useEffect(() => {
+  useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       return true;
     };
@@ -406,7 +406,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     return (): any => {
       backHandler.remove();
     };
-  }, []);
+  }, []));
 
   // Read the current navigation context when initial-language metadata changes.
   const initialLocaleInputs = useCommittedRef(() => ({dispatch, route}));

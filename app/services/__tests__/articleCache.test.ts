@@ -83,3 +83,11 @@ test('changing content country/language preserves caregiver settings and pending
   expect(groups.Articles).toHaveLength(0);
   expect(groups.Country).toHaveLength(0);
 });
+
+test('accepts CMS empty formatted bodies and numeric strings in a fresh article',async()=>{
+  await expect(dataRealmCommon.createArticles(ArticleEntitySchema,
+    [{id:2,title:'Article',body:false,do_not_feature:'1'}],'')).resolves.toBe('success');
+  expect(rows[1]).toMatchObject({id:2,body:'',do_not_feature:1});
+  expect(ArticleEntitySchema.properties.licensed).toMatchObject({type:'int',default:0});
+  expect(ArticleEntitySchema.properties.mandatory).toMatchObject({type:'int',default:0});
+});

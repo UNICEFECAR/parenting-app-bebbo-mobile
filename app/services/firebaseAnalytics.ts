@@ -9,26 +9,12 @@ import {
 } from '@react-native-firebase/analytics';
 import { getCrashlytics, log as firebaseLog, recordError as firebaseRecordError } from '@react-native-firebase/crashlytics';
 
-import {prepareAnalyticsEvent, legacyProfileProperties} from './analyticsPolicy';
 import {saveAnalyticsRetry} from './analyticsOutbox';
 
 // Resolve SDKs inside guarded operations: a bad flavour configuration must not
 // crash while importing this module, before the app's error boundary mounts.
 const analytics = () => getAnalytics(getApp());
 const crashlytics = () => getCrashlytics();
-
-let legacyClearPromise: Promise<void> | undefined;
-async function preparedAnalytics() {
-    const instance = analytics();
-    if (!legacyClearPromise) {
-        legacyClearPromise = (async () => {
-            await firebaseSetUserProperties(instance,
-                Object.fromEntries(legacyProfileProperties.map(key => [key, null])));
-        })().catch(error => {legacyClearPromise = undefined; throw error;});
-    }
-    await legacyClearPromise;
-    return instance;
-}
 
 export const logCrashlyticsMessage = (message: string): void => {
     try {
@@ -45,10 +31,8 @@ export const tryLogAnalyticsEvent = async (
     eventName: string,
     params?: Record<string, any>
 ): Promise<boolean> => {
-    const event = prepareAnalyticsEvent(eventName, params);
-    if (!event) return true; // Invalid legacy data is terminal, not a permanent retry.
     try {
-        await firebaseLogEvent(await preparedAnalytics(), event.name, event.params);
+        await firebaseLogEvent(analytics(), eventName, params);
         return true;
     } catch  {
         console.warn('Analytics SDK submission failed');
@@ -61,13 +45,12 @@ export const logAnalyticsEvent = async (
     eventName: string,
     params?: Record<string, any>
 ): Promise<void> => {
-    const event = prepareAnalyticsEvent(eventName, params);
-    if (!event || await tryLogAnalyticsEvent(event.name, event.params)) return;
+    if (await tryLogAnalyticsEvent(eventName, params)) return;
     try {
         // A denied analytics-storage consent returns null. Never build a second
         // collection channel around a native opt-out (or an unavailable SDK).
         if (await getAppInstanceId(analytics()) == null) return;
-        await saveAnalyticsRetry({...event, params: {...event.params, captured_at_ms: Date.now()}});
+        await saveAnalyticsRetry({name: eventName, params});
     } catch { console.warn('Analytics retry storage unavailable'); }
 };
 
@@ -77,8 +60,7 @@ export const setUserProperties = async (
     try {
         const definedProperties: Record<string, string | null> = {};
         for (const [key, value] of Object.entries(properties)) {
-            if (legacyProfileProperties.includes(key)) definedProperties[key] = null;
-            else if (value !== undefined && (['country', 'language'].includes(key) || (key === 'relationship' && value === null))) definedProperties[key] = value == null ? null : value.slice(0, 36);
+            if (value !== undefined) definedProperties[key] = value;
         }
         await firebaseSetUserProperties(analytics(), definedProperties);
     } catch  {
@@ -98,8 +80,3 @@ export const recordError = async (
     }
   };
 
-/** Clear attributes written by older releases; selecting a child is not a census. */
-export const clearLegacyProfileAnalytics = async (): Promise<void> => {
-    try { await preparedAnalytics(); }
-    catch { console.warn('Legacy analytics property cleanup failed'); }
-};

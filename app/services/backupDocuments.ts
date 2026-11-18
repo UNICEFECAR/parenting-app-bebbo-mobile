@@ -13,18 +13,20 @@ export async function openBackupDocument(): Promise<{ name: string; data: string
   let localUri: string | undefined;
   try {
     const [document] = await pick({ type: [types.allFiles], allowMultiSelection: false, mode: 'import' });
-    if (!document.uri || !document.name) throw new Error('Backup file metadata is unavailable');
-    const isJson = document.name.toLowerCase().endsWith('.json');
+    if (!document.uri) throw new Error('Backup file metadata is unavailable');
+    const isJson = document.name?.toLowerCase().endsWith('.json') || document.type === 'application/json';
+    const name = isJson && !document.name?.toLowerCase().endsWith('.json') ? 'backup.json' : document.name;
+    if (!name) throw new Error('Backup file metadata is unavailable');
     const [copy] = await keepLocalCopy({
       files: [{ uri: document.uri, fileName: `${uniqueName()}.${isJson ? 'json' : 'realm'}` }],
       destination: 'cachesDirectory',
     });
     if (copy.status !== 'success') throw new Error(copy.copyError);
-    localUri = copy.localUri;
+    localUri = copy.localUri.startsWith('file://') ? decodeURIComponent(copy.localUri) : copy.localUri;
     const info = await RNFS.stat(localUri);
     if (!info.isFile() || Number(info.size) > 128*1024*1024) throw new Error('Backup exceeds the supported size');
     const data = await RNFS.readFile(localUri, isJson ? 'utf8' : 'base64');
-    return { name: document.name, data };
+    return { name, data };
   } catch (error) {
     if (wasCancelled(error)) return null;
     throw error;

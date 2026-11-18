@@ -26,18 +26,18 @@ export default function BackupPasswordPrompt() {
     const state = AppState.addEventListener('change', value => {if (value !== 'active') {finish(null);clearBackupPreviews();}});
     return () => {uninstall(); state.remove(); resolver.current?.(null); resolver.current = null; dismissed.current?.(); dismissed.current = null;};
   }, []);
-  const label = (key: string, fallback: string) => String(t(key, {defaultValue: fallback}));
+  const label = (key: string) => String(t(key));
   const ready = mode === 'create' ? validBackupPassword(password) && password === repeat : validBackupUnlockPassword(password);
   return <>{busy && <View style={[StyleSheet.absoluteFill, {backgroundColor:'#fff9',zIndex:99999,alignItems:'center',justifyContent:'center'}]}><ActivityIndicator size="large"/></View>}<Modal visible={mode !== null} transparent animationType="none" onDismiss={() => {const done=dismissed.current;dismissed.current=null;done?.();}} onRequestClose={() => finish(null)}>
     <KeyboardAvoidingView style={styles.overlay} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
         <View style={styles.card} accessibilityViewIsModal>
-          <Text allowFontScaling style={styles.heading}>{label(mode === 'create' ? 'backupCreatePassphrase' : 'backupUnlockPassphrase', mode === 'create' ? 'Protect your backup' : 'Unlock your backup')}</Text>
-          <Text allowFontScaling style={styles.copy}>{label('backupPassphraseHelp', 'Use several unrelated words (at least 12 characters). Keep it somewhere safe: it is not saved in the app and cannot be recovered. You will need it on another device. Older app versions cannot open new backups.')}</Text>
-          <TextInput allowFontScaling testID="backup-passphrase-entry" style={styles.input} accessibilityLabel={label('backupPassphrase', 'Backup passphrase')} placeholder={label('backupPassphrase', 'Backup passphrase')} secureTextEntry autoCapitalize="none" autoCorrect={false} autoComplete="off" textContentType="none" maxLength={1024} value={password} onChangeText={setPassword}/>
-          {mode === 'create' && <TextInput allowFontScaling testID="backup-passphrase-repeat" style={styles.input} accessibilityLabel={label('backupRepeatPassphrase', 'Repeat passphrase')} placeholder={label('backupRepeatPassphrase', 'Repeat passphrase')} secureTextEntry autoCapitalize="none" autoCorrect={false} autoComplete="off" textContentType="none" maxLength={1024} value={repeat} onChangeText={setRepeat}/>}
-          <Pressable accessibilityRole="button" style={styles.button} onPress={() => finish(null)}><Text allowFontScaling style={styles.copy}>{label('retryCancelPopUpBtn', 'Cancel')}</Text></Pressable>
-          <Pressable testID="backup-passphrase-continue" accessibilityRole="button" accessibilityState={{disabled: !ready}} disabled={!ready} style={[styles.button, !ready && styles.disabled]} onPress={() => finish(password)}><Text allowFontScaling style={styles.copy}>{label('continueInModal', 'Continue')}</Text></Pressable>
+          <Text allowFontScaling style={styles.heading}>{label(mode === 'create' ? 'exportText' : 'importText')}</Text>
+          <Text allowFontScaling style={styles.copy}>{label('backupPassphraseHelp')}</Text>
+          <TextInput allowFontScaling testID="backup-passphrase-entry" style={styles.input} accessibilityLabel={label('backupPassphrase')} placeholder={label('backupPassphrase')} secureTextEntry autoCapitalize="none" autoCorrect={false} autoComplete="off" textContentType="none" maxLength={1024} value={password} onChangeText={setPassword}/>
+          {mode === 'create' && <TextInput allowFontScaling testID="backup-passphrase-repeat" style={styles.input} accessibilityLabel={label('backupRepeatPassphrase')} placeholder={label('backupRepeatPassphrase')} secureTextEntry autoCapitalize="none" autoCorrect={false} autoComplete="off" textContentType="none" maxLength={1024} value={repeat} onChangeText={setRepeat}/>}
+          <Pressable accessibilityRole="button" style={styles.button} onPress={() => finish(null)}><Text allowFontScaling style={styles.copy}>{label('retryCancelPopUpBtn')}</Text></Pressable>
+          <Pressable testID="backup-passphrase-continue" accessibilityRole="button" accessibilityState={{disabled: !ready}} disabled={!ready} style={[styles.button, !ready && styles.disabled]} onPress={() => finish(password)}><Text allowFontScaling style={styles.copy}>{label('continueInModal')}</Text></Pressable>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

@@ -17,9 +17,9 @@ export function photoPath(uri: string): string {
   if (!/^[A-Za-z0-9_.-]{1,200}$/.test(name) || name === '.' || name === '..') throw new Error('Invalid profile photo reference');
   return `${PHOTO_DIRECTORY}/${name}`;
 }
-export function validateSnapshot(value: any, current: BackupContext): PortableSnapshot {
+export function validateSnapshot(value: any): PortableSnapshot {
   if (!value || value.format !== 'bebbo-snapshot' || value.version !== 1 || !value.context ||
-    value.context.flavour !== current.flavour || value.context.country !== current.country || typeof value.context.language !== 'string') throw new Error('Select the same app and country as the backup');
+    ['flavour', 'country', 'language'].some(key => typeof value.context[key] !== 'string')) throw new Error('Unsupported or damaged backup');
   validateBackupChildren(value.children); validatePreferences(value.settings, value.preferences);
   if (!value.photos || typeof value.photos !== 'object' || Array.isArray(value.photos)) throw new Error('Invalid backup photos');
   const ids = new Set(value.children.map((c: any) => c.uuid));
@@ -39,7 +39,7 @@ export function validateSnapshot(value: any, current: BackupContext): PortableSn
   return value;
 }
 export async function createSnapshot(children: any[], settings: Record<string,string>, preferences: BackupPreferences, context: BackupContext): Promise<PortableSnapshot> {
-  const detached = JSON.parse(JSON.stringify(validateBackupChildren(children)));
+  const detached = validateBackupChildren(JSON.parse(JSON.stringify(children)));
   const photos: Record<string,string> = Object.create(null);
   let totalPhotoSize = 0;
   for (const child of detached) {
@@ -53,7 +53,7 @@ export async function createSnapshot(children: any[], settings: Record<string,st
       child.photoUri = 'attached';
     }
   }
-  return validateSnapshot({format:'bebbo-snapshot',version:1,context,children:detached,settings,preferences,photos},context);
+  return validateSnapshot({format:'bebbo-snapshot',version:1,context,children:detached,settings,preferences,photos});
 }
 /** Stage new names only. Live profile photos are never overwritten during preparation. */
 export async function stagePhotos(snapshot: PortableSnapshot): Promise<{children: any[]; paths: string[]}> {

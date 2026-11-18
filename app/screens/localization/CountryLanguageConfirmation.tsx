@@ -13,7 +13,7 @@ import Icon, {
   OuterIconLeft,
   OuterIconRow,
 } from "@components/shared/Icon";
-import {
+import OnboardingContainer, {
   LocalizationCol,
   LocalizationWithoutBorderCol,
   LocalizationContainer,
@@ -42,7 +42,7 @@ import {
 } from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {BackHandler, Text, StyleSheet, Alert, ScrollView} from 'react-native';
+import {BackHandler, Text, StyleSheet, Alert, ScrollView, useWindowDimensions} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
@@ -103,6 +103,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const language = route?.params?.language ?? null;
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
+  const {height, fontScale} = useWindowDimensions();
+  const needsScroll = height / fontScale < 660;
+  const Content = needsScroll ? ScrollView : OnboardingContainer;
   const [countryData, setCountryData] = useState<any>();
   const [sponsorsData, setSponsorsData] = useState<any>();
   const [newLanguage, setNewLanguage] = useState<any>();
@@ -501,8 +504,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           </OfflineBar>
         ) : null}
         <SafeAreaView style={[styles.page, { backgroundColor: headerColor }]} edges={["top", "bottom"]}>
-          <ScrollView style={styles.page} contentContainerStyle={styles.content} bounces={false}>
-            <OnboardingConfirmationHead style={[styles.naturalBlock, styles.header]}>
+          <Content {...(needsScroll ? {style:styles.page, contentContainerStyle:styles.content, bounces:false} : {})}>
+            <OnboardingConfirmationHead style={needsScroll ? [styles.naturalBlock, styles.header] : undefined}>
               <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
               <Icon name="ic_country" size={100} color={secondaryColor} />
               <OnboardingShiftHead>
@@ -511,10 +514,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
               <Heading4Centerr>{t("checkonce")}</Heading4Centerr>
             </OnboardingConfirmationHead>
             <CountryAppBanner countryId={countryData?.CountryID ?? countryData?.countryId} />
-            <LocalizationContainer style={styles.naturalBlock}>
-              <LocalizationRow style={[styles.naturalBlock, styles.countryRow]}>
+            <LocalizationContainer style={needsScroll ? styles.naturalBlock : undefined}>
+              <LocalizationRow style={needsScroll ? [styles.naturalBlock, styles.countryRow] : undefined}>
                 <LocalizationCol
-                  style={[styles.naturalBlock, styles.countryCell]}
+                  style={needsScroll ? [styles.naturalBlock, styles.countryCell] : undefined}
                   disabled={allCountries.length === 0}
                   onPress={(): any =>
                     navigation.navigate("CountrySelection", {
@@ -532,7 +535,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 </LocalizationCol>
 
                 <LocalizationWithoutBorderCol
-                  style={[styles.naturalBlock, styles.countryCell]}
+                  style={needsScroll ? [styles.naturalBlock, styles.countryCell] : undefined}
                   disabled={allCountries.length === 0}
                   onPress={() =>
                     popAndPush(navigation, "LanguageSelection", {
@@ -576,7 +579,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 </ButtonWithBorder>
               </ShiftFromTop25>
 
-              <Flex1 style={[styles.naturalBlock, styles.continueAction]}>
+              <Flex1 style={needsScroll ? [styles.naturalBlock, styles.continueAction] : undefined}>
                 <ButtonPrimary
                   disabled={allCountries.length === 0}
                   onPress={(): any => saveSelection()}
@@ -587,7 +590,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 </ButtonPrimary>
               </Flex1>
             </LocalizationContainer>
-          </ScrollView>
+          </Content>
         </SafeAreaView>
       </>
     </>

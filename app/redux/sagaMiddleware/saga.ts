@@ -1,7 +1,7 @@
 import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, onSponsorApiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess, retryAlert } from '../../services/commonApiService';
-import { ApiJsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
+import { ApiJsonArray, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
 import {addApiDataInRealm} from '../../services/Utils';
 import { fetchAPIStart, receiveAPIFailure, receiveAPISuccess } from './sagaSlice';
@@ -112,79 +112,32 @@ function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigat
   }
 }
 
-function* onApiError(payload: any, response: any[], prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[]): any {
-  try {
-    yield call(retryAlert);
-    const failedApiObj = errorArr;
-    let onLoadApiArray;
-    const apiJsonData = payload;
-
-    if (failedApiObj && failedApiObj.length > 0) {
-      onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any }) =>
-        failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
-      );
-    } else {
-      onLoadApiArray = apiJsonData;
-    }
-    yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload));
-  } catch {
-    // Completing the fallback must also release startup's navigator gate.
-    // Keep requests in errorArr; only accepted responses may update cursors.
-    try {
-      yield call(cancelRetryAlert);
-    } catch {
-      // A dismissed confirmation must not strand the app on its loading screen.
-    }
-    yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
-    yield put(receiveAPISuccess(response));
-  }
-}
 export function* onFetchAPI(value: any): any {
-  const errorArr: ApiJsonArray[] = [];
-  const payload = value.payload;
-  const prevPage = value.prevPage;
-  const dispatch = value.dispatch;
-  const navigation = value.navigation;
-  const languageCode = value.languageCode;
-  const activeChild = value.activeChild;
-  const oldErrorObj = value.oldErrorObj;
-  const netInfoIsConnected = value.netInfoIsConnected;
-  const forceupdatetime = value.forceupdatetime;
-  const downloadWeeklyData = value.downloadWeeklyData;
-  const downloadMonthlyData = value.downloadMonthlyData;
-  const enableImageDownload = value.enableImageDownload;
-  let response: any[] = [];
-  try {
-    // API Request
-    yield put(fetchAPIStart());
+  const {payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,
+    netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload} = value;
+  const accepted: any[] = [];
+  let pending: ApiJsonArray[] = payload;
+  let failed: ApiJsonArray[] = [];
+  yield put(fetchAPIStart());
+  do {
+    failed = [];
+    const batch: any[] = yield all(pending.map(request => call(apiCall, request, dispatch, failed)));
+    accepted.push(...batch.filter(Boolean));
+    if (!failed.length || !netInfoIsConnected || prevPage === 'Survey') break;
+    try {
+      yield call(retryAlert);
+    } catch {
+      try { yield call(cancelRetryAlert); } catch { /* The system dismissed the fallback notice. */ }
+      break;
+    }
+    pending = failed;
+  } while (pending.length);
 
-    response = yield all(
-      payload.map((data: ApiJsonArray) =>
-        call(apiCall, data, dispatch, errorArr)
-      )
-    )
-    response = response?.filter((el: any) => {
-      return el != null;
-    });
-    if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-      yield call(onApiError, payload, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
-    }
-    else {
-      yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
-      yield put(receiveAPISuccess(response));
-    }
-  } catch  {
-    console.log(value)
-    if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-      yield call(onApiError, payload, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
-    }
-    else {
-      yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload, errorArr);
-
-    }
-  }
+  yield call(onApiSuccess, accepted, prevPage, dispatch, navigation, languageCode, activeChild,
+    oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData,
+    enableImageDownload, failed);
+  yield put(receiveAPISuccess(accepted));
 }
-
 export function* fetchAPISaga(): any {
   yield takeEvery(FETCH_API, onFetchAPI);
 }

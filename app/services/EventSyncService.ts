@@ -10,7 +10,7 @@ export const markEventAsSynchronized = async (realm: any, event: any): Promise<v
 // The native SDK queues offline events with their original session/time and
 // persists them across restarts. NetInfo is not a delivery acknowledgement.
 export const logEvent = async (eventData: any, _netInfo?: boolean | null): Promise<void> => {
-  if (eventData?.name) await logAnalyticsEvent(eventData.name, eventData.params);
+  if (eventData?.name) await logAnalyticsEvent(eventData.name, _netInfo === false ? {...eventData.params, is_offline_event: true} : eventData.params);
 };
 
 async function flushEvents(): Promise<void> {

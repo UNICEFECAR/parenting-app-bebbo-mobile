@@ -333,6 +333,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:22.0.0'
 }
 
+def vectorFlavours = [prod: 'bebbo', prodstaging: 'bebboDev', xk: 'foleja',
+            xkstaging: 'foleja', bangla: 'babuni', banglastaging: 'babuni',
+            merhababebek: 'merhabaBebek', wawamor: 'wawamor',
+            reraiumntwana: 'reraiUmntwana', bebbopacific: 'bebboPacific']
+vectorFlavours.each { variant, flavour ->
+    android.sourceSets.getByName(variant).res.srcDir(rootProject.file("../app/instances/${flavour}/native/res"))
+}
+
 // RN excludes node_modules from bundle inputs. Rebundle after dependency,
 // compatibility-patch or Metro/Babel/flavour changes.
 tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
@@ -347,11 +355,7 @@ tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
     inputs.property('appFlavor', providers.environmentVariable('FLAVOR').orElse('bebbo'))
     inputs.property('appEnvFile', providers.environmentVariable('ENVFILE').orElse(''))
     doFirst {
-        def expectedFlavours = [prod: 'bebbo', prodstaging: 'bebboDev', xk: 'foleja',
-            xkstaging: 'foleja', bangla: 'babuni', banglastaging: 'babuni',
-            merhababebek: 'merhabaBebek', wawamor: 'wawamor',
-            reraiumntwana: 'reraiUmntwana', bebbopacific: 'bebboPacific']
-        def entry = expectedFlavours.find { variant, flavour ->
+        def entry = vectorFlavours.find { variant, flavour ->
             name.equalsIgnoreCase("createBundle${variant}ReleaseJsAndAssets")
         }
         def selected = System.getenv('FLAVOR') ?: 'bebbo'
@@ -381,10 +385,16 @@ if (providers.gradleProperty("unsignedVerification").getOrElse("false").toBoolea
 // RN also creates an empty legacy ext.react map. Resolve the typed extension
 // explicitly so that map cannot shadow the Node executable configuration.
 def vectorAssetNode = project.extensions.getByType(com.facebook.react.ReactExtension).nodeExecutableAndArgs
-def verifyVectorAssets = tasks.register("verifyVectorAssets", Exec) {
-    workingDir rootProject.projectDir.parentFile
-    commandLine(vectorAssetNode.get() + ["scripts/vector-assets.cjs"])
-}
-tasks.configureEach { task ->
-    if (task.name == "preBuild") task.dependsOn(verifyVectorAssets)
+vectorFlavours.each { variant, flavour ->
+    def verify = tasks.register("verify${variant.capitalize()}VectorAssets", Exec) {
+        workingDir rootProject.projectDir.parentFile
+        environment 'FLAVOR', flavour
+        environment 'BUNDLE_PLATFORM', 'android'
+        commandLine(vectorAssetNode.get() + ["scripts/vector-assets.cjs"])
+    }
+    tasks.configureEach { task ->
+        if (task.name in ["merge${variant.capitalize()}DebugResources", "merge${variant.capitalize()}ReleaseResources"]) {
+            task.dependsOn(verify)
+        }
+    }
 }

@@ -11,14 +11,17 @@ test('captures profile bytes, ownership and preferences without mutating live re
  const staged=await stagePhotos(s);expect(staged.children[0].photoUri).toMatch(/^\/restore-photo-/);expect(FS.writeFile).toHaveBeenCalledWith(staged.paths[0],png,'base64');expect(FS.writeFile).not.toHaveBeenCalledWith('/documents/children/original.jpg',expect.anything(),expect.anything());
 });
 test.each(['../secret','/../../secret','file:///private/file','a/b.jpg'])('rejects unsafe photo path %s',uri=>{expect(()=>photoPath(uri)).toThrow();});
-test('rejects cross-country/flavour restores but permits another UI language in the same country',async()=>{
- const s=await createSnapshot([child],{},flags,context);expect(()=>validateSnapshot(s,{...context,country:'2'})).toThrow('same app and country');expect(()=>validateSnapshot(s,{...context,flavour:'other'})).toThrow();expect(validateSnapshot(s,{...context,language:'ar'})).toBe(s);
+test('accepts intact snapshots from other countries, flavours and languages', async () => {
+ const source = await createSnapshot([child], {userName:'Parent'}, flags, context);
+ const foreign = {...source, context:{flavour:'wawamor',country:'EC',language:'es'}};
+ expect(validateSnapshot(foreign)).toEqual(foreign);
+ expect(() => validateSnapshot({...foreign, context:{country:2}})).toThrow();
 });
 test('rejects missing attachments, unknown owners and injected settings',async()=>{
- const s=await createSnapshot([child],{},flags,context);expect(()=>validateSnapshot({...s,photos:{}},context)).toThrow('missing');expect(()=>validateSnapshot({...s,photos:{other:png}},context)).toThrow();expect(()=>validateSnapshot({...s,settings:{__backup_restore_v1:'injected'}},context)).toThrow();
+ const s=await createSnapshot([child],{},flags,context);expect(()=>validateSnapshot({...s,photos:{}})).toThrow('missing');expect(()=>validateSnapshot({...s,photos:{other:png}})).toThrow();expect(()=>validateSnapshot({...s,settings:{__backup_restore_v1:'injected'}})).toThrow();
 });
 test('rejects a decompression-sized image header before native decoding',async()=>{
- const s=await createSnapshot([child],{},flags,context),bytes=Buffer.from(png,'base64');bytes.writeUInt32BE(90000,16);expect(()=>validateSnapshot({...s,photos:{one:bytes.toString('base64')}},context)).toThrow('4096');
+ const s=await createSnapshot([child],{},flags,context),bytes=Buffer.from(png,'base64');bytes.writeUInt32BE(90000,16);expect(()=>validateSnapshot({...s,photos:{one:bytes.toString('base64')}})).toThrow('4096');
 });
 test('enforces the same exact 8 MiB decoded-photo bound on import as export',async()=>{
  const s=await createSnapshot([child],{},flags,context);
@@ -26,8 +29,8 @@ test('enforces the same exact 8 MiB decoded-photo bound on import as export',asy
  const accepted=bytes.subarray(0,8*1024*1024).toString('base64'), rejected=bytes.toString('base64');
  // Padding changes the decoded byte count even when encoded lengths are equal.
  expect(accepted.length).toBe(rejected.length);
- expect(()=>validateSnapshot({...s,photos:{one:accepted}},context)).not.toThrow();
- expect(()=>validateSnapshot({...s,photos:{one:rejected}},context)).toThrow('oversized');
+ expect(()=>validateSnapshot({...s,photos:{one:accepted}})).not.toThrow();
+ expect(()=>validateSnapshot({...s,photos:{one:rejected}})).toThrow('oversized');
  expect(FS.writeFile).not.toHaveBeenCalled();
 });
 test('failed photo staging cleans only newly created files and leaves original photos alone',async()=>{

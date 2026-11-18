@@ -679,6 +679,25 @@ export const getDatePickerLocale = (languageCode: string): string => {
       return getLanguageCode(languageCode);
   }
 };
+// Historical numeric IDs from the eight instance configurations. Target taxonomies
+// may use different numbers for the same stable boy/girl identifiers.
+const historicalGenderIds: Record<string, string> = {
+  40:'boy', 41:'girl', 526:'boy', 531:'girl', 656:'boy', 661:'girl',
+  691:'boy', 696:'girl', 706:'boy', 711:'girl',
+};
+function importedGender(value: string | number, genders: any[]): number {
+  const text = String(value ?? '').trim().toLowerCase();
+  const numeric = /^\d+$/.test(text);
+  if (numeric && genders?.some(entry => Number(entry.id) === Number(text))) return Number(text);
+  const name = numeric ? historicalGenderIds[text] : text;
+  const target = genders?.find(entry => entry.unique_name?.toLowerCase() === name);
+  if (target) return Number(target.id);
+  if (name === 'boy' && appConfig.boyChildGender) return appConfig.boyChildGender;
+  if (name === 'girl' && appConfig.girlChildGender) return appConfig.girlChildGender;
+  if (numeric) return Number(text);
+  if (!text) return 0;
+  throw new Error('Unsupported or damaged backup');
+}
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
   try {
@@ -698,17 +717,7 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         ? child.childName
         : "";
     console.log(isPremature, "..isPremature..");
-    let genderValue: any = child.gender;
-    if (typeof genderValue === "string" || genderValue instanceof String) {
-      if (genders.length > 0 && genderValue != "") {
-        genderValue = genders.find(
-          (genderset: any) =>
-            genderset.unique_name.toLowerCase() == child.gender.toLowerCase()
-        ).id;
-      } else {
-        genderValue = 0;
-      }
-    }
+    const genderValue = importedGender(child.gender, genders);
     let favoriteadvices: any[] = [],
       favoritegames: any[] = [];
     if (child && child.favoriteadvices && child.favoriteadvices.length > 0) {

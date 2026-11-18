@@ -213,7 +213,7 @@ The following example can be copied directly into \`env/.env.bebboDev\` to run t
 The values below are **dummy development values**. They are provided so that the application can start without requiring access to the project's private Firebase, Facebook, Google, or encryption configuration.
 
 ```env
-apiUrlDevelop='https\://dev.bebbo.app/api'
+apiUrlDevelop='https://dev.bebbo.app/api'
 
 facebookAppDisplayName=FbDisplayName
 facebookAppId=000000000000000
@@ -349,7 +349,7 @@ Android Gradle and iOS CocoaPods bundle this font automatically. Do not copy fon
 
 After installing dependencies, run CocoaPods before building iOS. When replacing the custom font, update this file and the matching glyph map in `app/assets/iconConfig/config.json`, then run CocoaPods again and rebuild both apps.
 
-`npm run assets:generate` generates the SVG/vector-image resources for all flavours. It is separate from the Fontello icon font and is not needed just to switch between Android and iOS.
+Set `FLAVOR` for each command, for example `FLAVOR=bebboDev npm run assets:generate` and `FLAVOR=bebboDev npm run assets:check`. With no selection the command uses Bebbo. The selected Android resources and iOS catalog live under `app/instances/<flavour>/native`. Commit them when the source assets change. It is separate from the Fontello icon font and is not needed just to switch between Android and iOS.
 
 Refer to the [Fontello package setup](https://github.com/oblador/react-native-vector-icons/blob/master/packages/fontello/README.md).
 

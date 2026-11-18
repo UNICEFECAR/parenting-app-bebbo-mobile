@@ -1,9 +1,10 @@
-import {useEffect, useLayoutEffect, useRef} from 'react';
+import {useCallback, useLayoutEffect, useRef} from 'react';
 import {BackHandler} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
 type BackNavigation = {addListener: (event: any, listener: any) => () => void};
 
-/** Keep the mounted subscription, but invoke the latest committed route handler. */
+/** Keep one subscription while focused, but invoke the latest committed route handler. */
 export function useNavigationBackHandler(
   navigation: BackNavigation,
   handler: () => boolean,
@@ -12,7 +13,7 @@ export function useNavigationBackHandler(
   useLayoutEffect(() => {
     current.current = handler;
   }, [handler]);
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     const onBack = () => current.current();
     const hardware = BackHandler.addEventListener('hardwareBackPress', onBack);
     const unsubscribe = navigation.addListener('gestureEnd', onBack);
@@ -20,5 +21,5 @@ export function useNavigationBackHandler(
       unsubscribe();
       hardware.remove();
     };
-  }, [navigation]);
+  }, [navigation]));
 }

@@ -1,3 +1,4 @@
+import {PROFILE_CREATED, PROFILE_UPDATED} from '../assets/data/firebaseEvents';
 import i18n from 'i18next';
 import { returnToScreen } from "../navigation/returnToScreen";
 import { CHILD_ADDED_FROM_MANAGE_PROFILE, EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
@@ -194,7 +195,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       dispatch(setActiveChildData(child));
       try {
         await setUserProperties({
-          ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData?.id),
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
@@ -241,7 +242,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema,"key='autoChild'");
         try {
           await setUserProperties({
-            ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData?.id),
+            ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
             is_premature: child.isPremature,
             child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
             relationship_with_child: userRelationToParent,
@@ -289,7 +290,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       dispatch(setActiveChildData(child));
       try {
         await setUserProperties({
-          ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData?.id),
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
@@ -386,7 +387,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       Alert.alert('', i18n.t('generalError'));
       return;
     }
-    logEvent({name: 'profile_updated', params: {source: 'manage_profile'}}, netInfo?.isConnected);
+    logEvent({name: PROFILE_UPDATED, params: {source: 'manage_profile'}}, netInfo?.isConnected);
   }
   else {
     try {
@@ -397,7 +398,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       }
       if (data[0].isExpected === true || data[0].isExpected === 'true')
         logEvent({name: EXPECTED_CHILD_ENTERED}, netInfo?.isConnected);
-      logEvent({name: 'profile_created', params: {source: param === 2 ? 'manage_profile' : 'onboarding',
+      logEvent({name: PROFILE_CREATED, params: {source: param === 2 ? 'manage_profile' : 'onboarding',
         profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}, netInfo?.isConnected);
       if (
         Array.isArray(createdChildren) && createdChildren.length > 0 &&
@@ -535,7 +536,7 @@ export const updateActiveChild = async (child: any, key: any, value: any, dispat
   dispatch(setActiveChildData(child));
   try {
     await setUserProperties({
-      ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData?.id),
+      ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
       is_premature: child.isPremature,
       child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
       relationship_with_child: userRelationToParent,

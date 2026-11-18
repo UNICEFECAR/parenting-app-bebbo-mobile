@@ -1,3 +1,4 @@
+import {PROFILE_DELETED} from '../assets/data/firebaseEvents';
 import {DateTime} from 'luxon';
 import {userRealmCommon} from '../database/dbquery/userRealmCommon';
 import {ChildEntitySchema} from '../database/schema/ChildDataSchema';
@@ -22,7 +23,7 @@ export async function deleteProfileRecord(schema: string, id: unknown, condition
       }));
       if (await userRealmCommon.delete(schema, id, condition) !== 'success') return false;
     } catch { return false; }
-    void logAnalyticsEvent('profile_deleted', {
+    void logAnalyticsEvent(PROFILE_DELETED, {
       source: 'manage_profile', profile_type: placeholder ? 'placeholder' : 'caregiver_entered',
     });
     // Cancellation is post-commit cleanup. A rejected cancellation cannot undo a

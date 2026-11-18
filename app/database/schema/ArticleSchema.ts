@@ -76,9 +76,9 @@ export const ArticleEntitySchema: ObjectSchema = {
     cover_image: 'CoverImage',
     related_articles: { type: 'list', objectType: 'int' },
     related_video_articles: { type: 'list', objectType: 'int', optional: true, default: [] },
-    licensed: { type: 'int' },
+    licensed: { type: 'int', default: 0 },
     premature: { type: 'int' },
-    mandatory: { type: 'int' },
+    mandatory: { type: 'int', default: 0 },
     embedded_images: { type: 'list', objectType: 'string', optional: true },
     do_not_feature: { type: 'int' },
     meta_keywords:{ type: 'string' }

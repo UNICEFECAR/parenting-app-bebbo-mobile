@@ -23,7 +23,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { formatStringDate, getDatePickerLocale } from "../services/Utils";
 import { Heading2w, ShiftFromTop10 } from "@styles/typography";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -129,7 +129,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       }
     }, [focusInputs])
   );
-  useEffect(() => {
+  useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
       navigation.goBack();
       return true;
@@ -143,7 +143,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       navigation.removeListener("gestureEnd", backAction);
       backHandler.remove();
     };
-  }, [navigation]);
+  }, [navigation]));
   const AddChild = async (): Promise<any> => {
     let insertData: any;
     if (name == "" || name == null) {

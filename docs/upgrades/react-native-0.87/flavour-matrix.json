@@ -88,7 +88,7 @@
         "[CP-User] [RNFB] Core Configuration"
       ],
       "google_service_plist_group": "Production",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -175,7 +175,7 @@
         "[CP] Embed Pods Frameworks"
       ],
       "google_service_plist_group": "Development",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -240,7 +240,7 @@
         "[CP] Copy Pods Resources"
       ],
       "google_service_plist_group": "Bangla",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -306,7 +306,7 @@
         "Bundle React Native code and images"
       ],
       "google_service_plist_group": "Xk",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -373,7 +373,7 @@
         "Bundle React Native code and images"
       ],
       "google_service_plist_group": "MerhabaBebek",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -441,7 +441,7 @@
         "[CP] Embed Pods Frameworks"
       ],
       "google_service_plist_group": "Wawamor",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -510,7 +510,7 @@
         "Bundle React Native code and images"
       ],
       "google_service_plist_group": "ReraiUmntwana",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     },
     {
@@ -578,7 +578,7 @@
         "[CP] Copy Pods Resources"
       ],
       "google_service_plist_group": "BebboPacific",
-      "assets_status": "96 generated native resources verified separately",
+      "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
       "feature_status": "shared tools/backup/FAQ; country-specific configuration retained; live endpoints not verified"
     }
   ],

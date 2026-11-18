@@ -3,7 +3,7 @@ import TestRenderer,{act} from 'react-test-renderer';
 import BackupRecoveryScreen from '../../components/BackupRecoveryScreen';
 import {recoverPendingBackup} from '../backupRecovery';
 jest.mock('../backupRecovery',()=>({recoverPendingBackup:jest.fn()}));
-jest.mock('react-i18next',()=>({useTranslation:()=>({t:(_key:string,options:any)=>options.defaultValue})}));
+jest.mock('react-i18next',()=>({useTranslation:()=>({t:(key:string)=>key})}));
 let view:TestRenderer.ReactTestRenderer;
 afterEach(()=>{act(()=>view?.unmount());jest.clearAllMocks();});
 test('simultaneous retry and rollback taps start only the first recovery choice',async()=>{

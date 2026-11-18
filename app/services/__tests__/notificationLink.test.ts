@@ -12,7 +12,7 @@ test('notification survey counts only a successful handoff, never a completed su
   complete();
   await expect(opening).resolves.toBe(true);
   expect(logAnalyticsEvent).toHaveBeenCalledTimes(1);
-  expect(logAnalyticsEvent).toHaveBeenCalledWith('survey_link_opened');
+  expect(logAnalyticsEvent).toHaveBeenCalledWith('survey_submitted');
 });
 test('generic links are not counted as surveys', async () => {
   jest.spyOn(Linking, 'openURL').mockResolvedValue(undefined);

@@ -28,7 +28,7 @@ beforeEach(() => {
 
 test.each([true, false, undefined])('passes events directly to the durable native SDK regardless of connectivity (%s)', async connected => {
   await logEvent({name: 'child_added', params: {count: 2}}, connected);
-  expect(logAnalyticsEvent).toHaveBeenCalledWith('child_added', {count: 2});
+  expect(logAnalyticsEvent).toHaveBeenCalledWith('child_added', connected === false ? {count: 2, is_offline_event: true} : {count: 2});
   expect(rows).toHaveLength(0);
 });
 

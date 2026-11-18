@@ -2,6 +2,11 @@ import React from 'react';
 import TestRenderer, {act} from 'react-test-renderer';
 import {BackHandler} from 'react-native';
 import {useNavigationBackHandler} from '../../customHooks/useNavigationBackHandler';
+let mockFocused = true;
+jest.mock('@react-navigation/native', () => ({
+  useFocusEffect: (effect: () => void) => require('react').useEffect(
+    () => mockFocused ? effect() : undefined, [mockFocused, effect]),
+}));
 let view: TestRenderer.ReactTestRenderer;
 const remove = jest.fn(),
   unsubscribe = jest.fn(),
@@ -20,6 +25,7 @@ function Screen({
 }
 beforeEach(() => {
   (globalThis as any).IS_REACT_ACT_ENVIRONMENT = true;
+  mockFocused = true;
   jest.clearAllMocks();
   jest
     .spyOn(BackHandler, 'addEventListener')
@@ -60,4 +66,17 @@ test('navigation replacement and unmount remove exactly the registered listeners
   act(() => view.unmount());
   expect(otherCleanup).toHaveBeenCalledTimes(1);
   expect(remove).toHaveBeenCalledTimes(2);
+});
+
+test('a blurred screen releases back handling and subscribes once when revisited', () => {
+  const handler = jest.fn(() => true);
+  act(() => {view = TestRenderer.create(<Screen handler={handler} />);});
+  mockFocused = false;
+  act(() => view.update(<Screen handler={handler} />));
+  expect(remove).toHaveBeenCalledTimes(1);
+  expect(unsubscribe).toHaveBeenCalledTimes(1);
+  mockFocused = true;
+  act(() => view.update(<Screen handler={handler} />));
+  expect(BackHandler.addEventListener).toHaveBeenCalledTimes(2);
+  expect(hardware()).toBe(true);
 });
