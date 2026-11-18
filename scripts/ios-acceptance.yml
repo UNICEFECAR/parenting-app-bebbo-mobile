@@ -49,22 +49,22 @@ appId: org.unicef.bebbodev
     visible: ".*Daily reads.*"
     timeout: 180000
 - takeScreenshot: ios-home
-- tapOn: "(?i).*Tools"
-- tapOn: "(?i).*Vaccinations"
+- tapOn: "(?i)^Tools(?:, tab, [0-9]+ of [0-9]+)?$"
+- tapOn: "(?i).*Vaccinations.*"
 - tapOn:
     text: "(?i)continue"
     optional: true
 - assertVisible: "(?i).*Vaccination summary.*"
 - takeScreenshot: ios-vaccinations
-- tapOn: "(?i).*Tools"
-- tapOn: "(?i).*Health check-ups"
+- tapOn: "(?i)^Tools(?:, tab, [0-9]+ of [0-9]+)?$"
+- tapOn: "(?i).*Health check-ups.*"
 - tapOn:
     text: "(?i)continue"
     optional: true
 - assertVisible: "(?i).*Add doctor visit.*"
 - takeScreenshot: ios-health-checkups
-- tapOn: "(?i).*Tools"
-- tapOn: "(?i).*Child.s growth"
+- tapOn: "(?i)^Tools(?:, tab, [0-9]+ of [0-9]+)?$"
+- tapOn: "(?i).*Child.s growth.*"
 - tapOn:
     text: "(?i)continue"
     optional: true
