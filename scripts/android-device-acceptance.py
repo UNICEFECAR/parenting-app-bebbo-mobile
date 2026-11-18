@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import subprocess
 import time
+import xml.etree.ElementTree as ET
 
 spec = importlib.util.spec_from_file_location('journey', Path(__file__).with_name('android-dev-journey.py'))
 ui = importlib.util.module_from_spec(spec)
@@ -39,11 +40,29 @@ def back():
     time.sleep(.7)
 
 
+def launch_app():
+    ns = '{http://schemas.android.com/apk/res/android}'
+    manifest = ET.parse(ui.REPORT / 'manifest.xml')
+    for activity in manifest.findall('application/activity'):
+        for intent in activity.findall('intent-filter'):
+            if any(node.get(ns+'name') == 'android.intent.action.MAIN' for node in intent.findall('action')):
+                name = activity.get(ns+'name')
+                ui.adb('shell', 'am', 'start', '-W', '-n', ui.PACKAGE + '/' + name)
+                return
+    raise ValueError('Bebbo launcher activity is absent from the compiled manifest')
+
+
+def dismiss_intro(tree):
+    action = ui.find(tree, '^Continue$')
+    if action is not None:
+        ui.touch(action)
+        return True
+    return False
+
+
 def home():
     for attempt in range(12):
         tree, xml = ui.snapshot()
-        # A tap target on the article card distinguishes a ready Home from its
-        # header during a transition and from a matching label in a dialog.
         if ui.find(tree, r"^Today.s advice,") is not None:
             return
         if ui.find(tree, r'Poor connection|^Attention$|allow .*notifications') is not None:
@@ -51,17 +70,21 @@ def home():
             if button is not None:
                 ui.touch(button)
                 continue
+        is_app = any(n.get('package') == ui.PACKAGE for n in tree.iter('node'))
+        if not is_app:
+            launch_app()
+            time.sleep(1)
+            continue
+        if dismiss_intro(tree):
+            continue
         button = ui.find(tree, r'^Home$')
         if button is not None:
             ui.touch(button)
-        elif attempt < 3:
-            back()
         elif attempt == 4:
             ui.adb('shell', 'am', 'force-stop', ui.PACKAGE)
-            ui.adb('shell', 'am', 'start', '-W', '-a', 'android.intent.action.MAIN',
-                   '-c', 'android.intent.category.LAUNCHER', '-p', ui.PACKAGE)
+            launch_app()
         else:
-            time.sleep(1)
+            back()
     ui.persist('could-not-return-home', xml)
     raise ValueError('return-to-cached-home')
 
@@ -102,6 +125,8 @@ def content():
 
 def tab(name,pattern):
     click('tab-'+name, '^'+name+'$')
+    tree, _ = ui.snapshot()
+    dismiss_intro(tree)
     opened('loaded-'+name, pattern)
 
 
@@ -185,10 +210,10 @@ def main():
         raise SystemExit('A disposable Bebbo Dev CI installation is required')
     scenarios=[
         ('article and favourite',content),
+        ('growth',growth),('vaccination',vaccination),('health check-ups',checkup),
         ('games tab',lambda:tab('Games',r'Playing together|Choose games|Search|All games|Activity')),
         ('advice tab',lambda:tab('Advice',r'Choose advice|Search|All advice|Expert advice')),
         ('development tab',lambda:tab('Development',r"milestone|child.s development|developmental")),
-        ('growth',growth),('vaccination',vaccination),('health check-ups',checkup),
         ('notifications',lambda:menu('notifications','^Notifications$','^Notifications$|There are no notifications')),
         ('settings',lambda:menu('settings','^Settings$','Data Saver Mode|Download latest content|Back up your data')),
         ('user guide',lambda:menu('guide','^User guide$','User guide|Next|Getting started')),
