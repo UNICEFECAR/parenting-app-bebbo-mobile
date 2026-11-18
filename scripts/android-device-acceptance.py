@@ -17,6 +17,11 @@ results = []
 def opened(label, expected, *, tap=False, scroll=False):
     for attempt in range(8):
         tree, xml = ui.snapshot()
+        if ui.find(tree, r'Content is not fully downloaded') is not None:
+            cancel = ui.find(tree, '^Cancel$')
+            if cancel is not None:
+                ui.touch(cancel)
+                continue
         node = ui.find(tree, expected)
         if node is not None:
             ui.persist(label, xml)
@@ -65,7 +70,7 @@ def home():
         tree, xml = ui.snapshot()
         if ui.find(tree, r"^Today.s advice,") is not None:
             return
-        if ui.find(tree, r'Poor connection|^Attention$|allow .*notifications') is not None:
+        if ui.find(tree, r'Poor connection|Content is not fully downloaded|^Attention$|allow .*notifications') is not None:
             button = ui.find(tree, r"^Cancel$|^OK$|^Don.t allow$")
             if button is not None:
                 ui.touch(button)
@@ -130,23 +135,39 @@ def tab(name,pattern):
     opened('loaded-'+name, pattern)
 
 
+def move_ruler():
+    tree, _ = ui.snapshot()
+    ruler = ui.find(tree, '', 'android.widget.HorizontalScrollView')
+    if ruler is None:
+        raise ValueError('measurement-ruler')
+    x1, y1, x2, y2 = map(int, re.findall(r'\d+', ruler.get('bounds')))
+    y = str((y1+y2)//2)
+    ui.adb('shell','input','swipe',str(x1 + (x2-x1)*3//4),y,str(x1+(x2-x1)//4),y,'470')
+
+
+def today(label, date_text):
+    click(label+'-open-date',date_text)
+    click(label+'-accept-date','^OK$|^Done$')
+
+
 def growth():
     tool('growth')
     click('new-measure', '^Add new measurement$', True)
     opened('measurement-form', 'Date of measurement|Where was the child measured')
+    today('growth','Enter date of measurement')
     click('weight-entry', '^Weight$', True)
     tree,_ = ui.snapshot()
     intro=ui.find(tree,'^Continue$')
     if intro is not None:ui.touch(intro)
     opened('weight-ruler','^Add weight$')
-    ui.adb('shell','input','swipe','690','820','285','820','450')
+    move_ruler()
     click('weight-return','^Save$',True)
     click('height-entry','^Height$',True)
     tree,_=ui.snapshot()
     intro=ui.find(tree,'^Continue$')
     if intro is not None:ui.touch(intro)
     opened('height-ruler','^Add height$')
-    ui.adb('shell','input','swipe','690','820','285','820','450')
+    move_ruler()
     click('height-return','^Save$',True)
     tree,_=ui.snapshot()
     place=ui.find(tree,'^At home$')
@@ -160,7 +181,7 @@ def vaccination():
     click('vaccination-previous','^Previous$')
     click('vaccination-upcoming','^Upcoming$')
     click('vaccine-record-entry','^Enter vaccines received$',True)
-    opened('vaccine-form','Date of vaccination|Vaccines received|Select vaccines|Vaccines taken')
+    opened('vaccine-form','New vaccination|Date of vaccination|Vaccines received|Select vaccines|Vaccines taken')
     back()
     click('vaccine-reminder','^Set vaccination reminder$',True)
     opened('vaccine-reminder-form','date and time of the vaccination|Date of vaccination|^Set reminder$')
@@ -177,6 +198,10 @@ def checkup():
 
 def menu(name,entry,proof):
     drawer()
+    if name in ('about','privacy','terms'):
+        click('expand-about-'+name, '^About Bebbo$',True)
+        if name=='about':
+            entry='^About us$'
     click('drawer-'+name,entry,True)
     opened('view-'+name,proof)
 
@@ -199,9 +224,12 @@ def local_backup():
         if menu_node is not None:
             ui.touch(menu_node)
             click('backup-downloads-folder','^Downloads$')
-    click('backup-select-fixture','BebboLegacyQA')
+    click('backup-select-fixture',r'^BebboLegacyQA\.json$')
     click('backup-confirm-replacement','^Continue$|^Restore$')
-    home()
+    # Wait for the completed restore before restarting the app.
+    time.sleep(3)
+    ui.adb('shell','am','force-stop',ui.PACKAGE)
+    launch_app()
     opened('legacy-child-after-restart','RestoreQA',scroll=True)
 
 
@@ -216,7 +244,7 @@ def main():
         ('development tab',lambda:tab('Development',r"milestone|child.s development|developmental")),
         ('notifications',lambda:menu('notifications','^Notifications$','^Notifications$|There are no notifications')),
         ('settings',lambda:menu('settings','^Settings$','Data Saver Mode|Download latest content|Back up your data')),
-        ('user guide',lambda:menu('guide','^User guide$','User guide|Next|Getting started')),
+        ('user guide',lambda:menu('guide','^User guide$','YouTube|User guide|Next|Getting started')),
         ('about',lambda:menu('about','^About Bebbo$|^About us$','About Bebbo|About us|Partners')),
         ('FAQ',lambda:menu('FAQ','^Chat$|^Support$|^Questions and answers$','Chat|What would you like|Select a category')),
         ('privacy',lambda:menu('privacy','^Privacy Policy$','Privacy Policy')),
