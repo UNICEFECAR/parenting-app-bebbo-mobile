@@ -1,6 +1,9 @@
 appId: org.unicef.bebbodev
 ---
-- launchApp
+- launchApp:
+    permissions:
+      userTracking: deny
+      notifications: deny
 - tapOn:
     text: "(?i)Don.t Allow"
     optional: true
