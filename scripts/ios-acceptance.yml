@@ -17,10 +17,16 @@ appId: org.unicef.bebbodev
 - scrollUntilVisible:
     element: "(?i)continue"
 - tapOn: "(?i)continue"
-- scrollUntilVisible:
-    element: ".*I have read, understood.*"
 - tapOn:
-    text: ".*I have read, understood.*"
+    text: "^OK$"
+    optional: true
+- tapOn:
+    text: "(?i)cancel"
+    optional: true
+- scrollUntilVisible:
+    element: "(?is).*I have read, understood.*"
+- tapOn:
+    text: "(?is).*I have read, understood.*"
     point: "4%,50%"
 - tapOn: "(?i)continue"
 - assertVisible: ".*What is your name or nickname.*"

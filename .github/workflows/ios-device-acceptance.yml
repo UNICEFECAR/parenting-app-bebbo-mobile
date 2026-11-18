@@ -49,7 +49,14 @@ jobs:
             ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/ios-xcode.log" 2>&1 || { tail -100 "$RUNNER_TEMP/ios-xcode.log"; exit 1; }
           app=$(find "$RUNNER_TEMP/ios-build/Build/Products/Release-iphonesimulator" -maxdepth 1 -type d -name '*.app' -print -quit)
           test -n "$app" && xcrun simctl install "$phone" "$app"
+          ditto -c -k --keepParent "$app" "$RUNNER_TEMP/bebbo-dev-simulator.zip"
           xcrun simctl launch "$phone" "$IOS_APP_ID"
+      - name: Preserve the staging simulator app for a device retest
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: bebbo-dev-simulator-app
+          path: ${{ runner.temp }}/bebbo-dev-simulator.zip
+          retention-days: 3
       - name: Exercise the real welcome, caregiver and Tool screens
         run: |
           curl -fLsS --retry 3 https://github.com/mobile-dev-inc/Maestro/releases/download/cli-2.12.1/maestro.zip -o "$RUNNER_TEMP/maestro.zip"
