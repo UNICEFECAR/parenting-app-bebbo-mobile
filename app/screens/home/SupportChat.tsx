@@ -766,7 +766,7 @@ const SupportChat = ({ navigation }: Props): any => {
                   <ButtonModal
                     onPress={async (): Promise<void> => {
                       setModalVisible(false);
-                      if (!(await openMeasuredLink(feedbackItem?.survey_feedback_link, FEEDBACK_SUBMIT))) Alert.alert("", t("generalError"));
+                      if (!(await openMeasuredLink(feedbackItem?.survey_feedback_link, FEEDBACK_SUBMIT, netInfo.isConnected))) Alert.alert("", t("generalError"));
                     }}
                   >
                     <ButtonTextTheme numberOfLines={2}>

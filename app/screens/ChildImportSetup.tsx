@@ -98,7 +98,7 @@ const ChildImportSetup = (props: any): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [relationship, setRelationship] = useState("");
-  const [userRelationToParent, setUserRelationToParent] = useState();
+  const [userRelationToParent, setUserRelationToParent] = useState<string>();
   const [relationshipname, setRelationshipName] = useState("");
   const [name, setName] = React.useState("");
   const actionSheetRef = useRef<AppActionSheetRef>(null);

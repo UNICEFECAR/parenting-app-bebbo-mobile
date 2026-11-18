@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
 });
 const CustomDrawerContent = ({ navigation }: any): any => {
-  useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -694,7 +694,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </DrawerLinkView>
               <DrawerLinkView
                 onPress={async (): Promise<void> => {
-                  if (!(await openMeasuredLink(`mailto:${countryEmail}`, EMAIL_SENT))) Alert.alert("", t("generalError"));
+                  if (!(await openMeasuredLink(`mailto:${countryEmail}`, EMAIL_SENT, netInfo.isConnected))) Alert.alert("", t("generalError"));
                 }}
               >
                 <OuterIconRow>

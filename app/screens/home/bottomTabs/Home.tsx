@@ -864,7 +864,7 @@ const Home = ({ route: _route, navigation }: any): any => {
                     <ButtonModal
                       onPress={async (): Promise<void> => {
                         setModalVisible(false);
-                        if (!(await openMeasuredLink(surveyItem?.survey_feedback_link, SURVEY_SUBMIT))) Alert.alert("", t("generalError"));
+                        if (!(await openMeasuredLink(surveyItem?.survey_feedback_link, SURVEY_SUBMIT, netInfo.isConnected))) Alert.alert("", t("generalError"));
                       }}
                     >
                       <ButtonTextTheme numberOfLines={2}>

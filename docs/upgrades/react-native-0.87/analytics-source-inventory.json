@@ -798,45 +798,38 @@
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 400,
+      "line": 394,
       "api": "logEvent",
       "event": "{name: EXPECTED_CHILD_ENTERED}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 401,
+      "line": 402,
       "api": "logEvent",
       "event": "{name: PROFILE_CREATED, params: {source: param === 2 ? 'manage_profile' : 'onboarding', profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 408,
+      "line": 409,
       "api": "logEvent",
       "event": "{ name: CHILD_ADDED_FROM_MANAGE_PROFILE }",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
-      "line": 424,
+      "line": 425,
       "api": "logEvent",
       "event": "{ 'name': ONBOARDING_SKIPPED }",
       "parameters": "netInfo?.isConnected"
     },
     {
       "file": "app/services/measuredLink.ts",
-      "line": 7,
+      "line": 6,
       "api": "logAnalyticsEvent",
       "event": "event",
-      "parameters": null
-    },
-    {
-      "file": "app/services/notificationLink.ts",
-      "line": 8,
-      "api": "logAnalyticsEvent",
-      "event": "SURVEY_SUBMIT",
-      "parameters": null
+      "parameters": "connected === false ? {is_offline_event: true} : undefined"
     },
     {
       "file": "app/services/profileDeletion.ts",

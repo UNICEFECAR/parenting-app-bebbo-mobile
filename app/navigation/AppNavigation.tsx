@@ -756,7 +756,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL), "survey");
+          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL));
         } else {
           if (Platform.OS == "ios") {
             setTimeout(() => {
@@ -764,7 +764,7 @@ export default (): any => {
                 (item: any) => item.type == "survey"
               );
               if (surveyItem && surveyItem.survey_feedback_link) {
-                void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link), "survey");
+                void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
               }
             }, 100);
           } else {
@@ -772,7 +772,7 @@ export default (): any => {
               (item: any) => item.type == "survey"
             );
             if (surveyItem && surveyItem.survey_feedback_link) {
-              void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link), "survey");
+              void openNotificationLink(trimWhiteSpacePayload(surveyItem.survey_feedback_link));
             }
           }
         }
@@ -790,7 +790,7 @@ export default (): any => {
           trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
           trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
         ) {
-          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL), "hyperlink");
+          void openNotificationLink(trimWhiteSpacePayload(remoteMessage.data.URL));
         }
       }
     } else {

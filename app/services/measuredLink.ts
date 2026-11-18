@@ -1,10 +1,8 @@
 import {openExternalLink} from './externalLink';
 import {logAnalyticsEvent} from './firebaseAnalytics';
-/** A successful handoff proves opening, never submission, email delivery or payment. */
-export async function openMeasuredLink(url: unknown, event: string): Promise<boolean> {
-  if (!(await openExternalLink(url, {allowEmail: true}))) return false;
-  try {
-    await logAnalyticsEvent(event);
-    return true;
-  } catch { return false; }
+
+// These historical dashboard events count a confirmed tap, including a failed OS handoff.
+export async function openMeasuredLink(url: unknown, event: string, connected?: boolean | null): Promise<boolean> {
+  void logAnalyticsEvent(event, connected === false ? {is_offline_event: true} : undefined);
+  return openExternalLink(url, {allowEmail: true});
 }

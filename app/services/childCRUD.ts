@@ -390,14 +390,15 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     logEvent({name: PROFILE_UPDATED, params: {source: 'manage_profile'}}, netInfo?.isConnected);
   }
   else {
+    if (data[0].isExpected == true || data[0].isExpected == 'true') {
+      void logEvent({name: EXPECTED_CHILD_ENTERED}, netInfo?.isConnected);
+    }
     try {
       const createdChildren = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
       if (!Array.isArray(createdChildren) || !createdChildren.length) {
         Alert.alert('', i18n.t('generalError'));
         return;
       }
-      if (data[0].isExpected === true || data[0].isExpected === 'true')
-        logEvent({name: EXPECTED_CHILD_ENTERED}, netInfo?.isConnected);
       logEvent({name: PROFILE_CREATED, params: {source: param === 2 ? 'manage_profile' : 'onboarding',
         profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}, netInfo?.isConnected);
       if (
