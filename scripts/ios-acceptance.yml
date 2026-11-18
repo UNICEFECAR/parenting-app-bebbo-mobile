@@ -50,21 +50,36 @@ appId: org.unicef.bebbodev
     timeout: 180000
 - takeScreenshot: ios-home
 - tapOn: "(?i)^Tools(?:, tab, [0-9]+ of [0-9]+)?$"
-- tapOn: "(?i).*Vaccinations.*"
+- assertVisible: "(?i).*Vaccinations.*"
+- takeScreenshot: ios-tools-before-vaccinations
+# The existing iOS sheet combines three rows into one accessibility element.
+# Exercise the visible row and verify the destination independently.
+- tapOn:
+    point: "28%,83%"
 - tapOn:
     text: "(?i)continue"
     optional: true
 - assertVisible: "(?i).*Vaccination summary.*"
 - takeScreenshot: ios-vaccinations
 - tapOn: "(?i)^Tools(?:, tab, [0-9]+ of [0-9]+)?$"
-- tapOn: "(?i).*Health check-ups.*"
+- assertVisible: "(?i).*Health check-ups.*"
+- takeScreenshot: ios-tools-before-health-checkups
+# The existing iOS sheet combines three rows into one accessibility element.
+# Exercise the visible row and verify the destination independently.
+- tapOn:
+    point: "28%,90%"
 - tapOn:
     text: "(?i)continue"
     optional: true
 - assertVisible: "(?i).*Add doctor visit.*"
 - takeScreenshot: ios-health-checkups
 - tapOn: "(?i)^Tools(?:, tab, [0-9]+ of [0-9]+)?$"
-- tapOn: "(?i).*Child.s growth.*"
+- assertVisible: "(?i).*Child.s growth.*"
+- takeScreenshot: ios-tools-before-growth
+# The existing iOS sheet combines three rows into one accessibility element.
+# Exercise the visible row and verify the destination independently.
+- tapOn:
+    point: "28%,96%"
 - tapOn:
     text: "(?i)continue"
     optional: true
