@@ -60,6 +60,7 @@ On main, the image-generation npm command explicitly selected Bebbo. The interme
 - Await the instance's native event promise. In the pinned RNFirebase 26.4.1 release the modular convenience function discards that promise, which previously allowed premature acknowledgement of a retry.
 - Replaced shared screens' direct imports of Bebbo's styles with the selected instance alias. The one growth-screen layout wrapper missing in other instances now uses the same spacing locally.
 - Separated the iOS shared catalogue, default app icon, Foleja icon and shared launch artwork so each target compiles one intended icon and splash. Existing binary artwork is reused.
+- Replaced Rerai's inherited Android default and low-density blue splash images with its existing Zimbabwe artwork at the corresponding pixel sizes. The static background behind the launch animation now comes from Rerai at every Android resource density.
 - Isolated the manual iOS bundle export by flavour and invocation. CI checks all instance-owned modules in the source map, SVG name collisions, the expected animation bytes and the absence of other known launch animations and identifiable foreign instance paths in Android APK/AAB and iOS application archives.
 
 - Android now validates the bundle flavour in both Debug and Release. Native resources require the same environment as Metro. Omitting ENVFILE defaults the native configuration to the selected instance.
@@ -68,6 +69,10 @@ On main, the image-generation npm command explicitly selected Bebbo. The interme
 - Data Realm schema 14 preserves the original payload on a direct SDK retry. Offline and historical rows retain the offline marker. A pre-existing retry from an intermediate review build is indistinguishable from an older offline row and keeps the historical treatment.
 
 ## D. Verification limits
+
+All 16 Android/iOS JavaScript release bundle jobs passed in [the audit run](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/44489433116). The unsigned iOS archives for Bebbo, Bebbo Dev and Babuni development also passed their packaged checks in that run. Two Android jobs stopped during dependency resolution and a subsequent branch push cancelled the unfinished jobs.
+
+Pixel inspection of the actual Rerai AAB from [the earlier native matrix](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/44464181234) confirmed the shared blue Android launch background in its default and low-density entries. After the two overrides were added, Android SDK 37's AAPT2 was used to compile and link the selected resources for all ten variants. The decoded launch backgrounds and launcher icons matched their selected source artwork in all 170 bitmap configurations. All 22 generated vector names and the expected launch animation matched in each package. These resource-only packages do not exercise Gradle's complete release build. CI additionally compares the two final Rerai AAB fallbacks against its packaged same-size branded images.
 
 The source map verifies JavaScript, configuration, local content, translations and asset modules. The package checks inspect generated vector names, identifiable instance-owned file paths and the specific launch payload. A successful build alone does not prove every pixel is correct. An unsigned Xcode archive contains a compiled application and Assets.car; its inspection is distinct from an App Store IPA. Synthetic release configurations also do not establish that production signing or Firebase routing is correct.
 

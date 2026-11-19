@@ -39,6 +39,17 @@ def elf(bits=64, alignment=16384, offset=0, address=0, endian='<', machine=None)
 
 
 class AndroidPackaging(unittest.TestCase):
+    def test_rerai_overrides_every_common_static_splash(self):
+        sources = Path(__file__).resolve().parents[2] / 'android/app/src'
+        shared = sources / 'main/res'
+        rerai = sources / 'reraiUmntwana/res'
+        for image in shared.glob('drawable*/launch_screen.png'):
+            qualifier = image.relative_to(shared)
+            with self.subTest(qualifier=str(qualifier)):
+                branded = rerai / qualifier
+                self.assertTrue(branded.is_file(), f'Rerai would inherit {qualifier}')
+                self.assertNotEqual(branded.read_bytes(), image.read_bytes())
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

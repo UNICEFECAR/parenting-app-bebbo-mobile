@@ -38,6 +38,15 @@ def check_animations(assets, expected, shipped):
     if found - {expected}:
         raise ValueError("A different target's launch animation was also packaged")
 
+def check_rerai_splash_fallbacks(bundle):
+    # Android uses Rerai's existing same-size artwork for these two fallbacks.
+    # Compare compiled PNGs inside the bundle because aapt2 can recompress them.
+    for fallback, branded in [('drawable', 'drawable-xxxhdpi-v4'),
+                              ('drawable-ldpi-v4', 'drawable-hdpi-v4')]:
+        if bundle.read(f'base/res/{fallback}/launch_screen.png') != bundle.read(
+                f'base/res/{branded}/launch_screen.png'):
+            raise ValueError(f'Rerai static launch artwork differs in {fallback}')
+
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
@@ -60,6 +69,8 @@ def main():
         source = ROOT / 'android/app/src' / variant / 'res/raw/splash.json'
         expected = source.read_bytes()
         with ZipFile(a.android) as package:
+            if a.flavour == 'reraiUmntwana' and a.android.suffix == '.aab':
+                check_rerai_splash_fallbacks(package)
             verify(a.flavour, package.namelist())
             assets = {p.read_bytes() for p in (ROOT / 'android/app/src').glob('*/res/raw/splash.json')}
             check_animations(assets, expected, ((f.file_size, lambda: package.read(f)) for f in package.infolist()))
