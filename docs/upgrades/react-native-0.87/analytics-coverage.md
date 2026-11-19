@@ -66,9 +66,16 @@ On main, the image-generation npm command explicitly selected Bebbo. The interme
 - Android now validates the bundle flavour in both Debug and Release. Native resources require the same environment as Metro. Omitting ENVFILE defaults the native configuration to the selected instance.
 - Every iOS application target now builds its Info.plist from its own template and environment in Xcode's target-specific derived directory. The ten schemes previously overwrote one xcconfig. The unused iOS react-native-config pod also wrote environment data into the shared dependency checkout. The app's JavaScript reads react-native-dotenv, and all five environment substitutions used by native plists are preserved.
 - A mocked native-module test now executes the installed RNFirebase JavaScript implementation. The inventory includes user-property setters and the previously missing Home survey event. Connectivity arguments are recorded separately from event parameters.
+- The vector command now exits unsuccessfully if Metro or a converter leaves an unresolved operation when Node exits. A zero exit status requires verification of every requested platform. A regression test reproduces this with an unfinished collector.
 - Data Realm schema 14 preserves the original payload on a direct SDK retry. Offline and historical rows retain the offline marker. A pre-existing retry from an intermediate review build is indistinguishable from an older offline row and keeps the historical treatment.
 
 ## D. Verification limits
+
+[The native verification run for 7a711e2d](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/44493932358) passed all 16 release JavaScript bundle checks, all ten Android APK/AAB package checks, and all ten unsigned iOS archive checks. Android emulator startup also passed for Bebbo, Bebbo Dev and Rerai Umntwana. The later asset-command exit guard was exercised locally on all 16 flavour/platform combinations. The native fixture builds do not verify live analytics or production signing.
+
+For commit `7a711e2d`, all ten downloaded Android release bundles matched the SHA-256 digests GitHub recorded for their artifact ZIPs. Across those AABs, 5,821 packaged entries matched original asset bytes belonging to the selected instance or shared files. None matched exclusively foreign sources. All ten contained the expected Roboto and Fontello fonts. Image recompression can change the source bytes, so the hash check complements the compiled resource and artwork checks.
+
+From empty output directories, the verifier regenerated each of the eight instances for both platforms. Each of the 16 manifests and its generated files matched the checked-in bytes, and the seven other instances remained unchanged after each regeneration. Each graph resolved 22 distinct referenced SVGs.
 
 All 16 Android/iOS JavaScript release bundle jobs passed in [the audit run](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/actions/runs/44489433116). The unsigned iOS archives for Bebbo, Bebbo Dev and Babuni development also passed their packaged checks in that run. Two Android jobs stopped during dependency resolution and a subsequent branch push cancelled the unfinished jobs.
 

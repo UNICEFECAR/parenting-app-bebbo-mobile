@@ -48,3 +48,19 @@ test('country/language setup never automatically deletes child profiles', () => 
     assert.doesNotMatch(source, /isMigrated\s*==\s*false/);
   }
 });
+
+test('vector verification exits unsuccessfully if the asset collector never finishes', t => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'bebbo-incomplete-assets-'));
+  t.after(() => fs.rmSync(directory, {recursive: true, force: true}));
+  const collector = require.resolve('../collect-vector-assets.cjs');
+  const preload = path.join(directory, 'preload.cjs');
+  // A pending promise with no live I/O handles otherwise allows Node to exit successfully.
+  fs.writeFileSync(preload, `require.cache[${JSON.stringify(collector)}] = {exports: {collectAssets: () => new Promise(() => {})}};`);
+  const result = require('node:child_process').spawnSync(process.execPath,
+    ['--require', preload, require.resolve('../vector-assets.cjs')], {
+      env: {...process.env, FLAVOR: 'foleja', BUNDLE_PLATFORM: 'ios'}, encoding: 'utf8',
+    });
+  assert.equal(result.status, 1, result.stderr);
+  assert.equal(result.stderr, '');
+  assert.doesNotMatch(result.stdout, /referenced vectors verified/);
+});

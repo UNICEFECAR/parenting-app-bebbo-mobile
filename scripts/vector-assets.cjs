@@ -72,5 +72,10 @@ async function main() {
     console.log(flavour + ' ' + platform + ': ' + selected.size + ' referenced vectors verified');
   }
 }
-if (require.main === module) main().catch(error=>{console.error(error);process.exitCode=1;});
+if (require.main === module) {
+  // An unfinished Metro/stream promise by itself does not keep Node alive.
+  // Report success only after every requested platform has been verified.
+  process.exitCode = 1;
+  main().then(() => { process.exitCode = 0; }, error => { console.error(error); });
+}
 module.exports = {verifyManifest};
