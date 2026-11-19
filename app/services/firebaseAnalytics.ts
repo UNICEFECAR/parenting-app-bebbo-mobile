@@ -4,7 +4,6 @@ import { getApp } from '@react-native-firebase/app';
 import {
     getAnalytics,
     getAppInstanceId,
-    logEvent as firebaseLogEvent,
     setUserProperties as firebaseSetUserProperties,
 } from '@react-native-firebase/analytics';
 import { getCrashlytics, log as firebaseLog, recordError as firebaseRecordError } from '@react-native-firebase/crashlytics';
@@ -32,7 +31,9 @@ export const tryLogAnalyticsEvent = async (
     params?: Record<string, any>
 ): Promise<boolean> => {
     try {
-        await firebaseLogEvent(analytics(), eventName, params);
+        // RNFirebase 26's modular logEvent discards the native promise.
+        // Await the instance method before acknowledging a retry record.
+        await analytics().logEvent(eventName, params);
         return true;
     } catch  {
         console.warn('Analytics SDK submission failed');

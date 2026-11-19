@@ -2,6 +2,7 @@
 import argparse
 from pathlib import Path
 from zipfile import ZipFile
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 ANDROID = dict(bebbo='prod', bebboDev='prodstaging', foleja='xk', babuni='bangla',
@@ -28,7 +29,14 @@ def main():
     g.add_argument('--android', type=Path)
     g.add_argument('--ios-app', type=Path)
     p.add_argument('--development', action='store_true')
+    p.add_argument('--manifest', type=Path, help='Merged manifest XML from bundletool')
     a = p.parse_args()
+    if a.manifest:
+        ns = '{http://schemas.android.com/apk/res/android}'
+        metadata = {entry.get(ns+'name'):entry.get(ns+'value') for entry in
+                    ET.parse(a.manifest).findall('./application/meta-data')}
+        if metadata.get('google_analytics_automatic_screen_reporting_enabled') != 'true':
+            raise ValueError('The Android release must preserve native screen reporting')
     if a.android:
         variant = ANDROID[a.flavour] + ('staging' if a.development else '')
         source = ROOT / 'android/app/src' / variant / 'res/raw/splash.json'

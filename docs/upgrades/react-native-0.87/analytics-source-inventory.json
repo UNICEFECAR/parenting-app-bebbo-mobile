@@ -391,6 +391,27 @@
       "parameters": null
     },
     {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "line": 697,
+      "api": "openMeasuredLink",
+      "event": "EMAIL_SENT",
+      "parameters": "netInfo.isConnected"
+    },
+    {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "line": 773,
+      "api": "openMeasuredLink",
+      "event": "DONATE_OPENED",
+      "parameters": null
+    },
+    {
+      "file": "app/screens/CustomDrawerContent.tsx",
+      "line": 832,
+      "api": "openMeasuredLink",
+      "event": "FEEDBACK_SUBMIT",
+      "parameters": null
+    },
+    {
       "file": "app/screens/ServiceProviderInfoSetup.tsx",
       "line": 160,
       "api": "logEvent",
@@ -703,6 +724,13 @@
       "line": 249,
       "api": "logEvent",
       "event": "{ name: CHATBOT_FAQ_SELECTED, params: { faq_Id: localsteps[index].textToShow.id, faq_Subcategory_Id: localsteps[indexForText2].answer.value, }, }",
+      "parameters": "netInfo.isConnected"
+    },
+    {
+      "file": "app/screens/home/SupportChat.tsx",
+      "line": 769,
+      "api": "openMeasuredLink",
+      "event": "FEEDBACK_SUBMIT",
       "parameters": "netInfo.isConnected"
     },
     {

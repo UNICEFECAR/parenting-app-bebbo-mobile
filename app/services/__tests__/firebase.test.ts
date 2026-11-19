@@ -1,9 +1,9 @@
+const mockNativeLog = jest.fn();
 jest.mock('../analyticsOutbox', () => ({saveAnalyticsRetry: jest.fn()}));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => 'app') }));
 jest.mock('@react-native-firebase/analytics', () => ({
-  getAnalytics: jest.fn(() => 'analytics'),
+  getAnalytics: jest.fn(() => ({logEvent: mockNativeLog})),
   getAppInstanceId: jest.fn().mockResolvedValue('permitted-instance'),
-  logEvent: jest.fn(),
   setUserProperties: jest.fn(),
 }));
 jest.mock('@react-native-firebase/crashlytics', () => ({
@@ -22,15 +22,15 @@ afterEach(() => jest.restoreAllMocks());
 test('preserves child-count event names and parameters through the modular API', async () => {
   const params = { child_count: 2 };
   await logAnalyticsEvent('no_of_childsetup_onboarding', params);
-  expect(analytics.logEvent).toHaveBeenCalledWith('analytics', 'no_of_childsetup_onboarding', params);
+  expect(mockNativeLog).toHaveBeenCalledWith('no_of_childsetup_onboarding', params);
   await logAnalyticsEvent('child_added_from_manage_profile');
-  expect(analytics.logEvent).toHaveBeenLastCalledWith('analytics', 'child_added_from_manage_profile', undefined);
+  expect(mockNativeLog).toHaveBeenLastCalledWith('child_added_from_manage_profile', undefined);
 });
 
 test('omits undefined user properties while retaining null to clear a saved property', async () => {
   const properties = { country: 'test', relationship: null, unused: undefined };
   await setUserProperties(properties);
-  expect(analytics.setUserProperties).toHaveBeenCalledWith('analytics', { country: 'test', relationship: null });
+  expect(analytics.setUserProperties).toHaveBeenCalledWith(expect.objectContaining({logEvent:mockNativeLog}), { country: 'test', relationship: null });
   expect(properties).toHaveProperty('unused', undefined);
 });
 
@@ -45,7 +45,7 @@ test('records Crashlytics breadcrumbs and nonfatal errors through modular functi
 });
 
 test('telemetry failures do not interrupt the user operation', async () => {
-  jest.mocked(analytics.logEvent).mockImplementationOnce(() => { throw new Error('unavailable'); });
+  jest.mocked(mockNativeLog).mockImplementationOnce(() => { throw new Error('unavailable'); });
   jest.mocked(analytics.setUserProperties).mockRejectedValueOnce(new Error('unavailable'));
   jest.mocked(crashlytics.log).mockImplementationOnce(() => { throw new Error('unavailable'); });
   jest.mocked(crashlytics.recordError).mockImplementationOnce(() => { throw new Error('unavailable'); });
@@ -57,21 +57,21 @@ test('telemetry failures do not interrupt the user operation', async () => {
 
 test('retry callers can distinguish SDK acceptance from rejected submissions', async () => {
   const {tryLogAnalyticsEvent} = require('../firebaseAnalytics');
-  jest.mocked(analytics.logEvent).mockImplementationOnce(() => undefined);
+  jest.mocked(mockNativeLog).mockImplementationOnce(() => undefined);
   await expect(tryLogAnalyticsEvent('accepted')).resolves.toBe(true);
-  jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('native failure');});
+  jest.mocked(mockNativeLog).mockRejectedValueOnce(new Error('native failure'));
   await expect(tryLogAnalyticsEvent('retry')).resolves.toBe(false);
 });
 
 
 test('does not bypass denied consent with the retry store', async () => {
-  jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('SDK failed');});
+  jest.mocked(mockNativeLog).mockImplementationOnce(() => {throw new Error('SDK failed');});
   jest.mocked(analytics.getAppInstanceId).mockResolvedValueOnce(null);
   await logAnalyticsEvent('safe_event');
   expect(require('../analyticsOutbox').saveAnalyticsRetry).not.toHaveBeenCalled();
 });
 test('retains original retry parameters when native submission fails and storage is permitted', async () => {
-  jest.mocked(analytics.logEvent).mockImplementationOnce(() => {throw new Error('SDK failed');});
+  jest.mocked(mockNativeLog).mockImplementationOnce(() => {throw new Error('SDK failed');});
   await logAnalyticsEvent('article_searched', {article_searched: 'private text'});
   expect(require('../analyticsOutbox').saveAnalyticsRetry).toHaveBeenCalledWith({name: 'article_searched',
     params: {article_searched: 'private text'}});
@@ -89,12 +89,12 @@ test('does not clear dashboard properties before logging the first event', async
   await setUserProperties(properties);
   await logAnalyticsEvent('advice_category_selected_42', {age_id:'17', advise_id:12});
   expect(analytics.setUserProperties).toHaveBeenCalledTimes(1);
-  expect(analytics.setUserProperties).toHaveBeenCalledWith('analytics', properties);
-  expect(analytics.logEvent).toHaveBeenCalledWith('analytics','advice_category_selected_42',{age_id:'17',advise_id:12});
+  expect(analytics.setUserProperties).toHaveBeenCalledWith(expect.objectContaining({logEvent:mockNativeLog}), properties);
+  expect(mockNativeLog).toHaveBeenCalledWith('advice_category_selected_42',{age_id:'17',advise_id:12});
 });
 
 test('passes all three distribution dimensions to the Firebase SDK', async () => {
   const properties = {platform:'Android', distribution_channel:'direct_apk', distribution_country:'test-country'};
   await setUserProperties(properties);
-  expect(analytics.setUserProperties).toHaveBeenCalledWith('analytics', properties);
+  expect(analytics.setUserProperties).toHaveBeenCalledWith(expect.objectContaining({logEvent:mockNativeLog}), properties);
 });

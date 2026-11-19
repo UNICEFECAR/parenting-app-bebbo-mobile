@@ -15,14 +15,15 @@ for (const file of walk('app').concat(['App.tsx'])) {
   const text = node => node ? source.slice(node.start, node.end).replace(/\s+/g, ' ').slice(0, 500) : null;
   traverse(ast, {
     CallExpression(p) {
-      if (!['logEvent', 'logAnalyticsEvent'].includes(p.node.callee.name)) return;
-      let event = p.node.arguments[0];
+      if (!['logEvent', 'logAnalyticsEvent', 'openMeasuredLink'].includes(p.node.callee.name)) return;
+      const link = p.node.callee.name === 'openMeasuredLink';
+      let event = p.node.arguments[link ? 1 : 0];
       if (event?.type === 'Identifier') {
         const binding = p.scope.getBinding(event.name);
         if (binding?.path.node.type === 'VariableDeclarator') event = binding.path.node.init;
       }
       calls.push({file, line: p.node.loc.start.line, api: p.node.callee.name, event: text(event),
-        parameters: text(p.node.arguments[1])});
+        parameters: text(p.node.arguments[link ? 2 : 1])});
     },
     JSXOpeningElement(p) {
       if (p.node.name.type !== 'JSXMemberExpression' || p.node.name.property.name !== 'Screen') return;
