@@ -74,7 +74,7 @@ test('retains original retry parameters when native submission fails and storage
   jest.mocked(mockNativeLog).mockImplementationOnce(() => {throw new Error('SDK failed');});
   await logAnalyticsEvent('article_searched', {article_searched: 'private text'});
   expect(require('../analyticsOutbox').saveAnalyticsRetry).toHaveBeenCalledWith({name: 'article_searched',
-    params: {article_searched: 'private text'}});
+    params: {article_searched: 'private text'}}, true);
 });
 test('initialisation failure is contained within the telemetry operation', async () => {
   jest.mocked(require('@react-native-firebase/app').getApp).mockImplementationOnce(() => {throw new Error('missing configuration');});

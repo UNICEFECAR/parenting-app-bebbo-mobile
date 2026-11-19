@@ -7,14 +7,18 @@ function walk(directory) {return fs.readdirSync(directory, {withFileTypes: true}
   const file = path.join(directory, item.name);
   return item.isDirectory() ? (item.name === '__tests__' ? [] : walk(file)) : /\.[jt]sx?$/.test(file) ? [file] : [];
 });}
-const calls = [], routes = [];
+const calls = [], routes = [], userPropertyCalls = [];
 for (const file of walk('app').concat(['App.tsx'])) {
   const source = fs.readFileSync(file, 'utf8');
-  if (!/logEvent|logAnalyticsEvent|\.Screen/.test(source)) continue;
+  if (!/logEvent|logAnalyticsEvent|openMeasuredLink|setUserProperties|\.Screen/.test(source)) continue;
   const ast = parser.parse(source, {sourceType: 'module', plugins: ['typescript', 'jsx']});
   const text = node => node ? source.slice(node.start, node.end).replace(/\s+/g, ' ').slice(0, 500) : null;
   traverse(ast, {
     CallExpression(p) {
+      if (p.node.callee.name === 'setUserProperties') {
+        userPropertyCalls.push({file, line: p.node.loc.start.line, properties: text(p.node.arguments[0])});
+        return;
+      }
       if (!['logEvent', 'logAnalyticsEvent', 'openMeasuredLink'].includes(p.node.callee.name)) return;
       const link = p.node.callee.name === 'openMeasuredLink';
       let event = p.node.arguments[link ? 1 : 0];
@@ -22,8 +26,11 @@ for (const file of walk('app').concat(['App.tsx'])) {
         const binding = p.scope.getBinding(event.name);
         if (binding?.path.node.type === 'VariableDeclarator') event = binding.path.node.init;
       }
-      calls.push({file, line: p.node.loc.start.line, api: p.node.callee.name, event: text(event),
-        parameters: text(p.node.arguments[link ? 2 : 1])});
+      const api = p.node.callee.name;
+      const entry = {file, line: p.node.loc.start.line, api, event: text(event)};
+      if (api === 'logAnalyticsEvent') entry.parameters = text(p.node.arguments[1]);
+      else entry.connectivity = text(p.node.arguments[link ? 2 : 1]);
+      calls.push(entry);
     },
     JSXOpeningElement(p) {
       if (p.node.name.type !== 'JSXMemberExpression' || p.node.name.property.name !== 'Screen') return;
@@ -36,7 +43,7 @@ for (const file of walk('app').concat(['App.tsx'])) {
 }
 const output = {kind: 'static source inventory', generated_by: 'node scripts/analytics-inventory.cjs',
   limitation: 'Navigation routes are observable via trackScreen, not proof of runtime traversal. Expressions can be dynamic. Calls are requests, not delivery acknowledgements.',
-  routes, calls, screenFiles: walk('app/screens').filter(f => f.endsWith('.tsx'))};
+  routes, calls, userPropertyCalls, screenFiles: walk('app/screens').filter(f => f.endsWith('.tsx'))};
 const json = JSON.stringify(output, null, 2) + '\n';
 const target = 'docs/upgrades/react-native-0.87/analytics-source-inventory.json';
 if (process.argv.includes('--check')) {

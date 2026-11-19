@@ -37,7 +37,8 @@ for flavour,(variant,target,group,bundle,project_id) in flavours.items():
     for config_id in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list):
         name,conf=configs[config_id]
         assert field(conf,'PRODUCT_BUNDLE_IDENTIFIER')==bundle, f'{flavour}/{name}: iOS bundle ID mismatch'
-        info=field(conf,'INFOPLIST_FILE'); assert info and (root/'ios'/info).exists()
+        assert field(conf,'INFOPLIST_FILE') == '$(DERIVED_FILE_DIR)/ConfiguredInfo.plist'
+        info=field(conf,'BEBBO_PLIST_TEMPLATE'); assert info and (root/'ios'/info).exists()
         plist=plistlib.loads((root/'ios'/info).read_bytes())
         ios_configs.append({'configuration':name,'bundle_id':bundle,'info_plist':info,
           'minimum_os':field(conf,'IPHONEOS_DEPLOYMENT_TARGET'),
@@ -80,14 +81,15 @@ for key,(name,body) in targets.items():
         for config_id in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list):
             config_name, conf = configs[config_id]
             assert field(conf,'PRODUCT_BUNDLE_IDENTIFIER') == ios_bundle, f'{name}/{config_name}: iOS bundle mismatch'
-            info = field(conf,'INFOPLIST_FILE')
+            assert field(conf,'INFOPLIST_FILE') == '$(DERIVED_FILE_DIR)/ConfiguredInfo.plist'
+            info = field(conf,'BEBBO_PLIST_TEMPLATE')
             assert info and (root/'ios'/info).exists(), f'{name}: missing plist'
             assert field(conf,'IPHONEOS_DEPLOYMENT_TARGET') == '15.1', f'{name}: supported iOS minimum changed'
         aux.append({'ios_target':name,'android_variant':variant,'flavour':flavour,
           'android_application_id':bundle,'ios_application_id':ios_bundle,'env_file':f'env/.env.{flavour}',
           'google_service_plist_group':group,'firebase_configuration_verified':False,
           'configurations':[{'name':configs[c][0],
-          'bundle_id':field(configs[c][1],'PRODUCT_BUNDLE_IDENTIFIER'),'info_plist':field(configs[c][1],'INFOPLIST_FILE')}
+          'bundle_id':field(configs[c][1],'PRODUCT_BUNDLE_IDENTIFIER'),'info_plist':field(configs[c][1],'BEBBO_PLIST_TEMPLATE')}
           for c in re.findall(r'([A-F0-9]{24}) /\* (?:Debug|Release) \*/',config_list)],'native_build_status':'covered by auxiliary-native CI jobs; consult run evidence for results'})
 report={'evidence':'static source inspection; identifiers validated against explicit project mappings',
  'limitations':'Previously recorded Firebase project candidates do not establish current service access or installed release routing. Languages are registered UI resource keys, not translation-quality approval.',

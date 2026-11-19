@@ -146,3 +146,15 @@ class AndroidPackaging(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class LaunchAnimationOwnership(unittest.TestCase):
+    def test_expected_animation_alongside_a_foreign_copy_fails(self):
+        import importlib.util
+        from pathlib import Path
+        spec = importlib.util.spec_from_file_location('brand', Path(__file__).resolve().parents[1] / 'check-packaged-brand.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        assets = {b'own', b'aux'}
+        module.check_animations(assets, b'own', [(3, lambda: b'own'), (3, lambda: b'png')])
+        with self.assertRaisesRegex(ValueError, 'also packaged'):
+            module.check_animations(assets, b'own', [(3, lambda: b'own'), (3, lambda: b'aux')])

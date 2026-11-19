@@ -82,3 +82,15 @@ test('an individual failed event does not prevent a later valid event from synci
   await synchronizeEvents(true);
   expect(rows.map(row => row.name)).toEqual(['retry']);
 });
+
+test('only historical and offline queue rows receive the offline reporting parameter', async () => {
+  rows.push({name: 'sdk_retry', params: '{"advise_id":7}', sdkRetry: true, isSynchronized: false},
+    {name: 'legacy', params: '{"advise_id":8}', isSynchronized: false},
+    {name: 'offline', params: null, sdkRetry: false, isSynchronized: false});
+  await synchronizeEvents(true);
+  expect(submit.mock.calls).toEqual([
+    ['sdk_retry', {advise_id: 7}],
+    ['legacy', {advise_id: 8, is_offline_event: true}],
+    ['offline', {is_offline_event: true}],
+  ]);
+});

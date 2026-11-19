@@ -173,7 +173,7 @@ jobs:
         run: |
           car=$(find "$RUNNER_TEMP/verification.xcarchive/Products/Applications" -maxdepth 2 -name Assets.car -print -quit)
           python3 scripts/check-packaged-vectors.py "$FLAVOR" --car "$car"
-          python3 scripts/check-packaged-brand.py "$FLAVOR" --ios-app "$(dirname "$car")"
+          python3 scripts/check-packaged-brand.py "$FLAVOR" --ios-app "$(dirname "$car")" --ci-fixture
           python3 scripts/check-ios-archive.py "$RUNNER_TEMP/verification.xcarchive" \
             --application-id "$IOS_APP_ID" --firebase-project bebbo-compile-check \
             --report "$RUNNER_TEMP/ios-configuration.json"

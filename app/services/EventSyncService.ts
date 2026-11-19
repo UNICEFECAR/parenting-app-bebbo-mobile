@@ -33,7 +33,10 @@ async function flushEvents(): Promise<void> {
         const decoded = event.params ? JSON.parse(event.params) : {};
         if (decoded && typeof decoded === 'object' && !Array.isArray(decoded)) params = decoded;
       } catch { /* Historical malformed params must not block the rest of the queue. */ }
-      if (await tryLogAnalyticsEvent(event.name, {...params, is_offline_event: true})) {
+      // Historical Realm rows were collected offline. A direct SDK failure alone
+      // says nothing about connectivity and must retain its original parameters.
+      if (!event.sdkRetry) params.is_offline_event = true;
+      if (await tryLogAnalyticsEvent(event.name, params)) {
         realm.write(() => realm.delete(event));
       }
     } catch  {

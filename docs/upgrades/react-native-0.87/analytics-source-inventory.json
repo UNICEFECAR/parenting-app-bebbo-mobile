@@ -311,77 +311,77 @@
       "line": 57,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + itemId }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/components/ArticleCategories.tsx",
       "line": 33,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + itemId }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
       "line": 65,
       "api": "logEvent",
       "event": "{ name: ADVICE_SHARED, params: { advise_id: item?.id }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
       "line": 71,
       "api": "logEvent",
       "event": "{ name: GAME_SHARED, params: { game_id: item?.id }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
       "line": 93,
       "api": "logEvent",
       "event": "{name: eventName, params: isAdvice ? {advise_id: item?.id} : {game_id: item?.id}}",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/AddChildInfoSetup.tsx",
       "line": 212,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_SKIPPED }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/AddChildInfoSetup.tsx",
       "line": 215,
       "api": "logEvent",
       "event": "{ name: EXPECTED_CHILD_ENTERED }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/AddChildSetup.tsx",
       "line": 218,
       "api": "logEvent",
       "event": "{ name: EXPECTED_CHILD_ENTERED }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/AddChildSetup.tsx",
       "line": 221,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_SKIPPED }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/ChildImportSetup.tsx",
       "line": 204,
       "api": "logEvent",
       "event": "{name: ONBOARDING_CHILD_COUNT, params: {child_count: children.length}}",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/ChildSetupList.tsx",
       "line": 296,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_CHILD_COUNT, params: { child_count: childList?.length }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/CustomDrawerContent.tsx",
@@ -395,399 +395,406 @@
       "line": 697,
       "api": "openMeasuredLink",
       "event": "EMAIL_SENT",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/CustomDrawerContent.tsx",
       "line": 773,
       "api": "openMeasuredLink",
       "event": "DONATE_OPENED",
-      "parameters": null
+      "connectivity": null
     },
     {
       "file": "app/screens/CustomDrawerContent.tsx",
       "line": 832,
       "api": "openMeasuredLink",
       "event": "FEEDBACK_SUBMIT",
-      "parameters": null
+      "connectivity": null
     },
     {
       "file": "app/screens/ServiceProviderInfoSetup.tsx",
       "line": 160,
       "api": "logEvent",
       "event": "{ name: ONBOARDING_CHILD_COUNT, params: { child_count: childList?.length }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/Terms.tsx",
       "line": 240,
       "api": "logEvent",
       "event": "{ name: TERMS_ACCEPTED }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/growth/AddNewChildgrowth.tsx",
       "line": 636,
       "api": "logEvent",
       "event": "{ name: GROWTH_MEASUREMENT_ADDED, params: { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? \"doctor\" : \"home\", }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
       "line": 622,
       "api": "logEvent",
       "event": "{ name: GROWTH_MEASUREMENT_ADDED, params: { age_id: activeChild?.taxonomyData?.id, measured_at: \"doctor\", }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
       "line": 632,
       "api": "logEvent",
       "event": "{ name: VACCINE_ADDED, params: { age_id: activeChild?.taxonomyData?.id, vaccine_id: allVaccines, }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/healthCheckup/AddChildHealthCheckup.tsx",
       "line": 638,
       "api": "logEvent",
       "event": "{ name: HEALTH_CHECKUP_ENTERED, params: { age_id: activeChild?.taxonomyData?.id }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 366,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + (articleData?.[0]?.activity_category != null ? articleData[0].activity_category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 367,
       "api": "logEvent",
       "event": "{ name: GAME_DETAILS_OPENED, params: { game_id: articleData?.[0]?.id != null ? articleData[0].id : 0, game_category_id: articleData?.[0]?.activity_category != null ? articleData[0].activity_category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 379,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + (articleData?.[0]?.category != null ? articleData[0].category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 380,
       "api": "logEvent",
       "event": "{ name: ADVICE_DETAILS_OPENED, params: { advise_id: articleData?.[0]?.id != null ? articleData[0].id : 0, advice_catergory_id: articleData?.[0]?.category != null ? articleData[0].category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 410,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + (videoarticleData?.[0]?.activity_category != null ? videoarticleData[0].activity_category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 411,
       "api": "logEvent",
       "event": "{ name: GAME_DETAILS_OPENED, params: { game_id: videoarticleData?.[0]?.id != null ? videoarticleData[0].id : 0, game_category_id: videoarticleData?.[0]?.activity_category != null ? videoarticleData[0].activity_category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 426,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + (videoarticleData?.[0]?.category != null ? videoarticleData[0].category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 427,
       "api": "logEvent",
       "event": "{ name: ADVICE_DETAILS_OPENED, params: { advise_id: videoarticleData?.[0]?.id ? videoarticleData[0].id : 0, advice_catergory_id: videoarticleData?.[0]?.category != null ? videoarticleData[0].category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 463,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + (detailData?.activity_category != null ? detailData.activity_category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 464,
       "api": "logEvent",
       "event": "{ name: GAME_DETAILS_OPENED, params: { game_id: detailData?.id ? detailData.id : 0, game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 476,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + (detailData?.category != null ? detailData.category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 477,
       "api": "logEvent",
       "event": "{ name: ADVICE_DETAILS_OPENED, params: { advise_id: detailData?.id != null ? detailData.id : 0, advice_catergory_id: detailData?.category != null ? detailData.category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 514,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + (activityData?.[0]?.activity_category != null ? activityData[0].activity_category : 0) , }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 515,
       "api": "logEvent",
       "event": "{ name: GAME_DETAILS_OPENED, params: { game_id: activityData?.[0]?.id != null ? activityData[0].id : 0, game_category_id: activityData?.[0]?.activity_category != null ? activityData[0].activity_category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 528,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + (activityData?.[0]?.category != null ? activityData[0].category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 529,
       "api": "logEvent",
       "event": "{ name: ADVICE_DETAILS_OPENED, params: { advise_id: activityData?.[0]?.id != null ? activityData[0].id : 0, advice_catergory_id: activityData?.[0]?.category != null ? activityData[0].category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 564,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + (detailData?.activity_category != null ? detailData.activity_category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 565,
       "api": "logEvent",
       "event": "{ name: GAME_DETAILS_OPENED, params: { game_id: detailData.id, game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 577,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + (detailData?.category != null ? detailData.category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 578,
       "api": "logEvent",
       "event": "{ name: ADVICE_DETAILS_OPENED, params: { advise_id: detailData?.id != null ? detailData.id : 0, advice_catergory_id: detailData?.category != null ? detailData.category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 602,
       "api": "logEvent",
       "event": "{ name: GAME_CATEGORY_SELECTED + \"_\" + (detailData?.activity_category != null ? detailData.activity_category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 603,
       "api": "logEvent",
       "event": "{ name: GAME_DETAILS_OPENED, params: { game_id: detailData?.id != null ? detailData.id : 0, game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 615,
       "api": "logEvent",
       "event": "{ name: ADVICE_CATEGORY_SELECTED + \"_\" + (detailData?.category != null ? detailData.category : 0), }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/DetailsScreen.tsx",
       "line": 616,
       "api": "logEvent",
       "event": "{ name: ADVICE_DETAILS_OPENED, params: { advise_id: detailData?.id != null ? detailData.id : 0, advice_catergory_id: detailData?.category != null ? detailData.category : 0, }, }",
-      "parameters": "inputNetInfo.isConnected"
+      "connectivity": "inputNetInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 651,
       "api": "logEvent",
       "event": "{ name: GROWTH_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 652,
       "api": "logEvent",
       "event": "{ name: DEVELOPMENT_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 653,
       "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 665,
       "api": "logEvent",
       "event": "{ name: GROWTH_NOTIFICATION_ON }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 666,
       "api": "logEvent",
       "event": "{ name: DEVELOPMENT_NOTIFICATION_ON }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 667,
       "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_ON }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 845,
       "api": "logEvent",
       "event": "{ name: GROWTH_NOTIFICATION_ON }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 850,
       "api": "logEvent",
       "event": "{ name: GROWTH_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 899,
       "api": "logEvent",
       "event": "{ name: DEVELOPMENT_NOTIFICATION_ON }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 904,
       "api": "logEvent",
       "event": "{ name: DEVELOPMENT_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 953,
       "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_ON }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SettingScreen.tsx",
       "line": 958,
       "api": "logEvent",
       "event": "{ name: VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
       "line": 175,
       "api": "logEvent",
       "event": "{ name: CHATBOT_CATEGORY_SELECTED + \"_\" + localsteps[stepIndex].options[optionIndex].value, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
       "line": 198,
       "api": "logEvent",
       "event": "{ name: CHATBOT_SUBCATEGORY_SELECTED + \"_\" + localsteps[stepIndex].options[optionIndex].value, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
       "line": 249,
       "api": "logEvent",
       "event": "{ name: CHATBOT_FAQ_SELECTED, params: { faq_Id: localsteps[index].textToShow.id, faq_Subcategory_Id: localsteps[indexForText2].answer.value, }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/SupportChat.tsx",
       "line": 769,
       "api": "openMeasuredLink",
       "event": "FEEDBACK_SUBMIT",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/Activities.tsx",
       "line": 544,
       "api": "logEvent",
       "event": "{ name: GAME_AGEGROUP_SELECTED, params: { age_id: item.id }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/Activities.tsx",
       "line": 922,
       "api": "logEvent",
       "event": "{ name: ACTIVITY_SEARCHED, params: { activity_searched: queryText }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/Articles.tsx",
       "line": 319,
       "api": "logEvent",
       "event": "{ name: ADVICE_AGEGROUP_SELECTED, params: { age_id: item.id }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/Articles.tsx",
       "line": 841,
       "api": "logEvent",
       "event": "{ name: ARTICLE_SEARCHED, params: { article_searched: queryText }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
       "line": 245,
       "api": "logEvent",
       "event": "{ name: CHILD_DEVELOPMENT_AGEGROUP_SELECTED, params: { age_id: item.id }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/home/bottomTabs/ChildDevelopment.tsx",
       "line": 397,
       "api": "logEvent",
       "event": "{ name: CHILD_MILESTONE_TRACKED, params: { age_id: currentSelectedChildId }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
+    },
+    {
+      "file": "app/screens/home/bottomTabs/Home.tsx",
+      "line": 867,
+      "api": "openMeasuredLink",
+      "event": "SURVEY_SUBMIT",
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/vaccination/AddChildVaccination.tsx",
       "line": 577,
       "api": "logEvent",
       "event": "{ name: VACCINE_ADDED, params: { age_id: activeChild?.taxonomyData?.id, measured_at: \"doctor\", }, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/screens/vaccination/AddReminder.tsx",
       "line": 621,
       "api": "logEvent",
       "event": "{ name: reminderType === \"vaccine\" ? VACCINE_REMINDER_SET : HEALTH_CHECKUP_REMINDER_SET, }",
-      "parameters": "netInfo.isConnected"
+      "connectivity": "netInfo.isConnected"
     },
     {
       "file": "app/services/EventSyncService.ts",
@@ -822,42 +829,42 @@
       "line": 390,
       "api": "logEvent",
       "event": "{name: PROFILE_UPDATED, params: {source: 'manage_profile'}}",
-      "parameters": "netInfo?.isConnected"
+      "connectivity": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
       "line": 394,
       "api": "logEvent",
       "event": "{name: EXPECTED_CHILD_ENTERED}",
-      "parameters": "netInfo?.isConnected"
+      "connectivity": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
       "line": 402,
       "api": "logEvent",
       "event": "{name: PROFILE_CREATED, params: {source: param === 2 ? 'manage_profile' : 'onboarding', profile_type: isDefaultChild ? 'placeholder' : 'caregiver_entered'}}",
-      "parameters": "netInfo?.isConnected"
+      "connectivity": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
       "line": 409,
       "api": "logEvent",
       "event": "{ name: CHILD_ADDED_FROM_MANAGE_PROFILE }",
-      "parameters": "netInfo?.isConnected"
+      "connectivity": "netInfo?.isConnected"
     },
     {
       "file": "app/services/childCRUD.ts",
       "line": 425,
       "api": "logEvent",
       "event": "{ 'name': ONBOARDING_SKIPPED }",
-      "parameters": "netInfo?.isConnected"
+      "connectivity": "netInfo?.isConnected"
     },
     {
       "file": "app/services/measuredLink.ts",
       "line": 7,
       "api": "logEvent",
       "event": "{name:event}",
-      "parameters": "connected"
+      "connectivity": "connected"
     },
     {
       "file": "app/services/measuredLink.ts",
@@ -885,7 +892,59 @@
       "line": 10,
       "api": "logEvent",
       "event": "{name: `${route.name}_opened`}",
-      "parameters": "connected"
+      "connectivity": "connected"
+    }
+  ],
+  "userPropertyCalls": [
+    {
+      "file": "app/navigation/AppNavigation.tsx",
+      "line": 85,
+      "properties": "{ platform, distribution_channel: distributionChannel, ...(distributionChannel === 'direct_apk' ? { distribution_country: BebboDistributionCountry, } : {}), }"
+    },
+    {
+      "file": "app/screens/Terms.tsx",
+      "line": 243,
+      "properties": "{ country: country.name, language: language.displayName, }"
+    },
+    {
+      "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+      "line": 368,
+      "properties": "{ country: route.params?.country?.name, language: newLanguage?.displayName, }"
+    },
+    {
+      "file": "app/screens/localization/CountryLanguageConfirmation.tsx",
+      "line": 394,
+      "properties": "{ country: countryData?.name, language: newLanguage?.displayName, }"
+    },
+    {
+      "file": "app/screens/localization/LanguageSelection.tsx",
+      "line": 208,
+      "properties": "{ country: route.params?.country?.name, language: language?.displayName, }"
+    },
+    {
+      "file": "app/screens/localization/LanguageSelection.tsx",
+      "line": 220,
+      "properties": "{ country: country?.displayName, language: language?.displayName, }"
+    },
+    {
+      "file": "app/services/childCRUD.ts",
+      "line": 197,
+      "properties": "{ ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == appConfig.boyChildGender ? \"Boy\" : \"Girl\", relationship_with_child: userRelationToParent, parent_gender: child.parent_gender, auto_child: child.autoChild }"
+    },
+    {
+      "file": "app/services/childCRUD.ts",
+      "line": 244,
+      "properties": "{ ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == appConfig.boyChildGender ? \"Boy\" : \"Girl\", relationship_with_child: userRelationToParent, parent_gender: child.parent_gender, auto_child: child.autoChild }"
+    },
+    {
+      "file": "app/services/childCRUD.ts",
+      "line": 292,
+      "properties": "{ ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == appConfig.boyChildGender ? \"Boy\" : \"Girl\", relationship_with_child: userRelationToParent, parent_gender: child.parent_gender, auto_child: child.autoChild }"
+    },
+    {
+      "file": "app/services/childCRUD.ts",
+      "line": 539,
+      "properties": "{ ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == appConfig.boyChildGender ? \"Boy\" : \"Girl\", relationship_with_child: userRelationToParent, parent_gender: child.parent_gender, auto_child: child.autoChild }"
     }
   ],
   "screenFiles": [

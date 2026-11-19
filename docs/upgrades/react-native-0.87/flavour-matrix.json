@@ -85,7 +85,8 @@
         "[CP] Embed Pods Frameworks",
         "[CP] Copy Pods Resources",
         "[CP] Check Pods Manifest.lock",
-        "[CP-User] [RNFB] Core Configuration"
+        "[CP-User] [RNFB] Core Configuration",
+        "Configure application plist"
       ],
       "google_service_plist_group": "Production",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -172,7 +173,8 @@
         "[CP] Copy Pods Resources",
         "[CP] Check Pods Manifest.lock",
         "Bundle React Native code and images",
-        "[CP] Embed Pods Frameworks"
+        "[CP] Embed Pods Frameworks",
+        "Configure application plist"
       ],
       "google_service_plist_group": "Development",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -237,7 +239,8 @@
         "[CP] Check Pods Manifest.lock",
         "[CP] Embed Pods Frameworks",
         "Bundle React Native code and images",
-        "[CP] Copy Pods Resources"
+        "[CP] Copy Pods Resources",
+        "Configure application plist"
       ],
       "google_service_plist_group": "Bangla",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -303,7 +306,8 @@
         "[CP] Embed Pods Frameworks",
         "[CP] Check Pods Manifest.lock",
         "[CP] Copy Pods Resources",
-        "Bundle React Native code and images"
+        "Bundle React Native code and images",
+        "Configure application plist"
       ],
       "google_service_plist_group": "Xk",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -370,7 +374,8 @@
         "[CP] Copy Pods Resources",
         "[CP] Check Pods Manifest.lock",
         "[CP] Embed Pods Frameworks",
-        "Bundle React Native code and images"
+        "Bundle React Native code and images",
+        "Configure application plist"
       ],
       "google_service_plist_group": "MerhabaBebek",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -438,7 +443,8 @@
         "[CP] Copy Pods Resources",
         "Bundle React Native code and images",
         "[CP] Check Pods Manifest.lock",
-        "[CP] Embed Pods Frameworks"
+        "[CP] Embed Pods Frameworks",
+        "Configure application plist"
       ],
       "google_service_plist_group": "Wawamor",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -507,7 +513,8 @@
         "[CP] Copy Pods Resources",
         "[CP] Embed Pods Frameworks",
         "[CP] Check Pods Manifest.lock",
-        "Bundle React Native code and images"
+        "Bundle React Native code and images",
+        "Configure application plist"
       ],
       "google_service_plist_group": "ReraiUmntwana",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",
@@ -575,7 +582,8 @@
         "[CP] Check Pods Manifest.lock",
         "Bundle React Native code and images",
         "[CP] Embed Pods Frameworks",
-        "[CP] Copy Pods Resources"
+        "[CP] Copy Pods Resources",
+        "Configure application plist"
       ],
       "google_service_plist_group": "BebboPacific",
       "assets_status": "per-instance Android resources and iOS catalog checked against the platform graph separately",

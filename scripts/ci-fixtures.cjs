@@ -33,7 +33,7 @@ for (const [flavour, [variant, , group, bundleId, iosBundleId = bundleId]] of [
   ...Object.entries(flavours), ...Object.entries(developmentTargets),
 ]) {
   write(`env/.env.${flavour}`, [
-    'apiUrlDevelop=https://example.invalid', 'facebookAppDisplayName=CI',
+    'apiUrlDevelop=https://example.invalid', `facebookAppDisplayName=CI-${flavour}`,
     'facebookAppId=000000000000000', 'facebookClientToken=ci-placeholder',
     'projectNumber=123456789012', 'clientIdKey=ci-placeholder.apps.googleusercontent.com',
     'encryptionsKey=' + '0'.repeat(64), 'encryptionsIVKey=' + '0'.repeat(32),

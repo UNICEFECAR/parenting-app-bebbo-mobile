@@ -8,6 +8,8 @@ apply plugin: 'com.google.firebase.crashlytics'
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
  */
+def selectedInstance = providers.environmentVariable('FLAVOR').orElse('bebbo').get()
+project.ext.defaultEnvFile = "env/.env.${selectedInstance}"
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 react {
     /* Folders */
@@ -356,15 +358,12 @@ tasks.withType(com.facebook.react.tasks.BundleHermesCTask).configureEach {
     inputs.property('appEnvFile', providers.environmentVariable('ENVFILE').orElse(''))
     doFirst {
         def entry = vectorFlavours.find { variant, flavour ->
-            name.equalsIgnoreCase("createBundle${variant}ReleaseJsAndAssets")
+            ['Debug', 'Release'].any { buildType ->
+                name.equalsIgnoreCase("createBundle${variant}${buildType}JsAndAssets")
+            }
         }
-        def selected = System.getenv('FLAVOR') ?: 'bebbo'
-        if (entry && selected != entry.value) {
-            throw new GradleException("${name} requires FLAVOR=${entry.value}; received ${selected}. Refusing to bundle another country's app.")
-        }
-        def envFile = System.getenv('ENVFILE')
-        if (entry && envFile && new File(envFile).name != ".env.${entry.value}") {
-            throw new GradleException("ENVFILE must select .env.${entry.value} for ${name}")
+        if (!entry || selectedInstance != entry.value) {
+            throw new GradleException("${name} requires FLAVOR=${entry?.value}; received ${selectedInstance}")
         }
     }
 }
@@ -390,6 +389,19 @@ vectorFlavours.each { variant, flavour ->
         workingDir rootProject.projectDir.parentFile
         environment 'FLAVOR', flavour
         environment 'BUNDLE_PLATFORM', 'android'
+        doFirst {
+            if (selectedInstance != flavour) {
+                throw new GradleException("${name} requires FLAVOR=${flavour}; received ${selectedInstance}")
+            }
+            def expected = rootProject.file("../env/.env.${flavour}").canonicalFile
+            def setting = System.getenv('ENVFILE') ?: System.getProperty('ENVFILE') ?: project.ext.defaultEnvFile
+            // Mirror dotenv.gradle's repository-relative and working-directory lookup.
+            def candidate = new File("${rootProject.projectDir}/../${setting}")
+            if (!candidate.isFile()) candidate = new File(setting)
+            if (!expected.isFile() || candidate.canonicalFile != expected) {
+                throw new GradleException("${name} requires the selected instance's env/.env.${flavour}")
+            }
+        }
         commandLine(vectorAssetNode.get() + ["scripts/vector-assets.cjs"])
     }
     tasks.configureEach { task ->

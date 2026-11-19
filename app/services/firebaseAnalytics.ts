@@ -51,7 +51,7 @@ export const logAnalyticsEvent = async (
         // A denied analytics-storage consent returns null. Never build a second
         // collection channel around a native opt-out (or an unavailable SDK).
         if (await getAppInstanceId(analytics()) == null) return;
-        await saveAnalyticsRetry({name: eventName, params});
+        await saveAnalyticsRetry({name: eventName, params}, true);
     } catch { console.warn('Analytics retry storage unavailable'); }
 };
 

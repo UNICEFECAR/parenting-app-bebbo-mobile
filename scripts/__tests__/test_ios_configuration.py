@@ -78,3 +78,38 @@ class IOSArchive(unittest.TestCase):
     def test_requires_app_dsym(self):
         import shutil
         shutil.rmtree(self.folder/'dSYMs');self.assertIn('App executable dSYM is missing',self.inspect())
+
+class TargetPlistTests(unittest.TestCase):
+    def test_all_targets_use_their_own_environment_in_the_plist_build_phase(self):
+        project = (ROOT / 'ios/ParentBuddyApp.xcodeproj/project.pbxproj').read_text()
+        phases = dict(re.findall(
+            r'^\s*([A-F0-9]{24}) /\* Configure application plist \*/ = \{(.*?)^\s*\};',
+            project, re.S | re.M))
+        mappings = re.findall(
+            r'/\* (\w+) \*/ = \{\n\s*isa = PBXNativeTarget;[^}]+?buildPhases = \(\n\s*'
+            r'([A-F0-9]{24}) /\* Configure application plist', project)
+        self.assertEqual(len(mappings), 10)
+        for target, phase in mappings:
+            with self.subTest(target=target):
+                env = {**os.environ, 'TARGET_NAME': target, 'SRCROOT': str(ROOT/'ios'), 'FLAVOR': ''}
+                selected = subprocess.check_output(['bash', '-c', 'source ios/.xcode.env; echo "$FLAVOR"'],
+                                                   cwd=ROOT, env=env, text=True).strip()
+                self.assertIn(f'$(SRCROOT)/../env/.env.{selected}"', phases[phase])
+                self.assertIn('$(DERIVED_FILE_DIR)/ConfiguredInfo.plist', phases[phase])
+                scheme = ROOT / f'ios/ParentBuddyApp.xcodeproj/xcshareddata/xcschemes/{target}.xcscheme'
+                self.assertNotIn('tmp.xcconfig', scheme.read_text())
+        self.assertEqual(project.count('INFOPLIST_FILE = "$(DERIVED_FILE_DIR)/ConfiguredInfo.plist";'), 20)
+
+    def test_plist_escapes_values_and_keeps_xcode_substitutions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            env = root / '.env.foleja'
+            env.write_text('facebookAppDisplayName="Test & <local>"\nclientIdKey=abc\nprojectNumber=123\n')
+            result = root / 'Info.plist'
+            subprocess.run(['node', 'scripts/configure-ios-plist.cjs', 'ios/ParentBuddyAppXk-Info.plist',
+                            env, result], cwd=ROOT, check=True)
+            info = plistlib.loads(result.read_bytes())
+            self.assertEqual(info['FacebookDisplayName'], 'Test & <local>')
+            self.assertEqual(info['CFBundleIdentifier'], '$(PRODUCT_BUNDLE_IDENTIFIER)')
+            schemes = [name for url in info['CFBundleURLTypes'] for name in url.get('CFBundleURLSchemes', [])]
+            self.assertIn('com.googleusercontent.apps.123-abc', schemes)

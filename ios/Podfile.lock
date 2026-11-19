@@ -1488,30 +1488,6 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-config (1.7.2):
-    - react-native-config/App (= 1.7.2)
-  - react-native-config/App (1.7.2):
-    - hermes-engine
-    - RCTRequired
-    - RCTTypeSafety
-    - React-bridging
-    - React-Core
-    - React-Core-prebuilt
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/core
-    - ReactNativeDependencies
-    - Yoga
   - react-native-document-picker (12.0.3):
     - hermes-engine
     - RCTRequired
@@ -2946,7 +2922,6 @@ DEPENDENCIES:
   - React-mutationobservernativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/mutationobserver`)
   - react-native-aes (from `../node_modules/react-native-aes-crypto`)
   - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
-  - react-native-config (from `../node_modules/react-native-config`)
   - "react-native-document-picker (from `../node_modules/@react-native-documents/picker`)"
   - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
@@ -3167,8 +3142,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-aes-crypto"
   react-native-cameraroll:
     :path: "../node_modules/@react-native-camera-roll/camera-roll"
-  react-native-config:
-    :path: "../node_modules/react-native-config"
   react-native-document-picker:
     :path: "../node_modules/@react-native-documents/picker"
   react-native-fbsdk-next:
@@ -3400,7 +3373,6 @@ SPEC CHECKSUMS:
   React-mutationobservernativemodule: eac010f6dcd8fa461aa3d75db3a8f2ec6bcb8fbd
   react-native-aes: 0cad0a1f0087171b4af762c39d7199716d9335b5
   react-native-cameraroll: 49fe4bef0279af8d7987d34f1c9e5d481b159fdc
-  react-native-config: 497aaa4a841ce3d3ba687f23fbc7fd54e0d0441e
   react-native-document-picker: 4dcf5180869754425095bcf36b109788214cbb63
   react-native-fbsdk-next: 325e4973a478f098bb9406fb2a13fa2e1f5dffeb
   react-native-get-random-values: 3e9a258338df31680a41591f83bcf5548e8e53e3

@@ -1,6 +1,6 @@
 # Firebase reporting compatibility and flavour verification
 
-Comparison baseline: working `main` at `f2e1bd44`. The intermediate review branch at `97f494fd` contained an event/property filter. The implementation reviewed here is on `RNSDKUpgrade-review-fixesnew`. The [call and route inventory](analytics-source-inventory.json) gives source locations and argument expressions. It describes what the client requests. Firebase DebugView, production BigQuery rows, Looker Studio queries and historical count parity require separate evidence.
+Comparison baselines are working `main` at `f2e1bd44` and the pre-upgrade PR base `Development` at `bb2b4775` (both React Native 0.78.2). The intermediate review branch at `97f494fd` contained an event/property filter. The implementation reviewed here is on `RNSDKUpgrade-review-fixesnew`. The [call and route inventory](analytics-source-inventory.json) gives source locations and argument expressions. It describes what the client requests. Firebase DebugView, production BigQuery rows, Looker Studio queries and historical count parity require separate evidence.
 
 ## A. Firebase Analytics
 
@@ -10,7 +10,7 @@ Comparison baseline: working `main` at `f2e1bd44`. The intermediate review branc
 | Navigation `screen_view` | Ready records the first leaf name silently. A later change of leaf name reports `screen_name` and `screen_class`, both equal to that route name. | Same trigger, names and parameters. Changing only route key or route params emits nothing. Returning from B to A records A again. | Route sequence tests |
 | `<route>_opened` | Same name change, via the historical connectivity-aware event path. | One route alias for that change. The offline replay adds `is_offline_event: true`. | SDK boundary and replay tests |
 | Advice and game detail opens | Content detail effect emits `advise_details_opened` or `game_details_opened` beside its dynamic category event. | Same names, conditions and payload expressions, including the spelling `advice_catergory_id`. Route-level `DetailsScreen_opened` remains separate. | Compared all six detail-data branches with main |
-| Other historical events and parameters | 37 shared constants plus computed names. See inventory below. | All 37 original constant values retained. No general event-renaming or parameter-filter helper. Search and tool parameters retain their historical forms. | Source comparison, focused event tests |
+| Other historical events and parameters | 37 shared constants plus computed names. See inventory below. | All 37 main constant values and all 38 Development values retained. No general event-renaming or parameter-filter helper. Search and tool parameters retain their historical forms. | Source comparison, focused event tests |
 | `platform` | On navigation mount, `Android` or `iOS`. | Same. | Source and SDK boundary |
 | `distribution_channel` | On the same update, `direct_apk` for that build setting, otherwise `google_play` or `app_store`. | Same. | Source and SDK boundary |
 | `distribution_country` | For direct APK builds only, from `BebboDistributionCountry`. Store builds omit it. | Same. Undefined configuration is omitted. As on main, omitting a property does not explicitly clear an existing value. | Source and SDK boundary |
@@ -36,7 +36,7 @@ Native screen transitions and React Navigation leaf changes measure different th
 | FAQ category, subcategory and answer | `chatbot_category_selected_<value>`, `chatbot_subcategory_selected_<value>`, `chatbot_faq_selected` | `faq_Id`, `faq_Subcategory_Id` on answer |
 | Feedback, survey, email, donation taps | `feedback_submitted`, `survey_submitted`, `email_sent`, `donate_opened` | Tap before OS handoff. These names do not confirm external completion. |
 
-The branch also includes events from the earlier profile and backup work: `profile_created`, `profile_updated`, `profile_deleted`, `child_added_from_manage_profile`, `backup_export_completed`, and `backup_restore_completed`. They are additional to main. A completed manage-profile creation can contribute to two of those measures. Do not add those series together to count children. The new-path successful-write checks can exclude formerly attempted but failed operations. Replaying a previously acknowledged offline row after a process interruption can also affect totals; Firebase acceptance does not establish server ingestion.
+The branch also includes events from the earlier profile and backup work: `profile_created`, `profile_updated`, `profile_deleted`, `child_added_from_manage_profile`, `backup_export_completed`, and `backup_restore_completed`. They are additional to main. Development already emitted `child_added_from_manage_profile` after a successful, non-expected child creation from Manage Profile. The other five are additional to both baselines. A completed manage-profile creation can contribute to two of those measures. Do not add those series together to count children. The new-path successful-write checks can exclude formerly attempted but failed operations. An online SDK failure used to acquire the offline marker on replay on this branch. New queue rows now record whether the SDK failed. Replaying a previously acknowledged offline row after a process interruption can also affect totals; Firebase acceptance does not establish server ingestion.
 
 ## B. Flavour assets
 
@@ -60,7 +60,12 @@ On main, the image-generation npm command explicitly selected Bebbo. The interme
 - Await the instance's native event promise. In the pinned RNFirebase 26.4.1 release the modular convenience function discards that promise, which previously allowed premature acknowledgement of a retry.
 - Replaced shared screens' direct imports of Bebbo's styles with the selected instance alias. The one growth-screen layout wrapper missing in other instances now uses the same spacing locally.
 - Separated the iOS shared catalogue, default app icon, Foleja icon and shared launch artwork so each target compiles one intended icon and splash. Existing binary artwork is reused.
-- Isolated the manual iOS bundle export by flavour and invocation. CI checks all instance-owned modules in the source map, SVG name collisions, the packaged animation bytes and identifiable foreign instance paths in Android APK/AAB and iOS application archives.
+- Isolated the manual iOS bundle export by flavour and invocation. CI checks all instance-owned modules in the source map, SVG name collisions, the expected animation bytes and the absence of other known launch animations and identifiable foreign instance paths in Android APK/AAB and iOS application archives.
+
+- Android now validates the bundle flavour in both Debug and Release. Native resources require the same environment as Metro. Omitting ENVFILE defaults the native configuration to the selected instance.
+- Every iOS application target now builds its Info.plist from its own template and environment in Xcode's target-specific derived directory. The ten schemes previously overwrote one xcconfig. The unused iOS react-native-config pod also wrote environment data into the shared dependency checkout. The app's JavaScript reads react-native-dotenv, and all five environment substitutions used by native plists are preserved.
+- A mocked native-module test now executes the installed RNFirebase JavaScript implementation. The inventory includes user-property setters and the previously missing Home survey event. Connectivity arguments are recorded separately from event parameters.
+- Data Realm schema 14 preserves the original payload on a direct SDK retry. Offline and historical rows retain the offline marker. A pre-existing retry from an intermediate review build is indistinguishable from an older offline row and keeps the historical treatment.
 
 ## D. Verification limits
 

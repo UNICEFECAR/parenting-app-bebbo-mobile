@@ -9,6 +9,6 @@ module.exports = {
     '<rootDir>/app/instances/.*/assets/images/package.json',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|@react-navigation|nanoid)/)',
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|@react-navigation|@react-native-firebase|nanoid)/)',
   ],
 };
