@@ -10,7 +10,7 @@ export function normaliseBackupCiphertext(input: string): string {
 export function validateBackupChildren(data: unknown): any[] {
   if (!Array.isArray(data) || !data.length || data.some(child =>
     !child || typeof child !== 'object' || typeof child.uuid !== 'string' || !/^[A-Za-z0-9_:-]{1,128}$/.test(child.uuid) ||
-    !child.birthDate || !Number.isFinite(new Date(child.birthDate).getTime()),
+    (child.birthDate !== null && (!child.birthDate || !Number.isFinite(new Date(child.birthDate).getTime()))),
   ) || new Set(data.map(child => child.uuid)).size !== data.length) {
     throw new Error('Backup contains invalid child data');
   }

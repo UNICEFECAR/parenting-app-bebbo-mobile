@@ -42,3 +42,15 @@ test('retains raw and Android JSON-quoted legacy fixed-IV backups', async () => 
   await expect(decryptBackup(legacy, key, iv)).resolves.toBe(contents);
   await expect(decryptBackup(JSON.stringify(legacy), key, iv)).resolves.toBe(contents);
 });
+
+test('reads a main-format backup with a historical key and IV from another build', async () => {
+  const {readLegacyBackup} = require('../readLegacyBackup');
+  const children = [{uuid: 'legacy', birthDate: null, createdAt: '2024-01-01', updatedAt: '2024-01-01',
+    favoriteadvices: [12], measures: [{uuid: 'm', weight: '12'}]}];
+  const encrypted = await Aes.encrypt(JSON.stringify(children), key, iv, 'aes-256-cbc');
+  const otherKey = 'ef'.repeat(32), otherIV = 'ef'.repeat(16);
+  for (const text of [encrypted, JSON.stringify(encrypted)]) {
+    await expect(readLegacyBackup(text, otherKey, otherIV)).rejects.toThrow('Cannot unlock');
+    await expect(readLegacyBackup(text, otherKey, otherIV, key + ':' + otherIV + ',' + key + ':' + iv)).resolves.toEqual(children);
+  }
+});

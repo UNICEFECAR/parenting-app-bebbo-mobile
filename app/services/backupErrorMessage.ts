@@ -1,6 +1,7 @@
 import type {TFunction} from 'i18next';
 const messages: Record<string,string> = {
   'Backup preview expired. Select the backup again':'backupPreviewExpired',
+  'Cannot unlock legacy backup':'backupLegacyUnlockFailed',
   'Unsupported or damaged backup':'backupDamaged',
   'Incorrect passphrase or damaged backup':'backupUnlockFailed',
   'A backup passphrase must contain at least 12 characters':'backupPassphraseTooShort',

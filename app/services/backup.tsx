@@ -18,10 +18,11 @@ import {safeOpenRealm, safeDeleteRealm} from '../redux/reducers/realmSafe';
 import {ChildEntitySchema} from '../database/schema/ChildDataSchema';
 import {setInfoModalOpened} from '../redux/reducers/utilsSlice';
 import {encryptBackup, decryptBackup} from './backupCipher';
-import {encryptionsIVKey, encryptionsKey} from 'react-native-dotenv';
+import {encryptionsIVKey, encryptionsKey, legacyBackupReadKeys} from 'react-native-dotenv';
 import {getChild} from './Utils';
 import {openBackupDocument, saveBackupDocument} from './backupDocuments';
-import {parseBackupChildren, validateBackupChildren} from './backupFormat';
+import {readLegacyBackup} from './readLegacyBackup';
+import {validateBackupChildren} from './backupFormat';
 
 // Preserve the IV normalisation used by historical local-file exports.
 const backupIV = encryptionsIVKey?.replace("//:completeSettings = none", "");
@@ -69,7 +70,7 @@ class Backup {
       if (password == null) throw new Error('loginCanceled');
       return validateSnapshot(JSON.parse(await decryptProtectedBackup(text, password)));
     }
-    return parseBackupChildren(await this.decryptData(text, encryptionsKey));
+    return readLegacyBackup(text, encryptionsKey, backupIV, legacyBackupReadKeys);
   }
 
   public async exportToFile(): Promise<boolean> {

@@ -1,6 +1,7 @@
 declare module 'react-native-dotenv' {
   export const apiUrlDevelop: string;
   export const apiBabuniUrlDevelop: string;
+  export const legacyBackupReadKeys: string | undefined;
   export const encryptionsKey: string;
   export const encryptionsIVKey: string;
   export const nameProject: string;

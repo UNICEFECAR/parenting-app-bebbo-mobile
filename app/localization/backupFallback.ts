@@ -7,6 +7,7 @@ export const backupFallback = {
   "backupKeepPrevious": "Keep previous data",
   "backupRestoreReplaceWarningV3": "Restoring replaces all child and pregnancy profiles and their records on this device. Photos, caregiver details and reminder preferences included in the backup are also restored. Back up current data first. Only restore files you trust. This does not merge records. Continue?",
   "backupPreviewExpired": "Backup preview expired. Select the backup again",
+  "backupLegacyUnlockFailed": "This app could not unlock the older backup. Check that the build includes the original backup encryption settings and that the file is complete.",
   "backupDamaged": "Unsupported or damaged backup",
   "backupUnlockFailed": "Incorrect passphrase or damaged backup",
   "backupPassphraseTooShort": "A backup passphrase must contain at least 12 characters",
