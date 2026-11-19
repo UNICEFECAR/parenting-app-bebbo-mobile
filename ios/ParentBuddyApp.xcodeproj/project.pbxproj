@@ -224,6 +224,23 @@
 		B2312CA8296E7FAE5100F8D5 /* wawamor vectors in Resources */ = {isa = PBXBuildFile; fileRef = FDFC82E04EEAC71D3A479481 /* wawamor vectors */; };
 		1ECBE237CD1E7FB017006661 /* reraiUmntwana vectors in Resources */ = {isa = PBXBuildFile; fileRef = 2F5D827640D60CB4CEFE0092 /* reraiUmntwana vectors */; };
 		5CDE469C9D005654FB66EFEF /* merhabaBebek vectors in Resources */ = {isa = PBXBuildFile; fileRef = D6297A5762CA6833C5402127 /* merhabaBebek vectors */; };
+		6862EAFDD05F614A265B5624 /* SharedAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = C35C6ED703558E104B028B10 /* SharedAppIcon */; };
+		D50B64DD708FE350EBB0280A /* SharedAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = C35C6ED703558E104B028B10 /* SharedAppIcon */; };
+		F4D1F8CB830D93A33C60ECF7 /* SharedAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = C35C6ED703558E104B028B10 /* SharedAppIcon */; };
+		E829F9796AD131DF055B277E /* SharedAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = C35C6ED703558E104B028B10 /* SharedAppIcon */; };
+		69A1490D8EFF7D2BB3703DCB /* SharedAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = C35C6ED703558E104B028B10 /* SharedAppIcon */; };
+		F3C46F6D9A4AB3F5B40AD6DB /* SharedAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = C35C6ED703558E104B028B10 /* SharedAppIcon */; };
+		6BC2D07D8EBFC7BE41B3DD65 /* FolejaAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = 9638F5AA0E8CB118F56E1A96 /* FolejaAppIcon */; };
+		5B36CD256515E7479833D82D /* FolejaAppIcon in Resources */ = {isa = PBXBuildFile; fileRef = 9638F5AA0E8CB118F56E1A96 /* FolejaAppIcon */; };
+		0301ABC6D2F3B69763D8DB80 /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		1F71405A7C6FE059DAF1B68D /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		91E9F125B9A0E4D97824388B /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		30C7865FEE6D14F6E803AFEF /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		2E768B8C4E15E862394F2827 /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		D851A08F704E6D2C249FB007 /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		31004FFE78794C4C38523F87 /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		E497D559D0D8002F0CFABBCA /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
+		BC29A494DA069F9630997256 /* SharedLaunch in Resources */ = {isa = PBXBuildFile; fileRef = DAA80C7A26A903311A8107CC /* SharedLaunch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +415,9 @@
 		D6297A5762CA6833C5402127 /* merhabaBebek vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "merhabaBebek vectors"; path = "../app/instances/merhabaBebek/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
 		2F5D827640D60CB4CEFE0092 /* reraiUmntwana vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "reraiUmntwana vectors"; path = "../app/instances/reraiUmntwana/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
 		FDFC82E04EEAC71D3A479481 /* wawamor vectors */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "wawamor vectors"; path = "../app/instances/wawamor/native/Vectors.xcassets"; sourceTree = SOURCE_ROOT; };
+		C35C6ED703558E104B028B10 /* SharedAppIcon */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ParentBuddyApp/SharedAppIcon.xcassets; sourceTree = SOURCE_ROOT; };
+		9638F5AA0E8CB118F56E1A96 /* FolejaAppIcon */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ParentBuddyApp/FolejaAppIcon.xcassets; sourceTree = SOURCE_ROOT; };
+		DAA80C7A26A903311A8107CC /* SharedLaunch */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ParentBuddyApp/SharedLaunch.xcassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -548,6 +568,9 @@
 				2F5D827640D60CB4CEFE0092 /* reraiUmntwana vectors */,
 				FDFC82E04EEAC71D3A479481 /* wawamor vectors */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				DAA80C7A26A903311A8107CC /* SharedLaunch */,
+				9638F5AA0E8CB118F56E1A96 /* FolejaAppIcon */,
+				C35C6ED703558E104B028B10 /* SharedAppIcon */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -1270,6 +1293,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D1935CB1B0F4FA50178ADE8 /* bebbo vectors in Resources */,
+				0301ABC6D2F3B69763D8DB80 /* SharedLaunch in Resources */,
+				6862EAFDD05F614A265B5624 /* SharedAppIcon in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				D6F141E52E2912C200986814 /* InfoPlist.strings in Resources */,
 				D6F1420D2E29131100986814 /* GoogleService-Info.plist in Resources */,
@@ -1301,6 +1326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5737337E272CB4101C43703E /* bebboPacific vectors in Resources */,
+				1F71405A7C6FE059DAF1B68D /* SharedLaunch in Resources */,
 				D6C1B5BD2EBCB0D100E466C0 /* splash.json in Resources */,
 				D6C1B5862EBC847B00E466C0 /* roboto-regular.woff2 in Resources */,
 				D6C1B5882EBC847B00E466C0 /* roboto-bold.svg in Resources */,
@@ -1326,6 +1352,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				72747A6815A52BF9B13093E8 /* foleja vectors in Resources */,
+				91E9F125B9A0E4D97824388B /* SharedLaunch in Resources */,
+				6BC2D07D8EBFC7BE41B3DD65 /* FolejaAppIcon in Resources */,
 				D6F142332E29268B00986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142562E292B7A00986814 /* README.md in Resources */,
 				D6F142552E292B7600986814 /* GoogleService-Info.plist in Resources */,
@@ -1350,6 +1378,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D0D81ACD6318FD7BE7A041F /* bebboDev vectors in Resources */,
+				30C7865FEE6D14F6E803AFEF /* SharedLaunch in Resources */,
+				D50B64DD708FE350EBB0280A /* SharedAppIcon in Resources */,
 				D6F1429B2E29334B00986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142B72E29361400986814 /* ParentBuddyAppDev-Info.plist in Resources */,
 				D6F1429F2E29334B00986814 /* Images.xcassets in Resources */,
@@ -1374,6 +1404,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2467016BE6B408E0409DE156 /* foleja vectors in Resources */,
+				2E768B8C4E15E862394F2827 /* SharedLaunch in Resources */,
+				5B36CD256515E7479833D82D /* FolejaAppIcon in Resources */,
 				D6F142C12E29392300986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142C42E29392300986814 /* Images.xcassets in Resources */,
 				D6F142C52E29392300986814 /* roboto-bold.svg in Resources */,
@@ -1398,6 +1430,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E2DE98A25D0630091B10EC5 /* babuni vectors in Resources */,
+				D851A08F704E6D2C249FB007 /* SharedLaunch in Resources */,
+				F4D1F8CB830D93A33C60ECF7 /* SharedAppIcon in Resources */,
 				D6F142E52E293C3A00986814 /* LaunchScreen.storyboard in Resources */,
 				D6F142FD2E293C8B00986814 /* GoogleService-Info.plist in Resources */,
 				D6F143022E293CC100986814 /* InfoPlist.strings in Resources */,
@@ -1422,6 +1456,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AAD65BE055E3B1C1BE84477 /* babuni vectors in Resources */,
+				31004FFE78794C4C38523F87 /* SharedLaunch in Resources */,
+				E829F9796AD131DF055B277E /* SharedAppIcon in Resources */,
 				D6F1430D2E2A29F400986814 /* LaunchScreen.storyboard in Resources */,
 				D6F1430F2E2A29F400986814 /* InfoPlist.strings in Resources */,
 				D6F143102E2A29F400986814 /* Images.xcassets in Resources */,
@@ -1446,6 +1482,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CDE469C9D005654FB66EFEF /* merhabaBebek vectors in Resources */,
+				E497D559D0D8002F0CFABBCA /* SharedLaunch in Resources */,
+				69A1490D8EFF7D2BB3703DCB /* SharedAppIcon in Resources */,
 				D6F143312E2A366200986814 /* LaunchScreen.storyboard in Resources */,
 				D6F1434F2E2A36C400986814 /* MerhabaBebek-Info.plist in Resources */,
 				D6F1434D2E2A36AE00986814 /* InfoPlist.strings in Resources */,
@@ -1470,6 +1508,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2312CA8296E7FAE5100F8D5 /* wawamor vectors in Resources */,
+				BC29A494DA069F9630997256 /* SharedLaunch in Resources */,
+				F3C46F6D9A4AB3F5B40AD6DB /* SharedAppIcon in Resources */,
 				D6F143592E2A39D000986814 /* LaunchScreen.storyboard in Resources */,
 				D6F143712E2A39E500986814 /* GoogleService-Info.plist in Resources */,
 				D6B295592E2E88E500C8889C /* splash.json in Resources */,

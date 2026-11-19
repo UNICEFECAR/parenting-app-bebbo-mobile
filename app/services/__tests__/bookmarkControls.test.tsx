@@ -22,11 +22,11 @@ beforeEach(async()=>{
   await act(async()=>{view=create(<ShareFavButtons item={{id:12,title:'Advice'}} isAdvice isFavourite={false}/>);});
 });
 afterEach(async()=>{await act(async()=>view.unmount());});
-test('a confirmed removal produces one removal event and its stored list',async()=>{
+test('a removal updates the saved list without emitting a historical addition',async()=>{
   jest.mocked(toggleBookmark).mockResolvedValue({ids:[],added:false});
   await act(async()=>{await view.root.findAllByType(ShareFavPress)[1].props.onPress();});
   expect(mockDispatch).toHaveBeenCalledWith(expect.objectContaining({payload:[]}));
-  expect(logEvent).toHaveBeenCalledWith({name:'favourite_advise_removed',params:{advise_id:12}},false);
+  expect(logEvent).not.toHaveBeenCalled();
 });
 test('repeated taps do not start overlapping native writes',async()=>{
   let resolve!:(value:any)=>void;

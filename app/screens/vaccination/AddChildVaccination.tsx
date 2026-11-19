@@ -48,7 +48,7 @@ import PlannedVaccines from "@components/vaccination/PlannedVaccines";
 import PrevPlannedVaccines from "@components/vaccination/PrevPlannedVaccines";
 import TakenVaccines from "@components/vaccination/TakenVaccines";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { vaccinationColor } from "../../instances/bebbo/styles/style";
+import { vaccinationColor } from "@styles/style";
 import {
   Heading2,
   Heading3,
@@ -56,7 +56,7 @@ import {
   Heading4Regular,
   ShiftFromTop15,
   ShiftFromTopBottom10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import React, { useContext, useEffect, useState } from "react";

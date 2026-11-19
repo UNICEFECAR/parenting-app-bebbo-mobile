@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import {
   Heading2,
   ShiftFromBottom15,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { useTranslation } from "react-i18next";
 import VectorImage from "react-native-vector-image";
 import React from "react";

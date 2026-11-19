@@ -10,7 +10,7 @@ import {
   Heading4Regular,
   SideSpacing15,
   HeadingChatCenterw,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { FlexRow } from "@components/shared/FlexBoxStyle";
 import VectorImage from "react-native-vector-image";
 import {

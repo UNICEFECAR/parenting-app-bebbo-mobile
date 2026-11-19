@@ -1,7 +1,7 @@
 import {appTextAlign} from "../localization/layoutDirection";
 import Icon from "@components/shared/Icon";
 import { FilterIconSlot } from "./shared/FilterStyle";
-import { bgcolorWhite2 } from "../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";

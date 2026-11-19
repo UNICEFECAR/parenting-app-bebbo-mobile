@@ -336,7 +336,7 @@
     },
     {
       "file": "app/components/shared/ShareFavButtons.tsx",
-      "line": 94,
+      "line": 93,
       "api": "logEvent",
       "event": "{name: eventName, params: isAdvice ? {advise_id: item?.id} : {game_id: item?.id}}",
       "parameters": "netInfo.isConnected"
@@ -763,28 +763,28 @@
     },
     {
       "file": "app/services/EventSyncService.ts",
-      "line": 13,
+      "line": 17,
       "api": "logAnalyticsEvent",
       "event": "eventData.name",
-      "parameters": "_netInfo === false ? {...eventData.params, is_offline_event: true} : eventData.params"
+      "parameters": "eventData.params"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 80,
+      "line": 81,
       "api": "logAnalyticsEvent",
       "event": "BACKUP_EXPORT_COMPLETED",
       "parameters": "{source: 'local_file'}"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 110,
+      "line": 111,
       "api": "logAnalyticsEvent",
       "event": "BACKUP_EXPORT_COMPLETED",
       "parameters": "{source: 'drive'}"
     },
     {
       "file": "app/services/backup.tsx",
-      "line": 193,
+      "line": 194,
       "api": "logAnalyticsEvent",
       "event": "BACKUP_RESTORE_COMPLETED",
       "parameters": "{restored_count: children.length}"
@@ -826,10 +826,17 @@
     },
     {
       "file": "app/services/measuredLink.ts",
-      "line": 6,
+      "line": 7,
+      "api": "logEvent",
+      "event": "{name:event}",
+      "parameters": "connected"
+    },
+    {
+      "file": "app/services/measuredLink.ts",
+      "line": 8,
       "api": "logAnalyticsEvent",
       "event": "event",
-      "parameters": "connected === false ? {is_offline_event: true} : undefined"
+      "parameters": null
     },
     {
       "file": "app/services/profileDeletion.ts",
@@ -840,17 +847,17 @@
     },
     {
       "file": "app/services/screenAnalytics.ts",
-      "line": 7,
+      "line": 8,
       "api": "logAnalyticsEvent",
       "event": "SCREEN_VIEW",
       "parameters": "{screen_name: route.name, screen_class: route.name}"
     },
     {
       "file": "app/services/screenAnalytics.ts",
-      "line": 9,
-      "api": "logAnalyticsEvent",
-      "event": "`${route.name}_opened`",
-      "parameters": null
+      "line": 10,
+      "api": "logEvent",
+      "event": "{name: `${route.name}_opened`}",
+      "parameters": "connected"
     }
   ],
   "screenFiles": [

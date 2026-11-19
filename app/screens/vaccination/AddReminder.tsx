@@ -38,7 +38,7 @@ import {
   ShiftFromTop20,
   ShiftFromTop30,
   ShiftFromTopBottom10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";

@@ -26,9 +26,8 @@ import {
   Heading4Centerr,
   ShiftFromBottom5,
   ShiftFromTop10,
-  ShiftFromTopBottom20Padding,
   SideSpacing10,
-} from '../../instances/bebbo/styles/typography';
+} from '@styles/typography';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -57,11 +56,12 @@ import Icon from "@components/shared/Icon";
 import { DateTime } from "luxon";
 import { MeasuresEntity } from "../../database/schema/ChildDataSchema";
 import { formatStringDate } from "../../services/Utils";
-import { bgcolorWhite2 } from "../../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import { selectActiveChild } from "../../services/selectors";
 
 const styles = StyleSheet.create({
+  emptyGrowthHelp: {marginVertical: 20, paddingHorizontal: 25},
   flex1: { flex: 1 },
   marginTop15: { marginTop: 15 },
   maxHeight: {
@@ -275,9 +275,9 @@ const Childgrowth = ({ navigation }: any): any => {
                       {t("growthScreennoGrowthData")}
                     </Heading3Centerr>
                   ) : null}
-                  <ShiftFromTopBottom20Padding>
+                  <View style={styles.emptyGrowthHelp}>
                     <Heading4>{t("growthScreennoGrowthDataHelpText")}</Heading4>
-                  </ShiftFromTopBottom20Padding>
+                  </View>
                 </FlexDirCol>
                 {renderDummyChart()}
               </>

@@ -7,7 +7,7 @@ import { Flex1, FlexDirRow } from "@components/shared/FlexBoxStyle";
 import Icon, { OuterIconRight, OuterIconRow } from "@components/shared/Icon";
 import { ToolsHeadView } from "@components/shared/ToolsStyle";
 import { useNavigation } from "@react-navigation/native";
-import { Heading4Regular } from "../../instances/bebbo/styles/typography";
+import { Heading4Regular } from "@styles/typography";
 import React, { useContext, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";

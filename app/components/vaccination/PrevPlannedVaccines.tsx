@@ -1,5 +1,5 @@
 import { BgContainer } from "@components/shared/Container";
-import { Heading4 } from "../../instances/bebbo/styles/typography";
+import { Heading4 } from "@styles/typography";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAllVaccinePeriods } from "../../services/vacccineService";

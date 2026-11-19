@@ -1,4 +1,4 @@
-import {bgcolortransparent} from '../instances/bebbo/styles/style';
+import {bgcolortransparent} from '@styles/style';
 import React from 'react';
 import {
   Animated,

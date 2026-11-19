@@ -10,14 +10,14 @@ import {
 } from "@components/shared/FlexBoxStyle";
 import Icon from "@components/shared/Icon";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { bgcolorWhite2, grayCode } from "../../instances/bebbo/styles/style";
+import { bgcolorWhite2, grayCode } from "@styles/style";
 import {
   Heading2,
   Heading3,
   Heading4Regular,
   Heading5,
   ShiftFromTop10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";

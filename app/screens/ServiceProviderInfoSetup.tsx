@@ -21,7 +21,7 @@ import {
   bgcolorWhite2,
   primaryColor,
   secondaryBtnColor,
-} from "../instances/bebbo/styles/style";
+} from "@styles/style";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {BackHandler, Dimensions, StyleSheet, View} from 'react-native';
@@ -37,7 +37,7 @@ import {
   Heading1Centerw,
   Heading3Centerw,
   ShiftFromTop30,
-} from '../instances/bebbo/styles/typography';
+} from '@styles/typography';
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
 import { FlexCol } from "@components/shared/FlexBoxStyle";

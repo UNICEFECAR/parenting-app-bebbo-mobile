@@ -8,7 +8,7 @@ import iframe from "@native-html/iframe-plugin";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Heading1w, ShiftFromTop5 } from "../instances/bebbo/styles/typography";
+import { Heading1w, ShiftFromTop5 } from "@styles/typography";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {

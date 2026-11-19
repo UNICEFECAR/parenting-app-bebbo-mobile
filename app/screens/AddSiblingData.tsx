@@ -22,7 +22,7 @@ import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import {bgcolorWhite2} from '../instances/bebbo/styles/style';
+import {bgcolorWhite2} from '@styles/style';
 import { dobMax } from "@app-types/types";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -40,7 +40,7 @@ import {
   Heading1Centerw,
   ShiftFromTop20,
   ShiftFromTop5,
-} from '../instances/bebbo/styles/typography';
+} from '@styles/typography';
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { selectChildAge, selectChildGenders } from "../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<

@@ -1,7 +1,7 @@
 import {
   Heading3,
   Heading3Regular,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Checkbox, { CheckboxActive, CheckboxItem } from "./shared/CheckboxStyle";

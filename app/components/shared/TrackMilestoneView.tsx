@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import {
   Heading3,
   ShiftFromBottom15,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet } from "react-native";

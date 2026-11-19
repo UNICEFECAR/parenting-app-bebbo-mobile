@@ -36,7 +36,7 @@ import {
   Heading5,
   Heading5Bold,
   ShiftFromTop20,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";

@@ -7,7 +7,7 @@ import {
   Heading3,
   Heading6Bold,
   ShiftFromTopBottom5,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";

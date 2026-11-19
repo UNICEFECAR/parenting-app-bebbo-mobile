@@ -54,7 +54,7 @@
           "info_plist": "ParentBuddyApp/Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -69,7 +69,7 @@
           "info_plist": "ParentBuddyApp/Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -143,7 +143,7 @@
           "info_plist": "ParentBuddyAppDev-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -158,7 +158,7 @@
           "info_plist": "ParentBuddyAppDev-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -208,7 +208,7 @@
           "info_plist": "ParentBuddyAppBangla-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -223,7 +223,7 @@
           "info_plist": "ParentBuddyAppBangla-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -274,7 +274,7 @@
           "info_plist": "ParentBuddyAppXk-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -289,7 +289,7 @@
           "info_plist": "ParentBuddyAppXk-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -339,7 +339,7 @@
           "info_plist": "MerhabaBebek-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -355,7 +355,7 @@
           "info_plist": "MerhabaBebek-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -407,7 +407,7 @@
           "info_plist": "Wawamor-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -423,7 +423,7 @@
           "info_plist": "Wawamor-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -476,7 +476,7 @@
           "info_plist": "ReraiUmntwana-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -492,7 +492,7 @@
           "info_plist": "ReraiUmntwana-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -546,7 +546,7 @@
           "info_plist": "BebboPacific-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",
@@ -561,7 +561,7 @@
           "info_plist": "BebboPacific-Info.plist",
           "minimum_os": "15.1",
           "ats_arbitrary_loads": true,
-          "firebase_screen_reporting_disabled": true,
+          "firebase_screen_reporting_disabled": false,
           "meta_advertising_id_default_disabled": true,
           "privacy_usage_keys": [
             "NSCameraUsageDescription",

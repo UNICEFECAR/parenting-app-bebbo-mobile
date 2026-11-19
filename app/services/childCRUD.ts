@@ -195,7 +195,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       dispatch(setActiveChildData(child));
       try {
         await setUserProperties({
-          ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
@@ -242,7 +242,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema,"key='autoChild'");
         try {
           await setUserProperties({
-            ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
+            ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id),
             is_premature: child.isPremature,
             child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
             relationship_with_child: userRelationToParent,
@@ -290,7 +290,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       dispatch(setActiveChildData(child));
       try {
         await setUserProperties({
-          ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
@@ -537,7 +537,7 @@ export const updateActiveChild = async (child: any, key: any, value: any, dispat
   dispatch(setActiveChildData(child));
   try {
     await setUserProperties({
-      ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData?.id == null ? null : String(child.taxonomyData.id),
+      ageid: isFutureDateTime(child.birthDate) ? 'expected' : child.taxonomyData == null ? undefined : String(child.taxonomyData.id),
       is_premature: child.isPremature,
       child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
       relationship_with_child: userRelationToParent,

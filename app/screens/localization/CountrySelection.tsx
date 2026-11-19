@@ -5,7 +5,7 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingStyle from "@components/shared/OnboardingStyle";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { SelectionView } from "../../instances/bebbo/styles/style";
+import { SelectionView } from "@styles/style";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, FlatList, Linking, Platform, Pressable, StyleProp, ViewStyle } from "react-native";

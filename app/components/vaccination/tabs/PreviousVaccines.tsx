@@ -17,12 +17,12 @@ import {
   ToolsListOuter,
 } from "@components/shared/ToolsStyle";
 import { useNavigation } from "@react-navigation/native";
-import { greenColor } from "../../../instances/bebbo/styles/style";
+import { greenColor } from "@styles/style";
 import {
   Heading2,
   Heading4Regular,
   Heading5,
-} from "../../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";

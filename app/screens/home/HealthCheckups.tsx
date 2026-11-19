@@ -22,7 +22,7 @@ import {
   Heading4Centerr,
   ShiftFromBottom20,
   ShiftFromTopBottom10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";

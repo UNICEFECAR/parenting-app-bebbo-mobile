@@ -8,7 +8,7 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 import {
   Heading4Center,
   ShiftFromBottom5,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";

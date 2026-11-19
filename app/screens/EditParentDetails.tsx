@@ -47,8 +47,8 @@ import {
   Heading2w,
   Heading3,
   ShiftFromTop10,
-} from "../instances/bebbo/styles/typography";
-import { bgcolorWhite } from "../instances/bebbo/styles/style";
+} from "@styles/typography";
+import { bgcolorWhite } from "@styles/style";
 import { selectActiveChild, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;

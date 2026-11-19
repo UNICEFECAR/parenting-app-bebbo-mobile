@@ -1,6 +1,6 @@
 """Check the built app, not merely source plist/scheme settings. Never print keys."""
 import argparse, json, pathlib, plistlib
-FLAGS=['FirebaseAutomaticScreenReportingEnabled','GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED',
+FLAGS=['GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED',
 'GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED','GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE',
 'GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA','GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS',
 'FacebookAdvertiserIDCollectionEnabled']
@@ -16,6 +16,7 @@ def inspect(archive,expected_id,expected_project):
     if google.get('PROJECT_ID')!=expected_project:problems.append('Archived Firebase project mismatch')
     if ':ios:' not in google.get('GOOGLE_APP_ID',''):problems.append('Archived Firebase app ID is not iOS')
     if info.get('MinimumOSVersion')!='15.1':problems.append('Supported iOS minimum changed from 15.1')
+    if info.get('FirebaseAutomaticScreenReportingEnabled') is not True:problems.append('Native screen reporting disabled or unverified')
     for key in FLAGS:
         if info.get(key) is not False:problems.append('Missing/incorrect built setting: '+key)
     executable=info.get('CFBundleExecutable','')

@@ -952,7 +952,7 @@ export default (): any => {
             // SplashScreen.hide();
           }}
           onStateChange={(): any => {
-            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current);
+            routeNameRef.current = trackScreen(navigationRef.current?.getCurrentRoute(), routeNameRef.current, netInfo.isConnected);
           }}
           theme={navTheme}
         >

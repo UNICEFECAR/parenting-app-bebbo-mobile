@@ -4,7 +4,7 @@ import {
   Heading4Center,
   Heading6Bold,
   ShiftFromTopBottom5,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet } from "react-native";

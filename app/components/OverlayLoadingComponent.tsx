@@ -4,7 +4,7 @@ import { ThemeContext } from "styled-components/native";
 import {
   bgcolorWhite2,
   overlaymodalBackground,
-} from "../instances/bebbo/styles/style";
+} from "@styles/style";
 const OverlayLoadingComponent = ({ loading }: { loading: boolean }) => {
   const themeContext = useContext(ThemeContext);
   if (!loading) return null;

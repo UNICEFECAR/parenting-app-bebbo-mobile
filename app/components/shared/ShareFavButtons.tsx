@@ -88,10 +88,10 @@ const ShareFavButtons = React.memo((props: any) => {
       if (selectActiveChildUuid(store.getState()) === childId) {
         dispatch(isAdvice ? setFavouriteAdvices(result.ids) : setFavouriteGames(result.ids));
       }
-      const eventName = isAdvice
-        ? (result.added ? FAVOURITE_ADVICE_ADDED : 'favourite_advise_removed')
-        : (result.added ? FAVOURITE_GAME_ADDED : 'favourite_game_removed');
-      void logEvent({name: eventName, params: isAdvice ? {advise_id: item?.id} : {game_id: item?.id}}, netInfo.isConnected);
+      if (result.added) {
+        const eventName = isAdvice ? FAVOURITE_ADVICE_ADDED : FAVOURITE_GAME_ADDED;
+        void logEvent({name: eventName, params: isAdvice ? {advise_id: item?.id} : {game_id: item?.id}}, netInfo.isConnected);
+      }
     } catch {
       Alert.alert(t("generalError"));
     } finally {

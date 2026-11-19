@@ -26,11 +26,11 @@ import {
 import {
   bgcolorWhite,
   bgcolorWhite2,
-} from "../../instances/bebbo/styles/style";
+} from "@styles/style";
 import {
   Heading2w,
   Heading4Center,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";

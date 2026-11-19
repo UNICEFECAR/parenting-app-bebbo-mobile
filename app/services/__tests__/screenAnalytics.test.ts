@@ -1,12 +1,16 @@
+jest.mock('../EventSyncService', () => ({logEvent: jest.fn()}));
 jest.mock('../firebaseAnalytics', () => ({logAnalyticsEvent: jest.fn()}));
 import {logAnalyticsEvent} from '../firebaseAnalytics';
+import {logEvent} from '../EventSyncService';
 import {trackScreen} from '../screenAnalytics';
-test('one screen view and historical opened event per changed route name', () => {
-  let previous = 'Home';
-  for (const route of [{name:'Home'}, {name:'Tools',key:'a'}, {name:'Tools',key:'b'}]) {
-    previous = trackScreen(route, previous)!;
+
+test('ready, nested leaf changes, back and revisits preserve the historical pair', () => {
+  let previous: string | undefined = 'Home'; // onReady seeds the active leaf
+  for (const [key, name] of ['Home','Tools','DetailsScreen','DetailsScreen','Tools','Home','Tools'].entries()) {
+    previous = trackScreen({name, key: String(key)}, previous, false);
   }
-  expect(jest.mocked(logAnalyticsEvent).mock.calls).toEqual([
-    ['screen_view',{screen_name:'Tools',screen_class:'Tools'}], ['Tools_opened'],
-  ]);
+  const changes = ['Tools','DetailsScreen','Tools','Home','Tools'];
+  expect(jest.mocked(logAnalyticsEvent).mock.calls).toEqual(changes.map(name =>
+    ['screen_view', {screen_name:name, screen_class:name}]));
+  expect(jest.mocked(logEvent).mock.calls).toEqual(changes.map(name => [{name:name + '_opened'},false]));
 });

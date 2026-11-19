@@ -54,6 +54,17 @@ export const logAnalyticsEvent = async (
     } catch { console.warn('Analytics retry storage unavailable'); }
 };
 
+// Offline events follow the historical Realm replay path when storage is available.
+export async function queueOfflineAnalyticsEvent(event: {name: string; params?: Record<string, any>}): Promise<void> {
+    try {
+        if (await getAppInstanceId(analytics()) == null) return;
+        await saveAnalyticsRetry(event);
+    } catch {
+        // If the local queue is unavailable, the SDK still enforces native consent.
+        await tryLogAnalyticsEvent(event.name, {...event.params, is_offline_event: true});
+    }
+}
+
 export const setUserProperties = async (
     properties: Record<string, string | null | undefined>
 ): Promise<void> => {

@@ -7,7 +7,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import Icon from "./Icon";
-import { Heading4Centerr } from "../../instances/bebbo/styles/typography";
+import { Heading4Centerr } from "@styles/typography";
 import { FDirRow } from "./FlexBoxStyle";
 import { ButtonModal, ButtonText } from "./ButtonGlobal";
 import { useTranslation } from "react-i18next";

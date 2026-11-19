@@ -1,4 +1,4 @@
-import { Heading4Centerr } from "../instances/bebbo/styles/typography";
+import { Heading4Centerr } from "@styles/typography";
 import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { FDirRow } from "./shared/FlexBoxStyle";

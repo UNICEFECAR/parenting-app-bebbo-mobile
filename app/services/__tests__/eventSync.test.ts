@@ -1,11 +1,14 @@
 import {logEvent, synchronizeEvents} from '../EventSyncService';
-import {tryLogAnalyticsEvent} from '../firebaseAnalytics';
+import NetInfo from '@react-native-community/netinfo';
+jest.mock('@react-native-community/netinfo', () => ({fetch:jest.fn()}));
+import {queueOfflineAnalyticsEvent, tryLogAnalyticsEvent} from '../firebaseAnalytics';
 import {dataRealmCommon} from '../../database/dbquery/dataRealmCommon';
 import {logAnalyticsEvent} from '../firebaseAnalytics';
 
 jest.mock('../firebaseAnalytics', () => ({
   logAnalyticsEvent: jest.fn().mockResolvedValue(undefined),
   tryLogAnalyticsEvent: jest.fn(),
+  queueOfflineAnalyticsEvent: jest.fn(),
 }));
 jest.mock('../../database/dbquery/dataRealmCommon', () => ({dataRealmCommon: {openRealm: jest.fn()}}));
 
@@ -26,10 +29,12 @@ beforeEach(() => {
 
 });
 
-test.each([true, false, undefined])('passes events directly to the durable native SDK regardless of connectivity (%s)', async connected => {
-  await logEvent({name: 'child_added', params: {count: 2}}, connected);
-  expect(logAnalyticsEvent).toHaveBeenCalledWith('child_added', connected === false ? {count: 2, is_offline_event: true} : {count: 2});
-  expect(rows).toHaveLength(0);
+test.each([false, null, undefined])('queues offline and unresolved events for historical replay (%s)', async connected => {
+  jest.mocked(NetInfo.fetch).mockResolvedValue({isConnected: null} as any);
+  const event = {name: 'child_added', params: {count: 2}};
+  await logEvent(event, connected);
+  expect(queueOfflineAnalyticsEvent).toHaveBeenCalledWith(event);
+  expect(logAnalyticsEvent).not.toHaveBeenCalled();
 });
 
 test('SDK failure does not mark an offline event as synchronized', async () => {

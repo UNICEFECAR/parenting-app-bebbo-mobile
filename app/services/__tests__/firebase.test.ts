@@ -92,3 +92,9 @@ test('does not clear dashboard properties before logging the first event', async
   expect(analytics.setUserProperties).toHaveBeenCalledWith('analytics', properties);
   expect(analytics.logEvent).toHaveBeenCalledWith('analytics','advice_category_selected_42',{age_id:'17',advise_id:12});
 });
+
+test('passes all three distribution dimensions to the Firebase SDK', async () => {
+  const properties = {platform:'Android', distribution_channel:'direct_apk', distribution_country:'test-country'};
+  await setUserProperties(properties);
+  expect(analytics.setUserProperties).toHaveBeenCalledWith('analytics', properties);
+});

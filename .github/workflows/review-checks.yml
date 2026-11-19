@@ -69,6 +69,7 @@ jobs:
           mkdir -p /tmp/bebbo-bundle
           npx react-native bundle --entry-file index.js --platform "$BUNDLE_PLATFORM" --dev false \
             --bundle-output /tmp/bebbo-bundle/app.bundle --sourcemap-output /tmp/bebbo-bundle/app.bundle.map
+          node scripts/check-bundle-flavour.cjs "$FLAVOR" /tmp/bebbo-bundle/app.bundle.map
           node scripts/check-production-bundle.cjs /tmp/bebbo-bundle/app.bundle
       - name: Verify referenced native vector resources
         run: BUNDLE_PLATFORM=${{ matrix.platform }} npm run assets:check

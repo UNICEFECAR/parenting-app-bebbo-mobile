@@ -6,7 +6,7 @@ import iframe from "@native-html/iframe-plugin";
 import {
   bgcolorBlack2,
   bgcolorWhite2,
-} from "../../instances/bebbo/styles/style";
+} from "@styles/style";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {Dimensions, StyleSheet, View} from 'react-native';

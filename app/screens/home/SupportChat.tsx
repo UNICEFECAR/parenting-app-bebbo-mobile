@@ -9,7 +9,7 @@ import type { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import {
   Heading1Centerr,
   Heading4Center,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, {
   useCallback,
   useContext,

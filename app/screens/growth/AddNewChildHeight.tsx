@@ -30,7 +30,7 @@ import {
   Heading2,
   Heading4Centerr,
   ShiftFromTopBottom20,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Dimensions, Modal, StyleSheet, View } from "react-native";

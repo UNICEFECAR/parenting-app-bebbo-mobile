@@ -1,5 +1,6 @@
 import {dataRealmCommon} from '../database/dbquery/dataRealmCommon';
-import {logAnalyticsEvent, tryLogAnalyticsEvent} from './firebaseAnalytics';
+import NetInfo from '@react-native-community/netinfo';
+import {logAnalyticsEvent, queueOfflineAnalyticsEvent, tryLogAnalyticsEvent} from './firebaseAnalytics';
 export {storeUnsyncedEvent} from './analyticsOutbox';
 
 export const markEventAsSynchronized = async (realm: any, event: any): Promise<void> => {
@@ -7,10 +8,14 @@ export const markEventAsSynchronized = async (realm: any, event: any): Promise<v
   realm.write(() => {event.isSynchronized = true;});
 };
 
-// The native SDK queues offline events with their original session/time and
-// persists them across restarts. NetInfo is not a delivery acknowledgement.
-export const logEvent = async (eventData: any, _netInfo?: boolean | null): Promise<void> => {
-  if (eventData?.name) await logAnalyticsEvent(eventData.name, _netInfo === false ? {...eventData.params, is_offline_event: true} : eventData.params);
+export const logEvent = async (eventData: any, connected?: boolean | null): Promise<void> => {
+  if (!eventData?.name) return;
+  if (connected == null) {
+    try { connected = (await NetInfo.fetch()).isConnected; }
+    catch { connected = null; }
+  }
+  if (connected === true) await logAnalyticsEvent(eventData.name, eventData.params);
+  else await queueOfflineAnalyticsEvent(eventData);
 };
 
 async function flushEvents(): Promise<void> {

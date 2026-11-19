@@ -9,8 +9,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import {
   bgcolorWhite,
   bgcolorWhite2,
-} from "../../instances/bebbo/styles/style";
-import { Heading2 } from "../../instances/bebbo/styles/typography";
+} from "@styles/style";
+import { Heading2 } from "@styles/typography";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from "react-native";

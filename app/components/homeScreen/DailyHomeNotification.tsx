@@ -7,7 +7,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from "@components/shared/Icon";
 import {
   Heading3Regularw,
   ShiftFromTopBottom10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AppState, StyleSheet } from "react-native";

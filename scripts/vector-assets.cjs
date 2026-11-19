@@ -32,6 +32,9 @@ async function main() {
     const destination = path.join(native, platform === 'android' ? 'res' : 'Vectors.xcassets');
     const assets = await collectAssets(flavour, platform);
     const selected = new Map(assets.map(asset => [resourceName(asset), asset]));
+    for (const asset of assets) {
+      if (selected.get(resourceName(asset)).hash !== asset.hash) throw Error('Conflicting SVG resource name: ' + resourceName(asset));
+    }
     if (!selected.size) throw Error('Empty vector resource graph');
     const fingerprint = crypto.createHash('sha256').update(JSON.stringify(
       Array.from(selected.entries(), ([name, asset]) => [name, asset.hash]).sort()

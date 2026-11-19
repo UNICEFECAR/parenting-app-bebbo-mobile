@@ -1,6 +1,6 @@
 import pathlib, plistlib, subprocess, os, tempfile, unittest, re, collections, xml.etree.ElementTree as ET
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-FLAGS = ['FirebaseAutomaticScreenReportingEnabled','GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED',
+FLAGS = ['GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED',
 'GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED','GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE',
 'GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA','GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS','FacebookAdvertiserIDCollectionEnabled']
 class IOSConfiguration(unittest.TestCase):
@@ -15,11 +15,12 @@ class IOSConfiguration(unittest.TestCase):
             copied=[name for name in names if not name.endswith(('.xcassets','.storyboard'))]
             duplicates=[name for name,count in collections.Counter(copied).items() if count>1]
             self.assertEqual(duplicates,[],f'{identifier}: colliding copied resources')
-    def test_every_app_plist_disables_duplicate_auto_screens_and_advertising_collection(self):
+    def test_every_app_plist_retains_native_screen_reporting_and_disables_advertising_collection(self):
         files=list((ROOT/'ios').glob('*-Info.plist'))+[ROOT/'ios/ParentBuddyApp/Info.plist']
         self.assertEqual(len(files),10)
         for file in files:
             value=plistlib.loads(file.read_bytes())
+            self.assertIs(value.get('FirebaseAutomaticScreenReportingEnabled'),True,str(file))
             for key in FLAGS:self.assertIs(value.get(key),False,str(file)+':'+key)
     def test_every_app_scheme_uploads_archive_symbols_with_its_own_environment(self):
         files=[p for p in (ROOT/'ios/ParentBuddyApp.xcodeproj/xcshareddata/xcschemes').glob('*.xcscheme') if 'tvOS' not in p.name]
@@ -59,7 +60,7 @@ class IOSArchive(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.folder=pathlib.Path(self.temp.name)
         self.app=self.folder/'Products/Applications/App.app';self.app.mkdir(parents=True)
-        self.info={'CFBundleIdentifier':'org.test.app','CFBundleExecutable':'App','MinimumOSVersion':'15.1',**{k:False for k in self.check.FLAGS}}
+        self.info={'FirebaseAutomaticScreenReportingEnabled':True,'CFBundleIdentifier':'org.test.app','CFBundleExecutable':'App','MinimumOSVersion':'15.1',**{k:False for k in self.check.FLAGS}}
         self.google={'BUNDLE_ID':'org.test.app','PROJECT_ID':'test-project','GOOGLE_APP_ID':'1:test:ios:fixture'}
         self.write()
         symbols=self.folder/'dSYMs/App.app.dSYM/Contents/Resources/DWARF';symbols.mkdir(parents=True);(symbols/'App').write_bytes(b'synthetic')
@@ -72,7 +73,7 @@ class IOSArchive(unittest.TestCase):
         self.google['BUNDLE_ID']='org.wrong';self.google['PROJECT_ID']='wrong-project';self.write()
         self.assertEqual(len(self.inspect()),2)
     def test_requires_built_privacy_flags_and_original_minimum(self):
-        self.info['FirebaseAutomaticScreenReportingEnabled']=True;self.info['MinimumOSVersion']='16.0';self.write()
+        self.info['FirebaseAutomaticScreenReportingEnabled']=False;self.info['MinimumOSVersion']='16.0';self.write()
         self.assertEqual(len(self.inspect()),2)
     def test_requires_app_dsym(self):
         import shutil

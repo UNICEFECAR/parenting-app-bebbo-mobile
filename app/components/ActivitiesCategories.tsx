@@ -10,7 +10,7 @@ import { GAME_CATEGORY_SELECTED } from "@assets/data/firebaseEvents";
 import {
   activitiesColor,
   bgcolorWhite2,
-} from "../instances/bebbo/styles/style";
+} from "@styles/style";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { selectActivityCategoryArray } from "../services/selectors";

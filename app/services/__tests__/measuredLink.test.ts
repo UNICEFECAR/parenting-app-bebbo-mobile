@@ -1,5 +1,7 @@
 import {Linking} from 'react-native';
 import {openMeasuredLink} from '../measuredLink';
+jest.mock('../EventSyncService', () => ({logEvent: jest.fn()}));
+import {logEvent} from '../EventSyncService';
 import {logAnalyticsEvent} from '../firebaseAnalytics';
 jest.mock('../firebaseAnalytics', () => ({logAnalyticsEvent: jest.fn().mockResolvedValue(undefined)}));
 beforeEach(() => jest.clearAllMocks());
@@ -11,12 +13,12 @@ test('preserves the historic tap before the OS handoff finishes', async () => {
   expect(logAnalyticsEvent).toHaveBeenCalledTimes(1);
   complete();
   await expect(opening).resolves.toBe(true);
-  expect(logAnalyticsEvent).toHaveBeenCalledWith('survey_submitted', undefined);
+  expect(logAnalyticsEvent).toHaveBeenCalledWith('survey_submitted');
 });
 test('offline email taps retain their legacy name and flag even if the OS has no handler', async () => {
   jest.spyOn(Linking, 'openURL').mockRejectedValueOnce(new Error('no handler'));
   await expect(openMeasuredLink('mailto:contact@example.test', 'email_sent', false)).resolves.toBe(false);
-  expect(logAnalyticsEvent).toHaveBeenCalledWith('email_sent', {is_offline_event: true});
+  expect(logEvent).toHaveBeenCalledWith({name:'email_sent'}, false);
 });
 test.each(['javascript:alert(1)', 'file:///private/secret', 'intent://example', null, 'https://example.test\ninvalid'])('rejects unsupported untrusted links: %s', async url => {
   const open = jest.spyOn(Linking, 'openURL');

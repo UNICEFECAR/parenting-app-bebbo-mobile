@@ -1,6 +1,6 @@
 {
   "react-native": {
-    "google_analytics_automatic_screen_reporting_enabled": false,
+    "google_analytics_automatic_screen_reporting_enabled": true,
     "google_analytics_adid_collection_enabled": false,
     "google_analytics_ssaid_collection_enabled": false,
     "analytics_idfv_collection_enabled": false,

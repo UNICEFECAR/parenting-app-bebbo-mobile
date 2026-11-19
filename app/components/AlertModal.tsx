@@ -2,7 +2,7 @@ import React from "react";
 import {
   Heading1Centerr,
   Heading3Centerr,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { Modal, Platform, Pressable, Text } from "react-native";
 import VectorImage from 'react-native-vector-image';
 import { useTranslation } from 'react-i18next';

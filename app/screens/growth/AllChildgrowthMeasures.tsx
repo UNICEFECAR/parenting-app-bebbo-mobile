@@ -16,7 +16,7 @@ import { IconML } from "@components/shared/Icon";
 import {
   Heading2,
   ShiftFromTop10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
