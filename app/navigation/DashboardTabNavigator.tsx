@@ -19,6 +19,7 @@ import { Heading3 } from "@styles/typography";
 import React, {useContext, useState} from 'react';
 import { useTranslation } from "react-i18next";
 import { Modal, Pressable, StyleSheet, TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemeContext } from "styled-components/native";
 import { DashboardBottomTabParamList } from "./types";
 const styles = StyleSheet.create({
@@ -59,6 +60,7 @@ const SecondaryRoot = (): any => {
 };
 
 export default (): any => {
+  const insets = useSafeAreaInsets();
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
@@ -90,7 +92,7 @@ export default (): any => {
             }}
             activeOpacity={1}
           >
-            <BottomBarBg>
+            <BottomBarBg style={{ paddingBottom: Math.max(insets.bottom, 16) }}>
               <Pressable
                 onPress={(): any => {
                   setModalVisible(false);

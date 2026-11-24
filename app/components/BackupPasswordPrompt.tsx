@@ -29,7 +29,8 @@ export default function BackupPasswordPrompt() {
   const label = (key: string) => String(t(key));
   const ready = mode === 'create' ? validBackupPassword(password) && password === repeat : validBackupUnlockPassword(password);
   return <>{busy && <View style={[StyleSheet.absoluteFill, {backgroundColor:'#fff9',zIndex:99999,alignItems:'center',justifyContent:'center'}]}><ActivityIndicator size="large"/></View>}<Modal visible={mode !== null} transparent animationType="none" onDismiss={() => {const done=dismissed.current;dismissed.current=null;done?.();}} onRequestClose={() => finish(null)}>
-    <KeyboardAvoidingView style={styles.overlay} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    {/* Android's Modal already uses adjustResize; a second resize causes keyboard flicker. */}
+    <KeyboardAvoidingView style={styles.overlay} enabled={Platform.OS === 'ios'} behavior="padding">
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
         <View style={styles.card} accessibilityViewIsModal>
           <Text allowFontScaling style={styles.heading}>{label(mode === 'create' ? 'exportText' : 'importText')}</Text>

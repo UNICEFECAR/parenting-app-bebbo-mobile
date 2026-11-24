@@ -35,6 +35,17 @@ export const notificationSlice = createSlice({
     ):any => {
       state.notifications = (action.payload);
     },
+    removeReminderNotifications: (
+      state,
+      action: PayloadAction<{childUuid: string; reminderUuid: string}>,
+    ) => {
+      const child = state.notifications.find(item => item.childuuid === action.payload.childUuid);
+      if (child?.reminderNotis) {
+        child.reminderNotis = child.reminderNotis.filter(
+          (item: any) => item.uuid !== action.payload.reminderUuid,
+        );
+      }
+    },
     toggleNotificationFlags: (state: any,
       action: PayloadAction<any>,):any => {
       state[action.payload.key] = action.payload.value;
@@ -61,5 +72,5 @@ export const notificationSlice = createSlice({
   },
 });
 
-export const { setAllNotificationData, toggleNotificationFlags, setAllLocalNotificationData,setAllLocalNotificationGenerateType, setAllScheduledLocalNotificationData } = notificationSlice.actions;
+export const { setAllNotificationData, removeReminderNotifications, toggleNotificationFlags, setAllLocalNotificationData,setAllLocalNotificationGenerateType, setAllScheduledLocalNotificationData } = notificationSlice.actions;
 export default notificationSlice.reducer;

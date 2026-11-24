@@ -83,6 +83,25 @@ jest.mock('victory-native', () => {
 import GrowthChart, {chartTypes} from '../../components/growth/GrowthChart';
 import {convertMeasuresData} from '../growthService';
 
+test.each([false, true])('axis units stay centred below the plot, including RTL=%s', rtl => {
+  const previousRTL = I18nManager.isRTL;
+  I18nManager.isRTL = rtl;
+  try {
+    act(() => {
+      renderer = TestRenderer.create(
+        <GrowthChart activeChild={{birthDate: '2024-01-01', measures: []}} chartType={chartTypes.HeightForAge}
+          bgObj={reference} windowWidth={400} windowHeight={800} />,
+      );
+    });
+    const style = StyleSheet.flatten(renderer.root.findByProps({testID: 'growth-x-axis-unit'}).props.style);
+    // Mock plot range is 50..150 in both directions: centre at 100.
+    expect(style.left + style.width / 2).toBe(100);
+    expect(style.bottom).toBe(0);
+  } finally {
+    I18nManager.isRTL = previousRTL;
+  }
+});
+
 const reference = {
   topArea: [
     {x: 0, y: 90, y0: 100},

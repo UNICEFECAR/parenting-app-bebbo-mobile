@@ -1,3 +1,4 @@
+import UnderlinedText from "@components/shared/UnderlinedText";
 import Icon from "@components/shared/Icon";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -257,7 +258,7 @@ const NotificationItem = (props: any): any => {
                   </ShiftFromTop5>
                   <ShiftFromTop10>
                     <Pressable onPress={(): any => gotoPage(item)}>
-                      <ButtonTextSmLineL numberOfLines={2}>
+                      <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                         {getButtonname(item.type)}
                       </ButtonTextSmLineL>
                     </Pressable>
@@ -387,7 +388,7 @@ const NotificationItem = (props: any): any => {
                 </ShiftFromTop5>
                 <ShiftFromTop10>
                   <Pressable onPress={(): any => gotoPage(item)}>
-                    <ButtonTextSmLineL numberOfLines={2}>
+                    <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                       {getButtonname(item.type)}
                     </ButtonTextSmLineL>
                   </Pressable>
@@ -520,7 +521,7 @@ const NotificationItem = (props: any): any => {
                 </ShiftFromTop5>
                 <ShiftFromTop10>
                   <Pressable onPress={(): any => gotoPage(item)}>
-                    <ButtonTextSmLineL numberOfLines={2}>
+                    <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                       {getButtonname(item.type)}
                     </ButtonTextSmLineL>
                   </Pressable>
@@ -650,7 +651,7 @@ const NotificationItem = (props: any): any => {
                   </ShiftFromTop5>
                   <ShiftFromTop10>
                     <Pressable onPress={(): any => gotoPage(item)}>
-                      <ButtonTextSmLineL numberOfLines={2}>
+                      <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                         {getButtonname(item.type)}
                       </ButtonTextSmLineL>
                     </Pressable>
@@ -776,7 +777,7 @@ const NotificationItem = (props: any): any => {
                   </ShiftFromTop5>
                   <ShiftFromTop10>
                     <Pressable onPress={(): any => gotoPage(item)}>
-                      <ButtonTextSmLineL numberOfLines={2}>
+                      <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                         {getButtonname(item.type)}
                       </ButtonTextSmLineL>
                     </Pressable>
@@ -902,7 +903,7 @@ const NotificationItem = (props: any): any => {
                 </ShiftFromTop5>
                 <ShiftFromTop10>
                   <Pressable onPress={(): any => gotoPage(item)}>
-                    <ButtonTextSmLineL numberOfLines={2}>
+                    <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                       {getButtonname(item.type)}
                     </ButtonTextSmLineL>
                   </Pressable>

@@ -1,3 +1,4 @@
+import UnderlinedText from "@components/shared/UnderlinedText";
 import { MainContainer } from "@components/shared/Container";
 import { Bullets, BulletsView } from "@components/shared/Divider";
 import {
@@ -204,7 +205,7 @@ const PreviousHealthCheckup = (props: any): any => {
                     <Pressable
                       onPress={(): any => gotoArticle(item.pinned_article)}
                     >
-                      <ButtonTextSmLineL numberOfLines={2}>
+                      <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                         {t("hcArticleLink")}
                       </ButtonTextSmLineL>
                     </Pressable>
@@ -222,7 +223,7 @@ const PreviousHealthCheckup = (props: any): any => {
                       })
                     }
                   >
-                    <ButtonTextMdLine numberOfLines={2}>
+                    <ButtonTextMdLine as={UnderlinedText} numberOfLines={2}>
                       {t("hcEditBtn")}
                     </ButtonTextMdLine>
                   </Pressable>

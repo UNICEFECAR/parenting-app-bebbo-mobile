@@ -171,11 +171,11 @@ class UserRealmCommon extends Component {
                 return result;
             }
             else {
-                result = []
+                result = null
                 return result;
             }
         } catch  {
-            result = []
+            result = null
             return result;
         }
         // });

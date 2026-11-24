@@ -4,7 +4,7 @@ const messages: Record<string,string> = {
   'Cannot unlock legacy backup':'backupLegacyUnlockFailed',
   'Unsupported or damaged backup':'backupDamaged',
   'Incorrect passphrase or damaged backup':'backupUnlockFailed',
-  'A backup passphrase must contain at least 12 characters':'backupPassphraseTooShort',
+  'A backup passphrase must contain at least 6 characters':'backupPassphraseTooShort',
   'Backup exceeds the supported size':'backupSizeLimit',
   'A profile photo is missing or exceeds 8 MB':'backupPhotoUnavailable',
   'Profile photos must be JPEG or PNG images up to 4096 pixels':'backupPhotoFormat',

@@ -2,6 +2,7 @@ import {activeChildFirst} from "../../services/activeChildOrder";
 import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
 import { scheduleIdleTask } from "../../services/scheduleIdleTask";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {
   ButtonLinkPress,
   ButtonWithBorder,
@@ -103,7 +104,6 @@ const styles = StyleSheet.create({
   },
   profileListDefault: { flexDirection: "column", flex: 1 },
   profileTextView: { paddingRight: 5 },
-  textDecorationNone: { textDecorationLine: "none" },
 });
 type NotificationsNavigationProp = StackNavigationProp<any>;
 
@@ -317,7 +317,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                       }}
                     >
                       <TickView1>
-                        <Icon name="ic_edit" size={16} color="#000" />
+                        <ProfileEditIcon />
                       </TickView1>
                     </Pressable>
                   </OuterIconRight>
@@ -432,7 +432,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                         }}
                       >
                         <TickView1>
-                          <Icon name="ic_edit" size={16} color="#000" />
+                          <ProfileEditIcon />
                         </TickView1>
                       </Pressable>
                     </OuterIconRight>
@@ -546,13 +546,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                           });
                         }}
                       >
-                        <Text
-                          numberOfLines={2}
-                          style={styles.textDecorationNone}
-                        >
-                          {" "}
-                          <Icon name="ic_edit" size={16} color="#000" />
-                        </Text>
+                        <ProfileEditIcon />
                       </ButtonLinkPress>
                     </ProfileActionView>
                   </ProfileContentView>

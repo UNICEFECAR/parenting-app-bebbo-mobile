@@ -32,9 +32,14 @@ test('Unicode-equivalent passphrases work across keyboard normalisation',async()
  await expect(decryptProtectedBackup(encrypted,'café is a long phrase')).resolves.toBe(text);
 });
 test('creation counts characters after NFC normalisation',async()=>{
- const decomposed='e\u0301'.repeat(6);
+ const decomposed='e\u0301'.repeat(5);
  expect(validBackupPassword(decomposed)).toBe(false);
- await expect(encryptProtectedBackup(text,decomposed)).rejects.toThrow('at least 12');
+ await expect(encryptProtectedBackup(text,decomposed)).rejects.toThrow('at least 6');
+});
+test('six-character passphrases can export and unlock a backup',async()=>{
+ const encrypted=await encryptProtectedBackup(text,'abc123');
+ await expect(decryptProtectedBackup(encrypted,'abc123')).resolves.toBe(text);
+ expect(validBackupPassword('e\u0301'.repeat(6))).toBe(true);
 });
 test('existing v3 backups with a shorter normalised passphrase remain unlockable',async()=>{
  const legacyPassword='é'.repeat(6),salt='ab'.repeat(32),iv='cd'.repeat(16);

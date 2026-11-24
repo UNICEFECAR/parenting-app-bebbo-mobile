@@ -180,6 +180,18 @@ class LocalNotifications {
     });
   }
 
+  cancelReminderNotificationsByType(types) {
+    return this.enqueue(async () => {
+      const ids = Object.values(this.reminders)
+        .filter(item => types.includes(item.data?.notitype))
+        .map(item => item.id);
+      for (const id of ids) delete this.reminders[id];
+      await this.persist();
+      for (const id of ids) await notifications.cancelNotification(id);
+      await this.reconcile();
+    });
+  }
+
   removeAllDeliveredLocalNotifications() {
     return this.enqueue(async () => {
       await notifications.cancelDisplayedNotifications();

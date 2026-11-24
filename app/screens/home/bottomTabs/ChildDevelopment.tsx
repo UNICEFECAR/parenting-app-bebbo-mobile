@@ -1,3 +1,4 @@
+import UnderlinedText from "@components/shared/UnderlinedText";
 import {milestoneProgress} from "../../../services/milestoneProgress";
 import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import {htmlTextAlign, appLayoutDirection, htmlListRenderers} from "../../../localization/layoutDirection";
@@ -476,7 +477,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                 <FlexDirRowSpaceStart>
                   <Flex1>
                     <Pressable onPress={onPressInfo}>
-                      <Heading2 style={styles.titleUnderline}>
+                      <Heading2 as={UnderlinedText} key={selectedChildDevData?.title} style={styles.titleUnderline}>
                         {selectedChildDevData?.title}
                       </Heading2>
                     </Pressable>

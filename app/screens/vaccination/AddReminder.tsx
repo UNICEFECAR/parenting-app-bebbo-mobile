@@ -52,6 +52,7 @@ import {
   ChildEntitySchema,
 } from "../../database/schema/ChildDataSchema";
 import { setActiveChildData } from "../../redux/reducers/childSlice";
+import { removeReminderNotifications } from "../../redux/reducers/notificationSlice";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
 import LocalNotifications from "../../services/LocalNotifications";
 import {
@@ -221,6 +222,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
    */
 
   const [clicked, setClicked] = useState(false);
+  const saveInProgress = React.useRef(false);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [_dateTouched, setDateTouched] = useState(false);
@@ -464,7 +466,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
     });
   };
   const deleteReminder = async (): Promise<void> => {
-    await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    if (!editReminderItem?.uuid) return;
 
     const result = await userRealmCommon.deleteChildReminders<ChildEntity>(
       ChildEntitySchema,
@@ -489,6 +491,10 @@ const AddReminder = ({ route, navigation }: Props): any => {
     }
 
     activeChild.reminders = result;
+    dispatch(removeReminderNotifications({
+      childUuid: activeChild.uuid,
+      reminderUuid: editReminderItem.uuid,
+    }));
 
     dispatch(
       setInfoModalOpened({
@@ -500,6 +506,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
     dispatch(setActiveChildData(activeChild));
   };
   const saveReminder = async (): Promise<void> => {
+    if (saveInProgress.current) return;
     if (
       !measureDate ||
       !measureTime ||
@@ -556,77 +563,87 @@ const AddReminder = ({ route, navigation }: Props): any => {
       reminderTimeDefined: measureTimeDefined.toMillis(),
     };
 
-    const result =
-      await userRealmCommon.updateChildReminders<ChildEntity>(
-        ChildEntitySchema,
-        reminderValues,
-        `uuid ="${activeChild.uuid}"`
-      );
-
-    if (!result?.length) {
-      setClicked(false);
-      return;
-    }
-
-    activeChild.reminders = result;
-
-    const reminderDateTimeText =
-      `${formatStringDate(measureDate)},${formatStringTime(
-        measureTime.toMillis()
-      )}`;
-
-    const message =
-      reminderType === "vaccine"
-        ? t("vcrNoti2", {
-          reminderDateTime: reminderDateTimeText,
-        })
-        : t("hcrNoti2", {
-          reminderDateTime: reminderDateTimeText,
-        });
-
-    if (editReminderItem) {
-      const previousReminder =
-        getReminderNotificationDateTime(
-          editReminderItem.reminderDateDefined,
-          editReminderItem.reminderTimeDefined
+    saveInProgress.current = true;
+    let saved = false;
+    try {
+      const result =
+        await userRealmCommon.updateChildReminders<ChildEntity>(
+          ChildEntitySchema,
+          reminderValues,
+          `uuid ="${activeChild.uuid}"`
         );
 
-      LocalNotifications.cancelReminderLocalNotification(
-        previousReminder.toMillis()
+      if (!result?.length) {
+        setClicked(false);
+        return;
+      }
+
+      activeChild.reminders = result;
+
+      const reminderDateTimeText =
+        `${formatStringDate(measureDate)},${formatStringTime(
+          measureTime.toMillis()
+        )}`;
+
+      const message =
+        reminderType === "vaccine"
+          ? t("vcrNoti2", {
+            reminderDateTime: reminderDateTimeText,
+          })
+          : t("hcrNoti2", {
+            reminderDateTime: reminderDateTimeText,
+          });
+
+      if (editReminderItem) {
+        const previousReminder =
+          getReminderNotificationDateTime(
+            editReminderItem.reminderDateDefined,
+            editReminderItem.reminderTimeDefined
+          );
+
+        LocalNotifications.cancelReminderLocalNotification(
+          previousReminder.toMillis()
+        );
+      }
+
+      if (vchcEnabledFlag) {
+        LocalNotifications.schduleNotification(
+          reminderDateTime.toJSDate(),
+          t("remindersAlertTitle"),
+          message,
+          reminderDateTime.toMillis(),
+          reminderType === "vaccine" ? "vcr" : "hcr",
+          activeChild.uuid
+        );
+      }
+
+      dispatch(setActiveChildData(activeChild));
+
+      dispatch(
+        setInfoModalOpened({
+          key: "generateNotifications",
+          value: true,
+        })
       );
-    }
 
-    if (vchcEnabledFlag) {
-      LocalNotifications.schduleNotification(
-        reminderDateTime.toJSDate(),
-        t("remindersAlertTitle"),
-        message,
-        reminderDateTime.toMillis(),
-        reminderType === "vaccine" ? "vcr" : "hcr",
-        activeChild.uuid
+      saved = true;
+      navigation.goBack();
+
+      logEvent(
+        {
+          name:
+            reminderType === "vaccine"
+              ? VACCINE_REMINDER_SET
+              : HEALTH_CHECKUP_REMINDER_SET,
+        },
+        netInfo.isConnected
       );
+    } finally {
+      if (!saved) {
+        saveInProgress.current = false;
+        setClicked(false);
+      }
     }
-
-    dispatch(setActiveChildData(activeChild));
-
-    dispatch(
-      setInfoModalOpened({
-        key: "generateNotifications",
-        value: true,
-      })
-    );
-
-    navigation.goBack();
-
-    logEvent(
-      {
-        name:
-          reminderType === "vaccine"
-            ? VACCINE_REMINDER_SET
-            : HEALTH_CHECKUP_REMINDER_SET,
-      },
-      netInfo.isConnected
-    );
   };
   const onBackPress = (): any => {
     navigation.goBack();

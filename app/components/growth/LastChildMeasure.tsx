@@ -1,3 +1,4 @@
+import UnderlinedText from "@components/shared/UnderlinedText";
 import {
   ButtonTextMdLine,
   ButtonEditPress,
@@ -149,7 +150,7 @@ const LastChildMeasure = (): any => {
                   navigation.navigate("AllChildgrowthMeasures");
                 }}
               >
-                <ButtonTextMdLine numberOfLines={2}>
+                <ButtonTextMdLine as={UnderlinedText} numberOfLines={2}>
                   {t("growthScreenallMeasureHeader")}
                 </ButtonTextMdLine>
               </Pressable>

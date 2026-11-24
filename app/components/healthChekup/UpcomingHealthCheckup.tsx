@@ -1,3 +1,4 @@
+import UnderlinedText from "@components/shared/UnderlinedText";
 import { MainContainer } from "@components/shared/Container";
 import { Bullets, BulletsView } from "@components/shared/Divider";
 import { FDirRowStart, FlexDirRow } from "@components/shared/FlexBoxStyle";
@@ -240,7 +241,7 @@ const UpcomingHealthCheckup = (props: any): any => {
                   <Pressable
                     onPress={(): any => gotoArticle(item?.pinned_article)}
                   >
-                    <ButtonTextSmLineL numberOfLines={2}>
+                    <ButtonTextSmLineL as={UnderlinedText} numberOfLines={2}>
                       {t("hcArticleLink")}
                     </ButtonTextSmLineL>
                   </Pressable>
@@ -284,7 +285,7 @@ const UpcomingHealthCheckup = (props: any): any => {
                         }}
                       >
                         <ToolsIconView1>
-                          <ButtonTextSmLine
+                          <ButtonTextSmLine as={UnderlinedText}
                             numberOfLines={2}
                             style={styles.textDecoration}
                           >
@@ -309,7 +310,7 @@ const UpcomingHealthCheckup = (props: any): any => {
                       });
                     }}
                   >
-                    <ButtonTextMdLine numberOfLines={2}>
+                    <ButtonTextMdLine as={UnderlinedText} numberOfLines={2}>
                       {t("hcReminderbtn")}
                     </ButtonTextMdLine>
                   </Pressable>
@@ -331,7 +332,7 @@ const UpcomingHealthCheckup = (props: any): any => {
                       })
                     }}
                   >
-                    <ButtonTextMdLine numberOfLines={2}>
+                    <ButtonTextMdLine as={UnderlinedText} numberOfLines={2}>
                       {t("hcEditBtn")}
                     </ButtonTextMdLine>
                   </Pressable>

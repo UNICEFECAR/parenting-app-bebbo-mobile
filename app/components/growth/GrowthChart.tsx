@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   yTick: {left: 0, width: 42, textAlign: 'right'},
   xTick: {width: 50},
-  unitX: {bottom: 12, width: 120},
+  unitX: {bottom: 0, width: 120},
   tickX: {
     position: 'absolute',
     width: 1,
@@ -361,7 +361,7 @@ const GrowthChart = ({
         {scales && (
           <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
             <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-              {scales.xScale.ticks(5).map(value => (
+              {scales.xScale.ticks(5).filter(value => value !== 0).map(value => (
                 <React.Fragment key={value}>
                   <View
                     style={[
@@ -404,21 +404,12 @@ const GrowthChart = ({
                 </React.Fragment>
               ))}
               <Text
+                testID="growth-x-axis-unit"
                 style={[
                   styles.axisText,
                   styles.unitX,
                   {
-                    left: rtl
-                      ? Math.max(
-                          0,
-                          width -
-                            ((portrait
-                              ? windowWidth - 180
-                              : windowHeight - 30) -
-                              60) -
-                            120,
-                        )
-                      : (portrait ? windowWidth - 180 : windowHeight - 30) - 60,
+                    left: (scales.xScale(domain.x[0]) + scales.xScale(domain.x[1])) / 2 - 60,
                   },
                 ]}>
                 {labelX}

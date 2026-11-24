@@ -1,3 +1,5 @@
+import {useCalendarDay} from "../../../customHooks/useCalendarDay";
+import {currentChildAgeBracket} from "../../../services/calendarDate";
 import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import { appConfig } from "../../../instances";
 import ArticleCategories from "@components/ArticleCategories";
@@ -39,7 +41,6 @@ import {
   StyleSheet,
   Text,
   View,
-  ActivityIndicator,
 } from "react-native";
 import FastImage from "@d11/react-native-fast-image";
 import { ThemeContext } from "styled-components/native";
@@ -116,6 +117,46 @@ export type ArticleCategoriesProps = {
   iconColor?: string;
   isSelectedPregnancy?: any;
 };
+//merge array
+const mergearr = (
+  articleArrOld: any[],
+  videoArtArrOld: any[],
+  isShuffle: boolean
+): any[] => {
+  const articleArr = isShuffle
+    ? randomArrayShuffle(articleArrOld)
+    : articleArrOld;
+  const videoArr = isShuffle
+    ? randomArrayShuffle(videoArtArrOld)
+    : videoArtArrOld;
+
+  if (articleArr.length === 0) return [...videoArr];
+
+  const combinedArr: any[] = [];
+  let videoIndex = 0;
+
+  for (let i = 0; i < articleArr.length; i++) {
+    combinedArr.push(articleArr[i]);
+
+    // After every `maxArticleSize` articles, insert a video article
+    if (
+      (i + 1) % appConfig.maxArticleSize === 0 &&
+      videoIndex < videoArr.length
+    ) {
+      combinedArr.push(videoArr[videoIndex]);
+      videoIndex++;
+    }
+  }
+
+  // Push remaining video articles if any left
+  while (videoIndex < videoArr.length) {
+    combinedArr.push(videoArr[videoIndex]);
+    videoIndex++;
+  }
+
+  return combinedArr;
+};
+
 const Articles = ({ route, navigation }: any): any => {
   const articleModalOpened = useAppSelector(
     (state: any) => state.utilsData.IsArticleModalOpened
@@ -128,7 +169,6 @@ const Articles = ({ route, navigation }: any): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
   const [loadingArticle, setLoadingArticle] = useState(false);
-  const [loadingSection, setLoadingSection] = useState<boolean>(true);
   const [suggestedArticles, setsuggestedArticles] = useState([]);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
@@ -151,46 +191,6 @@ const Articles = ({ route, navigation }: any): any => {
   const modalScreenText = "articleModalText";
   const netInfo = useNetInfoHook();
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-
-  //merge array
-  const mergearr = (
-    articleArrOld: any[],
-    videoArtArrOld: any[],
-    isShuffle: boolean
-  ): any[] => {
-    const articleArr = isShuffle
-      ? randomArrayShuffle(articleArrOld)
-      : articleArrOld;
-    const videoArr = isShuffle
-      ? randomArrayShuffle(videoArtArrOld)
-      : videoArtArrOld;
-
-    if (articleArr.length === 0) return [...videoArr];
-
-    const combinedArr: any[] = [];
-    let videoIndex = 0;
-
-    for (let i = 0; i < articleArr.length; i++) {
-      combinedArr.push(articleArr[i]);
-
-      // After every `maxArticleSize` articles, insert a video article
-      if (
-        (i + 1) % appConfig.maxArticleSize === 0 &&
-        videoIndex < videoArr.length
-      ) {
-        combinedArr.push(videoArr[videoIndex]);
-        videoIndex++;
-      }
-    }
-
-    // Push remaining video articles if any left
-    while (videoIndex < videoArr.length) {
-      combinedArr.push(videoArr[videoIndex]);
-      videoIndex++;
-    }
-
-    return combinedArr;
-  };
 
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
@@ -253,28 +253,22 @@ const Articles = ({ route, navigation }: any): any => {
   );
 
   const activeChild = useAppSelector(selectActiveChild);
-  const activityTaxonomyId =
-    activeChild?.taxonomyData?.prematureTaxonomyId ??
-    activeChild?.taxonomyData?.id;
+  const today = useCalendarDay();
+  const currentBracket = useMemo(() => currentChildAgeBracket(activeChild, childAge, appConfig.pregnancyId, today), [activeChild, childAge, today]);
+  const activityTaxonomyId = currentBracket?.id ?? activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
   const articleDataall = useAppSelector(selectArticleDataAll);
-  const articleDataOld = articleDataall.filter((x: any) =>
-    taxonomyIds.articleCategoryArray.includes(x.category)
-  );
   const VideoArticlesDataall = useAppSelector(selectPinnedChildDevData);
-  const videoarticleData = VideoArticlesDataall.filter(
-    (x: any) =>
-      x.mandatory == appConfig.videoArticleMandatory &&
-      x.child_age.includes(activeChild?.taxonomyData?.id) &&
-      taxonomyIds?.articleCategoryArray?.includes(x.category)
-  );
-
-  let articleData: any = mergearr(articleDataOld, videoarticleData, true);
+  const articleData = useMemo(() => {
+    const articles = articleDataall.filter((item: any) => taxonomyIds.articleCategoryArray.includes(item.category));
+    const videos = VideoArticlesDataall.filter((item: any) => item.mandatory == appConfig.videoArticleMandatory && item.child_age.includes(activityTaxonomyId) && taxonomyIds.articleCategoryArray.includes(item.category));
+    return mergearr(articles, videos, true);
+  }, [articleDataall, VideoArticlesDataall, activityTaxonomyId, taxonomyIds.articleCategoryArray]);
   const [filteredData, setfilteredData] = useState<any>([]);
   const [showNoData, setshowNoData] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
-    useState([]);
+    useState<any[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
@@ -660,7 +654,7 @@ const Articles = ({ route, navigation }: any): any => {
       activeChild?.uuid,
       languageCode,
       route.params?.currentSelectedChildId,
-      activityTaxonomyId, focusCommandInputs2])
+      activityTaxonomyId, articleData, focusCommandInputs2])
   );
 
   useFocusEffect(
@@ -686,25 +680,20 @@ const Articles = ({ route, navigation }: any): any => {
   useEffect(() => {
     searchIndex.current = null;
     setSearchReady(false);
-    setLoadingSection(true);
-    const videos = activeChild?.taxonomyData && activeChild?.gender != null
-      ? VideoArticlesDataall.filter((item: any) => item.mandatory == appConfig.videoArticleMandatory)
-      : [];
+    const videos = VideoArticlesDataall.filter((item: any) => item.mandatory == appConfig.videoArticleMandatory);
     const job = prepareSearchIndex(
       mergearr(articleDataall, videos, false),
       miniSearchConfig,
       index => {
         searchIndex.current = index;
         setSearchReady(true);
-        setLoadingSection(false);
       },
       error => {
         console.warn("Error: Retrieve minisearch data", error);
-        setLoadingSection(false);
       },
     );
     return job.cancel;
-  }, [articleDataall, VideoArticlesDataall, languageCode, activeChild?.taxonomyData, activeChild?.gender]);
+  }, [articleDataall, VideoArticlesDataall, languageCode]);
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
   };
@@ -901,7 +890,6 @@ const Articles = ({ route, navigation }: any): any => {
     ...styles.containerView,
     backgroundColor: color,
   });
-  console.log(searchIndex, "[para]", optimizedFilteredData);
   return (
     <>
       {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
@@ -1026,11 +1014,6 @@ const Articles = ({ route, navigation }: any): any => {
             {showNoData == true && suggestedArticles?.length == 0 ? (
               <Heading4Center>{t("noDataTxt")}</Heading4Center>
             ) : null}
-            {loadingSection ? (
-              <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <ActivityIndicator size="large" color="#000" style={{}} />
-              </View>
-            ) :
               <FlatList
                 ref={flatListRef}
                 data={optimizedFilteredData}
@@ -1053,7 +1036,6 @@ const Articles = ({ route, navigation }: any): any => {
                 renderItem={memoizedValue}
                 keyExtractor={(item): any => item.id.toString()}
               />
-            }
           </FlexCol>
           <FirstTimeModal
             modalVisible={modalVisible}

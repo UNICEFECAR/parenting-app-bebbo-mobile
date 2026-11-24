@@ -101,6 +101,15 @@ test('updates an existing reminder without creating duplicate IDs', async () => 
   expect(pending.get('1').notification.title).toBe('After');
 });
 
+test('disabling health/vaccination reminders preserves growth and development alarms', async () => {
+  await Promise.all(['gw', 'cd', 'vc', 'hc', 'vcr', 'hcr'].map((type, index) =>
+    local.schduleNotification(new Date(future()), '', '', String(index + 1), type, 'child')));
+  await local.cancelReminderNotificationsByType(['vc', 'hc', 'vcr', 'hcr']);
+  expect([...pending.values()].map(item => item.notification.data.notitype)).toEqual(['gw', 'cd']);
+  const saved = JSON.parse(storage.get('local-reminders-v2')!);
+  expect(Object.keys(saved)).toEqual(['1', '2']);
+});
+
 test('clearing delivered notifications clears the iOS badge and leaves future reminders intact', async () => {
   Object.defineProperty(require('react-native').Platform, 'OS', { configurable: true, value: 'ios' });
   await local.schduleNotification(new Date(future()), '', '', '1', 'gw', 'a');

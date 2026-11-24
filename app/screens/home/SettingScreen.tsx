@@ -453,6 +453,9 @@ const SettingScreen = (props: any): any => {
     const childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     const allnotis = [...storedata.notificationData.notifications];
+    if (vchcEnabledFlag) {
+      LocalNotifications.cancelReminderNotificationsByType(['vc', 'hc', 'vcr', 'hcr']);
+    }
     childList?.map((child: any) => {
       const currentChildNotis = {
         ...allnotis.find((item) => item.childuuid == child.uuid),
@@ -519,10 +522,6 @@ const SettingScreen = (props: any): any => {
           );
         }
         if (notiExist.reminderNotis.length > 0) {
-          if (vchcEnabledFlag == true) {
-            //cancel all local notifications
-            LocalNotifications.cancelAllReminderLocalNotification();
-          }
           currentChildNotis.reminderNotis = [
             ...currentChildNotis.reminderNotis,
           ]?.map((item) => {
@@ -551,7 +550,7 @@ const SettingScreen = (props: any): any => {
                     "," +
                     formatStringTime(item.growth_period),
                 });
-                const message = item.type == "vaccine" ? titlevcr : titlehcr;
+                const message = item.type === "vcr" ? titlevcr : titlehcr;
                 LocalNotifications.schduleNotification(
                   new Date(item.notificationDate),
                   t("remindersAlertTitle"),
@@ -559,7 +558,7 @@ const SettingScreen = (props: any): any => {
                   DateTime.fromJSDate(
                     new Date(item.notificationDate)
                   ).toMillis(),
-                  item.type == "vaccine" ? "vcr" : "hcr",
+                  item.type === "vcr" ? "vcr" : "hcr",
                   child.uuid
                 );
               }

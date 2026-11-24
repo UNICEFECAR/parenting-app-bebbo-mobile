@@ -15,7 +15,7 @@ export function backupUtf8Bytes(text: string): number {
 }
 const hex = (value: unknown, length: number): value is string => typeof value === 'string' && new RegExp(`^[a-f0-9]{${length}}$`, 'i').test(value);
 export function validBackupPassword(value: string): boolean {
-  return validBackupUnlockPassword(value) && Array.from(value.normalize('NFC')).length >= 12;
+  return validBackupUnlockPassword(value) && Array.from(value.normalize('NFC')).length >= 6;
 }
 // Opening an existing file must not apply a newer creation-strength policy.
 // Early v3 writers counted combining characters before normalisation.
@@ -36,7 +36,7 @@ async function keys(password: string, salt: string) {
 const signedText = (salt: string, iv: string, cipher: string) =>
   `bebbo-backup:3:pbkdf2-sha256:${ITERATIONS}:${salt}:${iv}:${cipher}`;
 export async function encryptProtectedBackup(text: string, password: string): Promise<string> {
-  if (!validBackupPassword(password)) throw new Error('A backup passphrase must contain at least 12 characters');
+  if (!validBackupPassword(password)) throw new Error('A backup passphrase must contain at least 6 characters');
   if (backupUtf8Bytes(text) > MAX_BACKUP_TEXT) throw new Error('Backup exceeds the supported size');
   const salt = await Aes.randomKey(32), iv = await Aes.randomKey(16);
   if (!hex(salt, 64) || !hex(iv, 32)) throw new Error('Backup random generation failed');

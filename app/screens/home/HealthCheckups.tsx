@@ -1,3 +1,4 @@
+import UnderlinedText from "@components/shared/UnderlinedText";
 import {useNavigationBackHandler} from "../../customHooks/useNavigationBackHandler";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import PreviousHealthCheckup from "@components/healthChekup/PreviousHealthCheckup";
@@ -251,7 +252,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
                     });
                   }}
                 >
-                  <ButtonTextSmLine numberOfLines={2}>
+                  <ButtonTextSmLine as={UnderlinedText} numberOfLines={2}>
                     {t("hcReminderbtn")}
                   </ButtonTextSmLine>
                 </Pressable>

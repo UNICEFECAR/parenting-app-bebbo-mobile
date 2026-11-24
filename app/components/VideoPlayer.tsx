@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   youtubeLoadingView: {
+    ...StyleSheet.absoluteFill,
     alignItems: "center",
-    height: windowWidthstyle * 0.565,
     justifyContent: "center",
+    zIndex: 1,
   },
 });
 
@@ -200,12 +201,14 @@ const VideoPlayer = (props: any): any => {
             <>
               <View style={styles.youtubeContainerView}>
                 {loading ? (
-                  <View style={styles.youtubeLoadingView}>
+                  <View pointerEvents="none" style={styles.youtubeLoadingView}>
                     <ActivityIndicator size="large" color="#000" style={{}} />
                   </View>
                 ) : null}
                 {videoType == appConfig.videoTypeYoutube ? (
                   <YoutubePlayer
+                    // onReady fires once per player, so a new source needs a new player.
+                    key={videoUrl}
                     videoId={videoId}
                     play={playing}
                     height={windowWidth * 0.563}
@@ -215,6 +218,8 @@ const VideoPlayer = (props: any): any => {
                       allowsInlineMediaPlayback: true,
                       allowsFullscreenVideo: true,
                       androidLayerType: "hardware",
+                      onError,
+                      onHttpError: onError,
                     }}
                     initialPlayerParams={{
                       cc_lang_pref: "us",

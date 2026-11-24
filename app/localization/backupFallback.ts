@@ -1,6 +1,6 @@
 // English fallback for backup-specific messages awaiting language review.
 export const backupFallback = {
-  "backupPassphraseHelp": "Use several unrelated words (at least 12 characters). Keep it somewhere safe: it is not saved in the app and cannot be recovered. You will need it on another device. Older app versions cannot open new backups.",
+  "backupPassphraseHelp": "Use at least 6 characters. Keep it somewhere safe: it is not saved in the app and cannot be recovered. You will need it on another device. Older app versions cannot open new backups.",
   "backupPassphrase": "Backup passphrase",
   "backupRepeatPassphrase": "Repeat passphrase",
   "backupRecoveryHelp": "The restore did not finish. Free some storage if necessary, then retry. You can also keep the data that was on this device before the restore. The app will remain here until recovery finishes.",
@@ -10,7 +10,7 @@ export const backupFallback = {
   "backupLegacyUnlockFailed": "This app could not unlock the older backup. Check that the build includes the original backup encryption settings and that the file is complete.",
   "backupDamaged": "Unsupported or damaged backup",
   "backupUnlockFailed": "Incorrect passphrase or damaged backup",
-  "backupPassphraseTooShort": "A backup passphrase must contain at least 12 characters",
+  "backupPassphraseTooShort": "A backup passphrase must contain at least 6 characters",
   "backupSizeLimit": "Backup exceeds the supported size",
   "backupPhotoUnavailable": "A profile photo is missing or exceeds 8 MB",
   "backupPhotoFormat": "Profile photos must be JPEG or PNG images up to 4096 pixels",

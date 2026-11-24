@@ -19,11 +19,8 @@ import { addSpaceToHtml } from "../../services/Utils";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   fontStyle: { color: bgcolorBlack2, fontSize: 16 },
-  headerView: {
-    flexDirection: "row",
-    maxHeight: 50,
-  },
   innerView: {
+    flex: 1,
     backgroundColor: bgcolorWhite2,
     flexDirection: "column",
     paddingBottom: 15,
@@ -48,16 +45,14 @@ const Aboutus = (): any => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <View style={styles.innerView}>
-          <View style={styles.headerView}>
             <TabScreenHeader
               title={t("aboutUsScreenheaderTitle")}
               headerColor={headerColor}
               textColor={headerTextColor}
               setProfileLoading={setProfileLoading}
             />
-          </View>
 
-          <ScrollView contentContainerStyle={styles.scrollView}>
+          <ScrollView style={styles.flex1} contentContainerStyle={styles.scrollView}>
             {aboutusdata != "" ? (
               <RenderHTML
                 source={{ html: addSpaceToHtml(aboutusdata) }}

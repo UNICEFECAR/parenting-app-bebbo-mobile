@@ -16,6 +16,18 @@ function storage(measures: RecordEntry[], reminders: RecordEntry[]) {
 }
 afterEach(() => jest.restoreAllMocks());
 
+test('deleting the final reminder returns an empty list on success', async () => {
+  storage([], [{uuid: 'last-reminder'}]);
+  await expect(userRealmCommon.deleteChildReminders(schema, {uuid: 'last-reminder'}, condition)).resolves.toEqual([]);
+});
+
+test('failed reminder deletion is distinguishable from deleting the final reminder', async () => {
+  jest.spyOn(userRealmCommon, 'openRealm').mockResolvedValue(null as any);
+  await expect(userRealmCommon.deleteChildReminders(schema, {uuid: 'reminder'}, condition)).resolves.toBeNull();
+  jest.spyOn(userRealmCommon, 'openRealm').mockRejectedValue(new Error('Database unavailable'));
+  await expect(userRealmCommon.deleteChildReminders(schema, {uuid: 'reminder'}, condition)).resolves.toBeNull();
+});
+
 test.each(['measures', 'reminders'] as const)('deleting an absent %s UUID never removes another record', async kind => {
   const rows = [{uuid: 'one'}, {uuid: 'two'}, {uuid: 'three'}];
   const child = storage(kind === 'measures' ? rows : [], kind === 'reminders' ? rows : []);

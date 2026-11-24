@@ -1,3 +1,5 @@
+import {useCalendarDay} from "../../customHooks/useCalendarDay";
+import {isFutureCalendarDate} from "../../services/calendarDate";
 import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import { returnToScreen } from "../../navigation/returnToScreen";
 import { appConfig } from "../../instances";
@@ -163,7 +165,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [isPremature, setIsPremature] = React.useState<string>("false");
   const uuid = childData != null ? childData.uuid : "";
   const createdAt = childData != null ? childData.createdAt : null;
-  const [isExpected, setIsExpected] = React.useState<string>("false");
+  const today = useCalendarDay();
+  const isExpected = String(isFutureCalendarDate(birthDate ?? childData?.birthDate, today));
   const [_destPath, setDestPath] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const childAge = useAppSelector(selectChildAge);
@@ -174,7 +177,6 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     setPlannedTermDate(data.plannedTermDate);
     const myString: any = String(data.isPremature);
     setIsPremature(myString);
-    setIsExpected(String(data.isExpected));
   };
   const [gender, setGender] = React.useState(
     childData != null ? childData.gender : 0

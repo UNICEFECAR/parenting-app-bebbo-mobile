@@ -1,3 +1,4 @@
+import UnderlinedText from './UnderlinedText';
 import {buttonAccessibility} from './buttonAccessibility';
 import React from 'react';
 import {type StyleProp, type TextStyle} from 'react-native';
@@ -88,7 +89,8 @@ export const ButtonUpperCaseText = styled.Text`
   font-weight:700;
 `;
 
-export const ButtonTextLine = styled(ButtonText)`
+// Keep the shared text styles while positioning Android underlines below the baseline.
+export const ButtonTextLine = styled(ButtonText).attrs({as: UnderlinedText})`
   text-decoration:underline;
 `;
 export const ButtonTextSmLine = styled(ButtonTextLine)`
@@ -124,13 +126,13 @@ export const ButtonTextSmLineL = styled(ButtonTextSmLine)`
   text-align: start;
 `;
 
-export const ButtonTextLinew = styled.Text`
+export const ButtonTextLinew = styled(UnderlinedText)`
 color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 text-decoration:underline;
 text-decoration-color:${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 `;
 
-export const ButtonLinkText = styled.Text`
+export const ButtonLinkText = styled(UnderlinedText)`
   text-align: center;
   color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
