@@ -101,6 +101,38 @@ test('updates an existing reminder without creating duplicate IDs', async () => 
   expect(pending.get('1').notification.title).toBe('After');
 });
 
+test('deleting a child cancels all its reminders while preserving a sibling and blocks stale queued scheduling', async () => {
+  await Promise.all(['vcr', 'hcr', 'vc', 'gw'].map((type, index) =>
+    local.schduleNotification(new Date(future()), '', '', String(index + 1), type, 'deleted')));
+  await local.schduleNotification(new Date(future()), '', '', '10', 'vcr', 'sibling');
+  await Promise.all([
+    local.cancelChildReminderNotifications('deleted'),
+    local.schduleNotification(new Date(future()), '', '', '11', 'vcr', 'deleted'),
+  ]);
+  expect([...pending.keys()]).toEqual(['10']);
+  expect(Object.keys(JSON.parse(storage.get('local-reminders-v2')!))).toEqual(['10']);
+  expect(JSON.parse(storage.get('local-reminders-deleted-children-v2')!)).toEqual(['deleted']);
+});
+
+test('deleted child alarms cannot return after initialization, including old migration records', async () => {
+  storage.set('local-reminders-deleted-children-v2', JSON.stringify(['child-1']));
+  legacy.getPendingNotifications.mockResolvedValue(JSON.stringify([oldReminder()]));
+  await local.getAllScheduledLocalNotifications();
+  expect(pending.size).toBe(0);
+  await local.schduleNotification(new Date(future()), '', '', '123', 'vcr', 'child-1');
+  expect(pending.size).toBe(0);
+});
+
+test('child deletion removes iOS overflow as well as currently scheduled requests', async () => {
+  Object.defineProperty(require('react-native').Platform, 'OS', {configurable: true, value: 'ios'});
+  await Promise.all(Array.from({length: 70}, (_, i) =>
+    local.schduleNotification(new Date(future() + i * 1000), '', '', String(i + 1), 'vcr', 'deleted')));
+  expect(pending.size).toBe(64);
+  await local.cancelChildReminderNotifications('deleted');
+  expect(pending.size).toBe(0);
+  expect(JSON.parse(storage.get('local-reminders-v2')!)).toEqual({});
+});
+
 test('disabling health/vaccination reminders preserves growth and development alarms', async () => {
   await Promise.all(['gw', 'cd', 'vc', 'hc', 'vcr', 'hcr'].map((type, index) =>
     local.schduleNotification(new Date(future()), '', '', String(index + 1), type, 'child')));

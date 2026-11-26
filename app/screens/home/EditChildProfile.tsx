@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {useCalendarDay} from "../../customHooks/useCalendarDay";
 import {isFutureCalendarDate} from "../../services/calendarDate";
 import {useCommittedRef} from "../../customHooks/useCommittedRef";
@@ -493,8 +494,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             </HeaderActionView>
           ) : null}
         </HeaderRowView>
+        <OverlayLoadingComponent loading={loading} />
         <ScrollView style={styles.flex4}>
-          <OverlayLoadingComponent loading={loading} />
           <FlexCol>
             {capturedPhoto != "" &&
               capturedPhoto != null &&
@@ -510,7 +511,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                       actionSheetRef.current?.show();
                     }}
                   >
-                    <Icon name="ic_edit" size={16} color="#000" />
+                    <ProfileEditIcon size={16} color="#000" />
                   </ProfileEditView>
                 </ImageBackground>
               </View>

@@ -976,7 +976,7 @@ const Activities = ({ route, navigation }: any): any => {
 
   return (
     <>
-      <OverlayLoadingComponent loading={loading} />
+      <OverlayLoadingComponent loading={loading || profileLoading} />
       <View style={containerView(backgroundColorList)}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -1176,7 +1176,6 @@ const Activities = ({ route, navigation }: any): any => {
               </ModalPopupContainer>
             </PopupOverlay>
           </Modal>
-          <OverlayLoadingComponent loading={profileLoading} />
         </KeyboardAvoidingView>
       </View>
     </>

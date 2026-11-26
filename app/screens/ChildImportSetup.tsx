@@ -1,7 +1,8 @@
+import {useBackupOperationBusy} from "../customHooks/useBackupOperationBusy";
 import {ONBOARDING_CHILD_COUNT} from "@assets/data/firebaseEvents";
 import {logEvent} from "../services/EventSyncService";
 import type {PortableSnapshot} from "../services/backupSnapshot";
-import {getBackupPreview, clearBackupPreviews} from '../services/backupPreview';
+import {getBackupPreview, clearBackupPreviews, BackupPreviewExpiredError} from '../services/backupPreview';
 import {backupErrorMessage} from '../services/backupErrorMessage';
 import {recordError} from "../services/firebaseAnalytics";
 import {confirmBackupReplacement} from "../services/confirmBackupReplacement";
@@ -12,6 +13,8 @@ import { appConfig } from "../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonPrimary,
+  ButtonWithBorder,
+  ButtonTextLg,
   ButtonRow,
   ButtonUpperCaseText,
 } from "@components/shared/ButtonGlobal";
@@ -120,20 +123,32 @@ const ChildImportSetup = (props: any): any => {
     });
 
   const relationshipToParent = useAppSelector(selectRelationshipToParent);
+  const restoreRunning = useRef(false);
+  const [restoring, setRestoring] = useState(false);
+  const backupBusy = useBackupOperationBusy();
+  const returnToBackupSelection = () => {
+    clearBackupPreviews(importPreviewId);
+    if (props.navigation.canGoBack()) props.navigation.goBack();
+    else props.navigation.replace("ChildSetup");
+  };
+  const reportPreviewExpired = (error: unknown) => {
+    Alert.alert("", backupErrorMessage(error, t), [
+      {text: String(t("retryRetryBtn")), onPress: returnToBackupSelection},
+    ], {cancelable: false});
+  };
   useFocusEffect(React.useCallback(() => {
     const backAction = (): any => {
+      if (!restoreRunning.current) returnToBackupSelection();
       return true;
     };
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       backAction
     );
-    const unsubscribeGesture = props.navigation.addListener("gestureEnd", backAction);
     return (): any => {
-      unsubscribeGesture();
       backHandler.remove();
     };
-  }, [props.navigation]));
+  }, [props.navigation, importPreviewId]));
 
   useEffect(() => {
     const propsData = props?.route?.params;
@@ -142,7 +157,10 @@ const ChildImportSetup = (props: any): any => {
       try {
         const preview = getBackupPreview(propsData.importPreviewId) as PortableSnapshot | unknown[];
         if (!Array.isArray(preview)) saved = preview.settings;
-      } catch { /* Confirmation reports an expired preview without changing stored data. */ }
+      } catch (error) {
+        reportPreviewExpired(error);
+        return;
+      }
     }
     setRelationship(saved.userParentalRole ?? propsData?.relationData);
     setRelationshipName(saved.userRelationToParent ? "" : propsData?.relationshipNameData);
@@ -162,7 +180,6 @@ const ChildImportSetup = (props: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      notiPermissionUtil();
       props.navigation.dispatch((state: any) => {
         // Remove the home route from the stack
         const routes = state.routes.filter(
@@ -178,19 +195,18 @@ const ChildImportSetup = (props: any): any => {
     }, [props.navigation])
   );
 
-  const restoreRunning = useRef(false);
-  const [restoring, setRestoring] = useState(false);
   const completeImport = async (): Promise<void> => {
     if (restoreRunning.current) return;
     restoreRunning.current = true;
     setRestoring(true);
     try {
+      if (importPreviewId) getBackupPreview(importPreviewId);
       if (!(await confirmBackupReplacement(t))) return;
       const data = importPreviewId ? getBackupPreview(importPreviewId) : typeof importResponse === "string" ? JSON.parse(importResponse) : importResponse;
       const caregiver = {userParentalRole: relationship, userRelationToParent: String(userRelationToParent),
         userName: name, userEnteredChildData: Array.isArray(data) ? "true" : data.settings.userEnteredChildData ?? "true"};
       const children = await backup.restoreChildren(data, genders, caregiver);
-      clearBackupPreviews();
+      clearBackupPreviews(importPreviewId);
       const settings = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(
         ConfigSettingsSchema, "key='currentActiveChildId'"
       );
@@ -202,12 +218,17 @@ const ChildImportSetup = (props: any): any => {
       dispatch(setInfoModalOpened({key: "generateNotifications", value: true}));
       dispatch(setAllLocalNotificationGenerateType({generateFlag: true, generateType: "add", childuuid: "all"}));
       void logEvent({name: ONBOARDING_CHILD_COUNT, params: {child_count: children.length}}, netInfo.isConnected);
+      // Permission dialogs must not clear a preview before it is committed.
+      void notiPermissionUtil();
       props.navigation.reset({index: 0, routes: [{name: "LoadingScreen", params: {
         apiJsonData: apiJsonDataGet("all"), prevPage: "ChildSetup",
       }}]});
     } catch (error) {
-      void recordError(error instanceof Error ? error : 'Backup operation failed');
-      Alert.alert("", backupErrorMessage(error, t));
+      if (error instanceof BackupPreviewExpiredError) reportPreviewExpired(error);
+      else {
+        void recordError(error instanceof Error ? error : 'Backup operation failed');
+        Alert.alert("", backupErrorMessage(error, t));
+      }
     } finally {
       restoreRunning.current = false;
       setRestoring(false);
@@ -216,7 +237,7 @@ const ChildImportSetup = (props: any): any => {
 
   return (
     <>
-      <OverlayLoadingComponent loading={restoring} />
+      <OverlayLoadingComponent loading={restoring && !backupBusy} />
       <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView contentContainerStyle={styles.scrollViewStyle}>
@@ -374,6 +395,9 @@ const ChildImportSetup = (props: any): any => {
         </ActionSheet>
         <SideSpacing25>
           <ButtonRow>
+            <ButtonWithBorder disabled={restoring} onPress={returnToBackupSelection}>
+              <ButtonTextLg>{t("retryCancelPopUpBtn")}</ButtonTextLg>
+            </ButtonWithBorder>
             <ButtonPrimary
               disabled={
                 restoring || relationship == null ||

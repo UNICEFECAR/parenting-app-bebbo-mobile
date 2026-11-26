@@ -54,6 +54,16 @@ const cases: [string, React.ComponentType<any>][] = [
   ['article', RelatedArticles],
   ['video', RelatedVideoArticles],
 ];
+test.each(cases)('removing all linked %s content clears the prior result', async (_label, Component) => {
+  mockRead.mockResolvedValue([{id: 22}]);
+  const tree = (ids: number[]) => <ThemeProvider theme={appTheme}>
+    <Component fromScreen="ChildgrowthTab" currentId={1} relatedArticles={ids} />
+  </ThemeProvider>;
+  await act(async () => {view = TestRenderer.create(tree([22]));});
+  expect(view.root.findAllByType(HorizontalContentList)).toHaveLength(1);
+  await act(async () => view.update(tree([])));
+  expect(view.root.findAllByType(HorizontalContentList)).toHaveLength(0);
+});
 test.each(cases)(
   'a late %s lookup cannot replace the current results',
   async (_label, Component) => {

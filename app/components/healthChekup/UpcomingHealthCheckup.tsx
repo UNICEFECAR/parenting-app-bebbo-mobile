@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import UnderlinedText from "@components/shared/UnderlinedText";
 import { MainContainer } from "@components/shared/Container";
 import { Bullets, BulletsView } from "@components/shared/Divider";
@@ -38,7 +39,6 @@ import {
   ButtonHealth,
   ButtonText,
   ButtonTextMdLine,
-  ButtonTextSmLine,
   ButtonTextSmLineL,
 } from "../shared/ButtonGlobal";
 import Icon, { IconViewBg } from "../shared/Icon";
@@ -285,12 +285,7 @@ const UpcomingHealthCheckup = (props: any): any => {
                         }}
                       >
                         <ToolsIconView1>
-                          <ButtonTextSmLine as={UnderlinedText}
-                            numberOfLines={2}
-                            style={styles.textDecoration}
-                          >
-                            <Icon name="ic_edit" size={16} color="#000" />
-                          </ButtonTextSmLine>
+                          <ProfileEditIcon size={16} color="#000" />
                         </ToolsIconView1>
                       </Pressable>
                     </View>

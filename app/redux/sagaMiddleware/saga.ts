@@ -6,23 +6,34 @@ import { InsertInDBSaga } from './sagaInsertInDB';
 import {addApiDataInRealm} from '../../services/Utils';
 import { fetchAPIStart, receiveAPIFailure, receiveAPISuccess } from './sagaSlice';
 function* apiCall(data: ApiJsonArray, dispatch: any, errors: ApiJsonArray[]): any {
+  let stage = 'download';
   try {
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
+    // Incremental endpoints report 204 when there is nothing new to download.
+    // Keep the existing cache and accept the response without attempting a write.
+    if (response?.status == 204 || (response?.status == 200 && response?.data?.status == 204)) {
+      return response;
+    }
     if (response?.status != 200 || (data.saveinDB && response?.data?.status != 200)) {
+      console.error('Content update request failed', {apiEndpoint: data.apiEndpoint, stage,
+        httpStatus: response?.status, contentStatus: response?.data?.status});
       errors.push(data);
       return null;
     }
     if (data.saveinDB) {
+      stage = 'persistence';
       // A dispatched/forked write does not finish before the success handler.
       // Await persistence before exposing the response or advancing its cursor.
       const saved = yield call(addApiDataInRealm, insertInDB(response, dispatch));
       if (saved !== 'successinsert') {
+        console.error('Content update cache write failed', {apiEndpoint: data.apiEndpoint, stage});
         errors.push(data);
         return null;
       }
     }
     return response;
   } catch {
+    console.error('Content update failed', {apiEndpoint: data.apiEndpoint, stage});
     errors.push(data);
     return null;
   }

@@ -5,15 +5,10 @@ import {FlatList, type FlatListProps, I18nManager} from 'react-native';
 // position that new content at its logical beginning once it has a native size.
 export default function HorizontalContentList<Item>(props: FlatListProps<Item>) {
   const list = useRef<FlatList<Item>>(null);
-  const positioned = useRef<string | undefined>(undefined);
-  const contentKey = JSON.stringify(
-    Array.from(props.data ?? [], (item, index) =>
-      props.keyExtractor ? props.keyExtractor(item, index) : String(index),
-    ),
-  );
+  const positioned = useRef(false);
 
   useEffect(() => {
-    if (!props.data?.length) positioned.current = undefined;
+    if (!props.data?.length) positioned.current = false;
   }, [props.data?.length]);
 
   return (
@@ -26,10 +21,10 @@ export default function HorizontalContentList<Item>(props: FlatListProps<Item>) 
           I18nManager.isRTL &&
           props.data?.length &&
           width > 0 &&
-          positioned.current !== contentKey
+          !positioned.current
         ) {
           list.current?.scrollToOffset({offset: 0, animated: false});
-          positioned.current = contentKey;
+          positioned.current = true;
         }
         props.onContentSizeChange?.(width, height);
       }}

@@ -473,6 +473,14 @@ cd ..
 ---
 
 # Generate Release Builds
+
+Android release APKs and AABs include `armeabi-v7a`, `arm64-v8a`, `x86` and
+`x86_64` for every flavour. APK ABI splits are disabled so the APK is universal;
+Google Play can select device-specific APKs from the four-ABI AAB. Device-only
+`-PreactNativeArchitectures` overrides are supported for debug builds and rejected
+when packaging a release. CI checks the actual APK and AAB, including Hermes and
+native dependency coverage for every ABI.
+
 ## Android AAB
 
 To generate an Android App Bundle:

@@ -337,8 +337,8 @@ test.each([false, true])(
 );
 
 // Translations may contain the legacy plus prefix or no prefix at all.
-test.each(['+ ADD ANOTHER CHILD', 'ADD ANOTHER CHILD', 'ADD ANOTHER CHILD +'])(
-  'add-child label renders one separate leading plus for %s', label => {
+test.each(['+ ADD ANOTHER CHILD', 'ADD ANOTHER CHILD', 'ADD ANOTHER CHILD +', "+ YANA BIR FARZANDINGIZNI QO'SHING"])(
+  'add-child label uses the full width with one inline plus for %s', label => {
     act(() => {
       renderer = TestRenderer.create(
         <ThemeProvider theme={{...appTheme, isRTL: true}}>
@@ -347,12 +347,14 @@ test.each(['+ ADD ANOTHER CHILD', 'ADD ANOTHER CHILD', 'ADD ANOTHER CHILD +'])(
       );
     });
     const labels = renderer!.root.findAllByType(Text);
-    expect(labels.map(node => node.props.children)).toEqual(['+', 'ADD ANOTHER CHILD']);
+    expect(labels).toHaveLength(1);
+    expect(labels[0].props.children).toBe(`+ ${label.replace(/^\s*[+＋]\s*|\s*[+＋]\s*$/g, '')}`);
+    expect(StyleSheet.flatten(labels[0].props.style)).toMatchObject({width: '100%', textAlign: 'center'});
   },
 );
 
 test.each([false, true])(
-  'horizontal content starts at the leading edge once per data set in RTL=%p', rtl => {
+  'horizontal content starts at the leading edge without resetting on refresh in RTL=%p', rtl => {
     const original = I18nManager.isRTL;
     I18nManager.isRTL = rtl;
     const scroll = jest.spyOn(FlatList.prototype, 'scrollToOffset').mockImplementation(() => {});
@@ -366,6 +368,10 @@ test.each([false, true])(
       act(resize);
       expect(scroll).toHaveBeenCalledTimes(rtl ? 1 : 0);
       act(() => renderer!.update(<HorizontalContentList {...props} data={['c', 'd']} />));
+      act(resize);
+      expect(scroll).toHaveBeenCalledTimes(rtl ? 1 : 0);
+      act(() => renderer!.update(<HorizontalContentList {...props} data={[]} />));
+      act(() => renderer!.update(<HorizontalContentList {...props} data={['e']} />));
       act(resize);
       expect(scroll).toHaveBeenCalledTimes(rtl ? 2 : 0);
       if (rtl) expect(scroll).toHaveBeenLastCalledWith({offset: 0, animated: false});

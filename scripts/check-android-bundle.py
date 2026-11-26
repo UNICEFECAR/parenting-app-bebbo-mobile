@@ -1,4 +1,4 @@
-"""Check packaged C++ runtimes and 16 KB ELF alignment in an unsigned AAB."""
+"""Check APK/AAB ABI coverage, native runtimes and 16 KB ELF alignment."""
 from android_elf import identity
 import argparse
 import collections
@@ -25,21 +25,37 @@ def load_alignments(data):
     return result
 
 
-def inspect(bundle, expected_abis=None, manifest=None, expected_target_sdk=37):
+APP_RUNTIME_LIBRARIES = {
+    'libappmodules.so', 'libc++_shared.so', 'libfbjni.so',
+    'libhermesvm.so', 'libjsi.so', 'libreactnative.so',
+    'librealm.so', 'libreanimated.so', 'librnskia.so', 'libworklets.so',
+}
+
+
+def inspect(bundle, expected_abis=None, manifest=None, expected_target_sdk=37, require_app_runtime=False):
     libraries, problems = [], []
+    prefix = 'lib/' if Path(bundle).suffix == '.apk' else 'base/lib/'
+    abi_index = len(prefix.split('/')) - 1
     with zipfile.ZipFile(bundle) as archive:
-        names = [name for name in archive.namelist() if name.startswith('base/lib/') and name.endswith('.so')]
-        abis = sorted({name.split('/')[2] for name in names})
+        names = [name for name in archive.namelist() if name.startswith(prefix) and name.endswith('.so')]
+        abis = sorted({name.split('/')[abi_index] for name in names})
         if not abis:
             problems.append('Bundle contains no native libraries')
         if expected_abis is not None and abis != sorted(expected_abis):
             problems.append(f'Expected ABIs {sorted(expected_abis)}, packaged {abis}')
         counts = collections.Counter(names)
+        all_libraries = {name.rsplit('/', 1)[1] for name in names}
         for abi in abis:
-            if counts[f'base/lib/{abi}/libc++_shared.so'] != 1:
+            if counts[f'{prefix}{abi}/libc++_shared.so'] != 1:
                 problems.append(f'{abi}: expected exactly one libc++_shared.so')
+            if require_app_runtime:
+                # All flavours share the native dependencies. A present ABI
+                # directory alone does not prove Hermes or a dependency shipped.
+                for library in sorted(all_libraries | APP_RUNTIME_LIBRARIES):
+                    if counts[f'{prefix}{abi}/{library}'] != 1:
+                        problems.append(f'{abi}: expected exactly one {library}')
         for name in names:
-            abi = name.split('/')[2]
+            abi = name.split('/')[abi_index]
             data = archive.read(name)
             try:
                 elf_identity = identity(data, abi)
@@ -78,8 +94,9 @@ if __name__ == '__main__':
     parser.add_argument('--expected-abis', help='Comma-separated required ABI names')
     parser.add_argument('--manifest', type=Path, help='XML emitted by bundletool dump manifest')
     parser.add_argument('--expected-target-sdk', type=int, default=37)
+    parser.add_argument('--require-app-runtime', action='store_true', help='Require Hermes/Fabric libraries and native dependency parity across ABIs')
     args = parser.parse_args()
-    result = inspect(args.bundle, args.expected_abis.split(',') if args.expected_abis else None, args.manifest, args.expected_target_sdk)
+    result = inspect(args.bundle, args.expected_abis.split(',') if args.expected_abis else None, args.manifest, args.expected_target_sdk, args.require_app_runtime)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result, indent=2))

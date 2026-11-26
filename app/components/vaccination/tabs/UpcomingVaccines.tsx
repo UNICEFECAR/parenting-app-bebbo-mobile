@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import { MainContainer } from "@components/shared/Container";
 import { FDirRowStart } from "@components/shared/FlexBoxStyle";
 import { RadioActive } from "@components/shared/radio";
@@ -29,7 +30,6 @@ import {
   ButtonContainerAuto,
   ButtonText,
   ButtonTextMdLine,
-  ButtonTextSmLine,
   ButtonTextSmLineL,
   ButtonVaccination,
 } from "../../shared/ButtonGlobal";
@@ -142,12 +142,7 @@ const UpcomingVaccines = (props: any): any => {
                 }
               >
                 <ToolsIconView1>
-                  <ButtonTextSmLineL
-                    numberOfLines={2}
-                    style={styles.textNoLine}
-                  >
-                    <Icon name="ic_edit" size={16} color="#000" />
-                  </ButtonTextSmLineL>
+                  <ProfileEditIcon size={16} color="#000" />
                 </ToolsIconView1>
               </Pressable>
             ) : null}
@@ -265,12 +260,7 @@ const UpcomingVaccines = (props: any): any => {
                           }}
                         >
                           <ToolsIconView1>
-                            <ButtonTextSmLine
-                              numberOfLines={2}
-                              style={styles.textNoLine}
-                            >
-                              <Icon name="ic_edit" size={16} color="#000" />
-                            </ButtonTextSmLine>
+                            <ProfileEditIcon size={16} color="#000" />
                           </ToolsIconView1>
                         </Pressable>
                       </View>

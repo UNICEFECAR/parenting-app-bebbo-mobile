@@ -579,6 +579,7 @@ const Notifications = (): any => {
               size="large"
               color={primaryColor}
               animating={true}
+              style={styles.flex1}
             />
           ) : (
             <Heading4Center>{t("noDataTxt")}</Heading4Center>

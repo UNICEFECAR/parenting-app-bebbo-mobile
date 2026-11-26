@@ -113,7 +113,7 @@ export const updateIncrementalSyncDT = async (
   const archiveresp = response.find(
     (y: any) => y.apiEndpoint == appConfig.apiConfig.archive
   );
-  if (articleresp && articleresp != null && articleresp.data) {
+  if (typeof articleresp?.data?.datetime === "string" && articleresp.data.datetime !== "") {
     if (prevPage != "AddEditChild") {
       dispatch(
         setIncrementalSyncDT({
@@ -123,7 +123,7 @@ export const updateIncrementalSyncDT = async (
       );
     }
   }
-  if (videoarticleresp && videoarticleresp != null && videoarticleresp.data) {
+  if (typeof videoarticleresp?.data?.datetime === "string" && videoarticleresp.data.datetime !== "") {
     dispatch(
       setIncrementalSyncDT({
         key: "videoArticlesDatetime",
@@ -131,7 +131,7 @@ export const updateIncrementalSyncDT = async (
       })
     );
   }
-  if (activitiesresp && activitiesresp != null && activitiesresp.data) {
+  if (typeof activitiesresp?.data?.datetime === "string" && activitiesresp.data.datetime !== "") {
     dispatch(
       setIncrementalSyncDT({
         key: "activitiesDatetime",
@@ -142,7 +142,7 @@ export const updateIncrementalSyncDT = async (
   // if(faqpinnedresp && faqpinnedresp != null && faqpinnedresp.data) {
   //   dispatch(setIncrementalSyncDT({key: 'faqPinnedContentDatetime', value: faqpinnedresp.data.datetime}));
   // }
-  if (faqsresp && faqsresp != null && faqsresp.data) {
+  if (typeof faqsresp?.data?.datetime === "string" && faqsresp.data.datetime !== "") {
     dispatch(
       setIncrementalSyncDT({
         key: "faqsDatetime",
@@ -153,7 +153,7 @@ export const updateIncrementalSyncDT = async (
   // if(faqupdatedpinnedresp && faqupdatedpinnedresp != null && faqupdatedpinnedresp.data) {
   //   dispatch(setIncrementalSyncDT({key: 'faqUpdatedPinnedContentDatetime', value: faqupdatedpinnedresp.data.datetime}));
   // }
-  if (archiveresp && archiveresp != null && archiveresp.data) {
+  if (typeof archiveresp?.data?.datetime === "string" && archiveresp.data.datetime !== "") {
     dispatch(
       setIncrementalSyncDT({
         key: "archiveDatetime",
@@ -209,7 +209,8 @@ export const onSponsorApiSuccess = async (
     prevPage
   );
   console.log("allDatatoStore ", prevPage, "--", allDatatoStore);
-  navigation.navigate("Terms");
+  // A completed loader must not remain reachable through Android Back.
+  navigation.replace("Terms");
 };
 export const onCountryApiSuccess = async (
   response: any,
@@ -246,9 +247,9 @@ export const onOnLoadApiSuccess = async (
     ChildEntitySchema
   );
   if (allJsonData?.length > 0) {
-    navigation.navigate("ChildSetupList");
+    navigation.replace("ChildSetupList");
   } else {
-    navigation.navigate("ChildSetup");
+    navigation.replace("ChildSetup");
   }
 };
 export const onChildSetupApiSuccess = async (
@@ -459,13 +460,17 @@ export const onHomeapiSuccess = async (
   ];
   await Promise.all(resolvedPromises);
   dispatch(setInfoModalOpened({ key: "showDownloadPopup", value: false }));
+  const errorObj = store.getState().failedOnloadApiObjReducer.errorObj;
+  const downloadComplete = errorObj?.length === 0;
   //delete all notifications from slice for all child
   const currentDate = DateTime.now().toMillis();
   if (
-    prevPage == "CountryLangChange" ||
-    prevPage == "DownloadUpdate" ||
-    prevPage == "ForceUpdate" ||
-    prevPage == "DownloadAllData"
+    downloadComplete && (
+      prevPage == "CountryLangChange" ||
+      prevPage == "DownloadUpdate" ||
+      prevPage == "ForceUpdate" ||
+      prevPage == "DownloadAllData"
+    )
   ) {
     dispatch(setSyncDate({ key: "weeklyDownloadDate", value: currentDate }));
     dispatch(setSyncDate({ key: "monthlyDownloadDate", value: currentDate }));
@@ -483,7 +488,7 @@ export const onHomeapiSuccess = async (
       dispatch(setAllLocalNotificationGenerateType(localNotiFlagObj));
     }
   }
-  if (prevPage == "PeriodicSync") {
+  if (downloadComplete && prevPage == "PeriodicSync") {
     if (downloadWeeklyData == true) {
       dispatch(setSyncDate({ key: "weeklyDownloadDate", value: currentDate }));
     }
@@ -549,8 +554,6 @@ export const onHomeapiSuccess = async (
       AsyncStorage.setItem("forceUpdateTime", forceUpdateTime);
     }
   }
-  const storedata = store.getState();
-  const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
   if (prevPage == "DownloadUpdate" && errorObj?.length == 0) {
     const childAge =
       store.getState().utilsData.taxonomy.allTaxonomyData != ""

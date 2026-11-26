@@ -128,9 +128,11 @@ const migrationslocalization = {
     }
   }
 }
+// Wait for Realm hydration instead of persisting defaults after a cold-start timeout.
 const countryConfig = {
   key: 'country',
   storage: createRealmPersistStorage(),
+  timeout: 0,
   version: 1,
   debug: true,
   migrate: createMigrate(migrationslocalization, { debug: true })
@@ -138,10 +140,12 @@ const countryConfig = {
 const failedApiConfig = {
   key: 'onLoadFailedApis',
   storage: createRealmPersistStorage(),
+  timeout: 0,
 };
 const utilConfig = {
   key: 'utilsData',
   storage: createRealmPersistStorage(),
+  timeout: 0,
   version: 3,
   debug: true,
   migrate: createMigrate(migrationsutils, { debug: true })
@@ -150,6 +154,7 @@ const utilConfig = {
 const childConfig = {
   key: 'childData',
   storage: createRealmPersistStorage(),
+  timeout: 0,
   version: 0,
   debug: true,
   migrate: createMigrate(migrations, { debug: true })
@@ -157,14 +162,17 @@ const childConfig = {
 const articleConfig = {
   key: 'articlesData',
   storage: createRealmPersistStorage(),
+  timeout: 0,
 };
 const variableConfig = {
   key: 'variableData',
   storage: createRealmPersistStorage(),
+  timeout: 0,
 };
 const notificationConfig = {
   key: 'notificationData',
   storage: createRealmPersistStorage(),
+  timeout: 0,
   version: 0,
   debug: true,
   migrate: createMigrate(migrationsnotification, { debug: true })
@@ -172,6 +180,7 @@ const notificationConfig = {
 const bandWidthConfig = {
   key: 'bandWidthData',
   storage: createRealmPersistStorage(),
+  timeout: 0,
 };
 const rootReducer = combineReducers({
   selectedCountry: persistReducer(countryConfig, localizationSlice.reducer),

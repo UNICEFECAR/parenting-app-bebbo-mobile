@@ -232,6 +232,7 @@ export default (): any => {
       let currentCount = 0;
       let resetTimer: ReturnType<typeof setTimeout> | undefined;
       const onBackPress = (): any => {
+        if (navigationRef.current?.getCurrentRoute()?.name === "LoadingScreen") return true;
     if (routesLength === 1 && userIsOnboarded == false) {
         if (currentCount === 0) {
           currentCount++;

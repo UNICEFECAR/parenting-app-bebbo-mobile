@@ -25,10 +25,12 @@ function start(options: any = {}) {
 async function settle() {for (let i=0;i<20;i++) await Promise.resolve();}
 beforeEach(() => {
   jest.clearAllMocks(); actions = [];
+  jest.spyOn(console, 'error').mockImplementation(() => undefined);
   jest.mocked(commonApiService).mockResolvedValue(response as any);
   jest.mocked(addApiDataInRealm).mockResolvedValue('successinsert');
   jest.mocked(retryAlert).mockRejectedValue(new Error('Cancel retry'));
 });
+afterEach(() => jest.restoreAllMocks());
 
 test('success handlers and delta cursors wait for the actual content transaction', async () => {
   let finish!: (value: string) => void;
@@ -46,6 +48,7 @@ test('failed persistence is retriable and cannot advance a cursor past missing o
   jest.mocked(addApiDataInRealm).mockResolvedValue('');
   await start().toPromise();
   expect(retryAlert).toHaveBeenCalledTimes(1);
+  expect(console.error).toHaveBeenCalledWith('Content update cache write failed', {apiEndpoint: 'articles', stage: 'persistence'});
   expect(actions.find(action => action.type === 'success')?.payload).toEqual([]);
   for (const call of jest.mocked(updateIncrementalSyncDT).mock.calls) {
     expect(call[0]).not.toContain(response);
@@ -65,6 +68,27 @@ test('an application-level content error is handled even when HTTP status is 200
   await start().toPromise();
   expect(addApiDataInRealm).not.toHaveBeenCalled();
   expect(retryAlert).toHaveBeenCalledTimes(1);
+});
+
+test.each(['activities', 'faqs', 'video-articles', 'archive'])(
+  '%s with no incremental changes completes without a cache write or retry', async apiEndpoint => {
+    const unchanged = {apiEndpoint, status: 200, data: {status: 204}};
+    jest.mocked(commonApiService).mockResolvedValue(unchanged as any);
+    await start({payload: [{...request, apiEndpoint}], prevPage: 'DownloadUpdate'}).toPromise();
+    expect(addApiDataInRealm).not.toHaveBeenCalled();
+    expect(retryAlert).not.toHaveBeenCalled();
+    expect(actions.find(action => action.type === 'failure').payload.errorArr).toEqual([]);
+    expect(actions.find(action => action.type === 'success').payload).toEqual([unchanged]);
+    expect(onHomeapiSuccess).toHaveBeenCalledTimes(1);
+  },
+);
+
+test('HTTP 204 completes without trying to persist an absent body', async () => {
+  jest.mocked(commonApiService).mockResolvedValue({apiEndpoint: 'articles', status: 204} as any);
+  await start().toPromise();
+  expect(addApiDataInRealm).not.toHaveBeenCalled();
+  expect(retryAlert).not.toHaveBeenCalled();
+  expect(actions.find(action => action.type === 'failure').payload.errorArr).toEqual([]);
 });
 
 test('non-persisted survey responses keep their existing success path', async () => {

@@ -1,3 +1,5 @@
+import {useBackupOperationBusy} from "../../customHooks/useBackupOperationBusy";
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {backupErrorMessage} from '../../services/backupErrorMessage';
 import {recordError} from "../../services/firebaseAnalytics";
@@ -187,6 +189,8 @@ const SettingScreen = (props: any): any => {
   useLayoutEffect(() => {
     navigation.closeDrawer();
   }, [navigation]);
+
+  const backupBusy = useBackupOperationBusy();
 
   const importAllData = async (): Promise<any> => {
     if (driveOperationRunning.current || isExportRunning || isImportRunning) return;
@@ -786,7 +790,7 @@ const SettingScreen = (props: any): any => {
       <View style={[styles.flex1, { paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <OverlayLoadingComponent
-              loading={isExportRunning || isImportRunning ? true : false}
+              loading={(isExportRunning || isImportRunning) && !backupBusy}
             />
         <TabScreenHeader
           title={t("settingScreenheaderTitle")}
@@ -1070,7 +1074,7 @@ const SettingScreen = (props: any): any => {
                         setModalVisible(true);
                       }}
                     >
-                      <Icon name="ic_edit" size={16} color="#000" />
+                      <ProfileEditIcon size={16} color="#000" />
                     </IconAreaPress>
                   )}
               </FlexDirRowSpace>

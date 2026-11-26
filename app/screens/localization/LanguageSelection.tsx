@@ -282,12 +282,14 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
             newLanguage?.locale == rotwLanguagelocaleen ||
             newLanguage?.locale == rotwLanguagelocaleru
           ) {
+            // The hook's t may still be bound to the previous locale in this callback.
+            const alertT = i18n.getFixedT(newLanguage?.locale || "en");
             Alert.alert(
-              t("restOfTheWorldAlertTitle"),
-              t("restOfTheWorldAlertText"),
+              alertT("restOfTheWorldAlertTitle"),
+              alertT("restOfTheWorldAlertText"),
               [
                 {
-                  text: t("restOfTheWorldOkTitle"),
+                  text: alertT("restOfTheWorldOkTitle"),
                   onPress: async (): Promise<any> => {
                     rtlConditions(newLanguage);
                   },

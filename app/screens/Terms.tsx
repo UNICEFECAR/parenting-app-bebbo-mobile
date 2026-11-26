@@ -25,7 +25,7 @@ import { setAcceptTerms, setAppVersion, setTaxonomyIds } from "../redux/reducers
 import {
   Heading2Centerw,
   ShiftFromTop15,
-  SideSpacing10,
+  SideSpacing5,
 } from "@styles/typography";
 import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import VectorImage from "react-native-vector-image";
@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "stretch",
     width: "100%",
-    padding: 25,
+    paddingHorizontal: 15,
+    paddingVertical: 25,
     flexGrow: 1,
   },
   containerView2: {
@@ -255,7 +256,7 @@ const Terms = ({ navigation }: Props): any => {
   };
 
   return (
-    <>
+    <View style={{flex: 1}}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -265,7 +266,6 @@ const Terms = ({ navigation }: Props): any => {
       >
         <View style={styles.containerView}>
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-          <OverlayLoadingComponent loading={loading} />
           <View style={{ marginTop: 30 }}>
             <View style={styles.vectorImageView}>
               {item.image && <VectorImage source={item.image} />}
@@ -292,7 +292,7 @@ const Terms = ({ navigation }: Props): any => {
             />
           </View>
           <View style={{width: "100%"}}>
-            <SideSpacing10>
+            <SideSpacing5>
               <ButtonTermsRow>
                 <FormOuterTermsCheckbox
                   onPress={(): any => {
@@ -341,11 +341,12 @@ const Terms = ({ navigation }: Props): any => {
                   </ButtonUpperCaseText>
                 </ButtonPrimary>
               </ButtonTermsRow>
-            </SideSpacing10>
+            </SideSpacing5>
           </View>
         </View>
       </ScrollView>
-    </>
+      <OverlayLoadingComponent loading={loading} />
+    </View>
   );
 };
 

@@ -8,7 +8,7 @@ import {
   Heading6Bold,
   ShiftFromTopBottom5,
 } from "@styles/typography";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
@@ -18,7 +18,7 @@ import {
   VideoArticleEntity,
   VideoArticleEntitySchema,
 } from "../../database/schema/VideoArticleSchema";
-import { randomArrayShuffle } from "../../services/Utils";
+import {useStableContentShuffle} from "../../customHooks/useStableContentShuffle";
 import {
   ArticleHeading,
   ArticleListContent,
@@ -78,22 +78,27 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
 
   const activeChild = useAppSelector(selectActiveChild);
   const VideoArticlesDataall = useAppSelector(selectPinnedChildDevData);
-  const videoarticleData = useMemo(() => randomArrayShuffle(VideoArticlesDataall.filter(
+  const eligibleVideos = useMemo(() => VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&
       x.child_age?.includes(activeChild?.taxonomyData?.id) &&
       (x.child_gender == activeChild?.gender || x.child_gender == appConfig.bothChildGender)
-  )), [VideoArticlesDataall, activeChild?.taxonomyData?.id, activeChild?.gender]);
+  ), [VideoArticlesDataall, activeChild?.taxonomyData?.id, activeChild?.gender]);
+  const videoarticleData = useStableContentShuffle(eligibleVideos, currentId);
   const categoryData = useAppSelector(selectArticleCategoryArray);
   const favoriteadvices = useAppSelector(
     (state: any) => state.childData.childDataSet.favoriteadvices
   );
 
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
+  const selectionScope = useRef(currentId);
   useFocusEffect(
     React.useCallback(() => {
       let active = true;
-      setrelatedArticleData([]);
+      if (selectionScope.current !== currentId) {
+        selectionScope.current = currentId;
+        setrelatedArticleData([]);
+      }
       const updateRelated = (data: any) => {if (active) setrelatedArticleData(data);};
       async function fetchData(): Promise<any> {
         let relartlength = Array.isArray(relatedArticles) ? relatedArticles.length : 0;
@@ -150,6 +155,8 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
             })
             .slice(0, catartlength);
           updateRelated([...filteredArtData]);
+        } else {
+          updateRelated([]);
         }
       }
       fetchData();

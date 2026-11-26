@@ -4,7 +4,7 @@ import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
   centered: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     alignItems: 'center',
     justifyContent: 'center',
   },

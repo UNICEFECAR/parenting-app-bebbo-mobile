@@ -67,6 +67,30 @@ test('unavailable storage is not reported as a successful cache update', async (
   await expect(dataRealmCommon.createArticles(ArticleEntitySchema, [{id: 1}], '')).resolves.toBe('fail');
 });
 
+test('archive cleanup deletes integer primary keys in every content collection, including numeric string IDs', async () => {
+  const groups: Record<string, any[]> = {
+    Articles: [{id: 58331}, {id: 1761}, {id: 99}],
+    Activities: [{id: 10}], VideoArticles: [{id: 20}], FAQs: [{id: 30}],
+  };
+  realm.objectForPrimaryKey = jest.fn((schema: string, id: number) => groups[schema].find(row => row.id === id));
+  realm.delete = (record: any) => {
+    for (const key of Object.keys(groups)) groups[key] = groups[key].filter(row => row !== record);
+  };
+  realm.objects = jest.fn(() => {throw new Error('Archive cleanup must use typed primary keys');});
+  const archive = {article: [58331, '1761', 999], activities: [10], video_article: ['20'], faq: [30]};
+  await expect(dataRealmCommon.deleteDeltaData('VideoArticles', 'Articles', 'Activities', 'FAQs', archive)).resolves.toBe('success');
+  expect(groups).toEqual({Articles: [{id: 99}], Activities: [], VideoArticles: [], FAQs: []});
+  expect(realm.objectForPrimaryKey).toHaveBeenCalledWith('Articles', 1761);
+  expect(realm.objects).not.toHaveBeenCalled();
+});
+
+test.each([null, {article: ['bad-id']}, {article: null, faq: {id: 30}}])('invalid archive data is retriable (%j)', async archive => {
+  const logged = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+  try {
+    await expect(dataRealmCommon.deleteDeltaData('VideoArticles', 'Articles', 'Activities', 'FAQs', archive)).resolves.toBe('error');
+  } finally {logged.mockRestore();}
+});
+
 test('changing content country/language preserves caregiver settings and pending analytics', async () => {
   const groups: Record<string, any[]> = {
     ConfigSettings: [{key: 'userName', value: 'Caregiver'}, {key: 'currentActiveChildId', value: 'saved'}],
@@ -90,4 +114,34 @@ test('accepts CMS empty formatted bodies and numeric strings in a fresh article'
   expect(rows[1]).toMatchObject({id:2,body:'',do_not_feature:1});
   expect(ArticleEntitySchema.properties.licensed).toMatchObject({type:'int',default:0});
   expect(ArticleEntitySchema.properties.mandatory).toMatchObject({type:'int',default:0});
+});
+
+test.each([
+  [false, 0], [true, 1], ['0', 0], ['1', 1], [0, 0], [1, 1],
+])('normalises CMS checkbox %p to integer %p before the Realm write', async (flag, expected) => {
+  const create = realm.create;
+  realm.create = (schema: string, record: any) => {
+    if (!Number.isInteger(record.do_not_feature)) throw new Error('Expected integer do_not_feature');
+    return create(schema, record);
+  };
+  await expect(dataRealmCommon.createArticles(ArticleEntitySchema,
+    [{id: 7716, title: 'Article', do_not_feature: flag}], '')).resolves.toBe('success');
+  expect(rows.find(row => row.id === 7716)?.do_not_feature).toBe(expected);
+});
+
+test('Babuni boolean checkbox records do not roll back the rest of a downloaded batch', async () => {
+  const create = realm.create;
+  realm.create = (schema: string, record: any) => {
+    if (!Number.isInteger(record.do_not_feature)) throw new Error('Expected integer do_not_feature');
+    return create(schema, record);
+  };
+  const records = [
+    {id: 2, title: 'Regular article', do_not_feature: '1'},
+    {id: 7716, title: 'Article', do_not_feature: false},
+    {id: 7721, title: 'Article', do_not_feature: false},
+  ];
+  await expect(dataRealmCommon.createArticles(ArticleEntitySchema, records, '')).resolves.toBe('success');
+  expect(rows.map(row => row.id)).toEqual([1, 2, 7716, 7721]);
+  expect(rows.slice(1).map(row => row.do_not_feature)).toEqual([1, 0, 0]);
+  expect(records[1].do_not_feature).toBe(false);
 });

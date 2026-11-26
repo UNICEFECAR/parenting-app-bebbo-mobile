@@ -4,12 +4,14 @@ import {FlatList} from 'react-native';
 import {ThemeProvider} from 'styled-components/native';
 import Articles from '../../screens/home/bottomTabs/Articles';
 import AgeBrackets from '../../components/AgeBrackets';
+import ArticleCategories from '../../components/ArticleCategories';
 import {prepareSearchIndex} from '../searchIndex';
 import {appTheme} from '../../instances/bebbo/styles/theme';
 
-const mockArticles = [{id: 101, category: 1, child_age: [1], title: 'First month advice', body: '', summary: ''}];
+let mockArticles = [{id: 101, category: 1, child_age: [1], title: 'First month advice', body: '', summary: ''}];
 const mockAges = [{id: 1, days_from: 0, days_to: 30}, {id: 9, days_from: -280, days_to: -1}];
 let mockState: any;
+let mockFocused = true;
 jest.mock('../../../App', () => ({useAppSelector: (select: any) => select(mockState), useAppDispatch: () => jest.fn()}));
 jest.mock('../selectors', () => ({
   selectActiveChild: (s: any) => s.child,
@@ -19,7 +21,9 @@ jest.mock('../selectors', () => ({
   selectArticleCategoryArray: (s: any) => s.categories,
 }));
 jest.mock('../../instances', () => ({appConfig: {pregnancyId: 9, maxArticleSize: 3, videoArticleMandatory: 1}}));
-jest.mock('@react-navigation/native', () => ({useIsFocused: () => true, useFocusEffect: (cb: any) => require('react').useEffect(cb, [cb])}));
+jest.mock('@react-navigation/native', () => ({useIsFocused: () => mockFocused, useFocusEffect: (cb: any) => require('react').useEffect(() => {
+  if (mockFocused) return cb();
+}, [cb, mockFocused])}));
 jest.mock('react-i18next', () => ({useTranslation: () => ({t: (key: string) => key})}));
 jest.mock('../../customHooks/useNetInfoHook', () => () => ({isConnected: false}));
 jest.mock('../Utils', () => ({randomArrayShuffle: (items: any) => items, miniSearchConfig: {}}));
@@ -48,6 +52,7 @@ beforeEach(() => {
   jest.useFakeTimers();
   jest.setSystemTime(new Date(2026, 10, 25));
   jest.clearAllMocks();
+  mockFocused = true;
   mockState = {
     child: {uuid: 'expected-child', birthDate: new Date(2026, 10, 25, 18).toISOString(), isExpected: 'true', taxonomyData: mockAges[1]},
     videos: [], categories: [{id: 1, name: 'Health'}],
@@ -78,4 +83,38 @@ test('Advice advances from Pregnancy at midnight without switching the active ch
   expect(renderer.root.findByType(AgeBrackets).props.currentSelectedChildId).toBe(1);
   expect(renderer.root.findByType(FlatList).props.data.map((item: any) => item.id)).toEqual([101]);
   expect(prepareSearchIndex).toHaveBeenCalledTimes(1);
+});
+
+test('returning from Terms preserves the Advice list without clearing filters or rebuilding results', async () => {
+  await act(async () => { renderer = TestRenderer.create(tree()); });
+  await act(async () => {
+    const categories = renderer.root.findByType(ArticleCategories).props;
+    categories.onFilterArrayChange([1]);
+    await categories.filterOnCategory([1]);
+  });
+  const data = renderer.root.findByType(FlatList).props.data;
+  navigation.setParams.mockClear();
+  mockFocused = false;
+  await act(async () => { renderer.update(tree()); });
+  mockFocused = true;
+  await act(async () => { renderer.update(tree()); });
+  expect(navigation.setParams).not.toHaveBeenCalled();
+  expect(renderer.root.findByType(FlatList).props.data).toBe(data);
+  expect(renderer.root.findByType(ArticleCategories).props.filterArray).toEqual([1]);
+  expect(prepareSearchIndex).toHaveBeenCalledTimes(1);
+});
+
+test('downloaded advice replaces the offline list even when a detail-return flag is still set', async () => {
+  jest.setSystemTime(new Date(2026, 10, 25));
+  const original = mockArticles;
+  const returned = () => <ThemeProvider theme={appTheme}><Articles route={{params: {backClicked: 'yes', currentSelectedChildId: 1}}} navigation={navigation} /></ThemeProvider>;
+  try {
+    await act(async () => {renderer = TestRenderer.create(tree());});
+    await act(async () => renderer.update(returned()));
+    mockArticles = [...original, {...original[0], id: 102, title: 'Downloaded advice'}];
+    await act(async () => renderer.update(returned()));
+    expect(renderer.root.findByType(FlatList).props.data.map((item: any) => item.id)).toEqual([101, 102]);
+  } finally {
+    mockArticles = original;
+  }
 });

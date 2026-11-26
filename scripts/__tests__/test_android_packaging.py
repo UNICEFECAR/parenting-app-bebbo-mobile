@@ -11,6 +11,7 @@ from pathlib import Path
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from android_elf import ABI_IDENTITIES
 
 def module(name, filename):
     spec = importlib.util.spec_from_file_location(name, Path(__file__).resolve().parents[1] / filename)
@@ -132,6 +133,44 @@ class AndroidPackaging(unittest.TestCase):
 
     def test_missing_requested_abi_is_rejected(self):
         self.assertTrue(bundlecheck.inspect(self.bundle(), ['arm64-v8a', 'x86_64'])['problems'])
+
+    def app_package(self, extension, missing=None):
+        target = self.folder / ('app.' + extension)
+        prefix = 'lib/' if extension == 'apk' else 'base/lib/'
+        with zipfile.ZipFile(target, 'w') as archive:
+            for abi, (elf_class, machine) in ABI_IDENTITIES.items():
+                for library in bundlecheck.APP_RUNTIME_LIBRARIES | {'libexampledependency.so'}:
+                    if (abi, library) == missing or (None, library) == missing:
+                        continue
+                    archive.writestr(prefix + abi + '/' + library,
+                                     elf(bits=64 if elf_class == 2 else 32, machine=machine))
+        return target
+
+    def test_universal_apk_and_aab_have_matching_complete_runtimes(self):
+        for extension in ('apk', 'aab'):
+            with self.subTest(extension=extension):
+                result = bundlecheck.inspect(self.app_package(extension),
+                    ['armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'], require_app_runtime=True)
+                self.assertEqual(result['problems'], [])
+
+    def test_missing_hermes_or_native_dependency_is_rejected_in_apk_and_aab(self):
+        for extension in ('apk', 'aab'):
+            for library in ('libhermesvm.so', 'libexampledependency.so'):
+                with self.subTest(extension=extension, library=library):
+                    result = bundlecheck.inspect(self.app_package(extension, ('x86', library)), require_app_runtime=True)
+                    self.assertIn(f'x86: expected exactly one {library}', result['problems'])
+
+    def test_device_only_apk_is_rejected_for_distribution(self):
+        apk = self.folder / 'arm-only.apk'
+        with zipfile.ZipFile(apk, 'w') as archive:
+            archive.writestr('lib/arm64-v8a/libc++_shared.so', elf())
+        self.assertTrue(bundlecheck.inspect(apk,
+            ['armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'])['problems'])
+
+    def test_missing_runtime_from_every_abi_is_rejected(self):
+        for extension in ('apk', 'aab'):
+            result = bundlecheck.inspect(self.app_package(extension, (None, 'libhermesvm.so')), require_app_runtime=True)
+            self.assertTrue(any('libhermesvm.so' in problem for problem in result['problems']))
 
     def test_manifest_policy(self):
         for extract, target, valid in [('true', '37', True), ('false', '37', False), ('true', '36', False)]:

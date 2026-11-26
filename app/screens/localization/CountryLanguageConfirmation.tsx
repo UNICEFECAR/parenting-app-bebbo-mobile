@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {useCommittedRef} from "../../customHooks/useCommittedRef";
 import {applyLanguageDirection} from "../../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -9,7 +10,6 @@ import {
 } from "@components/shared/ButtonGlobal";
 import { Flex1 } from "@components/shared/FlexBoxStyle";
 import Icon, {
-  IconML,
   OuterIconLeft,
   OuterIconRow,
 } from "@components/shared/Icon";
@@ -89,8 +89,17 @@ const styles = StyleSheet.create({
   naturalBlock: { flex: 0, flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
   header: { marginTop: 0 },
   countryRow: { minHeight: 0 },
-  countryCell: { minHeight: 64, paddingVertical: 16, marginTop: 0 },
-  continueAction: { marginTop: 16 },
+  // styled-components expands the shared flex values into flexGrow/flexBasis.
+  // Override those explicitly so Country and Language each get half the card.
+  balancedCountryCell: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    marginTop: 0,
+    paddingTop: 4,
+    paddingBottom: 4,
+  },
+  countryCell: { minHeight: 64, paddingTop: 16, paddingBottom: 16, marginTop: 0 },
   welcomeText: {
     fontSize: 20,
     fontFamily: "roboto-bold",
@@ -440,12 +449,14 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             newLanguage?.locale == rotwLanguagelocaleen ||
             newLanguage?.locale == rotwLanguagelocaleru
           ) {
+            // The hook's t may still be bound to the previous locale in this callback.
+            const alertT = i18n.getFixedT(newLanguage?.locale || "en");
             Alert.alert(
-              t("restOfTheWorldAlertTitle"),
-              t("restOfTheWorldAlertText"),
+              alertT("restOfTheWorldAlertTitle"),
+              alertT("restOfTheWorldAlertText"),
               [
                 {
-                  text: t("restOfTheWorldOkTitle"),
+                  text: alertT("restOfTheWorldOkTitle"),
                   onPress: async (): Promise<void> => {
                     await rtlConditions(newLanguage);
                   },
@@ -517,7 +528,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             <LocalizationContainer style={needsScroll ? styles.naturalBlock : undefined}>
               <LocalizationRow style={needsScroll ? [styles.naturalBlock, styles.countryRow] : undefined}>
                 <LocalizationCol
-                  style={needsScroll ? [styles.naturalBlock, styles.countryCell] : undefined}
+                  style={needsScroll ? [styles.naturalBlock, styles.countryCell] : styles.balancedCountryCell}
                   disabled={allCountries.length === 0}
                   onPress={(): any =>
                     navigation.navigate("CountrySelection", {
@@ -535,7 +546,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 </LocalizationCol>
 
                 <LocalizationWithoutBorderCol
-                  style={needsScroll ? [styles.naturalBlock, styles.countryCell] : undefined}
+                  style={needsScroll ? [styles.naturalBlock, styles.countryCell] : styles.balancedCountryCell}
                   disabled={allCountries.length === 0}
                   onPress={() =>
                     popAndPush(navigation, "LanguageSelection", {
@@ -568,18 +579,14 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 >
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <IconML
-                        name="ic_edit"
-                        size={16}
-                        color={secondaryBtnColor}
-                      />
+                      <ProfileEditIcon size={16} color={secondaryBtnColor} />
                     </OuterIconLeft>
                     <ButtonTextLg>{t("editCountryLang")}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
               </ShiftFromTop25>
 
-              <Flex1 style={needsScroll ? [styles.naturalBlock, styles.continueAction] : undefined}>
+              <Flex1 style={needsScroll ? styles.naturalBlock : undefined}>
                 <ButtonPrimary
                   disabled={allCountries.length === 0}
                   onPress={(): any => saveSelection()}

@@ -9,5 +9,6 @@ test('expired or explicitly cleared previews cannot restore anything',()=>{
 test('an obsolete navigation handle cannot discard a newer valid preview',()=>{
  const stale=holdBackupPreview(['old']),current=holdBackupPreview(['current']);
  expect(()=>getBackupPreview(stale)).toThrow('expired');
+ clearBackupPreviews(stale);
  expect(getBackupPreview(current)).toEqual(['current']);
 });

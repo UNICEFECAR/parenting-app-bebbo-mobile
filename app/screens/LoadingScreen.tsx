@@ -1,3 +1,4 @@
+import {useLoadingNavigation} from "../customHooks/useLoadingNavigation";
 import {useCommittedRef} from "../customHooks/useCommittedRef";
 import {applyLanguageDirection} from "../localization/layoutDirection";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -6,7 +7,6 @@ import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { DateTime } from "luxon";
 import React, {useEffect, useState} from 'react';
-import { BackHandler } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import LoadingScreenComponent from "../components/LoadingScreenComponent";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
@@ -60,7 +60,8 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const LoadingScreen = ({ route, navigation }: Props): any => {
+const LoadingScreen = ({ route, navigation: screenNavigation }: Props): any => {
+  const navigation = useLoadingNavigation(screenNavigation);
   const dispatch = useAppDispatch();
   const childAge = useAppSelector(selectChildAge);
   const childList = useAppSelector(selectChildList);
@@ -394,20 +395,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       }
     }, [netInfo.isConnected, languageReady, startupInputs])
   );
-  useFocusEffect(React.useCallback(() => {
-    const backAction = (): any => {
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-
-    return (): any => {
-      backHandler.remove();
-    };
-  }, []));
-
   // Read the current navigation context when initial-language metadata changes.
   const initialLocaleInputs = useCommittedRef(() => ({dispatch, route}));
   useEffect(() => {

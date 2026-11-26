@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import { BgSecondary } from "@components/shared/BackgroundColors";
 import { MainContainer } from "@components/shared/Container";
 import {
@@ -152,7 +153,7 @@ const BabyNotification = (): any => {
               >
                 <Flex1 style={styles.padding10}>
                   <View style={styles.alignFlexEnd}>
-                    <Icon name="ic_edit" size={20} color="#000" />
+                    <ProfileEditIcon size={20} color="#000" />
                   </View>
                 </Flex1>
               </TouchableHighlight>

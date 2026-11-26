@@ -296,22 +296,11 @@ min-width:150px;
 export const ModalViewCustom = styled.View`
 padding-top:5px;padding-bottom:5px;
 `;
-const LeadingPlusRow = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  column-gap: 6px;
-  flex-shrink: 1;
-`;
-
 export const ButtonLeadingPlusLabel = ({label, style}: {
   label: string;
   style?: StyleProp<TextStyle>;
 }): React.JSX.Element => (
-  <LeadingPlusRow>
-    <ButtonTextLg accessible={false} style={style}>+</ButtonTextLg>
-    <ButtonTextLg style={[{flexShrink: 1}, style]}>
-      {label.replace(/^\s*[+＋]\s*|\s*[+＋]\s*$/g, '')}
-    </ButtonTextLg>
-  </LeadingPlusRow>
+  <ButtonTextLg style={[{width: '100%'}, style]}>
+    {`+ ${label.replace(/^\s*[+＋]\s*|\s*[+＋]\s*$/g, '')}`}
+  </ButtonTextLg>
 );

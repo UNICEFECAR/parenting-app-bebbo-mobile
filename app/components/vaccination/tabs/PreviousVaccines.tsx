@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {
   ButtonContainerAuto,
   ButtonText,
@@ -130,12 +131,7 @@ const PreviousVaccines = (props: any): any => {
                     })
                   }
                 >
-                  <ButtonTextSmLineL
-                    numberOfLines={2}
-                    style={styles.textNoLine}
-                  >
-                    <Icon name="ic_edit" size={16} color="#000" />
-                  </ButtonTextSmLineL>
+                  <ProfileEditIcon size={16} color="#000" />
                 </Pressable>
               ) : null}
             </ToolsIconView1>

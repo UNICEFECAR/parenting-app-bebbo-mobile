@@ -109,7 +109,7 @@ class DataRealmCommon {
             }
         // });
     }
-    public async createArticles<Entity extends {id: number; isarticle_pinned?: string; body?: string | boolean; do_not_feature?: string | number}>(
+    public async createArticles<Entity extends {id: number; isarticle_pinned?: string; body?: string | boolean; do_not_feature?: string | number | boolean}>(
         entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string
     ): Promise<'success' | 'fail'> {
         try {
@@ -122,9 +122,11 @@ class DataRealmCommon {
                     // Refresh content even when the existing record is becoming pinned.
                     realm.create<Entity>(entitySchema.name, {
                         ...record,
-                        // Drupal sends false for an empty formatted body and serialises this flag as "0" or "1".
+                        // Drupal sends false for empty formatted bodies and can return checkbox flags
+                        // as booleans as well as numeric strings. Realm requires an integer flag.
                         ...(record.body === false ? {body: ''} : {}),
-                        ...(['0', '1'].includes(String(record.do_not_feature)) ? {do_not_feature: Number(record.do_not_feature)} : {}),
+                        ...((typeof record.do_not_feature === 'boolean' || ['0', '1'].includes(String(record.do_not_feature)))
+                            ? {do_not_feature: Number(record.do_not_feature)} : {}),
                         isarticle_pinned: pinned ? appConfig.isArticlePinned : articleRelation,
                     }, 'modified' as UpdateMode);
                 }
@@ -272,75 +274,34 @@ class DataRealmCommon {
     }
 
     public async deleteDeltaData(Schemavideo: string, Schemaarticle: string, Schemaactivities: string, Schemafaqs: string, records: any): Promise<any> {
-        // return new Promise(async (resolve, reject) => {
-            let result: any='';
-            try {
-                const realm = await this.openRealm();
-                if (realm) {
-                    const articleids = records && records.article && records.article.length > 0 ? records.article : []
-                    const activitiesids = records && records.activities && records.activities.length > 0 ? records.activities : []
-                    const videoArticleIds = records && records.video_article && records.video_article.length > 0 ? records.video_article : []
-                    const faqids = records && records.faq && records.faq.length > 0 ? records.faq : []
-                    realm?.write(() => {
-                        console.log("write")
-                        if (articleids.length > 0) {
-                            const filterQuery = articleids.map((x: any) => `id = '${x}'`).join(' OR ');
-                            if (
-                                realm.objects(Schemaarticle).filtered(filterQuery)
-                                    .length > 0
-                            ) {
-                                realm.delete(
-                                    realm.objects(Schemaarticle).filtered(filterQuery)
-                                );
-                            }
+        try {
+            const realm = await this.openRealm();
+            if (!realm || !records || typeof records !== 'object') return 'error';
+            const groups = [
+                [Schemaarticle, records.article ?? []],
+                [Schemaactivities, records.activities ?? []],
+                [Schemavideo, records.video_article ?? []],
+                [Schemafaqs, records.faq ?? []],
+            ] as const;
+            realm.write(() => {
+                for (const [schema, ids] of groups) {
+                    if (!Array.isArray(ids)) throw new Error('Invalid archive ID list');
+                    for (const value of ids) {
+                        // Archive IDs may be numbers or numeric strings; Realm primary keys are integers.
+                        const id = typeof value === 'string' && /^\d+$/.test(value) ? Number(value) : value;
+                        if (typeof id !== 'number' || !Number.isSafeInteger(id) || id < 0) {
+                            throw new Error('Invalid archive content ID');
                         }
-                        if (activitiesids.length > 0) {
-                            const filterQuery = activitiesids.map((x: any) => `id = '${x}'`).join(' OR ');
-                            if (
-                                realm.objects(Schemaactivities).filtered(filterQuery)
-                                    .length > 0
-                            ) {
-                                realm.delete(
-                                    realm.objects(Schemaactivities).filtered(filterQuery)
-                                );
-                            }
-                        }
-                        if (videoArticleIds.length > 0) {
-                            const filterQuery = videoArticleIds.map((x: any) => `id = '${x}'`).join(' OR ');
-                            if (
-                                realm.objects(Schemavideo).filtered(filterQuery)
-                                    .length > 0
-                            ) {
-                                realm.delete(
-                                    realm.objects(Schemavideo).filtered(filterQuery)
-                                );
-                            }
-                        }
-                        if (faqids.length > 0) {
-                            const filterQuery = faqids.map((x: any) => `id = '${x}'`).join(' OR ');
-                            if (
-                                realm.objects(Schemafaqs).filtered(filterQuery)
-                                    .length > 0
-                            ) {
-                                realm.delete(
-                                    realm.objects(Schemafaqs).filtered(filterQuery)
-                                );
-                            }
-                        }
-                        result='success';
-                        return result;
-                    });
-                    return result;
+                        const record = realm.objectForPrimaryKey(schema, id);
+                        if (record) realm.delete(record);
+                    }
                 }
-                else {
-                    result='error';
-                    return result;
-                }
-            } catch  {
-                result='error';
-                return result;
-            }
-        // });
+            });
+            return 'success';
+        } catch (error) {
+            console.error('Archive cache cleanup failed', diagnosticError(error instanceof Error ? error : 'Cache operation failed'));
+            return 'error';
+        }
     }
     public async delete(Schema: string, filterCondition: any): Promise<any> {
         let result: any='';

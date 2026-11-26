@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, ActivityIndicator, StyleSheet, Dimensions } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import {
   bgcolorWhite2,
@@ -20,14 +20,9 @@ const OverlayLoadingComponent = ({ loading }: { loading: boolean }) => {
     </View>
   );
 };
-const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   overlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width,
-    height,
+    ...StyleSheet.absoluteFill,
     backgroundColor: overlaymodalBackground,
     alignItems: "center",
     justifyContent: "center",

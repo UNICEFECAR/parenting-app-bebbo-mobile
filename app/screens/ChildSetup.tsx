@@ -1,3 +1,4 @@
+import {useBackupOperationBusy} from "../customHooks/useBackupOperationBusy";
 import {holdBackupPreview} from '../services/backupPreview';
 import {diagnosticError} from '../services/diagnostics';
 import {backupErrorMessage} from '../services/backupErrorMessage';
@@ -138,6 +139,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [isExpected, _setIsExpected] = useState<string>("false");
   const [name, setName] = React.useState("");
   const [loading, setLoading] = useState(false);
+  const backupBusy = useBackupOperationBusy();
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const actionSheetRefImport = useRef<AppActionSheetRef>(null);
   const netInfo = useNetInfoHook();
@@ -283,9 +285,9 @@ const ChildSetup = ({ navigation }: Props): any => {
     <>
       <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <OverlayLoadingComponent loading={loading && !backupBusy} />
         <ScrollView contentContainerStyle={styles.scrollViewStyle}>
           <OnboardingContainer>
-            <OverlayLoadingComponent loading={loading} />
             <OrHeadingView>
               <ParentSetUpDivider
                 style={styles.dividerStyle}

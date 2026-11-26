@@ -611,26 +611,30 @@ const Articles = ({ route, navigation }: any): any => {
       });
 
       return () => {
-        navigation.setParams({ categoryArray: [] });
         showSubscription.remove();
         hideSubscription.remove();
       };
       // });
 
-    }, [navigation])
+    }, [])
   );
 
   // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
-  const focusCommandInputs2 = useCommittedRef(() => ({childAge, navigation, showSelectedBracketData, backClicked: route.params?.backClicked}));
-  useFocusEffect(
-    React.useCallback(() => {
-      const {childAge: inputChildAge, navigation: inputNavigation, showSelectedBracketData: inputShowSelectedBracketData, backClicked: inputBackClicked} = focusCommandInputs2.current();
+  const previousAdviceContent = useRef(articleData);
+  const previousAdviceTaxonomy = useRef(activityTaxonomyId);
+  const focusCommandInputs2 = useCommittedRef(() => ({childAge, navigation, showSelectedBracketData, currentSelectedChildId, backClicked: route.params?.backClicked}));
+  useEffect(() => {
+      const {childAge: inputChildAge, navigation: inputNavigation, showSelectedBracketData: inputShowSelectedBracketData, currentSelectedChildId: inputSelectedAge, backClicked: inputBackClicked} = focusCommandInputs2.current();
+      const contentChanged = previousAdviceContent.current !== articleData;
+      const taxonomyChanged = previousAdviceTaxonomy.current !== activityTaxonomyId;
+      previousAdviceContent.current = articleData;
+      previousAdviceTaxonomy.current = activityTaxonomyId;
 
       // const task = InteractionManager.runAfterInteractions(() => {
-      if (inputBackClicked !== "yes") {
+      if (inputBackClicked !== "yes" || contentChanged) {
         setshowNoData(false);
 
-        const selectedId = route.params?.currentSelectedChildId;
+        const selectedId = contentChanged && !taxonomyChanged ? inputSelectedAge || route.params?.currentSelectedChildId : route.params?.currentSelectedChildId;
         const validId =
           selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
 
@@ -649,33 +653,23 @@ const Articles = ({ route, navigation }: any): any => {
       return () => {
         // task.cancel();
       };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Refresh for changed content/profile inputs, not navigation focus.
     }, [
       activeChild?.uuid,
       languageCode,
       route.params?.currentSelectedChildId,
-      activityTaxonomyId, articleData, focusCommandInputs2])
-  );
+      activityTaxonomyId, articleData, focusCommandInputs2]);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      // const task = InteractionManager.runAfterInteractions(() => {
-      const fetchData = async (): Promise<void> => {
-
-        // await callYourAPI(filterQuery); // if needed
-      };
-      fetchData();
-
-      return () => {
-        navigation.setParams({ backClicked: "no" });
-        navigation.setParams({ currentSelectedChildId: 0 });
-        navigation.setParams({ categoryArray: [] });
-      };
-      // });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- A child switch deliberately runs this focus cleanup to discard filters.
-    }, [activeChild?.uuid, navigation])
-  );
+  // Preserve browsing state across temporary screens; reset only for a different child.
+  const previousChildId = useRef(activeChild?.uuid);
+  useEffect(() => {
+    if (previousChildId.current !== activeChild?.uuid) {
+      previousChildId.current = activeChild?.uuid;
+      setFilterArray([]);
+      setSelectedCategoryId([]);
+      navigation.setParams({backClicked: "no", currentSelectedChildId: 0, categoryArray: []});
+    }
+  }, [activeChild?.uuid, navigation]);
 
   useEffect(() => {
     searchIndex.current = null;
@@ -699,10 +693,12 @@ const Articles = ({ route, navigation }: any): any => {
   };
 
   // Read current focus inputs; acknowledging backClicked must not reset the returned tab/filter.
-  const focusCommandInputs3 = useCommittedRef(() => ({setFilteredArticleData, backClicked: route.params?.backClicked}));
-  useFocusEffect(
-    React.useCallback(() => {
-      const {setFilteredArticleData: inputSetFilteredArticleData, backClicked: inputBackClicked} = focusCommandInputs3.current();
+  const previousFilterSource = useRef(selectedChildActivitiesData);
+  const focusCommandInputs3 = useCommittedRef(() => ({setFilteredArticleData, filterArray, backClicked: route.params?.backClicked}));
+  useEffect(() => {
+      const {setFilteredArticleData: inputSetFilteredArticleData, filterArray: inputFilterArray, backClicked: inputBackClicked} = focusCommandInputs3.current();
+      const sourceChanged = previousFilterSource.current !== selectedChildActivitiesData;
+      previousFilterSource.current = selectedChildActivitiesData;
 
       if (isSerachedQueryText || queryText == "") {
         //setLoadingArticle(true);
@@ -711,25 +707,23 @@ const Articles = ({ route, navigation }: any): any => {
             setFilterArray(route.params?.categoryArray);
             inputSetFilteredArticleData(route.params?.categoryArray);
           } else {
-            setFilterArray([]);
-            inputSetFilteredArticleData([]);
+            inputSetFilteredArticleData(inputFilterArray);
           }
         }
         setIsSearchedQueryText(false);
-        if (inputBackClicked != "yes") {
+        if (inputBackClicked != "yes" || sourceChanged) {
           fetchData();
         } else {
           setLoadingArticle(false);
         }
       }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- Child and locale transitions intentionally restart this focus command, even when read through current-input callbacks.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Refilter when data or filter inputs change, preserving the list on return.
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
       languageCode,
       queryText,
-      isSerachedQueryText, focusCommandInputs3])
-  );
+      isSerachedQueryText, focusCommandInputs3]);
 
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false);
@@ -892,7 +886,7 @@ const Articles = ({ route, navigation }: any): any => {
   });
   return (
     <>
-      {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
+      <OverlayLoadingComponent loading={loadingArticle || profileLoading} />
       <View style={containerView(backgroundColorList)}>
         <KeyboardAvoidingView
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -1043,7 +1037,6 @@ const Articles = ({ route, navigation }: any): any => {
             modalScreenKey={modalScreenKey}
             modalScreenText={modalScreenText}
           ></FirstTimeModal>
-          <OverlayLoadingComponent loading={profileLoading} />
         </KeyboardAvoidingView>
       </View>
     </>

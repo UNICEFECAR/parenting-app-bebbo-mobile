@@ -16,6 +16,7 @@ import * as RNFS from '@dr.pogodin/react-native-fs';
 import AesCrypto from 'react-native-aes-crypto';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { getAllChildren, setActiveChild } from '../childCRUD';
+import {requestBackupPassword} from '../backupPassword';
 
 jest.mock('react-native-share', () => ({open: jest.fn()}));
 jest.mock('../googleAuth', () => ({ googleAuth: { ensureSignedIn: jest.fn() } }));
@@ -403,6 +404,18 @@ test('local preview accepts Android quoted JSON and never changes the live Realm
   expect(crypto.decrypt.mock.calls[0][0]).toBe('ciphertext');
   expect(crypto.decrypt.mock.calls[0][3]).toBe('aes-256-cbc');
   expect(userData.openRealm).not.toHaveBeenCalled();
+});
+
+test.each(['ciphertext', '"ciphertext"'])('main-format file restores through Settings without a passphrase (%s)', async ciphertext => {
+  jest.mocked(pick).mockResolvedValueOnce([{uri:'content://backup',name:'mybackup.json'}] as any);
+  jest.mocked(keepLocalCopy).mockResolvedValueOnce([{status:'success',sourceUri:'content://backup',localUri:'file:///cache/selected'}]);
+  jest.mocked(RNFS.readFile).mockResolvedValueOnce(ciphertext);
+  crypto.decrypt.mockResolvedValueOnce(JSON.stringify([completeChild]));
+  const preview = await backup.readLocalBackup();
+  expect(realm.write).not.toHaveBeenCalled();
+  await expect(backup.importFromFile(preview,navigation,[],jest.fn(),[],'en')).resolves.toBe('Imported');
+  expect(requestBackupPassword).not.toHaveBeenCalled();
+  expect(realm.create).toHaveBeenCalledWith('ChildEntity',expect.objectContaining({uuid:completeChild.uuid}),'modified');
 });
 
 test('legacy binary local preview closes its private Realm when validation fails', async () => {

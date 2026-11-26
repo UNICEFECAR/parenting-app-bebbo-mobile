@@ -95,10 +95,6 @@ jobs:
         shell: bash
         run: |
           args=(":app:bundle${ANDROID_VARIANT}Release" ":app:assemble${ANDROID_VARIANT}Release" -PunsignedVerification=true --no-daemon --max-workers=2 --continue)
-          # Bebbo also verifies the production default, including 32-bit ABIs.
-          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then
-            args+=(-PreactNativeArchitectures=arm64-v8a,x86_64)
-          fi
           python3 ../scripts/run-gradle-with-retry.py ./gradlew "${args[@]}"
       - name: Install pinned bundletool
         if: inputs.platform == 'android'
@@ -126,9 +122,11 @@ jobs:
             python3 scripts/check-packaged-brand.py "$FLAVOR" --android "$package" --manifest "$report/manifest.xml" "${brand_args[@]}"
           done
           abis=armeabi-v7a,arm64-v8a,x86,x86_64
-          if [[ "$NATIVE_SMOKE" == "true" && "$FLAVOR" != "bebbo" ]]; then abis=arm64-v8a,x86_64; fi
-          python3 scripts/check-android-bundle.py "$bundle" --expected-abis "$abis" \
-            --manifest "$report/manifest.xml" --report "$report/packaging.json"
+          for package in "$apk" "$bundle"; do
+            extension="${package##*.}"
+            python3 scripts/check-android-bundle.py "$package" --expected-abis "$abis" --require-app-runtime \
+              --manifest "$report/manifest.xml" --report "$report/packaging-$extension.json"
+          done
       - name: Enable emulator acceleration
         if: inputs.platform == 'android' && inputs.smoke
         run: sudo chmod 666 /dev/kvm

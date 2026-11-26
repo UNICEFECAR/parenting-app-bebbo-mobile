@@ -8,7 +8,7 @@ import {
   Heading6Bold,
   ShiftFromTopBottom5,
 } from "@styles/typography";
-import React, { useMemo, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";
 import FastImage from "@d11/react-native-fast-image";
@@ -20,7 +20,7 @@ import {
   ArticleEntitySchema,
 } from "../../database/schema/ArticleSchema";
 import LoadableImage from "../../services/LoadableImage";
-import { randomArrayShuffle } from "../../services/Utils";
+import {useStableContentShuffle} from "../../customHooks/useStableContentShuffle";
 import {
   ArticleHeading,
   ArticleListContent,
@@ -76,10 +76,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
   const netInfo = useNetInfoHook();
 
   const articleDataold = useAppSelector(selectArticleDataAll);
-  const articleData = useMemo(
-    () => randomArrayShuffle(articleDataold),
-    [articleDataold]
-  );
+  const articleData = useStableContentShuffle(articleDataold, currentId);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -88,10 +85,14 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
     (state: any) => state.childData.childDataSet.favoriteadvices
   );
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
+  const selectionScope = useRef(currentId);
   useFocusEffect(
     React.useCallback(() => {
       let active = true;
-      setrelatedArticleData([]);
+      if (selectionScope.current !== currentId) {
+        selectionScope.current = currentId;
+        setrelatedArticleData([]);
+      }
       const updateRelated = (data: any) => {if (active) setrelatedArticleData(data);};
       async function fetchData(): Promise<any> {
         let relartlength = Array.isArray(relatedArticles) ? relatedArticles.length : 0;
@@ -153,6 +154,8 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
             })
             .slice(0, catartlength);
           updateRelated([...filteredArtData]);
+        } else {
+          updateRelated([]);
         }
       }
       fetchData();

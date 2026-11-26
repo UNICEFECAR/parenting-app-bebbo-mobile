@@ -18,7 +18,6 @@ import {
   Heading3,
   Heading4Center,
   Heading4Centerr,
-  Heading4Regular,
   ShiftFromTopBottom10,
   ShiftFromTopBottom5,
 } from "@styles/typography";
@@ -245,9 +244,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
                         : convertDigits("0")}
                     </Heading2>
                     {/* added 1 for current period */}
-                    <Heading4Center>
-                      <Heading4Regular>{t("vcStatus1")}</Heading4Regular>
-                    </Heading4Center>
+                    <Heading4Centerr>{t("vcStatus1")}</Heading4Centerr>
                   </VacSummaryBox>
                 </VacSummaryPress>
                 <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
@@ -257,9 +254,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
                         ? convertDigits(overDuePreviousVCcount)
                         : convertDigits("0")}
                     </Heading2>
-                    <Heading4Center>
-                      <Heading4Regular>{t("vcStatus2")}</Heading4Regular>
-                    </Heading4Center>
+                    <Heading4Centerr>{t("vcStatus2")}</Heading4Centerr>
                   </VacSummaryBox>
                 </VacSummaryPress>
                 <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
@@ -269,9 +264,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
                         ? convertDigits(doneVCcount)
                         : convertDigits("0")}
                     </Heading2>
-                    <Heading4Center>
-                      <Heading4Regular>{t("vcStatus3")}</Heading4Regular>
-                    </Heading4Center>
+                    <Heading4Centerr>{t("vcStatus3")}</Heading4Centerr>
                   </VacSummaryBox>
                 </VacSummaryPress>
               </View>

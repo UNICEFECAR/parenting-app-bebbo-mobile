@@ -284,9 +284,9 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
     <>
       <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <OverlayLoadingComponent loading={loading} />
         <ScrollView contentContainerStyle={styles.scrollViewStyle}>
           <OnboardingContainer>
-            <OverlayLoadingComponent loading={loading} />
             <FlexRow>
               <ShiftFromTop25>
                 <Pressable

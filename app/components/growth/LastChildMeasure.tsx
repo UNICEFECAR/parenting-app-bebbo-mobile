@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import UnderlinedText from "@components/shared/UnderlinedText";
 import {
   ButtonTextMdLine,
@@ -189,12 +190,7 @@ const LastChildMeasure = (): any => {
                     });
                   }}
                 >
-                  <ButtonTextMdLine
-                    numberOfLines={2}
-                    style={styles.buttonTextDecoration}
-                  >
-                    <Icon name="ic_edit" size={16} color="#000" />
-                  </ButtonTextMdLine>
+                  <ProfileEditIcon size={16} color="#000" />
                 </ButtonEditPress>
               </FlexDirRowEnd>
             </Flex_5>

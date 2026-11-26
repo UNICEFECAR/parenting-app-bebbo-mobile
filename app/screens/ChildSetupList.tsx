@@ -1,3 +1,4 @@
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {useCommittedRef} from "../customHooks/useCommittedRef";
 import { ButtonLeadingPlusLabel } from "@components/shared/ButtonGlobal";
 import { scheduleIdleTask } from "../services/scheduleIdleTask";
@@ -271,7 +272,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
             onPress={(): any => editRecord(data)}
           >
             <ChildListAction>
-              <Icon name="ic_edit" size={16} color="#000" />
+              <ProfileEditIcon size={16} color="#000" />
             </ChildListAction>
           </TouchableHighlight>
         </ChildColArea2>

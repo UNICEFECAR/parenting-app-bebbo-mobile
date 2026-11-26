@@ -1,4 +1,4 @@
-import { ButtonTextMdLine } from "@components/shared/ButtonGlobal";
+import ProfileEditIcon from "@components/shared/ProfileEditIcon";
 import {
   FDirRow,
   Flex1,
@@ -149,12 +149,7 @@ const ActiveChildMeasureTimeline = (props: any): any => {
                 }}
               >
                 <FlexDirRowEnd>
-                  <ButtonTextMdLine
-                    numberOfLines={2}
-                    style={styles.btnTextDeco}
-                  >
-                    <Icon name="ic_edit" size={16} color="#000" />
-                  </ButtonTextMdLine>
+                  <ProfileEditIcon size={16} color="#000" />
                 </FlexDirRowEnd>
               </Pressable>
             </Flex1>

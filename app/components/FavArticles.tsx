@@ -75,7 +75,7 @@ const FavArticles = (): any => {
     React.useCallback(() => {
       let active = true;
       async function fetchData(): Promise<any> {
-        setLoading(true);
+        // Keep the mounted list and its scroll offset while refreshing favourites.
         if (favoriteadvices.length > 0) {
           const filterQuery = favoriteadvices
             .map((x: any) => `id = '${x}'`)

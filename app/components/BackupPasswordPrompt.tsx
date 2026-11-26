@@ -23,7 +23,12 @@ export default function BackupPasswordPrompt() {
       resolver.current?.(null); resolver.current = resolve;
       setPassword(''); setRepeat(''); setMode(next);
     }));
-    const state = AppState.addEventListener('change', value => {if (value !== 'active') {finish(null);clearBackupPreviews();}});
+    const state = AppState.addEventListener('change', value => {
+      if (value !== 'active') finish(null);
+      // iOS also becomes inactive for system permission dialogs. That is not
+      // the user leaving the app and must not invalidate an import preview.
+      if (value === 'background') clearBackupPreviews();
+    });
     return () => {uninstall(); state.remove(); resolver.current?.(null); resolver.current = null; dismissed.current?.(); dismissed.current = null;};
   }, []);
   const label = (key: string) => String(t(key));

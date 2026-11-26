@@ -14,7 +14,7 @@ import FastImage from "@d11/react-native-fast-image";
 import styled from "styled-components/native";
 import { useAppSelector } from "../../../App";
 import LoadableImage from "../../services/LoadableImage";
-import { randomArrayShuffle } from "../../services/Utils";
+import {useStableContentShuffle} from "../../customHooks/useStableContentShuffle";
 import {
   ArticleHeading,
   ArticleListContent,
@@ -71,10 +71,9 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
     currentSelectedChildId,
   } = props;
   const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
-  const ActivitiesData = useMemo(
-    () => randomArrayShuffle(ActivitiesDataold),
-    [ActivitiesDataold]
-  );
+  const ActivitiesData = useStableContentShuffle(ActivitiesDataold, currentId);
+  const selectedActivities = useStableContentShuffle(
+    Array.isArray(selectedChildActivitiesData) ? selectedChildActivitiesData : [], currentId);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -87,9 +86,9 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
 
   const relatedArticleData = useMemo(() => {
     const selected = Array.isArray(selectedChildActivitiesData)
-      ? randomArrayShuffle(selectedChildActivitiesData) : selectedChildActivitiesData;
+      ? selectedActivities : selectedChildActivitiesData;
     return relatedActivities(selected, ActivitiesData, currentId, appConfig.maxRelatedArticleSize);
-  }, [selectedChildActivitiesData, ActivitiesData, currentId]);
+  }, [selectedChildActivitiesData, selectedActivities, ActivitiesData, currentId]);
 
   const goToArticleDetail = (item: (typeof relatedArticleData)[0]): any => {
     navigation.push("DetailsScreen", {

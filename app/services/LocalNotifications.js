@@ -4,6 +4,7 @@ import { AppState, Platform } from 'react-native';
 import legacyNotifications from '../specs/NativeLegacyNotifications';
 
 const REMINDERS_KEY = 'local-reminders-v2';
+const DELETED_CHILDREN_KEY = 'local-reminders-deleted-children-v2';
 const MIGRATION_KEY = 'local-reminders-migrated-v2';
 const PRESS_KEY = 'local-reminder-pending-press-v2';
 const CONSUMED_PRESS_KEY = 'local-reminder-consumed-press-v2';
@@ -14,20 +15,21 @@ class LocalNotifications {
     this.queue = Promise.resolve();
     this.pressQueue = Promise.resolve();
     this.reminders = {};
+    this.deletedChildren = new Set();
     this.initializing = null;
     this.pressListener = null;
     this.started = false;
   }
 
   // Existing callers schedule/cancel in loops without awaiting. Preserve their order.
-  enqueue(work) {
+  enqueue(work, propagateFailure = false) {
     this.scheduleGroup = null; // A read/cancellation is an ordering barrier.
     const result = this.queue.then(async () => {
       await this.initialize();
       return work();
     });
     this.queue = result.catch(error => console.warn('Local notifications:', error));
-    return this.queue;
+    return propagateFailure ? result : this.queue;
   }
 
   initialize() {
@@ -52,6 +54,7 @@ class LocalNotifications {
     });
     const saved = await AsyncStorage.getItem(REMINDERS_KEY);
     this.reminders = saved ? JSON.parse(saved) : {};
+    this.deletedChildren = new Set(JSON.parse(await AsyncStorage.getItem(DELETED_CHILDREN_KEY) || '[]'));
     const migrated = await AsyncStorage.getItem(MIGRATION_KEY);
     const legacy = migrated ? [] : JSON.parse(await legacyNotifications.getPendingNotifications());
     for (const reminder of legacy) {
@@ -97,7 +100,7 @@ class LocalNotifications {
 
   async reconcile() {
     const future = Object.values(this.reminders)
-      .filter(item => item.timestamp > Date.now())
+      .filter(item => item.timestamp > Date.now() && !this.deletedChildren.has(String(item.data?.uuid)))
       .sort((a, b) => a.timestamp - b.timestamp);
     // iOS permits 64 pending requests. Keep overflow and refill when the app resumes.
     // Android uses AlarmManager, preserving the 55 automatic + manual reminders.
@@ -152,7 +155,9 @@ class LocalNotifications {
     const group = {items: [reminder], started: false};
     group.promise = this.enqueue(async () => {
       group.started = true;
-      for (const item of group.items) this.reminders[item.id] = item;
+      for (const item of group.items) {
+        if (!this.deletedChildren.has(String(item.data?.uuid))) this.reminders[item.id] = item;
+      }
       // Persist the whole desired set before touching native scheduling. Never
       // coalesce across cancellation/read operations or an in-flight batch.
       await this.persist();
@@ -170,6 +175,28 @@ class LocalNotifications {
       await notifications.cancelNotification(id);
       await this.reconcile();
     });
+  }
+
+  cancelChildReminderNotifications(childId) {
+    return this.enqueue(async () => {
+      const uuid = String(childId);
+      // Persist the deletion before cancellation so stale generation jobs and
+      // app restarts cannot restore this child's alarms, including iOS overflow.
+      this.deletedChildren.add(uuid);
+      await AsyncStorage.setItem(DELETED_CHILDREN_KEY, JSON.stringify([...this.deletedChildren]));
+      const ids = new Set(Object.values(this.reminders)
+        .filter(item => String(item.data?.uuid) === uuid).map(item => item.id));
+      const pending = await notifications.getTriggerNotifications();
+      for (const item of pending) {
+        if (item.notification?.data?.bebboReminder === '1' && String(item.notification.data.uuid) === uuid) {
+          ids.add(item.notification.id);
+        }
+      }
+      for (const id of ids) delete this.reminders[id];
+      await this.persist();
+      for (const id of ids) await notifications.cancelNotification(id);
+      await this.reconcile();
+    }, true);
   }
 
   cancelAllReminderLocalNotification() {

@@ -77,7 +77,7 @@ const FavActivities = (): any => {
     React.useCallback(() => {
       let active = true;
       async function fetchData(): Promise<any> {
-        setLoading(true);
+        // Keep the mounted list and its scroll offset while refreshing favourites.
         if (favoritegames.length > 0) {
           const filterQuery = favoritegames
             .map((x: any) => `id = '${x}'`)

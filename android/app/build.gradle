@@ -9,6 +9,36 @@ apply plugin: 'com.google.firebase.crashlytics'
  * By default you don't need to apply any configuration, just uncomment the lines you need.
  */
 def selectedInstance = providers.environmentVariable('FLAVOR').orElse('bebbo').get()
+// Device-only ABI overrides are useful for debug builds, but must never narrow
+// a distributable APK or AAB. Validate the resolved graph to cover every flavour
+// and abbreviated Gradle task names as well as explicit assemble/bundle calls.
+def distributionAbis = ['armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'] as Set
+gradle.taskGraph.whenReady { graph ->
+    def packagesRelease = graph.allTasks.any { task ->
+        task.project == project && task.name ==~ /(?i)(assemble|bundle|package).*Release(?:Bundle)?/
+    }
+    if (packagesRelease) {
+        def requestedAbis = providers.gradleProperty('reactNativeArchitectures').getOrElse('')
+            .split(',').collect { it.trim() }.findAll { it } as Set
+        if (requestedAbis != distributionAbis) {
+            throw new GradleException('Release APKs and AABs require all four ABIs: ' +
+                distributionAbis.join(',') + '. Remove the device-only -PreactNativeArchitectures override.')
+        }
+        def injectedAbi = providers.gradleProperty('android.injected.build.abi').orNull
+        if (injectedAbi && (injectedAbi.split(',').collect { it.trim() } as Set) != distributionAbis) {
+            throw new GradleException('Remove android.injected.build.abi when packaging a universal release.')
+        }
+        ([android.defaultConfig] + android.productFlavors.toList()).each { config ->
+            def filters = config.ndk.abiFilters
+            if (filters && (filters as Set) != distributionAbis) {
+                throw new GradleException("${config.name} restricts release ndk.abiFilters; all four ABIs are required.")
+            }
+        }
+        if (android.splits.abi.enable) {
+            throw new GradleException('Release APKs must be universal; keep android.splits.abi.enable=false.')
+        }
+    }
+}
 project.ext.defaultEnvFile = "env/.env.${selectedInstance}"
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 react {

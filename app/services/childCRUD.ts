@@ -387,6 +387,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       Alert.alert('', i18n.t('generalError'));
       return;
     }
+    // Publish the committed profile before returning to Manage Profile. Its
+    // idle refresh must not be responsible for making a successful edit visible.
+    await getAllChildren(dispatch, childAge, 0, false);
     logEvent({name: PROFILE_UPDATED, params: {source: 'manage_profile'}}, netInfo?.isConnected);
   }
   else {
@@ -599,28 +602,26 @@ export const getAllChildrenDetails = async (dispatch: any, childAge: any, param:
   }
 
 }
-export const getAllChildren = async (dispatch: any, childAge: any, param: any): Promise<any> => {
+export const getAllChildren = async (dispatch: any, childAge: any, param: any, reloadContent = true): Promise<any> => {
   try {
     const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    const childSettings = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    const childId = childSettings?.[0]?.value;
+    const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
+    let activeChildToRefresh: any;
     allJsonDatanew?.removeAllListeners?.();
     let childAllData: any = [];
     if (allJsonDatanew?.length > 0) {
       childAllData = [];
       const p = allJsonDatanew.map(async (n: any) => {
         const value = await calc(n, childAge);
-        const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
-        if (childId?.length > 0) {
-          childId = childId[0].value;
-          if (childId === n.uuid) {
-            const activeChild: any = value;
-            if (userParentalRole?.length > 0) {
-              activeChild.parent_gender = userParentalRole[0].value
-            }
-            const storedata = store.getState();
-            await getAllDataToStore(storedata.selectedCountry.languageCode,dispatch,"AddEditChild",activeChild);
-            dispatch(setActiveChildData(activeChild));
+        if (childId === n.uuid) {
+          const activeChild: any = value;
+          if (userParentalRole?.length > 0) {
+            activeChild.parent_gender = userParentalRole[0].value;
           }
+          activeChildToRefresh = activeChild;
+          dispatch(setActiveChildData(activeChild));
         }
         childAllData.push(value);
         return value;
@@ -635,6 +636,10 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
         return 0;
       });
       dispatch(setAllChildData(childAllData));
+      if (reloadContent && activeChildToRefresh) {
+        const storedata = store.getState();
+        await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChildToRefresh);
+      }
       if (param == 1) {
         return childAllData;
       }

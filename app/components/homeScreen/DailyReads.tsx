@@ -1,4 +1,5 @@
 import {useCommittedRef} from "../../customHooks/useCommittedRef";
+import {restoreDailySelection} from "../../services/dailySelection";
 import HorizontalContentList from "@components/shared/HorizontalContentList";
 import { appConfig } from "../../instances";
 import { MainContainer } from "@components/shared/Container";
@@ -151,16 +152,17 @@ const DailyReads = (): any => {
     activeChild?.taxonomyData?.prematureTaxonomyId ??
     activeChild?.taxonomyData?.id;
 
-  const ActivitiesData = ActivitiesDataall.filter((x: any) =>
+  const ActivitiesData = useMemo(() => ActivitiesDataall.filter((x: any) =>
     x.child_age.includes(activityTaxonomyId)
-  );
+  ), [ActivitiesDataall, activityTaxonomyId]);
   const eligibleArticles = useMemo(
     () =>
       articleDataAll.filter(
         (article: any) =>
           appConfig.articleCategoryIdArray.includes(article.category) &&
           article.child_age.includes(activityTaxonomyId) &&
-          (article.do_not_feature === 0 || article.do_not_feature === "0")
+          // Older bundled articles omit this opt-out flag.
+          (article.do_not_feature == null || article.do_not_feature === 0 || article.do_not_feature === "0")
       ),
     [articleDataAll, activityTaxonomyId]
   );
@@ -257,7 +259,7 @@ const DailyReads = (): any => {
         currentgamesid = 0;
       }
       const newcurrentdate =
-        gamid == 0 || advid == 0
+        gamid === 0 || advid === 0
           ? ""
           : inputDailyDataCategoryall[inputActiveChild.uuid].currentDate;
       dailyDataCategory = {
@@ -290,10 +292,20 @@ const DailyReads = (): any => {
       showedDailyDataCategory = { advice: advicearr, games: gamesarr };
     }
     const nowDate = DateTime.now().toISODate();
+    const newDay = dailyDataCategory.currentDate === "" || dailyDataCategory.currentDate < nowDate;
+    // Content can arrive in separate batches. Repair each list without replacing
+    // valid choices already displayed today, including a partially loaded list.
+    const restoredArticles = restoreDailySelection(dailyDataCategory.currentadviceid, ArticlesData);
+    const restoredActivities = restoreDailySelection(dailyDataCategory.currentgamesid, inputActivitiesData);
+    const missingAvailableArticles = JSON.stringify(restoredArticles.map(item => item.id)) !==
+      JSON.stringify(dailyDataCategory.currentadviceid || []);
+    const missingAvailableActivities = JSON.stringify(restoredActivities.map(item => item.id)) !==
+      JSON.stringify(dailyDataCategory.currentgamesid || []);
     if (
       dailyDataCategory &&
       (dailyDataCategory.currentDate == "" ||
-        dailyDataCategory.currentDate < nowDate)
+        dailyDataCategory.currentDate < nowDate ||
+        missingAvailableArticles || missingAvailableActivities)
     ) {
       let filteredArticles: string | any[] = [];
 
@@ -366,6 +378,10 @@ const DailyReads = (): any => {
         categoryArticleData.splice(index, 1);
       }
 
+      if (!newDay) {
+        articleDataToShow = restoreDailySelection(dailyDataCategory.currentadviceid, inputEligibleArticles, articleDataToShow);
+      }
+
       if (articleDataToShow.length > 0) {
         articleDataToShow.forEach((article) => {
           advicearray.push(article.id);
@@ -388,17 +404,6 @@ const DailyReads = (): any => {
             activityCategoryArrayNew.map((i: { id: number }) => i.id)
           ).has(x.activity_category)
       );
-      if (categoryActivityData.length < 2) {
-        const additionalItems = inputActivitiesData.filter(
-          (x: { activity_category: number }) =>
-            new Set<number>(
-              activityCategoryArrayNew.map((i: { id: number }) => i.id)
-            ).has(x.activity_category)
-        );
-        categoryActivityData = categoryActivityData.concat(
-          additionalItems.slice(0, 2 - categoryActivityData.length)
-        );
-      }
       const obj2 = categoryActivityData.filter(
         (i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id)
       );
@@ -423,6 +428,10 @@ const DailyReads = (): any => {
         const index = Math.floor(Math.random() * categoryActivityData.length);
         activityDataToShow.push(categoryActivityData[index]);
         categoryActivityData.splice(index, 1);
+      }
+
+      if (!newDay) {
+        activityDataToShow = restoreDailySelection(dailyDataCategory.currentgamesid, inputActivitiesData, activityDataToShow);
       }
 
       if (activityDataToShow.length > 0) {
@@ -510,11 +519,6 @@ const DailyReads = (): any => {
         }
       });
 
-      if (articleDataToShow.length === 0 && activityDataToShow.length === 0) {
-        inputDispatch(setDailyArticleGamesCategory({}));
-        inputDispatch(setShowedDailyDataCategory({}));
-      }
-
       articleDataToShow.forEach((article: any) => {
         articleDataList.push(article);
       });
@@ -525,7 +529,7 @@ const DailyReads = (): any => {
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList);
     }
-  }, [activeChild?.uuid, activityTaxonomyId, fetchAgain, dailyReadInputs]);
+  }, [activeChild?.uuid, activityTaxonomyId, fetchAgain, eligibleArticles, ActivitiesData, activityCategoryArray, dailyReadInputs]);
   const keyExtractor = useCallback((item: any) => String(item?.id), []);
 
   const renderItem = useCallback(
