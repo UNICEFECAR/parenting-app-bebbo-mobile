@@ -869,12 +869,17 @@ export default (): any => {
     console.log("linkedURL3---", linkedURL);
   }, [linkedURL]);
 
+  // Taxonomy refreshes must not re-enable a prompt already handled this session.
+  useEffect(() => {
+    if (userIsOnboarded) {
+      dispatch(setInfoModalOpened({ key: "showDownloadPopup", value: true }));
+    }
+  }, [userIsOnboarded, dispatch]);
+
   useEffect(() => {
     if (!userIsOnboarded) return;
     const timeout = setTimeout(() => {
       if (userIsOnboarded == true) {
-        const obj = { key: "showDownloadPopup", value: true };
-        dispatch(setInfoModalOpened(obj));
         const localnotiFlagObj = {
           generateFlag: true,
           generateType: "onAppStart",

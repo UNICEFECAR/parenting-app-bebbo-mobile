@@ -526,6 +526,45 @@ const WSen = {
       'Bebbo Pacific is getting ready to support your journey in providing care!',
     serviceProviderHeaderSubInfoText:
       'Bebbo Pacific created a newborn child profile to get you started. You can add more child profiles later.',
+    newAppBannerTitle: 'Bebbo has a new home!',
+    newAppBannerMessage: 'Learn how to transfer your children\'s saved information to the new app.',
+    newAppBannerLinkBtn: 'Download new app',
+    newAppInfoAccessibility: 'Read instructions for transferring saved information',
+    newAppInfoTitle: 'Keep your saved information',
+    newAppMigrationInstructions:
+      'The app you know and trust is now [New App Name], provided by [Government Body]. To keep your children\'s saved information, follow 3 simple steps:\n\n1. Back up: Go to Settings → Back up your data and save your backup to Google Drive.\n\n2. Download: Get the new app.\n\n3. Restore: Bring your saved information into the new app during onboarding. (You can do this only when online.)',
+    newAppStoreUnavailableTitle: 'App store unavailable',
+    newAppStoreUnavailableMessage:
+      'The store link is currently unavailable. You can continue using this app.',
+    newAppStoreErrorTitle: 'Unable to open app store',
+    newAppStoreErrorMessage: 'Please try again later. You can continue using this app.',
+    close: 'Close',
+    newAppAlertTitle: 'Another app is available for your country',
+    newAppAlertMessage:
+      'A Bebbo app specifically for your selected country is available. Would you like to continue with this app or change your country selection?',
+    newAppAlertEditBtn: 'Back',
+    newAppAlertContinueBtn: 'Continue',
+    newAppAlertDownloadBtn: 'Download App',
+    backupPassphraseHelp:
+      'Use at least 6 characters. Keep it somewhere safe: it is not saved in the app and cannot be recovered. You will need it on another device. Older app versions cannot open new backups.',
+    backupPassphrase: 'Backup passphrase',
+    backupRepeatPassphrase: 'Repeat passphrase',
+    backupRecoveryHelp:
+      'The restore did not finish. Free some storage if necessary, then retry. You can also keep the data that was on this device before the restore. The app will remain here until recovery finishes.',
+    backupKeepPrevious: 'Keep previous data',
+    backupRestoreReplaceWarningV3:
+      'Restoring replaces all child and pregnancy profiles and their records on this device. Photos, caregiver details and reminder preferences included in the backup are also restored. Back up current data first. Only restore files you trust. This does not merge records. Continue?',
+    backupPreviewExpired: 'Backup preview expired. Select the backup again',
+    backupLegacyUnlockFailed:
+      'This app could not unlock the older backup. Check that the build includes the original backup encryption settings and that the file is complete.',
+    backupDamaged: 'Unsupported or damaged backup',
+    backupUnlockFailed: 'Incorrect passphrase or damaged backup',
+    backupPassphraseTooShort: 'A backup passphrase must contain at least 6 characters',
+    backupSizeLimit: 'Backup exceeds the supported size',
+    backupPhotoUnavailable: 'A profile photo is missing or exceeds 8 MB',
+    backupPhotoFormat: 'Profile photos must be JPEG or PNG images up to 4096 pixels',
+    backupPhotoSizeLimit: 'Backup photos exceed the supported size',
+    backupRecoveryRequired: 'Restore interrupted: retry recovery or keep the previous data',
   },
 };
 export default WSen;

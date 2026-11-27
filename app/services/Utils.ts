@@ -27,7 +27,6 @@ import {SurveysSchema} from '../database/schema/SurveysSchema';
 import {TaxonomySchema} from '../database/schema/TaxonomySchema';
 import {VaccinationSchema} from '../database/schema/VaccinationSchema';
 import {VideoArticleEntitySchema} from '../database/schema/VideoArticleSchema';
-import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import LocalNotifications from "./LocalNotifications";
 import moment from "moment";
@@ -141,10 +140,6 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
       if (saved !== "success") throw new Error("Article cache write was not confirmed");
       return "successinsert";
     } catch  {
-      const errorArr = [];
-      errorArr.push(response.payload);
-      const payload = { errorArr: errorArr, fromPage: "OnLoad" };
-      response.dispatch(receiveAPIFailure(payload));
       return "";
     }
   } else if (
@@ -162,10 +157,6 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
       if (saved !== "success") throw new Error("Archive cache update was not confirmed");
       return "successinsert";
     } catch  {
-      const errorArr = [];
-      errorArr.push(response.payload);
-      const payload = { errorArr: errorArr, fromPage: "OnLoad" };
-      response.dispatch(receiveAPIFailure(payload));
       return "";
     }
   } else if (EntitySchema == StandardDevWeightForHeightSchema) {
@@ -174,10 +165,6 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
       if (saved !== "success") throw new Error("Chart reference cache write was not confirmed");
       return "successinsert";
     } catch  {
-      const errorArr = [];
-      errorArr.push(response.payload);
-      const payload = { errorArr: errorArr, fromPage: "OnLoad" };
-      response.dispatch(receiveAPIFailure(payload));
       return "";
     }
   } else {
@@ -186,10 +173,6 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
       if (saved !== "success") throw new Error("Content cache write was not confirmed");
       return "successinsert";
     } catch  {
-      const errorArr = [];
-      errorArr.push(response.payload);
-      const payload = { errorArr: errorArr, fromPage: "OnLoad" };
-      response.dispatch(receiveAPIFailure(payload));
       return "";
     }
   }

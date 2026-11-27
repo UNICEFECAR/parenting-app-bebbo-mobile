@@ -2,6 +2,13 @@
 import { appConfig } from "../../instances";
 import { createSlice } from "@reduxjs/toolkit";
 
+// Include parameters: a failed full download must survive a successful delta request.
+const requestKey = (request: any): string => JSON.stringify([
+  request.apiEndpoint, request.method,
+  Object.entries(request.postdata || {}).sort(([a], [b]) => a.localeCompare(b)),
+  request.saveinDB,
+]);
+
 const initialState = {
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   data: null,
@@ -20,24 +27,21 @@ export const sagaSlice = createSlice({
       state.data = action.payload;
     },
     receiveAPIFailure: (state, action):any => {
-      action.payload.errorArr = action.payload.errorArr.filter((_item: any) => _item.apiEndpoint !== appConfig.apiConfig.surveys);
-      //write code to check if element already in array.
-      if (action.payload?.fromPage == "OnLoad") {
-        state.errorObj = []
+      const {errorArr = [], attempted = [], fromPage} = action.payload;
+      // Explicit reset is reserved for changing the content language.
+      if (fromPage === "OnLoad" && errorArr.length === 0) {
+        state.errorObj = [];
+        return;
       }
-      else if (action.payload?.fromPage == "Home") {
-        if (action.payload?.errorArr?.length > 0) {
-          state.errorObj = action.payload?.errorArr;
-        } else {
-          state.errorObj = []
+      const failed = errorArr.filter((item: any) => item.apiEndpoint !== appConfig.apiConfig.surveys);
+      const succeeded = attempted.filter((item: any) =>
+        !failed.some((failure: any) => requestKey(failure) === requestKey(item)));
+      state.errorObj = state.errorObj.filter((item: any) =>
+        !succeeded.some((success: any) => requestKey(success) === requestKey(item)));
+      for (const item of failed) {
+        if (!state.errorObj.some((pending: any) => requestKey(pending) === requestKey(item))) {
+          state.errorObj.push(item as never);
         }
-      } else {
-        action.payload.errorArr.map((value: any) => {
-          const i = state.errorObj.findIndex((_item:any) => _item.apiEndpoint === value.apiEndpoint);
-          if (i == -1) {
-            state.errorObj.push(value as never)
-          }
-        });
       }
     },
   }

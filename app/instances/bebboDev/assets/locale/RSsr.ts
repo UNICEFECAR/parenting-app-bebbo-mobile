@@ -530,6 +530,46 @@ const RSsr = {
       'Bebbo je spremna da podrži vaše putovanje kroz roditeljstvo!',
     serviceProviderHeaderSubInfoText:
       'Bebbo je kreirala profil novorođenčeta da vam olakša početak pretrage. Kasnije možete dodati više profila dece.',
+    newAppBannerTitle: 'Bebbo ima novi dom!',
+    newAppBannerMessage:
+      'Saznajte kako da prenesete sačuvane podatke o svojoj deci u novu aplikaciju.',
+    newAppBannerLinkBtn: 'Preuzmite novu aplikaciju',
+    newAppInfoAccessibility: 'Pročitajte uputstva za prenos sačuvanih podataka',
+    newAppInfoTitle: 'Zadržite sačuvane podatke',
+    newAppMigrationInstructions:
+      'Aplikacija koju poznajete i kojoj verujete sada se zove [New App Name], a pruža je [Government Body]. Da biste zadržali sačuvane podatke o svojoj deci, pratite 3 jednostavna koraka:\n\n1. Napravite rezervnu kopiju: Idite na Podešavanja → Napravite rezervnu kopiju podataka i sačuvajte je na Google disku.\n\n2. Preuzmite novu aplikaciju.\n\n3. Vratite podatke: Prenesite sačuvane podatke u novu aplikaciju tokom početnog podešavanja. (To možete uraditi samo kada ste povezani na internet.)',
+    newAppStoreUnavailableTitle: 'Prodavnica aplikacija nije dostupna',
+    newAppStoreUnavailableMessage:
+      'Veza do prodavnice trenutno nije dostupna. Možete nastaviti da koristite ovu aplikaciju.',
+    newAppStoreErrorTitle: 'Nije moguće otvoriti prodavnicu aplikacija',
+    newAppStoreErrorMessage: 'Pokušajte ponovo kasnije. Možete nastaviti da koristite ovu aplikaciju.',
+    close: 'Zatvori',
+    newAppAlertTitle: 'Za vašu zemlju dostupna je druga aplikacija',
+    newAppAlertMessage:
+      'Dostupna je Bebbo aplikacija namenjena zemlji koju ste izabrali. Želite li da nastavite sa ovom aplikacijom ili da promenite izabranu zemlju?',
+    newAppAlertEditBtn: 'Nazad',
+    newAppAlertContinueBtn: 'Nastavi',
+    newAppAlertDownloadBtn: 'Preuzmi aplikaciju',
+    backupPassphraseHelp:
+      'Koristite najmanje 6 znakova. Čuvajte lozinku na sigurnom mestu: ne čuva se u aplikaciji i ne može se povratiti. Biće vam potrebna na drugom uređaju. Starije verzije aplikacije ne mogu da otvore nove rezervne kopije.',
+    backupPassphrase: 'Lozinka rezervne kopije',
+    backupRepeatPassphrase: 'Ponovite lozinku',
+    backupRecoveryHelp:
+      'Vraćanje podataka nije završeno. Po potrebi oslobodite prostor za skladištenje, pa pokušajte ponovo. Možete zadržati i podatke koji su bili na ovom uređaju pre vraćanja. Aplikacija će ostati na ovom ekranu dok se oporavak ne završi.',
+    backupKeepPrevious: 'Zadrži prethodne podatke',
+    backupRestoreReplaceWarningV3:
+      'Vraćanjem se zamenjuju svi profili dece i trudnoće i njihovi zapisi na ovom uređaju. Vraćaju se i fotografije, podaci o staratelju i podešavanja podsetnika uključeni u rezervnu kopiju. Prvo napravite rezervnu kopiju trenutnih podataka. Vraćajte samo datoteke kojima verujete. Zapisi se ne spajaju. Nastaviti?',
+    backupPreviewExpired: 'Pregled rezervne kopije je istekao. Ponovo izaberite rezervnu kopiju',
+    backupLegacyUnlockFailed:
+      'Aplikacija nije mogla da otključa stariju rezervnu kopiju. Proverite da li verzija aplikacije sadrži izvorna podešavanja šifrovanja rezervne kopije i da li je datoteka potpuna.',
+    backupDamaged: 'Nepodržana ili oštećena rezervna kopija',
+    backupUnlockFailed: 'Netačna lozinka ili oštećena rezervna kopija',
+    backupPassphraseTooShort: 'Lozinka rezervne kopije mora da sadrži najmanje 6 znakova',
+    backupSizeLimit: 'Rezervna kopija premašuje podržanu veličinu',
+    backupPhotoUnavailable: 'Fotografija profila nedostaje ili je veća od 8 MB',
+    backupPhotoFormat: 'Fotografije profila moraju biti JPEG ili PNG slike do 4096 piksela',
+    backupPhotoSizeLimit: 'Fotografije u rezervnoj kopiji premašuju podržanu veličinu',
+    backupRecoveryRequired: 'Vraćanje je prekinuto: ponovite oporavak ili zadržite prethodne podatke',
   },
 };
 export default RSsr;

@@ -532,6 +532,49 @@ const ESec = {
     relatedVideoArticle: "Videos relacionados",
     donateButton: "Nuestros Aliados",
     searchInWawamorText: "Buscar",
+    newAppBannerTitle: "¡Bebbo tiene un nuevo hogar!",
+    newAppBannerMessage:
+      "Descubre cómo transferir la información guardada de tus hijos a la nueva aplicación.",
+    newAppBannerLinkBtn: "Descargar nueva aplicación",
+    newAppInfoAccessibility: "Leer las instrucciones para transferir la información guardada",
+    newAppInfoTitle: "Conserva tu información guardada",
+    newAppMigrationInstructions:
+      "La aplicación que conoces y en la que confías ahora es [New App Name], ofrecida por [Government Body]. Para conservar la información guardada de tus hijos, sigue estos 3 pasos:\n\n1. Crea una copia de seguridad: Ve a Ajustes → Hacer una copia de seguridad de tus datos y guárdala en Google Drive.\n\n2. Descarga: Obtén la nueva aplicación.\n\n3. Restaura: Transfiere tu información guardada a la nueva aplicación durante la configuración inicial. (Solo puedes hacerlo con conexión a internet.)",
+    newAppStoreUnavailableTitle: "Tienda de aplicaciones no disponible",
+    newAppStoreUnavailableMessage:
+      "El enlace a la tienda no está disponible en este momento. Puedes seguir usando esta aplicación.",
+    newAppStoreErrorTitle: "No se puede abrir la tienda de aplicaciones",
+    newAppStoreErrorMessage: "Inténtalo de nuevo más tarde. Puedes seguir usando esta aplicación.",
+    close: "Cerrar",
+    newAppAlertTitle: "Hay otra aplicación disponible para tu país",
+    newAppAlertMessage:
+      "Hay una aplicación Bebbo específica para el país que seleccionaste. ¿Quieres continuar con esta aplicación o cambiar la selección de país?",
+    newAppAlertEditBtn: "Atrás",
+    newAppAlertContinueBtn: "Continuar",
+    newAppAlertDownloadBtn: "Descargar aplicación",
+    backupPassphraseHelp:
+      "Usa al menos 6 caracteres. Guárdala en un lugar seguro: no se guarda en la aplicación y no se puede recuperar. La necesitarás en otro dispositivo. Las versiones anteriores de la aplicación no pueden abrir las nuevas copias de seguridad.",
+    backupPassphrase: "Contraseña de la copia de seguridad",
+    backupRepeatPassphrase: "Repetir contraseña",
+    backupRecoveryHelp:
+      "La restauración no terminó. Libera espacio de almacenamiento si es necesario y vuelve a intentarlo. También puedes conservar los datos que había en este dispositivo antes de la restauración. La aplicación permanecerá en esta pantalla hasta que termine la recuperación.",
+    backupKeepPrevious: "Conservar datos anteriores",
+    backupRestoreReplaceWarningV3:
+      "La restauración reemplaza todos los perfiles de niños y embarazos y sus registros en este dispositivo. También restaura las fotos, los datos del cuidador y las preferencias de recordatorios incluidos en la copia de seguridad. Primero haz una copia de seguridad de los datos actuales. Restaura solo archivos de confianza. Los registros no se combinan. ¿Continuar?",
+    backupPreviewExpired:
+      "La vista previa de la copia de seguridad caducó. Selecciona la copia de seguridad de nuevo",
+    backupLegacyUnlockFailed:
+      "Esta aplicación no pudo desbloquear la copia de seguridad anterior. Comprueba que esta versión incluya la configuración de cifrado original y que el archivo esté completo.",
+    backupDamaged: "Copia de seguridad no compatible o dañada",
+    backupUnlockFailed: "Contraseña incorrecta o copia de seguridad dañada",
+    backupPassphraseTooShort:
+      "La contraseña de la copia de seguridad debe tener al menos 6 caracteres",
+    backupSizeLimit: "La copia de seguridad supera el tamaño permitido",
+    backupPhotoUnavailable: "Falta una foto de perfil o supera los 8 MB",
+    backupPhotoFormat: "Las fotos de perfil deben ser imágenes JPEG o PNG de hasta 4096 píxeles",
+    backupPhotoSizeLimit: "Las fotos de la copia de seguridad superan el tamaño permitido",
+    backupRecoveryRequired:
+      "Restauración interrumpida: vuelve a intentar la recuperación o conserva los datos anteriores",
   },
 };
 export default ESec;

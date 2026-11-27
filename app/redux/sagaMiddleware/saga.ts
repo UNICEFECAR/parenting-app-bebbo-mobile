@@ -1,5 +1,9 @@
+import {withPendingForceUpdateRequests} from '../../services/forceUpdateRequests';
 import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, onSponsorApiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, select, takeEvery } from 'redux-saga/effects';
+import {appConfig} from '../../instances';
+import {remoteStrings} from '../../localization/stringResources';
+import {withStringSync} from '../../localization/stringSyncPlan';
 import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess, retryAlert } from '../../services/commonApiService';
 import { ApiJsonArray, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
@@ -8,19 +12,26 @@ import { fetchAPIStart, receiveAPIFailure, receiveAPISuccess } from './sagaSlice
 function* apiCall(data: ApiJsonArray, dispatch: any, errors: ApiJsonArray[]): any {
   let stage = 'download';
   try {
+    const isStrings = data.apiEndpoint === appConfig.apiConfig.strings;
+    // Capture the requested language before downloading; late responses must
+    // never overwrite another locale if the user changes language meanwhile.
+    const language = isStrings ? yield select(state => state.selectedCountry) : undefined;
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
     // Incremental endpoints report 204 when there is nothing new to download.
     // Keep the existing cache and accept the response without attempting a write.
     if (response?.status == 204 || (response?.status == 200 && response?.data?.status == 204)) {
       return response;
     }
-    if (response?.status != 200 || (data.saveinDB && response?.data?.status != 200)) {
+    if (response?.status != 200 || ((data.saveinDB || isStrings) && response?.data?.status != 200)) {
       console.error('Content update request failed', {apiEndpoint: data.apiEndpoint, stage,
         httpStatus: response?.status, contentStatus: response?.data?.status});
       errors.push(data);
       return null;
     }
-    if (data.saveinDB) {
+    if (isStrings) {
+      stage = 'persistence';
+      yield call(remoteStrings.acceptResponse, language.locale, language.languageCode, response.data);
+    } else if (data.saveinDB) {
       stage = 'persistence';
       // A dispatched/forked write does not finish before the success handler.
       // Await persistence before exposing the response or advancing its cursor.
@@ -38,10 +49,10 @@ function* apiCall(data: ApiJsonArray, dispatch: any, errors: ApiJsonArray[]): an
     return null;
   }
 }
-function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[]): any {
+function* onApiSuccess(response: any[], prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any, errorArr: ApiJsonArray[], attempted: ApiJsonArray[]): any {
 
   try {
-    const payload = { errorArr: errorArr, fromPage: prevPage }
+    const payload = { errorArr: errorArr, fromPage: prevPage, attempted }
     yield put(receiveAPIFailure(payload))
     yield call(updateIncrementalSyncDT, response, dispatch, navigation, languageCode, prevPage);
   } catch (error) {
@@ -127,14 +138,33 @@ export function* onFetchAPI(value: any): any {
   const {payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,
     netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload} = value;
   const accepted: any[] = [];
-  let pending: ApiJsonArray[] = payload;
+  let pending: ApiJsonArray[] = withStringSync(payload, appConfig.apiConfig.strings, prevPage, downloadWeeklyData);
+  if (prevPage === 'ForceUpdate') {
+    const queued: ApiJsonArray[] = yield select(state => state.failedOnloadApiObjReducer?.errorObj || []);
+    pending = withPendingForceUpdateRequests(pending, queued);
+  }
+  let coveredForceUpdateTime = forceupdatetime;
+  const initialRecovery = prevPage === 'Home' && (yield select(state =>
+    state.utilsData?.weeklyDownloadDate === 0 && state.utilsData?.monthlyDownloadDate === 0));
+  const fullRefresh = ['DownloadAllData', 'DownloadUpdate', 'CountryLangChange'].includes(prevPage) || initialRecovery;
+  if (netInfoIsConnected && fullRefresh && coveredForceUpdateTime == null) {
+    try {
+      const version = yield call(commonApiService, appConfig.apiConfig.checkUpdate, 'get', {});
+      if (version?.status === 200 && version.data?.status === 200 && version.data.updated_at != null) {
+        coveredForceUpdateTime = String(version.data.updated_at);
+      }
+    } catch { /* Content can still download if the version check is unavailable. */ }
+  }
+  const attempted = pending;
   let failed: ApiJsonArray[] = [];
   yield put(fetchAPIStart());
   do {
+    // Offline onboarding continues using bundled data, without network timeouts or dialogs.
+    if (netInfoIsConnected === false) { failed = pending; break; }
     failed = [];
     const batch: any[] = yield all(pending.map(request => call(apiCall, request, dispatch, failed)));
     accepted.push(...batch.filter(Boolean));
-    if (!failed.length || !netInfoIsConnected || prevPage === 'Survey') break;
+    if (!failed.length || !netInfoIsConnected || ['Survey', 'VideoArticle', 'RelatedVideoArticle'].includes(prevPage)) break;
     try {
       yield call(retryAlert);
     } catch {
@@ -145,8 +175,8 @@ export function* onFetchAPI(value: any): any {
   } while (pending.length);
 
   yield call(onApiSuccess, accepted, prevPage, dispatch, navigation, languageCode, activeChild,
-    oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData,
-    enableImageDownload, failed);
+    oldErrorObj, netInfoIsConnected, coveredForceUpdateTime, downloadWeeklyData, downloadMonthlyData,
+    enableImageDownload, failed, attempted);
   yield put(receiveAPISuccess(accepted));
 }
 export function* fetchAPISaga(): any {

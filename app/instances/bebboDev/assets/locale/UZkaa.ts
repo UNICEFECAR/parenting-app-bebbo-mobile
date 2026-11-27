@@ -520,6 +520,50 @@ const UZkaa = {
       'Беббо готовится поддержать вас в оказании помощи!',
     serviceProviderHeaderSubInfoText:
       'Чтобы вы могли начать, Беббо создал профиль новорожденного ребенка. Позже вы сможете добавить дополнительные профили для других детей.',
+    newAppBannerTitle: 'Bebbo jańa úyge kóshti!',
+    newAppBannerMessage:
+      'Balalarıńız haqqında saqlanǵan maǵlıwmatlardı jańa qosımshaǵa qalay ótkeriwdi bilip alıń.',
+    newAppBannerLinkBtn: 'Jańa qosımshanı júklep alıw',
+    newAppInfoAccessibility: 'Saqlanǵan maǵlıwmatlardı ótkeriw boyınsha kórsetpelerdi oqıw',
+    newAppInfoTitle: 'Saqlanǵan maǵlıwmatlarıńızdı saqlap qalıń',
+    newAppMigrationInstructions:
+      'Siz biletuǵın hám isenetuǵın qosımsha endi [Government Body] tárepinen usınılatuǵın [New App Name] dep ataladı. Balalarıńız haqqında saqlanǵan maǵlıwmatlardı saqlap qalıw ushın 3 ápiwayı qádemdi orınlań:\n\n1. Rezerv nusqa jaratıń: Sazlawlar → Maǵlıwmatlardıń rezerv nusqasın jaratıw bólimine ótiń hám rezerv nusqanı Google Drive’ǵa saqlań.\n\n2. Jańa qosımshanı júklep alıń.\n\n3. Qayta tikleń: Dáslepki sazlaw waqtında saqlanǵan maǵlıwmatlardı jańa qosımshaǵa ótkeriń. (Bunı tek internetke qosılǵanda orınlaw múmkin.)',
+    newAppStoreUnavailableTitle: 'Qosımshalar dúkanı qoljetimsiz',
+    newAppStoreUnavailableMessage:
+      'Dúkan siltemesi házir qoljetimsiz. Bul qosımshadan paydalanıwdı dawam ete alasız.',
+    newAppStoreErrorTitle: 'Qosımshalar dúkanın ashıw múmkin bolmadı',
+    newAppStoreErrorMessage:
+      'Keyinirek qayta urınıp kóriń. Bul qosımshadan paydalanıwdı dawam ete alasız.',
+    close: 'Jabıw',
+    newAppAlertTitle: 'Mámleketińiz ushın basqa qosımsha bar',
+    newAppAlertMessage:
+      'Siz tańlaǵan mámleket ushın arnawlı Bebbo qosımshası bar. Bul qosımshadan paydalanıwdı dawam etesiz be yamasa tańlanǵan mámleketti ózgertesiz be?',
+    newAppAlertEditBtn: 'Artqa',
+    newAppAlertContinueBtn: 'Dawam etiw',
+    newAppAlertDownloadBtn: 'Qosımshanı júklep alıw',
+    backupPassphraseHelp:
+      'Keminde 6 belgiden paydalanıń. Paroldı qáwipsiz jerde saqlań: ol qosımshada saqlanbaydı hám onı qayta tiklew múmkin emes. Ol sizge basqa qurılmada kerek boladı. Qosımshanıń eski versiyaları jańa rezerv nusqalardı asha almaydı.',
+    backupPassphrase: 'Rezerv nusqa parolı',
+    backupRepeatPassphrase: 'Paroldı qaytalań',
+    backupRecoveryHelp:
+      'Qayta tiklew tamamlanbadı. Kerek bolsa, yadta orın bosatıń hám qayta urınıp kóriń. Qayta tiklewden aldın bul qurılmada bolǵan maǵlıwmatlardı da saqlap qala alasız. Qayta tiklew tamamlanǵansha qosımsha usı ekranda qaladı.',
+    backupKeepPrevious: 'Aldınǵı maǵlıwmatlardı saqlap qalıw',
+    backupRestoreReplaceWarningV3:
+      'Qayta tiklew bul qurılmadaǵı barlıq bala hám júklilik profillerin hám olardıń jazbaların almastıradı. Rezerv nusqadaǵı súwretler, baǵıwshı haqqında maǵlıwmatlar hám esletpe sazlawları da qayta tiklenedi. Dáslep házirgi maǵlıwmatlardıń rezerv nusqasın jaratıń. Tek isenimli fayllardı qayta tikleń. Jazbalar birlestirilmeydi. Dawam etilsin be?',
+    backupPreviewExpired:
+      'Rezerv nusqanı aldın ala kóriw múddeti tamamlandı. Rezerv nusqanı qayta tańlań',
+    backupLegacyUnlockFailed:
+      'Qosımsha eski rezerv nusqanıń qulpın asha almadı. Bul versiyada rezerv nusqanıń dáslepki shifrlew sazlawları bar ekenin hám fayldıń tolıq ekenin tekseriń.',
+    backupDamaged: 'Qollap-quwatlanbaytuǵın yamasa buzılǵan rezerv nusqa',
+    backupUnlockFailed: 'Parol nadurıs yamasa rezerv nusqa buzılǵan',
+    backupPassphraseTooShort: 'Rezerv nusqa parolı keminde 6 belgiden ibarat bolıwı kerek',
+    backupSizeLimit: 'Rezerv nusqa kólemi ruxsat etilgen shekten asqan',
+    backupPhotoUnavailable: 'Profil súwreti joq yamasa onıń kólemi 8 MB tan úlken',
+    backupPhotoFormat:
+      'Profil súwretleri 4096 pikselge shekemgi JPEG yamasa PNG súwretleri bolıwı kerek',
+    backupPhotoSizeLimit: 'Rezerv nusqadaǵı súwretler kólemi ruxsat etilgen shekten asqan',
+    backupRecoveryRequired:
+      'Qayta tiklew toqtatıldı: qayta urınıp kóriń yamasa aldınǵı maǵlıwmatlardı saqlap qalıń',
   },
 };
 export default UZkaa;

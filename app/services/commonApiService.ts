@@ -450,14 +450,6 @@ export const onHomeapiSuccess = async (
     );
     return allDatatoStore;
   });
-  const forceUpdateData = [
-    {
-      apiEndpoint: appConfig.apiConfig.checkUpdate,
-      method: "get",
-      postdata: {},
-      saveinDB: false,
-    },
-  ];
   await Promise.all(resolvedPromises);
   dispatch(setInfoModalOpened({ key: "showDownloadPopup", value: false }));
   const errorObj = store.getState().failedOnloadApiObjReducer.errorObj;
@@ -488,6 +480,16 @@ export const onHomeapiSuccess = async (
       dispatch(setAllLocalNotificationGenerateType(localNotiFlagObj));
     }
   }
+  // A recovered offline onboarding batch establishes the first real download dates.
+  if (downloadComplete && prevPage === "Home") {
+    const syncDates = store.getState().utilsData;
+    if (!syncDates.weeklyDownloadDate) {
+      dispatch(setSyncDate({ key: "weeklyDownloadDate", value: currentDate }));
+    }
+    if (!syncDates.monthlyDownloadDate) {
+      dispatch(setSyncDate({ key: "monthlyDownloadDate", value: currentDate }));
+    }
+  }
   if (downloadComplete && prevPage == "PeriodicSync") {
     if (downloadWeeklyData == true) {
       dispatch(setSyncDate({ key: "weeklyDownloadDate", value: currentDate }));
@@ -497,32 +499,31 @@ export const onHomeapiSuccess = async (
     }
   }
 
-  if (
-    prevPage == "DownloadAllData" ||
-    prevPage == "ImportScreen" ||
-    prevPage == "CountryLangChange"
-  ) {
-    const artresp = response.find(
-      (x: any) => x.apiEndpoint == "articles" && x.status == 200
-    );
-    if (artresp) {
-      const artobj = oldErrorObj.find((x: any) => x.apiEndpoint == "articles");
-      if (artobj) {
-        try {
-          const storedata = store.getState();
-          const childagearray = storedata.utilsData?.taxonomy?.allTaxonomyData
-            ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData)
-                .child_age || []
-            : [];
-          const artarray =
-            artobj.postdata.childAge == "all"
-              ? childagearray.map((x: any) => x.id)
-              : artobj.postdata.childAge.split(",").map(Number);
-          console.log(artarray, "---childagearray--", childagearray);
-          dispatch(setDownloadedBufferAgeBracket(artarray));
-        } catch  {}
-      }
-    }
+  // Record coverage for every successfully persisted full article response,
+  // including pending onboarding recovery and periodic buffer downloads.
+  for (const articleRequest of oldErrorObj.filter((item: any) =>
+    item.apiEndpoint === appConfig.apiConfig.articles &&
+    !item.postdata?.datetime && item.postdata?.childAge)) {
+    const articlesSaved = response.some((item: any) =>
+      item.apiEndpoint === appConfig.apiConfig.articles && item.status === 200 &&
+      item.data?.status === 200);
+    const articlesPending = errorObj.some((item: any) => item.apiEndpoint === appConfig.apiConfig.articles);
+    if (!articlesSaved || articlesPending) continue;
+    try {
+      const state = store.getState();
+      const childAges = state.utilsData.taxonomy.allTaxonomyData
+        ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age || [] : [];
+      const downloaded = articleRequest.postdata.childAge === "all"
+        ? childAges.map((item: any) => item.id)
+        : String(articleRequest.postdata.childAge).split(",").map(Number);
+      const existing = state.childData?.childDataSet?.bufferAgeBracket || [];
+      dispatch(setDownloadedBufferAgeBracket([...new Set([...existing, ...downloaded])]));
+    } catch { /* Keep existing coverage if taxonomy data cannot be read. */ }
+  }
+  // Use the version checked BEFORE downloading, so a newer CMS publication
+  // during the download is not accidentally acknowledged.
+  if (downloadComplete && forceupdatetime != null && prevPage !== "ForceUpdate") {
+    await AsyncStorage.setItem("forceUpdateTime", String(forceupdatetime));
   }
 
   if (prevPage == "CountryLangChange" || prevPage == "ImportScreen") {
@@ -541,18 +542,7 @@ export const onHomeapiSuccess = async (
       childuuid: "all",
     };
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-    if (prevPage == "CountryLangChange") {
-      const apiresponse = await commonApiService(
-        forceUpdateData[0].apiEndpoint,
-        forceUpdateData[0].method,
-        forceUpdateData[0].postdata
-      );
-      const forceUpdateTime =
-        apiresponse && apiresponse.data && apiresponse.data.updated_at
-          ? apiresponse.data.updated_at
-          : "0";
-      AsyncStorage.setItem("forceUpdateTime", forceUpdateTime);
-    }
+
   }
   if (prevPage == "DownloadUpdate" && errorObj?.length == 0) {
     const childAge =

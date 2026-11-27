@@ -549,6 +549,50 @@ const MDro = {
       'Bebbo se pregătește să te sprijine în îngrijirea copilului!',
     serviceProviderHeaderSubInfoText:
       'Bebbo a creat un profil de copil nou-născut pentru a te ajuta să începi. Poți adăuga mai multe profiluri pentru copii ulterior.',
+    newAppBannerTitle: 'Bebbo are o casă nouă!',
+    newAppBannerMessage:
+      'Află cum să transferi informațiile salvate despre copiii tăi în noua aplicație.',
+    newAppBannerLinkBtn: 'Descarcă noua aplicație',
+    newAppInfoAccessibility: 'Citește instrucțiunile pentru transferul informațiilor salvate',
+    newAppInfoTitle: 'Păstrează informațiile salvate',
+    newAppMigrationInstructions:
+      'Aplicația pe care o cunoști și în care ai încredere se numește acum [New App Name] și este oferită de [Government Body]. Pentru a păstra informațiile salvate despre copiii tăi, urmează 3 pași simpli:\n\n1. Creează o copie de rezervă: Accesează Setări → Creează o copie de rezervă a datelor și salveaz-o în Google Drive.\n\n2. Descarcă noua aplicație.\n\n3. Restaurează: Transferă informațiile salvate în noua aplicație în timpul configurării inițiale. (Poți face acest lucru doar când ai conexiune la internet.)',
+    newAppStoreUnavailableTitle: 'Magazinul de aplicații nu este disponibil',
+    newAppStoreUnavailableMessage:
+      'Linkul către magazin nu este disponibil momentan. Poți continua să folosești această aplicație.',
+    newAppStoreErrorTitle: 'Magazinul de aplicații nu poate fi deschis',
+    newAppStoreErrorMessage:
+      'Încearcă din nou mai târziu. Poți continua să folosești această aplicație.',
+    close: 'Închide',
+    newAppAlertTitle: 'Este disponibilă o altă aplicație pentru țara ta',
+    newAppAlertMessage:
+      'Este disponibilă o aplicație Bebbo dedicată țării selectate. Dorești să continui cu această aplicație sau să schimbi țara selectată?',
+    newAppAlertEditBtn: 'Înapoi',
+    newAppAlertContinueBtn: 'Continuă',
+    newAppAlertDownloadBtn: 'Descarcă aplicația',
+    backupPassphraseHelp:
+      'Folosește cel puțin 6 caractere. Păstrează parola într-un loc sigur: nu este salvată în aplicație și nu poate fi recuperată. Vei avea nevoie de ea pe un alt dispozitiv. Versiunile mai vechi ale aplicației nu pot deschide noile copii de rezervă.',
+    backupPassphrase: 'Parola copiei de rezervă',
+    backupRepeatPassphrase: 'Repetă parola',
+    backupRecoveryHelp:
+      'Restaurarea nu s-a încheiat. Eliberează spațiu de stocare dacă este necesar, apoi încearcă din nou. Poți păstra și datele care erau pe acest dispozitiv înainte de restaurare. Aplicația va rămâne pe acest ecran până la finalizarea recuperării.',
+    backupKeepPrevious: 'Păstrează datele anterioare',
+    backupRestoreReplaceWarningV3:
+      'Restaurarea înlocuiește toate profilurile de copii și de sarcină și înregistrările lor de pe acest dispozitiv. Sunt restaurate și fotografiile, datele îngrijitorului și preferințele pentru mementouri incluse în copia de rezervă. Creează mai întâi o copie de rezervă a datelor actuale. Restaurează doar fișiere de încredere. Înregistrările nu sunt îmbinate. Continui?',
+    backupPreviewExpired:
+      'Previzualizarea copiei de rezervă a expirat. Selectează din nou copia de rezervă',
+    backupLegacyUnlockFailed:
+      'Aplicația nu a putut debloca vechea copie de rezervă. Verifică dacă versiunea aplicației include setările originale de criptare și dacă fișierul este complet.',
+    backupDamaged: 'Copie de rezervă neacceptată sau deteriorată',
+    backupUnlockFailed: 'Parolă incorectă sau copie de rezervă deteriorată',
+    backupPassphraseTooShort: 'Parola copiei de rezervă trebuie să conțină cel puțin 6 caractere',
+    backupSizeLimit: 'Copia de rezervă depășește dimensiunea acceptată',
+    backupPhotoUnavailable: 'O fotografie de profil lipsește sau depășește 8 MB',
+    backupPhotoFormat:
+      'Fotografiile de profil trebuie să fie imagini JPEG sau PNG de până la 4096 de pixeli',
+    backupPhotoSizeLimit: 'Fotografiile din copia de rezervă depășesc dimensiunea acceptată',
+    backupRecoveryRequired:
+      'Restaurare întreruptă: reîncearcă recuperarea sau păstrează datele anterioare',
   },
 };
 export default MDro;

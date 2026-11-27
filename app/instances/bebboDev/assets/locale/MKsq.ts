@@ -547,6 +547,48 @@ const MKsq = {
       'Bebbo po përgatitet të mbështesë udhëtimin tuaj në ofrimin e kujdesit!',
     serviceProviderHeaderSubInfoText:
       'Bebbo po përgatitet të mbështesë udhëtimin tuaj në ofrimin e kujdesit!',
+    newAppBannerTitle: 'Bebbo ka një shtëpi të re!',
+    newAppBannerMessage:
+      'Mësoni si t’i transferoni të dhënat e ruajtura të fëmijëve tuaj në aplikacionin e ri.',
+    newAppBannerLinkBtn: 'Shkarkoni aplikacionin e ri',
+    newAppInfoAccessibility: 'Lexoni udhëzimet për transferimin e të dhënave të ruajtura',
+    newAppInfoTitle: 'Mbani të dhënat tuaja të ruajtura',
+    newAppMigrationInstructions:
+      'Aplikacioni që njihni dhe i besoni tani quhet [New App Name] dhe ofrohet nga [Government Body]. Për të mbajtur të dhënat e ruajtura të fëmijëve tuaj, ndiqni 3 hapa të thjeshtë:\n\n1. Krijoni një kopje rezervë: Shkoni te Cilësimet → Krijoni kopje rezervë të të dhënave dhe ruajeni në Google Drive.\n\n2. Shkarkoni aplikacionin e ri.\n\n3. Riktheni të dhënat: Transferoni të dhënat e ruajtura në aplikacionin e ri gjatë konfigurimit fillestar. (Këtë mund ta bëni vetëm kur jeni të lidhur me internetin.)',
+    newAppStoreUnavailableTitle: 'Dyqani i aplikacioneve nuk është i disponueshëm',
+    newAppStoreUnavailableMessage:
+      'Lidhja e dyqanit nuk është e disponueshme për momentin. Mund të vazhdoni ta përdorni këtë aplikacion.',
+    newAppStoreErrorTitle: 'Dyqani i aplikacioneve nuk mund të hapet',
+    newAppStoreErrorMessage: 'Provoni sërish më vonë. Mund të vazhdoni ta përdorni këtë aplikacion.',
+    close: 'Mbyll',
+    newAppAlertTitle: 'Një aplikacion tjetër është i disponueshëm për vendin tuaj',
+    newAppAlertMessage:
+      'Një aplikacion Bebbo posaçërisht për vendin që keni zgjedhur është i disponueshëm. Dëshironi të vazhdoni me këtë aplikacion apo të ndryshoni vendin e zgjedhur?',
+    newAppAlertEditBtn: 'Prapa',
+    newAppAlertContinueBtn: 'Vazhdoni',
+    newAppAlertDownloadBtn: 'Shkarkoni aplikacionin',
+    backupPassphraseHelp:
+      'Përdorni të paktën 6 karaktere. Mbajeni fjalëkalimin në një vend të sigurt: ai nuk ruhet në aplikacion dhe nuk mund të rikuperohet. Do t’ju duhet në një pajisje tjetër. Versionet e vjetra të aplikacionit nuk mund t’i hapin kopjet e reja rezervë.',
+    backupPassphrase: 'Fjalëkalimi i kopjes rezervë',
+    backupRepeatPassphrase: 'Përsëritni fjalëkalimin',
+    backupRecoveryHelp:
+      'Rikthimi nuk përfundoi. Lironi hapësirë ruajtjeje nëse është e nevojshme dhe provoni sërish. Mund të mbani edhe të dhënat që ishin në këtë pajisje para rikthimit. Aplikacioni do të qëndrojë në këtë ekran derisa të përfundojë rikuperimi.',
+    backupKeepPrevious: 'Mbani të dhënat e mëparshme',
+    backupRestoreReplaceWarningV3:
+      'Rikthimi zëvendëson të gjitha profilet e fëmijëve dhe të shtatzënisë dhe regjistrimet e tyre në këtë pajisje. Rikthehen edhe fotografitë, të dhënat e kujdestarit dhe preferencat e kujtesave të përfshira në kopjen rezervë. Fillimisht krijoni një kopje rezervë të të dhënave aktuale. Riktheni vetëm skedarë të besuar. Regjistrimet nuk bashkohen. Dëshironi të vazhdoni?',
+    backupPreviewExpired:
+      'Pamja paraprake e kopjes rezervë ka skaduar. Zgjidhni përsëri kopjen rezervë',
+    backupLegacyUnlockFailed:
+      'Aplikacioni nuk mundi ta zhbllokonte kopjen e vjetër rezervë. Kontrolloni që versioni të përfshijë cilësimet origjinale të enkriptimit dhe që skedari të jetë i plotë.',
+    backupDamaged: 'Kopje rezervë e pambështetur ose e dëmtuar',
+    backupUnlockFailed: 'Fjalëkalim i pasaktë ose kopje rezervë e dëmtuar',
+    backupPassphraseTooShort: 'Fjalëkalimi i kopjes rezervë duhet të ketë të paktën 6 karaktere',
+    backupSizeLimit: 'Kopja rezervë tejkalon madhësinë e lejuar',
+    backupPhotoUnavailable: 'Një fotografi profili mungon ose është më e madhe se 8 MB',
+    backupPhotoFormat: 'Fotografitë e profilit duhet të jenë imazhe JPEG ose PNG deri në 4096 pikselë',
+    backupPhotoSizeLimit: 'Fotografitë e kopjes rezervë tejkalojnë madhësinë e lejuar',
+    backupRecoveryRequired:
+      'Rikthimi u ndërpre: provoni sërish rikuperimin ose mbani të dhënat e mëparshme',
   },
 };
 export default MKsq;

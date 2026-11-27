@@ -8,9 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNLocalize from 'react-native-localize';
 import { store } from '../../App';
 import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
-import { localization, AVAILABLE_LANGUAGES } from '../instances/index';
+import { localization } from '../instances/index';
 
-import {backupFallback} from './backupFallback';
+import {bundledStringResources, remoteStrings} from './stringResources';
 
 const localisationnew = [...localization];
 const findAllByKey: any = (obj: object | null, keyToFind: string) => {
@@ -49,7 +49,8 @@ const languageDetector: LanguageDetectorAsyncModule = {
     } catch (error) {
       console.log('Unable to read saved app language:', error);
     }
-    if (lng) {
+    if (lng && Object.prototype.hasOwnProperty.call(bundledStringResources, lng)) {
+      await remoteStrings.hydrate(lng);
       return lng;
     }
 
@@ -60,7 +61,8 @@ const languageDetector: LanguageDetectorAsyncModule = {
     const country = localization.find((x: any) => x.languages.some((item: any) => item.locale === lang2));
     const language = localization.reduce((prev: any, product: any) => prev || product.languages.find((item: any) => item.locale === lang2), undefined);
     store.dispatch(onLocalizationSelect({ country, language }));
-    return langCodeNew ?? localization[localization.length - 1]?.languages[0]?.locale;
+    await remoteStrings.hydrate(lang2);
+    return lang2;
   },
   cacheUserLanguage: async (lng: string) => {
     try {
@@ -73,6 +75,9 @@ const languageDetector: LanguageDetectorAsyncModule = {
 const trimwhiteSpace = (str:any):any => {
   return str.length ? str.trim(): str
 }
+// Language previews and offline switches load saved text without any API call.
+i18n.on('languageChanged', locale => { void remoteStrings.hydrate(locale); });
+
 i18n
   .use(languageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -84,14 +89,17 @@ i18n
     }
   })
   .init({
-    // Preserve pre-v27 locale casing, empty translations and fallback behaviour.
+    // Each locale falls back to its own bundle, never to English.
     cleanCode: false,
     returnEmptyString: true,
-    fallbackLng: ['dev'],
-    resources: {...AVAILABLE_LANGUAGES, dev: {translation: backupFallback}},
-  //   load: 'currentOnly',
+    fallbackLng: false,
+    load: 'currentOnly',
+    resources: Object.fromEntries(Object.entries(bundledStringResources).map(
+      ([locale, resource]) => [locale, {translation: {...resource.translation}}],
+    )),
     react: {
       useSuspense: false,
+      bindI18nStore: 'added',
     },
     interpolation: {
       escapeValue: false,

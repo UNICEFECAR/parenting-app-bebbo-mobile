@@ -16,7 +16,9 @@ jest.mock('../axiosService', () => ({}));
 jest.mock('../LocalNotifications', () => ({cancelAllReminderLocalNotification: jest.fn()}));
 jest.mock('../childCRUD', () => ({}));
 jest.mock('../../redux/reducers/articlesSlice', () => ({}));
-jest.mock('../../redux/reducers/childSlice', () => ({}));
+jest.mock('../../redux/reducers/childSlice', () => ({
+  setDownloadedBufferAgeBracket: (payload: any) => ({type: 'bufferCoverage', payload}),
+}));
 jest.mock('../../redux/reducers/notificationSlice', () => ({
   setAllNotificationData: (payload: any) => ({type: 'notifications', payload}),
   setAllLocalNotificationGenerateType: (payload: any) => ({type: 'notificationGeneration', payload}),
@@ -75,5 +77,61 @@ test.each(['ForceUpdate', 'PeriodicSync'])(
     expect(dispatch.mock.calls.filter(([action]) => action.type === 'syncDate').map(([action]) => action.payload.key))
       .toEqual(['weeklyDownloadDate', 'monthlyDownloadDate']);
     if (prevPage === 'ForceUpdate') expect(AsyncStorage.setItem).toHaveBeenCalledWith('forceUpdateTime', 'new-version');
+  },
+);
+
+test.each([true, false])('offline onboarding recovery initializes dates only when complete (%s)', async complete => {
+  (store.getState as jest.Mock).mockReturnValue({
+    failedOnloadApiObjReducer: {errorObj: complete ? [] : [failed]},
+    utilsData: {weeklyDownloadDate: 0, monthlyDownloadDate: 0, taxonomy: {allTaxonomyData: ''}},
+  });
+  await finish('Home');
+  expect(dispatch.mock.calls.filter(([action]) => action.type === 'syncDate').length).toBe(complete ? 2 : 0);
+});
+
+test('ordinary pending recovery preserves existing weekly/monthly dates', async () => {
+  (store.getState as jest.Mock).mockReturnValue({
+    failedOnloadApiObjReducer: {errorObj: []},
+    utilsData: {weeklyDownloadDate: 123, monthlyDownloadDate: 123, taxonomy: {allTaxonomyData: ''}},
+  });
+  await finish('Home');
+  expect(dispatch.mock.calls.filter(([action]) => action.type === 'syncDate')).toEqual([]);
+});
+
+
+test.each(['Home', 'DownloadAllData', 'ForceUpdate', 'PeriodicSync'])(
+  '%s records downloaded article ages so buffer sync does not prompt again', async prevPage => {
+    (store.getState as jest.Mock).mockReturnValue({
+      failedOnloadApiObjReducer: {errorObj: []},
+      utilsData: {weeklyDownloadDate: 123, monthlyDownloadDate: 123,
+        taxonomy: {allTaxonomyData: JSON.stringify({child_age: [{id: 50}, {id: 51}, {id: 52}]})}},
+      childData: {childDataSet: {bufferAgeBracket: [49]}},
+    });
+    await onHomeapiSuccess([{apiEndpoint: 'articles', status: 200, data: {status: 200}}],
+      dispatch, {reset: jest.fn()}, 'en', prevPage, {},
+      [{apiEndpoint: 'articles', postdata: {childAge: 'all'}}], undefined, false, false, false);
+    expect(dispatch).toHaveBeenCalledWith({type: 'bufferCoverage', payload: [49, 50, 51, 52]});
+  },
+);
+
+test('failed articles never mark buffer ages as downloaded', async () => {
+  (store.getState as jest.Mock).mockReturnValue({
+    failedOnloadApiObjReducer: {errorObj: [{apiEndpoint: 'articles'}]},
+    utilsData: {taxonomy: {allTaxonomyData: JSON.stringify({child_age: [{id: 51}]})}},
+  });
+  await onHomeapiSuccess([], dispatch, {reset: jest.fn()}, 'en', 'Home', {},
+    [{apiEndpoint: 'articles', postdata: {childAge: 'all'}}], '123', false, false, false);
+  expect(dispatch.mock.calls.some(([action]) => action.type === 'bufferCoverage')).toBe(false);
+  expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+});
+
+test.each(['Home', 'DownloadAllData', 'DownloadUpdate'])(
+  'completed %s acknowledges the force-update version covered by the download', async prevPage => {
+    (store.getState as jest.Mock).mockReturnValue({
+      failedOnloadApiObjReducer: {errorObj: []},
+      utilsData: {taxonomy: {allTaxonomyData: ''}},
+    });
+    await onHomeapiSuccess([], dispatch, {reset: jest.fn()}, 'en', prevPage, {}, [], '123', false, false, false);
+    expect(AsyncStorage.setItem).toHaveBeenCalledWith('forceUpdateTime', '123');
   },
 );

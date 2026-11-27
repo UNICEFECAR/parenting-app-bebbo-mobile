@@ -532,6 +532,47 @@ const sk = {
       'Bebbo aplikácia je pripravená podporiť Vás v starostlivosti o Vaše dieťa!',
     serviceProviderHeaderSubInfoText:
       'Bebbo vytvoril profil novorodenca, aby ste mohli začať. Neskôr môžete pridať osobné profily Vašich detí.',
+    newAppBannerTitle: 'Bebbo má nový domov!',
+    newAppBannerMessage:
+      'Zistite, ako preniesť uložené informácie o svojich deťoch do novej aplikácie.',
+    newAppBannerLinkBtn: 'Stiahnuť novú aplikáciu',
+    newAppInfoAccessibility: 'Prečítať pokyny na prenos uložených informácií',
+    newAppInfoTitle: 'Zachovajte si uložené informácie',
+    newAppMigrationInstructions:
+      'Aplikácia, ktorú poznáte a ktorej dôverujete, sa teraz volá [New App Name] a poskytuje ju [Government Body]. Ak si chcete zachovať uložené informácie o svojich deťoch, postupujte podľa 3 jednoduchých krokov:\n\n1. Zálohujte údaje: Prejdite do Nastavenia → Zálohovať údaje a uložte zálohu na Disk Google.\n\n2. Stiahnite si novú aplikáciu.\n\n3. Obnovte údaje: Preneste uložené informácie do novej aplikácie počas úvodného nastavenia. (Je to možné len s pripojením na internet.)',
+    newAppStoreUnavailableTitle: 'Obchod s aplikáciami nie je dostupný',
+    newAppStoreUnavailableMessage:
+      'Odkaz na obchod momentálne nie je dostupný. Túto aplikáciu môžete používať aj naďalej.',
+    newAppStoreErrorTitle: 'Obchod s aplikáciami sa nedá otvoriť',
+    newAppStoreErrorMessage: 'Skúste to znova neskôr. Túto aplikáciu môžete používať aj naďalej.',
+    close: 'Zavrieť',
+    newAppAlertTitle: 'Pre vašu krajinu je dostupná iná aplikácia',
+    newAppAlertMessage:
+      'Pre vami vybranú krajinu je dostupná špeciálna aplikácia Bebbo. Chcete pokračovať s touto aplikáciou alebo zmeniť vybranú krajinu?',
+    newAppAlertEditBtn: 'Späť',
+    newAppAlertContinueBtn: 'Pokračovať',
+    newAppAlertDownloadBtn: 'Stiahnuť aplikáciu',
+    backupPassphraseHelp:
+      'Použite aspoň 6 znakov. Heslo si uložte na bezpečnom mieste: v aplikácii sa neukladá a nedá sa obnoviť. Budete ho potrebovať na inom zariadení. Staršie verzie aplikácie nedokážu otvoriť nové zálohy.',
+    backupPassphrase: 'Heslo zálohy',
+    backupRepeatPassphrase: 'Zopakujte heslo',
+    backupRecoveryHelp:
+      'Obnovenie sa nedokončilo. V prípade potreby uvoľnite miesto a skúste to znova. Môžete si tiež ponechať údaje, ktoré boli v tomto zariadení pred obnovením. Aplikácia zostane na tejto obrazovke, kým sa obnova nedokončí.',
+    backupKeepPrevious: 'Ponechať predchádzajúce údaje',
+    backupRestoreReplaceWarningV3:
+      'Obnovením sa nahradia všetky profily detí a tehotenstva aj ich záznamy v tomto zariadení. Obnovia sa aj fotografie, údaje opatrovateľa a nastavenia pripomienok zahrnuté v zálohe. Najprv zálohujte aktuálne údaje. Obnovujte iba dôveryhodné súbory. Záznamy sa nezlučujú. Pokračovať?',
+    backupPreviewExpired: 'Platnosť náhľadu zálohy vypršala. Vyberte zálohu znova',
+    backupLegacyUnlockFailed:
+      'Aplikácia nedokázala odomknúť staršiu zálohu. Skontrolujte, či zostava obsahuje pôvodné nastavenia šifrovania zálohy a či je súbor úplný.',
+    backupDamaged: 'Nepodporovaná alebo poškodená záloha',
+    backupUnlockFailed: 'Nesprávne heslo alebo poškodená záloha',
+    backupPassphraseTooShort: 'Heslo zálohy musí obsahovať aspoň 6 znakov',
+    backupSizeLimit: 'Záloha prekračuje podporovanú veľkosť',
+    backupPhotoUnavailable: 'Profilová fotografia chýba alebo je väčšia ako 8 MB',
+    backupPhotoFormat: 'Profilové fotografie musia byť obrázky JPEG alebo PNG do 4096 pixelov',
+    backupPhotoSizeLimit: 'Fotografie v zálohe prekračujú podporovanú veľkosť',
+    backupRecoveryRequired:
+      'Obnovenie bolo prerušené: skúste obnovu znova alebo ponechajte predchádzajúce údaje',
   },
 };
 export default sk;

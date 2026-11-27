@@ -214,6 +214,7 @@ const config = {
   isCheckTokenize: false,
   stopWords: [],
   apiConfig: {
+    strings: "strings",
     articles: "articles",
     videoArticles: "video-articles",
     dailyMessages: "daily-homescreen-messages",
@@ -273,6 +274,8 @@ const config = {
         return `${baseUrl}/${selectedLang}${
           isPregnancy() ? "?pregnancy=true" : ""
         }`;
+      case config.apiConfig.strings:
+        return `${baseUrl}/${encodeURIComponent(selectedLang)}`;
       case config.apiConfig.checkUpdate:
         return `${baseUrl}/${countryIdOverride ?? selectedCountry}`;
       default:

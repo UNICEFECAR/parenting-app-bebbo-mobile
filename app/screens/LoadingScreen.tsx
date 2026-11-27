@@ -249,8 +249,9 @@ const LoadingScreen = ({ route, navigation: screenNavigation }: Props): any => {
           await Promise.all(resolvedPromises);
         }
       }
-      const payload = { errorArr: [], fromPage: "OnLoad" };
-      dispatch(receiveAPIFailure(payload));
+      if (prevPage === "CountryLangChange") {
+        dispatch(receiveAPIFailure({ errorArr: [], fromPage: "OnLoad" }));
+      }
       dispatch(
         fetchAPI(
           apiJsonData,

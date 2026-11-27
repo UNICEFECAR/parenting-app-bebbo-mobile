@@ -452,7 +452,50 @@ const tr = {
     "vcHasScheduled": "Aşı planlandı",
     "relatedVideoArticle": "İlgili videolar",
     "donateButton": "Merhaba Bebek için bağışla",
-    "searchInBebboText": "Arama yapın"
+    "searchInBebboText": "Arama yapın",
+    newAppBannerTitle: "Bebbo’nun yeni bir evi var!",
+    newAppBannerMessage:
+      "Çocuklarınızın kayıtlı bilgilerini yeni uygulamaya nasıl aktaracağınızı öğrenin.",
+    newAppBannerLinkBtn: "Yeni uygulamayı indir",
+    newAppInfoAccessibility: "Kayıtlı bilgileri aktarma talimatlarını oku",
+    newAppInfoTitle: "Kayıtlı bilgilerinizi koruyun",
+    newAppMigrationInstructions:
+      "Bildiğiniz ve güvendiğiniz uygulama artık [Government Body] tarafından sunulan [New App Name] adıyla hizmet veriyor. Çocuklarınızın kayıtlı bilgilerini korumak için 3 basit adımı izleyin:\n\n1. Yedekleyin: Ayarlar → Verilerinizi yedekleyin bölümüne gidin ve yedeğinizi Google Drive’a kaydedin.\n\n2. İndirin: Yeni uygulamayı edinin.\n\n3. Geri yükleyin: İlk kurulum sırasında kayıtlı bilgilerinizi yeni uygulamaya aktarın. (Bunu yalnızca internete bağlıyken yapabilirsiniz.)",
+    newAppStoreUnavailableTitle: "Uygulama mağazası kullanılamıyor",
+    newAppStoreUnavailableMessage:
+      "Mağaza bağlantısı şu anda kullanılamıyor. Bu uygulamayı kullanmaya devam edebilirsiniz.",
+    newAppStoreErrorTitle: "Uygulama mağazası açılamadı",
+    newAppStoreErrorMessage:
+      "Lütfen daha sonra tekrar deneyin. Bu uygulamayı kullanmaya devam edebilirsiniz.",
+    close: "Kapat",
+    newAppAlertTitle: "Ülkeniz için başka bir uygulama mevcut",
+    newAppAlertMessage:
+      "Seçtiğiniz ülkeye özel bir Bebbo uygulaması mevcut. Bu uygulamayla devam etmek mi, yoksa ülke seçiminizi değiştirmek mi istersiniz?",
+    newAppAlertEditBtn: "Geri",
+    newAppAlertContinueBtn: "Devam et",
+    newAppAlertDownloadBtn: "Uygulamayı indir",
+    backupPassphraseHelp:
+      "En az 6 karakter kullanın. Parolayı güvenli bir yerde saklayın: uygulamada kaydedilmez ve kurtarılamaz. Başka bir cihazda buna ihtiyacınız olacak. Uygulamanın eski sürümleri yeni yedekleri açamaz.",
+    backupPassphrase: "Yedek parolası",
+    backupRepeatPassphrase: "Parolayı tekrarlayın",
+    backupRecoveryHelp:
+      "Geri yükleme tamamlanmadı. Gerekirse depolama alanı açıp tekrar deneyin. Geri yüklemeden önce bu cihazda bulunan verileri de koruyabilirsiniz. Kurtarma tamamlanana kadar uygulama bu ekranda kalacaktır.",
+    backupKeepPrevious: "Önceki verileri koru",
+    backupRestoreReplaceWarningV3:
+      "Geri yükleme, bu cihazdaki tüm çocuk ve gebelik profillerini ve bunlara ait kayıtları değiştirir. Yedekte bulunan fotoğraflar, bakım veren bilgileri ve hatırlatıcı tercihleri de geri yüklenir. Önce mevcut verilerinizi yedekleyin. Yalnızca güvendiğiniz dosyaları geri yükleyin. Kayıtlar birleştirilmez. Devam edilsin mi?",
+    backupPreviewExpired: "Yedek önizlemesinin süresi doldu. Yedeği yeniden seçin",
+    backupLegacyUnlockFailed:
+      "Uygulama eski yedeğin kilidini açamadı. Bu sürümün özgün yedek şifreleme ayarlarını içerdiğini ve dosyanın eksiksiz olduğunu kontrol edin.",
+    backupDamaged: "Desteklenmeyen veya bozuk yedek",
+    backupUnlockFailed: "Yanlış parola veya bozuk yedek",
+    backupPassphraseTooShort: "Yedek parolası en az 6 karakter içermelidir",
+    backupSizeLimit: "Yedek, desteklenen boyutu aşıyor",
+    backupPhotoUnavailable: "Bir profil fotoğrafı eksik veya 8 MB’tan büyük",
+    backupPhotoFormat:
+      "Profil fotoğrafları en fazla 4096 piksellik JPEG veya PNG görüntüler olmalıdır",
+    backupPhotoSizeLimit: "Yedekteki fotoğraflar desteklenen boyutu aşıyor",
+    backupRecoveryRequired:
+      "Geri yükleme kesildi: kurtarmayı yeniden deneyin veya önceki verileri koruyun",
   }
 }
 export default tr;

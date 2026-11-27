@@ -526,6 +526,48 @@ const ZWsn = {
       'Rerai umntwana iri kugadzirira kukutsigira parwendo rwako rwekuRerai nekuchengetedza mwana!',
     serviceProviderHeaderSubInfoText:
       'Rerai umntwana yagadzira profile yemwana wako mutsva kuti utange. Unogona kuwedzera maprofile evamwe vana gare gare.',
+    newAppBannerTitle: 'Bebbo yava nenzvimbo itsva!',
+    newAppBannerMessage: 'Dzidza kuendesa mashoko evana vako akachengetwa kuapp itsva.',
+    newAppBannerLinkBtn: 'Dhaunirodha app itsva',
+    newAppInfoAccessibility: 'Verenga mirayiridzo yekuendesa mashoko akachengetwa',
+    newAppInfoTitle: 'Chengeta mashoko ako akachengetwa',
+    newAppMigrationInstructions:
+      'App yaunoziva uye yaunovimba nayo yava kunzi [New App Name], inopiwa ne[Government Body]. Kuti uchengete mashoko evana vako, tevera matanho matatu ari nyore:\n\n1. Gadzira kopi yekuchengetedza: Enda kuMarongero → Gadzira kopi yekuchengetedza mashoko ako, woichengeta muGoogle Drive.\n\n2. Dhaunirodha app itsva.\n\n3. Dzorera mashoko: Isa mashoko ako akachengetwa muapp itsva paunenge uchiigadzira kekutanga. (Unogona kuita izvi chete kana wakabatana neinternet.)',
+    newAppStoreUnavailableTitle: 'Chitoro chemaapp hachisi kuwanika',
+    newAppStoreUnavailableMessage:
+      'Chinongedzo chechitoro hachisi kuwanika pari zvino. Unogona kuramba uchishandisa app iyi.',
+    newAppStoreErrorTitle: 'Chitoro chemaapp hachigoni kuvhurwa',
+    newAppStoreErrorMessage: 'Edza zvakare pave paya. Unogona kuramba uchishandisa app iyi.',
+    close: 'Vhara',
+    newAppAlertTitle: 'Pane imwe app inowanikwa yenyika yako',
+    newAppAlertMessage:
+      'Pane app yeBebbo yakagadzirirwa nyika yawasarudza. Unoda kuenderera neapp iyi here kana kuchinja nyika yawasarudza?',
+    newAppAlertEditBtn: 'Dzokera',
+    newAppAlertContinueBtn: 'Enderera',
+    newAppAlertDownloadBtn: 'Dhaunirodha app',
+    backupPassphraseHelp:
+      'Shandisa mavara kana zviratidzo zvinenge 6 kana kupfuura. Chengeta pasiwedhi panzvimbo yakachengeteka: haichengetwi muapp uye haigoni kudzorerwa. Uchaida pane chimwe chishandiso. Mavhezheni ekare eapp haagoni kuvhura makopi matsva ekuchengetedza.',
+    backupPassphrase: 'Pasiwedhi yekopi yekuchengetedza',
+    backupRepeatPassphrase: 'Dzokorora pasiwedhi',
+    backupRecoveryHelp:
+      'Kudzorera mashoko hakuna kupera. Sunungura nzvimbo yekuchengetera kana zvichidiwa, woedza zvakare. Unogonawo kuchengeta mashoko aiva pachishandiso ichi kudzorerwa kusati kwatanga. App icharamba iri papeji ino kusvikira kudzorerwa kwapera.',
+    backupKeepPrevious: 'Chengeta mashoko ekare',
+    backupRestoreReplaceWarningV3:
+      'Kudzorera kunotsiva mapurofayiri ese evana neepamuviri nemarekodhi awo pachishandiso ichi. Mifananidzo, mashoko emuchengeti uye marongero ezviyeuchidzo zviri mukopi yekuchengetedza zvinodzorerwawo. Tanga wagadzira kopi yekuchengetedza mashoko aripo. Dzorera mafaira aunovimba nawo chete. Marekodhi haabatanidzwi. Woenderera here?',
+    backupPreviewExpired:
+      'Nguva yekutarisa kopi yekuchengetedza yapera. Sarudza kopi yekuchengetedza zvakare',
+    backupLegacyUnlockFailed:
+      'App haina kukwanisa kuvhura kopi yekuchengetedza yekare. Tarisa kuti vhezheni iyi ine marongero ekutanga ekuvharira mashoko ekopi yekuchengetedza uye kuti faira rakakwana.',
+    backupDamaged: 'Kopi yekuchengetedza isingatsigirwi kana yakakanganisika',
+    backupUnlockFailed: 'Pasiwedhi isiri iyo kana kopi yekuchengetedza yakakanganisika',
+    backupPassphraseTooShort:
+      'Pasiwedhi yekopi yekuchengetedza inofanira kuva nemavara kana zviratidzo zvinenge 6',
+    backupSizeLimit: 'Kopi yekuchengetedza yakakura kupfuura saizi inotsigirwa',
+    backupPhotoUnavailable: 'Mufananidzo wepurofayiri haupo kana kuti wakakura kupfuura 8 MB',
+    backupPhotoFormat:
+      'Mifananidzo yepurofayiri inofanira kuva JPEG kana PNG isingapfuuri 4096 pixels',
+    backupPhotoSizeLimit: 'Mifananidzo yekopi yekuchengetedza yakakura kupfuura saizi inotsigirwa',
+    backupRecoveryRequired: 'Kudzorera kwamiswa: edza zvakare kana chengeta mashoko ekare',
   },
 };
 export default ZWsn;

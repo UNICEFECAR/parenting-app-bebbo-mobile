@@ -526,6 +526,50 @@ const ZWnd = {
       'iRerai umntwana isalungiselela ukukuncedisa ukondla abantwana!',
     serviceProviderHeaderSubInfoText:
       'iRerai umntwana seyenzile iProfile yomntwana.Sungaqalisa. Ungenelisa ukufaka  abanye abantwana phambili.',
+    newAppBannerTitle: 'IBebbo isilekhaya elitsha!',
+    newAppBannerMessage:
+      'Funda ukuthi uludlulisela njani ulwazi lwabantwabakho olugciniweyo ku-app entsha.',
+    newAppBannerLinkBtn: 'Thatha i-app entsha',
+    newAppInfoAccessibility: 'Bala imilayezo yokudlulisela ulwazi olugciniweyo',
+    newAppInfoTitle: 'Gcina ulwazi lwakho olugciniweyo',
+    newAppMigrationInstructions:
+      'I-app oyaziyo njalo oyithembayo isibizwa ngokuthi [New App Name], inikezwa yi-[Government Body]. Ukuze ugcine ulwazi lwabantwabakho, landela amanyathelo amathathu alula:\n\n1. Yenza ikhophi yokulondoloza: Yana kuZilungiselelo → Yenza ikhophi yokulondoloza ulwazi lwakho, uyigcine kuGoogle Drive.\n\n2. Thatha i-app entsha.\n\n3. Buyisela ulwazi: Dlulisela ulwazi lwakho olugciniweyo ku-app entsha ngesikhathi uyilungiselela okokuqala. (Lokhu kungenziwa kuphela nxa uxhumeke ku-inthanethi.)',
+    newAppStoreUnavailableTitle: 'Isitolo sama-app asitholakali',
+    newAppStoreUnavailableMessage:
+      'Isixhumanisi sesitolo kasitholakali okwamanje. Ungaqhubeka usebenzisa i-app le.',
+    newAppStoreErrorTitle: 'Isitolo sama-app kasivuleki',
+    newAppStoreErrorMessage: 'Sicela uzame futhi ngemva kwesikhathi. Ungaqhubeka usebenzisa i-app le.',
+    close: 'Vala',
+    newAppAlertTitle: 'Kulenye i-app etholakalayo yelizwe lakho',
+    newAppAlertMessage:
+      'Kule-app yeBebbo eyenzelwe ilizwe olikhethileyo. Uyafuna ukuqhubeka nge-app le kumbe ukutshintsha ilizwe olikhethileyo?',
+    newAppAlertEditBtn: 'Emuva',
+    newAppAlertContinueBtn: 'Qhubeka',
+    newAppAlertDownloadBtn: 'Thatha i-app',
+    backupPassphraseHelp:
+      'Sebenzisa izinhlamvu kumbe izimpawu eziyisithupha kumbe ezingaphezulu. Gcina iphasiwedi endaweni ephephileyo: kayigcinwa ku-app njalo kayikwazi ukubuyiselwa. Uzayidinga kwenye idivayisi. Izinhlobo ezindala ze-app kazikwazi ukuvula amakhophi amatsha okulondoloza.',
+    backupPassphrase: 'Iphasiwedi yekhophi yokulondoloza',
+    backupRepeatPassphrase: 'Phinda iphasiwedi',
+    backupRecoveryHelp:
+      'Ukubuyisela akuphelanga. Khulula indawo yokugcina nxa kudingeka, ubusuzama futhi. Ungagcina lolwazi obelukudivayisi le kungakaqalwa ukubuyisela. I-app izahlala ekhasini leli kuze kuphele ukubuyisela.',
+    backupKeepPrevious: 'Gcina ulwazi lwangaphambili',
+    backupRestoreReplaceWarningV3:
+      'Ukubuyisela kuthatha indawo yawo wonke amaphrofayili abantwana lawokukhulelwa lamarekhodi awo kudivayisi le. Izithombe, ulwazi lomnakekeli lezilungiselelo zezikhumbuzo ezisekhophini yokulondoloza lakho kuyabuyiselwa. Qala wenze ikhophi yokulondoloza ulwazi olukhona. Buyisela amafayili owathembayo kuphela. Amarekhodi kawahlanganiswa. Uyaqhubeka?',
+    backupPreviewExpired:
+      'Isikhathi sokubona kuqala ikhophi yokulondoloza sesiphelile. Khetha ikhophi yokulondoloza futhi',
+    backupLegacyUnlockFailed:
+      'I-app yehlulekile ukuvula ikhophi endala yokulondoloza. Hlola ukuthi inguqulo le ilezilungiselelo zokuqala zokubethela ulwazi lwekhophi yokulondoloza lokuthi ifayili liphelele.',
+    backupDamaged: 'Ikhophi yokulondoloza engasekelwayo kumbe eyonakeleyo',
+    backupUnlockFailed: 'Iphasiwedi engaqondanga kumbe ikhophi yokulondoloza eyonakeleyo',
+    backupPassphraseTooShort:
+      'Iphasiwedi yekhophi yokulondoloza kumele ibe lezinhlamvu kumbe izimpawu eziyisithupha kumbe ezingaphezulu',
+    backupSizeLimit: 'Ikhophi yokulondoloza idlula ubukhulu obusekelwayo',
+    backupPhotoUnavailable: 'Isithombe sephrofayili asikho kumbe sidlula i-8 MB',
+    backupPhotoFormat:
+      'Izithombe zephrofayili kumele zibe yi-JPEG kumbe i-PNG ezingadluli ama-pixel angu-4096',
+    backupPhotoSizeLimit: 'Izithombe zekhophini yokulondoloza zidlula ubukhulu obusekelwayo',
+    backupRecoveryRequired:
+      'Ukubuyisela kuphazamisekile: zama futhi kumbe ugcine ulwazi lwangaphambili',
   },
 };
 export default ZWnd;

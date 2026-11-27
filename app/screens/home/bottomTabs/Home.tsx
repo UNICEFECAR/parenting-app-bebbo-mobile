@@ -1,3 +1,5 @@
+import {useHomeUpdateCheck} from "../../../customHooks/useHomeUpdateCheck";
+import {useIsFocused} from "@react-navigation/native";
 import {useCommittedRef} from "../../../customHooks/useCommittedRef";
 import {useNavigationBackHandler} from "../../../customHooks/useNavigationBackHandler";
 import {openMeasuredLink} from "../../../services/measuredLink";
@@ -209,55 +211,32 @@ const Home = ({ route: _route, navigation }: any): any => {
   //   };
   // }, []);
 
+  // One gate covers app-version, server force-update and pending/scheduled prompts.
+  const isHomeFocused = useIsFocused();
+  const currentConnection = useCommittedRef(() => netInfo.isConnected);
+  const updatePromptOpen = React.useRef(false);
+  useEffect(() => navigation.addListener("focus", () => {
+    updatePromptOpen.current = false;
+  }), [navigation]);
+  const showUpdatePrompt = (title: string, message: string, buttons: any[]): void => {
+    if (updatePromptOpen.current || !navigation.isFocused() || !currentConnection.current()) return;
+    updatePromptOpen.current = true;
+    dispatch(setInfoModalOpened({ key: "showDownloadPopup", value: false }));
+    Alert.alert(title, message, buttons, {cancelable: false});
+  };
   const onNoForceUpdate = (): any => {
-    if (
-      netInfo.isConnected &&
-      showDownloadPopup &&
-      (downloadBufferData == true ||
-        downloadWeeklyData == true ||
-        downloadMonthlyData == true)
-    ) {
-      setTimeout(() => {
-        Alert.alert(t("SyncOnLoadPopupTitle"), t("SyncOnLoadPopupText"), [
-          {
-            text: t("SyncOnLoadCancelPopUpBtn"),
-            onPress: (): any => {
-              dispatch(
-                setInfoModalOpened({ key: "showDownloadPopup", value: false })
-              );
-            },
-            style: "cancel",
-          },
-          { text: t("SyncOnLoadRetryBtn"), onPress: (): any => downloadApis() },
-        ]);
-      }, 2500);
-    } else if (
-      netInfo.isConnected &&
-      showDownloadPopup &&
-      errorObj.length > 0
-    ) {
-      setTimeout(() => {
-        Alert.alert(
-          t("downloadOnLoadPopupTitle"),
-          t("downloadOnLoadPopupText"),
-          [
-            {
-              text: t("downloadOnLoadCancelPopUpBtn"),
-              onPress: (): any => {
-                dispatch(
-                  setInfoModalOpened({ key: "showDownloadPopup", value: false })
-                );
-              },
-              style: "cancel",
-            },
-            {
-              text: t("downloadOnLoadRetryBtn"),
-              onPress: (): any => callFailedApis(),
-            },
-          ]
-        );
-      }, 2500);
-    }
+    if (!netInfo.isConnected || !showDownloadPopup) return;
+    const pending = errorObj.length > 0;
+    if (!pending && !downloadBufferData && !downloadWeeklyData && !downloadMonthlyData) return;
+    showUpdatePrompt(
+      t(pending ? "downloadOnLoadPopupTitle" : "SyncOnLoadPopupTitle"),
+      t(pending ? "downloadOnLoadPopupText" : "SyncOnLoadPopupText"),
+      [
+        {text: t(pending ? "downloadOnLoadCancelPopUpBtn" : "SyncOnLoadCancelPopUpBtn"), style: "cancel"},
+        {text: t(pending ? "downloadOnLoadRetryBtn" : "SyncOnLoadRetryBtn"),
+          onPress: pending ? callFailedApis : downloadApis},
+      ],
+    );
   };
 
   const forceUpdateData = [
@@ -277,13 +256,13 @@ const Home = ({ route: _route, navigation }: any): any => {
   const relfolejadev = "0.2.0";
   const relfolejaprod = "1.1.0";
 
-  // Run the mount-time version check once; state updates must not reopen its dialog.
-  const startupHomeInputs = useCommittedRef(() => ({countryId, dispatch, flavor, hcuModalOpened, updateContentOnAppVersionChange, vaccineModalOpened}));
+  // Initialize the informational modals once on mount.
+  const startupHomeInputs = useCommittedRef(() => ({countryId, dispatch, flavor, hcuModalOpened, vaccineModalOpened}));
   useEffect(() => {
-    const {countryId: inputCountryId, dispatch: inputDispatch, flavor: inputFlavor, hcuModalOpened: inputHcuModalOpened, updateContentOnAppVersionChange: inputUpdateContentOnAppVersionChange, vaccineModalOpened: inputVaccineModalOpened} = startupHomeInputs.current();
+    const {countryId: inputCountryId, dispatch: inputDispatch, flavor: inputFlavor, hcuModalOpened: inputHcuModalOpened, vaccineModalOpened: inputVaccineModalOpened} = startupHomeInputs.current();
 
     const task = scheduleIdleTask(() => {
-      inputUpdateContentOnAppVersionChange();
+      // Content checks run through the single connection/update flow below.
 
       const firstModalVisible = inputFlavor !== "bebbo" ? true : (inputCountryId == appConfig.restOfTheWorldCountryId) ? true : false
       console.log("home firstModalVisible--",firstModalVisible)
@@ -302,17 +281,7 @@ const Home = ({ route: _route, navigation }: any): any => {
 
   const updateContentOnAppVersionChange = async () => {
     if (VersionInfo.appVersion > appVersion || appVersion === "") {
-      const apiresponse = await commonApiService(
-        forceUpdateData[0].apiEndpoint,
-        forceUpdateData[0].method,
-        forceUpdateData[0].postdata
-      );
-      const forceUpdateTime =
-        apiresponse && apiresponse.data && apiresponse.data.updated_at
-          ? apiresponse.data.updated_at
-          : "0";
-      AsyncStorage.setItem("forceUpdateTime", forceUpdateTime);
-      Alert.alert(t("forceUpdatePopupTitle"), t("forceUpdatePopupText"), [
+      showUpdatePrompt(t("forceUpdatePopupTitle"), t("forceUpdatePopupText"), [
         {
           text: t("forceUpdateOkBtn"),
           onPress: (): any => {
@@ -324,7 +293,9 @@ const Home = ({ route: _route, navigation }: any): any => {
           },
         },
       ]);
+      return true;
     }
+    return false;
   };
 
   const initialSyncConnection = useCommittedRef(() => netInfo.isConnected);
@@ -337,9 +308,9 @@ const Home = ({ route: _route, navigation }: any): any => {
     return () => task.cancel();
   }, [initialSyncConnection]);
   // Only existing refresh triggers start this check; profile/telemetry writes are not downloads.
-  const downloadInputs = useCommittedRef(() => ({activeChild, bufferAgeBracket, dispatch, forceUpdateApis, forceUpdateData, incrementalSyncDT, languageCode, navigation, onNoForceUpdate, showDownloadPopup, t, userIsOnboarded}));
-  useEffect(() => {
-    const {activeChild: inputActiveChild, bufferAgeBracket: inputBufferAgeBracket, dispatch: inputDispatch, forceUpdateApis: inputForceUpdateApis, forceUpdateData: inputForceUpdateData, incrementalSyncDT: inputIncrementalSyncDT, languageCode: inputLanguageCode, navigation: inputNavigation, onNoForceUpdate: inputOnNoForceUpdate, showDownloadPopup: inputShowDownloadPopup, t: inputT, userIsOnboarded: inputUserIsOnboarded} = downloadInputs.current();
+  const downloadInputs = useCommittedRef(() => ({activeChild, bufferAgeBracket, dispatch, forceUpdateApis, forceUpdateData, incrementalSyncDT, languageCode, navigation, onNoForceUpdate, showDownloadPopup, t, userIsOnboarded, updateContentOnAppVersionChange, errorObj}));
+  useHomeUpdateCheck(async () => {
+    const {activeChild: inputActiveChild, bufferAgeBracket: inputBufferAgeBracket, dispatch: inputDispatch, forceUpdateApis: inputForceUpdateApis, forceUpdateData: inputForceUpdateData, incrementalSyncDT: inputIncrementalSyncDT, languageCode: inputLanguageCode, navigation: inputNavigation, onNoForceUpdate: inputOnNoForceUpdate, showDownloadPopup: inputShowDownloadPopup, t: inputT, userIsOnboarded: inputUserIsOnboarded, updateContentOnAppVersionChange: inputVersionUpdate, errorObj: inputErrors} = downloadInputs.current();
 
     // setModalVisible(false);
     async function fetchNetInfo(): Promise<any> {
@@ -355,14 +326,17 @@ const Home = ({ route: _route, navigation }: any): any => {
         inputDispatch(setuserIsOnboarded(true));
         const currentDate = DateTime.now().toMillis();
         inputDispatch(setSyncDate({ key: "userOnboardedDate", value: currentDate }));
-        inputDispatch(
-          setSyncDate({ key: "weeklyDownloadDate", value: currentDate })
-        );
-        inputDispatch(
-          setSyncDate({ key: "monthlyDownloadDate", value: currentDate })
-        );
+        // Bundled content is not a successful server download.
+        if (netInfo.isConnected && inputErrors.length === 0) {
+          inputDispatch(setSyncDate({ key: "weeklyDownloadDate", value: currentDate }));
+          inputDispatch(setSyncDate({ key: "monthlyDownloadDate", value: currentDate }));
+        }
         const obj = { key: "showDownloadPopup", value: false };
         inputDispatch(setInfoModalOpened(obj));
+        if (!netInfo.isConnected) {
+          await AsyncStorage.setItem("forceUpdateTime", "0");
+          return;
+        }
         const apiresponse = await commonApiService(
           inputForceUpdateData[0].apiEndpoint,
           inputForceUpdateData[0].method,
@@ -381,6 +355,77 @@ const Home = ({ route: _route, navigation }: any): any => {
           "isRelatedVideoArticleUpdateReq"
         );
         if (netInfo.isConnected && inputShowDownloadPopup) {
+          if (await inputVersionUpdate()) return;
+          const forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
+          if (forceUpdateTime == null || forceUpdateTime == undefined) {
+            inputDispatch(
+              setInfoModalOpened({ key: "showDownloadPopup", value: false })
+            );
+            showUpdatePrompt(inputT("forceUpdatePopupTitle"), inputT("forceUpdatePopupText"), [
+              {
+                text: inputT("forceUpdateOkBtn"),
+                onPress: (): any => {
+                  inputNavigation.navigate("LoadingScreen", {
+                    apiJsonData: appConfig.allApisObject(
+                      false,
+                      inputIncrementalSyncDT
+                    ),
+                    prevPage: "CountryLangChange",
+                  });
+                },
+              },
+            ]);
+            return;
+          } else {
+            const apiresponse = await commonApiService(
+              inputForceUpdateData[0].apiEndpoint,
+              inputForceUpdateData[0].method,
+              inputForceUpdateData[0].postdata
+            );
+            let forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
+            forceUpdateTime = forceUpdateTime ? forceUpdateTime : "0";
+            const contentUpdate = apiresponse?.data?.content_update ?? apiresponse?.data;
+            console.log("[Content update check]", {
+              status: apiresponse?.data?.status,
+              enabled: contentUpdate?.flag,
+              serverVersion: contentUpdate?.updated_at,
+              downloadedVersion: forceUpdateTime,
+            });
+            if (apiresponse?.data?.status == 200) {
+              if (contentUpdate.flag == 1) {
+                if (
+                  parseInt(contentUpdate.updated_at) >
+                  parseInt(forceUpdateTime)
+                ) {
+                  showUpdatePrompt(
+                    inputT("forceUpdatePopupTitle"),
+                    inputT("forceUpdatePopupText"),
+                    [
+                      {
+                        text: inputT("forceUpdateOkBtn"),
+                        onPress: (): any => {
+                          inputDispatch(
+                            setInfoModalOpened({
+                              key: "showDownloadPopup",
+                              value: false,
+                            })
+                          );
+                          inputForceUpdateApis(contentUpdate.updated_at);
+                        },
+                      },
+                    ]
+                  );
+                  return;
+                } else {
+                  inputOnNoForceUpdate();
+                }
+              } else {
+                inputOnNoForceUpdate();
+              }
+            } else {
+              inputOnNoForceUpdate();
+            }
+          }
           if (
             isVideoArticleUpdateReq == null ||
             isVideoArticleUpdateReq == undefined ||
@@ -635,82 +680,15 @@ const Home = ({ route: _route, navigation }: any): any => {
               netInfo.isConnected
             )
           );
-          const forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
-          if (forceUpdateTime == null || forceUpdateTime == undefined) {
-            inputDispatch(
-              setInfoModalOpened({ key: "showDownloadPopup", value: false })
-            );
-            Alert.alert(inputT("forceUpdatePopupTitle"), inputT("forceUpdatePopupText"), [
-              {
-                text: inputT("forceUpdateOkBtn"),
-                onPress: (): any => {
-                  inputNavigation.navigate("LoadingScreen", {
-                    apiJsonData: appConfig.allApisObject(
-                      false,
-                      inputIncrementalSyncDT
-                    ),
-                    prevPage: "CountryLangChange",
-                  });
-                },
-              },
-            ]);
-          } else {
-            const apiresponse = await commonApiService(
-              inputForceUpdateData[0].apiEndpoint,
-              inputForceUpdateData[0].method,
-              inputForceUpdateData[0].postdata
-            );
-            let forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
-            forceUpdateTime = forceUpdateTime ? forceUpdateTime : "0";
-            if (apiresponse.data.status == 200) {
-              if (apiresponse.data.flag == 1) {
-                if (
-                  parseInt(apiresponse.data.updated_at) >
-                  parseInt(forceUpdateTime)
-                ) {
-                  Alert.alert(
-                    inputT("forceUpdatePopupTitle"),
-                    inputT("forceUpdatePopupText"),
-                    [
-                      {
-                        text: inputT("forceUpdateOkBtn"),
-                        onPress: (): any => {
-                          inputDispatch(
-                            setInfoModalOpened({
-                              key: "showDownloadPopup",
-                              value: false,
-                            })
-                          );
-                          inputForceUpdateApis(apiresponse.data.updated_at);
-                        },
-                      },
-                    ]
-                  );
-                } else {
-                  inputOnNoForceUpdate();
-                }
-              } else {
-                inputOnNoForceUpdate();
-              }
-            } else {
-              inputOnNoForceUpdate();
-            }
-          }
+
         }
       }
     }
-    const task = scheduleIdleTask(() => {
-      if (Platform.OS == "ios") {
-        if (netInfo.isConnected != null) {
-          fetchNetInfo();
-        }
-      } else {
-        fetchNetInfo();
-      }
-    });
+    if (updatePromptOpen.current || !navigation.isFocused()) return;
+    try { await fetchNetInfo(); }
+    catch { inputOnNoForceUpdate(); }
+  }, isHomeFocused, netInfo.isConnected, showDownloadPopup);
 
-    return () => task.cancel();
-  }, [netInfo.isConnected, downloadInputs]);
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === "ios");
     setdate1(selectedDate);

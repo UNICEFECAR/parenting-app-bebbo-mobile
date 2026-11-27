@@ -538,22 +538,45 @@ const UZuz = {
       "Bebbo g'amxo'rlik qilishda sayohatingizni qo'llab-quvvatlashga tayyorlanmoqda!",
     serviceProviderHeaderSubInfoText:
       "Bebbo siz uchun yangi tug'ilgan chaqaloq profilini yaratdi. Keyinroq boshqa farzandlaringiz profilini qo‘shishingiz mumkin.",
-    newAppBannerTitle: "Bebbo has a new home!",
-    newAppBannerMessage: "Learn how to transfer your children's saved information to the new app.",
-    newAppBannerLinkBtn: "Download new app",
-    newAppInfoAccessibility: "Read instructions for transferring saved information",
-    newAppInfoTitle: "Keep your saved information",
-    newAppMigrationInstructions: "The app you know and trust is now [New App Name], provided by [Government Body]. To keep your children's saved information, follow 3 simple steps:\n\n1. Back up: Go to Settings → Back up your data and save your backup to Google Drive.\n\n2. Download: Get the new app.\n\n3. Restore: Bring your saved information into the new app during onboarding. (You can do this only when online.)",
-    newAppStoreUnavailableTitle: "App store unavailable",
-    newAppStoreUnavailableMessage: "The store link is currently unavailable. You can continue using this app.",
-    newAppStoreErrorTitle: "Unable to open app store",
-    newAppStoreErrorMessage: "Please try again later. You can continue using this app.",
-    close: "Close",
-    newAppAlertTitle: 'Another app is available for your country',
-    newAppAlertMessage: 'A Bebbo app specifically for your selected country is available. Would you like to continue with this app or change your country selection?',
-    newAppAlertEditBtn: 'Back',
-    newAppAlertContinueBtn: 'Continue',
-    newAppAlertDownloadBtn: "Download App"
+    newAppBannerTitle: 'Bebbo yangi manzilga ko‘chdi!',
+    newAppBannerMessage: 'Farzandlaringiz haqidagi saqlangan ma’lumotlarni yangi ilovaga qanday o‘tkazishni bilib oling.',
+    newAppBannerLinkBtn: 'Yangi ilovani yuklab olish',
+    newAppInfoAccessibility: 'Saqlangan ma’lumotlarni o‘tkazish bo‘yicha ko‘rsatmalarni o‘qish',
+    newAppInfoTitle: 'Saqlangan ma’lumotlaringizni saqlab qoling',
+    newAppMigrationInstructions: 'Siz bilgan va ishongan ilova endi [Government Body] tomonidan taqdim etiladigan [New App Name] deb ataladi. Farzandlaringiz haqidagi saqlangan ma’lumotlarni saqlab qolish uchun 3 oddiy qadamni bajaring:\n\n1. Zaxira nusxa yarating: Sozlamalar → Ma’lumotlarning zaxira nusxasini yaratish bo‘limiga o‘ting va zaxira nusxani Google Drive’ga saqlang.\n\n2. Yangi ilovani yuklab oling.\n\n3. Tiklang: Dastlabki sozlash vaqtida saqlangan ma’lumotlarni yangi ilovaga o‘tkazing. (Buni faqat internetga ulanganda bajarish mumkin.)',
+    newAppStoreUnavailableTitle: 'Ilovalar do‘koni mavjud emas',
+    newAppStoreUnavailableMessage: 'Do‘kon havolasi hozir mavjud emas. Ushbu ilovadan foydalanishda davom etishingiz mumkin.',
+    newAppStoreErrorTitle: 'Ilovalar do‘konini ochib bo‘lmadi',
+    newAppStoreErrorMessage: 'Keyinroq qayta urinib ko‘ring. Ushbu ilovadan foydalanishda davom etishingiz mumkin.',
+    close: 'Yopish',
+    newAppAlertTitle: 'Mamlakatingiz uchun boshqa ilova mavjud',
+    newAppAlertMessage: 'Siz tanlagan mamlakat uchun maxsus Bebbo ilovasi mavjud. Ushbu ilovadan foydalanishda davom etasizmi yoki tanlangan mamlakatni o‘zgartirasizmi?',
+    newAppAlertEditBtn: 'Orqaga',
+    newAppAlertContinueBtn: 'Davom etish',
+    newAppAlertDownloadBtn: 'Ilovani yuklab olish',
+    backupPassphraseHelp:
+      'Kamida 6 ta belgidan foydalaning. Parolni xavfsiz joyda saqlang: u ilovada saqlanmaydi va uni tiklab bo‘lmaydi. U sizga boshqa qurilmada kerak bo‘ladi. Ilovaning eski versiyalari yangi zaxira nusxalarni ocha olmaydi.',
+    backupPassphrase: 'Zaxira nusxa paroli',
+    backupRepeatPassphrase: 'Parolni takrorlang',
+    backupRecoveryHelp:
+      'Tiklash tugallanmadi. Zarur bo‘lsa, xotiradan joy bo‘shating va qayta urinib ko‘ring. Tiklashdan oldin ushbu qurilmada bo‘lgan ma’lumotlarni ham saqlab qolishingiz mumkin. Tiklash tugaguncha ilova shu ekranda qoladi.',
+    backupKeepPrevious: 'Oldingi ma’lumotlarni saqlab qolish',
+    backupRestoreReplaceWarningV3:
+      'Tiklash ushbu qurilmadagi barcha bola va homiladorlik profillarini hamda ularning yozuvlarini almashtiradi. Zaxira nusxadagi suratlar, parvarishlovchi haqidagi ma’lumotlar va eslatma sozlamalari ham tiklanadi. Avval joriy ma’lumotlarning zaxira nusxasini yarating. Faqat ishonchli fayllarni tiklang. Yozuvlar birlashtirilmaydi. Davom etilsinmi?',
+    backupPreviewExpired:
+      'Zaxira nusxani oldindan ko‘rish muddati tugadi. Zaxira nusxani qayta tanlang',
+    backupLegacyUnlockFailed:
+      'Ilova eski zaxira nusxani qulfdan chiqara olmadi. Ilova versiyasida zaxira nusxaning dastlabki shifrlash sozlamalari mavjudligini va fayl to‘liqligini tekshiring.',
+    backupDamaged: 'Qo‘llab-quvvatlanmaydigan yoki shikastlangan zaxira nusxa',
+    backupUnlockFailed: 'Parol noto‘g‘ri yoki zaxira nusxa shikastlangan',
+    backupPassphraseTooShort: 'Zaxira nusxa paroli kamida 6 ta belgidan iborat bo‘lishi kerak',
+    backupSizeLimit: 'Zaxira nusxa hajmi ruxsat etilgan chegaradan oshgan',
+    backupPhotoUnavailable: 'Profil surati yo‘q yoki uning hajmi 8 MB dan katta',
+    backupPhotoFormat:
+      'Profil suratlari 4096 pikselgacha bo‘lgan JPEG yoki PNG tasvirlar bo‘lishi kerak',
+    backupPhotoSizeLimit: 'Zaxira nusxadagi suratlar hajmi ruxsat etilgan chegaradan oshgan',
+    backupRecoveryRequired:
+      'Tiklash to‘xtatildi: qayta tiklashga urinib ko‘ring yoki oldingi ma’lumotlarni saqlab qoling',
   },
 };
 export default UZuz;

@@ -526,6 +526,50 @@ const WSsm = {
       'Bebbo Pacific is getting ready to support your journey in providing care!',
     serviceProviderHeaderSubInfoText:
       'Bebbo Pacific created a newborn child profile to get you started. You can add more child profiles later.',
+    newAppBannerTitle: 'Ua iai se fale fou o Bebbo!',
+    newAppBannerMessage:
+      'A‘oa‘o pe faapefea ona siitia faamatalaga ua teuina e uiga i lau fanau i le polokalame fou.',
+    newAppBannerLinkBtn: 'La‘u mai le polokalame fou',
+    newAppInfoAccessibility: 'Faitau faatonuga mo le siitia o faamatalaga ua teuina',
+    newAppInfoTitle: 'Taofi au faamatalaga ua teuina',
+    newAppMigrationInstructions:
+      'O le polokalame e te iloa ma faatuatuaina ua ta‘ua nei o le [New App Name], ua saunia e le [Government Body]. Ina ia taofi faamatalaga ua teuina e uiga i lau fanau, mulimuli i laasaga faigofie nei e 3:\n\n1. Fai se kopi faaleoleo: Alu i Faatulagaga → Fai se kopi faaleoleo o au faamatalaga ma teu i le Google Drive.\n\n2. La‘u mai le polokalame fou.\n\n3. Toe faafo‘i: Siitia au faamatalaga ua teuina i le polokalame fou i le taimi o le faatulagaga muamua. (E na o le taimi e fesootai ai i le initaneti e mafai ai ona fai lenei mea.)',
+    newAppStoreUnavailableTitle: 'E lē maua le faleoloa o polokalame',
+    newAppStoreUnavailableMessage:
+      'E lē o maua le sootaga i le faleoloa i le taimi nei. E mafai ona e faaaogā pea lenei polokalame.',
+    newAppStoreErrorTitle: 'E lē mafai ona tatala le faleoloa o polokalame',
+    newAppStoreErrorMessage:
+      'Faamolemole toe taumafai i se taimi mulimuli. E mafai ona e faaaogā pea lenei polokalame.',
+    close: 'Tapuni',
+    newAppAlertTitle: 'E iai se isi polokalame mo lou atunuu',
+    newAppAlertMessage:
+      'E iai se polokalame Bebbo faapitoa mo le atunuu ua e filifilia. E te mana‘o e faaauau i lenei polokalame pe sui le atunuu ua filifilia?',
+    newAppAlertEditBtn: 'Toe fo‘i',
+    newAppAlertContinueBtn: 'Faaauau',
+    newAppAlertDownloadBtn: 'La‘u mai le polokalame',
+    backupPassphraseHelp:
+      'Faaaogā ia lē itiiti ifo i le 6 mataitusi po o faailoga. Teu le upu faalilolilo i se nofoaga saogalemu: e lē teuina i le polokalame ma e lē mafai ona toe maua. E te mana‘omia i se isi masini. E lē mafai e lomiga tuai o le polokalame ona tatala kopi faaleoleo fou.',
+    backupPassphrase: 'Upu faalilolilo o le kopi faaleoleo',
+    backupRepeatPassphrase: 'Toe tusi le upu faalilolilo',
+    backupRecoveryHelp:
+      'E le‘i mae‘a le toe faafo‘isia. Faavanoa se avanoa e teu ai pe a mana‘omia, ona toe taumafai lea. E mafai fo‘i ona e taofi faamatalaga sa iai i lenei masini a o le‘i toe faafo‘isia. O le a tumau le polokalame i lenei itulau se‘ia mae‘a le toe faaleleia.',
+    backupKeepPrevious: 'Taofi faamatalaga muamua',
+    backupRestoreReplaceWarningV3:
+      'O le toe faafo‘isia e suia uma ai talaaga o tamaiti ma maitaga ma a latou faamaumauga i lenei masini. E toe faafo‘i fo‘i ata, faamatalaga o le tagata tausi ma faatulagaga o faamanatu o loo i le kopi faaleoleo. Fai muamua se kopi faaleoleo o faamatalaga o iai nei. Faaaogā na o faila e te faatuatuaina. E lē tuufaatasia faamaumauga. Faaauau?',
+    backupPreviewExpired:
+      'Ua uma le taimi o le vaaiga muamua o le kopi faaleoleo. Toe filifili le kopi faaleoleo',
+    backupLegacyUnlockFailed:
+      'E le‘i mafai e le polokalame ona tatala le kopi faaleoleo tuai. Siaki pe o iai i lenei lomiga faatulagaga muamua o le faailogaina faalilolilo o le kopi faaleoleo ma pe o atoatoa le faila.',
+    backupDamaged: 'Kopi faaleoleo e lē lagolagoina pe ua faaleagaina',
+    backupUnlockFailed: 'Upu faalilolilo sesē po o se kopi faaleoleo ua faaleagaina',
+    backupPassphraseTooShort:
+      'E tatau ona iai ia lē itiiti ifo i le 6 mataitusi po o faailoga i le upu faalilolilo o le kopi faaleoleo',
+    backupSizeLimit: 'Ua sili atu le telē o le kopi faaleoleo i le tapulaa e lagolagoina',
+    backupPhotoUnavailable: 'E lē o iai se ata o le talaaga pe ua sili atu i le 8 MB',
+    backupPhotoFormat:
+      'E tatau ona avea ata o le talaaga ma ata JPEG po o PNG e lē sili atu i le 4096 pixels',
+    backupPhotoSizeLimit: 'Ua sili atu le telē o ata i le kopi faaleoleo i le tapulaa e lagolagoina',
+    backupRecoveryRequired: 'Ua motusia le toe faafo‘isia: toe taumafai pe taofi faamatalaga muamua',
   },
 };
 export default WSsm;

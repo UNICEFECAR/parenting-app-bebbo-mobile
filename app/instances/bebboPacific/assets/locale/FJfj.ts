@@ -526,6 +526,49 @@ const FJfj = {
       'Bebbo Pacific is getting ready to support your journey in providing care!',
     serviceProviderHeaderSubInfoText:
       'Bebbo Pacific created a newborn child profile to get you started. You can add more child profiles later.',
+    newAppBannerTitle: 'Sa tiko na vale vou ni Bebbo!',
+    newAppBannerMessage:
+      'Vulica na sala mo vakadewataka kina na itukutuku maroroi ni luvemu ki na app vou.',
+    newAppBannerLinkBtn: 'Lavetaka na app vou',
+    newAppInfoAccessibility: 'Wilika na ivakasala ni vakadewataki ni itukutuku maroroi',
+    newAppInfoTitle: 'Maroroya na nomu itukutuku',
+    newAppMigrationInstructions:
+      'Na app o kila ka vakabauta sa yacana oqo na [New App Name], ka vakarautaka na [Government Body]. Me maroroi na itukutuku ni luvemu, muria na 3 na ikalawa rawarawa oqo:\n\n1. Cakava e dua na ilavelave: Lako ki na Veivakarautaki → Cakava na ilavelave ni nomu itukutuku ka maroroya ena Google Drive.\n\n2. Lavetaka na app vou.\n\n3. Vakalesuya: Vakadewataka na nomu itukutuku maroroi ki na app vou ena kena vakarautaki taumada. (O rawa ni cakava wale ga ni o sema tiko ki na initaneti.)',
+    newAppStoreUnavailableTitle: 'Sega ni rawa ni curumi na sitoa ni app',
+    newAppStoreUnavailableMessage:
+      'E sega ni rawa ni vakayagataki na isema ki na sitoa ena gauna oqo. O rawa ni tomana na vakayagataki ni app oqo.',
+    newAppStoreErrorTitle: 'Sega ni rawa ni dolavi na sitoa ni app',
+    newAppStoreErrorMessage:
+      'Yalovinaka, tovolea tale e muri. O rawa ni tomana na vakayagataki ni app oqo.',
+    close: 'Sogota',
+    newAppAlertTitle: 'E tiko e dua tale na app me baleta na nomu vanua',
+    newAppAlertMessage:
+      'E tiko e dua na app ni Bebbo me baleta vakatabakidua na vanua o digitaka. O via tomana na vakayagataki ni app oqo se veisautaka na vanua o digitaka?',
+    newAppAlertEditBtn: 'Lesu',
+    newAppAlertContinueBtn: 'Tomana',
+    newAppAlertDownloadBtn: 'Lavetaka na app',
+    backupPassphraseHelp:
+      'Vakayagataka e 6 se sivia na matanivola se ivakatakilakila. Maroroya na vosanicuru ena dua na vanua taqomaki: e sega ni maroroi ena app ka sega ni rawa ni vakalesui. O na gadreva ena dua tale na misini. Na mataqali app makawa e sega ni rawa ni dolava na ilavelave vou.',
+    backupPassphrase: 'Vosanicuru ni ilavelave',
+    backupRepeatPassphrase: 'Vola tale na vosanicuru',
+    backupRecoveryHelp:
+      'E se bera ni oti na vakalesui ni itukutuku. Sereka eso na vanua ni maroroi kevaka e gadrevi, qai tovolea tale. O rawa tale ga ni maroroya na itukutuku a tiko ena misini oqo ni bera na vakalesui. Ena tiko ga na app ena tabana oqo me yacova ni oti na vakalesui.',
+    backupKeepPrevious: 'Maroroya na itukutuku e liu',
+    backupRestoreReplaceWarningV3:
+      'Na vakalesui ena sosomitaka na itukutuku kece ni gone kei na bukete kei na kedra ivolatukutuku ena misini oqo. Ena vakalesui tale ga na itaba, na itukutuku ni dauveiqaravi kei na veivakarautaki ni veivakananumi e tiko ena ilavelave. Cakava mada e dua na ilavelave ni itukutuku e tiko oqo. Vakalesuya wale ga na faile o vakabauta. Ena sega ni cokovata na ivolatukutuku. Tomana?',
+    backupPreviewExpired: 'Sa cava na gauna ni raici taumada ni ilavelave. Digitaka tale na ilavelave',
+    backupLegacyUnlockFailed:
+      'E sega ni rawa ni dolava na app na ilavelave makawa. Raica ni tiko ena mataqali app oqo na kena ivakarau taumada ni encryption ni ilavelave ka ni taucoko na faile.',
+    backupDamaged: 'Ilavelave e sega ni tokoni se sa vakacacani',
+    backupUnlockFailed: 'Vosanicuru cala se ilavelave sa vakacacani',
+    backupPassphraseTooShort:
+      'E dodonu me tiko ena vosanicuru ni ilavelave e 6 se sivia na matanivola se ivakatakilakila',
+    backupSizeLimit: 'Sa sivia na levu e vakatarai me baleta na ilavelave',
+    backupPhotoUnavailable: 'E yali e dua na itaba ni itukutuku se sa sivia na 8 MB',
+    backupPhotoFormat:
+      'Na itaba ni itukutuku e dodonu me JPEG se PNG ka me kakua ni sivia na 4096 na pixel',
+    backupPhotoSizeLimit: 'Sa sivia na levu e vakatarai me baleta na itaba ena ilavelave',
+    backupRecoveryRequired: 'Sa muduki na vakalesui: tovolea tale se maroroya na itukutuku e liu',
   },
 };
 export default FJfj;
